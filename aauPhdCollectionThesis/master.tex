@@ -22,7 +22,10 @@
 %mainmatter
 \mainmatter
 \part{Introduction}
-\include{introduction/introduction}
+\input{introduction/introduction}
+
+% \part{Models}
+% \input{models/models}
 
 %backmatter
 \appendix
@@ -32,7 +35,7 @@
 }[%shape
 display%
 ]{%format
-  \normalfont\huge
+  \normalfont\huge 
 }{%label
   \begin{center}\color{aaublue}\chaptertitlename\ \thechapter\end{center}
 }{%style
@@ -42,6 +45,6 @@ display%
 }[%code after title
   \end{center}
 ]
-\includepaper{papers/paperA/paperA}
-\includepaper{papers/paperB/paperB}
+% \includepaper{papers/paperA/paperA}
+% \includepaper{papers/paperB/paperB}
 \end{document}
