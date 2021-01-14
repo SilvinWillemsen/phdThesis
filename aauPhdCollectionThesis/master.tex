@@ -2,8 +2,6 @@
 \input{setup/hyphenations.tex}% 
 \input{setup/macros.tex}% my new macros
 
-\usepackage{amsmath}
-
 \begin{document}
 %frontmatter
 \frontmatter
@@ -23,14 +21,17 @@
 
 %mainmatter
 \mainmatter
-\part{Introduction}
+\custPart{Introduction}\label{part:introduction}
 \input{introduction/introduction}
 
-% \part{Models}
-% \input{models/models}
+\custPart{Models}
+\input{models/models}
 
-\part{Dynamic Grids}
+\custPart{Dynamic Grids}
 \input{dynamic/dynamic}
+
+\pagebreak
+{\small\bibliographystyle{IEEEtranS}\bibliography{bib/mybib}}
 
 %backmatter
 % \appendix
@@ -49,9 +50,10 @@ display%
   1cm
 }{%code before title
   \thispagestyle{empty}\begin{center}\Large
-}[%code after title
-  \end{center}
+[%code after title
 ]
+  \end{center}}
+
 % \includepaper{papers/paperA/paperA}
 % \includepaper{papers/paperB/paperB}
 \end{document}
