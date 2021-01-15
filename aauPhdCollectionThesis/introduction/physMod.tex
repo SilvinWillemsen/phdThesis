@@ -1,0 +1,44 @@
+\chapter{Physical Modelling of Musical Instruments}\label{ch:physMod}
+
+The history of physical modelling of musical instruments
+
+Exciter-resonator approach. 
+
+The time-evolution of dynamic systems can be conveniently described by differential equations. Examples of a dynamic systems are a guitar string, a drum-membrane, or a concert hall; three very different concepts, but all based on the same types of equations of motion.
+
+Though these equations are very powerful, only few have a closed-form solution. What this means is that in order for them to be implemented, they need to be approximated. There exist different approximation techniques to do this  
+
+\section{Physical Modelling Techniques}\label{sec:physModTech}
+\begin{itemize}
+    \item Modal Synthesis
+    \item Finite-difference Time-domain methods
+    \item Digital waveguides
+    \item Mass-spring systems
+    \item Functional transformation method
+    \item State-space
+    \item Wave-domain
+    \item Energy-based
+\end{itemize}
+    
+\section{Thesis Objectives and Main Contributions}
+The main objective of this thesis is to implement existing physical models in real time using FDTD methods. Many of the physical models and methods presented in this thesis are taken from the literature and it is thus not  Secondly, to combine the existing physical models to get complete instruments and be able to control them in real time.
+
+As FDTD methods are quite rigid, changing parameters on the fly, i.e., while the instrument simulation is running, is a challenge.  Other techniques, such as modal synthesis, are much more suitable for this, but come with the drawbacks mentioned in Section \ref{sec:physModTech}. Therefore, a novel method was devised to smoothly change parameters over time, introducing this to FDTD methods. 
+
+\section{Thesis Outline}
+\begin{itemize}
+    \item Physical models
+    \begin{itemize}
+        \item Resonators
+        \item Exciters
+        \item Interactions
+    \end{itemize}
+    \item Dynamic Grids
+    \item Real-Time Implementation and Control
+    \item Complete instruments
+    \begin{itemize}
+        \item Large-scale physical models
+        \item Tromba Marina
+        \item Trombone
+    \end{itemize}
+\end{itemize}

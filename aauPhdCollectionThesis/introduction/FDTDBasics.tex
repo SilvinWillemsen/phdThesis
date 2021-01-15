@@ -1,0 +1,94 @@
+\chapter{An Introduction to FDTD Methods}
+This chapter introduces some important concepts needed to understand the physical models presented later on in this document. 
+By means of a simple mass-spring system and the 1D wave equation, the notation (and terminology) used throughout this document will be explained, together with some important analysis techniques. 
+Before we dive into the mathematics, let us go over some useful terminology.
+
+\subsubsection{Differential equations}
+As mentioned in Chapter \ref{ch:physMod} differential equations are used to describe the motion of dynamic systems. A characteristic feature of these equations is that, rather than the absolute position (or displacement) of an object, the time derivative of its position -- its velocity -- or the second-order time derivative -- its acceleration -- is described. From this, the displacement of the system can be computed.
+
+This displacement is usually described by the letter $u$ which is (nearly) always a function of time, i.e., $u=u(t)$. If the system is distributed in space, $u$ also becomes a function of space, i.e., $u = u(x,t)$, or with two spatial dimensions, $u = u(x,y,t)$, etc. Though this work only describes systems of up to two spatial dimensions, one could potentially extend to systems of infinite spatial dimensions evolving over time! 
+
+If $u$ is only a function of time, the differential equation that describes the motion of this system is called an \textit{ordinary differential equation} (ODE). If $u$ is also a function of at least one spatial dimension, the equation of motion is a called a \textit{partial differential equation} (PDE).
+
+The literature uses different types of notation for taking (continuous-time) partial derivatives. Applied to a state $u$ these can look like 
+%
+\begin{equation}\nonumber
+    \begin{aligned}
+        \frac{\partial^2 u}{\partial t^2} & \quad \text{(classical notation)}\\
+        u_{tt}\:\,& \quad \text{(subscript notation)}\\[3pt]
+        \partial^2_t u\: & \quad \text{(operator notation)}
+    \end{aligned}
+\end{equation}
+%
+all of which mean a second-order derivative with respect to time $t$, i.e., $u$'s acceleration. In this document, the operator notation will be used.
+
+\textit{Note: difference between 1D, 2D spatial, and 1D, 2D displacement (polarisation) }
+
+Now that an equation has been established, how 
+
+
+\subsubsection{Discretisation using FDTD methods}
+Finite-difference time-domain (FDTD) methods essentially subdivide a continuous equation in discrete points in time and space, a process called \textit{discretisation}.
+
+Once an ODE or PDE is discretised using these methods it is now called a \textit{Finite-Difference Scheme} (FDS).
+
+\subsubsection{Implementation}
+
+
+
+In the following 
+\begin{itemize}
+    \item Continuous-time
+    \item Discrete-time
+    \item Implementation (update equation)
+\end{itemize}
+
+\section{%Intro to ODEs: 
+The Mass-Spring System}
+Though a complete physical modelling field on its own (see Chapter \ref{ch:physMod}), mass-spring systems are also sound-generating systems themselves.
+
+\subsubsection{Continuous-time}
+The ODE of a simple mass-spring system is defined as
+\begin{equation}\label{eq:massSpringPDE}
+    \frac{d^2u}{dt^2} = -\omega_0^2u
+\end{equation}
+
+\subsubsection{Discrete-time}
+The , $u$ is approximated using 
+\begin{equation}
+    u(t) \approx u^n
+\end{equation}
+where $t = nk$
+
+\subsubsection{Implementation}
+
+
+\section{%Intro to PDEs: 
+The 1D Wave Equation}
+The simplest and arguably the most important PDE in the field is the 1D wave equation
+
+% Note that the $\partial$ symbol is used rather than the $d$ as in \eqref{eq:massSpringPDE} as it
+
+
+\subsubsection{Continuous-time}
+The state of the system $u=u(x,t)$ meaning that is on top of being defined in time $t$ it is distributed over space $x$. The 1D wave equation is defined as follows
+\begin{equation}
+    \partial^2_t u = c^2 \partial^2_x u.
+\end{equation}
+
+
+\subsubsection{Discrete-time}
+
+\subsubsection{Boundary Conditions}
+When a system is distributed in space, 
+
+
+\subsubsection{Output sound}
+After the system is excited (see \ref{part:exciters}), one can listen to the output
+
+
+\section{Energy Analysis}
+Debugging physical models.
+
+\section{Stability Analysis}
+Finding stability condition
