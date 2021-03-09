@@ -8,3 +8,23 @@ Iterations have been:
 \subsection{Cubic interpolation}
 
 \subsection{Sinc interpolation}
+
+
+\subsection{Displacement correction}
+
+The displacement correction can be interpreted as a spring force pulling $u_M^n$ and $w_0^n$ to the average displacement.
+
+\begin{align}
+    &\begin{aligned}
+        u_{M}^{n+1} &= 2u_M^n + \lambda^2 (u_{M-1} ^n- 2u_M^n  + u_{M+1}^n) - K \left(u_M^n - \frac{u_M^n + w_0^n}{2}\right)\\
+        w_0^{n+1} &= 2u_M^n + \lambda^2 (w_{-1} ^n- 2w_0^n  + w_1^n) - K \left(w_0^n - \frac{u_M^n + w_0^n}{2}\right) 
+    \end{aligned}\\
+    &\begin{aligned}
+        u_{M}^{n+1} &= 2u_M^n + \lambda^2 (u_{M-1} ^n- 2u_M^n  + u_{M+1}^n) + \frac{K}{2} (w_0^n - u_M^n)\\
+        w_0^{n+1} &= 2u_M^n + \lambda^2 (w_{-1} ^n- 2w_0^n  + w_1^n) - \frac{K}{2} (w_0^n - u_M^n) 
+    \end{aligned}
+\end{align}
+with $K = K(\alpha)$
+\begin{equation}
+    K = (1-\alpha)^\epsilon.
+\end{equation}
