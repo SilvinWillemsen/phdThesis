@@ -1,8 +1,6 @@
 \chapter{List of Publications}
-Listed below, are the publications that came 
+Listed below, are the publications that were made over the course of the Ph.D.project grouped by X \todo{...}: the main papers, which are also included in Part \ref{prt:papers}, papers where I had a supervisory role, and miscellaneous  publications.
 {
-grouped by X \todo{...}: the main papers which are also included in Part \ref{prt:papers}
-fx.
  % make the scope for publications smaller
 \makeatletter
 \renewenvironment{thebibliography}[1]
@@ -25,12 +23,18 @@ fx.
        {\@latex@warning{Empty `thebibliography' environment}}%
       \endlist}
 \makeatother
+
 \nociteA{*}
-{\bibliographystyleA{IEEEtranS}\bibliographyA{bib/mainPapers}}
+\bibliographystyleA{unsrt}
+\bibliographyA{bib/mainPapers}
+
 \nociteB{*}
-{\bibliographystyleB{IEEEtranS}\bibliographyB{bib/supervisoryPapers}}
+\bibliographystyleB{unsrt}
+\bibliographyB{bib/supervisoryPapers}
+
 \nociteC{*}
-{\bibliographystyleC{IEEEtranS}\bibliographyC{bib/otherPapers}}
+\bibliographystyleC{unsrt}
+\bibliographyC{bib/otherPapers}
 
 % \nociteA{*}
 % {\bibliographystyleA{IEEEtranS}\bibliographyA{bib/mainPapers}}
