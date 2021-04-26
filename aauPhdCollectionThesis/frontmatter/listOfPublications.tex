@@ -2,35 +2,50 @@
 Listed below, are the publications that came 
 
 grouped by X \todo{...}: the main papers which are also included in Part \ref{prt:papers}
-fx. \cite{WillemsenAES}
+fx. \cite{paper:Willemsen2019DAFx}
 { % make the scope for publications smaller
-\makeatletter
-\renewenvironment{thebibliography}[1]
-     {\subsubsection*{\bibname}%
-      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist}
-\makeatother
+% \makeatletter
+% \newrobustcmd*{\mknumAlph}[1]{%
+%   \begingroup
+%   \blx@tempcnta=#1\relax
+%   \ifnum\blx@tempcnta>702 %
+%   \else
+%     \ifnum\blx@tempcnta>26 %
+%       \advance\blx@tempcnta\m@ne
+%       \divide\blx@tempcnta26\relax
+%       \blx@numalph\blx@tempcnta
+%       \multiply\blx@tempcnta26\relax
+%       \blx@tempcnta=\numexpr#1-\blx@tempcnta\relax
+%     \fi
+%   \fi
+%   \blx@numAlph\blx@tempcnta
+%   \endgroup}
+% \def\blx@numAlph#1{%
+%   \ifcase#1\relax\blx@warning@entry{Value out of range}\number#1\or
+%   A\or B\or C\or D\or E\or F\or G\or H\or I\or J\or K\or L\or M\or
+%   N\or O\or P\or Q\or R\or S\or T\or U\or V\or W\or X\or Y\or Z\else
+%   \blx@warning@entry{Value out of range}\number#1\fi}
+% \makeatother
 
-\nociteA{*}
-{\bibliographystyleA{IEEEtranS}\bibliographyA{bib/mainPapers}}
-\nociteB{*}
-{\bibliographystyleB{IEEEtranS}\bibliographyB{bib/supervisoryPapers}}
-\nociteC{*}
-{\bibliographystyleC{IEEEtranS}\bibliographyC{bib/otherPapers}}
+% \DeclareFieldFormat{labelnumber}{\Alph{#1}}
+% \makeatletter
+% \renewcommand\@biblabel[1]{#1.}
+% \makeatother
+\DeclareFieldFormat{labelnumber}{[\Alph{#1}]}
 
+% \nociteA{*}
+% {\bibliographystyleA{IEEEtranS}\bibliographyA{bib/mainPapers}}
+% \nociteB{*}
+% {\bibliographystyleB{IEEEtranS}\bibliographyB{bib/supervisoryPapers}}
+% \nociteC{*}
+% {\bibliographystyleC{IEEEtranS}\bibliographyC{bib/otherPapers}}
+
+% \makeatletter
+% \renewcommand\@bibitem[1]{\item\if@filesw \immediate\write\@auxout
+%     {\string\bibcite{#1}{A\the\value{\@listctr}}}\fi\ignorespaces}% <------------
+% \def\@biblabel#1{[A#1]}% <-------------------
+% \makeatother
+
+    \nocite{*}
+    \printbibliography[title=Main Publications, heading=subbibintoc, keyword=main]
 }

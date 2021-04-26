@@ -1,68 +1,15 @@
-This is BibTeX, Version 0.99d (TeX Live 2016)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: master.aux
-The style file: IEEEtranS.bst
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Database file #1: bib/mybib.bib
-Warning--I didn't find a database entry for "WillemsenAES"
-Warning--I didn't find a database entry for "Coulomb"
-Warning--I didn't find a database entry for "Morin1833"
-Warning--I didn't find a database entry for "Reynolds1886"
-Warning--I didn't find a database entry for "Stribeck1902"
-Warning--I didn't find a database entry for "bilbao2009"
-Warning--I didn't find a database entry for "paper:Willemsen2019"
-Warning--I didn't find a database entry for "Webster19"
-Warning--I didn't find a database entry for "Bilbao2016"
-Warning--I didn't find a database entry for "Desv2017"
--- IEEEtranS.bst version 1.14 (2015/08/26) by Michael Shell.
--- http://www.michaelshell.org/tex/ieeetran/bibtex/
--- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
-** Sorting version - not for normal IEEE work.
-
-Done.
-You've used 4 entries,
-            4566 wiz_defined-function locations,
-            946 strings with 8856 characters,
-and the built_in function-call counts, 1917 in all, are:
-= -- 162
-> -- 28
-< -- 0
-+ -- 12
-- -- 8
-* -- 93
-:= -- 345
-add.period$ -- 8
-call.type$ -- 4
-change.case$ -- 18
-chr.to.int$ -- 0
-cite$ -- 4
-duplicate$ -- 134
-empty$ -- 170
-format.name$ -- 8
-if$ -- 398
-int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 29
-newline$ -- 35
-num.names$ -- 8
-pop$ -- 92
-preamble$ -- 1
-purify$ -- 12
-quote$ -- 2
-skip$ -- 139
-stack$ -- 0
-substring$ -- 29
-swap$ -- 67
-text.length$ -- 0
-text.prefix$ -- 0
-top$ -- 6
-type$ -- 35
-warning$ -- 0
-while$ -- 8
-width$ -- 5
-write$ -- 53
-(There were 10 warnings)
+[0] Config.pm:343> INFO - This is Biber 2.5
+[0] Config.pm:346> INFO - Logfile is 'master.blg'
+[43] biber-darwin:290> INFO - === Mon Apr 26, 2021, 15:53:36
+[62] Biber.pm:351> INFO - Reading 'master.bcf'
+[150] Biber.pm:773> INFO - Using all citekeys in bib section 0
+[162] Biber.pm:3493> INFO - Processing section 0
+[175] Biber.pm:3657> INFO - Looking for bibtex format file 'bib/mybib.bib' for section 0
+[178] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
+[181] bibtex.pm:1048> INFO - Found BibTeX data source 'bib/mybib.bib'
+[220] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[220] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[220] Biber.pm:3306> INFO - Sorting list 'none/global/' of type 'entry' with scheme 'none' and locale 'en-US'
+[220] Biber.pm:3310> INFO - No sort tailoring available for locale 'en-US'
+[232] bbl.pm:526> INFO - Writing 'master.bbl' with encoding 'UTF-8'
+[235] bbl.pm:619> INFO - Output to master.bbl

@@ -110,9 +110,10 @@
 \input{instrument/instrument}
 
 \pagebreak
-\
-{\bibliographystyle{IEEEtranS}\bibliography{bib/mybib}}
 
+% {\bibliographystyle{IEEEtranS}\bibliography{bib/mybib}}
+% \nocite{*}
+\printbibliography[notkeyword=main, notkeyword=other]
 %backmatter
 \appendix
 \part{Appendix}
