@@ -1,12 +1,29 @@
 \chapter{Trombone}\label{ch:trombone}
 \section{Introduction}
-
+Interesting read: https://newt.phys.unsw.edu.au/jw/brassacoustics.html
 \section{Physical Model}
 Most has been described in Chapter \ref{ch:brass}
 
 \subsection{Continuous}
+Just to save the conversation with Stefan about Webster's equation: 
 
+Using operators $\partial_t$ and $\partial_x$ denoting partial derivatives with respect to time $t$ and spatial coordinate $x$, respectively, a system of first-order PDEs describing the wave propagation in an acoustic tube can then be written as
+\begin{subequations}\label{eq:firstOrderSystem}
+    \begin{align}
+        \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv)\label{eq:contPressure}\\
+        \rho_0\partial_tv &= -\partial_xp\label{eq:contVelocity}
+    \end{align}
+\end{subequations}
+with acoustic pressure $p = p(x,t)$ (in N/m$^2$), particle velocity $v = v(x,t)$ (in m/s) and (circular) cross-sectional area $S(x)$ (in m$^2$). Furthermore, $\rho_0$ is the density of air (in kg/m$^3$) and $c$ is the speed of sound in air (in m/s). System \eqref{eq:firstOrderSystem} can be condensed into a second-order equation in $p$ alone, often referred to as Webster's equation \cite{Webster19}. \SWcomment[Interesting! In NSS it is the acoustic potential right? Can you go from that to a second-order PDE in $p$? There is a time-derivative hidden there somewhere right? (Just wondering :))]\SBcomment[Yes, the form in $p$ alone is the one you usually see. You get it by differentiating the first equation, giving you a $\dot{v}$ on the RHS, and then you can substitute the second equation in...I used the velocity potential one because it has direct energy balance properties. ] \SWcomment[Right. So Webster's eq. in $p$ and $\Psi$ are identical (will exhibit identical behaviour), except for the unit of the state variable..?]\SBcomment[yes that's right...using the velocity potential allows you to do all the energy analysis easily, in terms of physical impedances. But the scheme you get to in the end is the same, just one derivative down.] \SWcomment[Alright cool! Thanks for the explanation :)] For simplicity, effects of viscothermal losses have been neglected in \eqref{eq:firstOrderSystem}. For a full time domain model of such effects in an acoustic tube, see, e.g. \cite{Bilbao2016}. 
 \subsection{Discrete}
 
 \section{Real-Time Implementation}
 \subsubsection{Unity??}
+
+\section{Discussion}
+\SWcomment[more for your info, don't think I want to include this:]
+To combat the drift, experiments have been done involving different ways of connecting the left and right tube. One involved alternating between applying the connection to the pressures and the velocity. Here, rather than adding points to the left and right system in alternating fashion, points were added to pressures $p$ and $q$ and velocities $v$ and $w$ in an alternating fashion. Another experiment involved a ``staggered'' version of the connection where (fx.) for one system (either left or right), a virtual grid point of the velocity was created from known values according to \eqref{eq:connectionInterpol}, rather than both from pressures. This, however, showed unstable behaviour. No conclusory statements can be made about these experiments at this point. \SWcomment[$\leftarrow$ which is exactly why I don't want to include this section]
+
+
+
+As the geometry varies it matters a lot where points are added and removed as this might influence the way that the method is implemented. \SWcomment[speculative section coming up] The middle of the slide crook was chosen, both because it would be reasonable for the air on the tube to ``go away from'' or ``go towards'' that point as the slide is extended or contracted, and because the geometry does not vary there. Experiments with adding / removing grid points where the geometry varies have been left for future work. \SWcomment[even more speculative.. $\rightarrow$] It could be argued that it makes more sense to add points at the ends of the inner slides as ``tube material'' is also added there. This would mean that the system should be split in three parts: ``inner slide", ``outer slide" and ``rest", and would complicate things even more.

@@ -47,7 +47,7 @@
 % http://en.wikibooks.org/wiki/LaTeX/Colors
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % load a colour package
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 % UniPrint prefers that no colours are used in the template by default.
 % However, if you want some colours, then you can easily change the following
 \definecolor{aaublue}{RGB}{0,0,0}% black
@@ -111,7 +111,7 @@
 %\titleformat*{\subparagraph}{\normalfont\normalsize\bfseries\color{aaublue}}
 % Change some default names
 \addto\captionsenglish{%this line is required when using the babel package
-  \renewcommand\appendixname{Paper} % change Appendix to Paper
+  % \renewcommand\appendixname{Paper} % change Appendix to Paper
   \renewcommand\bibname{References} % change Bibliography to references
   \renewcommand\figurename{Fig.} % change Figure to Fig.
 }
@@ -140,9 +140,40 @@
 % Bibliography for each chapter
 % \usepackage[sectionbib]{chapterbib}
 % Custom bibliograhy - used in the list of papers
-%\usepackage{multibib}
-%\newcites{main}{Main References}
-%\newcites{other}{Other Publications}
+\usepackage[resetlabels, labeled]{multibib}
+\newcites{main}{References}
+\newcites{A}{Main Publications}
+\newcites{B}{Publications with a Supervisory Role}
+\newcites{C}{Other Publications}
+% \renewcommand*{\bibliographyitemlabel}{[\alph{enumiv}]}
+
+% \makeatletter
+% \newrobustcmd*{\mknumAlph}[1]{%
+%   \begingroup
+%   \blx@tempcnta=#1\relax
+%   \ifnum\blx@tempcnta>702 %
+%   \else
+%     \ifnum\blx@tempcnta>26 %
+%       \advance\blx@tempcnta\m@ne
+%       \divide\blx@tempcnta26\relax
+%       \blx@numalph\blx@tempcnta
+%       \multiply\blx@tempcnta26\relax
+%       \blx@tempcnta=\numexpr#1-\blx@tempcnta\relax
+%     \fi
+%   \fi
+%   \blx@numAlph\blx@tempcnta
+%   \endgroup}
+% \def\blx@numAlph#1{%
+%   \ifcase#1\relax\blx@warning@entry{Value out of range}\number#1\or
+%   A\or B\or C\or D\or E\or F\or G\or H\or I\or J\or K\or L\or M\or
+%   N\or O\or P\or Q\or R\or S\or T\or U\or V\or W\or X\or Y\or Z\else
+%   \blx@warning@entry{Value out of range}\number#1\fi}
+% \makeatother
+
+% \DeclareFieldFormat{labelnumber}{\ifkeyword{mine}{\mknumAlph{#1}}{#1}}
+
+
+
 % Change [1,2,3,4] into [1-4]
 \usepackage{cite}
 
@@ -189,3 +220,9 @@
 	urlcolor=aaublue,%
 	pdfstartview=FitH%
 }
+
+\usepackage{xcolor}
+\def\SBcomment[#1]{\textcolor{Red}{#1}}
+\def\SWcomment[#1]{\textcolor{Cyan}{#1}}
+\def\MDcomment[#1]{\textcolor{Green}{#1}}
+\def\SScomment[#1]{\textcolor{Bittersweet}{#1}}

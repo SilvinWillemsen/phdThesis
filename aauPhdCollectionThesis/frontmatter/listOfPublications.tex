@@ -1,0 +1,36 @@
+\chapter{List of Publications}
+Listed below, are the publications that came 
+
+grouped by X \todo{...}: the main papers which are also included in Part \ref{prt:papers}
+fx. \cite{WillemsenAES}
+{ % make the scope for publications smaller
+\makeatletter
+\renewenvironment{thebibliography}[1]
+     {\subsubsection*{\bibname}%
+      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\makeatother
+
+\nociteA{*}
+{\bibliographystyleA{IEEEtranS}\bibliographyA{bib/mainPapers}}
+\nociteB{*}
+{\bibliographystyleB{IEEEtranS}\bibliographyB{bib/supervisoryPapers}}
+\nociteC{*}
+{\bibliographystyleC{IEEEtranS}\bibliographyC{bib/otherPapers}}
+
+}

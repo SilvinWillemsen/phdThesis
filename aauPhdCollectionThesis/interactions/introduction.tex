@@ -1,5 +1,37 @@
 The models described in part \ref{part:resonators} already sound quite convincing on their own. However, these are just individual components that can be combined to approximate a fully functional (virtual) instrument. The following chapters will describe different ways of interaction between individual systems. Chapter \ref{ch:connections} describes ways to connect different systems and Chapter \ref{ch:collisions} describes collision interactions between models. 
 
-
+$\varepsilon$
 
 Newtons third law (action reaction)
+
+Somewhere in this Chapter have a section about fretting and how to generate different pitches using only one string
+
+Interpolation and spreading operators
+
+Using $l_\ctxt = \floor[x_\ctxt / h]$ and $\alpha_\ctxt = x_\ctxt / h - l_\ctxt$ is the fractional part the location of interest.
+ 
+\begin{equation}
+    I_0(x_\ctxt) = \begin{cases}
+        1, & \text{if}\ l = l_\ctxt,\\
+        0, & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    I_1(x_\ctxt) = \begin{cases}
+        (1-\alpha_\ctxt), & \text{if}\ l = l_\ctxt\\
+        \alpha_\ctxt , & \text{if}\ l = l_\ctxt + 1\\
+        0 & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+\begin{equation}
+    I_3(x_\ctxt) = \begin{cases}
+        ...
+    \end{cases}
+\end{equation}
+
+The following identity is very useful when solving interactions between components:
+\begin{equation}\label{eq:identityIJ}
+    \langle f, J_p(x_\ctxt) \rangle_\D = I_p(x_\ctxt) f
+\end{equation}

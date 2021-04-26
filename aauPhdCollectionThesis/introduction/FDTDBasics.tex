@@ -4,23 +4,39 @@ By means of a simple mass-spring system and the 1D wave equation, the notation (
 Before we dive into the mathematics, let us go over some useful terminology.
 
 \subsubsection{Differential equations}
-As mentioned in Chapter \ref{ch:physMod} differential equations are used to describe the motion of dynamic systems. A characteristic feature of these equations is that, rather than the absolute position (or displacement) of an object, the time derivative of its position -- its velocity -- or the second-order time derivative -- its acceleration -- is described. From this, the displacement of the system can be computed.
+{\it ``Since Newton, mankind has come to realize that the laws of physics are always expressed in the language of differential equations" - Steven Strogatz \\
+(https://youtu.be/O85OWBJ2ayo?t=44)}
 
-This displacement is usually described by the letter $u$ which is (nearly) always a function of time, i.e., $u=u(t)$. If the system is distributed in space, $u$ also becomes a function of space, i.e., $u = u(x,t)$, or with two spatial dimensions, $u = u(x,y,t)$, etc. Though this work only describes systems of up to two spatial dimensions, one could potentially extend to systems of infinite spatial dimensions evolving over time! 
+As mentioned in Chapter \ref{ch:physMod} differential equations are used to describe the motion of dynamic systems. A characteristic feature of these equations is that, rather than the absolute position (or displacement, or state) of an object, the time derivative of its position -- its velocity -- or the second-order time derivative -- its acceleration -- is described. From this, the state of the system can be computed.
+
+This state is usually described by the letter $u$ which is (nearly) always a function of time, i.e., $u=u(t)$. If the system is distributed in space, $u$ also becomes a function of space, i.e., $u = u(x,t)$, or with two spatial dimensions, $u = u(x,y,t)$, etc. Though this work only describes systems of up to two spatial dimensions, one could potentially extend to systems of infinite spatial dimensions evolving over time! 
 
 If $u$ is only a function of time, the differential equation that describes the motion of this system is called an \textit{ordinary differential equation} (ODE). If $u$ is also a function of at least one spatial dimension, the equation of motion is a called a \textit{partial differential equation} (PDE).
 
-The literature uses different types of notation for taking (continuous-time) partial derivatives. Applied to a state $u$ these can look like 
+The literature uses different types of notation for taking (continuous-time) partial derivatives. Applied to a  $u$ these can look like 
 %
 \begin{equation}\nonumber
     \begin{aligned}
         \frac{\partial^2 u}{\partial t^2} & \quad \text{(classical notation)}\\
         u_{tt}\:\,& \quad \text{(subscript notation)}\\[3pt]
-        \partial^2_t u\: & \quad \text{(operator notation)}
+        \ptt u\: & \quad \text{(operator notation)}
     \end{aligned}
 \end{equation}
 %
-all of which mean a second-order derivative with respect to time $t$, i.e., $u$'s acceleration. In this document, the operator notation will be used.
+all of which mean a second-order derivative with respect to time $t$, i.e., $u$'s acceleration. In this remainder of this document, the operator notation will be used. Often-used partial derivatives and their interpretation \todo{maybe not yet as this is super general still} are shown below
+
+\begin{minipage}[c]{0.49\textwidth}
+    \begin{align*}
+        \ptt u &\quad \text{(acceleration)}\\
+        \pt u &\quad \text{(velocity)}
+    \end{align*}
+\end{minipage}
+\begin{minipage}[c]{0.49\textwidth}
+    \begin{align*}
+    \pxx u &\quad \text{(curvature)}\\
+    \px u &\quad \text{(slope)}
+    \end{align*}
+\end{minipage}
 
 \textit{Note: difference between 1D, 2D spatial, and 1D, 2D displacement (polarisation). Transverse displacement of 1D wave here }
 
@@ -28,14 +44,36 @@ Now that an equation has been established, how
 
 
 \subsubsection{Discretisation using FDTD methods}
-Finite-difference time-domain (FDTD) methods essentially subdivide a continuous equation in discrete points in time and space, a process called \textit{discretisation}.
+Finite-difference time-domain (FDTD) methods essentially subdivide a continuous equation in discrete points in time and space, a process called \textit{discretisation}. Once an ODE or PDE is discretised using these methods it is now called a \textit{Finite-Difference Scheme} (FDS).
 
-Once an ODE or PDE is discretised using these methods it is now called a \textit{Finite-Difference Scheme} (FDS).
+We start by defining a discrete \textit{grid} over time and space which we will use to approximate our continuous equations \todo{grid figure}. A system $u = u(x,t)$ defined over time $t$ and one spatial dimension $x$, can be approximated using a \textit{grid function} $u_l^n$.
+
+To summarise
+\begin{equation}
+    u(x,t) \approx u_l^n \quad \text{with} \quad x=lh \quad \text{and} \quad t = nk
+\end{equation}
+
+
+It is important to note that a FDS is an \textit{approximation} to a PDE, not a sampled version of it. This means that the resulting schemes are rarely an exact solution to the original continuous equation 
+
+The continous-time operators listed above 
+
+\begin{align*}
+    \ptt u & \approx \dtt \uln\\
+    \pt u &\approx 
+    \begin{cases}
+        \dtp \uln\\
+        \dtm \uln\\
+        \dtd \uln\\
+    \end{cases}
+\end{align*}
+\begin{align*}
+    \pxx u &\quad \text{(curvature)}\\
+    \px u &\quad \text{(slope)}
+\end{align*}
+
 
 \subsubsection{Implementation}
-
-
-
 In the following 
 \begin{itemize}
     \item Continuous-time
@@ -84,6 +122,97 @@ The state of the system $u=u(x,t)$ meaning that is on top of being defined in ti
 \subsubsection{Boundary Conditions}
 When a system is distributed in space, 
 
+\subsubsection{Matrix form}
+\subsection{Operators in Matrix Form}
+Finite-difference operators, such as $\delta_{x+}$,  $\delta_{x-}$ and $\delta_{x\cdot}$ can be written in matrix form:
+\begin{gather*}
+    \mathbf{D}_{x+} = \frac{1}{h}\begin{bmatrix}
+        \ddots &\ddots & & & \mathbf{0}&\\
+         & -1 & 1 & & & \\
+        & & -1 & 1 & & \\
+        & & & -1 & 1 & \\
+        & & & & -1 & \ddots\\
+        &\mathbf{0} & & & & \ddots \\
+    \end{bmatrix}
+    \qquad
+    \mathbf{D}_{x-} = \frac{1}{h}\begin{bmatrix}
+        \ddots & & & & \mathbf{0}&\\
+        \ddots & 1 & & & & \\
+        & -1 & 1 & & & \\
+        & & -1 & 1 & & \\
+        & & & -1 & 1 & \\
+        &\mathbf{0} & & & \ddots & \ddots \\
+    \end{bmatrix}\\
+    \\
+    \mathbf{D}_{x\cdot} = \frac{1}{2h}\begin{bmatrix}
+        \ddots &\ddots & & & \mathbf{0}&\\
+        \ddots & 0 & 1 & & & \\
+        & -1 & 0 & 1 & & \\
+        & & -1 & 0 & 1 & \\
+        & & & -1 & 0 & \ddots \\
+        &\mathbf{0} & & & \ddots & \ddots \\
+    \end{bmatrix}\\
+\end{gather*}
+The matrices $\mathbf{D}_{x+}$ and $\mathbf{D}_{x-}$ can be multiplied to get $\Dxx$:
+\begin{equation}
+    \Dxx = \mathbf{D}_{x+}\mathbf{D}_{x-} = \frac{1}{h^2}\begin{bmatrix}
+        \ddots &\ddots & & & \mathbf{0}&\\
+        \ddots & -2 & 1 & & & \\
+        & 1 & -2 & 1 & & \\
+        & & 1 & -2 & 1 & \\
+        & & & 1 & -2 & \ddots \\
+        &\mathbf{0} & & & \ddots & \ddots \\
+    \end{bmatrix}
+\end{equation}
+and two $\Dxx$'s to get
+\begin{equation}
+    \Dxx\Dxx = \mathbf{D}_{xxxx} = \frac{1}{h^4}\begin{bmatrix}
+        5& -4 & 1 & & & \mathbf{0}& \\
+        -4 & 6 &\ddots &\ddots & & & \\
+        1& \ddots & \ddots & -4 & 1 & & \\
+        & \ddots& -4 & 6 & -4 & \ddots& \\
+        & & 1 & -4 & \ddots & \ddots &1 \\
+        & & & \ddots & \ddots & 6 & -4 \\
+        & \mathbf{0} & & & 1& -4 & 5 \\
+    \end{bmatrix}
+\end{equation}
+which is used for a stiff string with a simply supported boundary condition.
+
+Averaging operators $\mu_{x+}$, $\mu_{x-}$ and $\mu{x\cdot}$ are defined in a similar way:
+
+\begin{gather*}
+    \mathbf{M}_{x+} = \frac{1}{2}\begin{bmatrix}
+        \ddots &\ddots & & & \mathbf{0}&\\
+         & 1 & 1 & & & \\
+        & & 1 & 1 & & \\
+        & & & 1 & 1 & \\
+        & & & & 1 & \ddots\\
+        &\mathbf{0} & & & & \ddots \\
+    \end{bmatrix}
+    \qquad
+    \mathbf{M}_{x-} = \frac{1}{2}\begin{bmatrix}
+        \ddots & & & & \mathbf{0}&\\
+        \ddots & 1 & & & & \\
+        & 1 & 1 & & & \\
+        & & 1 & 1 & & \\
+        & & & 1 & 1 & \\
+        &\mathbf{0} & & & \ddots & \ddots \\
+    \end{bmatrix}\\
+    \\
+    \mathbf{M}_{x\cdot} = \frac{1}{2}\begin{bmatrix}
+        \ddots &\ddots & & & \mathbf{0}&\\
+        \ddots & 0 & 1 & & & \\
+        & 1 & 0 & 1 & & \\
+        & & 1 & 0 & 1 & \\
+        & & & 1 & 0 & \ddots \\
+        &\mathbf{0} & & & \ddots & \ddots \\
+    \end{bmatrix}\\
+\end{gather*}
+
+Note the multiplication by $1/2$ rather than $1/h$ (or $1/2h$) for all operators.
+
+
+Only spatial operators are written in this matrix form and then applied to state vectors at different time steps ($n+1$, $n$ and $n-1$), examples of which can be found below.
 
 \subsubsection{Output sound}
 After the system is excited (see \ref{part:exciters}), one can listen to the output
@@ -92,5 +221,63 @@ After the system is excited (see \ref{part:exciters}), one can listen to the out
 \section{Energy Analysis}
 Debugging physical models.
 
+\subsection{Mathematical tools}
+\subsubsection{Continuous-time}
+For two functions $f(x)$ and $g(x)$ and $x\in\D$ their inner product is defined as
+\begin{equation}\label{eq:contInnerProd}
+    \langle f, g\rangle_\D \int_\D fg dx \quad \text{and} \quad \lVert f \rVert_\D = \sqrt{\langle f, f \rangle_\D}
+\end{equation}
+
+
+\subsubsection{Discrete-time}
+Inner product of any time series $f^n$ and $g^n$ and the discrete counterpart to \eqref{eq:contInnerProd} is
+\begin{equation}\label{eq:discInnerProd}
+    \langle f^n, g^n \rangle_\D = \sum_{l\in\D} h f_l^n g_l^n
+\end{equation}
+where the multiplication by $h$ is the discrete counterpart of $dx$ the continuous definition. 
+
 \section{Stability Analysis}
 Finding stability condition
+
+Sin identity:
+\begin{equation}\label{eq:sinIdentity}
+    \sin(x) = \frac{e^{jx} - e^{-jx}}{2j}\quad \Longrightarrow \quad \sin^2(x) = \frac{e^{j2x} - 2e^{jx-jx}+ e^{-j2x}}{-4} = \frac{e^{j2x} + e^{-j2x}}{-4} + \frac{1}{2}.
+\end{equation}
+Cos identity:
+\begin{equation}\label{eq:cosIdentity}
+    \cos(x) = \frac{e^{jx} + e^{-jx}}{2}\quad \Longrightarrow \quad \cos^2(x) = \frac{e^{j2x} + 2e^{jx-jx}+ e^{-j2x}}{4} = \frac{e^{j2x} + e^{-j2x}}{4} + \frac{1}{2}.
+\end{equation}
+
+\section{Modal Analysis}
+
+This section will show how to obtain the modes for an FD scheme implementing the 1D wave equation as done in Section . We start with Eq. (6.34)
+\begin{equation}
+    \delta_{tt}u = \gamma^2\delta_{xx}u,
+\end{equation}
+which can be written in matrix form as
+\begin{equation}\label{eq:matrixForm1D}
+    \frac{1}{k^2}\left(\u^{n+1}-2\u^n+\u^{n-1}\right) = \gamma^2 \Dxx\u
+\end{equation}
+Following \cite{theBible} we assume a solution of the form $\u = \boldsymbol{\phi}z^n$. Substituting this into Eq. \eqref{eq:matrixForm1D} yields the characteristic equation
+\begin{equation}
+    (z - 2 + z^{-1})\boldsymbol{\phi} = \gamma^2k^2\Dxx \boldsymbol{\phi}.
+\end{equation}
+This is an eigenvalue problem where the $p$'th solution is defined as 
+\begin{gather}
+    z_p-2+z_p^{-1} = \gamma^2k^2\text{eig}_p(\Dxx)\nonumber\\
+    z_p+(-2-\gamma^2k^2\text{eig}_p(\Dxx))+z_p^{-1}=0
+\end{gather}
+where $\text{eig}_p(\cdot)$ denoting the $p$th eigenvalue of `$\cdot$'. \SWcomment[If the CFL condition for the scheme is satisfied, the roots will lie on the unit circle.] Furthermore we can substitute a test solution $z_p=e^{j\omega_pk}$ solve for the eigenfrequencies:
+\begin{align*}
+    e^{j\omega_pk}+e^{-j\omega_pk}-2-\gamma^2k^2\text{eig}_p(\Dxx)&=0\\
+    \frac{e^{j\omega_pk}+e^{-j\omega_pk}}{-4}+\frac{1}{2}+\frac{\gamma^2k^2}{4}\text{eig}_p(\Dxx)&=0
+\end{align*}
+Then using Eq. \eqref{eq:sinIdentity} we get
+\begin{align}
+    \sin^2(\omega_pk/2)+\gamma^2k^2\text{eig}_p(\Dxx)&=0\nonumber\\
+    \sin(\omega_pk/2)&=\gamma k\sqrt{-\text{eig}_p(\Dxx)}\nonumber\\
+    \omega_p &= \frac{2}{k}\sin^{-1}\left(\gamma k\sqrt{-\text{eig}_p(\Dxx)}\right)
+\end{align}
+which is Eq. (6.53) in \cite{theBible}.
+
+\section{Dispersion analysis}
