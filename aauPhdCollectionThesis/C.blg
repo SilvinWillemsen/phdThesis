@@ -14,44 +14,44 @@ Database file #1: bib/otherPapers.bib
 ** Sorting version - not for normal IEEE work.
 
 Done.
-You've used 2 entries,
+You've used 4 entries,
             4566 wiz_defined-function locations,
-            916 strings with 8386 characters,
-and the built_in function-call counts, 1013 in all, are:
-= -- 80
-> -- 14
-< -- 0
-+ -- 6
-- -- 4
-* -- 57
-:= -- 192
-add.period$ -- 4
-call.type$ -- 2
-change.case$ -- 8
-chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 65
-empty$ -- 91
-format.name$ -- 4
-if$ -- 203
+            928 strings with 9152 characters,
+and the built_in function-call counts, 3022 in all, are:
+= -- 260
+> -- 111
+< -- 9
++ -- 54
+- -- 32
+* -- 177
+:= -- 488
+add.period$ -- 8
+call.type$ -- 4
+change.case$ -- 29
+chr.to.int$ -- 24
+cite$ -- 4
+duplicate$ -- 188
+empty$ -- 203
+format.name$ -- 35
+if$ -- 642
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 13
-newline$ -- 29
-num.names$ -- 4
-pop$ -- 40
+int.to.str$ -- 4
+missing$ -- 36
+newline$ -- 35
+num.names$ -- 8
+pop$ -- 116
 preamble$ -- 1
-purify$ -- 6
+purify$ -- 24
 quote$ -- 2
-skip$ -- 72
+skip$ -- 199
 stack$ -- 0
-substring$ -- 13
-swap$ -- 33
-text.length$ -- 0
+substring$ -- 82
+swap$ -- 124
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 15
+type$ -- 43
 warning$ -- 0
-while$ -- 4
-width$ -- 3
-write$ -- 38
+while$ -- 12
+width$ -- 5
+write$ -- 56
