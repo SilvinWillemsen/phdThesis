@@ -12,6 +12,7 @@ Though these equations are very powerful, only few have a closed-form solution. 
 \begin{itemize}
     \item Modal Synthesis
     \item Finite-difference Time-domain methods
+    \item Finite Element Methods
     \item Digital waveguides
     \item Mass-spring systems
     \item Functional transformation method
@@ -21,9 +22,45 @@ Though these equations are very powerful, only few have a closed-form solution. 
 \end{itemize}
     
 
-Advantages of finite-difference methods 
+Advantages of finite-difference methods
+
+Using FDTD methods can be quite computationally heavy. 
+Moore's law \cite{Moore1965}
+
+\section{Real-Time Implementation}
+Although many techniques to digitally simulate musical instruments exist
+proving that we have only recently reached the computing power in personal computers to make real-time playability of these models an option. The biggest challenge in real-time audio applications as opposed to those only involving graphics, is that the sample rate is extremely high. As Nyquist's sampling theory tells us, a sampling rate of at least 40 kHz is necessary to produce frequencies up to the human hearing limit of 20 kHz \textbf{[Nyquist]}. Visuals 
+
+Real-time: no noticable latency
+
+\section{Why?\todo{exactly as in \cite{theBible}}}
+\subsection{Audio plugins} 
+Samples, or recordings, of real instruments are static and unable to adapt to changes in perfomance. Moreover, capturing the the entire interaction space of an instrument is nearly impossible. Imagine recording a violin with every single combination of bowing force, velocity, position, duration and other aspects such as vibrato, pizzicato. Even if a complete sample library could be created, this would contain an immense amount of data.
+
+Samples vs. Physical Modelling:
+
+Trade off between storage and speed
+
+Using musical instrument simulations, on the other hand, allows the sound to be generated on the spot based on physical parameters that the user can interact with. 
+
+\subsection{Resurrect old or rare instruments}
+
+Even popular instruments require maintenance and might need to be replaced after years of usage. 
+
+
+\subsection{Go beyond what is physically possible} 
+
+
 \section{Thesis Objectives and Main Contributions}
-The main objective of this thesis is to implement existing physical models in real time using FDTD methods. Many of the physical models and methods presented in this thesis are taken from the literature and it is thus not  Secondly, to combine the existing physical models to get complete instruments and be able to control them in real time.
+Over the past few decades, much work has been done on the accurate modelling of physical phenomena. In the field of sound and musical instruments.. 
+
+From \cite{Fletcher1998} to \cite{Bilbao2019CMJb}
+
+
+
+The main objective of this thesis is to implement existing physical models in real time using FDTD methods. Many of the physical models and methods presented in this thesis are taken from the literature and are thus not novel. 
+
+Secondly, to combine the existing physical models to get complete instruments and be able to control them in real time.
 
 As FDTD methods are quite rigid, changing parameters on the fly, i.e., while the instrument simulation is running, is a challenge.  Other techniques, such as modal synthesis, are much more suitable for this, but come with the drawbacks mentioned in Section \ref{sec:physModTech}. Therefore, a novel method was devised to smoothly change parameters over time, introducing this to FDTD methods. 
 

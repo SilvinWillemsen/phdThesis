@@ -1,46 +1,56 @@
 This is BibTeX, Version 0.99d (TeX Live 2016)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: C.aux
-The style file: unsrt.bst
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bib/otherPapers.bib
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+
+Done.
 You've used 3 entries,
-            1791 wiz_defined-function locations,
-            463 strings with 4432 characters,
-and the built_in function-call counts, 762 in all, are:
-= -- 60
-> -- 51
-< -- 1
-+ -- 18
-- -- 15
-* -- 49
-:= -- 133
-add.period$ -- 9
+            4087 wiz_defined-function locations,
+            840 strings with 8124 characters,
+and the built_in function-call counts, 1940 in all, are:
+= -- 137
+> -- 55
+< -- 9
++ -- 28
+- -- 11
+* -- 103
+:= -- 306
+add.period$ -- 6
 call.type$ -- 3
 change.case$ -- 3
-chr.to.int$ -- 0
+chr.to.int$ -- 24
 cite$ -- 3
-duplicate$ -- 34
-empty$ -- 58
-format.name$ -- 15
-if$ -- 164
+duplicate$ -- 142
+empty$ -- 164
+format.name$ -- 14
+if$ -- 430
 int.to.chr$ -- 0
 int.to.str$ -- 3
-missing$ -- 3
-newline$ -- 18
+missing$ -- 26
+newline$ -- 32
 num.names$ -- 3
-pop$ -- 9
+pop$ -- 72
 preamble$ -- 1
 purify$ -- 0
-quote$ -- 0
-skip$ -- 21
+quote$ -- 2
+skip$ -- 140
 stack$ -- 0
-substring$ -- 32
-swap$ -- 12
+substring$ -- 59
+swap$ -- 97
 text.length$ -- 1
 text.prefix$ -- 0
-top$ -- 0
-type$ -- 0
+top$ -- 5
+type$ -- 3
 warning$ -- 0
-while$ -- 6
+while$ -- 7
 width$ -- 4
-write$ -- 33
+write$ -- 47

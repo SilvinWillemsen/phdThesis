@@ -1,32 +1,68 @@
 \chapter{Stiff string}\label{ch:stiff string}
+Consider the transverse displacement of a string of length $L$ described by $u=u(x,t)$ defined for $x\in \D$ with domain $\D = [0, L]$ and time $t\geq 0$. 
+
 Stiff string and stuff
+Used in many of the publications in Part \ref{part:papers}
+\section{Continuous time}
+Circular cross-sectional area
+\begin{equation}\label{eq:stiffStringPDENoLosses}
+    \rho A \ptt u = T \pxx u - EI \pxxxx u
+\end{equation}
+parameterised by material density $\rho$ (in kg/m$^3$), cross-sectional area $A = \pi r^2$ (in m$^2$), radius $r$ (in m) tension $T$ (in N), Young's modulus $E$ (in Pa) and area moment of inertia $I = \pi r^4/4$ (in m$^4$). If either $E$ or $I$ is 0, Eq \eqref{eq:stiffStringPDENoLosses} reduces to the 1D wave equation in \eqref{eq:1DwavePDE} where $c = \sqrt{T/\rho A}$. If instead $T = 0$, Eq. \eqref{eq:stiffStringPDENoLosses} reduces to the ideal bar equation.
 
-Boundary conditions need to be extended...
+The 4th-order spatial derivative models \textit{frequency dispersion} a phenomenon that causes different frequencies to travel at different speeds. 
 
-\section{Adding Losses}
-% Here is section 2. If you want to leearn \todo{I think this word is mispelled} more about \LaTeXe{}, have a look at \cite{Madsen2010}, \cite{Oetiker2010} and \cite{Mittelbach2005}.
-% \missingfigure{We need a figure right here!}
+\subsection{Dispersion Analysis}
 
-% \subsection{Examples}
-% You can also have examples in your document such as in example~\ref{ex:simple_example}.
-% \begin{example}{An Example of an Example}
-%   \label{ex:simple_example}
-%   Here is an example with some math
-%   \begin{equation}
-%     0 = \exp(i\pi)+1\ .
-%   \end{equation}
-%   You can adjust the colour and the line width in the {\tt macros.tex} file.
-% \end{example}
 
-% \subsection{How does Subsections and Subsubsections Look?}
-% Well, like this
-% \subsubsection{This is a Subsubsection}
-% and this.
+\subsubsection{Adding Losses}
+Before moving on to the discretisation of Eq. \eqref{eq:stiffStringPDENoLosses}, losses are added \todo{First appeared in \cite{Bensa2003}}
+\begin{equation}\label{eq:stiffStringPDE}
+    \rho A \ptt u = T \pxx u - EI \pxxxx u - 2 \sz \rho A \pt u + 2 \so \rho A\pt \pxx u
+\end{equation}
+where the loss coefficients $\sz$ and $\so$ describe the frequency dependent and frequency independent losses respectively. 
 
-% \paragraph{A Paragraph}
-% You can also use paragraph titles which look like this.
+A more compact way to write Eq. \eqref{eq:stiffStringPDE}, and as is also found often in the literature \cite{theBible} \todo{etc.} is to divide both sides by $\rho A$ to get
 
-% \subparagraph{A Subparagraph} Moreover, you can also use subparagraph titles which look like this\todo{Is it possible to add a subsubparagraph?}. They have a small indentation as opposed to the paragraph titles.
+\begin{equation}
+    \ptt u = c^2 \pxx u - \kappa^2 \pxxxx u - 2 \sz \pt u + 2 \so \pt \pxx u
+\end{equation}
+where $c=\sqrt{T/\rho A}$ is the wave speed \todo{check wavespeed or wave speed (entire document)} (in m/s) as in the 1D wave equation in \eqref{eq:1DwavePDE} and $\kappa = \sqrt{EI / \rho A}$ is a \textit{stiffness coefficient} (in m$^2$/s).
 
-% \todo[inline,color=green]{I think that a summary of this exciting chapter should be added.}
+\subsubsection{Intuition}
+Although Eq. \eqref{eq:stiffStringPDE} might look daunting at first, the principle of Newton's second law remains the same. 
 
+Something about the 4th spatial derivative and the loss terms here...
+
+\subsubsection{Boundary Conditions}
+The boundary conditions found in \eqref{eq:boundaryCond1DWave} can be extended 
+
+\section{Discrete Time}
+Equation \eqref{eq:stiffStringPDE} can be discretised as 
+\begin{equation}\label{eq:stiffStringPDE}
+    \rho A \dtt \uln = T \dxx \uln - EI \dxxxx \uln - 2 \sz \rho A \dtd \uln + 2 \so \rho A \dtm\dxx \uln
+\end{equation}
+The $\dxxxx$ operator is the  the second-order spatial difference in Eq. \eqref{eq:discSecondSpace} applied to itself. 
+\begin{equation}
+    \dxxxx = \dxx\dxx = \frac{1}{h^4}\left(e_{x+}^2 - 4e_{x+}+6 - 4e_{x-}+e_{x-}^2\right)
+\end{equation}
+
+\subsection{Combining operators}\label{sec:combiningOperators}
+\begin{align*}
+    \dtm\dxx = \frac{1}{k}\left(1-e_{t-}\right)\frac{1}{h^2}\left(e_{x+}-2+e_{x-}\right) = \frac{1}{kh^2}\left(e_{x+}-2+e_{x-} - e_{t-}(e_{x+}-2+e_{x-})\right)
+\end{align*}
+
+Taking the mixed derivative for the 
+\begin{equation*}
+        \dtm \dxx \uln =
+        \begin{cases}
+            \frac{1}{k}\left(\dxx \uln - \dxx u_l^{n-1}\right) & \text{expanding}\ \dtm\\
+            \frac{1}{h^2}\left(\dtm u_{l+1}^n - 2\dtm \uln + \dtm u_{l-1}^n\right) & \text{expanding}\ \dxx
+        \end{cases}
+\end{equation*}
+and after expansion of the second operator both result in
+\begin{equation}
+    \dtm \dxx \uln = \frac{1}{hk^2}\left(u_{l+1}^n - 2 \uln + u_{l-1}^n - u_{l+1}^{n-1} + 2 u_l^{n-1} - u_{l-1}^{n-1}\right)
+\end{equation}
+
+\

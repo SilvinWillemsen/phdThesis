@@ -1,4 +1,22 @@
-\chapter{2D Systems}
+\chapter{2D Systems}\label{ch:2Dsyst}
+The 2D wave equation be used to model an ideal membrane such as done in Paper 
+
+In this work, it is mainly used to model a simplified body in papers...
+
+
+State variable $u = u(x,y,t)$  where $t\geq 0$ and $(x,y) \in \D$ where $\D$ is 2-dimensional. The state variable can then be discretised according to $u(x, y, t) \approx \ulmn$ with space $x = lh$ and $y = mh$ and time $t = nk$ and $k=1/\fs$. For simplicity the grid spacing in both the $x$ and $y$ directions are set to be the same but could be different.
+
+
+The same shift operators as defined in Chapter \ref{ch:FDTD} can be applied to grid function $\ulmn$ 
+\begin{equation}
+    e_{y+}\ulmn = u_{l, m+1}^n,\quad \text{and}\quad e_{y-}\ulmn= u_{l, m-1}^n.
+\end{equation}
+
+Additional operators:
+\begin{equation}
+    \Delta = \pxx + \pyy
+\end{equation}
+
 \section{2D Wave Equation}
 \section{Thin plate}
 \section{Stiff membrane}

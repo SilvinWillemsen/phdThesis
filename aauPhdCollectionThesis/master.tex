@@ -22,6 +22,8 @@
 \input{frontmatter/preface}
 \cleardoublepage
 
+\def\citeP[#1]{[\ref{paper:#1}]}
+
 \def\ctxt{\text{c}} %connection subscript (text)
 \def\stxt{\text{s}} %string subscript (text)
 \def\ptxt{\text{p}} %plate subscript (text)
@@ -29,6 +31,9 @@
 % states
 \def\uln{u_l^n}
 \def\wln{w_l^n}
+
+\def\ulmn{u_{l,m}^n}
+
 
 % bold symbols (state vectors and matrices)
 \def\u{\mathbf{u}}
@@ -44,8 +49,11 @@
 \def\pxx{\partial_x^2}
 \def\pxxxx{\partial_x^4}
 
+\def\pyy{\partial_y^2}
+
 \def\pt{\partial_t} 
 \def\px{\partial_x} 
+\def\py{\partial_y} 
 
 % discrete operators
 \def\dtt{\delta_{tt}} 
@@ -79,6 +87,8 @@
 \def\szX[#1]{\sigma_{0{#1}}}
 \def\soX[#1]{\sigma_{1{#1}}}
 
+\def\fs{f_\text{s}}
+
 % domain
 \def\D{\mathcal{D}}
 
@@ -111,18 +121,25 @@
 
 \pagebreak
 
+% \nocite{*} %only if you want all references in there
+\todo{check whether all references are used}
 {\bibliographystyle{IEEEtranS}\bibliography{bib/mybib}}
-% \nocite{*}
-% \printbibliography[notkeyword=main, notkeyword=other]
-%backmatter
-\appendix
-\part{Appendix}
-\input{appendices/appendices}
 
-\renewcommand\appendixname{Paper} 
-\setcounter{chapter}{0} % reset stuff
-\part{Papers}\label{prt:papers}
-\input{papers/paperErrata}
+%backmatter
+\begin{subappendices}
+  \begin{appendices}
+    \part{Appendix}
+    \input{appendices/appendices}   
+  \end{appendices}
+  \begin{appendices}
+    \renewcommand\appendixname{Paper} 
+    \setcounter{chapter}{0} % reset stuff
+    \part{Papers}\label{part:papers}
+    \input{papers/paperErrata}
+    \input{papers/papers.tex}
+    % \input{papers/paperA/paperA.tex}
+  \end{appendices}
+\end{subappendices}
 
 \titleformat{%command
   \chapter
