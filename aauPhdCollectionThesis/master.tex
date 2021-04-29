@@ -73,6 +73,11 @@
 \def\mtp{\mu_{t+}} 
 \def\mtm{\mu_{t-}} 
 
+\def\mxx{\mu_{xx}} 
+\def\mxd{\mu_{x\cdot}} 
+\def\mxp{\mu_{x+}} 
+\def\mxm{\mu_{x-}} 
+
 \def\dTwoD{\delta_{\Delta}}
 
 % matrix operators
@@ -136,7 +141,9 @@
     \setcounter{chapter}{0} % reset stuff
     \part{Papers}\label{part:papers}
     \input{papers/paperErrata}
+    \pagestyle{plain}
     \input{papers/papers.tex}
+    \pagestyle{fancy}
     % \input{papers/paperA/paperA.tex}
   \end{appendices}
 \end{subappendices}

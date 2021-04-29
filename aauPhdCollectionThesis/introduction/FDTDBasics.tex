@@ -179,6 +179,10 @@ where $c$ is the wave speed (in m/s). The state variable $u$ can be used to desc
 \subsubsection{Intuition}
 Although the 1D wave equation often appears in the literature, an intuition or interpretation of why it works the way it does is hard to find. In the following, $u$ describes the transverse displacement of an ideal string.
 
+OR 
+
+I would like to use this opportunity to provide some extra explanation as to how and why the 1D wave equation in \eqref{eq:1DwavePDE} works the way it does. This will hopefully provide some basic intuition into the workings of PDEs that will make it easier to work with later on. \SWcomment[somethingsomething]
+
 Going back to Newton's second law
 
 The acceleration of $u = u(x,t)$ at location $x$ is determined by the second-order spatial derivative of $u$ at that same location (scaled by a constant $c^2$). In the case that $u$ describes the transverse displacement of an ideal string, this second-order derivative denotes the \textit{curvature} of this string. As $c^2$ is always positive, the sign (or direction) of the acceleration is fully determined by the sign of the curvature. In other words, a `positive' curvature at location $x$ along the ideal string yields a `positive' or upwards acceleration at that same location. 
@@ -190,8 +194,8 @@ So, what does this mean for the 1D wave equation? As a positive curvature implie
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/curvature.eps}
-    \caption{\label{fig:curvature} The forces acting on the 1D wave equation initialised with a raised cosine at $x = 0.5$. Arrows indicate the direction and magnitude of the force.}
-\end{figure}
+    \caption{\label{fig:curvature} The forces acting on the 1D wave equation due to curvature. The arrows indicate the direction and magnitude of the force, and simultaneously the acceleration as these are connected through Eq. \eqref{eq:1DwavePDE}.}
+\end{figure}\todo{different wording in caption}
 
 \subsubsection{Boundary Conditions}
 When a system is distributed in space, 
@@ -229,6 +233,7 @@ Regarding implementation, as the time step $k$ is based on the sample rate and t
 \begin{equation}
     h \geq ck.
 \end{equation}
+\subsubsection{Dispersion}
 
 \subsubsection{Implementation}
 \begin{equation}\label{eq:1DwaveFDS}
@@ -236,6 +241,8 @@ Regarding implementation, as the time step $k$ is based on the sample rate and t
 \end{equation}
 
 If $\lambda = 1$, \eqref{eq:1DwaveFDS} is an exact solution to Eq. \eqref{eq:1DwavePDE}. This is no
+
+\subsection{Output}
 
 
 \subsubsection{Matrix form}
@@ -333,6 +340,11 @@ Only spatial operators are written in this matrix form and then applied to state
 \subsubsection{Output sound}
 After the system is excited (see \ref{part:exciters}), one can listen to the output
 
+FFT
+
+Waveform
+
+The location, or frequency  of the harmonic partials can also be analytically / numerically derived using modal analysis as will be explained in \ref{sec:modalAnalysis}.
 
 \section{Energy Analysis}\label{sec:energyAnalysis}
 Debugging physical models.
@@ -353,7 +365,7 @@ Inner product of any time series $f^n$ and $g^n$ and the discrete counterpart to
 where the multiplication by $h$ is the discrete counterpart of $dx$ the continuous definition. 
 
 \section{von Neumann Analysis}\label{sec:stabilityAnalysis}
-Much literature gives the stability condition using an ``it can be shown that'' argument. Here, I would like to take the opportunity to 
+Much literature gives the stability condition using an ``it can be shown that'' argument (fx. \cite{Bilbao2009}). Here, I would like to take the opportunity to 
 
 Finding stability conditions for models
 
@@ -366,7 +378,12 @@ Cos identity:
     \cos(x) = \frac{e^{jx} + e^{-jx}}{2}\quad \Longrightarrow \quad \cos^2(x) = \frac{e^{j2x} + 2e^{jx-jx}+ e^{-j2x}}{4} = \frac{e^{j2x} + e^{-j2x}}{4} + \frac{1}{2}.
 \end{equation}
 
-\section{Modal Analysis}\label{sec:modalAnalysis}
+\section{Modal Analysis}
+\label{sec:modalAnalysis}
+Modes are the resonant frequencies of a system. The amout of modes that a discrete system contains dependends on the amount of moving points. A mass-spring system thus has one resonating mode, but a FD scheme of the 1D wave equation with N = 30 (including the boundaries) and Dirichlet boundary conditions will have 29 modes.
+
+\todo{definition of modes}
+
 This section will show how to obtain the modes for an FD scheme implementing the 1D wave equation as done in Section . We start with Eq. (6.34) (using $c$ instead of $\gamma$)
 \begin{equation}
     \delta_{tt}u = c^2\delta_{xx}u,

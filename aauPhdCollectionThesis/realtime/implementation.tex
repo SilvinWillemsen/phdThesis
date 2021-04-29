@@ -16,3 +16,86 @@ Here, an interactive application is considered real-time when
 \end{center}
 
 Also the application needs to be controlled continuously
+
+Helps to (informally) evaluate the models by interacting with it in a natural way (rather than static parameters)
+
+\section{MATLAB vs. C++}
+It is usually a good idea to prototype a physical modelling application in MATLAB for several reasons:
+\begin{itemize}
+    \item Easier to debug
+    \begin{itemize}
+        \item Plotting functionality
+        \item No need for memory handling
+    \end{itemize}
+    \item Instability due to programming errors 
+\end{itemize}
+
+\subsection{Speed}
+Here is where the power of C++ 
+
+
+
+\subsection{Syntax}
+Indexing in
+Matlab is 1-based, meaning that the index of a vector starts at 1. If \texttt{u} is a vector with 10 elements, the first element is retrieved as \texttt{u(1)} and the last as \texttt{u(10)}. C++, on the other hand, is 0-based and retrieving the first and last element of a size-10 vector happens through \texttt{u[0]} and \texttt{u[9]}respectively. 
+
+\section{Do's and don'ts in Real-Time FD schemes}
+Some of the things I learned (the hard way)...
+\begin{itemize}
+    \item Create a limiter
+    \item Structure your application into classes 
+    \item Use pointer switches
+    \item Comment your code (hehe)
+\end{itemize}
+
+\subsubsection{Create a limiter}
+Programming errors happen. To save your speakers, headphones or -- most importantly -- your ears, create a limiter. 
+
+\setlstCpp
+\begin{lstlisting}
+double limit (double val)
+{
+    if (val < -1)
+    {
+        val = -1;
+        return val;
+    }
+    else if (val > 1)
+    {
+        val = 1;
+        return val;
+    }
+    return val;
+}
+\end{lstlisting}
+
+\setlstMAT
+\begin{lstlisting}
+for  i = 0:lengthSound
+    uNext = ...
+end
+\end{lstlisting}
+
+\subsubsection{Use pointer switches}
+One of the most important things in working with FD schemes for real-time audio applications is to 
+
+\setlstMAT
+\begin{lstlisting}
+for n = 1:lengthSound
+    ...
+    uPrev = u;
+    u = uNext;
+end
+\end{lstlisting}
+
+In C++ this is done using
+\setlstCpp
+\begin{lstlisting}
+double updateStates()
+{
+    double* uTmp = u[2];
+    u[2] = u[1];
+    u[1] = u[0];
+    u[0] = uTmp;
+}
+\end{lstlisting}

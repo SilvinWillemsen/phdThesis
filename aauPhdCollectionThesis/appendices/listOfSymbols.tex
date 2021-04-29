@@ -1,33 +1,50 @@
 \chapter{List of Symbols}\label{app:listOfSymbols}
+The list of symbols found below contains often-used symbols in the thesis in the context that they are normally used. Depending on the context they might carry a different meaning ($y$ being displacement of the lip-reed in Chapter \ref{ch:trombone} but the vertical spatial coordinate for 2D systems in fx. Chapter \ref{ch:2Dsyst}). Some might also be accompanied by a subscript in the main document
+
 {\centering\renewcommand{\arraystretch}{1.1}
-\begin{longtable}{ p{2cm} p{6cm} p{3cm}  }
+\begin{longtable}{ p{2cm} p{6.5cm} p{2.5cm}  }
  Symbol & Description & Unit\\
  \hline\\
  \endhead
- $A$ & Cross-sectional area & m$^2$\\
+ $\alpha$ & Fractional part of & \\
+ $A$ & Cross-sectional area of string & m$^2$\\
  $c$ & Wave speed & m/s\\
+ $\frac{d^n}{dt^n}$ & $n$\textsuperscript{th} order derivative with respect to $t$ & - \\
+ $\pt^n$ & $n$\textsuperscript{th} order partial derivative with respect to $t$ & - \\
+ $\dtp$, $\dtm$, $\dtd$ & Forward, backward and centred difference in time & - \\
+ $\dxp$, $\dxm$, $\dxd$ & Forward, backward and centred difference in space & - \\
+ $\mtp$, $\mtm$, $\mtd$ & Forward, backward and centred average in time & - \\
+ $\mxp$, $\mxm$, $\mxd$ & Forward, backward and centred average in space & - \\
  $E$ & Young's Modulus & Pa (kg$\cdot$m$^{-1}\cdot$s$^{-2}$)\\
- $f_\text{s}$ & Sample rate & s$^{-1}$\\
- $F_\alpha$ & Connection force string & N (kg$\cdot$m$\cdot$s$^{-2}$)\\
- $F_\beta$ & Connection force plate & N\\
+ $f$ & Force \SWcomment[or frequency] & N or Hz\\
+ $f_\text{s}$ & Sample rate & Hz\\
+ $F$ & \SWcomment[Scaled force] & \SWcomment[depends on system]\\
  $h$ & Grid spacing & m \\ 
- $H$ & Plate thickness & m \\ 
- $I$ & Area moment of inertia \cite{Desv2017} & m$^4$\\
+ $H$ & Membrane / Plate thickness & m \\ 
+ $I$ & Area moment of inertia & m$^4$\\
  $l$ & Spatial index to grid function & - \\
- $L$ & String length & m\\
- $k$ & Time step ($1/f_\text{s}$) & s\\
- $K_1$ & Linear spring coefficient & N/m\\
- $K_3$ & Non-linear spring coefficient & N$\cdot$m$^{-3}$\\
+ $L$ & Length & m\\
+ $k$ & Time step ($=1/f_\text{s}$) & s\\
+ $K$ & Spring coefficient & N/m\\
+ $\kappa$ & Stiffness coefficient & m$^2$/s (1D)\\
+ & & m$^4\cdot$s$^{-2}$ (2D)\\
  $n$ & Sample index to grid function & - \\
  $N$ & Number of points string & -\\
- $T$ & String tension & N\\
- $u$ & State variable ($u(x,t)\text{ or }u(x,y,t)$) & m (displacement)\\ 
+ $t$ & Time & s\\
+ $T$ & Tension & N (N/m in 2D)\\
+ $u$ & State variable & m\\ 
+ $x$ & Spatial dimension (horizontal for 2D systems) & m\\
+ $y$ & Vertical spatial dimension & m\\
  $\gamma$ & Scaled wave speed & s$^{-1}$\\
- $\kappa$ & Stiffness coefficient & m$^2$/s (string)\\
-  & & m$^4\cdot$s$^{-2}$ (plate)\\
- $\lambda$ & Courant number for the wave equation & \SWcomment[m/s]\\
- $\mu$ & Similar to courant number but for plate & \SWcomment[m/s]\\
+ $\lambda$ & Courant number for 1D wave eq. ($=ck/h$) & -\\
+ $\mu$ & Stiffness \SWcomment[free parameter] & -\\
  $\nu$ & Poisson's ratio & -\\
  $\eta$ & Relative displacement spring & m\\
  $\rho$ & Material density & kg$\cdot$m$^{-3}$\\
+ \\\hline
+ {\bf Subscripts}\\\hline
+ \\
+ $\ctxt$ & Connection &\\
+ $\ptxt$ & Plate & \\
+ $\stxt$ & String & 
 \end{longtable}}
