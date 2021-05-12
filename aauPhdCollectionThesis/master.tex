@@ -31,7 +31,7 @@
 % states
 \def\uln{u_l^n}
 \def\wln{w_l^n}
-
+\def\un{u^n}
 \def\ulmn{u_{l,m}^n}
 
 
@@ -47,6 +47,7 @@
 % continuous operators
 \def\ptt{\partial_t^2} 
 \def\pxx{\partial_x^2}
+\def\pxxx{\partial_x^3}
 \def\pxxxx{\partial_x^4}
 
 \def\pyy{\partial_y^2}
@@ -94,13 +95,17 @@
 
 \def\fs{f_\text{s}}
 
-% domain
+% mathcals
 \def\D{\mathcal{D}}
+\def\L{\mathcal{L}}
+\def\O{\mathcal{O}}
 
 % flooring ceiling
-\def\floor[#1]{\lfloor #1 \rfloor}
-\def\ceil[#1]{\lceil #1 \rceil}
+\def\floor[#1]{\left\lfloor #1 \right\rfloor}
+\def\ceil[#1]{\left\lceil #1 \right\rceil}
 
+
+\def\th{\textsuperscript{th} }
 %mainmatter
 \mainmatter
 \part{Introduction}\label{part:introduction}
@@ -128,26 +133,59 @@
 
 % \nocite{*} %only if you want all references in there
 \todo{check whether all references are used}
+\makeatletter
+\renewenvironment{thebibliography}[1]
+     {\chapter*{\bibname}%
+      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\makeatother
+
 {\bibliographystyle{IEEEtranS}\bibliography{bib/mybib}}
+\addcontentsline{toc}{chapter}{References}
+
 
 %backmatter
-\begin{subappendices}
-  \begin{appendices}
-    \part{Appendix}
-    \input{appendices/appendices}   
-  \end{appendices}
-  \begin{appendices}
-    \renewcommand\appendixname{Paper} 
-    \setcounter{chapter}{0} % reset stuff
-    \part{Papers}\label{part:papers}
-    \input{papers/paperErrata}
-    \pagestyle{plain}
-    \input{papers/papers.tex}
-    \pagestyle{fancy}
-    % \input{papers/paperA/paperA.tex}
-  \end{appendices}
-\end{subappendices}
+\newif\ifapp
+\apptrue % uncomment to include appendices
 
+\newif\ifpapers
+% \paperstrue % uncomment to include appendices
+
+\ifapp
+  \renewcommand\thesection{\thechapter.\arabic{section}}
+  \begin{subappendices}
+    \begin{appendices}
+      \part{Appendix}
+      \input{appendices/appendices}   
+    \end{appendices}
+    \begin{appendices}
+      \renewcommand\appendixname{Paper} 
+      \setcounter{chapter}{0} % reset stuff
+      \renewcommand\thesection{\thechapter.\arabic{section}}
+      \part{Papers}\label{part:papers}
+      \input{papers/paperErrata}
+      \pagestyle{plain}
+      \input{papers/papers.tex}
+      \pagestyle{fancy}
+      % \input{papers/paperA/paperA.tex}
+    \end{appendices}
+  \end{subappendices}
+\fi
 \titleformat{%command
   \chapter
 }[%shape

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  29 APR 2021 16:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  12 MAY 2021 10:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1217,23 +1217,38 @@ File: pppdftex.def 2016/04/19 v0.5f Pdfpages driver for pdfTeX (AM)
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/dirtytalk/dirtytalk.sty
 Package: dirtytalk 2010/11/21 A package making "quoting" easier
 \c@dirtytalk@qdepth=\count170
-) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count171
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+\c@KVtest=\count171
+\sf@farskip=\skip78
+\sf@captopadj=\dimen298
+\sf@capskip=\skip79
+\sf@nearskip=\skip80
+\c@subfigure=\count172
+\c@subfigure@save=\count173
+\c@lofdepth=\count174
+\c@subtable=\count175
+\c@subtable@save=\count176
+\c@lotdepth=\count177
+\sf@top=\skip81
+\sf@bottom=\skip82
+) (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.markings.code.tex (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.markings.code.tex)) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count178
 \lst@gtempboxa=\box47
 \lst@token=\toks65
-\lst@length=\count172
-\lst@currlwidth=\dimen298
-\lst@column=\count173
-\lst@pos=\count174
-\lst@lostspace=\dimen299
-\lst@width=\dimen300
-\lst@newlines=\count175
-\lst@lineno=\count176
-\lst@maxwidth=\dimen301
+\lst@length=\count179
+\lst@currlwidth=\dimen299
+\lst@column=\count180
+\lst@pos=\count181
+\lst@lostspace=\dimen300
+\lst@width=\dimen301
+\lst@newlines=\count182
+\lst@lineno=\count183
+\lst@maxwidth=\dimen302
  (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count177
-\lst@skipnumbers=\count178
+\c@lstnumber=\count184
+\lst@skipnumbers=\count185
 \lst@framebox=\box48
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2015/06/04 1.6 listings configuration
@@ -1242,21 +1257,18 @@ Package: listings 2015/06/04 1.6 (Carsten Heinz)
  (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/courier.sty
 Package: courier 2005/04/12 PSNFSS-v9.2a (WaS) 
 )) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/setup/hyphenations.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/setup/macros.tex
-\c@currexactr=\count179
-\c@endexactr=\count180
-\c@exa=\count181
-\c@currassctr=\count182
-\c@endassctr=\count183
-\c@ass=\count184
+\c@currexactr=\count186
+\c@endexactr=\count187
+\c@exa=\count188
+\c@currassctr=\count189
+\c@endassctr=\count190
+\c@ass=\count191
 ) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.aux
 
 LaTeX Warning: Label `eq:discFirstSpace' multiply defined.
 
 
-LaTeX Warning: Label `eq:1DwaveFDS' multiply defined.
-
-
-LaTeX Warning: Label `eq:stiffStringPDE' multiply defined.
+LaTeX Warning: Label `eq:2DwavePDE' multiply defined.
 
 )
 \openout1 = `master.aux'.
@@ -1281,20 +1293,20 @@ File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    ... okay on input line 5.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
-\c@mv@tabular=\count185
-\c@mv@boldtabular=\count186
+\c@mv@tabular=\count192
+\c@mv@boldtabular=\count193
  (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count187
-\scratchdimen=\dimen302
+\scratchcounter=\count194
+\scratchdimen=\dimen303
 \scratchbox=\box49
-\nofMPsegments=\count188
-\nofMParguments=\count189
+\nofMPsegments=\count195
+\nofMParguments=\count196
 \everyMPshowfont=\toks66
-\MPscratchCnt=\count190
-\MPscratchDim=\dimen303
-\MPnumerator=\count191
-\makeMPintoPDFobject=\count192
+\MPscratchCnt=\count197
+\MPscratchDim=\dimen304
+\MPnumerator=\count198
+\makeMPintoPDFobject=\count199
 \everyMPtoPDFconversion=\toks67
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -1308,6 +1320,7 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: longtable package is loaded.
@@ -1364,7 +1377,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count193
+\c@section@level=\count266
 )
 LaTeX Info: Redefining \ref on input line 5.
 LaTeX Info: Redefining \pageref on input line 5.
@@ -1380,7 +1393,7 @@ Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
 )
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
-\c@lstlisting=\count194
+\c@lstlisting=\count267
  (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/frontmatter/frontpage.tex
 LaTeX Font Info:    Try loading font information for U+msa on input line 5.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -1422,7 +1435,7 @@ LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <24.88> not available
 (Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 2.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
 (Font)              scaled to size 24.88pt on input line 2.
- <frontmatter/cvPicture.png, id=525, 139.52126pt x 139.52126pt> <use frontmatter/cvPicture.png> <use frontmatter/cvPicture.png>
+ <frontmatter/cvPicture.png, id=557, 139.52126pt x 139.52126pt> <use frontmatter/cvPicture.png> <use frontmatter/cvPicture.png>
 File: frontmatter/cvPicture.png Graphic file (type png)
  <use frontmatter/cvPicture.png>
 Package pdftex.def Info: frontmatter/cvPicture.png used on input line 7.
@@ -1474,11 +1487,11 @@ LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
 
 ] [21]) [22]
 LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 20.74pt on input line 106.
+(Font)              scaled to size 20.74pt on input line 111.
 LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 106.
+(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 111.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 20.74pt on input line 106.
+(Font)              scaled to size 20.74pt on input line 111.
  [1
 
 
@@ -1506,23 +1519,188 @@ Chapter 2.
 
 ]
 LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 5.0pt on input line 27.
+(Font)              scaled to size 5.0pt on input line 25.
 
-Overfull \hbox (9.67502pt too wide) in paragraph at lines 35--47
+Overfull \hbox (9.67502pt too wide) in paragraph at lines 55--67
 []$[]$ $[]$ 
  []
 
-[8pdfTeX warning (ext4): destination with the same identifier (name{equation.2.0.1}) has been already used, duplicate ignored
+[8pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.1}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.65 \begin{equation}
-                     ] [9]
+l.69 
+     ]
 
-Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 120.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\todo' on input line 86.
 
-[10] [11]
+
+LaTeX Warning: Marginpar on page 9 moved.
+
+[9] [10] [11] [12]
+Package epstopdf Info: Source file: <figures/fdtd/taylor.eps>
+(epstopdf)                    date: 2021-05-02 09:33:35
+(epstopdf)                    size: 123857 bytes
+(epstopdf)             Output file: <figures/fdtd/taylor-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-05-02 09:33:38
+(epstopdf)                    size: 79074 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/fdtd/taylor-eps-converted-to.pdf figures/fdtd/taylor.eps>
+(epstopdf)             \includegraphics on input line 226.
+Package epstopdf Info: Output file is already uptodate.
+ <figures/fdtd/taylor-eps-converted-to.pdf, id=988, 1004.75375pt x 314.17375pt>
+File: figures/fdtd/taylor-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/fdtd/taylor-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fdtd/taylor-eps-converted-to.pdf used on input line 226.
+(pdftex.def)             Requested size: 341.43307pt x 106.76013pt.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 8.0pt on input line 227.
+LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <8> not available
+(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 227.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 8.0pt on input line 227.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[13] [14 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/taylor-eps-converted-to.pdf>] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/massSpringTikz.tex
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+) [15]
+
+LaTeX Warning: Marginpar on page 16 moved.
+
+[16]
 Package epstopdf Info: Source file: <figures/resonators/curvature.eps>
 (epstopdf)                    date: 2021-04-28 10:50:41
 (epstopdf)                    size: 28940 bytes
@@ -1530,163 +1708,167 @@ Package epstopdf Info: Source file: <figures/resonators/curvature.eps>
 (epstopdf)                    date: 2021-04-28 10:51:09
 (epstopdf)                    size: 10700 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/curvature-eps-converted-to.pdf figures/resonators/curvature.eps>
-(epstopdf)             \includegraphics on input line 196.
+(epstopdf)             \includegraphics on input line 345.
 Package epstopdf Info: Output file is already uptodate.
- <figures/resonators/curvature-eps-converted-to.pdf, id=896, 602.25pt x 200.75pt>
+ <figures/resonators/curvature-eps-converted-to.pdf, id=1052, 602.25pt x 200.75pt>
 File: figures/resonators/curvature-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/resonators/curvature-eps-converted-to.pdf>
-Package pdftex.def Info: figures/resonators/curvature-eps-converted-to.pdf used on input line 196.
+Package pdftex.def Info: figures/resonators/curvature-eps-converted-to.pdf used on input line 345.
 (pdftex.def)             Requested size: 341.43307pt x 113.81604pt.
-LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 197.
-LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <8> not available
-(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 197.
-LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 8.0pt on input line 197.
- [12 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/curvature-eps-converted-to.pdf>]
+ [17 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/curvature-eps-converted-to.pdf>]
 
-LaTeX Warning: Citation `courant' on page 13 undefined on input line 222.
+LaTeX Warning: Citation `courant' on page 18 undefined on input line 371.
 
-[13]
+[18]
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 278.
+LaTeX Warning: Reference `fig:matrixMult' on page 19 undefined on input line 416.
 
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 278.
+<figures/fdtd/matrixVector2.pdf, id=1087, 776.9025pt x 349.305pt>
+File: figures/fdtd/matrixVector2.pdf Graphic file (type pdf)
+ <use figures/fdtd/matrixVector2.pdf>
+Package pdftex.def Info: figures/fdtd/matrixVector2.pdf used on input line 431.
+(pdftex.def)             Requested size: 341.43307pt x 153.51344pt.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 278.
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[19]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 493.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 278.
+LaTeX Font Warning: Command \small invalid in math mode on input line 493.
 
 
-Overfull \hbox (14.22246pt too wide) in paragraph at lines 278--278
+LaTeX Font Warning: Command \small invalid in math mode on input line 493.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 493.
+
+
+Overfull \hbox (14.22246pt too wide) in paragraph at lines 493--493
 [] 
  []
 
+[20 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/matrixVector2.pdf>]
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 280.
+LaTeX Font Warning: Command \small invalid in math mode on input line 495.
 
-LaTeX Font Info:    Calculating math sizes for size <> on input line 289.
+LaTeX Font Info:    Calculating math sizes for size <> on input line 504.
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <> not available
-(Font)              size <5> substituted on input line 289.
+(Font)              size <5> substituted on input line 504.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 289.
+(Font)              size <5> substituted on input line 504.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 289.
+(Font)              size <5> substituted on input line 504.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <> not available
-(Font)              size <5> substituted on input line 289.
+(Font)              size <5> substituted on input line 504.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.7> not available
-(Font)              size <5> substituted on input line 289.
+(Font)              size <5> substituted on input line 504.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.5> not available
-(Font)              size <5> substituted on input line 289.
+(Font)              size <5> substituted on input line 504.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <> not available
-(Font)              size <5> substituted on input line 289.
+(Font)              size <5> substituted on input line 504.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 289.
+(Font)              size <5> substituted on input line 504.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 289.
+(Font)              size <5> substituted on input line 504.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <> not available
-(Font)              size <5> substituted on input line 289.
+(Font)              size <5> substituted on input line 504.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 289.
+(Font)              size <5> substituted on input line 504.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 289.
+(Font)              size <5> substituted on input line 504.
 
-[14] [15]
-Overfull \hbox (19.99661pt too wide) detected at line 375
-[][] []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = []  =[]\OMS/cmsy/m/n/10 )  [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = [] = [] + []\OML/cmm/m/it/10 :
+[21] [22] [23]
+Overfull \hbox (2.10739pt too wide) detected at line 607
+[][] []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = []   \OMS/cmsy/m/n/10 )   [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = [] = [] + []\OML/cmm/m/it/10 :
  []
 
 
-Overfull \hbox (22.21881pt too wide) detected at line 379
-[][] []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = []  =[]\OMS/cmsy/m/n/10 )  [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = [] = [] + []\OML/cmm/m/it/10 :
- []
+LaTeX Warning: Reference `eq:matrixForm1D' on page 24 undefined on input line 636.
 
-[16]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/conclusion.tex)) [17] [18
+[24]
 
-] [19] [20] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/resonators.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/stiffString.tex [21
+LaTeX Warning: Marginpar on page 25 moved.
 
-] [22
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/conclusion.tex)) [25] [26
+
+] [27] [28] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/resonators.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/stiffString.tex [29
+
+] [30
 
 ]
 Chapter 3.
-[23]
-Overfull \hbox (31.92154pt too wide) in paragraph at lines 53--53
-[] 
- []
+[31] [32]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/brass.tex [33] [34
 
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/2Dsystems.tex [24]
+]
 Chapter 4.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/brass.tex [25
-
-] [26
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/2Dsystems.tex [35] [36
 
 ]
 Chapter 5.
-)) [27] [28
 
-] [29] [30] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/exciters.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/initialcond.tex [31
+LaTeX Warning: Reference `eq:laplacian' on page 37 undefined on input line 31.
 
-] [32
+[37])) [38] [39
+
+] [40] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/exciters.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/initialcond.tex [41
+
+] [42
 
 ]
 Chapter 6.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/continuous.tex [33] [34
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/continuous.tex [43] [44
 
 ]
 Chapter 7.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 11.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 22.
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 
-LaTeX Warning: Citation `Coulomb' on page 35 undefined on input line 17.
+LaTeX Warning: Citation `Coulomb' on page 45 undefined on input line 28.
 
 
-LaTeX Warning: Citation `Morin1833' on page 35 undefined on input line 17.
+LaTeX Warning: Citation `Morin1833' on page 45 undefined on input line 28.
 
 
-LaTeX Warning: Citation `Reynolds1886' on page 35 undefined on input line 17.
+LaTeX Warning: Citation `Reynolds1886' on page 45 undefined on input line 28.
 
 
-LaTeX Warning: Citation `Stribeck1902' on page 35 undefined on input line 17.
+LaTeX Warning: Citation `Stribeck1902' on page 45 undefined on input line 28.
 
-[35])) [36] [37
+[45])) [46] [47
 
-] [38] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/interactions.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/connections.tex [39] [40
+] [48] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/interactions.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/connections.tex [49] [50
 
 ]
 Chapter 8.
-[41]
-
-LaTeX Warning: Reference `eq:platePDE' on page 42 undefined on input line 50.
-
-[42]
+[51] [52]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 85.
@@ -1695,15 +1877,15 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 85.
 
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/collisions.tex [43] [44
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/collisions.tex [53] [54
 
 ]
 Chapter 9.
-)) [45] [46
+)) [55] [56
 
-] [47] [48] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/dynamic.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/introduction.tex
+] [57] [58] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/dynamic.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/introduction.tex
 Chapter 10.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/background.tex [49
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/background.tex [59
 
 ]
 Overfull \hbox (80.99535pt too wide) in paragraph at lines 30--31
@@ -1741,11 +1923,11 @@ Overfull \hbox (24.56693pt too wide) in paragraph at lines 46--1
  []
 
 
-LaTeX Warning: Reference `eq:compactLambda' on page 50 undefined on input line 8.
+LaTeX Warning: Reference `eq:compactLambda' on page 60 undefined on input line 8.
 
-[50]
+[60]
 
-LaTeX Warning: Reference `eq:orderOfCalcGrid' on page 51 undefined on input line 11.
+LaTeX Warning: Reference `eq:orderOfCalcGrid' on page 61 undefined on input line 11.
 
 Package epstopdf Info: Source file: <dynamic/fullGrid.eps>
 (epstopdf)                    date: 2020-10-16 16:29:27
@@ -1756,21 +1938,21 @@ Package epstopdf Info: Source file: <dynamic/fullGrid.eps>
 (epstopdf)             Command: <repstopdf --outfile=dynamic/fullGrid-eps-converted-to.pdf dynamic/fullGrid.eps>
 (epstopdf)             \includegraphics on input line 18.
 Package epstopdf Info: Output file is already uptodate.
-<dynamic/fullGrid-eps-converted-to.pdf, id=1222, 501.875pt x 301.125pt>
+<dynamic/fullGrid-eps-converted-to.pdf, id=1465, 501.875pt x 301.125pt>
 File: dynamic/fullGrid-eps-converted-to.pdf Graphic file (type pdf)
  <use dynamic/fullGrid-eps-converted-to.pdf>
 Package pdftex.def Info: dynamic/fullGrid-eps-converted-to.pdf used on input line 18.
 (pdftex.def)             Requested size: 170.71654pt x 102.43167pt.
 
 
-LaTeX Warning: Reference `eq:compactLambda' on page 51 undefined on input line 22.
+LaTeX Warning: Reference `eq:compactLambda' on page 61 undefined on input line 22.
 
 
-LaTeX Warning: Reference `eq:fmax' on page 51 undefined on input line 24.
+LaTeX Warning: Reference `eq:fmax' on page 61 undefined on input line 24.
 
-[51 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/fullGrid-eps-converted-to.pdf>]
+[61 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/fullGrid-eps-converted-to.pdf>]
 
-LaTeX Warning: Reference `eq:orderOfCalcGrid' on page 52 undefined on input line 36.
+LaTeX Warning: Reference `eq:orderOfCalcGrid' on page 62 undefined on input line 36.
 
 Package epstopdf Info: Source file: <dynamic/simplySupportedBoundary.eps>
 (epstopdf)                    date: 2020-10-16 15:43:09
@@ -1781,16 +1963,16 @@ Package epstopdf Info: Source file: <dynamic/simplySupportedBoundary.eps>
 (epstopdf)             Command: <repstopdf --outfile=dynamic/simplySupportedBoundary-eps-converted-to.pdf dynamic/simplySupportedBoundary.eps>
 (epstopdf)             \includegraphics on input line 56.
 Package epstopdf Info: Output file is already uptodate.
-<dynamic/simplySupportedBoundary-eps-converted-to.pdf, id=1240, 562.1pt x 421.575pt>
+<dynamic/simplySupportedBoundary-eps-converted-to.pdf, id=1480, 562.1pt x 421.575pt>
 File: dynamic/simplySupportedBoundary-eps-converted-to.pdf Graphic file (type pdf)
  <use dynamic/simplySupportedBoundary-eps-converted-to.pdf>
 Package pdftex.def Info: dynamic/simplySupportedBoundary-eps-converted-to.pdf used on input line 56.
 (pdftex.def)             Requested size: 239.0021pt x 179.2474pt.
 
 
-LaTeX Warning: Reference `eq:numberOfIntervals' on page 52 undefined on input line 60.
+LaTeX Warning: Reference `eq:numberOfIntervals' on page 62 undefined on input line 60.
 
-[52 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/simplySupportedBoundary-eps-converted-to.pdf>]
+[62 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/simplySupportedBoundary-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <dynamic/boundaryGrid.eps>
 (epstopdf)                    date: 2020-10-16 11:05:46
 (epstopdf)                    size: 21885 bytes
@@ -1800,20 +1982,20 @@ Package epstopdf Info: Source file: <dynamic/boundaryGrid.eps>
 (epstopdf)             Command: <repstopdf --outfile=dynamic/boundaryGrid-eps-converted-to.pdf dynamic/boundaryGrid.eps>
 (epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
- <dynamic/boundaryGrid-eps-converted-to.pdf, id=1255, 562.1pt x 421.575pt>
+ <dynamic/boundaryGrid-eps-converted-to.pdf, id=1495, 562.1pt x 421.575pt>
 File: dynamic/boundaryGrid-eps-converted-to.pdf Graphic file (type pdf)
  <use dynamic/boundaryGrid-eps-converted-to.pdf>
 Package pdftex.def Info: dynamic/boundaryGrid-eps-converted-to.pdf used on input line 73.
 (pdftex.def)             Requested size: 239.0021pt x 179.2474pt.
- [53 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/boundaryGrid-eps-converted-to.pdf>]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/analysis.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/conclusion.tex)) [54] [55
+ [63 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/boundaryGrid-eps-converted-to.pdf>]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/analysis.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/conclusion.tex)) [64] [65
 
-] [56] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/realtime.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/implementation.tex [57
+] [66] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/realtime.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/implementation.tex [67
 
-] [58
+] [68
 
 ]
 Chapter 11.
-[59] (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
+[69] (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
@@ -1821,52 +2003,72 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) [60]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/control.tex [61] [62
+) [70] <figures/realtime/vectorCopy.pdf, id=1562, 459.63718pt x 211.7511pt>
+File: figures/realtime/vectorCopy.pdf Graphic file (type pdf)
+ <use figures/realtime/vectorCopy.pdf>
+Package pdftex.def Info: figures/realtime/vectorCopy.pdf used on input line 87.
+(pdftex.def)             Requested size: 341.43307pt x 157.29755pt.
+ <figures/realtime/pointerSwitch.pdf, id=1563, 472.64577pt x 225.7233pt>
+File: figures/realtime/pointerSwitch.pdf Graphic file (type pdf)
+ <use figures/realtime/pointerSwitch.pdf>
+Package pdftex.def Info: figures/realtime/pointerSwitch.pdf used on input line 88.
+(pdftex.def)             Requested size: 341.43307pt x 163.06483pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 106.
+[71]
+Overfull \hbox (16.55943pt too wide) detected at line 137
+[][]\OML/cmm/m/it/10 u[] \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 u[] \OT1/cmr/m/n/10 + [] [] [] [] [] \OML/cmm/m/it/10 u[]:
+ []
+
+[72] [73]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/control.tex [74] [75 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/realtime/vectorCopy.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/realtime/pointerSwitch.pdf>] [76
 
 ]
 Chapter 12.
-)) [63] [64
+)) [77] [78
 
-] [65] [66] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/instrument.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/introduction.tex
+] [79] [80] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/instrument.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/introduction.tex
 
-LaTeX Warning: Reference `ch:largeScale' on page 67 undefined on input line 2.
+LaTeX Warning: Reference `ch:largeScale' on page 81 undefined on input line 2.
 
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/largeScale.tex [67
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/largeScale.tex [81
 
-] [68
+] [82
 
 ]
 Chapter 13.
 
-LaTeX Warning: Citation `paper:Willemsen2019' on page 69 undefined on input line 2.
+LaTeX Warning: Citation `paper:Willemsen2019' on page 83 undefined on input line 2.
 
-[69]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/tromba.tex [70]
+[83]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/tromba.tex [84]
 Chapter 14.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/trombone.tex [71
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/trombone.tex [85
 
-] [72
+] [86
 
 ]
 Chapter 15.
 
-LaTeX Warning: Citation `Webster19' on page 73 undefined on input line 18.
+LaTeX Warning: Citation `Webster19' on page 87 undefined on input line 18.
 
 
-LaTeX Warning: Citation `Bilbao2016' on page 73 undefined on input line 18.
+LaTeX Warning: Citation `Bilbao2016' on page 87 undefined on input line 18.
 
-[73]
+[87]
 
-LaTeX Warning: Reference `eq:connectionInterpol' on page 74 undefined on input line 26.
+LaTeX Warning: Reference `eq:connectionInterpol' on page 88 undefined on input line 26.
 
-)) [74] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.bbl
+)) [88]
 
-LaTeX Warning: Marginpar on page 75 moved.
+LaTeX Warning: Marginpar on page 89 moved.
 
-[75] [76
+(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.bbl [89] [90
 
-] [77]) [78] [79
+] [91]) [92] [93
 
-] [80] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/appendices.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/listOfSymbols.tex
+] [94] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/appendices.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/listOfSymbols.tex
 Appendix A.
 
 Overfull \hbox (7.54721pt too wide) in alignment at lines 5--8
@@ -1883,713 +2085,75 @@ Overfull \hbox (7.54721pt too wide) in alignment at lines 29--49
  [] [] [] 
  []
 
-[81
+[95
 
 ]
 Overfull \hbox (7.54721pt too wide) in alignment at lines 49--50
  [] [] [] 
  []
 
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/listOfAbbreviations.tex [82]
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/listOfAbbreviations.tex [96]
 Appendix B.
-)) [83
+)) [97
 
-] [84
+] [98
 
-] [85] [86] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperErrata.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/papers.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/paperA.tex [87
+] [99] [100] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperErrata.tex
+Underfull \hbox (badness 10000) in paragraph at lines 2--4
 
-] [88
+ []
+
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/papers.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/paperA.tex [101
+
+] [102
 
 ]
 Paper A.
-[89] [90] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/abstract.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/conclusion.tex)) [91
-
-] [92
-
-]
+LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
+(Font)              scaled to size 7.0pt on input line 10.
+LaTeX Font Info:    Font shape `TS1/zpltlf/m/it' will be
+(Font)              scaled to size 7.0pt on input line 10.
+(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/abstract.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/introduction.tex [103]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/conclusion.tex)) [104]
 Paper B.
-<papers/PaperA.pdf, id=1499, 597.50829pt x 845.0471pt>
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf>
-Package pdftex.def Info: papers/PaperA.pdf used on input line 3.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf>
-Package pdftex.def Info: papers/PaperA.pdf used on input line 3.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
- <papers/PaperA.pdf, id=1502, page=1, 597.50829pt x 845.0471pt>
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 1>
-Package pdftex.def Info: papers/PaperA.pdf, page1 used on input line 3.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 1>
-Package pdftex.def Info: papers/PaperA.pdf, page1 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [93]
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 1>
-Package pdftex.def Info: papers/PaperA.pdf, page1 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 1>
-Package pdftex.def Info: papers/PaperA.pdf, page1 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 1>
-Package pdftex.def Info: papers/PaperA.pdf, page1 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [94 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperA.pdf>] <papers/PaperA.pdf, id=1557, page=2, 597.50829pt x 845.0471pt>
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 2>
-Package pdftex.def Info: papers/PaperA.pdf, page2 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 2>
-Package pdftex.def Info: papers/PaperA.pdf, page2 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 2>
-Package pdftex.def Info: papers/PaperA.pdf, page2 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [95 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperA.pdf>] <papers/PaperA.pdf, id=1600, page=3, 597.50829pt x 845.0471pt>
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 3>
-Package pdftex.def Info: papers/PaperA.pdf, page3 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 3>
-Package pdftex.def Info: papers/PaperA.pdf, page3 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 3>
-Package pdftex.def Info: papers/PaperA.pdf, page3 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [96 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperA.pdf>] <papers/PaperA.pdf, id=1617, page=4, 597.50829pt x 845.0471pt>
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 4>
-Package pdftex.def Info: papers/PaperA.pdf, page4 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 4>
-Package pdftex.def Info: papers/PaperA.pdf, page4 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 4>
-Package pdftex.def Info: papers/PaperA.pdf, page4 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [97 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperA.pdf>] <papers/PaperA.pdf, id=1636, page=5, 597.50829pt x 845.0471pt>
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 5>
-Package pdftex.def Info: papers/PaperA.pdf, page5 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 5>
-Package pdftex.def Info: papers/PaperA.pdf, page5 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 5>
-Package pdftex.def Info: papers/PaperA.pdf, page5 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [98 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperA.pdf>] <papers/PaperA.pdf, id=1689, page=6, 597.50829pt x 845.0471pt>
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 6>
-Package pdftex.def Info: papers/PaperA.pdf, page6 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 6>
-Package pdftex.def Info: papers/PaperA.pdf, page6 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 6>
-Package pdftex.def Info: papers/PaperA.pdf, page6 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [99 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperA.pdf>] <papers/PaperA.pdf, id=1704, page=7, 597.50829pt x 845.0471pt>
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 7>
-Package pdftex.def Info: papers/PaperA.pdf, page7 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 7>
-Package pdftex.def Info: papers/PaperA.pdf, page7 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 7>
-Package pdftex.def Info: papers/PaperA.pdf, page7 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [100 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperA.pdf>] <papers/PaperA.pdf, id=1718, page=8, 597.50829pt x 845.0471pt>
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 8>
-Package pdftex.def Info: papers/PaperA.pdf, page8 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 8>
-Package pdftex.def Info: papers/PaperA.pdf, page8 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperA.pdf Graphic file (type pdf)
- <use papers/PaperA.pdf, page 8>
-Package pdftex.def Info: papers/PaperA.pdf, page8 used on input line 3.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [101 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperA.pdf>] [102
+[105
+
+] [106
 
 ]
 Paper C.
-<papers/PaperB.pdf, id=1727, 597.50829pt x 845.0471pt>
-File: papers/PaperB.pdf Graphic file (type pdf)
- <use papers/PaperB.pdf>
-Package pdftex.def Info: papers/PaperB.pdf used on input line 6.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: papers/PaperB.pdf Graphic file (type pdf)
- <use papers/PaperB.pdf>
-Package pdftex.def Info: papers/PaperB.pdf used on input line 6.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
- <papers/PaperB.pdf, id=1730, page=1, 597.50829pt x 845.0471pt>
-File: papers/PaperB.pdf Graphic file (type pdf)
- <use papers/PaperB.pdf, page 1>
-Package pdftex.def Info: papers/PaperB.pdf, page1 used on input line 6.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: papers/PaperB.pdf Graphic file (type pdf)
- <use papers/PaperB.pdf, page 1>
-Package pdftex.def Info: papers/PaperB.pdf, page1 used on input line 6.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [103]
-File: papers/PaperB.pdf Graphic file (type pdf)
- <use papers/PaperB.pdf, page 1>
-Package pdftex.def Info: papers/PaperB.pdf, page1 used on input line 6.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperB.pdf Graphic file (type pdf)
- <use papers/PaperB.pdf, page 1>
-Package pdftex.def Info: papers/PaperB.pdf, page1 used on input line 6.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperB.pdf Graphic file (type pdf)
- <use papers/PaperB.pdf, page 1>
-Package pdftex.def Info: papers/PaperB.pdf, page1 used on input line 6.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [104 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperB.pdf>] <papers/PaperB.pdf, id=1764, page=2, 597.50829pt x 845.0471pt>
-File: papers/PaperB.pdf Graphic file (type pdf)
- <use papers/PaperB.pdf, page 2>
-Package pdftex.def Info: papers/PaperB.pdf, page2 used on input line 6.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperB.pdf Graphic file (type pdf)
- <use papers/PaperB.pdf, page 2>
-Package pdftex.def Info: papers/PaperB.pdf, page2 used on input line 6.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperB.pdf Graphic file (type pdf)
- <use papers/PaperB.pdf, page 2>
-Package pdftex.def Info: papers/PaperB.pdf, page2 used on input line 6.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [105 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperB.pdf>] [106
+[107] [108
 
 ]
 Paper D.
-<papers/PaperC.pdf, id=1791, 597.50829pt x 845.0471pt>
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf>
-Package pdftex.def Info: papers/PaperC.pdf used on input line 9.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf>
-Package pdftex.def Info: papers/PaperC.pdf used on input line 9.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
- <papers/PaperC.pdf, id=1794, page=1, 597.50829pt x 845.0471pt>
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 1>
-Package pdftex.def Info: papers/PaperC.pdf, page1 used on input line 9.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 1>
-Package pdftex.def Info: papers/PaperC.pdf, page1 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [107]
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 1>
-Package pdftex.def Info: papers/PaperC.pdf, page1 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 1>
-Package pdftex.def Info: papers/PaperC.pdf, page1 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 1>
-Package pdftex.def Info: papers/PaperC.pdf, page1 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [108 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperC.pdf>] <papers/PaperC.pdf, id=1844, page=2, 597.50829pt x 845.0471pt>
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 2>
-Package pdftex.def Info: papers/PaperC.pdf, page2 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 2>
-Package pdftex.def Info: papers/PaperC.pdf, page2 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 2>
-Package pdftex.def Info: papers/PaperC.pdf, page2 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [109 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperC.pdf>] <papers/PaperC.pdf, id=1887, page=3, 597.50829pt x 845.0471pt>
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 3>
-Package pdftex.def Info: papers/PaperC.pdf, page3 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 3>
-Package pdftex.def Info: papers/PaperC.pdf, page3 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 3>
-Package pdftex.def Info: papers/PaperC.pdf, page3 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [110 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperC.pdf>] <papers/PaperC.pdf, id=1898, page=4, 597.50829pt x 845.0471pt>
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 4>
-Package pdftex.def Info: papers/PaperC.pdf, page4 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 4>
-Package pdftex.def Info: papers/PaperC.pdf, page4 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 4>
-Package pdftex.def Info: papers/PaperC.pdf, page4 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [111 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperC.pdf>] <papers/PaperC.pdf, id=1913, page=5, 597.50829pt x 845.0471pt>
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 5>
-Package pdftex.def Info: papers/PaperC.pdf, page5 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 5>
-Package pdftex.def Info: papers/PaperC.pdf, page5 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 5>
-Package pdftex.def Info: papers/PaperC.pdf, page5 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [112 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperC.pdf>] <papers/PaperC.pdf, id=1991, page=6, 597.50829pt x 845.0471pt>
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 6>
-Package pdftex.def Info: papers/PaperC.pdf, page6 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 6>
-Package pdftex.def Info: papers/PaperC.pdf, page6 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 6>
-Package pdftex.def Info: papers/PaperC.pdf, page6 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [113 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperC.pdf>] <papers/PaperC.pdf, id=2002, page=7, 597.50829pt x 845.0471pt>
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 7>
-Package pdftex.def Info: papers/PaperC.pdf, page7 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 7>
-Package pdftex.def Info: papers/PaperC.pdf, page7 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperC.pdf Graphic file (type pdf)
- <use papers/PaperC.pdf, page 7>
-Package pdftex.def Info: papers/PaperC.pdf, page7 used on input line 9.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [114 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperC.pdf>]
-Paper E.
-<papers/PaperD.pdf, id=2007, 597.50829pt x 845.0471pt>
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf>
-Package pdftex.def Info: papers/PaperD.pdf used on input line 12.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf>
-Package pdftex.def Info: papers/PaperD.pdf used on input line 12.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
- <papers/PaperD.pdf, id=2010, page=1, 597.50829pt x 845.0471pt>
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 1>
-Package pdftex.def Info: papers/PaperD.pdf, page1 used on input line 12.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 1>
-Package pdftex.def Info: papers/PaperD.pdf, page1 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [115
+[109] [110
 
 ]
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 1>
-Package pdftex.def Info: papers/PaperD.pdf, page1 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 1>
-Package pdftex.def Info: papers/PaperD.pdf, page1 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 1>
-Package pdftex.def Info: papers/PaperD.pdf, page1 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [116 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperD.pdf>] <papers/PaperD.pdf, id=2048, page=2, 597.50829pt x 845.0471pt>
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 2>
-Package pdftex.def Info: papers/PaperD.pdf, page2 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 2>
-Package pdftex.def Info: papers/PaperD.pdf, page2 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 2>
-Package pdftex.def Info: papers/PaperD.pdf, page2 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [117 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperD.pdf>] <papers/PaperD.pdf, id=2092, page=3, 597.50829pt x 845.0471pt>
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 3>
-Package pdftex.def Info: papers/PaperD.pdf, page3 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 3>
-Package pdftex.def Info: papers/PaperD.pdf, page3 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 3>
-Package pdftex.def Info: papers/PaperD.pdf, page3 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [118 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperD.pdf>] <papers/PaperD.pdf, id=2105, page=4, 597.50829pt x 845.0471pt>
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 4>
-Package pdftex.def Info: papers/PaperD.pdf, page4 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 4>
-Package pdftex.def Info: papers/PaperD.pdf, page4 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 4>
-Package pdftex.def Info: papers/PaperD.pdf, page4 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [119 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperD.pdf>] <papers/PaperD.pdf, id=2116, page=5, 597.50829pt x 845.0471pt>
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 5>
-Package pdftex.def Info: papers/PaperD.pdf, page5 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 5>
-Package pdftex.def Info: papers/PaperD.pdf, page5 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 5>
-Package pdftex.def Info: papers/PaperD.pdf, page5 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [120 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperD.pdf>] <papers/PaperD.pdf, id=2124, page=6, 597.50829pt x 845.0471pt>
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 6>
-Package pdftex.def Info: papers/PaperD.pdf, page6 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 6>
-Package pdftex.def Info: papers/PaperD.pdf, page6 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 6>
-Package pdftex.def Info: papers/PaperD.pdf, page6 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [121 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperD.pdf>] <papers/PaperD.pdf, id=2162, page=7, 597.50829pt x 845.0471pt>
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 7>
-Package pdftex.def Info: papers/PaperD.pdf, page7 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 7>
-Package pdftex.def Info: papers/PaperD.pdf, page7 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 7>
-Package pdftex.def Info: papers/PaperD.pdf, page7 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [122 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperD.pdf>] <papers/PaperD.pdf, id=2167, page=8, 597.50829pt x 845.0471pt>
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 8>
-Package pdftex.def Info: papers/PaperD.pdf, page8 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 8>
-Package pdftex.def Info: papers/PaperD.pdf, page8 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperD.pdf Graphic file (type pdf)
- <use papers/PaperD.pdf, page 8>
-Package pdftex.def Info: papers/PaperD.pdf, page8 used on input line 12.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [123 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperD.pdf>] [124
+Paper E.
+[111] [112
 
 ]
 Paper F.
-<papers/PaperE.pdf, id=2177, 597.50829pt x 845.0471pt>
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf>
-Package pdftex.def Info: papers/PaperE.pdf used on input line 15.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf>
-Package pdftex.def Info: papers/PaperE.pdf used on input line 15.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
- <papers/PaperE.pdf, id=2180, page=1, 597.50829pt x 845.0471pt>
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 1>
-Package pdftex.def Info: papers/PaperE.pdf, page1 used on input line 15.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 1>
-Package pdftex.def Info: papers/PaperE.pdf, page1 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [125]
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 1>
-Package pdftex.def Info: papers/PaperE.pdf, page1 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 1>
-Package pdftex.def Info: papers/PaperE.pdf, page1 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 1>
-Package pdftex.def Info: papers/PaperE.pdf, page1 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [126 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperE.pdf>] <papers/PaperE.pdf, id=2207, page=2, 597.50829pt x 845.0471pt>
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 2>
-Package pdftex.def Info: papers/PaperE.pdf, page2 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 2>
-Package pdftex.def Info: papers/PaperE.pdf, page2 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 2>
-Package pdftex.def Info: papers/PaperE.pdf, page2 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [127 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperE.pdf>] <papers/PaperE.pdf, id=2214, page=3, 597.50829pt x 845.0471pt>
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 3>
-Package pdftex.def Info: papers/PaperE.pdf, page3 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 3>
-Package pdftex.def Info: papers/PaperE.pdf, page3 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 3>
-Package pdftex.def Info: papers/PaperE.pdf, page3 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [128 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperE.pdf>] <papers/PaperE.pdf, id=2236, page=4, 597.50829pt x 845.0471pt>
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 4>
-Package pdftex.def Info: papers/PaperE.pdf, page4 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 4>
-Package pdftex.def Info: papers/PaperE.pdf, page4 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 4>
-Package pdftex.def Info: papers/PaperE.pdf, page4 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [129 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperE.pdf>] <papers/PaperE.pdf, id=2243, page=5, 597.50829pt x 845.0471pt>
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 5>
-Package pdftex.def Info: papers/PaperE.pdf, page5 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 5>
-Package pdftex.def Info: papers/PaperE.pdf, page5 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 5>
-Package pdftex.def Info: papers/PaperE.pdf, page5 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [130 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperE.pdf>] <papers/PaperE.pdf, id=2248, page=6, 597.50829pt x 845.0471pt>
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 6>
-Package pdftex.def Info: papers/PaperE.pdf, page6 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 6>
-Package pdftex.def Info: papers/PaperE.pdf, page6 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 6>
-Package pdftex.def Info: papers/PaperE.pdf, page6 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [131 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperE.pdf>] <papers/PaperE.pdf, id=2254, page=7, 597.50829pt x 845.0471pt>
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 7>
-Package pdftex.def Info: papers/PaperE.pdf, page7 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 7>
-Package pdftex.def Info: papers/PaperE.pdf, page7 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 7>
-Package pdftex.def Info: papers/PaperE.pdf, page7 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [132 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperE.pdf>] <papers/PaperE.pdf, id=2259, page=8, 597.50829pt x 845.0471pt>
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 8>
-Package pdftex.def Info: papers/PaperE.pdf, page8 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 8>
-Package pdftex.def Info: papers/PaperE.pdf, page8 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperE.pdf Graphic file (type pdf)
- <use papers/PaperE.pdf, page 8>
-Package pdftex.def Info: papers/PaperE.pdf, page8 used on input line 15.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [133 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperE.pdf>] [134
+[113] [114
 
 ]
 Paper G.
-<papers/PaperF.pdf, id=2268, 597.50829pt x 845.0471pt>
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf>
-Package pdftex.def Info: papers/PaperF.pdf used on input line 18.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf>
-Package pdftex.def Info: papers/PaperF.pdf used on input line 18.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
- <papers/PaperF.pdf, id=2271, page=1, 597.50829pt x 845.0471pt>
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 1>
-Package pdftex.def Info: papers/PaperF.pdf, page1 used on input line 18.
-(pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 1>
-Package pdftex.def Info: papers/PaperF.pdf, page1 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [135]
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 1>
-Package pdftex.def Info: papers/PaperF.pdf, page1 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 1>
-Package pdftex.def Info: papers/PaperF.pdf, page1 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 1>
-Package pdftex.def Info: papers/PaperF.pdf, page1 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [136 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperF.pdf>] <papers/PaperF.pdf, id=2297, page=2, 597.50829pt x 845.0471pt>
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 2>
-Package pdftex.def Info: papers/PaperF.pdf, page2 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 2>
-Package pdftex.def Info: papers/PaperF.pdf, page2 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 2>
-Package pdftex.def Info: papers/PaperF.pdf, page2 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [137 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperF.pdf>] <papers/PaperF.pdf, id=2305, page=3, 597.50829pt x 845.0471pt>
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 3>
-Package pdftex.def Info: papers/PaperF.pdf, page3 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 3>
-Package pdftex.def Info: papers/PaperF.pdf, page3 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 3>
-Package pdftex.def Info: papers/PaperF.pdf, page3 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [138 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperF.pdf>] <papers/PaperF.pdf, id=2315, page=4, 597.50829pt x 845.0471pt>
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 4>
-Package pdftex.def Info: papers/PaperF.pdf, page4 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 4>
-Package pdftex.def Info: papers/PaperF.pdf, page4 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 4>
-Package pdftex.def Info: papers/PaperF.pdf, page4 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [139 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperF.pdf>] <papers/PaperF.pdf, id=2337, page=5, 597.50829pt x 845.0471pt>
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 5>
-Package pdftex.def Info: papers/PaperF.pdf, page5 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 5>
-Package pdftex.def Info: papers/PaperF.pdf, page5 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 5>
-Package pdftex.def Info: papers/PaperF.pdf, page5 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [140 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperF.pdf>] <papers/PaperF.pdf, id=2342, page=6, 597.50829pt x 845.0471pt>
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 6>
-Package pdftex.def Info: papers/PaperF.pdf, page6 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 6>
-Package pdftex.def Info: papers/PaperF.pdf, page6 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 6>
-Package pdftex.def Info: papers/PaperF.pdf, page6 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [141 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperF.pdf>] <papers/PaperF.pdf, id=2353, page=7, 597.50829pt x 845.0471pt>
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 7>
-Package pdftex.def Info: papers/PaperF.pdf, page7 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 7>
-Package pdftex.def Info: papers/PaperF.pdf, page7 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 7>
-Package pdftex.def Info: papers/PaperF.pdf, page7 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [142 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperF.pdf>] <papers/PaperF.pdf, id=2367, page=8, 597.50829pt x 845.0471pt>
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 8>
-Package pdftex.def Info: papers/PaperF.pdf, page8 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 8>
-Package pdftex.def Info: papers/PaperF.pdf, page8 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
-File: papers/PaperF.pdf Graphic file (type pdf)
- <use papers/PaperF.pdf, page 8>
-Package pdftex.def Info: papers/PaperF.pdf, page8 used on input line 18.
-(pdftex.def)             Requested size: 482.85764pt x 682.8984pt.
- [143 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/PaperF.pdf>] [144
+[115] [116
 
 ]
 Paper H.
-[145] [146
-
-]
-Paper I.
 )
 \tf@thm=\write11
 \openout11 = `master.thm'.
 
- [147] 
+ [117] 
 AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 169.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 169.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 207.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 207.
 (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 169.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 169.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 207.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 207.
 Package rerunfilecheck Info: File `master.out' has not changed.
-(rerunfilecheck)             Checksum: 20376E793284777A82F7055BCFC3BCDD;9066.
+(rerunfilecheck)             Checksum: 432EFFE868927E72C55A2E3C17DFC37F;9742.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -2603,18 +2167,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 35789 strings out of 493014
- 778910 string characters out of 6133351
- 998732 words of memory out of 5000000
- 37975 multiletter control sequences out of 15000+600000
- 78343 words of font info for 102 fonts, out of 8000000 for 9000
+ 36578 strings out of 493014
+ 793173 string characters out of 6133351
+ 1081255 words of memory out of 5000000
+ 38605 multiletter control sequences out of 15000+600000
+ 82965 words of font info for 108 fonts, out of 8000000 for 9000
  1146 hyphenation exceptions out of 8191
- 57i,18n,97p,1664b,1676s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplb.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
-Output written on /Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.pdf (169 pages, 41703087 bytes).
+ 57i,16n,97p,1664b,1905s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplb.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
+Output written on /Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.pdf (139 pages, 782117 bytes).
 PDF statistics:
- 2576 PDF objects out of 2984 (max. 8388607)
- 2144 compressed objects within 22 object streams
- 488 named destinations out of 1000 (max. 500000)
- 1341 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2174 PDF objects out of 2487 (max. 8388607)
+ 1954 compressed objects within 20 object streams
+ 638 named destinations out of 1000 (max. 500000)
+ 1130 words of extra memory for PDF output out of 10000 (max. 10000000)
 

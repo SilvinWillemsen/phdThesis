@@ -1,26 +1,26 @@
-\chapter{Stiff string}\label{ch:stiff string}
-Consider the transverse displacement of a string of length $L$ described by $u=u(x,t)$ defined for $x\in \D$ with domain $\D = [0, L]$ and time $t\geq 0$. 
+\chapter{Stiff string}\label{ch:stiffString}
 
 Stiff string and stuff
 Used in many of the publications in Part \ref{part:papers}
+\ref{part:realtime}
+
 \section{Continuous time}
-Circular cross-sectional area
+Consider the transverse displacement of a lossless \todo{should I even include the lossless one? It's just so that we can slowly build up to the damped model...}stiff string of length $L$ described by $u=u(x,t)$ defined for $x\in \D$ with domain $\D = [0, L]$ and time $t\geq 0$. The PDE describing its motion is 
 \begin{equation}\label{eq:stiffStringPDENoLosses}
     \rho A \ptt u = T \pxx u - EI \pxxxx u
 \end{equation}
-parameterised by material density $\rho$ (in kg/m$^3$), cross-sectional area $A = \pi r^2$ (in m$^2$), radius $r$ (in m) tension $T$ (in N), Young's modulus $E$ (in Pa) and area moment of inertia $I = \pi r^4/4$ (in m$^4$). If either $E$ or $I$ is 0, Eq \eqref{eq:stiffStringPDENoLosses} reduces to the 1D wave equation in \eqref{eq:1DwavePDE} where $c = \sqrt{T/\rho A}$. If instead $T = 0$, Eq. \eqref{eq:stiffStringPDENoLosses} reduces to the ideal bar equation.
-
-The 4th-order spatial derivative models \textit{frequency dispersion} a phenomenon that causes different frequencies to travel at different speeds. 
-
-\subsection{Dispersion Analysis}
+parameterised by material density $\rho$ (in kg/m$^3$), cross-sectional area $A = \pi r^2$ (in m$^2$), radius $r$ (in m) tension $T$ (in N), Young's modulus $E$ (in Pa) and area moment of inertia $I = \pi r^4/4$ (in m$^4$). If either $E$ or $I$ is 0, Eq \eqref{eq:stiffStringPDENoLosses} reduces to the 1D wave equation in \eqref{eq:1DwavePDE} where $c = \sqrt{T/\rho A}$. If instead $T = 0$, Eq. \eqref{eq:stiffStringPDENoLosses} reduces to the \textit{ideal bar} equation.
 
 
-\subsubsection{Adding Losses}
-Before moving on to the discretisation of Eq. \eqref{eq:stiffStringPDENoLosses}, losses are added \todo{First appeared in \cite{Bensa2003}}
+\subsubsection{Dispersion Analysis}
+The 4th-order spatial derivative models \textit{frequency dispersion}, a phenomenon that causes different frequencies to travel at different speeds. As opposed to the undesired numerical dispersion 
+
+\subsection{Adding Losses}
+Before moving on to the discretisation of Eq. \eqref{eq:stiffStringPDENoLosses}, losses can be added to the system. This is done by simply adding terms to \eqref{eq:stiffStringPDENoLosses} according to \todo{First appeared in \cite{Bensa2003}}
 \begin{equation}\label{eq:stiffStringPDE}
     \rho A \ptt u = T \pxx u - EI \pxxxx u - 2 \sz \rho A \pt u + 2 \so \rho A\pt \pxx u
 \end{equation}
-where the loss coefficients $\sz$ and $\so$ describe the frequency dependent and frequency independent losses respectively. 
+where the loss coefficients $\sz$ (in s$^{-1}$) and $\so$ (in m$^2$/s) describe the frequency dependent and frequency independent losses respectively. 
 
 A more compact way to write Eq. \eqref{eq:stiffStringPDE}, and as is also found often in the literature \cite{theBible} \todo{etc.} is to divide both sides by $\rho A$ to get
 
@@ -35,34 +35,61 @@ Although Eq. \eqref{eq:stiffStringPDE} might look daunting at first, the princip
 Something about the 4th spatial derivative and the loss terms here...
 
 \subsubsection{Boundary Conditions}
-The boundary conditions found in \eqref{eq:boundaryCond1DWave} can be extended 
+The boundary conditions found in \eqref{eq:boundaryCond1DWave} can be extended to
+\begin{subequations}
+    \begin{align}
+        u = \px u &= 0 \quad \text{(clamped)}\\
+        u = \pxx u &= 0 \quad \text{(simply supported)}\\
+        \pxx u = \pxxx u &= 0 \quad \text{(free)}
+    \end{align}
+\end{subequations}
+\todo{insert figure showing virtual grid points}
 
 \section{Discrete Time}
 Equation \eqref{eq:stiffStringPDE} can be discretised as 
-\begin{equation}\label{eq:stiffStringPDE}
+\begin{equation}\label{eq:stiffStringFDS}
     \rho A \dtt \uln = T \dxx \uln - EI \dxxxx \uln - 2 \sz \rho A \dtd \uln + 2 \so \rho A \dtm\dxx \uln
 \end{equation}
 The $\dxxxx$ operator is the  the second-order spatial difference in Eq. \eqref{eq:discSecondSpace} applied to itself. 
-\begin{equation}
+\begin{equation}\label{eq:dxxxx}
     \dxxxx = \dxx\dxx = \frac{1}{h^4}\left(e_{x+}^2 - 4e_{x+}+6 - 4e_{x-}+e_{x-}^2\right)
 \end{equation}
 
 \subsection{Combining operators}\label{sec:combiningOperators}
+Operators can be combined by simply multiplying their definitions. Recalling the definitions for $\dtm$ in Eq. \eqref{eq:backwardTimeOperator} and $\dxx$ Eq. \eqref{eq:discSecondSpace} their combination results in
 \begin{align*}
-    \dtm\dxx = \frac{1}{k}\left(1-e_{t-}\right)\frac{1}{h^2}\left(e_{x+}-2+e_{x-}\right) = \frac{1}{kh^2}\left(e_{x+}-2+e_{x-} - e_{t-}(e_{x+}-2+e_{x-})\right)
+    \dtm\dxx &= \frac{1}{k}\left(1-e_{t-}\right)\frac{1}{h^2}\left(e_{x+}-2+e_{x-}\right), \\
+    &= \frac{1}{kh^2}\left(e_{x+}-2+e_{x-} - e_{t-}(e_{x+}-2+e_{x-})\right).
 \end{align*}
-
-Taking the mixed derivative for the 
-\begin{equation*}
-        \dtm \dxx \uln =
-        \begin{cases}
-            \frac{1}{k}\left(\dxx \uln - \dxx u_l^{n-1}\right) & \text{expanding}\ \dtm\\
-            \frac{1}{h^2}\left(\dtm u_{l+1}^n - 2\dtm \uln + \dtm u_{l-1}^n\right) & \text{expanding}\ \dxx
-        \end{cases}
-\end{equation*}
-and after expansion of the second operator both result in
+%
+% Taking the mixed derivative for the 
+% \begin{equation*}
+%         \dtm \dxx \uln =
+%         \begin{cases}
+%             \frac{1}{k}\left(\dxx \uln - \dxx u_l^{n-1}\right) & \text{expanding}\ \dtm\\
+%             \frac{1}{h^2}\left(\dtm u_{l+1}^n - 2\dtm \uln + \dtm u_{l-1}^n\right) & \text{expanding}\ \dxx
+%         \end{cases}
+% \end{equation*}
+% and after expansion of the second operator both result in
+A multiplication of two (different)shift operators applied to a grid function simply means to apply each shift individually. The $\dtm\dxx$ operator applied to $\uln$ thus yields
 \begin{equation}
-    \dtm \dxx \uln = \frac{1}{hk^2}\left(u_{l+1}^n - 2 \uln + u_{l-1}^n - u_{l+1}^{n-1} + 2 u_l^{n-1} - u_{l-1}^{n-1}\right)
+    \dtm \dxx \uln = \frac{1}{hk^2}\left(u_{l+1}^n - 2 \uln + u_{l-1}^n - u_{l+1}^{n-1} + 2 u_l^{n-1} - u_{l-1}^{n-1}\right).
 \end{equation}
 
-\
+
+
+\section{Modal analysis}
+To perform a modal analysis on the FD scheme of the damped stiff string in \eqref{eq:stiffStringFDS} 
+
+The matrix form of the $\dxxxx$ operator in \eqref{eq:dxxxx} with simply supported boundary conditions can be obtained by multiplying two $\Dxx$ matrices according to
+\begin{equation}
+    \Dxx\Dxx = \mathbf{D}_{xxxx} = \frac{1}{h^4}\begin{bmatrix}
+        5& -4 & 1 & & & \mathbf{0}& \\
+        -4 & 6 &\ddots &\ddots & & & \\
+        1& \ddots & \ddots & -4 & 1 & & \\
+        & \ddots& -4 & 6 & -4 & \ddots& \\
+        & & 1 & -4 & \ddots & \ddots &1 \\
+        & & & \ddots & \ddots & 6 & -4 \\
+        & \mathbf{0} & & & 1& -4 & 5 \\
+    \end{bmatrix}.
+\end{equation}

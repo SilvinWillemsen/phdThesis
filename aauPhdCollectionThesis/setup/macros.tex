@@ -71,21 +71,26 @@
 \newcommand{\papertitlepage}[5]{
   \chapter{#1}\label{#2}
   \chaptermark{}
-  \vspace{2cm}
+  \vspace{1.5cm}
   \begin{center}
     \large #3
   \end{center}
-  \vspace{3cm}
+  \vspace{2.5cm}
   \begin{center}
   \normalsize #4
-  \end{center}
+  \end{center} 
   \vspace*{\fill}
-  \newpage\thispagestyle{empty}
-  \vspace*{\fill}
-    #5\par
-    \noindent{\em The layout has been revised.}
-  \vspace*{\fill}
-  \cleardoublepage
+  % \begin{center}
+  \scriptsize\it\noindent#5\par
+  % \noindent{\em The layout has been revised.}
+  % \end{center}
+  % \vspace*{\fill}
+  % \newpage\thispagestyle{empty}
+  % \vspace*{\fill}
+  %   #5\par
+  %   \noindent{\em The layout has been revised.}
+  % \vspace*{\fill}
+  % \cleardoublepage
 }
 
 % environment for abstracts

@@ -11,26 +11,46 @@ This chapter introduces some important concepts needed to understand the physica
 By means of a simple mass-spring system and the 1D wave equation, the notation (and terminology) used throughout this document will be explained, together with some important analysis techniques. 
 Before we dive into the mathematics, let us go over some useful terminology.
 
-\subsubsection{Differential equations}
-As mentioned in Chapter \ref{ch:physMod} differential equations are used to describe the motion of dynamic systems. These systems can describe anything from the transverse displacement of a string to the air pressure in an acoustic tube.
+\section{Differential Equations}
+Differential equations are used to describe the motion of dynamic systems including vibrations in musical instruments. In this work, these equations are used, among others, to describe the movement of a string, an instrument body and the air pressure in an acoustic tube.
 
-A characteristic feature of these equations is that, rather than an absolute value or \textit{state} of a system, the time derivative of its state -- its velocity -- or the second-order time derivative -- its acceleration -- is described. From this, the absolute state of the system can be computed.
-
+A characteristic feature of these equations is that, rather than an absolute value or \textit{state} of a system, the time derivative of its state -- its velocity -- or the second time derivative -- its acceleration -- is described. From this, the absolute state of the system can then be computed.
+%
 This state is usually described by the variable $u$ which is (nearly) always a function of time, i.e., $u=u(t)$. If the system is distributed in space, $u$ also becomes a function of space, i.e., $u = u(x,t)$, or with two spatial dimensions, $u = u(x,y,t)$, etc. Though this work only describes systems of up to two spatial dimensions, one could potentially extend to systems of infinite spatial dimensions evolving over time! 
 
-If $u$ is only a function of time, the differential equation that describes the motion of this system is called an \textit{ordinary differential equation} (ODE). If $u$ is also a function of at least one spatial dimension, the equation of motion is a called a \textit{partial differential equation} (PDE).
-
-The literature uses different types of notation for taking (continuous-time) partial derivatives. Applied to a state variable $u$ these can look like 
+If $u$ is univariate, and only a function of time, the differential equation that describes the motion of this system is called an \textit{ordinary differential equation} (ODE). Various ways to describe the second derivative in time of $u$, or the acceleration of $u$ are
 %
 \begin{equation}\nonumber
     \begin{aligned}
-        \frac{\partial^2 u}{\partial t^2} & \quad \text{(classical notation)}\\
-        u_{tt}\:\,& \quad \text{(subscript notation)}\\[3pt]
-        \ptt u\: & \quad \text{(operator notation)}
+        \frac{d^2 u}{d t^2} & \quad \text{(Leibniz's notation)},\\
+        \ddot u\ \  &\quad \text{(Newton's notation)},\\[3pt]
+        D_t^2 u& \quad \text{(Euler's notation)}.
     \end{aligned}
 \end{equation}
 %
-all of which mean a second-order derivative with respect to time $t$, i.e., $u$'s acceleration. In this remainder of this document, the operator notation will be used. Often-used partial derivatives and their interpretation \todo{maybe not yet as this is super general still} are shown below
+Leibniz' notation is what can mostly be found in mathematical text books but is not necessarily compact. Newton's notation on the other hand allows for an ultra compact notation using a dot above the function to denote a derivative. However, this notation can only be used for univariate functions which it will be used for in this document. Finally, Euler's notation uses an operator which can be applied to a function and indicates a derivative.  
+ 
+If $u$ is also a function of at least one spatial dimension, the equation of motion is a called a \textit{partial differential equation} (PDE).
+The literature uses different types of notation for taking (continuous-time) partial derivatives. Applied to a state variable $u$ these can look like 
+\begin{equation}\nonumber
+    \begin{aligned}
+        \frac{\partial^2 u}{\partial t^2} & \quad \text{(Leibniz's notation)}\\
+        u_{tt}\:\,& \quad \text{(subscript notation)}\\[3pt]
+        \ptt u\: & \quad \text{(Euler's notation)}
+    \end{aligned}
+\end{equation}
+% 
+%
+% \begin{equation}\nonumber
+%     \begin{aligned}
+%         \frac{\partial^2 u}{\partial t^2}, \quad
+%         u_{tt},\quad
+%         \ptt u
+%     \end{aligned}
+% \end{equation}
+%
+where the subscript notation could be seen as the partial derivative counterpart to Newton's notation due to its compactness. In the remainder of this document, the operator notation will be used, due to their similarity to the discrete operators (introduced shortly) and as it allows for creation of bigger operators for more compactness when working with multiple (connected) systems (see e.g. Chapter \ref{ch:tromba}).
+Often-used partial derivatives and their meanings \todo{maybe not yet as this is super general still} are shown below
 
 \begin{minipage}[c]{0.49\textwidth}
     \begin{align*}
@@ -44,22 +64,34 @@ all of which mean a second-order derivative with respect to time $t$, i.e., $u$'
     \px u &\quad \text{(slope)}
     \end{align*}
 \end{minipage}
+\subsubsection{Note on dimensions}
+It is important to notice that there is a difference between a system described over multiple spatial dimensions, such as a membrane, or a plate, and a system state having multiple coordinates. In much of the literature on FDTD methods in the field of musical acoustics, the state variable only describes one coordinate. In most string models, for example, only the transverse displacement is considered (see Chapter \ref{ch:stiffString}) and the longitudinal motion of the string is ignored. In other words, every point along the string can only move up and down, not side-to-side. Although this greatly simplifies the system at hand, this is not what happens in reality, and effects such as phantom partials and pitch glides due to tension modulation are not present in the simplified model. 
 
-\textit{Note: difference between 1D, 2D spatial, and 1D, 2D displacement (polarisation). Transverse displacement of 1D wave here }
+Models exist that take longitudinal vibration into account... SOTA
 
-Now that an equation has been established, how 
+Luckily, these single-polarisation models (under low amplitudes) already give 
 
+though work has been done on strings with dual polarisation \cite{Desvages2016}
+In this work,  
+\textit{Note: difference between 1D, 2D spatial, and 1D, 2D displacement (polarisation). Transverse displacement of 1D wave here}
 
-\subsubsection{Discretisation using FDTD methods}
-Finite-difference time-domain (FDTD) methods essentially subdivide a continuous equation in discrete points in time and space, a process called \textit{discretisation}. Once an ODE or PDE is discretised using these methods it is now called a \textit{Finite-Difference (FD) Scheme}.
+\section{Discretisation using FDTD methods}
+Differential equations are powerful tools that describe the motion of physical systems. Despite this, only few of these have a closed-form \SWcomment[or analytical] solution (such as the simpler ones that will be presented in this chapter). More complex systems require methods that do not perfectly solve, but rather \textit{approximate} the solutions to these equations. Finite-difference time-domain (FDTD) are considered one of the
+in terms of generality and flexibility... 
 
-We start by defining a discrete \textit{grid} over time and space which we will use to approximate our continuous equations \todo{grid figure}. A system $u = u(x,t)$ defined over time $t$ and one spatial dimension $x$, can be approximated using a \textit{grid function} $u_l^n$. Here, subscript $l$ superscript $n$ describe the spatial and temporal indices respectively and arise from the discretisation of the continuous variables $x$ and $t$ according to $x=lh$ and $t=nk$. The spatial step $h$, also called the \textit{grid spacing} describes the distance (in m) between two neighbouring grid points and the temporal step $k$, or \textit{time step} is the time (in s) between two consecutive temporal indices. The latter can be calculated $k=1/\fs$ for a sample rate $\fs$ (in Hz). In many audio applications $\fs = 44100$ Hz which will be used in this work (unless denoted otherwise).
+\SWcomment[It is important to note that a discrete FD scheme is an \textit{approximation} to a continuous PDE, not a sampled version of it. This means that the resulting schemes are rarely an exact solution to the original continuous equation.]
+
+These methods essentially subdivide a continuous differential equation into discrete points in time and space, a process called \textit{discretisation}. Once an ODE or PDE is discretised using these methods it is now called a \textit{finite-difference (FD) scheme} which approximates the original differential equation. 
+
+\subsection{Grid Functions \todo{check capitalisation of headings throughout document}}
+We start by defining a discrete \textit{grid} over time and space which we will use to approximate our continuous equations \todo{grid figure}. A system $u = u(x,t)$ defined over time $t$ and one spatial dimension $x$, can be approximated using a \textit{grid function} $u_l^n$. Here, subscript $l$ and superscript $n$ describe the spatial and temporal indices respectively and arise from the discretisation of the continuous variables $x$ and $t$ according to $x=lh$ and $t=nk$. The spatial step $h$, also called the \textit{grid spacing} describes the distance (in m) between two neighbouring grid points and the temporal step $k$, or \textit{time step} is the time (in s) between two consecutive temporal indices. The latter can be calculated $k=1/\fs$ for a sample rate $\fs$ (in Hz). In many audio applications $\fs = 44100$ Hz which will be used in this work (unless denoted otherwise).
 
 To summarise
 \begin{equation}
     u(x,t) \approx u_l^n \quad \text{with} \quad x=lh \quad \text{and} \quad t = nk
 \end{equation}
 
+\subsection{Finite-Difference Operators}\label{sec:FDoperators}
 Now that the state variable has a discrete counterpart, this leaves the derivatives to be discretised. We start by introducing shift operators that can be applied to a grid function and changes its indexing (either spatial or temporal). Forward and backward shifts in time, together with the identity operation (not altering $\uln$) are
 % 
 \begin{equation}
@@ -72,7 +104,7 @@ Similarly, forward and backward shifts in space are
     e_{x+}\uln = u_{l+1}^n,\quad \text{and}\quad e_{x-}\uln = u_{l-1}^n.
 \end{equation}
 %
-These shift operators are rarely used in isolation, though they do appear in energy analysis techniques detailed in Section \ref{sec:energyAnalysis}. The operators do, however, form the basis of commonly used FD operators. The first-order derivative in time can be discretised three different ways. The forward, backward and centred \todo{check centred instead of centered, full document sweep} difference are
+These shift operators are rarely used in isolation, though they do appear in energy analysis techniques detailed in Section \ref{sec:energyAnalysis}. The operators do, however, form the basis of commonly used \textit{finite-difference operators}. The first-order derivative in time can be discretised three different ways. The forward, backward and centred \todo{check centred instead of centered, full document sweep} difference operators are
 %
 \begin{subnumcases}{\pt \approx\label{eq:discFirstTime}}
         \dtp &$\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{k}\left(e_{t+} - 1\right),$\label{eq:forwardTimeOperator}\\
@@ -83,12 +115,12 @@ where ``$\triangleq$'' means ``equal to by definition''. These operators can the
 \begin{subnumcases}{\pt u \approx\label{eq:discFirstTimeU}}
     \dtp \uln &$\!\!\!\!\!\!\!\!\!\! = \frac{1}{k}\left(u_l^{n+1} - \uln\right),$\label{eq:forwardTimeOperatorU}\\
     \dtm \uln &$\!\!\!\!\!\!\!\!\!\! = \frac{1}{k}\left(\uln - u_l^{n-1}\right),$\label{eq:backwardTimeOperatorU}\\
-    \dtd \uln &$\!\!\!\!\!\!\!\!\!\! = \frac{1}{2k}\left(u_l^{n+1} - u_l^{n-1}\right).$\label{eq:centredTimeOperatorU}
+    \dtd \uln &$\!\!\!\!\!\!\!\!\!\! = \frac{1}{2k}\left(u_l^{n+1} - u_l^{n-1}\right),$\label{eq:centredTimeOperatorU}
 \end{subnumcases}
-Note that the centred difference has a division by $2k$ as the time difference between $n+1$ and $n-1$ is twice the time step. 
+and all approximate the first-order time derivative of $u$. Note that the centred difference has a division by $2k$ as the time difference between $n+1$ and $n-1$ is twice the time step. 
 
-\todo{figure here for interpretation of accuracy of operators}
-The same can be done in for a first-order derivative in space, where the forward, backward and centred difference are
+\todo{figure here visualising operators (with reference to grid figure)}
+Similar operators exist for a first-order derivative in space, where the forward, backward and centred difference are
 \begin{subnumcases}{\px \approx\label{eq:discFirstSpace}}
     \dxp &$\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{h}\left(e_{x+} - 1\right),$\label{eq:forwardSpaceOperator}\\
     \dxm &$\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{h}\left(1 - e_{x-}\right),$\label{eq:backwardSpaceOperator}\\
@@ -100,34 +132,120 @@ and when applied to $\uln$ are
     \dxm \uln&$\!\!\!\!\!\!\!\!\!\!= \frac{1}{h}\left(\uln - u_{l-1}^n\right),$\\
     \dxd \uln&$\!\!\!\!\!\!\!\!\!\!= \frac{1}{2h}\left(u_{l+1}^n - u_{l-1}^n\right).$\label{eq:centredSpaceOperatorU}
 \end{subnumcases}
-Higher order differences can be obtained from first-order difference operators. The second-order difference in time may be approximated using
+Higher order differences can be approxmated through a composition of first-order difference operators. The second-order difference in time may be approximated using
 \begin{equation}\label{eq:discSecondTime}
     \ptt \approx \dtp\dtm = \dtt = \frac{1}{k^2}\left(e_{t+}-2+e_{t-}\right),
 \end{equation}
-where ``2'' is the identity operator applied twice.  and similarly for the second-order difference in space
+where ``$2$'' is the identity operator applied twice.  and similarly for the second-order difference in space
 \begin{equation}\label{eq:discSecondSpace}
     \pxx \approx \dxp\dxm = \dxx = \frac{1}{h^2}\left(e_{x+}-2+e_{x-}\right).
 \end{equation}
-More explanation about combining operators can be found in Section \ref{sec:combiningOperators}.
+Further information on combining operators can be found in Section \ref{sec:combiningOperators}.
 
-Averaging operators
+Also useful \todo{in energy analysis, interleaved grids, etc.} are averaging operators, all of which approximate the identity operator. The temporal forward, backward and centred averaging operators are
+\begin{subnumcases}{1 \approx \label{eq:averagingTime}}
+    \mtp & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(e_{t+} + 1\right),$\label{eq:forwardAvgTime}\\
+    \mtm & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(1 + e_{t-}\right),$\label{eq:backwardAvgTime}\\
+    \mtd & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(e_{t+} + e_{t-}\right).$\label{eq:centredAvgTime}
+\end{subnumcases}
+Notice how these definitions are different than the difference operators in \eqref{eq:discFirstTime}: the terms in the parentheses are added rather than subtracted, rather than a division by the time step $k$ there is a division by $2$, and finally the centred averaging operator does not have an extra division by $2$ as in \eqref{eq:centredTimeOperator}.
+Applied to $\uln$, Eqs. \eqref{eq:averagingTime} become
+\begin{subnumcases}{\uln \approx \label{eq:averagingTimeU}}
+    \mtp \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(u_l^{n+1}+ \uln\right),$\label{eq:forwardAvggTimeU}\\
+    \mtm \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(\uln + u_l^{n-1}\right),$\label{eq:backwardAvggTimeU}\\
+    \mtd \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(u_l^{n+1} + u_l^{n-1}\right).$\label{eq:centredAvggTimeU}
+\end{subnumcases}
 
+Similarly, spatial averaging operators are
+\begin{subnumcases}{1 \approx \label{eq:averagingSpace}}
+    \mxp & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(e_{x+} + 1\right),$\label{eq:forwardAvgSpace}\\
+    \mxm & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(1 + e_{x-}\right),$\label{eq:backwardAvgSpace}\\
+    \mxd & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(e_{x+} + e_{x-}\right),$\label{eq:centredAvgSpace}
+\end{subnumcases}
+and when applied to $\uln$
+\begin{subnumcases}{\uln \approx \label{eq:averagingSpaceU}}
+    \mxp \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(u_{l+1}^n+ \uln\right),$\label{eq:forwardAvgSpaceU}\\
+    \mxm \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(\uln + u_{l-1}^n\right),$\label{eq:backwardAvgSpaceU}\\
+    \mxd \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(u_{l+1}^n + u_{l-1}^n\right).$\label{eq:centredAvgSpaceU}
+\end{subnumcases}
 
 
 Operators and derivatives in 2D will be discussed in Chapter \ref{ch:2Dsyst}.
-\subsubsection{Accuracy}
-Taylor series expansion...
-\subsection{Identities}
-Extremely useful are
 
-An identity is something that holds true 
+
+\subsubsection{Accuracy}
+As FDTD methods \textit{approximate} continuous systems, the resulting solution is rarely 100\% accurate. To determine the accuracy of the FD operators above, one can perform a Taylor series analysis. The Taylor series is an infinite sum and its expansion of a function $f$ about a point $a$ is defined as
+\begin{equation}
+    f(x) = \sum_{n=0}^{\infty} \frac{(x-a)}{n!}f^{(n)}(a)
+\end{equation}
+where superscript $(n)$ denotes the $n$\th derivative of $f$ with respect to $x$. The analysis will be performed on the temporal operators in \eqref{eq:discFirstTime} and \eqref{eq:discSecondTime},  but will also apply to the spatial operators in \eqref{eq:discFirstSpace} and \eqref{eq:discSecondSpace}.
+
+Using continuous function $u=u(t)$ and following Bilbao's ``slight abuse of notation'' in \cite{theBible}, one may apply FD operators to continuous functions according to 
+\begin{equation}\label{eq:forwardTimeCont}
+    \dtp u(t) = \frac{u(t+k) - u(t)}{k}\ .
+\end{equation}
+%
+Assuming that $u$ is infinitely differentiable, $u(t+k)$, i.e., $u$ at the next time step (but in continuous time), can be approximated using a Taylor series expansion of $u$ about $t$ according to
+\begin{equation}\label{eq:taylorStartForward}
+    u(t+k) = u(t) + k \dot u + \frac{k^2}{2} \ddot u + \frac{k^3}{6} \dot{\ddot{u}} + \O(k^4).
+\end{equation}
+Here, (following Newton's notation) the dot describes a single temporal derivative and $\O$ includes additional terms in the expansion. The power of $k$ in the argument of $\O$ describes the order of the error, which is lowest power of $k$ (as $k < 1$). Equation \eqref{eq:taylorStartForward} can be rewritten to 
+\begin{align}
+    \frac{u(t+k) - u(t)}{k} &= \dot u + \frac{k}{2} \ddot u +\frac{k^2}{6} \dot{\ddot{u}} + \O(k^3),\nonumber\\
+    \dot u &= \frac{u(t+k) - u(t)}{k} + \O(k),
+\end{align}
+is the definition of the forward operator in time in Eq. \eqref{eq:forwardTimeCont} but with an additional error term. Notice that the sign of $\O$ does not matter.
+As the power of $k$ in $\O$'s argument determines the order of the error of the approximation, we can conclude that the forward operator is first-order accurate. One can also observe that, as expected, the error gets smaller as the time step $k$ gets smaller and indicates that higher sample rates result in more accurate simulations.
+
+We can arrive at a similar result for the backward operator. Applying Eq. \eqref{eq:backwardTimeOperator} to $u$ yields
+\begin{equation}
+    \dtm u(t) = \frac{u(t) - u(t-k)}{k}
+\end{equation}
+and performing a Taylor series expansion of $u$ about $t$ yields
+\begin{align}
+    u(t-k) &= u(t) + (-k) \dot u + \frac{(-k)^2}{2} \ddot u +\frac{(-k)^3}{6}\dot{\ddot{u}} + \O(k^4),\label{eq:taylorStartBackward}\\
+    \frac{u(t-k) - u(t)}{k} &= -\dot u + \frac{k}{2} \ddot u - \frac{k^2}{6}\dot{\ddot{u}} + \O(k^3),\nonumber\\
+    \dot u &= \frac{u(t) - u(t-k)}{k} + \O(k).
+\end{align}
+
+Applying the centred operator in Eq. \eqref{eq:centredTimeOperator} to $u$ yields
+\begin{equation}
+    \dtd u(t) = \frac{u(t+k) - u(t-k)}{2k},
+\end{equation}
+indicating that to find the order of accuracy for the centred operator, both Eqs. \eqref{eq:taylorStartForward} and \eqref{eq:taylorStartBackward} are needed. Subtracting them and filling in their definitions yields
+\begin{align}
+    u(t+k) - u(t-k) &= 2k\dot u - \frac{2k^3}{6}\dot{\ddot{u}} + 2\O(k^5),\\
+    \frac{u(t+k) - u(t-k)}{2k} &= \dot u - \frac{k^2}{6}\dot{\ddot{u}} + \O(k^4),\\
+    \dot u &= \frac{u(t+k) - u(t-k)}{2k} + \O(k^2).
+\end{align}
+Notice, that due to several terms cancelling out, the centred difference operator is second-order accurate. 
+
+As a first-order derivative indicates the \textit{slope} of a function, the differences in accuracy between the above operators can be visualised as such as shown in Figure \ref{fig:taylor}. It can be observed that the derivative approximation of the centred operator much more closely matches the the true derivative of $u$ at $t$.
+
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{figures/fdtd/taylor.eps}
+    \caption{\label{fig:taylor} The accuracy of the forward, backward and centred difference operators in \eqref{eq:discFirstTime} visualised. One can observe that the centred difference operator much more closely approximates the derivative, or the slope, of $u$ at $t$ than the forward and backward difference operators.}
+\end{figure}
+
+Finally, the second-order difference in time operator in Eq. \eqref{eq:discSecondTime} can be proven to be second-order accurate as well by adding Eqs. \eqref{eq:taylorStartForward} and \eqref{eq:taylorStartBackward}:
+\begin{align}
+    u(t+k) + u(t-k) &= 2 u(t) + k^2 \ddot u + \O(k^4),\nonumber\\
+    \frac{u(t+k) -2 u(t) + u(t-k)}{k^2} &= \ddot u + \O(k^2),\nonumber\\
+    \ddot u &= \frac{u(t+k) -2 u(t) + u(t-k)}{k^2} + \O(k^2).
+\end{align}
+
+\subsection{Identities}
+For working with FD schemes, either for implementation or analysis, it can be extremely useful to rewrite the operators presented above to equivalent versions of themselves. These are called idenities and for future reference, some useful ones are listed below
 \begin{subequations}
     \begin{align}
-        \dtt \uln &= \frac{2}{k}\left(\dtd \uln - \dtm \uln\right)\\
-        \dtt &
+        \dtt &= \frac{2}{k}\left(\dtd- \dtm\right)\label{eq:identity1}\\
+        \dtd &= \dtp\mtm = \dtm\mtp\label{eq:identity2}\\
+        \mtp &= \frac{k}{2}\dtp + 1\label{eq:identity3}
     \end{align}
 \end{subequations}
-That these identities hold can easily be proven by expanding the operators
+\todo{see whether the negative version of identity \eqref{eq:identity3} is also used later on}
+That these equalities hold can easily be proven by expanding the operators defined in Section \ref{sec:FDoperators}. Naturally, these identities also hold for spatial operators by simply substituting the `$t$' subscripts for `$x$'. 
+
 \subsubsection{Implementation}
 In the following 
 \begin{itemize}
@@ -141,34 +259,65 @@ Something something newton's second law
 
 initial conditions
 
-It is important to note that a discrete FD scheme is an \textit{approximation} to a continuous PDE, not a sampled version of it. This means that the resulting schemes are rarely an exact solution to the original continuous equation.
-
 \section{%Intro to ODEs: 
 The Mass-Spring System}
-Though a complete physical modelling field on its own (see Chapter \ref{ch:physMod}), mass-spring systems are also sound-generating systems themselves.
+Though a complete physical modelling field on its own (see Chapter \ref{ch:physMod}), mass-spring systems are also sound-generating systems themselves and lend themselves well to illustrating and explaining FDTD methods in practice. 
 
 \subsubsection{Continuous-time}
 The ODE of a simple mass-spring system is defined as
 \begin{equation}\label{eq:massSpringPDE}
-    \frac{d^2u}{dt^2} = -\omega_0^2u
+    M\ddot u = -Ku
 \end{equation}
+where $u = u(t)$ is the distance from the equilibrium position (in m), $M$ is the mass of the mass (in kg) and $K$ is the spring constant (in N/m). If $u = 0$ there is no force present and the acceleration remains unchanged. If the mass is not in motion, this means that it remains stationary, but if it is, 
+
+
+In the literature, Eq. \eqref{eq:massSpringPDE} is often written as
+\begin{equation}
+    \ddot u = -\omega_0^2u
+\end{equation}
+with $\omega_0 = \sqrt{K/M}$ as it is more straightforward to relate to a fundamental frequency $f_0 = \omega_0 / 2 \pi$ (in Hz).
+
+\input{introduction/massSpringTikz.tex}
+
+\subsubsection{Intuition}
+The mass-spring system in Eq. \eqref{eq:massSpringPDE} is a combination of Newton's second law with Hooke's law. 
+
+Starting with Newton's second law, i.e., \textit{force equals mass times acceleration}, and relating this to the variable names used in Eq. 
+\eqref{eq:massSpringPDE} yields an expression for force
+\begin{equation}\label{eq:newton2nd}
+    F = M\ddot u.
+\end{equation}
+As the mass is connected to a spring, this is the force that  force of a spring is given by Hooke's law
+\begin{equation}
+    F = -Ku,
+\end{equation} 
+
+A smaller mass is more easily moved, meaning that a smaller $M$ will cause a higher frequency. This shows in the definition for $\omega_0$
 
 \subsubsection{Discrete-time}
-The , $u$ is approximated using 
+The displacement of the mass is approximated using 
 \begin{equation}
     u(t) \approx u^n
 \end{equation}
 where $t = nk$
 
-\subsubsection{Implementation}
+Grid function without spatial dimensions is a time series
 
+\begin{equation}
+    M \dtt \un = -K\un
+\end{equation}
+\subsubsection{Implementation and Output}
+\begin{equation}
+    u^{n+1} = 2\un - u^{n-1} - Kk^2 u^n
+\end{equation}
+
+\todo{Time-domain and FFT figs}
+
+\todo{add damping?}
 
 \section{%Intro to PDEs: 
 The 1D Wave Equation}
-Arguably the most important PDE in the field of physical modelling for sound synthesis is the 1D wave equation. %Consider state variable $u=u(x,t)$
-% Note that the $\partial$ symbol is used rather than the $d$ as in \eqref{eq:massSpringPDE} as it
-
-
+Arguably the most important PDE in the field of physical modelling for sound synthesis is the 1D wave equation.
 \subsection{Continuous-time}
 The state of the system $u=u(x,t)$ meaning that is on top of being defined in time $t$ it is distributed over space $x$. The 1D wave equation is defined as follows
 \begin{equation}\label{eq:1DwavePDE}
@@ -233,21 +382,87 @@ Regarding implementation, as the time step $k$ is based on the sample rate and t
 \begin{equation}
     h \geq ck.
 \end{equation}
-\subsubsection{Dispersion}
+The number of grid points can then be calculated using 
+\begin{equation}
+    h := ck, \quad N = \floor[\frac{L}{h}], \quad h := \frac{L}{N} \quad \lambda = \frac{ck}{h}.
+\end{equation}
+where $\floor[\cdot]$ denotes the flooring operation. 
 
 \subsubsection{Implementation}
-\begin{equation}\label{eq:1DwaveFDS}
+\begin{equation}\label{eq:1DwaveUpdate}
     u_l^{n+1} = 2 \uln - u_l^{n-1} + \lambda^2 \left(u_{l+1}^n - 2 \uln + u_{l-1}^n\right)
 \end{equation}
 
 If $\lambda = 1$, \eqref{eq:1DwaveFDS} is an exact solution to Eq. \eqref{eq:1DwavePDE}. This is no
 
+\subsubsection{Numerical Dispersion}
+
+
 \subsection{Output}
+After the system is excited (see \ref{part:exciters}), one can listen to the output
+
+The location, or frequency of the harmonic partials can also be analytically / numerically derived using modal analysis as will be explained in \ref{sec:modalAnalysis}.
+\todo{fft and waveform}
+
+The amplitude of the different modes, on the other hand, depends on the location of excitation and output. 
 
 
-\subsubsection{Matrix form}
-\subsection{Operators in Matrix Form}
-Finite-difference operators, such as $\delta_{x+}$,  $\delta_{x-}$ and $\delta_{x\cdot}$ can be written in matrix form:
+\subsection{Matrix Form}
+For several purposes, such as implementation in MATLAB and several analysis techniques described shortly, is useful to write an FD scheme in \textit{matrix form}. 
+
+In this document, matrices and vectors are written using bold symbols. A matrix uses a capital letter whereas vectors are decapitalised. The dimensions of a matrix are denoted using ``$row \times column$''. A $6\times 14$ matrix, for example, thus has $6$ rows and $14$ columns. Along those lines, a \textit{row vector} is a matrix with $1$ row and more than $1$ column and a \textit{column vector} is a matrix with $1$ column and more than $1$ row. \SWcomment[If a matrix has only $1$ row and $1$ column, it can be used as a \textit{scalar}.]
+
+\subsubsection{Matrix Multiplication}
+In order for matrix multiplication (including matrix-vector multiplication) to be valid, the number of columns of the first matrix needs to be equal to the number of rows in the second matrix. The result will then be a matrix with a number of rows equal to that of the first matrix and a number of columns equal to that of the second matrix. See Figure \ref{fig:matrixMult} for reference.
+
+As an example, consider the $L
+\times M$ matrix $
+\A$ and a $M\times N$ matrix $
+\B$. The multiplication $\A\B$ is defined as the number of columns of matrix $
+\A$ ($M$) is equal to the number of rows of matrix $\B$ (also $M$). The result, $\C$, is a $L \times N$ matrix. The multiplication $\B\A$ is undefined as the number of columns of the first matrix does not match the number of rows in the second matrix. 
+
+Multiplying two matrices written in their dimensions as 
+\begin{equation}
+    \overbrace{(L\times M)}^{\A}\cdot \overbrace{(M\times N)}^{\B} = \overbrace{(L
+    \times N)}^{\C}
+\end{equation}
+ 
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{figures/fdtd/matrixVector2.pdf}
+    \caption{Visualisation of valid matrix(-vector) multiplications. \label{fig:matrixVector}}
+\end{figure}
+
+\subsubsection{In a FDTD context}
+Matrix multiplication when working with FDTD methods usually involves multiplying a square matrix (with equal rows and columns) onto a column vector (see Figure \ref{fig:matrixVector}a). Consider a square matrix with $(N+1)\times (N+1)$ elements $\A$ and a $(N+1) \times 1$ column vector $\u$. Multiplying these results in a $(N+1) \times 1$ column vector $\w$:
+\begin{equation}
+    \A\u = \w.
+\end{equation}
+Expanding this operation results in 
+\begin{equation}
+    \underbrace{\begin{bmatrix}
+        a_{00} & a_{01} & \hdots & a_{0N}\\
+        a_{10} & a_{11} & \hdots & a_{2N}\\
+        \vdots & \vdots & &\vdots\\
+        a_{N0} & a_{N1} & \hdots & a_{NN}
+    \end{bmatrix}}_{\A}
+    \underbrace{\begin{bmatrix}
+        u_0\\
+        u_1\\
+        \vdots\\
+        u_N
+    \end{bmatrix}}_{\u} = 
+    \underbrace{\begin{bmatrix}
+        a_{00}u_0 + a_{01}u_1 + \hdots + a_{0N}u_N\\
+        a_{10}u_0 + a_{11}u_1 + \hdots + a_{1N}u_N\\
+        \vdots\\
+        a_{N0}u_0 + a_{N1}u_1 + \hdots + a_{NN}u_N
+    \end{bmatrix}}_{\w}
+\end{equation}
+
+
+
+\subsubsection{Operators in Matrix Form}
+The FD operators approximating first-order spatial derivatives in \eqref{eq:discFirstSpace} can be written in matrix form according to
 \begin{gather*}\small
     \mathbf{D}_{x+} = \frac{1}{h}\begin{bmatrix}
         \ddots &\ddots & & & \mathbf{0}&\\
@@ -285,23 +500,10 @@ The matrices $\mathbf{D}_{x+}$ and $\mathbf{D}_{x-}$ can be multiplied to get $\
         & & 1 & -2 & 1 & \\
         & & & 1 & -2 & \ddots \\
         &\mathbf{0} & & & \ddots & \ddots \\
-    \end{bmatrix}
+    \end{bmatrix}.
 \end{equation}
-and two $\Dxx$'s to get
-\begin{equation}
-    \Dxx\Dxx = \mathbf{D}_{xxxx} = \frac{1}{h^4}\begin{bmatrix}
-        5& -4 & 1 & & & \mathbf{0}& \\
-        -4 & 6 &\ddots &\ddots & & & \\
-        1& \ddots & \ddots & -4 & 1 & & \\
-        & \ddots& -4 & 6 & -4 & \ddots& \\
-        & & 1 & -4 & \ddots & \ddots &1 \\
-        & & & \ddots & \ddots & 6 & -4 \\
-        & \mathbf{0} & & & 1& -4 & 5 \\
-    \end{bmatrix}
-\end{equation}
-which is used for a stiff string with a simply supported boundary condition.
-
-Averaging operators $\mu_{x+}$, $\mu_{x-}$ and $\mu{x\cdot}$ are defined in a similar way:
+%
+Averaging operators $\mxp$, $\mxm$ and $\mxd$ are defined in a similar way:
 
 \begin{gather*}
     \mathbf{M}_{x+} = \frac{1}{2}\begin{bmatrix}
@@ -332,19 +534,29 @@ Averaging operators $\mu_{x+}$, $\mu_{x-}$ and $\mu{x\cdot}$ are defined in a si
     \end{bmatrix}\\
 \end{gather*}
 
-Note the multiplication by $1/2$ rather than $1/h$ (or $1/2h$) for all operators.
+It is important to notice that only spatial operators are written in this matrix form and then applied to state vectors at different time steps ($n+1$, $n$ and $n-1$). 
 
-
-Only spatial operators are written in this matrix form and then applied to state vectors at different time steps ($n+1$, $n$ and $n-1$), examples of which can be found below.
-
-\subsubsection{Output sound}
-After the system is excited (see \ref{part:exciters}), one can listen to the output
-
-FFT
-
-Waveform
-
-The location, or frequency  of the harmonic partials can also be analytically / numerically derived using modal analysis as will be explained in \ref{sec:modalAnalysis}.
+Finally, the identity matrix is a matrix with only $1$s on the diagonal and $0$s elsewhere as
+\begin{equation}
+    \I = \begin{bmatrix}
+        \ddots & & & & \mathbf{0}&\\
+         & 1 & & & & \\
+        & & 1 & & & \\
+        & & & 1 & & \\
+        & & & & 1 & \\
+        &\mathbf{0} & & &  & \ddots \\
+    \end{bmatrix}\\
+\end{equation}
+\subsubsection{Schemes and Update Equations in Matrix Form}
+With these building blocks we can write Eq. \eqref{eq:1DwaveFDS} in matrix form. The values of the grid function $\uln$ can be stored in a state vector according to $\u^n = [u_0^n, u_1^n, \hdots, u_N^n]^T$ where $T$ denotes the transpose operation. The FD scheme in \eqref{eq:1DwaveFDS} can then be written in matrix form as
+\begin{equation}\label{eq:1DwaveMatrix}
+    \frac{1}{k^2}\left(\u^{n+1} - 2 \u + \u^{n-1}\right) = c^2 \Dxx \u^n,
+\end{equation}
+and rewritten to a matrix form of the update equation
+\begin{equation}
+    \u^{n+1} = (2\I + c^2k^2 \Dxx )\u^n - \u^{n-1}.
+\end{equation}
+The identity matrix is necessary here for correct matrix addition.
 
 \section{Energy Analysis}\label{sec:energyAnalysis}
 Debugging physical models.
@@ -364,6 +576,22 @@ Inner product of any time series $f^n$ and $g^n$ and the discrete counterpart to
 \end{equation}
 where the multiplication by $h$ is the discrete counterpart of $dx$ the continuous definition. 
 
+\subsubsection{Product Identities}
+Some useful identities used in this work are
+\begin{subequations}
+    \begin{align}
+        (\dtd \uln)(\dtt \uln) &= \dtp \left(\frac{1}{2}(\dtm \uln)^2\right),\label{eq:prodIdentity1}\\
+        (\dtd \uln)\uln &= \dtp \left(\frac{1}{2}\uln e_{t-}\uln\right),\label{eq:prodIdentity2}\\
+        (\dtp \uln)(\mtp \uln) &= \dtp \left(\frac{1}{2}(\uln)^2\right),\label{eq:prodIdentity3}\\
+        (\dtd \uln)(\mu_{t\cdot}\uln) &= \dtd\left(\frac{1}{2} (\uln)^2\right).\label{eq:prodIdentity4}
+    \end{align}
+\end{subequations}
+Again, these can be used for spatial derivatives as well by substituting the `$t$' subscripts for `$x$'. Also  to 
+
+When an operator is applied to a product of two grid functions, the discrete counter part of the product rule needs to be used according to
+\begin{equation}
+    \dtp (\uln\wln) = (\dtp \uln)(\mtp\wln) + (\mtp \uln)(\dtp \wln).
+\end{equation}
 \section{von Neumann Analysis}\label{sec:stabilityAnalysis}
 Much literature gives the stability condition using an ``it can be shown that'' argument (fx. \cite{Bilbao2009}). Here, I would like to take the opportunity to 
 
@@ -371,28 +599,41 @@ Finding stability conditions for models
 
 Sin identity:
 \begin{equation}\label{eq:sinIdentity}
-    \sin(x) = \frac{e^{jx} - e^{-jx}}{2j}\quad \Longrightarrow \quad \sin^2(x) = \frac{e^{j2x} - 2e^{jx-jx}+ e^{-j2x}}{-4} = \frac{e^{j2x} + e^{-j2x}}{-4} + \frac{1}{2}.
+    \sin(x) = \frac{e^{jx} - e^{-jx}}{2j}\ \ \Rightarrow \ \ \sin^2(x) = \frac{e^{j2x} - 2e^{jx-jx}+ e^{-j2x}}{-4} = \frac{e^{j2x} + e^{-j2x}}{-4} + \frac{1}{2}.
 \end{equation}
 Cos identity:
 \begin{equation}\label{eq:cosIdentity}
-    \cos(x) = \frac{e^{jx} + e^{-jx}}{2}\quad \Longrightarrow \quad \cos^2(x) = \frac{e^{j2x} + 2e^{jx-jx}+ e^{-j2x}}{4} = \frac{e^{j2x} + e^{-j2x}}{4} + \frac{1}{2}.
+    \cos(x) = \frac{e^{jx} + e^{-jx}}{2}\ \ \Rightarrow \ \ \cos^2(x) = \frac{e^{j2x} + 2e^{jx-jx}+ e^{-j2x}}{4} = \frac{e^{j2x} + e^{-j2x}}{4} + \frac{1}{2}.
 \end{equation}
+
+One can analyse a \todo{check `a' or `an' FD scheme}FD scheme by 
+\begin{equation}
+    u_l^n = z^n e^{jl\beta h}
+\end{equation}
+where $\beta$ is a real wavenumber. Important to remember is that without a shift in space (fx. $l+1$) or time (fx. $n-1$) $l = 0$ or $n=0$ respectively:
+\begin{subequations} \label{eq:identitiesZ}
+    \begin{align}
+        u_l^n &= z^0 e^{j0\beta h} = 1\\
+        u_{l+1}^n &= z^0 e^{j1\beta h} = e^{j\beta h}\\
+        u_{l-1}^n &= z^0 e^{j(-1)\beta h} = e^{-j\beta h}\\
+        u_{l+2}^n &= z^0 e^{j2\beta h} = e^{j\beta h}\\
+        u_{l-2}^n &= z^0 e^{j(-2)\beta h}= e^{-j2\beta h}\\
+        u_l^{n+1}&= z^1 e^{j0\beta h} = z\\
+        u_l^{n-1}&= z^{-1} e^{j0\beta h} = z^{-1}
+    \end{align}
+\end{subequations}
+
+\todo{Talk about solution of }
 
 \section{Modal Analysis}
 \label{sec:modalAnalysis}
-Modes are the resonant frequencies of a system. The amout of modes that a discrete system contains dependends on the amount of moving points. A mass-spring system thus has one resonating mode, but a FD scheme of the 1D wave equation with N = 30 (including the boundaries) and Dirichlet boundary conditions will have 29 modes.
+Modes are the resonant frequencies of a system. The amout of modes that a discrete system contains dependends on the amount of moving points. A mass-spring system thus has one resonating mode, but a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. This section will show how to obtain the modes of an FD scheme implementing the 1D wave equation. 
 
-\todo{definition of modes}
-
-This section will show how to obtain the modes for an FD scheme implementing the 1D wave equation as done in Section . We start with Eq. (6.34) (using $c$ instead of $\gamma$)
-\begin{equation}
-    \delta_{tt}u = c^2\delta_{xx}u,
-\end{equation}
-which can be written in matrix form as
-\begin{equation}\label{eq:matrixForm1D}
-    \frac{1}{k^2}\left(\u^{n+1}-2\u^n+\u^{n-1}\right) = c^2 \Dxx\u
-\end{equation}
-Following \cite{theBible} we assume a solution of the form $\u = \boldsymbol{\phi}z^n$. Substituting this into Eq. \eqref{eq:matrixForm1D} yields the characteristic equation
+We start by using the the matrix form of FD scheme \eqref{eq:1DwaveFDS} from Eq. \eqref{eq:1DwaveMatrix}
+\begin{equation*}
+    \frac{1}{k^2}\left(\u^{n+1}-2\u^n+\u^{n-1}\right) = c^2 \Dxx\u.
+\end{equation*}
+Following \cite{theBible} we assume a solution of the form $\u = \boldsymbol{\phi}z^n$ \todo{more explanation}. Substituting this into Eq. \eqref{eq:matrixForm1D} yields the characteristic equation
 \begin{equation}
     (z - 2 + z^{-1})\boldsymbol{\phi} = c^2k^2\Dxx \boldsymbol{\phi}.
 \end{equation}
