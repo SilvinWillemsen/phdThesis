@@ -88,8 +88,8 @@ These methods essentially subdivide a continuous differential equation into disc
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/fdtd/gridFigure.eps}
-    \caption{\label{fig:discretisation} A continuous PDE is discretised }
-\end{figure}\todo{different wording in caption}
+    \caption{\label{fig:discretisation} \SWcomment[figure visualising discretising a PDE to FDS] }
+\end{figure}
 
 \subsection{Grid Functions \todo{check capitalisation of headings throughout document}}
 We start by defining a discrete \textit{grid} over time and space which we will use to approximate our continuous equations \todo{grid figure}. A system $u = u(x,t)$ defined over time $t$ and one spatial dimension $x$, can be approximated using a \textit{grid function} $u_l^n$. Here, subscript $l$ and superscript $n$ describe the spatial and temporal indices respectively and arise from the discretisation of the continuous variables $x$ and $t$ according to $x=lh$ and $t=nk$. The spatial step $h$, also called the \textit{grid spacing} describes the distance (in m) between two neighbouring grid points and the temporal step $k$, or \textit{time step} is the time (in s) between two consecutive temporal indices. The latter can be calculated $k=1/\fs$ for a sample rate $\fs$ (in Hz). In many audio applications $\fs = 44100$ Hz which will be used in this work (unless denoted otherwise).
