@@ -8,12 +8,12 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bib/mybib.bib
+Warning--I didn't find a database entry for ""
 Warning--I didn't find a database entry for "courant"
 Warning--I didn't find a database entry for "Coulomb"
 Warning--I didn't find a database entry for "Morin1833"
 Warning--I didn't find a database entry for "Reynolds1886"
 Warning--I didn't find a database entry for "Stribeck1902"
-Warning--I didn't find a database entry for "paper:Willemsen2019"
 Warning--I didn't find a database entry for "Webster19"
 Warning--I didn't find a database entry for "Bilbao2016"
 -- IEEEtranS.bst version 1.14 (2015/08/26) by Michael Shell.
@@ -22,45 +22,45 @@ Warning--I didn't find a database entry for "Bilbao2016"
 ** Sorting version - not for normal IEEE work.
 
 Done.
-You've used 12 entries,
+You've used 14 entries,
             4566 wiz_defined-function locations,
-            996 strings with 10189 characters,
-and the built_in function-call counts, 8896 in all, are:
-= -- 772
-> -- 246
-< -- 51
-+ -- 122
-- -- 64
-* -- 479
-:= -- 1417
-add.period$ -- 24
-call.type$ -- 12
-change.case$ -- 66
-chr.to.int$ -- 111
-cite$ -- 12
-duplicate$ -- 569
-empty$ -- 667
-format.name$ -- 69
-if$ -- 1970
+            1006 strings with 10491 characters,
+and the built_in function-call counts, 10271 in all, are:
+= -- 903
+> -- 268
+< -- 60
++ -- 134
+- -- 68
+* -- 542
+:= -- 1639
+add.period$ -- 28
+call.type$ -- 14
+change.case$ -- 74
+chr.to.int$ -- 135
+cite$ -- 14
+duplicate$ -- 656
+empty$ -- 777
+format.name$ -- 73
+if$ -- 2284
 int.to.chr$ -- 0
-int.to.str$ -- 12
-missing$ -- 102
-newline$ -- 65
-num.names$ -- 24
-pop$ -- 299
+int.to.str$ -- 14
+missing$ -- 116
+newline$ -- 71
+num.names$ -- 28
+pop$ -- 331
 preamble$ -- 1
-purify$ -- 56
+purify$ -- 62
 quote$ -- 2
-skip$ -- 639
+skip$ -- 750
 stack$ -- 0
-substring$ -- 319
-swap$ -- 407
-text.length$ -- 14
+substring$ -- 387
+swap$ -- 470
+text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 111
+type$ -- 133
 warning$ -- 0
-while$ -- 39
-width$ -- 14
-write$ -- 135
+while$ -- 47
+width$ -- 16
+write$ -- 153
 (There were 8 warnings)

@@ -18,48 +18,48 @@
 \contentsline {section}{\numberline {1.5}Thesis Outline}{5}{section.1.5}
 \contentsline {chapter}{\numberline {2}FDTD Methods and Analysis Techniques}{7}{chapter.2}
 \contentsline {section}{\numberline {2.1}Differential Equations}{7}{section.2.1}
-\contentsline {subsubsection}{Note on dimensions}{8}{subsubsection*.14}
+\contentsline {subsubsection}{Note on dimensions \todo {not done}}{8}{subsubsection*.15}
 \contentsline {section}{\numberline {2.2}Discretisation using FDTD methods}{9}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Grid Functions \todo {check capitalisation of headings throughout document}}{9}{section*.15}
+\contentsline {subsection}{\numberline {2.2.1}Grid Functions \todo {check capitalisation of headings throughout document}}{10}{section*.19}
 \contentsline {subsection}{\numberline {2.2.2}Finite-Difference Operators}{10}{subsection.2.2.2}
-\contentsline {subsubsection}{Accuracy}{12}{subsubsection*.20}
+\contentsline {subsubsection}{Accuracy}{12}{subsubsection*.26}
 \contentsline {subsection}{\numberline {2.2.3}Identities}{14}{subsection.2.2.3}
-\contentsline {subsubsection}{Implementation}{14}{subsubsection*.23}
-\contentsline {section}{\numberline {2.3}The Mass-Spring System}{15}{section.2.3}
-\contentsline {subsubsection}{Continuous-time}{15}{subsubsection*.24}
-\contentsline {subsubsection}{Intuition}{15}{subsubsection*.26}
-\contentsline {subsubsection}{Discrete-time}{16}{subsubsection*.27}
-\contentsline {subsubsection}{Implementation and Output}{16}{subsubsection*.28}
-\contentsline {section}{\numberline {2.4}The 1D Wave Equation}{16}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Continuous-time}{16}{subsection.2.4.1}
-\contentsline {subsubsection}{Intuition}{17}{subsubsection*.31}
-\contentsline {subsubsection}{Boundary Conditions}{18}{subsubsection*.34}
-\contentsline {subsection}{\numberline {2.4.2}Discrete-time}{18}{subsection.2.4.2}
-\contentsline {subsubsection}{Stability}{18}{subsubsection*.35}
-\contentsline {subsubsection}{Implementation}{19}{subsubsection*.36}
-\contentsline {subsubsection}{Numerical Dispersion}{19}{subsubsection*.37}
-\contentsline {subsection}{\numberline {2.4.3}Output}{19}{subsection.2.4.3}
-\contentsline {subsection}{\numberline {2.4.4}Matrix Form}{19}{subsection.2.4.4}
-\contentsline {subsubsection}{Matrix Multiplication}{19}{subsubsection*.39}
-\contentsline {subsubsection}{In a FDTD context}{20}{subsubsection*.41}
-\contentsline {subsubsection}{Operators in Matrix Form}{21}{subsubsection*.42}
-\contentsline {subsubsection}{Schemes and Update Equations in Matrix Form}{22}{subsubsection*.43}
-\contentsline {section}{\numberline {2.5}Energy Analysis}{23}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Mathematical tools}{23}{subsection.2.5.1}
-\contentsline {subsubsection}{Continuous-time}{23}{subsubsection*.44}
-\contentsline {subsubsection}{Discrete-time}{23}{subsubsection*.45}
-\contentsline {subsubsection}{Product Identities}{23}{subsubsection*.46}
-\contentsline {section}{\numberline {2.6}von Neumann Analysis}{24}{section.2.6}
-\contentsline {section}{\numberline {2.7}Modal Analysis}{24}{section.2.7}
-\contentsline {section}{\numberline {2.8}Dispersion analysis}{25}{section.2.8}
+\contentsline {section}{\numberline {2.3}The Mass-Spring System}{14}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Continuous-time}{15}{subsection.2.3.1}
+\contentsline {subsubsection}{Intuition}{15}{subsubsection*.30}
+\contentsline {subsection}{\numberline {2.3.2}Discrete-time}{16}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Implementation and Output}{17}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}The 1D Wave Equation}{18}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Continuous-time}{18}{subsection.2.4.1}
+\contentsline {subsubsection}{Intuition}{18}{subsubsection*.35}
+\contentsline {subsubsection}{Boundary Conditions}{19}{subsubsection*.38}
+\contentsline {subsection}{\numberline {2.4.2}Discrete-time}{19}{subsection.2.4.2}
+\contentsline {subsubsection}{Stability}{19}{subsubsection*.39}
+\contentsline {subsubsection}{Implementation}{20}{subsubsection*.40}
+\contentsline {subsubsection}{Numerical Dispersion}{20}{subsubsection*.41}
+\contentsline {subsection}{\numberline {2.4.3}Output}{20}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Matrix Form}{20}{subsection.2.4.4}
+\contentsline {subsubsection}{Matrix Multiplication}{21}{subsubsection*.43}
+\contentsline {subsubsection}{In a FDTD context}{21}{subsubsection*.45}
+\contentsline {subsubsection}{Operators in Matrix Form}{22}{subsubsection*.46}
+\contentsline {subsubsection}{Schemes and Update Equations in Matrix Form}{23}{subsubsection*.47}
+\contentsline {subsection}{\numberline {2.4.5}System of Linear Equations}{24}{subsection.2.4.5}
+\contentsline {section}{\numberline {2.5}Energy Analysis}{24}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Mathematical tools}{24}{subsection.2.5.1}
+\contentsline {subsubsection}{Continuous-time}{24}{subsubsection*.48}
+\contentsline {subsubsection}{Discrete-time}{24}{subsubsection*.49}
+\contentsline {subsubsection}{Product Identities}{24}{subsubsection*.50}
+\contentsline {section}{\numberline {2.6}von Neumann Analysis}{25}{section.2.6}
+\contentsline {section}{\numberline {2.7}Modal Analysis}{25}{section.2.7}
+\contentsline {section}{\numberline {2.8}Dispersion analysis}{26}{section.2.8}
 \contentsline {part}{II\hspace {1em}Resonators}{27}{part.2}
-\contentsline {subsubsection}{Scaling}{29}{subsubsection*.51}
+\contentsline {subsubsection}{Scaling}{29}{subsubsection*.55}
 \contentsline {chapter}{\numberline {3}Stiff string}{31}{chapter.3}
 \contentsline {section}{\numberline {3.1}Continuous time}{31}{section.3.1}
-\contentsline {subsubsection}{Dispersion Analysis}{31}{subsubsection*.53}
+\contentsline {subsubsection}{Dispersion Analysis}{31}{subsubsection*.57}
 \contentsline {subsection}{\numberline {3.1.1}Adding Losses}{31}{subsection.3.1.1}
-\contentsline {subsubsection}{Intuition}{32}{subsubsection*.57}
-\contentsline {subsubsection}{Boundary Conditions}{32}{subsubsection*.58}
+\contentsline {subsubsection}{Intuition}{32}{subsubsection*.61}
+\contentsline {subsubsection}{Boundary Conditions}{32}{subsubsection*.62}
 \contentsline {section}{\numberline {3.2}Discrete Time}{32}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Combining operators}{32}{subsection.3.2.1}
 \contentsline {section}{\numberline {3.3}Modal analysis}{33}{section.3.3}
@@ -73,13 +73,13 @@
 \contentsline {part}{III\hspace {1em}Exciters}{39}{part.3}
 \contentsline {chapter}{\numberline {6}Unmodelled Excitations}{43}{chapter.6}
 \contentsline {section}{\numberline {6.1}Initial conditions}{43}{section.6.1}
-\contentsline {subsubsection}{Hammer}{43}{subsubsection*.63}
-\contentsline {subsubsection}{Pluck}{43}{subsubsection*.64}
+\contentsline {subsubsection}{Hammer}{43}{subsubsection*.67}
+\contentsline {subsubsection}{Pluck}{43}{subsubsection*.68}
 \contentsline {section}{\numberline {6.2}Signals}{43}{section.6.2}
 \contentsline {subsection}{\numberline {6.2.1}Pulse train}{43}{subsection.6.2.1}
 \contentsline {subsection}{\numberline {6.2.2}Noise}{43}{subsection.6.2.2}
 \contentsline {chapter}{\numberline {7}Modelled Excitations}{45}{chapter.7}
-\contentsline {section}{\numberline {7.1}Hammer}{45}{section.7.1}
+\contentsline {section}{\numberline {7.1}Hammer \leavevmode {\color {Cyan}but maybe not as I didn't use it..}}{45}{section.7.1}
 \contentsline {subsection}{\numberline {7.1.1}Mass-spring Systems Revisited: Adding Damping}{45}{subsection.7.1.1}
 \contentsline {section}{\numberline {7.2}The Bow}{45}{section.7.2}
 \contentsline {subsection}{\numberline {7.2.1}Static Friction Models}{45}{subsection.7.2.1}
@@ -92,9 +92,9 @@
 \contentsline {section}{\numberline {8.2}Spring-like connections}{51}{section.8.2}
 \contentsline {subsection}{\numberline {8.2.1}Connection with rigid barrier (scaled)}{51}{subsection.8.2.1}
 \contentsline {subsection}{\numberline {8.2.2}String-plate connection}{52}{subsection.8.2.2}
-\contentsline {subsubsection}{Continuous}{52}{subsubsection*.65}
-\contentsline {subsubsection}{Discrete}{52}{subsubsection*.66}
-\contentsline {subsubsection}{Expansion}{53}{subsubsection*.67}
+\contentsline {subsubsection}{Continuous}{52}{subsubsection*.69}
+\contentsline {subsubsection}{Discrete}{52}{subsubsection*.70}
+\contentsline {subsubsection}{Expansion}{53}{subsubsection*.71}
 \contentsline {subsection}{\numberline {8.2.3}Solving for $f$}{53}{subsection.8.2.3}
 \contentsline {subsection}{\numberline {8.2.4}Non-dimensional}{53}{subsection.8.2.4}
 \contentsline {chapter}{\numberline {9}Collisions}{55}{chapter.9}
@@ -120,9 +120,9 @@
 \contentsline {subsection}{\numberline {11.1.1}Speed}{69}{subsection.11.1.1}
 \contentsline {subsection}{\numberline {11.1.2}Syntax}{70}{subsection.11.1.2}
 \contentsline {section}{\numberline {11.2}Do's and don'ts in Real-Time FD schemes}{70}{section.11.2}
-\contentsline {subsubsection}{Create a limiter}{70}{subsubsection*.74}
-\contentsline {subsubsection}{Use pointer switches}{71}{subsubsection*.75}
-\contentsline {subsubsection}{Grouping terms and Precalculating coefficients}{72}{subsubsection*.77}
+\contentsline {subsubsection}{Create a limiter}{70}{subsubsection*.78}
+\contentsline {subsubsection}{Use pointer switches}{71}{subsubsection*.79}
+\contentsline {subsubsection}{Grouping terms and Precalculating coefficients}{72}{subsubsection*.81}
 \contentsline {section}{\numberline {11.3}Graphics}{72}{section.11.3}
 \contentsline {chapter}{\numberline {12}Control}{77}{chapter.12}
 \contentsline {section}{\numberline {12.1}Sensel Morph}{77}{section.12.1}
@@ -136,7 +136,7 @@
 \contentsline {section}{\numberline {14.1}Introduction}{85}{section.14.1}
 \contentsline {section}{\numberline {14.2}Physical Model}{85}{section.14.2}
 \contentsline {subsection}{\numberline {14.2.1}Continuous}{85}{subsection.14.2.1}
-\contentsline {subsubsection}{Complete system}{85}{subsubsection*.79}
+\contentsline {subsubsection}{Complete system}{85}{subsubsection*.83}
 \contentsline {subsection}{\numberline {14.2.2}Discrete}{85}{subsection.14.2.2}
 \contentsline {section}{\numberline {14.3}Real-Time Implementation}{85}{section.14.3}
 \contentsline {subsection}{\numberline {14.3.1}Control using Sensel Morph}{85}{subsection.14.3.1}
@@ -147,23 +147,25 @@
 \contentsline {subsection}{\numberline {15.2.1}Continuous}{87}{subsection.15.2.1}
 \contentsline {subsection}{\numberline {15.2.2}Discrete}{88}{subsection.15.2.2}
 \contentsline {section}{\numberline {15.3}Real-Time Implementation}{88}{section.15.3}
-\contentsline {subsubsection}{Unity??}{88}{subsubsection*.80}
+\contentsline {subsubsection}{Unity??}{88}{subsubsection*.84}
 \contentsline {section}{\numberline {15.4}Discussion}{88}{section.15.4}
-\contentsline {chapter}{References}{92}{chapter*.82}
+\contentsline {chapter}{References}{92}{chapter*.86}
 \contentsline {part}{VIII\hspace {1em}Appendix}{93}{part.8}
 \contentsline {chapter}{\numberline {A}List of Symbols}{95}{Appendix.b.A}
 \contentsline {chapter}{\numberline {B}List of Abbreviations}{97}{Appendix.b.B}
-\contentsline {part}{IX\hspace {1em}Papers}{99}{part.9}
-\contentsline {subsubsection}{Real-Time Tromba [\ref {paper:D}]}{101}{subsubsection*.84}
-\contentsline {subsubsection}{DigiDrum [\ref {paper:F}]}{101}{subsubsection*.85}
-\contentsline {subsubsection}{Dynamic grids [\ref {paper:G}]}{101}{subsubsection*.86}
-\contentsline {chapter}{\numberline {A}Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{103}{Paper.c.A}
-\contentsline {section}{\numberline {A.1}Introduction}{104}{section.c.A}
-\contentsline {section}{\numberline {A.2}Conclusion}{104}{section.c.B}
-\contentsline {chapter}{\numberline {B}Physical Models and Real-Time Control with the Sensel Morph}{105}{Paper.c.B}
-\contentsline {chapter}{\numberline {C}Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite Difference Schemes}{107}{Paper.c.C}
-\contentsline {chapter}{\numberline {D}Real-time Implementation of a Physical Model of the Tromba Marina}{109}{Paper.c.D}
-\contentsline {chapter}{\numberline {E}Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{111}{Paper.c.E}
-\contentsline {chapter}{\numberline {F}DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{113}{Paper.c.F}
-\contentsline {chapter}{\numberline {G}Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{115}{Paper.c.G}
-\contentsline {chapter}{\numberline {H}A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{117}{Paper.c.H}
+\contentsline {chapter}{\numberline {C}Code Snippets}{99}{Appendix.b.C}
+\contentsline {section}{\numberline {C.1}Mass-Spring System (Section \ref {sec:massSpringSystem})}{99}{section.b.A}
+\contentsline {part}{IX\hspace {1em}Papers}{101}{part.9}
+\contentsline {subsubsection}{Real-Time Tromba [\ref {paper:D}]}{103}{subsubsection*.88}
+\contentsline {subsubsection}{DigiDrum [\ref {paper:F}]}{103}{subsubsection*.89}
+\contentsline {subsubsection}{Dynamic grids [\ref {paper:G}]}{103}{subsubsection*.90}
+\contentsline {chapter}{\numberline {A}Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{105}{Paper.c.A}
+\contentsline {section}{\numberline {A.1}Introduction}{106}{section.c.A}
+\contentsline {section}{\numberline {A.2}Conclusion}{106}{section.c.B}
+\contentsline {chapter}{\numberline {B}Physical Models and Real-Time Control with the Sensel Morph}{107}{Paper.c.B}
+\contentsline {chapter}{\numberline {C}Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite Difference Schemes}{109}{Paper.c.C}
+\contentsline {chapter}{\numberline {D}Real-time Implementation of a Physical Model of the Tromba Marina}{111}{Paper.c.D}
+\contentsline {chapter}{\numberline {E}Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{113}{Paper.c.E}
+\contentsline {chapter}{\numberline {F}DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{115}{Paper.c.F}
+\contentsline {chapter}{\numberline {G}Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{117}{Paper.c.G}
+\contentsline {chapter}{\numberline {H}A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{119}{Paper.c.H}

@@ -244,13 +244,12 @@
 
 \usepackage{listings}
 \usepackage{courier}
-% \usepackage{accsupp}
 
-% \newcommand{\noncopynumber}[1]{%
-%     \BeginAccSupp{method=escape,ActualText={}}%
-%     #1%
-%     \EndAccSupp{}%
-% }
+\def\eqrefMatlab[#1]{%
+    \hypersetup{linkcolor=[HTML]008400}%
+    \color[HTML]{008400}{\texttt{(\ref{#1}})}
+}
+
 \renewcommand{\lstlistingname}{Algorithm}% 
 \def\setlstCpp
 {
@@ -294,15 +293,15 @@
   breaklines=true,                 % sets automatic line breaking
   captionpos=b,                    % sets the caption-position to bottom
   commentstyle=\color[HTML]{008400},    % comment style
-  deletekeywords={...},            % if you want to delete keywords from the given language
+  deletekeywords={plot},            % if you want to delete keywords from the given language
   escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
   frame=tb,	                   	   % adds a frame around the code
   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
   keywordstyle=\color[HTML]{0000FF},       % keyword style
   language=MATLAB,                 % the language of the code (can be overrided per snippet)
-  otherkeywords={*,...},           % if you want to add more keywords to the set
-  numbers=none,                    % where to put the line-numbers; possible values are (none, left, right)
+  % otherkeywords={*,...},           % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
   numbersep=5pt,                   % how far the line-numbers are from the code
   numberstyle=\tiny\color{black},%\noncopynumber, % the style that is used for the line-numbers
   rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
@@ -313,6 +312,6 @@
   stringstyle=\color[HTML]{A100F4}, % string literal style
   tabsize=2,	                   % sets default tabsize to 2 spaces
   title=\lstname,                  % show the filename of files included with \lstinputlisting; also try caption instead of title
-  columns=fixed                    % Using fixed column width (for e.g. nice alignment)
+  columns=fixed,                   % Using fixed column width (for e.g. nice alignment)
 }
 }

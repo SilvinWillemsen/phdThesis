@@ -1,0 +1,34 @@
+\chapter{Code Snippets}
+\renewcommand\thesection{\thechapter.\arabic{section}}
+
+\section{Mass-Spring System (Section \ref{sec:massSpringSystem})}\label{app:massSpringCode}
+
+\setlstMAT
+\begin{lstlisting}
+%% Initialise varibles
+fs = 44100;             % sample rate [Hz]
+k = 1 / fs;             % time step [s]
+lengthSound = fs;       % length of the simulation (1 second) [samples]
+
+f0 = 440;               % fundamental frequency [Hz]
+omega0 = 2 * pi * f0;   % angular (fundamental) frequency [Hz]
+M = 1;                  % mass [kg]
+K = omega0^2 * M;       % spring constant [N/m]
+
+%% initial conditions (u0 = 1, d/dt u0 = 0)
+u = 1;                  
+uPrev = 1;
+
+%% Simulation loop
+for n = 1:lengthSound
+    
+    % Update equation Eq.%* \eqrefMatlab[eq:massSpringUpdate] *)
+    uNext = 2 * u - uPrev - K * k^2 / M * u; 
+    
+    out(n) = u;
+    
+    % Update system states
+    uPrev = u;
+    u = uNext;
+end
+\end{lstlisting}

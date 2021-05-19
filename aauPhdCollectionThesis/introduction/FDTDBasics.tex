@@ -3,20 +3,22 @@
 \begin{flushright}{\it
 ``Since Newton, mankind has come to realize that the laws of physics\\
 are always expressed in the language of differential equations.''\\
-- Steven Strogatz\\
-\SWcomment[(https://youtu.be/O85OWBJ2ayo?t=44)]} 
+- Steven Strogatz} %\\
+%\SWcomment[(https://youtu.be/O85OWBJ2ayo?t=44)]
 \end{flushright}
 %
+\vspace{2em}
 This chapter introduces some important concepts needed to understand the physical models presented later on in this document. 
-By means of a simple mass-spring system and the 1D wave equation, the notation (and terminology) used throughout this document will be explained, together with some important analysis techniques. 
-Before we dive into the mathematics, let us go over some useful terminology.
+By means of a simple mass-spring system and the 1D wave equation, the notation and terminology used throughout this document will be explained, together with some important analysis techniques. 
+Before diving into the mathematics, let us go over some useful terminology.
 
 \section{Differential Equations}
 Differential equations are used to describe the motion of dynamic systems including vibrations in musical instruments. In this work, these equations are used, among others, to describe the movement of a string, an instrument body and the air pressure in an acoustic tube.
 
 A characteristic feature of these equations is that, rather than an absolute value or \textit{state} of a system, the time derivative of its state -- its velocity -- or the second time derivative -- its acceleration -- is described. From this, the absolute state of the system can then be computed.
 %
-This state is usually described by the variable $u$ which is (nearly) always a function of time, i.e., $u=u(t)$. If the system is distributed in space, $u$ also becomes a function of space, i.e., $u = u(x,t)$, or with two spatial dimensions, $u = u(x,y,t)$, etc. Though this work only describes systems of up to two spatial dimensions, one could potentially extend to systems of infinite spatial dimensions evolving over time! 
+This state is usually described by the variable $u$ which is (nearly) always a function of time, i.e., $u=u(t)$. If the system is distributed in space, $u$ also becomes a function of space, i.e., $u = u(x,t)$, or with two spatial dimensions, $u = u(x,y,t)$, etc. Though this work only describes systems of up to two spatial dimensions, one can easily extend to three dimensions \cite{Hamilton2016} and potentially higher-dimensional systems \cite{Bustamante2017}\todo{maybe not such a relevant reference..}! 
+% one could potentially extend to systems of infinite spatial dimensions evolving over time!
 
 If $u$ is univariate, and only a function of time, the differential equation that describes the motion of this system is called an \textit{ordinary differential equation} (ODE). Various ways to describe the second derivative in time of $u$, or the acceleration of $u$ are
 %
@@ -28,7 +30,7 @@ If $u$ is univariate, and only a function of time, the differential equation tha
     \end{aligned}
 \end{equation}
 %
-Leibniz' notation is what can mostly be found in mathematical text books but is not necessarily compact. Newton's notation on the other hand allows for an ultra compact notation using a dot above the function to denote a derivative. However, this notation can only be used for univariate functions which it will be used for in this document. Finally, Euler's notation uses an operator which can be applied to a function and indicates a derivative.  
+Leibniz' notation could be considered the most standard notation but is not necessarily compact. Newton's notation on the other hand allows for an ultra compact notation using a dot above the function to denote a derivative. However, this notation can only be used for univariate functions which it will be used for in this document. Finally, Euler's notation uses an operator which can be applied to a function and indicates a derivative.  
  
 If $u$ is also a function of at least one spatial dimension, the equation of motion is a called a \textit{partial differential equation} (PDE).
 The literature uses different types of notation for taking (continuous-time) partial derivatives. Applied to a state variable $u$ these can look like 
@@ -64,7 +66,7 @@ Often-used partial derivatives and their meanings \todo{maybe not yet as this is
     \px u &\quad \text{(slope)}
     \end{align*}
 \end{minipage}
-\subsubsection{Note on dimensions}
+\subsubsection{Note on dimensions \todo{not done}}
 It is important to notice that there is a difference between a system described over multiple spatial dimensions, such as a membrane, or a plate, and a system state having multiple coordinates. In much of the literature on FDTD methods in the field of musical acoustics, the state variable only describes one coordinate. In most string models, for example, only the transverse displacement is considered (see Chapter \ref{ch:stiffString}) and the longitudinal motion of the string is ignored. In other words, every point along the string can only move up and down, not side-to-side. Although this greatly simplifies the system at hand, this is not what happens in reality, and effects such as phantom partials and pitch glides due to tension modulation are not present in the simplified model. 
 
 Models exist that take longitudinal vibration into account... SOTA
@@ -83,16 +85,22 @@ in terms of generality and flexibility...
 
 These methods essentially subdivide a continuous differential equation into discrete points in time and space, a process called \textit{discretisation}. Once an ODE or PDE is discretised using these methods it is now called a \textit{finite-difference (FD) scheme} which approximates the original differential equation. 
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/fdtd/gridFigure.eps}
+    \caption{\label{fig:discretisation} A continuous PDE is discretised }
+\end{figure}\todo{different wording in caption}
+
 \subsection{Grid Functions \todo{check capitalisation of headings throughout document}}
 We start by defining a discrete \textit{grid} over time and space which we will use to approximate our continuous equations \todo{grid figure}. A system $u = u(x,t)$ defined over time $t$ and one spatial dimension $x$, can be approximated using a \textit{grid function} $u_l^n$. Here, subscript $l$ and superscript $n$ describe the spatial and temporal indices respectively and arise from the discretisation of the continuous variables $x$ and $t$ according to $x=lh$ and $t=nk$. The spatial step $h$, also called the \textit{grid spacing} describes the distance (in m) between two neighbouring grid points and the temporal step $k$, or \textit{time step} is the time (in s) between two consecutive temporal indices. The latter can be calculated $k=1/\fs$ for a sample rate $\fs$ (in Hz). In many audio applications $\fs = 44100$ Hz which will be used in this work (unless denoted otherwise).
 
-To summarise
+\todo{this might be unnecessary, but I thought that it might be nice to have this in an equation for clarity} To summarise
 \begin{equation}
     u(x,t) \approx u_l^n \quad \text{with} \quad x=lh \quad \text{and} \quad t = nk
 \end{equation}
 
 \subsection{Finite-Difference Operators}\label{sec:FDoperators}
-Now that the state variable has a discrete counterpart, this leaves the derivatives to be discretised. We start by introducing shift operators that can be applied to a grid function and changes its indexing (either spatial or temporal). Forward and backward shifts in time, together with the identity operation (not altering $\uln$) are
+Now that the state variable has a discrete counterpart, this leaves the derivatives to be discretised, or approximated. We start by introducing shift operators that can be applied to a grid function and `shifts' its indexing, either spatial or temporal. Forward and backward shifts in time, together with the identity operation are
 % 
 \begin{equation}
     e_{t+}\uln = u_l^{n+1},\quad e_{t-}\uln = u_l^{n-1}, \quad \text{and} \quad 1\uln = \uln.
@@ -104,7 +112,7 @@ Similarly, forward and backward shifts in space are
     e_{x+}\uln = u_{l+1}^n,\quad \text{and}\quad e_{x-}\uln = u_{l-1}^n.
 \end{equation}
 %
-These shift operators are rarely used in isolation, though they do appear in energy analysis techniques detailed in Section \ref{sec:energyAnalysis}. The operators do, however, form the basis of commonly used \textit{finite-difference operators}. The first-order derivative in time can be discretised three different ways. The forward, backward and centred \todo{check centred instead of centered, full document sweep} difference operators are
+\todo{many figures for shift and FD operators}These shift operators are rarely used in isolation, though they do appear in energy analysis techniques detailed in Section \ref{sec:energyAnalysis}. The operators do, however, form the basis of commonly used \textit{finite-difference (FD) operators}. The first-order derivative in time can be discretised three different ways. The forward, backward and centred \todo{check centred instead of centered, full document sweep} difference operators are
 %
 \begin{subnumcases}{\pt \approx\label{eq:discFirstTime}}
         \dtp &$\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{k}\left(e_{t+} - 1\right),$\label{eq:forwardTimeOperator}\\
@@ -117,7 +125,7 @@ where ``$\triangleq$'' means ``equal to by definition''. These operators can the
     \dtm \uln &$\!\!\!\!\!\!\!\!\!\! = \frac{1}{k}\left(\uln - u_l^{n-1}\right),$\label{eq:backwardTimeOperatorU}\\
     \dtd \uln &$\!\!\!\!\!\!\!\!\!\! = \frac{1}{2k}\left(u_l^{n+1} - u_l^{n-1}\right),$\label{eq:centredTimeOperatorU}
 \end{subnumcases}
-and all approximate the first-order time derivative of $u$. Note that the centred difference has a division by $2k$ as the time difference between $n+1$ and $n-1$ is twice the time step. 
+and all approximate the first-order time derivative of $u$. Note that the centred difference has a division by $2k$ as the time difference between $n+1$ and $n-1$ is, indeed, twice the time step. 
 
 \todo{figure here visualising operators (with reference to grid figure)}
 Similar operators exist for a first-order derivative in space, where the forward, backward and centred difference are
@@ -134,11 +142,11 @@ and when applied to $\uln$ are
 \end{subnumcases}
 Higher order differences can be approxmated through a composition of first-order difference operators. The second-order difference in time may be approximated using
 \begin{equation}\label{eq:discSecondTime}
-    \ptt \approx \dtp\dtm = \dtt = \frac{1}{k^2}\left(e_{t+}-2+e_{t-}\right),
+    \ptt \approx \dtp\dtm = \dtt \triangleq \frac{1}{k^2}\left(e_{t+}-2+e_{t-}\right),
 \end{equation}
 where ``$2$'' is the identity operator applied twice.  and similarly for the second-order difference in space
 \begin{equation}\label{eq:discSecondSpace}
-    \pxx \approx \dxp\dxm = \dxx = \frac{1}{h^2}\left(e_{x+}-2+e_{x-}\right).
+    \pxx \approx \dxp\dxm = \dxx \triangleq \frac{1}{h^2}\left(e_{x+}-2+e_{x-}\right).
 \end{equation}
 Further information on combining operators can be found in Section \ref{sec:combiningOperators}.
 
@@ -148,14 +156,14 @@ Also useful \todo{in energy analysis, interleaved grids, etc.} are averaging ope
     \mtm & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(1 + e_{t-}\right),$\label{eq:backwardAvgTime}\\
     \mtd & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(e_{t+} + e_{t-}\right).$\label{eq:centredAvgTime}
 \end{subnumcases}
-Notice how these definitions are different than the difference operators in \eqref{eq:discFirstTime}: the terms in the parentheses are added rather than subtracted, rather than a division by the time step $k$ there is a division by $2$, and finally the centred averaging operator does not have an extra division by $2$ as in \eqref{eq:centredTimeOperator}.
+Notice how these definitions are different than the difference operators in \eqref{eq:discFirstTime}: the terms in the parentheses are added rather than subtracted, and rather than a division by the time step $k$ there is a division by $2$. Finally, the centred averaging operator does not have an extra division by $2$ as in \eqref{eq:centredTimeOperator}.
 Applied to $\uln$, Eqs. \eqref{eq:averagingTime} become
 \begin{subnumcases}{\uln \approx \label{eq:averagingTimeU}}
     \mtp \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(u_l^{n+1}+ \uln\right),$\label{eq:forwardAvggTimeU}\\
     \mtm \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(\uln + u_l^{n-1}\right),$\label{eq:backwardAvggTimeU}\\
     \mtd \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(u_l^{n+1} + u_l^{n-1}\right).$\label{eq:centredAvggTimeU}
 \end{subnumcases}
-
+%
 Similarly, spatial averaging operators are
 \begin{subnumcases}{1 \approx \label{eq:averagingSpace}}
     \mxp & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(e_{x+} + 1\right),$\label{eq:forwardAvgSpace}\\
@@ -168,17 +176,15 @@ and when applied to $\uln$
     \mxm \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(\uln + u_{l-1}^n\right),$\label{eq:backwardAvgSpaceU}\\
     \mxd \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(u_{l+1}^n + u_{l-1}^n\right).$\label{eq:centredAvgSpaceU}
 \end{subnumcases}
-
-
 Operators and derivatives in 2D will be discussed in Chapter \ref{ch:2Dsyst}.
 
 
 \subsubsection{Accuracy}
-As FDTD methods \textit{approximate} continuous systems, the resulting solution is rarely 100\% accurate. To determine the accuracy of the FD operators above, one can perform a Taylor series analysis. The Taylor series is an infinite sum and its expansion of a function $f$ about a point $a$ is defined as
+As FDTD methods approximate continuous systems, the resulting solution is rarely 100\% accurate. To determine the accuracy of the FD operators above, one can perform a Taylor series analysis. The Taylor series is an infinite sum and its expansion of a function $f$ about a point $a$ is defined as
 \begin{equation}
-    f(x) = \sum_{n=0}^{\infty} \frac{(x-a)}{n!}f^{(n)}(a)
+    f(x) = \sum_{n=0}^{\infty} \frac{(x-a)^n}{n!}f^{(n)}(a)
 \end{equation}
-where superscript $(n)$ denotes the $n$\th derivative of $f$ with respect to $x$. The analysis will be performed on the temporal operators in \eqref{eq:discFirstTime} and \eqref{eq:discSecondTime},  but will also apply to the spatial operators in \eqref{eq:discFirstSpace} and \eqref{eq:discSecondSpace}.
+where superscript $(n)$ denotes the $n$\th derivative of $f$ with respect to $x$. The analysis will be performed on the temporal operators in Eqs. \eqref{eq:discFirstTime} and \eqref{eq:discSecondTime},  but also apply to the spatial operators in Eqs. \eqref{eq:discFirstSpace} and \eqref{eq:discSecondSpace}.
 
 Using continuous function $u=u(t)$ and following Bilbao's ``slight abuse of notation'' in \cite{theBible}, one may apply FD operators to continuous functions according to 
 \begin{equation}\label{eq:forwardTimeCont}
@@ -195,7 +201,7 @@ Here, (following Newton's notation) the dot describes a single temporal derivati
     \dot u &= \frac{u(t+k) - u(t)}{k} + \O(k),
 \end{align}
 is the definition of the forward operator in time in Eq. \eqref{eq:forwardTimeCont} but with an additional error term. Notice that the sign of $\O$ does not matter.
-As the power of $k$ in $\O$'s argument determines the order of the error of the approximation, we can conclude that the forward operator is first-order accurate. One can also observe that, as expected, the error gets smaller as the time step $k$ gets smaller and indicates that higher sample rates result in more accurate simulations.
+As the power of $k$ in $\O$'s argument determines the order of the error of the approximation, we can conclude that the forward operator is first-order accurate. One can also observe that, as expected, the error gets smaller as the time step $k$ gets smaller and indicates that higher sample rates result in more accurate simulations (through $k=1/\fs$).
 
 We can arrive at a similar result for the backward operator. Applying Eq. \eqref{eq:backwardTimeOperator} to $u$ yields
 \begin{equation}
@@ -212,15 +218,15 @@ Applying the centred operator in Eq. \eqref{eq:centredTimeOperator} to $u$ yield
 \begin{equation}
     \dtd u(t) = \frac{u(t+k) - u(t-k)}{2k},
 \end{equation}
-indicating that to find the order of accuracy for the centred operator, both Eqs. \eqref{eq:taylorStartForward} and \eqref{eq:taylorStartBackward} are needed. Subtracting them and filling in their definitions yields
+indicating that to find the order of accuracy for this operator, both Eqs. \eqref{eq:taylorStartForward} and \eqref{eq:taylorStartBackward} are needed. Subtracting these and filling in their definitions yields
 \begin{align}
     u(t+k) - u(t-k) &= 2k\dot u - \frac{2k^3}{6}\dot{\ddot{u}} + 2\O(k^5),\\
     \frac{u(t+k) - u(t-k)}{2k} &= \dot u - \frac{k^2}{6}\dot{\ddot{u}} + \O(k^4),\\
     \dot u &= \frac{u(t+k) - u(t-k)}{2k} + \O(k^2).
 \end{align}
-Notice, that due to several terms cancelling out, the centred difference operator is second-order accurate. 
+Notice that due to several terms cancelling out, the centred difference operator is second-order accurate. 
 
-As a first-order derivative indicates the \textit{slope} of a function, the differences in accuracy between the above operators can be visualised as such as shown in Figure \ref{fig:taylor}. It can be observed that the derivative approximation of the centred operator much more closely matches the the true derivative of $u$ at $t$.
+As a first-order derivative indicates the \textit{slope} of a function, the differences in accuracy between the above operators can be visualised as such (see Figure \ref{fig:taylor}). It can be observed that the derivative approximation of the centred operator much more closely matches the the true derivative of $u$ at $t$.
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{figures/fdtd/taylor.eps}
@@ -246,70 +252,94 @@ For working with FD schemes, either for implementation or analysis, it can be ex
 \todo{see whether the negative version of identity \eqref{eq:identity3} is also used later on}
 That these equalities hold can easily be proven by expanding the operators defined in Section \ref{sec:FDoperators}. Naturally, these identities also hold for spatial operators by simply substituting the `$t$' subscripts for `$x$'. 
 
-\subsubsection{Implementation}
-In the following 
-\begin{itemize}
-    \item Continuous-time
-    \item Discrete-time
-    \item Implementation (update equation)
-\end{itemize}
-
-
-Something something newton's second law
-
-initial conditions
-
 \section{%Intro to ODEs: 
-The Mass-Spring System}
-Though a complete physical modelling field on its own (see Chapter \ref{ch:physMod}), mass-spring systems are also sound-generating systems themselves and lend themselves well to illustrating and explaining FDTD methods in practice. 
+The Mass-Spring System}\label{sec:massSpringSystem}
+Though a complete physical modelling field on its own (see Chapter \ref{ch:physMod}), mass-spring systems are also sound-generating systems themselves and lend themselves well to illustrating and explaining FDTD methods in practice. Starting with the continuous-time ODE, this section continues to discretise it to an FD scheme using the operators described in Section \ref{sec:FDoperators}. Finally, the scheme is rewritten to an update equation that can be implemented and the output of the system is shown. 
 
-\subsubsection{Continuous-time}
-The ODE of a simple mass-spring system is defined as
+\subsection{Continuous-time}
+Using dots to indicate a temporal derivative, the ODE of a simple mass-spring system is defined as
 \begin{equation}\label{eq:massSpringPDE}
-    M\ddot u = -Ku
+    M\ddot u = -Ku,
 \end{equation}
-where $u = u(t)$ is the distance from the equilibrium position (in m), $M$ is the mass of the mass (in kg) and $K$ is the spring constant (in N/m). If $u = 0$ there is no force present and the acceleration remains unchanged. If the mass is not in motion, this means that it remains stationary, but if it is, 
-
-
-In the literature, Eq. \eqref{eq:massSpringPDE} is often written as
+where $u = u(t)$ is the distance from the equilibrium position (in m), $M$ \SWcomment[$>0$] is the mass of the mass (in kg) and $K$ \SWcomment[$\geq 0$] is the spring constant (in N/m). In the literature \cite{theBible, }, Eq. \eqref{eq:massSpringPDE} is often written as
 \begin{equation}
     \ddot u = -\omega_0^2u
 \end{equation}
-with $\omega_0 = \sqrt{K/M}$ as it is more straightforward to relate to a fundamental frequency $f_0 = \omega_0 / 2 \pi$ (in Hz).
+with 
+\begin{equation}\label{eq:omega0MassSpring}
+    \omega_0 = \sqrt{K/M}.
+\end{equation}
+This way of writing the mass-spring ODE is more compact and more straightforward to relate to a fundamental frequency $f_0 = \omega_0 / 2 \pi$ (in Hz). 
+
+Apart from the choices of $K$ and $M$, the behaviour of the mass-spring system is determined by its \textit{initial conditions}, being $u(0)$ and $\pt u(0)$, i.e., the displacement and velocity of the mass at $t = 0$. If the initial conditions are non-zero, the path that the mass follows over time is sinusoidal (see Figure \ref{fig:massSpring}), which is also why the mass-spring system is often referred to as the \textit{simple harmonic oscillator}. The amplitude of the sinusoid is determined by the initial conditions, whereas the frequency is determined by $M$ and $K$. 
 
 \input{introduction/massSpringTikz.tex}
 
 \subsubsection{Intuition}
-The mass-spring system in Eq. \eqref{eq:massSpringPDE} is a combination of Newton's second law with Hooke's law. 
+The behaviour of the mass-spring system in Eq. \eqref{eq:massSpringPDE} arises from two basic laws of physics: \textit{Newton's second law} and \textit{Hooke's law}. 
 
-Starting with Newton's second law, i.e., \textit{force equals mass times acceleration}, and relating this to the variable names used in Eq. 
-\eqref{eq:massSpringPDE} yields an expression for force
+Starting with Newton's second law \textit{force equals mass times acceleration}, and relating this to the variables used in Eq. \eqref{eq:massSpringPDE} yields an expression for force
 \begin{equation}\label{eq:newton2nd}
     F = M\ddot u.
 \end{equation}
-As the mass is connected to a spring, this is the force that  force of a spring is given by Hooke's law
-\begin{equation}
+This equation in isolation can be used to, fx., calculate the force necessary to accelerate a mass of $M$ kg to $\ddot u$ m/s$^2$. Next, the force generated by the spring follows Hooke's law:
+\begin{equation}\label{eq:hookesLaw}
     F = -Ku,
 \end{equation} 
+which simply states that the force generated by a spring with stiffness $K$ is negatively proportional to the value of $u$. In other words, the further the spring is extended (from the equilibrium $u=0$), the more force will be generated in the opposite direction. Finally, as the sole force acting on the mass is the one generated by the spring, the two expressions for the force $F$ can be set equal to each other and yields the equation for the mass-spring system in \eqref{eq:massSpringPDE}. 
 
-A smaller mass is more easily moved, meaning that a smaller $M$ will cause a higher frequency. This shows in the definition for $\omega_0$
+The sinusoidal behaviour of the mass-spring system, or a least the fact that the mass ``gets pulled back'' to the equilibrium, is apparent from the minus-sign in Eq. \eqref{eq:hookesLaw}. The frequency of the sinusoid, depends on the value of $K$ as the ``pull'' happens to a higher degree for a higher spring stiffness. 
+That the frequency of the system is also dependent on the mass $M$ can be explained by the fact that a lighter object is more easily moved and vice versa, which is apparent from Eq. \eqref{eq:newton2nd}. In other words, the pull of the spring has a greater effect on the acceleration of a lighter object than a heavier one. 
 
-\subsubsection{Discrete-time}
+%Both these parameters affect the frequency through the definition of $\omega_0$ in Eq. \eqref{eq:omega0MassSpring}.
+
+%From the definition of $\omega_0$ in Eq. \eqref{eq:omega0MassSpring} one can observe that a smaller $M$ will cause a higher frequency explained by the fact that a smaller mass is more easily moved. Similarly, a higher spring constant $K$ will cause a higher frequency, as the force caused by Hooke's law ``pulls'' the mass back to the equilibrium to a higher degree.
+
+Finally, if $u = 0$ there is no spring force present and the acceleration remains unchanged. If the mass is not in motion, this means that it remains stationary, but if it is, the velocity is unchanged and it will continue moving with the same speed. 
+
+\subsection{Discrete-time}
 The displacement of the mass is approximated using 
 \begin{equation}
-    u(t) \approx u^n
+    u(t) \approx u^n,
 \end{equation}
-where $t = nk$
+with time $t = nk$, time step $k = 1/\fs$, sample rate $\fs$ and temporal index and $n \in \mathbb{N}^0$.\footnote{In this work, $\mathbb{N}^0$ is used to denote the set of non-negative integers ($\mathbb{N}^0 = 0, 1, 2, 
+\hdots$).} Note that the ``grid function'' does not have a subscript $l$ as $u$ is not distributed in space and is now simply called a \textit{time series}.
 
-Grid function without spatial dimensions is a time series
+Using the operators found in Section 
+\ref{sec:FDoperators}, Eq. \eqref{eq:massSpringPDE} can be discretised as follows:
+\begin{equation}\label{eq:massSpringFDS}
+    M \dtt \un = -K\un,
+\end{equation}
+which is the first appearance of a FD scheme in this work. Expanding the $\delta_{tt}$ operator yields 
+\begin{equation*}
+    \frac{M}{k^2}\left(u^{n+1}-2\un+u^{n-1}\right) = -K\un,\nonumber
+\end{equation*}
+and solving for $u^{n+1}$ results in the following recursion or \textit{update equation}:
+\begin{equation}\label{eq:massSpringUpdate}
+    u^{n+1} = 2\un - u^{n-1} - \frac{Kk^2}{M} u^n,
+\end{equation}
+which can be implemented in a programming language such as \texttt{MATLAB} or \texttt{C++}. %This is the only unknown value as $u^n$ and $u^{n-1}$ are known from previous calculations. 
 
+To be able to calculate the scheme at $n=0$ (the first time index of the simulation), values must be provided for $u^0$ and $u^{n-1}$. These are determined by the initial conditions. A simple way to obtain a sinusoidal motion with an amplitude of $1$, is to set the initial conditions as follows (using the backwards time difference operator for discretising the first-order time derivative): 
+%
 \begin{equation}
-    M \dtt \un = -K\un
+    u^0 = 1 \quad \text{and} \quad \dtm u^n = 0.
 \end{equation}
-\subsubsection{Implementation and Output}
-\begin{equation}
-    u^{n+1} = 2\un - u^{n-1} - Kk^2 u^n
-\end{equation}
+The latter equality can be solved for $u^{-1}$ to obtain its definition: 
+\begin{align*}
+    &\frac{1}{k}\left(u^0 - u^{-1}\right) = 0,\\[-1em]
+    \xLeftrightarrow{\mystrut\ u^0 = 1\ }\quad &1 - u^{-1} = 0,\\[0.1em]
+ &u^{-1} = 1.
+\end{align*}
+Simply setting $u^0 = u^{-1} \neq 0$ yields an oscillatory behaviour. \todo{maybe a bit short...}
+
+\subsection{Implementation and Output}
+A simple \texttt{MATLAB} script implementing the mass-spring system described in this section is shown in Appendix \ref{app:massSpringCode}. The output of the system can be obtained by listening to the displacement of the mass at the given sample rate $\fs$. An example of this can be found in Figure \ref{fig:massSpringOutput} where the frequency of oscillation $f_0 = 440$ Hz.
+
+\begin{figure}[ht]
+    \includegraphics[width=\textwidth]{figures/fdtd/massSpringOutput.eps}
+    \caption{The time-domain and frequency-domain output of a mass-spring system with $f_0 = 440$ Hz. \label{fig:massSpringOutput}}
+\end{figure}
 
 \todo{Time-domain and FFT figs}
 
@@ -410,7 +440,7 @@ The amplitude of the different modes, on the other hand, depends on the location
 \subsection{Matrix Form}
 For several purposes, such as implementation in MATLAB and several analysis techniques described shortly, is useful to write an FD scheme in \textit{matrix form}. 
 
-In this document, matrices and vectors are written using bold symbols. A matrix uses a capital letter whereas vectors are decapitalised. The dimensions of a matrix are denoted using ``$row \times column$''. A $6\times 14$ matrix, for example, thus has $6$ rows and $14$ columns. Along those lines, a \textit{row vector} is a matrix with $1$ row and more than $1$ column and a \textit{column vector} is a matrix with $1$ column and more than $1$ row. \SWcomment[If a matrix has only $1$ row and $1$ column, it can be used as a \textit{scalar}.]
+In this document, matrices and vectors are written using bold symbols. \SWcomment[Many notations exist, blabla $\bar a$ ] A matrix uses a capital letter whereas vectors are decapitalised. The dimensions of a matrix are denoted using ``$row \times column$''. A $6\times 14$ matrix, for example, thus has $6$ rows and $14$ columns. Along those lines, a \textit{row vector} is a matrix with $1$ row and more than $1$ column and a \textit{column vector} is a matrix with $1$ column and more than $1$ row. \SWcomment[If a matrix has only $1$ row and $1$ column, it can be used as a \textit{scalar}.]
 
 \subsubsection{Matrix Multiplication}
 In order for matrix multiplication (including matrix-vector multiplication) to be valid, the number of columns of the first matrix needs to be equal to the number of rows in the second matrix. The result will then be a matrix with a number of rows equal to that of the first matrix and a number of columns equal to that of the second matrix. See Figure \ref{fig:matrixMult} for reference.
@@ -458,7 +488,6 @@ Expanding this operation results in
         a_{N0}u_0 + a_{N1}u_1 + \hdots + a_{NN}u_N
     \end{bmatrix}}_{\w}
 \end{equation}
-
 
 
 \subsubsection{Operators in Matrix Form}
@@ -557,6 +586,10 @@ and rewritten to a matrix form of the update equation
     \u^{n+1} = (2\I + c^2k^2 \Dxx )\u^n - \u^{n-1}.
 \end{equation}
 The identity matrix is necessary here for correct matrix addition.
+
+\subsection{System of Linear Equations}
+A number of unknowns described by the same number of equations can be solved using a 
+
 
 \section{Energy Analysis}\label{sec:energyAnalysis}
 Debugging physical models.
