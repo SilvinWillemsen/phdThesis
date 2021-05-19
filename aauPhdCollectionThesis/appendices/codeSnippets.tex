@@ -19,6 +19,9 @@ K = omega0^2 * M;       % spring constant [N/m]
 u = 1;                  
 uPrev = 1;
 
+% initialise output vector
+out = zeros(lengthSound, 1);
+
 %% Simulation loop
 for n = 1:lengthSound
     

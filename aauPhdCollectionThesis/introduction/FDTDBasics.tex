@@ -1,4 +1,4 @@
-\chapter{FDTD Methods and Analysis Techniques}\label{ch:FDTD}
+\chapter{Introduction to FDTD Methods}\label{ch:FDTD}
 
 \begin{flushright}{\it
 ``Since Newton, mankind has come to realize that the laws of physics\\
@@ -81,6 +81,8 @@ In this work,
 Differential equations are powerful tools that describe the motion of physical systems. Despite this, only few of these have a closed-form \SWcomment[or analytical] solution (such as the simpler ones that will be presented in this chapter). More complex systems require methods that do not perfectly solve, but rather \textit{approximate} the solutions to these equations. Finite-difference time-domain (FDTD) are considered one of the
 in terms of generality and flexibility... 
 
+Unless denoted otherwise, the equations and theory used in this chapter has been taken from \cite{theBible}.
+
 \SWcomment[It is important to note that a discrete FD scheme is an \textit{approximation} to a continuous PDE, not a sampled version of it. This means that the resulting schemes are rarely an exact solution to the original continuous equation.]
 
 These methods essentially subdivide a continuous differential equation into discrete points in time and space, a process called \textit{discretisation}. Once an ODE or PDE is discretised using these methods it is now called a \textit{finite-difference (FD) scheme} which approximates the original differential equation. 
@@ -89,12 +91,12 @@ These methods essentially subdivide a continuous differential equation into disc
     \centering
     \includegraphics[width=\textwidth]{figures/fdtd/gridFigure.eps}
     \caption{\label{fig:discretisation} A continuous PDE is discretised }
-\end{figure}\todo{different wording in caption}
+\end{figure}\todo{Figure and caption are not done yet}
 
-\subsection{Grid Functions \todo{check capitalisation of headings throughout document}}
+\subsection{Grid Functions \todo{FULL DOC SWEEP: check capitalisation of headings throughout document}}
 We start by defining a discrete \textit{grid} over time and space which we will use to approximate our continuous equations \todo{grid figure}. A system $u = u(x,t)$ defined over time $t$ and one spatial dimension $x$, can be approximated using a \textit{grid function} $u_l^n$. Here, subscript $l$ and superscript $n$ describe the spatial and temporal indices respectively and arise from the discretisation of the continuous variables $x$ and $t$ according to $x=lh$ and $t=nk$. The spatial step $h$, also called the \textit{grid spacing} describes the distance (in m) between two neighbouring grid points and the temporal step $k$, or \textit{time step} is the time (in s) between two consecutive temporal indices. The latter can be calculated $k=1/\fs$ for a sample rate $\fs$ (in Hz). In many audio applications $\fs = 44100$ Hz which will be used in this work (unless denoted otherwise).
 
-\todo{this might be unnecessary, but I thought that it might be nice to have this in an equation for clarity} To summarise
+\todo{this might be unnecessary, but I thought that it might be nice to have this in an equation for clarity} To summarise, for a system distributed over one spatial dimension
 \begin{equation}
     u(x,t) \approx u_l^n \quad \text{with} \quad x=lh \quad \text{and} \quad t = nk
 \end{equation}
@@ -112,7 +114,7 @@ Similarly, forward and backward shifts in space are
     e_{x+}\uln = u_{l+1}^n,\quad \text{and}\quad e_{x-}\uln = u_{l-1}^n.
 \end{equation}
 %
-\todo{many figures for shift and FD operators}These shift operators are rarely used in isolation, though they do appear in energy analysis techniques detailed in Section \ref{sec:energyAnalysis}. The operators do, however, form the basis of commonly used \textit{finite-difference (FD) operators}. The first-order derivative in time can be discretised three different ways. The forward, backward and centred \todo{check centred instead of centered, full document sweep} difference operators are
+\todo{many figures for shift and FD operators}These shift operators are rarely used in isolation, though they do appear in energy analysis techniques detailed in Section \ref{sec:energyAnalysis}. The operators do, however, form the basis of commonly used \textit{finite-difference (FD) operators}. The first-order derivative in time can be discretised three different ways. The forward, backward and centred \todo{FULL DOC SWEEP: check centred instead of centered} difference operators are
 %
 \begin{subnumcases}{\pt \approx\label{eq:discFirstTime}}
         \dtp &$\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{k}\left(e_{t+} - 1\right),$\label{eq:forwardTimeOperator}\\
@@ -316,7 +318,7 @@ which is the first appearance of a FD scheme in this work. Expanding the $\delta
 \end{equation*}
 and solving for $u^{n+1}$ results in the following recursion or \textit{update equation}:
 \begin{equation}\label{eq:massSpringUpdate}
-    u^{n+1} = 2\un - u^{n-1} - \frac{Kk^2}{M} u^n,
+    u^{n+1} = \left(2-\frac{Kk^2}{M} \right)\un - u^{n-1},
 \end{equation}
 which can be implemented in a programming language such as \texttt{MATLAB} or \texttt{C++}. %This is the only unknown value as $u^n$ and $u^{n-1}$ are known from previous calculations. 
 
@@ -331,7 +333,9 @@ The latter equality can be solved for $u^{-1}$ to obtain its definition:
     \xLeftrightarrow{\mystrut\ u^0 = 1\ }\quad &1 - u^{-1} = 0,\\[0.1em]
  &u^{-1} = 1.
 \end{align*}
-Simply setting $u^0 = u^{-1} \neq 0$ yields an oscillatory behaviour. \todo{maybe a bit short...}
+Simply setting $u^0 = u^{-1} \neq 0$ \todo{maybe a bit short...} yields an oscillatory behaviour. 
+
+The values for $K$ and $M$ are restricted by a stability condition which will be elaborated on in \ref{sec:stabilityAnalysis}.
 
 \subsection{Implementation and Output}
 A simple \texttt{MATLAB} script implementing the mass-spring system described in this section is shown in Appendix \ref{app:massSpringCode}. The output of the system can be obtained by listening to the displacement of the mass at the given sample rate $\fs$. An example of this can be found in Figure \ref{fig:massSpringOutput} where the frequency of oscillation $f_0 = 440$ Hz.
@@ -348,12 +352,13 @@ A simple \texttt{MATLAB} script implementing the mass-spring system described in
 \section{%Intro to PDEs: 
 The 1D Wave Equation}
 Arguably the most important PDE in the field of physical modelling for sound synthesis is the 1D wave equation.
-\subsection{Continuous-time}
-The state of the system $u=u(x,t)$ meaning that is on top of being defined in time $t$ it is distributed over space $x$. The 1D wave equation is defined as follows
+
+\subsection{Continuous-time\todo{FULL DOC SWEEP: check hyphen in titles}}
+The 1D wave equation is a PDE that describes the motion of a system distributed in one dimension of space. The state of the system $u=u(x,t)$ is thus both defined over time $t$ and space $x$ and can be used to describe transverse vibration in an ideal string, longitudinal vibration in an ideal bar and pressure in an acoustic tube (see Chapter \ref{ch:brass}). The 1D wave equation is defined as follows
 \begin{equation}\label{eq:1DwavePDE}
     \ptt u = c^2 \pxx u,
 \end{equation}
-where $c$ is the wave speed (in m/s). The state variable $u$ can be used to describe transverse vibration in an ideal string, longitudinal vibration in an ideal bar and pressure in an acoustic tube. Although the behaviour of this equation alone does not appear in the real world, as no physical system is ideal, it is extremely useful as a test case and a basis for more complicated models. Here, it will be used to introduce various concepts and analysis techniques in the field of FDTD methods.
+where $c$ is the wave speed (in m/s). Although the behaviour of this equation alone does not appear in the real world, as no physical system is ideal, it is extremely useful as a test case and a basis for more complicated models. Here, it will be used to introduce various concepts and analysis techniques in the field of FDTD methods.
 
 \subsubsection{Intuition}
 Although the 1D wave equation often appears in the literature, an intuition or interpretation of why it works the way it does is hard to find. In the following, $u$ describes the transverse displacement of an ideal string.
@@ -364,11 +369,11 @@ I would like to use this opportunity to provide some extra explanation as to how
 
 Going back to Newton's second law
 
-The acceleration of $u = u(x,t)$ at location $x$ is determined by the second-order spatial derivative of $u$ at that same location (scaled by a constant $c^2$). In the case that $u$ describes the transverse displacement of an ideal string, this second-order derivative denotes the \textit{curvature} of this string. As $c^2$ is always positive, the sign (or direction) of the acceleration is fully determined by the sign of the curvature. In other words, a `positive' curvature at location $x$ along the ideal string yields a `positive' or upwards acceleration at that same location. 
+The 1D wave equation in \eqref{eq:1DwavePDE} states that the acceleration of $u = u(x,t)$ at location $x$ is determined by the second-order spatial derivative of $u$ at that same location (scaled by a constant $c^2$). In the case that $u$ describes the transverse displacement of an ideal string, this second-order derivative denotes the \textit{curvature} of this string. As $c^2$ is always positive, the sign (or direction) of the acceleration is fully determined by the sign of the curvature. In other words, a `positive' curvature at location $x$ along the ideal string yields a `positive' or upwards acceleration at that same location. 
 
 What a `positive' or `negative' curvature implies is more easily seen when we take a simple function describing a parabola, $y(x) = x^2$, and take its second derivative to get $y''(x) = 2$. The answer is a positive number which means that $y$ has a positive curvature. 
 
-So, what does this mean for the 1D wave equation? As a positive curvature implies a positive or upwards acceleration as per Eq. \eqref{eq:1DwavePDE}, $u$ with a positive curvature at a location $x$ will start to move upwards and vice versa. Of course, the state of a physical system such as $u$ will rarely have a perfect parabolic shape, but the argument still applies. 
+So, what does this mean for the 1D wave equation? As a positive curvature implies a positive or upwards acceleration as per Eq. \eqref{eq:1DwavePDE}, $u$ with a positive curvature at a location $x$ will start to move upwards and vice versa. Of course, the state of a physical system such as $u$ will rarely have a perfect parabolic shape, but the argument still applies. See Figure \ref{fig:curvature}.
 
 \begin{figure}[h]
     \centering
@@ -377,26 +382,53 @@ So, what does this mean for the 1D wave equation? As a positive curvature implie
 \end{figure}\todo{different wording in caption}
 
 \subsubsection{Boundary Conditions}
-When a system is distributed in space, 
+When a system is distributed in space, what happens at the boundaries must be determined. For this we use \textit{boundary conditions}.
 
-For analysis purposes, an infinite domain may be adopted, but for implementation, a finite domain needs to be established. 
+\SWcomment[For analysis purposes, an infinite domain may be adopted, but for implementation, a finite domain needs to be established.]
 
-Consider a system of length $L$ (in m) $x\in \D$ ($x$ is an element in $\D$) where domain $\D = [0, L]$
-Two alternatives are
+Consider a system of length $L$ (in m) $x\in \D$ ($x$ is an element in $\D$) where domain $\D = [0, L]$. Two alternatives are
 
 \begin{subequations}\label{eq:boundaryCond1DWave}
     \begin{align}
         u(0, t) = u(L, t) &= 0\quad \text{(Dirichlet, fixed)},\label{eq:contDirichlet}\\
-        \px u(0, t) = \px u(L, t) &= 0\quad \text{(Neumann, free)},\label{eq:contNeumann}
+        \px u(0, t) = \px u(L, t) &= 0\quad \text{(Neumann, free)}.\label{eq:contNeumann}
     \end{align}
 \end{subequations}
+The Dirichlet boundary condition says that at the end points of the system, the state is 0 at all times. This causes incoming waves to invert after reaching the boundary. The Neumann condition on the other hand, says that rather the slope of these points needs to be 0. The boundary can thus move transversely causing incoming waves to be reflected uninverted. Figure \ref{fig:boundaryCondsCont} shows this behaviour.
 
-\subsection{Discrete-time}
+If both boundaries of the 1D wave equation share the same condition, the fundamental frequency of the simulation can be calculated using 
+\begin{equation}
+    f_0 = \frac{c}{2L}\ .
+\end{equation}
+
+\begin{figure}[t]
+    \centering
+    \subfloat[The Dirichlet boundary condition in Eq. \eqref{eq:contDirichlet} fixes the boundary, which causes the incoming waves to invert here.\label{fig:dirichlet}]{\includegraphics[width=0.45\textwidth]{figures/fdtd/dirichletCont.eps}}\hspace{0.06\textwidth}
+    \subfloat[The Neumann or free boundary condition in Eq. \eqref{eq:contNeumann} fixes the slope at the boundary, causing the incoming waves to not invert.\label{fig:neumann}]{\includegraphics[width=0.45\textwidth]{figures/fdtd/neumannCont.eps}}
+    \caption{The behaviour of the 1D wave equation with (a) Dirichlet or (b) Neumann boundary conditions.\label{fig:boundaryCondsCont}}
+\end{figure}
+
+\subsection{Discrete time}
 The most straightforward discretisation of Eq. \eqref{eq:1DwavePDE} is the following FD scheme
 \begin{equation}\label{eq:1DwaveFDS}
     \dtt \uln = c^2 \dxx \uln.
 \end{equation}
-Other schemes exist (such as implicit)
+Other schemes exist (see fx. \cite{theBible}), but are excluded as they have not been used in this work. Expanding the operators 
+\begin{equation}
+    \frac{1}{k^2}\left(u_l^{n+1}-2 \uln + u_l^{n-1}\right) = \frac{c^2}{h^2} \left(u_{l+1}^n - 2 \uln + u_{l-1}^n\right).
+\end{equation}
+and solving for $u_l^{n+1}$ yields
+\begin{equation}\label{eq:1DwaveUpdate}
+    u_l^{n+1} = \left(2-2\lambda^2\right) \uln  + \lambda^2\left(u_{l+1}^n + u_{l-1}^n\right) - u_l^{n-1}.
+\end{equation}
+Here, 
+\begin{equation}
+    \lambda = \frac{ck}{h}
+\end{equation}
+is called the \textit{Courant number} plays a big role in stability of the scheme on the one hand and quality of the FD scheme on the other hand.
+
+If $\lambda = 1$, \eqref{eq:1DwaveFDS} is an exact solution to Eq. \eqref{eq:1DwavePDE}. This is no
+
 \subsubsection{Stability}
 The parameters that define \eqref{eq:1DwaveFDS} are linked through a stability condition. The famous Courant-Friedrichs-Lewy or \textit{CFL condition} is defined as \cite{courant} 
 \begin{equation}\label{eq:CFL}
@@ -418,12 +450,6 @@ The number of grid points can then be calculated using
 \end{equation}
 where $\floor[\cdot]$ denotes the flooring operation. 
 
-\subsubsection{Implementation}
-\begin{equation}\label{eq:1DwaveUpdate}
-    u_l^{n+1} = 2 \uln - u_l^{n-1} + \lambda^2 \left(u_{l+1}^n - 2 \uln + u_{l-1}^n\right)
-\end{equation}
-
-If $\lambda = 1$, \eqref{eq:1DwaveFDS} is an exact solution to Eq. \eqref{eq:1DwavePDE}. This is no
 
 \subsubsection{Numerical Dispersion}
 
@@ -435,257 +461,3 @@ The location, or frequency of the harmonic partials can also be analytically / n
 \todo{fft and waveform}
 
 The amplitude of the different modes, on the other hand, depends on the location of excitation and output. 
-
-
-\subsection{Matrix Form}
-For several purposes, such as implementation in MATLAB and several analysis techniques described shortly, is useful to write an FD scheme in \textit{matrix form}. 
-
-In this document, matrices and vectors are written using bold symbols. \SWcomment[Many notations exist, blabla $\bar a$ ] A matrix uses a capital letter whereas vectors are decapitalised. The dimensions of a matrix are denoted using ``$row \times column$''. A $6\times 14$ matrix, for example, thus has $6$ rows and $14$ columns. Along those lines, a \textit{row vector} is a matrix with $1$ row and more than $1$ column and a \textit{column vector} is a matrix with $1$ column and more than $1$ row. \SWcomment[If a matrix has only $1$ row and $1$ column, it can be used as a \textit{scalar}.]
-
-\subsubsection{Matrix Multiplication}
-In order for matrix multiplication (including matrix-vector multiplication) to be valid, the number of columns of the first matrix needs to be equal to the number of rows in the second matrix. The result will then be a matrix with a number of rows equal to that of the first matrix and a number of columns equal to that of the second matrix. See Figure \ref{fig:matrixMult} for reference.
-
-As an example, consider the $L
-\times M$ matrix $
-\A$ and a $M\times N$ matrix $
-\B$. The multiplication $\A\B$ is defined as the number of columns of matrix $
-\A$ ($M$) is equal to the number of rows of matrix $\B$ (also $M$). The result, $\C$, is a $L \times N$ matrix. The multiplication $\B\A$ is undefined as the number of columns of the first matrix does not match the number of rows in the second matrix. 
-
-Multiplying two matrices written in their dimensions as 
-\begin{equation}
-    \overbrace{(L\times M)}^{\A}\cdot \overbrace{(M\times N)}^{\B} = \overbrace{(L
-    \times N)}^{\C}
-\end{equation}
- 
-\begin{figure}[h]
-    \includegraphics[width=\textwidth]{figures/fdtd/matrixVector2.pdf}
-    \caption{Visualisation of valid matrix(-vector) multiplications. \label{fig:matrixVector}}
-\end{figure}
-
-\subsubsection{In a FDTD context}
-Matrix multiplication when working with FDTD methods usually involves multiplying a square matrix (with equal rows and columns) onto a column vector (see Figure \ref{fig:matrixVector}a). Consider a square matrix with $(N+1)\times (N+1)$ elements $\A$ and a $(N+1) \times 1$ column vector $\u$. Multiplying these results in a $(N+1) \times 1$ column vector $\w$:
-\begin{equation}
-    \A\u = \w.
-\end{equation}
-Expanding this operation results in 
-\begin{equation}
-    \underbrace{\begin{bmatrix}
-        a_{00} & a_{01} & \hdots & a_{0N}\\
-        a_{10} & a_{11} & \hdots & a_{2N}\\
-        \vdots & \vdots & &\vdots\\
-        a_{N0} & a_{N1} & \hdots & a_{NN}
-    \end{bmatrix}}_{\A}
-    \underbrace{\begin{bmatrix}
-        u_0\\
-        u_1\\
-        \vdots\\
-        u_N
-    \end{bmatrix}}_{\u} = 
-    \underbrace{\begin{bmatrix}
-        a_{00}u_0 + a_{01}u_1 + \hdots + a_{0N}u_N\\
-        a_{10}u_0 + a_{11}u_1 + \hdots + a_{1N}u_N\\
-        \vdots\\
-        a_{N0}u_0 + a_{N1}u_1 + \hdots + a_{NN}u_N
-    \end{bmatrix}}_{\w}
-\end{equation}
-
-
-\subsubsection{Operators in Matrix Form}
-The FD operators approximating first-order spatial derivatives in \eqref{eq:discFirstSpace} can be written in matrix form according to
-\begin{gather*}\small
-    \mathbf{D}_{x+} = \frac{1}{h}\begin{bmatrix}
-        \ddots &\ddots & & & \mathbf{0}&\\
-         & -1 & 1 & & & \\
-        & & -1 & 1 & & \\
-        & & & -1 & 1 & \\
-        & & & & -1 & \ddots\\
-        &\mathbf{0} & & & & \ddots \\
-    \end{bmatrix}
-    \quad
-    \mathbf{D}_{x-} = \frac{1}{h}\begin{bmatrix}
-        \ddots & & & & \mathbf{0}&\\
-        \ddots & 1 & & & & \\
-        & -1 & 1 & & & \\
-        & & -1 & 1 & & \\
-        & & & -1 & 1 & \\
-        &\mathbf{0} & & & \ddots & \ddots \\
-    \end{bmatrix}\\
-    \\
-    \mathbf{D}_{x\cdot} = \frac{1}{2h}\begin{bmatrix}\small
-        \ddots &\ddots & & & \mathbf{0}&\\
-        \ddots & 0 & 1 & & & \\
-        & -1 & 0 & 1 & & \\
-        & & -1 & 0 & 1 & \\
-        & & & -1 & 0 & \ddots \\
-        &\mathbf{0} & & & \ddots & \ddots \\
-    \end{bmatrix}\\
-\end{gather*}
-The matrices $\mathbf{D}_{x+}$ and $\mathbf{D}_{x-}$ can be multiplied to get $\Dxx$:
-\begin{equation}\small
-    \Dxx = \mathbf{D}_{x+}\mathbf{D}_{x-} = \frac{1}{h^2}\begin{bmatrix}
-        \ddots &\ddots & & & \mathbf{0}&\\
-        \ddots & -2 & 1 & & & \\
-        & 1 & -2 & 1 & & \\
-        & & 1 & -2 & 1 & \\
-        & & & 1 & -2 & \ddots \\
-        &\mathbf{0} & & & \ddots & \ddots \\
-    \end{bmatrix}.
-\end{equation}
-%
-Averaging operators $\mxp$, $\mxm$ and $\mxd$ are defined in a similar way:
-
-\begin{gather*}
-    \mathbf{M}_{x+} = \frac{1}{2}\begin{bmatrix}
-        \ddots &\ddots & & & \mathbf{0}&\\
-         & 1 & 1 & & & \\
-        & & 1 & 1 & & \\
-        & & & 1 & 1 & \\
-        & & & & 1 & \ddots\\
-        &\mathbf{0} & & & & \ddots \\
-    \end{bmatrix}
-    \qquad
-    \mathbf{M}_{x-} = \frac{1}{2}\begin{bmatrix}
-        \ddots & & & & \mathbf{0}&\\
-        \ddots & 1 & & & & \\
-        & 1 & 1 & & & \\
-        & & 1 & 1 & & \\
-        & & & 1 & 1 & \\
-        &\mathbf{0} & & & \ddots & \ddots \\
-    \end{bmatrix}\\
-    \\
-    \mathbf{M}_{x\cdot} = \frac{1}{2}\begin{bmatrix}
-        \ddots &\ddots & & & \mathbf{0}&\\
-        \ddots & 0 & 1 & & & \\
-        & 1 & 0 & 1 & & \\
-        & & 1 & 0 & 1 & \\
-        & & & 1 & 0 & \ddots \\
-        &\mathbf{0} & & & \ddots & \ddots \\
-    \end{bmatrix}\\
-\end{gather*}
-
-It is important to notice that only spatial operators are written in this matrix form and then applied to state vectors at different time steps ($n+1$, $n$ and $n-1$). 
-
-Finally, the identity matrix is a matrix with only $1$s on the diagonal and $0$s elsewhere as
-\begin{equation}
-    \I = \begin{bmatrix}
-        \ddots & & & & \mathbf{0}&\\
-         & 1 & & & & \\
-        & & 1 & & & \\
-        & & & 1 & & \\
-        & & & & 1 & \\
-        &\mathbf{0} & & &  & \ddots \\
-    \end{bmatrix}\\
-\end{equation}
-\subsubsection{Schemes and Update Equations in Matrix Form}
-With these building blocks we can write Eq. \eqref{eq:1DwaveFDS} in matrix form. The values of the grid function $\uln$ can be stored in a state vector according to $\u^n = [u_0^n, u_1^n, \hdots, u_N^n]^T$ where $T$ denotes the transpose operation. The FD scheme in \eqref{eq:1DwaveFDS} can then be written in matrix form as
-\begin{equation}\label{eq:1DwaveMatrix}
-    \frac{1}{k^2}\left(\u^{n+1} - 2 \u + \u^{n-1}\right) = c^2 \Dxx \u^n,
-\end{equation}
-and rewritten to a matrix form of the update equation
-\begin{equation}
-    \u^{n+1} = (2\I + c^2k^2 \Dxx )\u^n - \u^{n-1}.
-\end{equation}
-The identity matrix is necessary here for correct matrix addition.
-
-\subsection{System of Linear Equations}
-A number of unknowns described by the same number of equations can be solved using a 
-
-
-\section{Energy Analysis}\label{sec:energyAnalysis}
-Debugging physical models.
-
-\subsection{Mathematical tools}
-\subsubsection{Continuous-time}
-For two functions $f(x)$ and $g(x)$ and $x\in\D$ their $l_2$ inner product along with the $l_2$ norm is defined as
-\begin{equation}\label{eq:contInnerProd}
-    \langle f, g\rangle_\D \int_\D fg dx \quad \text{and} \quad \lVert f \rVert_\D = \sqrt{\langle f, f \rangle_\D}
-\end{equation}
-
-
-\subsubsection{Discrete-time}
-Inner product of any time series $f^n$ and $g^n$ and the discrete counterpart to \eqref{eq:contInnerProd} is
-\begin{equation}\label{eq:discInnerProd}
-    \langle f^n, g^n \rangle_\D = \sum_{l\in\D} h f_l^n g_l^n
-\end{equation}
-where the multiplication by $h$ is the discrete counterpart of $dx$ the continuous definition. 
-
-\subsubsection{Product Identities}
-Some useful identities used in this work are
-\begin{subequations}
-    \begin{align}
-        (\dtd \uln)(\dtt \uln) &= \dtp \left(\frac{1}{2}(\dtm \uln)^2\right),\label{eq:prodIdentity1}\\
-        (\dtd \uln)\uln &= \dtp \left(\frac{1}{2}\uln e_{t-}\uln\right),\label{eq:prodIdentity2}\\
-        (\dtp \uln)(\mtp \uln) &= \dtp \left(\frac{1}{2}(\uln)^2\right),\label{eq:prodIdentity3}\\
-        (\dtd \uln)(\mu_{t\cdot}\uln) &= \dtd\left(\frac{1}{2} (\uln)^2\right).\label{eq:prodIdentity4}
-    \end{align}
-\end{subequations}
-Again, these can be used for spatial derivatives as well by substituting the `$t$' subscripts for `$x$'. Also  to 
-
-When an operator is applied to a product of two grid functions, the discrete counter part of the product rule needs to be used according to
-\begin{equation}
-    \dtp (\uln\wln) = (\dtp \uln)(\mtp\wln) + (\mtp \uln)(\dtp \wln).
-\end{equation}
-\section{von Neumann Analysis}\label{sec:stabilityAnalysis}
-Much literature gives the stability condition using an ``it can be shown that'' argument (fx. \cite{Bilbao2009}). Here, I would like to take the opportunity to 
-
-Finding stability conditions for models
-
-Sin identity:
-\begin{equation}\label{eq:sinIdentity}
-    \sin(x) = \frac{e^{jx} - e^{-jx}}{2j}\ \ \Rightarrow \ \ \sin^2(x) = \frac{e^{j2x} - 2e^{jx-jx}+ e^{-j2x}}{-4} = \frac{e^{j2x} + e^{-j2x}}{-4} + \frac{1}{2}.
-\end{equation}
-Cos identity:
-\begin{equation}\label{eq:cosIdentity}
-    \cos(x) = \frac{e^{jx} + e^{-jx}}{2}\ \ \Rightarrow \ \ \cos^2(x) = \frac{e^{j2x} + 2e^{jx-jx}+ e^{-j2x}}{4} = \frac{e^{j2x} + e^{-j2x}}{4} + \frac{1}{2}.
-\end{equation}
-
-One can analyse a \todo{check `a' or `an' FD scheme}FD scheme by 
-\begin{equation}
-    u_l^n = z^n e^{jl\beta h}
-\end{equation}
-where $\beta$ is a real wavenumber. Important to remember is that without a shift in space (fx. $l+1$) or time (fx. $n-1$) $l = 0$ or $n=0$ respectively:
-\begin{subequations} \label{eq:identitiesZ}
-    \begin{align}
-        u_l^n &= z^0 e^{j0\beta h} = 1\\
-        u_{l+1}^n &= z^0 e^{j1\beta h} = e^{j\beta h}\\
-        u_{l-1}^n &= z^0 e^{j(-1)\beta h} = e^{-j\beta h}\\
-        u_{l+2}^n &= z^0 e^{j2\beta h} = e^{j\beta h}\\
-        u_{l-2}^n &= z^0 e^{j(-2)\beta h}= e^{-j2\beta h}\\
-        u_l^{n+1}&= z^1 e^{j0\beta h} = z\\
-        u_l^{n-1}&= z^{-1} e^{j0\beta h} = z^{-1}
-    \end{align}
-\end{subequations}
-
-\todo{Talk about solution of }
-
-\section{Modal Analysis}
-\label{sec:modalAnalysis}
-Modes are the resonant frequencies of a system. The amout of modes that a discrete system contains dependends on the amount of moving points. A mass-spring system thus has one resonating mode, but a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. This section will show how to obtain the modes of an FD scheme implementing the 1D wave equation. 
-
-We start by using the the matrix form of FD scheme \eqref{eq:1DwaveFDS} from Eq. \eqref{eq:1DwaveMatrix}
-\begin{equation*}
-    \frac{1}{k^2}\left(\u^{n+1}-2\u^n+\u^{n-1}\right) = c^2 \Dxx\u.
-\end{equation*}
-Following \cite{theBible} we assume a solution of the form $\u = \boldsymbol{\phi}z^n$ \todo{more explanation}. Substituting this into Eq. \eqref{eq:matrixForm1D} yields the characteristic equation
-\begin{equation}
-    (z - 2 + z^{-1})\boldsymbol{\phi} = c^2k^2\Dxx \boldsymbol{\phi}.
-\end{equation}
-This is an eigenvalue problem where the $p$'th solution is defined as 
-\begin{gather}
-    z_p-2+z_p^{-1} = c^2k^2\text{eig}_p(\Dxx)\nonumber\\
-    z_p+(-2-c^2k^2\text{eig}_p(\Dxx))+z_p^{-1}=0
-\end{gather}
-where $\text{eig}_p(\cdot)$ denoting the $p$th eigenvalue of `$\cdot$'. \SWcomment[If the CFL condition for the scheme is satisfied, the roots will lie on the unit circle.] Furthermore we can substitute a test solution $z_p=e^{j\omega_pk}$ solve for the eigenfrequencies:
-\begin{align*}
-    e^{j\omega_pk}+e^{-j\omega_pk}-2-c^2k^2\text{eig}_p(\Dxx)&=0\\
-    \frac{e^{j\omega_pk}+e^{-j\omega_pk}}{-4}+\frac{1}{2}+\frac{c^2k^2}{4}\text{eig}_p(\Dxx)&=0
-\end{align*}
-Then using Eq. \eqref{eq:sinIdentity} we get
-\begin{align}
-    \sin^2(\omega_pk/2)+c^2k^2\text{eig}_p(\Dxx)&=0\nonumber\\
-    \sin(\omega_pk/2)&=c k\sqrt{-\text{eig}_p(\Dxx)}\nonumber\\
-    \omega_p &= \frac{2}{k}\sin^{-1}\left(c k\sqrt{-\text{eig}_p(\Dxx)}\right)
-\end{align}
-which is Eq. (6.53) in \cite{theBible}.
-
-\section{Dispersion analysis}\label{sec:dispersionAnalysis}

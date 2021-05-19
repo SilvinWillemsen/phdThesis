@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  19 MAY 2021 10:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  19 MAY 2021 16:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1435,7 +1435,7 @@ LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <24.88> not available
 (Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 2.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
 (Font)              scaled to size 24.88pt on input line 2.
- <frontmatter/cvPicture.png, id=581, 139.52126pt x 139.52126pt> <use frontmatter/cvPicture.png> <use frontmatter/cvPicture.png>
+ <frontmatter/cvPicture.png, id=589, 139.52126pt x 139.52126pt> <use frontmatter/cvPicture.png> <use frontmatter/cvPicture.png>
 File: frontmatter/cvPicture.png Graphic file (type png)
  <use frontmatter/cvPicture.png>
 Package pdftex.def Info: frontmatter/cvPicture.png used on input line 7.
@@ -1538,31 +1538,34 @@ Package epstopdf Info: Source file: <figures/fdtd/gridFigure.eps>
 (epstopdf)                    date: 2021-05-18 15:40:37
 (epstopdf)                    size: 36056 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/gridFigure-eps-converted-to.pdf figures/fdtd/gridFigure.eps>
-(epstopdf)             \includegraphics on input line 90.
+(epstopdf)             \includegraphics on input line 92.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/gridFigure-eps-converted-to.pdf, id=978, 1003.75pt x 301.125pt>
+ <figures/fdtd/gridFigure-eps-converted-to.pdf, id=994, 1003.75pt x 301.125pt>
 File: figures/fdtd/gridFigure-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/gridFigure-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fdtd/gridFigure-eps-converted-to.pdf used on input line 90.
+Package pdftex.def Info: figures/fdtd/gridFigure-eps-converted-to.pdf used on input line 92.
 (pdftex.def)             Requested size: 341.43307pt x 102.43167pt.
 LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 91.
+(Font)              scaled to size 8.0pt on input line 93.
 LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <8> not available
-(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 91.
+(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 93.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 8.0pt on input line 91.
+(Font)              scaled to size 8.0pt on input line 93.
  [9 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/gridFigure-eps-converted-to.pdf>]
 
 LaTeX Warning: Marginpar on page 10 moved.
 
 
+LaTeX Warning: Marginpar on page 10 moved.
+
+
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\todo' on input line 94.
+(hyperref)                removing `\todo' on input line 96.
 
 
 LaTeX Warning: Marginpar on page 10 moved.
 
-[10] [11] [12]
+[10] [11] [12] [13]
 Package epstopdf Info: Source file: <figures/fdtd/taylor.eps>
 (epstopdf)                    date: 2021-05-02 09:33:35
 (epstopdf)                    size: 123857 bytes
@@ -1570,20 +1573,16 @@ Package epstopdf Info: Source file: <figures/fdtd/taylor.eps>
 (epstopdf)                    date: 2021-05-02 09:33:38
 (epstopdf)                    size: 79074 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/taylor-eps-converted-to.pdf figures/fdtd/taylor.eps>
-(epstopdf)             \includegraphics on input line 232.
+(epstopdf)             \includegraphics on input line 234.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/taylor-eps-converted-to.pdf, id=1040, 1004.75375pt x 314.17375pt>
+ <figures/fdtd/taylor-eps-converted-to.pdf, id=1068, 1004.75375pt x 314.17375pt>
 File: figures/fdtd/taylor-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/taylor-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fdtd/taylor-eps-converted-to.pdf used on input line 232.
+Package pdftex.def Info: figures/fdtd/taylor-eps-converted-to.pdf used on input line 234.
 (pdftex.def)             Requested size: 341.43307pt x 106.76013pt.
+ [14 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/taylor-eps-converted-to.pdf>]
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[13] [14 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/taylor-eps-converted-to.pdf>]
-
-LaTeX Warning: Citation `' on page 15 undefined on input line 264.
+LaTeX Warning: Citation `' on page 15 undefined on input line 266.
 
 (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/massSpringTikz.tex
 Missing character: There is no ; in font nullfont!
@@ -1719,16 +1718,16 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 ) [15]
-LaTeX Font Info:    Try loading font information for T1+zplsups on input line 305.
+LaTeX Font Info:    Try loading font information for T1+zplsups on input line 307.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/newpx/t1zplsups.fd
 File: t1zplsups.fd 2015/01/17 v1.0
 )
 LaTeX Font Info:    Font shape `T1/zplsups/m/n' will be
-(Font)              scaled to size 10.0pt on input line 305.
+(Font)              scaled to size 10.0pt on input line 307.
 LaTeX Font Info:    Font shape `T1/zplsups/m/n' will be
-(Font)              scaled to size 8.0pt on input line 306.
+(Font)              scaled to size 8.0pt on input line 308.
  [16]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 321.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 323.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
@@ -1739,18 +1738,23 @@ Package epstopdf Info: Source file: <figures/fdtd/massSpringOutput.eps>
 (epstopdf)                    date: 2021-05-19 10:38:26
 (epstopdf)                    size: 43004 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/massSpringOutput-eps-converted-to.pdf figures/fdtd/massSpringOutput.eps>
-(epstopdf)             \includegraphics on input line 340.
+(epstopdf)             \includegraphics on input line 344.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/massSpringOutput-eps-converted-to.pdf, id=1113, 830.10126pt x 220.825pt>
+ <figures/fdtd/massSpringOutput-eps-converted-to.pdf, id=1129, 830.10126pt x 220.825pt>
 File: figures/fdtd/massSpringOutput-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/massSpringOutput-eps-converted-to.pdf>
-Package pdftex.def Info: figures/fdtd/massSpringOutput-eps-converted-to.pdf used on input line 340.
+Package pdftex.def Info: figures/fdtd/massSpringOutput-eps-converted-to.pdf used on input line 344.
 (pdftex.def)             Requested size: 341.43307pt x 90.8286pt.
 
 
 LaTeX Warning: Marginpar on page 17 moved.
 
-[17 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/massSpringOutput-eps-converted-to.pdf>] [18]
+[17]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\todo' on input line 356.
+
+[18 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/massSpringOutput-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/resonators/curvature.eps>
 (epstopdf)                    date: 2021-04-28 10:50:41
 (epstopdf)                    size: 28940 bytes
@@ -1758,172 +1762,202 @@ Package epstopdf Info: Source file: <figures/resonators/curvature.eps>
 (epstopdf)                    date: 2021-04-28 10:51:09
 (epstopdf)                    size: 10700 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/curvature-eps-converted-to.pdf figures/resonators/curvature.eps>
-(epstopdf)             \includegraphics on input line 375.
+(epstopdf)             \includegraphics on input line 380.
 Package epstopdf Info: Output file is already uptodate.
- <figures/resonators/curvature-eps-converted-to.pdf, id=1133, 602.25pt x 200.75pt>
+ <figures/resonators/curvature-eps-converted-to.pdf, id=1154, 602.25pt x 200.75pt>
 File: figures/resonators/curvature-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/resonators/curvature-eps-converted-to.pdf>
-Package pdftex.def Info: figures/resonators/curvature-eps-converted-to.pdf used on input line 375.
+Package pdftex.def Info: figures/resonators/curvature-eps-converted-to.pdf used on input line 380.
 (pdftex.def)             Requested size: 341.43307pt x 113.81604pt.
+ [19 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/curvature-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/fdtd/dirichletCont.eps>
+(epstopdf)                    date: 2021-05-19 12:10:29
+(epstopdf)                    size: 48171 bytes
+(epstopdf)             Output file: <figures/fdtd/dirichletCont-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-05-19 12:10:32
+(epstopdf)                    size: 7589 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/fdtd/dirichletCont-eps-converted-to.pdf figures/fdtd/dirichletCont.eps>
+(epstopdf)             \includegraphics on input line 406.
+Package epstopdf Info: Output file is already uptodate.
+ <figures/fdtd/dirichletCont-eps-converted-to.pdf, id=1170, 602.25pt x 354.32375pt>
+File: figures/fdtd/dirichletCont-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/fdtd/dirichletCont-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fdtd/dirichletCont-eps-converted-to.pdf used on input line 406.
+(pdftex.def)             Requested size: 153.64383pt x 90.3919pt.
+Package epstopdf Info: Source file: <figures/fdtd/neumannCont.eps>
+(epstopdf)                    date: 2021-05-19 12:10:02
+(epstopdf)                    size: 48178 bytes
+(epstopdf)             Output file: <figures/fdtd/neumannCont-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-05-19 12:10:05
+(epstopdf)                    size: 7470 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/fdtd/neumannCont-eps-converted-to.pdf figures/fdtd/neumannCont.eps>
+(epstopdf)             \includegraphics on input line 407.
+Package epstopdf Info: Output file is already uptodate.
+ <figures/fdtd/neumannCont-eps-converted-to.pdf, id=1173, 602.25pt x 354.32375pt>
+File: figures/fdtd/neumannCont-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/fdtd/neumannCont-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fdtd/neumannCont-eps-converted-to.pdf used on input line 407.
+(pdftex.def)             Requested size: 153.64383pt x 90.3919pt.
+ [20 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/dirichletCont-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/neumannCont-eps-converted-to.pdf>]
 
+LaTeX Warning: Citation `courant' on page 21 undefined on input line 433.
 
-LaTeX Warning: Citation `courant' on page 19 undefined on input line 401.
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/analysis.tex [21] [22
 
-[19 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/curvature-eps-converted-to.pdf>]
-
-LaTeX Warning: Reference `fig:matrixMult' on page 20 undefined on input line 446.
-
-[20] <figures/fdtd/matrixVector2.pdf, id=1171, 780.99776pt x 349.305pt>
+]
+Chapter 3.
+[23] <figures/fdtd/matrixVector2.pdf, id=1229, 780.99776pt x 349.305pt>
 File: figures/fdtd/matrixVector2.pdf Graphic file (type pdf)
  <use figures/fdtd/matrixVector2.pdf>
-Package pdftex.def Info: figures/fdtd/matrixVector2.pdf used on input line 461.
+Package pdftex.def Info: figures/fdtd/matrixVector2.pdf used on input line 46.
 (pdftex.def)             Requested size: 341.43307pt x 152.70862pt.
- [21 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/matrixVector2.pdf>]
+ [24 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/matrixVector2.pdf>]
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 522.
-
-
-LaTeX Font Warning: Command \small invalid in math mode on input line 522.
+LaTeX Font Warning: Command \small invalid in math mode on input line 107.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 522.
+LaTeX Font Warning: Command \small invalid in math mode on input line 107.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 522.
+LaTeX Font Warning: Command \small invalid in math mode on input line 107.
 
 
-Overfull \hbox (14.22246pt too wide) in paragraph at lines 522--522
+LaTeX Font Warning: Command \small invalid in math mode on input line 107.
+
+
+Overfull \hbox (14.22246pt too wide) in paragraph at lines 107--107
 [] 
  []
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 524.
+LaTeX Font Warning: Command \small invalid in math mode on input line 109.
 
-LaTeX Font Info:    Calculating math sizes for size <> on input line 533.
+[25]
+LaTeX Font Info:    Calculating math sizes for size <> on input line 118.
+
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <> not available
-(Font)              size <5> substituted on input line 533.
+(Font)              size <5> substituted on input line 118.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 533.
+(Font)              size <5> substituted on input line 118.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 533.
+(Font)              size <5> substituted on input line 118.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <> not available
-(Font)              size <5> substituted on input line 533.
+(Font)              size <5> substituted on input line 118.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.7> not available
-(Font)              size <5> substituted on input line 533.
+(Font)              size <5> substituted on input line 118.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <0.5> not available
-(Font)              size <5> substituted on input line 533.
+(Font)              size <5> substituted on input line 118.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <> not available
-(Font)              size <5> substituted on input line 533.
+(Font)              size <5> substituted on input line 118.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 533.
+(Font)              size <5> substituted on input line 118.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 533.
+(Font)              size <5> substituted on input line 118.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <> not available
-(Font)              size <5> substituted on input line 533.
+(Font)              size <5> substituted on input line 118.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.7> not available
-(Font)              size <5> substituted on input line 533.
+(Font)              size <5> substituted on input line 118.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <0.5> not available
-(Font)              size <5> substituted on input line 533.
+(Font)              size <5> substituted on input line 118.
 
-[22] [23] [24]
-Overfull \hbox (2.10739pt too wide) detected at line 640
-[][] []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = []   \OMS/cmsy/m/n/10 )   [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 ) = [] = [] + []\OML/cmm/m/it/10 :
- []
+[26] [27]
+LaTeX Font Info:    Try loading font information for U+euf on input line 215.
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+) [28]
 
-[25]
+LaTeX Warning: Reference `eq:matrixForm1D' on page 29 undefined on input line 259.
 
-LaTeX Warning: Reference `eq:matrixForm1D' on page 26 undefined on input line 669.
+[29]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/conclusion.tex)) [30] [31
 
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/conclusion.tex)) [26] [27
+] [32] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/resonators.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/stiffString.tex [33
 
-] [28] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/resonators.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/stiffString.tex [29
-
-] [30
-
-]
-Chapter 3.
-[31] [32]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/brass.tex [33] [34
+] [34
 
 ]
 Chapter 4.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/2Dsystems.tex [35] [36
+[35] [36]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/brass.tex [37] [38
 
 ]
 Chapter 5.
-
-LaTeX Warning: Reference `eq:laplacian' on page 37 undefined on input line 31.
-
-[37])) [38] [39
-
-] [40] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/exciters.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/initialcond.tex [41
-
-] [42
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/2Dsystems.tex [39] [40
 
 ]
 Chapter 6.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/continuous.tex [43] [44
+
+LaTeX Warning: Reference `eq:laplacian' on page 41 undefined on input line 31.
+
+[41])) [42] [43
+
+] [44] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/exciters.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/initialcond.tex [45
+
+] [46
 
 ]
 Chapter 7.
-
-LaTeX Warning: Citation `Coulomb' on page 45 undefined on input line 28.
-
-
-LaTeX Warning: Citation `Morin1833' on page 45 undefined on input line 28.
-
-
-LaTeX Warning: Citation `Reynolds1886' on page 45 undefined on input line 28.
-
-
-LaTeX Warning: Citation `Stribeck1902' on page 45 undefined on input line 28.
-
-[45])) [46] [47
-
-] [48] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/interactions.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/connections.tex [49] [50
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/continuous.tex [47] [48
 
 ]
 Chapter 8.
-[51] [52]
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 85.
+LaTeX Warning: Citation `Coulomb' on page 49 undefined on input line 28.
 
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 85.
+LaTeX Warning: Citation `Morin1833' on page 49 undefined on input line 28.
 
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/collisions.tex [53] [54
+
+LaTeX Warning: Citation `Reynolds1886' on page 49 undefined on input line 28.
+
+
+LaTeX Warning: Citation `Stribeck1902' on page 49 undefined on input line 28.
+
+[49])) [50] [51
+
+] [52] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/interactions.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/connections.tex [53] [54
 
 ]
 Chapter 9.
-)) [55] [56
+[55] [56]
 
-] [57] [58] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/dynamic.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/introduction.tex
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 85.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 85.
+
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/collisions.tex [57] [58
+
+]
 Chapter 10.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/background.tex [59
+)) [59] [60
+
+] [61] [62] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/dynamic.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/introduction.tex
+Chapter 11.
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/background.tex [63
 
 ]
 Overfull \hbox (80.99535pt too wide) in paragraph at lines 30--31
@@ -1961,11 +1995,11 @@ Overfull \hbox (24.56693pt too wide) in paragraph at lines 46--1
  []
 
 
-LaTeX Warning: Reference `eq:compactLambda' on page 60 undefined on input line 8.
+LaTeX Warning: Reference `eq:compactLambda' on page 64 undefined on input line 8.
 
-[60]
+[64]
 
-LaTeX Warning: Reference `eq:orderOfCalcGrid' on page 61 undefined on input line 11.
+LaTeX Warning: Reference `eq:orderOfCalcGrid' on page 65 undefined on input line 11.
 
 Package epstopdf Info: Source file: <dynamic/fullGrid.eps>
 (epstopdf)                    date: 2020-10-16 16:29:27
@@ -1976,21 +2010,21 @@ Package epstopdf Info: Source file: <dynamic/fullGrid.eps>
 (epstopdf)             Command: <repstopdf --outfile=dynamic/fullGrid-eps-converted-to.pdf dynamic/fullGrid.eps>
 (epstopdf)             \includegraphics on input line 18.
 Package epstopdf Info: Output file is already uptodate.
-<dynamic/fullGrid-eps-converted-to.pdf, id=1534, 501.875pt x 301.125pt>
+<dynamic/fullGrid-eps-converted-to.pdf, id=1595, 501.875pt x 301.125pt>
 File: dynamic/fullGrid-eps-converted-to.pdf Graphic file (type pdf)
  <use dynamic/fullGrid-eps-converted-to.pdf>
 Package pdftex.def Info: dynamic/fullGrid-eps-converted-to.pdf used on input line 18.
 (pdftex.def)             Requested size: 170.71654pt x 102.43167pt.
 
 
-LaTeX Warning: Reference `eq:compactLambda' on page 61 undefined on input line 22.
+LaTeX Warning: Reference `eq:compactLambda' on page 65 undefined on input line 22.
 
 
-LaTeX Warning: Reference `eq:fmax' on page 61 undefined on input line 24.
+LaTeX Warning: Reference `eq:fmax' on page 65 undefined on input line 24.
 
-[61 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/fullGrid-eps-converted-to.pdf>]
+[65 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/fullGrid-eps-converted-to.pdf>]
 
-LaTeX Warning: Reference `eq:orderOfCalcGrid' on page 62 undefined on input line 36.
+LaTeX Warning: Reference `eq:orderOfCalcGrid' on page 66 undefined on input line 36.
 
 Package epstopdf Info: Source file: <dynamic/simplySupportedBoundary.eps>
 (epstopdf)                    date: 2020-10-16 15:43:09
@@ -2001,16 +2035,16 @@ Package epstopdf Info: Source file: <dynamic/simplySupportedBoundary.eps>
 (epstopdf)             Command: <repstopdf --outfile=dynamic/simplySupportedBoundary-eps-converted-to.pdf dynamic/simplySupportedBoundary.eps>
 (epstopdf)             \includegraphics on input line 56.
 Package epstopdf Info: Output file is already uptodate.
-<dynamic/simplySupportedBoundary-eps-converted-to.pdf, id=1548, 562.1pt x 421.575pt>
+<dynamic/simplySupportedBoundary-eps-converted-to.pdf, id=1609, 562.1pt x 421.575pt>
 File: dynamic/simplySupportedBoundary-eps-converted-to.pdf Graphic file (type pdf)
  <use dynamic/simplySupportedBoundary-eps-converted-to.pdf>
 Package pdftex.def Info: dynamic/simplySupportedBoundary-eps-converted-to.pdf used on input line 56.
 (pdftex.def)             Requested size: 239.0021pt x 179.2474pt.
 
 
-LaTeX Warning: Reference `eq:numberOfIntervals' on page 62 undefined on input line 60.
+LaTeX Warning: Reference `eq:numberOfIntervals' on page 66 undefined on input line 60.
 
-[62 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/simplySupportedBoundary-eps-converted-to.pdf>]
+[66 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/simplySupportedBoundary-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <dynamic/boundaryGrid.eps>
 (epstopdf)                    date: 2020-10-16 11:05:46
 (epstopdf)                    size: 21885 bytes
@@ -2020,20 +2054,20 @@ Package epstopdf Info: Source file: <dynamic/boundaryGrid.eps>
 (epstopdf)             Command: <repstopdf --outfile=dynamic/boundaryGrid-eps-converted-to.pdf dynamic/boundaryGrid.eps>
 (epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
- <dynamic/boundaryGrid-eps-converted-to.pdf, id=1563, 562.1pt x 421.575pt>
+ <dynamic/boundaryGrid-eps-converted-to.pdf, id=1624, 562.1pt x 421.575pt>
 File: dynamic/boundaryGrid-eps-converted-to.pdf Graphic file (type pdf)
  <use dynamic/boundaryGrid-eps-converted-to.pdf>
 Package pdftex.def Info: dynamic/boundaryGrid-eps-converted-to.pdf used on input line 73.
 (pdftex.def)             Requested size: 239.0021pt x 179.2474pt.
- [63 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/boundaryGrid-eps-converted-to.pdf>]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/analysis.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/conclusion.tex)) [64] [65
+ [67 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/boundaryGrid-eps-converted-to.pdf>]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/analysis.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/conclusion.tex)) [68] [69
 
-] [66] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/realtime.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/implementation.tex [67
+] [70] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/realtime.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/implementation.tex [71
 
-] [68
+] [72
 
 ]
-Chapter 11.
-[69] (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
+Chapter 12.
+[73] (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
@@ -2041,12 +2075,12 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) [70] <figures/realtime/vectorCopy.pdf, id=1631, 459.63718pt x 211.7511pt>
+) [74] <figures/realtime/vectorCopy.pdf, id=1690, 459.63718pt x 211.7511pt>
 File: figures/realtime/vectorCopy.pdf Graphic file (type pdf)
  <use figures/realtime/vectorCopy.pdf>
 Package pdftex.def Info: figures/realtime/vectorCopy.pdf used on input line 87.
 (pdftex.def)             Requested size: 341.43307pt x 157.29755pt.
- <figures/realtime/pointerSwitch.pdf, id=1632, 472.64577pt x 225.7233pt>
+ <figures/realtime/pointerSwitch.pdf, id=1691, 472.64577pt x 225.7233pt>
 File: figures/realtime/pointerSwitch.pdf Graphic file (type pdf)
  <use figures/realtime/pointerSwitch.pdf>
 Package pdftex.def Info: figures/realtime/pointerSwitch.pdf used on input line 88.
@@ -2056,50 +2090,50 @@ Package pdftex.def Info: figures/realtime/pointerSwitch.pdf used on input line 8
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 106.
-[71]
-Overfull \hbox (16.55943pt too wide) detected at line 137
+[75]
+Overfull \hbox (16.55943pt too wide) detected at line 143
 [][]\OML/cmm/m/it/10 u[] \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 u[] \OT1/cmr/m/n/10 + [] [] [] [] [] \OML/cmm/m/it/10 u[]:
  []
 
-[72] [73]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/control.tex [74] [75 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/realtime/vectorCopy.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/realtime/pointerSwitch.pdf>] [76
-
-]
-Chapter 12.
-)) [77] [78
-
-] [79] [80] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/instrument.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/largeScale.tex [81
+[76] [77] [78]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/control.tex [79] [80 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/realtime/vectorCopy.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/realtime/pointerSwitch.pdf>]
+Chapter 13.
+)) [81
 
 ] [82
 
-]
-Chapter 13.
-[83]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/tromba.tex [84]
-Chapter 14.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/trombone.tex [85
+] [83] [84] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/instrument.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/largeScale.tex [85
 
 ] [86
 
 ]
+Chapter 14.
+[87]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/tromba.tex [88]
 Chapter 15.
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/trombone.tex [89
 
-LaTeX Warning: Citation `Webster19' on page 87 undefined on input line 18.
+] [90
+
+]
+Chapter 16.
+
+LaTeX Warning: Citation `Webster19' on page 91 undefined on input line 18.
 
 
-LaTeX Warning: Citation `Bilbao2016' on page 87 undefined on input line 18.
+LaTeX Warning: Citation `Bilbao2016' on page 91 undefined on input line 18.
 
-[87]
+[91]
 
-LaTeX Warning: Reference `eq:connectionInterpol' on page 88 undefined on input line 26.
+LaTeX Warning: Reference `eq:connectionInterpol' on page 92 undefined on input line 26.
 
-)) [88]
+)) [92]
 
-LaTeX Warning: Marginpar on page 89 moved.
+LaTeX Warning: Marginpar on page 93 moved.
 
-(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.bbl [89] [90
+(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.bbl [93] [94
 
-] [91]) [92] [93
+] [95]) [96] [97
 
-] [94] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/appendices.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/listOfSymbols.tex
+] [98] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/appendices.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/listOfSymbols.tex
 Appendix A.
 
 Overfull \hbox (7.54721pt too wide) in alignment at lines 5--8
@@ -2116,31 +2150,31 @@ Overfull \hbox (7.54721pt too wide) in alignment at lines 29--50
  [] [] [] 
  []
 
-[95
+[99
 
 ]
 Overfull \hbox (7.54721pt too wide) in alignment at lines 50--52
  [] [] [] 
  []
 
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/listOfAbbreviations.tex [96]
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/listOfAbbreviations.tex [100]
 Appendix B.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/codeSnippets.tex [97
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/codeSnippets.tex [101
 
-] [98
+] [102
 
 ]
 Appendix C.
-)) [99] [100
+)) [103] [104
 
-] [101] [102] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperErrata.tex
+] [105] [106] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperErrata.tex
 Underfull \hbox (badness 10000) in paragraph at lines 2--4
 
  []
 
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/papers.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/paperA.tex [103
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/papers.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/paperA.tex [107
 
-] [104
+] [108
 
 ]
 Paper A.
@@ -2148,31 +2182,31 @@ LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
 (Font)              scaled to size 7.0pt on input line 10.
 LaTeX Font Info:    Font shape `TS1/zpltlf/m/it' will be
 (Font)              scaled to size 7.0pt on input line 10.
-(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/abstract.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/introduction.tex [105]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/conclusion.tex)) [106]
+(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/abstract.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/introduction.tex [109]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/conclusion.tex)) [110]
 Paper B.
-[107
+[111
 
-] [108
+] [112
 
 ]
 Paper C.
-[109] [110
-
-]
-Paper D.
-[111] [112
-
-]
-Paper E.
 [113] [114
 
 ]
-Paper F.
+Paper D.
 [115] [116
 
 ]
-Paper G.
+Paper E.
 [117] [118
+
+]
+Paper F.
+[119] [120
+
+]
+Paper G.
+[121] [122
 
 ]
 Paper H.
@@ -2180,7 +2214,7 @@ Paper H.
 \tf@thm=\write11
 \openout11 = `master.thm'.
 
- [119] 
+ [123] 
 AED: lastpage setting LastPage
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 210.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 210.
@@ -2188,7 +2222,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 210.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 210.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 210.
 Package rerunfilecheck Info: File `master.out' has not changed.
-(rerunfilecheck)             Checksum: 690F1AD5CC3B187894F5A92B8270BBB5;10250.
+(rerunfilecheck)             Checksum: 55302152910DE9503FBA6B0DBC546CB5;10430.
 
 
 LaTeX Font Warning: Size substitutions with differences
@@ -2202,18 +2236,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 36752 strings out of 493014
- 796697 string characters out of 6133351
- 1089720 words of memory out of 5000000
- 38726 multiletter control sequences out of 15000+600000
- 85471 words of font info for 110 fonts, out of 8000000 for 9000
+ 36822 strings out of 493014
+ 798328 string characters out of 6133351
+ 1095272 words of memory out of 5000000
+ 38767 multiletter control sequences out of 15000+600000
+ 86887 words of font info for 116 fonts, out of 8000000 for 9000
  1146 hyphenation exceptions out of 8191
- 57i,16n,97p,1664b,1902s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/newpx/ecsups.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplb.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
-Output written on /Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.pdf (141 pages, 874041 bytes).
+ 57i,16n,97p,1664b,1895s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/newpx/ecsups.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplb.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
+Output written on /Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.pdf (145 pages, 895044 bytes).
 PDF statistics:
- 2296 PDF objects out of 2487 (max. 8388607)
- 2070 compressed objects within 21 object streams
- 682 named destinations out of 1000 (max. 500000)
- 1188 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2370 PDF objects out of 2487 (max. 8388607)
+ 2134 compressed objects within 22 object streams
+ 701 named destinations out of 1000 (max. 500000)
+ 1214 words of extra memory for PDF output out of 10000 (max. 10000000)
 
