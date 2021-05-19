@@ -25,13 +25,13 @@ out = zeros(lengthSound, 1);
 %% Simulation loop
 for n = 1:lengthSound
     
-    % Update equation Eq.%* \eqrefMatlab[eq:massSpringUpdate] *)
-    uNext = 2 * u - uPrev - K * k^2 / M * u; 
+    % Update equation Eq. %*\eqrefMatlab[eq:massSpringUpdate] *)
+    uNext = (2 - K * k^2 / M) * u - uPrev; 
     
     out(n) = u;
     
     % Update system states
     uPrev = u;
     u = uNext;
-end
+end    
 \end{lstlisting}

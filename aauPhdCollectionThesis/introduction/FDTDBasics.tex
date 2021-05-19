@@ -9,7 +9,7 @@ are always expressed in the language of differential equations.''\\
 %
 \vspace{2em}
 This chapter introduces some important concepts needed to understand the physical models presented later on in this document. 
-By means of a simple mass-spring system and the 1D wave equation, the notation and terminology used throughout this document will be explained, together with some important analysis techniques. 
+By means of a simple mass-spring system and the 1D wave equation, the notation and terminology used throughout this document will be explained. 
 Before diving into the mathematics, let us go over some useful terminology.
 
 \section{Differential Equations}
@@ -335,7 +335,7 @@ The latter equality can be solved for $u^{-1}$ to obtain its definition:
 \end{align*}
 Simply setting $u^0 = u^{-1} \neq 0$ \todo{maybe a bit short...} yields an oscillatory behaviour. 
 
-The values for $K$ and $M$ are restricted by a stability condition which will be elaborated on in \ref{sec:stabilityAnalysis}.
+The values for $K$ and $M$ are restricted by a stability condition which will be elaborated on in Section \ref{sec:stabilityAnalysis}.
 
 \subsection{Implementation and Output}
 A simple \texttt{MATLAB} script implementing the mass-spring system described in this section is shown in Appendix \ref{app:massSpringCode}. The output of the system can be obtained by listening to the displacement of the mass at the given sample rate $\fs$. An example of this can be found in Figure \ref{fig:massSpringOutput} where the frequency of oscillation $f_0 = 440$ Hz.
