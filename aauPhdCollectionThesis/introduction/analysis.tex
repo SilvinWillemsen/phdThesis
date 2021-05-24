@@ -1,13 +1,17 @@
 \chapter{Analysis Techniques}\label{ch:analysis}
 
+This chapter provides some techniques to analyses FD schemes .
+
+Techniques to analyse PDEs also exist, but the focus here is on the discrete schemes.
+
 \section{Preamble}
 
-\subsection{General Mathematical Tools}
+% \subsection{General Mathematical Tools}
 
 Before going into analysis techniques of the FD schemes presented in this chapter, some mathematical tools used for these techniques will be presented. 
 
 \subsubsection{Continuous time}
-For two functions $f(x)$ and $g(x)$ and $x\in\D$ their $l_2$ inner product along with the $l_2$ norm is defined as
+For two functions $f(x)$ and $g(x)$ defined for $x\in\D$, their $l_2$ inner product and $l_2$ norm are defined as
 \begin{equation}\label{eq:contInnerProd}
     \langle f, g\rangle_\D = \int_\D fg dx \quad \text{and} \quad \lVert f \rVert_\D = \sqrt{\langle f, f \rangle_\D}
 \end{equation}
@@ -16,15 +20,16 @@ For two functions $f(x)$ and $g(x)$ and $x\in\D$ their $l_2$ inner product along
 
 
 \subsubsection{Discrete-time}
-Inner product of any time series $f^n$ and $g^n$ and the discrete counterpart to \eqref{eq:contInnerProd} is
+Inner product of any time series $f^n$ and $g^n$ defined over domain $\D$ and the discrete counterpart to \eqref{eq:contInnerProd} is
 \begin{equation}\label{eq:discInnerProd}
     \langle f^n, g^n \rangle_\D = \sum_{l\in\D} h f_l^n g_l^n
 \end{equation}
 where the multiplication by $h$ is the discrete counterpart of $dx$ the continuous definition. 
 
 \subsection{Summation by Parts}
+for 
 
-\subsection{Matrices}
+\section{Matrices}
 For several purposes, such as implementation in \texttt{MATLAB} and several analysis techniques described shortly, is useful to write an FD scheme in \textit{matrix form}. 
 
 In this document, matrices and vectors are written using bold symbols. \SWcomment[Many notations exist, blabla $\bar a$ $\vec a$] A matrix uses a capital letter whereas vectors are decapitalised. The dimensions of a matrix are denoted using ``$row \times column$''. A $6\times 14$ matrix, for example, thus has $6$ rows and $14$ columns. Along those lines, a \textit{row vector} is a matrix with $1$ row and more than $1$ column and a \textit{column vector} is a matrix with $1$ column and more than $1$ row. \SWcomment[If a matrix has only $1$ row and $1$ column, it can be used as a \textit{scalar}.]
@@ -75,10 +80,12 @@ Expanding this operation results in
         a_{N0}u_0 + a_{N1}u_1 + \hdots + a_{NN}u_N
     \end{bmatrix}}_{\w}
 \end{equation}
-
+where the subscripts for $a$ indicate the indices for the row and column.
 
 \subsubsection{Operators in Matrix Form}
-The FD operators approximating first-order spatial derivatives in \eqref{eq:discFirstSpace} can be written in matrix form according to
+FD operators approximating first-order spatial derivatives can be written in matrix form and applied to a column vector $\u$ containing the state of the system. The size of these matrices depend on the number of grid points the system is described for and the boundary conditions. 
+
+Not assuming any size for now, the FD operators in \eqref{eq:discFirstSpace} can be written in matrix form according to
 \begin{gather*}\small
     \mathbf{D}_{x+} = \frac{1}{h}\begin{bmatrix}
         \ddots &\ddots & & & \mathbf{0}&\\
@@ -107,17 +114,6 @@ The FD operators approximating first-order spatial derivatives in \eqref{eq:disc
         &\mathbf{0} & & & \ddots & \ddots \\
     \end{bmatrix}\\
 \end{gather*}
-The matrices $\mathbf{D}_{x+}$ and $\mathbf{D}_{x-}$ can be multiplied to get $\Dxx$:
-\begin{equation}\small
-    \Dxx = \mathbf{D}_{x+}\mathbf{D}_{x-} = \frac{1}{h^2}\begin{bmatrix}
-        \ddots &\ddots & & & \mathbf{0}&\\
-        \ddots & -2 & 1 & & & \\
-        & 1 & -2 & 1 & & \\
-        & & 1 & -2 & 1 & \\
-        & & & 1 & -2 & \ddots \\
-        &\mathbf{0} & & & \ddots & \ddots \\
-    \end{bmatrix}.
-\end{equation}
 %
 Averaging operators $\mxp$, $\mxm$ and $\mxd$ are defined in a similar way:
 
@@ -163,19 +159,85 @@ Finally, the identity matrix is a matrix with only $1$s on the diagonal and $0$s
         &\mathbf{0} & & &  & \ddots \\
     \end{bmatrix}\\
 \end{equation}
+
+
 \subsubsection{Schemes and Update Equations in Matrix Form}
-With these building blocks we can write Eq. \eqref{eq:1DwaveFDS} in matrix form. The values of the grid function $\uln$ can be stored in a state vector according to $\u^n = [u_0^n, u_1^n, \hdots, u_N^n]^T$ where $T$ denotes the transpose operation. The FD scheme in \eqref{eq:1DwaveFDS} can then be written in matrix form as
+With these building blocks, Eq. \eqref{eq:1DwaveFDS} can be written in matrix form.
+
+If Dirichlet boundary conditions are used (Eq. \eqref{eq:discreteDirichlet}) the end points of the system do not have to be included in the calculation. The values of the grid function $\uln$ for $l\in \{1, \hdots, N-1\}$ can be stored in a state vector according to $\u^n = [u_1^n, \hdots, u_{N-1}^n]^T$ where $T$ denotes the transpose operation\todo{check whether to not put this earlier}. Furthermore, $(N-1) \times (N-1)$ matrices $\mathbf{D}_{x+}$ and $\mathbf{D}_{x-}$ can be multiplied to get a same-sized matrix $\Dxx$:
+\begin{equation}
+    \Dxx = \mathbf{D}_{x+}\mathbf{D}_{x-} = \frac{1}{h^2}\begin{bmatrix}
+        -2 & 1 & & &\mathbf{0}\\
+        1 & -2 & 1 & & \\
+        & \ddots & \ddots & \ddots & \\
+        & & 1 & -2 & 1 \\
+        \mathbf{0}& & & 1 & -2 
+    \end{bmatrix}.
+\end{equation}
+
+If instead, Neumann boundary conditions are used (Eq. \eqref{eq:discreteDirichlet}), the values of $\uln$ for the full range $l\in \{0, \hdots, N\}$ will be stored as $\u^n=[u_0^n, \hdots, u_N^n]^T$ and the $(N+1) \times (N+1)$ matrix $\Dxx$ will be 
+\begin{equation}
+    \Dxx = \frac{1}{h^2}\begin{bmatrix}
+        -2 & 2 & & &\mathbf{0}\\
+        1 & -2 & 1 & & \\
+        & \ddots & \ddots & \ddots & \\
+        & & 1 & -2 & 1 \\
+        \mathbf{0}& & & 2 & -2 
+    \end{bmatrix},
+\end{equation}
+where the $2$s correspond to the multiplication by $2$ with $u_1^n$ and $u_{N-1}^n$ in Eqs. \eqref{eq:1DWaveLeftBound} and \eqref{eq:1DWaveRightBound} respectively.
+
+Regardless of the boundary conditions, the FD scheme in \eqref{eq:1DwaveFDS} can be written in matrix form as
 \begin{equation}\label{eq:1DwaveMatrix}
     \frac{1}{k^2}\left(\u^{n+1} - 2 \u + \u^{n-1}\right) = c^2 \Dxx \u^n,
 \end{equation}
-and rewritten to a matrix form of the update equation
+and rewritten to a matrix form of the update equation analogous to Eq. \eqref{eq:1DwaveUpdate}
 \begin{equation}
     \u^{n+1} = (2\I + c^2k^2 \Dxx )\u^n - \u^{n-1}.
 \end{equation}
 The identity matrix is necessary here for correct matrix addition.
 
-\subsection{System of Linear Equations}
+\subsection{Note on square matrices}
+If a matrix is square it has the potential to have an inverse. A square matrix $\A$ is invertable if there exists a matrix $\B$ such that
+\begin{equation}
+    \A \B = \B \A = \I. 
+\end{equation}
+This matrix $\B$ is then called the \textit{inverse} of $\A$ and written as $\A^{-1}$.
+That a matrix is square does not mean that it has an inverse, and is called \textit{singular}. 
+
+
+\subsection{System of Linear Equations}\label{sec:linearEquations}
 A number of unknowns described by the same number of equations can be solved using a 
+
+\begin{align*}
+    \A \u &= \w\\
+    \u &= \A^{-1}\w
+\end{align*}
+
+\subsection{Eigenvalue Problems}\label{sec:eigenValueProblems}
+A square matrix $\A$ is characterised by its \textit{eigenvalues} and corresponding \textit{eigenvectors}. In a FDTD context, these are usually associated with the modes of a system, where the eigenvalues relate to the modal frequencies and \todo{ask stefan} the eigenvectors the the modal shapes. Section \ref{sec:modalAnalysis} will provide more information on this.
+
+To find these characteristic values for a $p\times p$ matrix $\A$ an equation of the following form must be solved 
+\begin{equation}
+    \A \boldPhi = \lambda \boldPhi.
+\end{equation}
+This is called is an \textit{eigenvalue problem} and has $p$ solutions (corresponding to the dimensions of $\A$). These are the $p$\th eigenvector $\boldPhi_p$ and the corresponding eigenvalue $\lambda_p$ calculated using
+\begin{equation}
+    \lambda_p = \eig_p(\A),
+\end{equation}
+where $\eig_p(\cdot)$ denotes the $p$\th eigenvalue of. Instead of delving too deep into eigenvalue problems and the process of how to solve them, an easy way to obtain the solutions using \texttt{MATLAB} is provided here:
+
+\begin{center}\todo{Check code here!}
+    \texttt{[\textasciitilde, lambda, phi] = eig(A, {\color[HTML]{A100F4}'vector'});}
+\end{center}
+The eigenvalues are given in a $p \times 1$ column vector \texttt{lambda} and the $p$\th eigenvector appears in the $p$\th column of $p\times p$ matrix \texttt{phi}. Note that the outcome is not sorted! To do this, do 
+%
+\begin{center}
+    \begin{tabular}{l}
+    \texttt{[lambda, order] = sort(lambda);}\\
+    \texttt{phi = phi(:, order);}
+    \end{tabular}
+\end{center}
 
 \section{von Neumann Analysis}\label{sec:stabilityAnalysis}
 Much literature gives the stability condition using an ``it can be shown that'' argument (fx. \cite{Bilbao2009}). Here, I would like to take the opportunity to 
@@ -251,32 +313,76 @@ One can perform stability analysis using the energy analysis techniques presente
 
 \section{Modal Analysis}
 \label{sec:modalAnalysis}
-Modes are the resonant frequencies of a system. The amout of modes that a discrete system contains dependends on the amount of moving points. A mass-spring system thus has one resonating mode, but a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. This section will show how to obtain the modes of an FD scheme implementing the 1D wave equation. 
+Modes are the resonant frequencies of a system. The amount of modes that a discrete system contains depends on the amount of moving points. A mass-spring system thus has one resonating mode, but a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. This section will show how to obtain the modes of an FD scheme implementing the 1D wave equation. 
 
 We start by using the the matrix form of FD scheme \eqref{eq:1DwaveFDS} from Eq. \eqref{eq:1DwaveMatrix}
 \begin{equation*}
     \frac{1}{k^2}\left(\u^{n+1}-2\u^n+\u^{n-1}\right) = c^2 \Dxx\u.
 \end{equation*}
-Following \cite{theBible} we assume a solution of the form $\u = \boldsymbol{\phi}z^n$ \todo{more explanation}. Substituting this into Eq. \eqref{eq:matrixForm1D} yields the characteristic equation
+Following \cite{theBible} we assume a solution of the form $\u = z^n\boldPhi$ \todo{more explanation, perhaps refer to von neumann analysis in \ref{sec:stabilityAnalysis}}. Substituting this into the above equation yields the characteristic equation
 \begin{equation}
-    (z - 2 + z^{-1})\boldsymbol{\phi} = c^2k^2\Dxx \boldsymbol{\phi}.
+    (z - 2 + z^{-1})\boldPhi = c^2k^2\Dxx \boldPhi.
 \end{equation}
-This is an eigenvalue problem where the $p$'th solution is defined as 
+This is an eigenvalue problem (see Section \ref{sec:eigenValueProblems}) where the $p$\th solution $\boldPhi_p$ may be interpreted as the modal shape of mode $p$. The modal frequencies are the solutions to the following equations:
 \begin{gather}
-    z_p-2+z_p^{-1} = c^2k^2\text{eig}_p(\Dxx)\nonumber\\
-    z_p+(-2-c^2k^2\text{eig}_p(\Dxx))+z_p^{-1}=0
+    z_p-2+z_p^{-1} = c^2k^2\text{eig}_p(\Dxx),\nonumber\\
+    z_p+(-2-c^2k^2\text{eig}_p(\Dxx))+z_p^{-1}=0.
 \end{gather}
-where $\text{eig}_p(\cdot)$ denoting the $p$th eigenvalue of `$\cdot$'. \SWcomment[If the CFL condition for the scheme is satisfied, the roots will lie on the unit circle.] Furthermore we can substitute a test solution $z_p=e^{j\omega_pk}$ solve for the eigenfrequencies:
+\SWcomment[If the CFL condition for the scheme is satisfied, the roots will lie on the unit circle.] Furthermore we can substitute a test solution $z_p=e^{j\omega_pk}$ with angular frequency of the $p$\th mode $\omega_p$ and solve for these:
 \begin{align*}
-    e^{j\omega_pk}+e^{-j\omega_pk}-2-c^2k^2\text{eig}_p(\Dxx)&=0\\
-    \frac{e^{j\omega_pk}+e^{-j\omega_pk}}{-4}+\frac{1}{2}+\frac{c^2k^2}{4}\text{eig}_p(\Dxx)&=0
+    e^{j\omega_pk}+e^{-j\omega_pk}-2-c^2k^2\text{eig}_p(\Dxx)&=0,\\
+    \frac{e^{j\omega_pk}+e^{-j\omega_pk}}{-4}+\frac{1}{2}+\frac{c^2k^2}{4}\text{eig}_p(\Dxx)&=0,
 \end{align*}
-Then using Eq. \eqref{eq:sinIdentity} we get
+and using Eq. \eqref{eq:sinIdentity} we get
 \begin{align}
-    \sin^2(\omega_pk/2)+c^2k^2\text{eig}_p(\Dxx)&=0\nonumber\\
-    \sin(\omega_pk/2)&=c k\sqrt{-\text{eig}_p(\Dxx)}\nonumber\\
-    \omega_p &= \frac{2}{k}\sin^{-1}\left(c k\sqrt{-\text{eig}_p(\Dxx)}\right)
+    \sin^2(\omega_pk/2)&+\frac{c^2k^2}{4}\text{eig}_p(\Dxx)=0,\nonumber\\
+    \sin(\omega_pk/2)&=\frac{ck}{2}\sqrt{-\text{eig}_p(\Dxx)},\nonumber\\
+    \omega_p &= \frac{2}{k}\sin^{-1}\left(\frac{ck}{2}\sqrt{-\text{eig}_p(\Dxx)}\right).
 \end{align}
-which is Eq. (6.53) in \cite{theBible}.
+
+\subsection{One-Step Form}
+For more complicated systems, where the coefficients of $z$ and $z^{-1}$ in the characteristic equation are not identical for example, it is useful to rewrite the update in \textit{one-step form}. Although the eigenfrequency calculation needs to be done on a larger matrix, it allows for a more general and direct way to calculate the modal frequencies and damping coefficients per mode. 
+
+If matrix $\A$ has an inverse, any scheme of the form
+\begin{equation}
+    \A\u^{n+1}=\B\u^n + \C\u^{n-1},
+\end{equation}
+can be rewritten to
+\begin{equation}\label{eq:oneStepForm}
+    \underbrace{\begin{bmatrix}
+        \u^{n+1}\\
+        \u^n
+    \end{bmatrix}}_{\w^{n+1}} = 
+    \underbrace{\begin{bmatrix}
+        \A^{-1}\B & \A^{-1}\C\\
+        \I & \mathbf{0}
+    \end{bmatrix}}_{\Q}
+    \underbrace{\begin{bmatrix}
+        \u^n\\
+        \u^{n-1}
+    \end{bmatrix}}_{\w^n}
+\end{equation}
+which relates the unknown state of the system to the known state through matrix $\Q$ which encompases the scheme. The sizes of the identity matrix $\I$ and zero matrix $\mathbf{0}$ are the same size as $\A, \B$ and $\C$ and are essentially used to make the matrix square and allow for eigenvalue calculation.
+
+Again we can assume solutions of the form $\w = z^n\boldPhi$ \SWcomment[(where $\boldPhi$ is less-trivially connected to the modal shapes)] and get
+\begin{equation}
+    z\boldPhi = \Q\boldPhi ,
+\end{equation}
+which can be solved for the $p$th eigenvalue as
+\begin{equation}
+    z_p = \text{eig}_p(\Q).
+\end{equation}
+As the scheme could exhibit damping, the test solution needs to include this and will be $z_p = e^{s_pk}$ with complex frequency $s_p= j\omega_p + \sigma_p$ and damping of the $p$th eigenfrequency $\sigma_p$. Substituting the test solution and solving for $s_p$ yields
+\begin{align}
+    e^{s_pk} &= \text{eig}_p(\Q),\nonumber\\
+    s_p &= \frac{1}{k}\ln \left(\text{eig}_p(\Q)\right).\label{eq:sp}
+\end{align}
+Solutions for the frequency and damping for the $p$th eigenvalue can then be obtained through
+\begin{equation}
+    \omega_p = \mathfrak{I}(s_p) \quad \text{and} \quad \sigma_p = \mathfrak{R}(s_p),
+\end{equation}
+where $\mathfrak{I}(\cdot)$ and $\mathfrak{R}(\cdot)$ denote the ``imaginary part of'' and ``real part of'' respectively. 
+
+As the elements of $\Q$ are real-valued, the solutions $s_p$ in Eq. \eqref{eq:sp} come in complex conjugates. For analysis, only the $\mathfrak{I}(s_p)\geq 0$ should be considered as these correspond to non-negative frequencies.
 
 \section{Dispersion analysis}\label{sec:dispersionAnalysis}

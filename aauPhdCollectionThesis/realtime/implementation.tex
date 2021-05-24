@@ -117,10 +117,10 @@ double updateStates()
 \subsubsection{Grouping terms and Precalculating coefficients}
 Generally in implementations of FD schemes the most computationally expensive part of the algorithm is the calculation of the scheme itself. This is due to the rate at which it needs to be updated which usually is 44100 Hz. Graphics can be updated at rates orders of magnitude lower than the audio (say 10-20 Hz) and still be considered smooth enough.
 
-A more compact way to write the 1D wave update equation in Eq. \eqref{eq:1DwaveUpdate} is 
-\begin{equation}\label{eq:1DwaveUpdateCompact}
+Recall the update equation for the 1D wave update equation in Eq. \eqref{eq:1DwaveUpdate}
+\begin{equation*}
     u_l^{n+1} = (2 - 2 \lambda^2) \uln - u_l^{n-1} + \lambda^2\left(u_{l+1}^n + u_{l-1}^n\right).
-\end{equation}
+\end{equation*}
 Grouping the terms like this allows for the coefficients multiplied onto the grid function at different temporal and spatial indices to be precomputed. This can significantly decrease the amount of operations per sample.
 
 The undamped stiff string FD scheme%in \eqref{eq:stiffStringFDS}

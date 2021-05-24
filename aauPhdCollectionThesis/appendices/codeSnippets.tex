@@ -5,7 +5,7 @@
 
 \setlstMAT
 \begin{lstlisting}
-%% Initialise varibles
+%% Initialise variables
 fs = 44100;             % sample rate [Hz]
 k = 1 / fs;             % time step [s]
 lengthSound = fs;       % length of the simulation (1 second) [samples]
@@ -34,4 +34,73 @@ for n = 1:lengthSound
     uPrev = u;
     u = uNext;
 end    
+\end{lstlisting}
+
+\section{1D Wave Equation (Section \ref{sec:1DWave})}
+\label{app:1DWave}
+\begin{lstlisting}
+%% Initialise variables
+fs = 44100;         % Sample rate [Hz]
+k = 1 / fs;         % Time step [s]
+lengthSound = fs;   % Length of the simulation (1 second) [samples]             
+
+c = 300;            % Wave speed [m/s]
+L = 1;              % Length [m]
+h = c * k;          % Grid spacing [m] (from CFL condition)
+N = floor(L/h);     % Number of intervals between grid points
+h = L / N;          % Recalculation of grid spacing based on integer N
+
+lambdaSq = c^2 * k^2 / h^2; % Courant number squared
+
+% Boundary conditions ([D]irichlet or [N]eumann)
+bcLeft = "D";            
+bcRight = "D"; 
+
+%% Initialise state vectors (one more grid point than the number of intervals)
+uNext = zeros(N+1, 1); 
+u = zeros(N+1, 1);
+
+%% Initial conditions (raised cosine)
+loc = round(0.8 * N);       % Center location
+halfWidth = round(N/10);    % Half-width of raised cosine
+width = 2 * halfWidth;      % Full width
+rcX = 0:width;              % x-locations for raised cosine
+
+rc = 0.5 - 0.5 * cos(2 * pi * rcX / width); % raised cosine
+u(loc-halfWidth : loc+halfWidth) = rc; % initialise current state  
+
+% Set initial velocity to zero
+uPrev = u;
+
+% Range of calculation 
+range = 2:N;
+
+% Output location
+outLoc = round(0.3 * N);
+
+%% Simulation loop
+for n = 1:lengthSound
+    
+    % Update equation Eq. %*\eqrefMatlab[eq:1DwaveUpdate]*)
+    uNext(range) = (2 - 2 * lambdaSq) * u(range) ...
+        + lambdaSq * (u(range+1) + u(range-1)) - uPrev(range); 
+    
+    % boundary updates Eq. %*\eqrefMatlab[eq:1DWaveLeftBound]*)
+    if bcLeft == "N"
+        uNext(1) = (2 - 2 * lambdaSq) * u(1) - uPrev(1) ...
+        + 2 * lambdaSq * u(2); 
+    end
+
+    % Eq. %*\eqrefMatlab[eq:1DWaveRightBound]*)
+    if bcRight == "N"
+        uNext(N+1) = (2 - 2 * lambdaSq) * u(N+1) - uPrev(N+1) ...
+        + 2 * lambdaSq * u(N); 
+    end
+    
+    out(n) = u(outLoc);
+    
+    % Update system states
+    uPrev = u;
+    u = uNext;
+end
 \end{lstlisting}
