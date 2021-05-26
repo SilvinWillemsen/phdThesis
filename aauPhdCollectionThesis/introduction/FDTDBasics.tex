@@ -77,7 +77,7 @@ Generally, the spatial distribution of an object can be simplified if one (or mo
 The translational DoF\todo{check whether this needs to be per point along a system}, on the other hand, describe now many ``coordinates'' a state variable includes. 
 In much of the literature on FDTD methods in the field of musical acoustics, the state variable only has one coordinate. In most string models, for example, only the transverse displacement in one polarisation is considered (see Chapter \ref{ch:stiffString}) and the other polarisation as well as the longitudinal motion of the string is ignored. In other words, every point along the string can only move up and down, not side-to-side and not forward and back. Although this greatly simplifies the system at hand and reduces computational complexity, this is not what happens in reality, and non-linear effects such as phantom partials and pitch glides due to tension modulation are not present in the simplified model. 
 
-Work has been done on strings with dual polarisation by Desvages \cite{Desvages2018} and Desvages and Bilbao \cite{Desvages2016} using FDTD methods. Models including longitudinal string vibration, where the longitudinal and transversal displacements are couples can be found in \cite{theBible}.
+Work has been done on strings with dual polarisation by Desvages \cite{Desvages2018} and Desvages and Bilbao \cite{Desvages2016} using FDTD methods. Models including longitudinal string vibration, where the longitudinal and transversal displacements are couples can be found in \cite{theBible,Bilbao2009spring}.
 In \cite{Villeneuve2019}, Villeneuve and Leonard present a mass-spring network where the state of every individual mass has three translational DoF. Due to these additional DoF, these networks would capture the aforementioned effects, but greatly increase the computational complexity of the models. 
 
 Although the dimensionality reduction ignoring some of the physical processes, surprisingly realistic sounding models can be made despite these simplifications. Due to computational considerations, all models used in this work thus only have 1 translational DoF.
@@ -484,6 +484,17 @@ If both boundaries of the 1D wave equation share the same condition, the fundame
     \caption{The behaviour of the 1D wave equation with (a) Dirichlet or (b) Neumann boundary conditions.\label{fig:boundaryCondsCont}}
 \end{figure}
 
+\subsubsection{Scaling}
+As this work follows much of Bilbao's \textit{Numerical Sound Synthesis} \cite{theBible}, it might be good to talk about a major discrepancy between the PDEs and FD schemes that appear there and those used here. Non-dimensionalisation, or \textit{scaling}, is extensively used in \cite{theBible} and much of the literature published around that time (fx. \cite{Bilbao2009,Bilbao2009spring}) and can be useful to reduce the amount of parameters used to describe a system.
+
+Scaling techniques normalise the domain $x\in[0, L]$ to $x' = x/L$ such that $x' \in [0, 1]$. The 1D wave equation in \eqref{eq:1DwavePDE} can then be rewritten to
+\begin{equation}\label{eq:scaled1Dwave}
+    \ptt u = \gamma^2\partial_{x'x'}u,
+\end{equation}
+where scaled wave speed $\gamma = c/L$ has units of frequency. The scaling has removed the necessity for both $c$ and $L$ and simply specifying the scaled wave speed $\gamma$ is enough to parameterise the behaviour of the system. The parameter reduction gets more apparent for more complex systems and could greatly simplify of the models used, at least in notation and parameter control. 
+
+Although this parameter reduction might be useful for resonators in isolation, when multiple resonators interact with each other (see Part \ref{part:interactions}), it is better to keep the systems dimensional. As a big part of this work includes interaction between multiple resonators, only dimensional systems will appear here.\todo{check whether still correct}
+
 \subsection{Discrete time}
 The most straightforward discretisation of Eq. \eqref{eq:1DwavePDE} is the following FD scheme
 \begin{equation}\label{eq:1DwaveFDS}
@@ -508,6 +519,15 @@ is called the \textit{Courant number} and plays a big role in stability quality 
 \end{equation}
 which acts as a stability condition for scheme \eqref{eq:1DwaveFDS}.
 If $\lambda = 1$, Eq. \eqref{eq:1DwaveFDS} is an exact solution to Eq. \eqref{eq:1DwavePDE}. \SWcomment[Exact solutions are actually quite uncommon in the realm of differential equations!] If $\lambda < 1$, the quality of the simulation quality decreases and dispersive and bandlimiting effects occur (see Section \ref{sec:output1DWave}).
+
+\subsubsection{Stencil}
+It can be useful to visualise the \textit{stencil}, or region of operation, of a FD scheme. A stencil visualises what grid values are necessary to calculate the state at the next time step $u_l^{n+1}$. Figure \ref{fig:stencil1DWave} shows the stencil for scheme \eqref{eq:1DwaveFDS} and in essence visualise the various appearances of the grid function in \eqref{eq:1DwaveUpdate}. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/fdtd/1DWaveStencil.eps}
+    \caption{The stencil, or region of operation, for the FD scheme in \eqref{eq:1DwaveFDS}.\label{fig:stencil1DWave}}
+\end{figure}
 
 \subsubsection{Boundary Conditions}
 The end points of the discrete domain are located at $l = 0$ and $l = N$.

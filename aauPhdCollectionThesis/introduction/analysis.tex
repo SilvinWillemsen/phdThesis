@@ -4,6 +4,10 @@ This chapter provides some techniques to analyses FD schemes .
 
 Techniques to analyse PDEs also exist, but the focus here is on the discrete schemes.
 
+The analysis techniques will be especially be practically explained, rather than substantiating why things are the way they are \SWcomment[different wording here obviously] 
+
+References to the origins of these techniques will be provided for the interested reader. 
+
 \section{Preamble}
 
 % \subsection{General Mathematical Tools}
@@ -80,7 +84,7 @@ Expanding this operation results in
         a_{N0}u_0 + a_{N1}u_1 + \hdots + a_{NN}u_N
     \end{bmatrix}}_{\w}
 \end{equation}
-where the subscripts for $a$ indicate the indices for the row and column.
+where the subscripts for $a$ indicate the indices for the row and column ($a_{rc}$).
 
 \subsubsection{Operators in Matrix Form}
 FD operators approximating first-order spatial derivatives can be written in matrix form and applied to a column vector $\u$ containing the state of the system. The size of these matrices depend on the number of grid points the system is described for and the boundary conditions. 
@@ -185,7 +189,7 @@ If instead, Neumann boundary conditions are used (Eq. \eqref{eq:discreteDirichle
         \mathbf{0}& & & 2 & -2 
     \end{bmatrix},
 \end{equation}
-where the $2$s correspond to the multiplication by $2$ with $u_1^n$ and $u_{N-1}^n$ in Eqs. \eqref{eq:1DWaveLeftBound} and \eqref{eq:1DWaveRightBound} respectively.
+where the $2$s in the top and bottom row correspond to the multiplication by $2$ with $u_1^n$ and $u_{N-1}^n$ in Eqs. \eqref{eq:1DWaveLeftBound} and \eqref{eq:1DWaveRightBound} respectively.
 
 Regardless of the boundary conditions, the FD scheme in \eqref{eq:1DwaveFDS} can be written in matrix form as
 \begin{equation}\label{eq:1DwaveMatrix}
@@ -215,9 +219,9 @@ A number of unknowns described by the same number of equations can be solved usi
 \end{align*}
 
 \subsection{Eigenvalue Problems}\label{sec:eigenValueProblems}
-A square matrix $\A$ is characterised by its \textit{eigenvalues} and corresponding \textit{eigenvectors}. In a FDTD context, these are usually associated with the modes of a system, where the eigenvalues relate to the modal frequencies and \todo{ask stefan} the eigenvectors the the modal shapes. Section \ref{sec:modalAnalysis} will provide more information on this.
+A square matrix $\A$ is characterised by its \textit{eigenvalues} and corresponding \textit{eigenvectors}. In a FDTD context, these are usually associated with the modes of a system, where the eigenvalues relate to the modal frequencies and \todo{ask stefan} the eigenvectors to the modal shapes. Section \ref{sec:modalAnalysis} will provide more information on this.
 
-To find these characteristic values for a $p\times p$ matrix $\A$ an equation of the following form must be solved 
+To find these characteristic values for a $p\times p$ matrix $\A$, an equation of the following form must be solved 
 \begin{equation}
     \A \boldPhi = \lambda \boldPhi.
 \end{equation}
@@ -228,9 +232,9 @@ This is called is an \textit{eigenvalue problem} and has $p$ solutions (correspo
 where $\eig_p(\cdot)$ denotes the $p$\th eigenvalue of. Instead of delving too deep into eigenvalue problems and the process of how to solve them, an easy way to obtain the solutions using \texttt{MATLAB} is provided here:
 
 \begin{center}\todo{Check code here!}
-    \texttt{[\textasciitilde, lambda, phi] = eig(A, {\color[HTML]{A100F4}'vector'});}
+    \texttt{[phi, lambda] = eig(A, {\color[HTML]{A100F4}'vector'});}
 \end{center}
-The eigenvalues are given in a $p \times 1$ column vector \texttt{lambda} and the $p$\th eigenvector appears in the $p$\th column of $p\times p$ matrix \texttt{phi}. Note that the outcome is not sorted! To do this, do 
+The $p$\th eigenvector appears in the $p$\th column of $p\times p$ matrix \texttt{phi} and the eigenvalues are given in a $p \times 1$ column vector \texttt{lambda}. Note that the outcome is not sorted! To do this, do 
 %
 \begin{center}
     \begin{tabular}{l}
@@ -244,7 +248,75 @@ Much literature gives the stability condition using an ``it can be shown that'' 
 
 Finding stability conditions for models
 
-The following trigonometric identities will come in handy when performing the analyses \cite[p. 71]{Abramowitz1972}:
+One can analyse a \todo{FULL DOC SWEEP:check `a' or `an' FD scheme}FD scheme by applying a \textit{z-transform} to it
+\begin{equation}
+    u_l^n = z^n e^{jl\beta h}
+\end{equation}
+where $\beta$ is a real wavenumber. Important to remember is that without a shift in space (fx. $l+1$) or time (fx. $n-1$) $l = 0$ or $n=0$ respectively. See Table \ref{tab:zIdentities} for the z-transform of grid functions with their temporal and spatial indices shifted in different ways.
+
+{\renewcommand{\arraystretch}{1.2}
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        Grid function & Z-transform & Result\\ \hline
+        $u_l^n$ & $z^0 e^{j0\beta h}$ & $1$\\
+        $u_{l+1}^n$ & $z^0 e^{j1\beta h}$ & $e^{j\beta h}$\\
+        $u_{l-1}^n$ & $z^0 e^{j(-1)\beta h}$ & $e^{-j\beta h}$\\
+        $u_{l+2}^n$ & $z^0 e^{j2\beta h}$ & $e^{j2\beta h}$\\
+        $u_{l-2}^n$ & $z^0 e^{j(-2)\beta h}$ & $e^{-j2\beta h}$\\
+        $u_l^{n+1}$ & $z^1 e^{j0\beta h}$ & $z$\\
+        $u_l^{n-1}$ & $z^{-1} e^{j0\beta h}$ & $z^{-1}$\\
+        $u_{l+1}^{n-1}$ & $z^{-1} e^{j1\beta h}$ & $z^{-1}e^{j\beta h}$\\
+        $u_{l-1}^{n-1}$ & $z^{-1} e^{j(-1)\beta h}$ & $z^{-1}e^{-j\beta h}$\\\hline
+    \end{tabular}
+    \caption{Z-transforms of grid functions.\label{tab:zIdentities}}
+    \end{center}
+\end{table}
+{\renewcommand{\arraystretch}{1}
+
+\todo{from here on down, quite quickly written down..}
+Any scheme is then stable when its roots are bounded by unity for all $\beta$
+\begin{equation}\label{eq:boundByUnity}
+    |z| \leq 1.
+\end{equation} 
+
+It can be shown that for a polynomial of the form 
+\begin{equation}\label{eq:polynomialForm}
+    z^2 + a^{(1)}z + a^{(2)}
+\end{equation} 
+it follows condition \eqref{eq:boundByUnity} when it abides the following \cite{theBible}
+\begin{equation}\label{eq:condition214}
+    |a^{(1)}| - 1 \leq a^{(2)} \leq 1,
+\end{equation}
+or, if $a^{(2)} = 1$, the simpler condition
+\begin{equation}\label{eq:simplerCondition215}
+    |a^{(1)}|\leq 2.
+\end{equation}
+
+\subsection{Mass-spring system}
+Recalling the update equation of the mass-spring system \eqref{eq:massSpringUpdate}
+\begin{equation*}
+    u^{n+1} = \left(2-\frac{Kk^2}{M} \right)\un - u^{n-1},
+\end{equation*} 
+a z-transform can be applied by substituting the values found in Table \ref{tab:zIdentities} accordingly and moving all terms to the left-hand side, yields the characteristic equation for the mass-spring system:
+\begin{equation*}
+    z - \left(2-\frac{Kk^2}{M} \right) + z^{-1} = 0
+\end{equation*}
+Multiplying everything by $z$, we have a polynomial of the form \eqref{eq:polynomialForm} with $a^{(2)} = 1$ and can continue with condition \eqref{eq:simplerCondition215}
+\begin{align*}
+    \left|-2+\frac{Kk^2}{M}\right| &\leq 2,\\
+    -2 \leq -2+\frac{Kk^2}{M} &\leq 2,\\
+    0 \leq \frac{Kk^2}{M} &\leq 4.
+\end{align*}
+As $K$, $k$ and $M$ are positive variables, the first condition is always satisfied. The second condition is then easily solved for $k$ by
+\begin{align*}
+    k &\leq 2\sqrt{\frac{M}{K}}
+\end{align*}
+
+\subsection{1D Wave Equation}
+For systems distributed in space, the following trigonometric identities will come in handy when performing the analyses \cite[p. 71]{Abramowitz1972}:
 \begin{subequations}
     \begin{gather}
         \sin(x) = \frac{e^{jx} - e^{-jx}}{2j}\ \ \Rightarrow \ \ \sin^2(x) %= \frac{e^{j2x} - 2e^{jx-jx}+ e^{-j2x}}{-4} 
@@ -254,22 +326,83 @@ The following trigonometric identities will come in handy when performing the an
     \end{gather}
 \end{subequations}
 
-One can analyse a \todo{FULL DOC SWEEP:check `a' or `an' FD scheme}FD scheme by 
+This section will derive the stability condition for the 1D wave equation. Starting from the FDS (Eq. 6.35)
 \begin{equation}
-    u_l^n = z^n e^{jl\beta h}
+    u_l^{n+1} = 2(1-\lambda^2)u_l^n + \lambda^2(u_{l+1}^n+u_{l-1}^n)-u_l^{n-1},
 \end{equation}
-where $\beta$ is a real wavenumber. Important to remember is that without a shift in space (fx. $l+1$) or time (fx. $n-1$) $l = 0$ or $n=0$ respectively:
-\begin{subequations} \label{eq:identitiesZ}
-    \begin{align}
-        u_l^n &= z^0 e^{j0\beta h} = 1\\
-        u_{l+1}^n &= z^0 e^{j1\beta h} = e^{j\beta h}\\
-        u_{l-1}^n &= z^0 e^{j(-1)\beta h} = e^{-j\beta h}\\
-        u_{l+2}^n &= z^0 e^{j2\beta h} = e^{j\beta h}\\
-        u_{l-2}^n &= z^0 e^{j(-2)\beta h}= e^{-j2\beta h}\\
-        u_l^{n+1}&= z^1 e^{j0\beta h} = z\\
-        u_l^{n-1}&= z^{-1} e^{j0\beta h} = z^{-1}
-    \end{align}
-\end{subequations}
+where
+\begin{equation}\label{eq:lambda}
+    \lambda = \frac{ck}{h} \quad \text{and wave speed} \quad c = \sqrt{\frac{T}{\rho A}},
+\end{equation}
+with tension $T$, material density $\rho$ and cross-sectional area $A$.
+We can now perform frequency domain analysis. Moving all terms to the left of the equals-sign and with their respective identities found in Eqs. \eqref{tab:zIdentities} filled in, we get:
+\begin{equation}\label{eq:zFDS}
+    z - 2(1-\lambda^2)1 - \lambda^2(e^{j\beta h}+e^{-j\beta h}) + z^{-1} = 0.
+\end{equation}
+Using the identity found in Eq. \eqref{eq:sinIdentity} with $\beta h = 2x \Rightarrow x = \beta h / 2$ we can rewrite \eqref{eq:zFDS} to:
+\begin{equation}
+     z - 2 + 2\lambda^2 +4\lambda^2(\sin^2({\beta h / 2}) - 1/2) - z^{-1} = 0,
+\end{equation}
+and rewriting this yields the characterstic equation shown in Eq. (6.38):
+\begin{equation}\label{eq:characteristic1D}
+     z + 2(2\lambda^2\sin^2(\beta h/2) - 1) + z^{-1} = 0.
+\end{equation}
+The roots are then given by (using $X = \lambda^2\sin^2(\beta h/2)$):
+\begin{equation}
+\begin{aligned}\nonumber
+    z_\pm &= \frac{-2(2X-1) \pm \sqrt{4(2X-1)^2 - 4 \cdot 1 \cdot 1}}{2}\\
+    &= 1-2X \pm 1/2 \cdot \sqrt{4(2X-1)^2 - 4}\\
+    &= 1-2X \pm 1/2 \cdot \sqrt{4(4X^2-4X + 1) - 4}\\
+    &= 1-2X \pm 1/2 \cdot \sqrt{(4(4X^2 - 4X) + 4 - 4}\\
+    &= 1-2X \pm 1/2 \cdot \sqrt{4(4X^2 - 4X)}\\
+    &= 1-2X \pm 1/2 \cdot 2 \cdot \sqrt{4X^2 - 4X}\\
+    &= 1-2X \pm \sqrt{(1 - 2X)^2 - 1}\\
+\end{aligned}
+\end{equation}
+which results in the equation for the roots (right below (6.38) in section 6.2.2):
+\begin{equation}
+    z_\pm = 1-2\lambda^2\sin^2(\beta h/2) \pm \sqrt{(1 - 2\lambda^2\sin^2(\beta h/2))^2 - 1}.
+\end{equation}
+The scheme is then stable when these roots are bounded by unity for all $\beta$ \cite{BilbaoTutorial2018}
+\begin{equation}\label{eq:boundByUnity}
+    |z| \leq 1.
+\end{equation} 
+It can be shown that for a polynomial of the form 
+\begin{equation}\label{eq:polynomialForm}
+    z^2 + a^{(1)}z + a^{(2)}
+\end{equation} it follows condition \eqref{eq:boundByUnity} when it abides the following (Eq. 2.14)
+\begin{equation}\label{eq:condition214}
+    |a^{(1)}| - 1 \leq a^{(2)} \leq 1,
+\end{equation}
+and when applied to the characteristic equation \eqref{eq:characteristic1D} (after multiplication with $z$), it can be seen that
+\begin{equation}\nonumber
+    \begin{aligned}
+        |2(2\lambda^2\sin^2(\beta h/2) - 1)|-1 &\leq 1\\
+        |2(2\lambda^2\sin^2(\beta h/2) - 1)| &\leq 2\\
+        |2\lambda^2\sin^2(\beta h/2) - 1| &\leq 1,
+    \end{aligned}    
+\end{equation}
+which is the equation right above Eq. (6.39). This can then be rewritten as
+\begin{equation}\nonumber
+    \begin{aligned}
+        -1 \leq 2\lambda^2\sin^2(\beta h/2) - 1 &\leq 1\\
+        0 \leq 2\lambda^2\sin^2(\beta h/2)&\leq 2\\
+        0\leq \lambda^2\sin^2(\beta h/2) &\leq 1
+    \end{aligned}
+\end{equation}
+and observing that all terms are squared, the result will always be non-negative, yielding Eq. (6.39):
+\begin{equation}
+     \lambda^2\sin^2(\beta h/2) \leq 1.
+\end{equation}
+Furthermore, knowing that the $\sin^2(\beta h / 2)$-term is bounded by $1$ for all $\beta$ the following condition is sufficient for stability (Eq. 6.40):
+\begin{equation}
+    \lambda \leq 1.
+\end{equation}
+Recalling \eqref{eq:lambda}, we see that the grid spacing is bounded by the following condition:
+\begin{equation}
+    h \geq h_\text{min} = ck.
+\end{equation}
+The closer $h$ is to $h_\text{min}$, the higher the quality of the implementation. 
 
 \todo{Talk about solution of }
 
@@ -313,7 +446,7 @@ One can perform stability analysis using the energy analysis techniques presente
 
 \section{Modal Analysis}
 \label{sec:modalAnalysis}
-Modes are the resonant frequencies of a system. The amount of modes that a discrete system contains depends on the amount of moving points. A mass-spring system thus has one resonating mode, but a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. This section will show how to obtain the modes of an FD scheme implementing the 1D wave equation. 
+Modes are the resonant frequencies of a system. The amount of modes that a discrete system contains depends on the amount of moving points. A mass-spring system thus has one resonating mode, but a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. This section will show how to analytically obtain the modes of an FD scheme implementing the 1D wave equation. 
 
 We start by using the the matrix form of FD scheme \eqref{eq:1DwaveFDS} from Eq. \eqref{eq:1DwaveMatrix}
 \begin{equation*}
@@ -328,7 +461,7 @@ This is an eigenvalue problem (see Section \ref{sec:eigenValueProblems}) where t
     z_p-2+z_p^{-1} = c^2k^2\text{eig}_p(\Dxx),\nonumber\\
     z_p+(-2-c^2k^2\text{eig}_p(\Dxx))+z_p^{-1}=0.
 \end{gather}
-\SWcomment[If the CFL condition for the scheme is satisfied, the roots will lie on the unit circle.] Furthermore we can substitute a test solution $z_p=e^{j\omega_pk}$ with angular frequency of the $p$\th mode $\omega_p$ and solve for these:
+\SWcomment[If the CFL condition for the scheme is satisfied, the roots will lie on the unit circle.] Furthermore, we can substitute a test solution $z_p=e^{j\omega_pk}$ with angular frequency of the $p$\th mode $\omega_p$ and solve for these:
 \begin{align*}
     e^{j\omega_pk}+e^{-j\omega_pk}-2-c^2k^2\text{eig}_p(\Dxx)&=0,\\
     \frac{e^{j\omega_pk}+e^{-j\omega_pk}}{-4}+\frac{1}{2}+\frac{c^2k^2}{4}\text{eig}_p(\Dxx)&=0,
@@ -362,7 +495,7 @@ can be rewritten to
         \u^{n-1}
     \end{bmatrix}}_{\w^n}
 \end{equation}
-which relates the unknown state of the system to the known state through matrix $\Q$ which encompases the scheme. The sizes of the identity matrix $\I$ and zero matrix $\mathbf{0}$ are the same size as $\A, \B$ and $\C$ and are essentially used to make the matrix square and allow for eigenvalue calculation.
+which relates the unknown state of the system to the known state through matrix $\Q$ which encompases the scheme. The sizes of the identity matrix $\I$ and zero matrix $\mathbf{0}$ are the same size as $\A, \B$ and $\C$.
 
 Again we can assume solutions of the form $\w = z^n\boldPhi$ \SWcomment[(where $\boldPhi$ is less-trivially connected to the modal shapes)] and get
 \begin{equation}
@@ -383,6 +516,6 @@ Solutions for the frequency and damping for the $p$th eigenvalue can then be obt
 \end{equation}
 where $\mathfrak{I}(\cdot)$ and $\mathfrak{R}(\cdot)$ denote the ``imaginary part of'' and ``real part of'' respectively. 
 
-As the elements of $\Q$ are real-valued, the solutions $s_p$ in Eq. \eqref{eq:sp} come in complex conjugates. For analysis, only the $\mathfrak{I}(s_p)\geq 0$ should be considered as these correspond to non-negative frequencies.
+As the elements of $\Q$ are real-valued, the solutions $s_p$ in Eq. \eqref{eq:sp} come in complex conjugates. For analysis, only the $\mathfrak{I}(s_p)\geq 0$ should be considered as these correspond to non-negative frequencies. 
 
 \section{Dispersion analysis}\label{sec:dispersionAnalysis}

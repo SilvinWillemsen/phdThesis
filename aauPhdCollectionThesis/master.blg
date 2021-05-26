@@ -9,6 +9,7 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bib/mybib.bib
 Warning--I didn't find a database entry for ""
+Warning--I didn't find a database entry for "BilbaoTutorial2018"
 Warning--I didn't find a database entry for "Coulomb"
 Warning--I didn't find a database entry for "Morin1833"
 Warning--I didn't find a database entry for "Reynolds1886"
@@ -21,45 +22,45 @@ Warning--I didn't find a database entry for "Bilbao2016"
 ** Sorting version - not for normal IEEE work.
 
 Done.
-You've used 18 entries,
+You've used 19 entries,
             4566 wiz_defined-function locations,
-            1033 strings with 11265 characters,
-and the built_in function-call counts, 13098 in all, are:
-= -- 1166
-> -- 329
-< -- 77
-+ -- 164
-- -- 82
-* -- 684
-:= -- 2097
-add.period$ -- 36
-call.type$ -- 18
-change.case$ -- 92
-chr.to.int$ -- 174
-cite$ -- 18
-duplicate$ -- 837
-empty$ -- 999
-format.name$ -- 89
-if$ -- 2922
+            1042 strings with 11472 characters,
+and the built_in function-call counts, 13949 in all, are:
+= -- 1247
+> -- 349
+< -- 85
++ -- 177
+- -- 86
+* -- 730
+:= -- 2230
+add.period$ -- 38
+call.type$ -- 19
+change.case$ -- 97
+chr.to.int$ -- 192
+cite$ -- 19
+duplicate$ -- 890
+empty$ -- 1055
+format.name$ -- 94
+if$ -- 3109
 int.to.chr$ -- 0
-int.to.str$ -- 18
-missing$ -- 147
-newline$ -- 83
-num.names$ -- 36
-pop$ -- 409
+int.to.str$ -- 19
+missing$ -- 155
+newline$ -- 86
+num.names$ -- 38
+pop$ -- 424
 preamble$ -- 1
-purify$ -- 77
+purify$ -- 81
 quote$ -- 2
-skip$ -- 969
+skip$ -- 1034
 stack$ -- 0
-substring$ -- 502
-swap$ -- 601
-text.length$ -- 19
+substring$ -- 548
+swap$ -- 644
+text.length$ -- 21
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 171
+type$ -- 182
 warning$ -- 0
-while$ -- 63
-width$ -- 20
-write$ -- 190
-(There were 7 warnings)
+while$ -- 70
+width$ -- 21
+write$ -- 200
+(There were 8 warnings)
