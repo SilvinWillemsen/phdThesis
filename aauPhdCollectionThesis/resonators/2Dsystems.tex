@@ -7,7 +7,7 @@ In this work, it is mainly used to model a simplified body in papers...
 State variable $u = u(x,y,t)$  where $t\geq 0$ and $(x,y) \in \D$ where $\D$ is 2-dimensional. The state variable can then be discretised according to $u(x, y, t) \approx \ulmn$ with space $x = lh$ and $y = mh$ and time $t = nk$ and $k=1/\fs$. For simplicity the grid spacing in both the $x$ and $y$ directions are set to be the same but could be different.
 
 In continuous time the  operators:
-\begin{equation}
+\begin{equation}\label{eq:laplacian}
     \Delta = \pxx + \pyy
 \end{equation}
 
@@ -17,14 +17,37 @@ The same shift operators as defined in Chapter \ref{ch:FDTD} can be applied to g
     e_{y+}\ulmn = u_{l, m+1}^n,\quad \text{and}\quad e_{y-}\ulmn= u_{l, m-1}^n.
 \end{equation}
 
+\section{Analysis Techniques in 2D}\label{sec:analysis2D}
+Here, some of the differences between the analysis techniques presented in Chapter \ref{ch:analysis} and those in 2D will be elaborated on. Although, modal analysis remains the same
+
+\subsection{Frequency Domain Analysis}
+$p_x + p_y$
+
+ansatz:
+\begin{equation}
+    \ulmn = z^n e^{jh(l\beta_x + m\beta_y)}
+\end{equation}
+
+\subsection{Energy Analysis}
+Squared domain 
+$d\in \{0, \hdots, N_x\} \times \{0, \hdots, N_y\}$
+\begin{equation}\label{eq:2DInnerProd}
+    \langle f^n, g^n \rangle_d = \sum_{l = 0}^{N_x}\sum_{m = 0}^{N_y} h^2 f_{l,m}^n g_{l,m}^n
+\end{equation}
+
+\subsection{Modal Analysis}
+Stacked matrix form
 
 \section{2D Wave Equation}
 The 2D wave equation be used to model an ideal membrane such as done in 
 
+It has identical behaviour to the 2D waveguide mesh presented by van Duyne and Smith \cite{Duyne1993}.
+
+Consider a square ideal membrane with side lengths $L_x$ and $L_y$ (both in m) and its transverse displacement described by $u = u(x,y,t)$. The membrane is defined over $(x,y) \in \D$ with domain $\D = [0, L_x] \times[0, L_y]$ and its motion is described by the following PDE
 \begin{equation}\label{eq:2DwavePDE}
     \ptt u = c^2\Delta u
 \end{equation}
-where $c = \sqrt{T/\rho H}$ is the wavespeed (in m/s) $T$ is the tension per unit length\todo{check whether this is right..} applied to the boundary (in N/m), material density
+with wave speed $c = \sqrt{T/\rho H}$ (in m/s), tension per unit length (applied to the boundary)\todo{check whether this is right..}$T$ (in N/m), material density $\rho$ (in kg/m$^3$) and thickness $H$.
 
 \section{Thin plate}
 Used in \citeP[A], \citeP[B], \citeP[D] and \citeP[E]
@@ -36,6 +59,7 @@ where $D = EH^3/12(1-\nu^2)$
 \section{Stiff membrane}
 Combination between Eqs. \eqref{eq:2DwavePDE} and \eqref{eq:platePDE}
 \begin{equation}\label{eq:2DwavePDE}
-    \rho H \ptt u = T\Delta u
+    \rho H \ptt u = T\Delta u - D
+    \Delta\Delta u
 \end{equation}
 \citeP[F]

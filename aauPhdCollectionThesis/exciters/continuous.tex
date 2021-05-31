@@ -1,5 +1,8 @@
 \chapter{Modelled Excitations}\label{ch:bowModels}
 
+\section{Preamble: Newton-Raphson}\label{sec:newtonRaphson}
+Iterative root-finding method that finds answers to nonlinear equations. 
+
 \section{Hammer \SWcomment[but maybe not as I didn't use it..]}
 Hammer modelling
 
@@ -15,9 +18,28 @@ with damping coefficient $R$ (in kg/s). To this system we can add an external fo
 \end{equation}
 where 
 \section{The Bow}
-The bow...
+The bow
+
+Excites the system with a force due to friction, which has a nonlinear relationship to the relative velocity between the bow and the string. 
+
+
 
 Helmholtz motion..
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[->,node distance=3cm,
+        thick,main node/.style={circle,draw}]
+    
+        \node[] (image) at (0,0) {\includegraphics[width=1\columnwidth]{figures/exciters/helmholtz.eps}};
+    
+        \draw[thick, ->] (-0.15,0.60) arc (110:430:0.6);
+        
+      \end{tikzpicture}
+    \caption{Helmholtz motion. \label{fig:helmholtz}}
+\end{figure}
+
+coined as `stick-slip' motion by Bowden and Leben in 1939 \cite{Bowden1939}
 
 See fx. \url{https://www.youtube.com/watch?v=6JeyiM0YNo4}
 
@@ -25,13 +47,180 @@ Characteristic triangular motion (wave shapes?)
 
 \subsection{Static Friction Models}
 In static bow-string-interaction models, the friction force is defined as a function of the relative velocity between the bow and the string only.
-The first mathematical description of friction was proposed by Coulomb in 1773 \cite{Coulomb} to which static friction, or \textit{stiction}, was added by Morin in 1833 \cite{Morin1833} and viscous friction, or velocity-dependent friction, by Reynolds in 1886 \cite{Reynolds1886}. In 1902, Stribeck found a smooth transition between the static and the coulomb part of the friction curve now referred to as the Stribeck effect \cite{Stribeck1902}. The latter is still the standard for static friction models today.
+The first mathematical description of friction was proposed by Coulomb in 1773 \cite{Coulomb1773}\todo{check references here} to which static friction, or \textit{stiction}, was added by Morin in 1833 \cite{Morin1833} and viscous friction, or velocity-dependent friction, by Reynolds in 1886 \cite{Reynolds1886}. In 1902, Stribeck found a smooth transition between the static and the coulomb part of the friction curve now referred to as the Stribeck effect \cite{Stribeck1902}. The latter is still the standard for static friction models today.
+
+In this project, only the following static friction model has been used \cite{Bilbao2009}
+
+\begin{equation}\label{eq:frictionCharacteristic}
+    \Phi (\vrel) = \sqrt{2a}\vrel e^{-a\vrel^2 + 1/2}
+\end{equation}
+
+\todo{FULL DOC SWEEP: check figure centering}\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/exciters/frictionCharacteristic.eps}
+    \caption{The friction characteristic in \eqref{eq:frictionCharacteristic} with $a = 100$. \label{fig:frictionCharacteristic}}
+\end{figure}
 
 \subsection{Dynamic Friction Models}
 As opposed to less complex bow models, such as the hyperbolic [source] and exponential [source] models, the elasto-plastic bow model assumes that the friction between the bow and the string is caused by a large quantity of bristles, each of which contributes to the total amount of friction.
+
+Dynamic friction models exhibit \SWcomment[/ model] \textit{hysteresis}: the dependence of a system on its history. 
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+    
+    \def\radius{6}; % Radius of the string (>2!)
+    \pgfmathsetmacro{\reps}{3}; % How may back-and-forths in the drawing of the springs
+    \def\horShift{0.5}; %how far the bow is shifted to the right in b)
+    \def\bowSpacing{0.2};
+    \def\drawingSpacing{1.5}
+    \def\bowWidth{5};
+    
+    %subfigure letters
+    \node (A) at (-2.8, 0.5) {\textbf{(a)}};
+    \node (B) at (-2.8, 0.5 - \drawingSpacing) {b)};
+    \node (C) at (-2.8, 0.5 - \drawingSpacing * 2) {c)};
+    \node (D) at (-2.8, 0.5 - \drawingSpacing * 3) {d)};
+    
+    %bow velocity arrow
+    \draw[->] (-1, 1.3) -- (1, 1.3) node [midway, above] (velText) {$v_\text{B}$};
+    
+    \pgfmathsetmacro{\zCoordTop}{0};
+    \pgfmathsetmacro{\zYCoordBottom}{0};
+    \def\springForZ{2}
+    \foreach \drawing in {0, ..., 3}
+    {
+        %% Draw String
+        \begin{scope}
+            \clip (-1.5,-0.2- \drawing * \drawingSpacing) rectangle (1.5,1.5);
+            \draw (0,-\radius + 0.25 - \drawing * \drawingSpacing) circle(\radius);
+        \end{scope}
+
+        %% Draw Bow
+        \def\halfBW{\bowWidth*0.5}
+        \pgfmathsetmacro{\halfNumDiag}{0.5 * \bowWidth / \bowSpacing};
+        \draw[-] (-\halfBW + \drawing * \horShift,1 - \drawing * \drawingSpacing) -- (\halfBW + \drawing * \horShift, 1 - \drawing * \drawingSpacing);
+        \foreach \bowDiag in {-\halfNumDiag, ...,\halfNumDiag}
+        {
+        \pgfmathtruncatemacro{\bD}{\bowDiag}
+        % \ifnum\drawing=0
+        %     \ifnum\bD<-1
+        %         \draw[-] (\drawing * \horShift + \bowDiag * \bowSpacing, -\drawing * \drawingSpacing + 1) -- (\drawing * \horShift + \bowDiag * \bowSpacing + 0.1, -\drawing * \drawingSpacing + 0.1 + 1);
+        %         \else
+        %         \ifnum\bD>1
+        %             \draw[-] (\drawing * \horShift + \bowDiag * \bowSpacing, -\drawing * \drawingSpacing + 1) -- (\drawing * \horShift + \bowDiag * \bowSpacing + 0.1, \drawing * -2 + 0.1 + 1);
+        %         \fi
+        %     \fi
+        % \else
+            \draw[-] (\drawing * \horShift + \bowDiag * \bowSpacing, -\drawing * \drawingSpacing + 1) -- (\drawing * \horShift + \bowDiag * \bowSpacing + 0.1, -\drawing * \drawingSpacing + 0.1 + 1);
+        % \fi
+            
+        }
+        
+        \def\brokenSprings{{0, 1, 1, 0, 1, 0}};
+        %% Draw Springs
+        \foreach \springNo in {0, ..., 5}
+        {
+            % Calculate spring length depending on the radius of the string
+            \pgfmathsetmacro{\startX}{\springNo  * 0.5 - 1.25};
+            \pgfmathsetmacro{\calcSpace}{(\radius + 1) - \radius * sin(acos(\startX/\radius)) - 0.25};
+            \pgfmathsetmacro{\springLength}{sqrt(\calcSpace*\calcSpace+\drawing*\horShift*\drawing*\horShift)};
+            
+            \pgfmathsetmacro{\spacing}{\springLength / (\reps + 2)}; 
+            % spacing between two spring-back-and-forths
+            \ifnum\drawing=0
+                \pgfmathsetmacro{\rot}{0};
+            \else
+                \pgfmathsetmacro{\rot}{(270+(atan(\calcSpace/(\drawing*\horShift))))}; %rotation of the springs
+            \fi
+            
+            \ifnum\drawing=1
+                \ifnum\springNo=\springForZ
+                    \pgfmathsetmacro{\resTwo}{sqrt(\springLength*\springLength-\horShift*\horShift)};
+                    \global\let\zCoordBottom = \resTwo;
+                \fi
+            \fi
+        
+            \pgfmathsetmacro{\isBroken}{\brokenSprings[\springNo]};
+            % debug code
+            % \node (nodeTest\springNo) at (\springNo*1.1-2, -3 - 1 * \drawing + 0.3 * \springNo) {\isBroken};
+            
+            \begin{scope}[shift={(\startX + \drawing * \horShift,1 -\drawing * \drawingSpacing)}]
+                \pgfmathsetmacro{\xWidth}{0.1 - (\drawing * 0.02)};
+                \draw[-, rotate = \rot] (0, 0) -- (0, -\spacing * 0.5);
+                \draw[-, rotate = \rot] (0, -\spacing * 0.5) -- (\xWidth, -\spacing);
+                \def\Y{-\spacing}
+                \foreach \idx in {1,...,\reps}
+                {
+                    \pgfmathsetmacro{\idxMinOne}{\idx-1};
+                    \ifnum\drawing=2
+                        \ifnum\isBroken=1
+                            \pgfmathtruncatemacro{\idxT}{\reps * 0.5 + 1}
+                            \ifnum\idx=\idxT
+                                \draw[-, rotate = \rot] (\xWidth, \Y - \idxMinOne * \spacing) -- (-\xWidth,\Y - \idx * \spacing*0.6);
+                                \draw[-, rotate = \rot] (\xWidth, \Y - \idxMinOne * \spacing * 1.66) -- (-\xWidth,\Y - \idx * \spacing);
+                            \else
+                                \draw[-, rotate = \rot] (\xWidth, \Y - \idxMinOne * \spacing) -- (-\xWidth,\Y - \idx * \spacing);
+                            \fi
+                        \else
+                                \draw[-, rotate = \rot] (\xWidth, \Y - \idxMinOne * \spacing) -- (-\xWidth,\Y - \idx * \spacing);
+                        \fi
+                    \else
+                        \ifnum\drawing=3
+                            \pgfmathtruncatemacro{\idxT}{\reps * 0.5 + 1}
+                            \ifnum\idx=\idxT
+                                \draw[-, rotate = \rot] (\xWidth, \Y - \idxMinOne * \spacing) -- (-\xWidth,\Y - \idx * \spacing*0.6);
+                                \draw[-, rotate = \rot] (\xWidth, \Y - \idxMinOne * \spacing * 1.66) -- (-\xWidth,\Y - \idx * \spacing);
+                            \else
+                                \draw[-, rotate = \rot] (\xWidth, \Y - \idxMinOne * \spacing) -- (-\xWidth,\Y - \idx * \spacing);
+                            \fi
+                        \else
+                            \draw[-, rotate = \rot] (\xWidth, \Y - \idxMinOne * \spacing) -- (-\xWidth,\Y - \idx * \spacing);
+                        \fi
+                    \fi
+                    \pgfmathsetmacro{\invXWidth}{\xWidth*-1};
+                    \global\let\xWidth = \invXWidth;
+                    \pgfmathsetmacro{\lastYPre}{\Y - \idx * \spacing};
+                    \global\let\lastY = \lastYPre;
+                }
+                \draw[-, rotate = \rot] (\xWidth, \lastY) -- (0, \lastY - \spacing * 0.5);
+                \draw[-, rotate = \rot] (0, \lastY - \spacing * 0.5) -- (0, \lastY - \spacing);
+             \end{scope}
+             
+        }
+        % \draw[<->] (2,2-0.707) -- node[right] {$r=\sqrt{2} \Rightarrow A=\pi(\sqrt{2})^2=2\pi$} (2,2+0.707);
+        
+        % \node(stringText) at (0, -\drawing * 2) {string};
+        % \node[block, minimum height = 0.15cm, fill=white, draw=white] (bowText) at (\drawing * \horShift, 1.23 - \drawing * 2) {bow};
+    }
+    \filldraw[black] (-1.25+\springForZ*0.5 + \horShift,1-\drawingSpacing) circle (1pt) node[anchor=center](topZ){};
+    \filldraw[black] (-1.25++\springForZ*0.5,1-\zCoordBottom-\drawingSpacing) circle (1pt) node[anchor=center](bottomZ){};
+    
+    \node [](leftNode) at (-1.25+\springForZ*0.5,-\drawingSpacing - 0.1) {};
+    \node [](rightNode) at (-1.25 +\springForZ*0.5 + \horShift,-\drawingSpacing - 0.1) {};
+    
+    \draw[<->] (leftNode.center) -- (rightNode.center) node [midway, above] (TextNode) {$z$};
+    \draw[dashed, darkgray] (leftNode) -- (bottomZ);
+    \draw[dashed, darkgray] (rightNode) -- (topZ);
+    %% Draw bow and string texts
+        \node(stringText) at (0, 0) {string};
+        \node(bowText) at (3, 1.1) {bow};
+    %% Draw descriptions of z
+    \def\zTexts{{"$z=0$", "$0<|z|<z_{\text{ba}}$", "$z_{\text{ba}}<|z|< z_\text{ss}$", "$|z|>z_\text{ss}$"}};
+    
+    \node[anchor = east](zText1) at (5.3, 0.5) {$z=0$};
+    \node[anchor = east](zText1) at (5.3, 0.5 - \drawingSpacing) {$0<|z|\leq z_{\text{ba}}$};
+    \node[anchor = east](zText1) at (5.3, 0.5 - \drawingSpacing * 2) {$z_{\text{ba}}<|z|< |z_\text{ss}|$};
+    \node[anchor = east](zText1) at (5.3, 0.5 - \drawingSpacing * 3) {$|z|\geq|z_\text{ss}|$};
+    
+    \end{tikzpicture}
+    \caption{\it Microscopic displacements of the bristles between the bow and the string. The bow moves right with a velocity of $v_\text{B}$. (a) The initial state is where the average bristle displacement $z=0$. (b) The bow has moved right relative to the string. The purely elastic, or presliding regime is entered (stick). (c) After the break-away displacement $z_\text{ba}$, more and more bristles start to `break'. This is defined as the elasto-plastic regime. (d) After all bristles have `broken', the steady state (slip) is reached and the purely plastic regime is entered. (Taken from \citeP[C].)\SWcomment[exactly the same caption as paper]}
+    \label{fig:elastoPlastic}
+\end{figure}
 
 \section{Lip-reed}
 Lip-reed model
 
 
-\subsection{Coupling to Tube}
+
+Coupling to Tube

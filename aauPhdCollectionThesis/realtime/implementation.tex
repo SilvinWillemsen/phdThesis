@@ -238,3 +238,30 @@ void Simple1DWave::excite()
 }
     
 \end{lstlisting}
+
+
+\section{Matrices}
+
+Library called \textit{Eigen} \cite{Eigen}
+
+\subsection{Matrix Inversions in Real-Time}\label{sec:RTmatrixInversion}
+For small ($2\times 2$ and $3\times 3$) matrices it is doable to do the inversion `by hand'. This requires finding the \textit{determinant} of a matrix
+
+\begin{equation*}
+    \u = \A^{-1}\w, 
+\end{equation*}
+where
+\begin{equation}
+    \A^{-1} = \frac{1}{a_{00}\cdot a_{11} - a_{01}\cdot a_{10}}
+    \begin{bmatrix}
+        a_{11} & -a_{01}\\
+        -a_{10} & a_{00} 
+    \end{bmatrix}
+\end{equation}
+
+\setlstCpp
+\begin{lstlisting}
+det = a00 * a11 - a01 * a10;
+u0 = (w0 * a11 - w1 * a01) / det;
+u1 = (-w0 * a10 + w1 * a00) / det;
+\end{lstlisting}

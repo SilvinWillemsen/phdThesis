@@ -44,6 +44,12 @@
 \def\C{\mathbf{C}}
 \def\Q{\mathbf{Q}}
 
+% mathfraks
+\def\H{\mathfrak{H}}
+\def\h{\mathfrak{h}}
+\def\t{\mathfrak{t}}
+\def\v{\mathfrak{v}}
+
 % continuous operators
 \def\ptt{\partial_t^2} 
 \def\pxx{\partial_x^2}
@@ -90,6 +96,7 @@
 % often-used variables
 \def\sz{\sigma_{0}}
 \def\so{\sigma_{1}}
+\def\vrel{v_\text{rel}}
 
 \def\szX[#1]{\sigma_{0{#1}}}
 \def\soX[#1]{\sigma_{1{#1}}}
@@ -100,11 +107,12 @@
 \def\D{\mathcal{D}}
 \def\L{\mathcal{L}}
 \def\O{\mathcal{O}}
+\def\S{\mathcal{S}}
 
 % flooring ceiling
 \def\floor[#1]{\left\lfloor #1 \right\rfloor}
 \def\ceil[#1]{\left\lceil #1 \right\rceil}
-
+\def\ansatz{\ \overset{\mathcal{A}}{\Longrightarrow}\ }
 % other
 \def\qaq{\quad \text{and} \quad}
 \def\mystrut{\rule[-.2\baselineskip]{0pt}{\baselineskip}}
@@ -120,20 +128,20 @@
 \part{Resonators}\label{part:resonators}
 \input{resonators/resonators}
 
-\part{Exciters}\label{part:exciters}
-\input{exciters/exciters}
+% \part{Exciters}\label{part:exciters}
+% \input{exciters/exciters}
 
 \part{Interactions}\label{part:interactions}
 \input{interactions/interactions}
 
-\part{Dynamic Grids}\label{part:dynamic}
-\input{dynamic/dynamic}
+% \part{Dynamic Grids}\label{part:dynamic}
+% \input{dynamic/dynamic}
 
-\part{Real-Time Implementation and Control}\label{part:realtime}
-\input{realtime/realtime}
+% \part{Real-Time Implementation and Control}\label{part:realtime}
+% \input{realtime/realtime}
 
-\part{Complete Instruments}\label{part:instrument}
-\input{instrument/instrument}
+% \part{Complete Instruments}\label{part:instrument}
+% \input{instrument/instrument}
 
 \pagebreak
 

@@ -10,7 +10,7 @@ are always expressed in the language of differential equations.''\\
 \vspace{2em}
 This chapter introduces some important concepts needed to understand the physical models presented later on in this document. 
 By means of a simple mass-spring system and the 1D wave equation, the notation and terminology used throughout this document will be explained. 
-Before diving into the mathematics, let us go over some useful terminology.
+Unless denoted otherwise, the notation has been taken from \cite{theBible}, most of which originates from \cite{Strikwerda1989}. Before diving into the mathematics, let us go over some useful terminology.
 
 \section{Differential Equations}
 Differential equations are used to describe the motion of dynamic systems including vibrations in musical instruments. In this work, these equations are used, among others, to describe the movement of a string, an instrument body and the air pressure in an acoustic tube.
@@ -51,7 +51,7 @@ The literature uses different types of notation for taking (continuous-time) par
 %     \end{aligned}
 % \end{equation}
 %
-where the subscript notation could be seen as the partial derivative counterpart to Newton's notation due to its compactness. In the remainder of this document, the operator notation will be used, due to their similarity to the discrete operators (introduced shortly) and as it allows for creation of bigger operators for more compactness when working with multiple (connected) systems (see e.g. Chapter \ref{ch:tromba}).
+where the subscript notation could be seen as the partial derivative counterpart to Newton's notation due to its compactness. In the remainder of this document, the operator notation will be used, due to their similarity to the discrete operators (introduced shortly) and as it allows for creation of bigger operators for more compactness when working with multiple (connected) systems (see e.g. Chapter \ref{ch:tromba}). Also, state-of-the-art literature in the field of FDTD methods sound synthesis use this notation \cite{Bilbao2018}.
 
 Often-used partial derivatives and their meanings \todo{maybe not yet as this is super general still} are shown below
 
@@ -113,7 +113,7 @@ We start by defining a discrete \textit{grid} over time and space which we will 
 As mentioned in Section \ref{sec:domains}, a 1D system needs to be defined over a temporal and one spatial domain.
 In discrete time, the temporal domain $t \geq 0$ is discretised to $n \in \mathbb{N}^0$.\footnote{In this work, $\mathbb{N}^0$ is used to denote the set of non-negative integers ($\mathbb{N}^0 = 0, 1, 2, 
 \hdots$).} 
-The spatial domain $\D$ can be subdivided into $N$ equal sections, or intervals, of length $h$ (see Figure \ref{fig:gridExp}). The grid points describing the state of the system are placed between and around these intervals. The spatial range of interest then becomes $l\in \{0, \hdots, N\}$ and the total number of grid points is $N+1$, one more than the number of intervals. 
+The spatial domain $\D$ can be subdivided into $N$ equal sections, or intervals, of length $h$ (see Figure \ref{fig:gridExp}). The grid points describing the state of the system are placed between and around these intervals. The spatial range of interest then becomes $l\in \{0, \hdots, N\}$ and the total number of grid points is $N+1$, one more than the number of intervals.
 
 %The grid points interact with their neighbouring grid points according to the model at hand.
 
@@ -136,6 +136,7 @@ The spatial domain $\D$ can be subdivided into $N$ equal sections, or intervals,
     \includegraphics[width=0.75\textwidth]{figures/fdtd/gridExplanation2.pdf}
     \caption{When a 1D system $u(x,t)$ with $x\in \D$ is discretised to a grid function $\uln$, the spatial domain $\D$ is divided into $N$ intervals of length $h$ and spatial range of interest $l=\{0, \hdots, N\}$.\label{fig:gridExp}}
 \end{figure}
+
 
 \subsection{Finite-Difference Operators}\label{sec:FDoperators}
 Now that the state variable has a discrete counterpart, this leaves the derivatives to be discretised, or approximated. We start by introducing shift operators that can be applied to a grid function and `shifts' its indexing, either temporally or spatially. Forward and backward shifts in time, together with the identity operation are
@@ -179,7 +180,7 @@ and when applied to $\uln$ are
     \dxm \uln&$\!\!\!\!\!\!\!\!\!\!= \frac{1}{h}\left(\uln - u_{l-1}^n\right),$\\
     \dxd \uln&$\!\!\!\!\!\!\!\!\!\!= \frac{1}{2h}\left(u_{l+1}^n - u_{l-1}^n\right).$\label{eq:centredSpaceOperatorU}
 \end{subnumcases}
-Higher order differences can be approximated through a composition of first-order difference operators. The second-order difference in time may be approximated using
+Higher order differences can be approximated through a composition of first-order difference operators where their definitions are multiplied. The second-order difference in time may be approximated using
 \begin{equation}\label{eq:discSecondTime}
     \ptt \approxeq \dtp\dtm = \dtt \triangleq \frac{1}{k^2}\left(e_{t+}-2+e_{t-}\right),
 \end{equation}
@@ -308,9 +309,9 @@ The accuracy of averaging operators can also be found and follow a similar patte
 For working with FD schemes, either for implementation or analysis, it can be extremely useful to rewrite the operators presented above to equivalent versions of themselves. These are called identities and for future reference, some useful ones are listed below
 \begin{subequations}
     \begin{align}
-        \dtt &= \frac{2}{k}\left(\dtd- \dtm\right)\label{eq:identity1}\\
-        \dtd &= \dtp\mtm = \dtm\mtp\label{eq:identity2}\\
-        \mtp &= \frac{k}{2}\dtp + 1\label{eq:identity3}
+        \dtt &= \frac{2}{k}\left(\dtd- \dtm\right),\label{eq:identity1}\\
+        \dtd &= \dtp\mtm = \dtm\mtp\label{eq:identity2},\\
+        \mtp &= \frac{k}{2}\dtp + 1\label{eq:identity3}.
     \end{align}
 \end{subequations}
 \todo{see whether the negative version of identity \eqref{eq:identity3} is also used later on}
@@ -359,7 +360,7 @@ That the frequency of the system is also dependent on the mass $M$ can be explai
 
 %From the definition of $\omega_0$ in Eq. \eqref{eq:omega0MassSpring} one can observe that a smaller $M$ will cause a higher frequency explained by the fact that a smaller mass is more easily moved. Similarly, a higher spring constant $K$ will cause a higher frequency, as the force caused by Hooke's law ``pulls'' the mass back to the equilibrium to a higher degree.
 
-Finally, if $u = 0$ there is no spring force present and the acceleration remains unchanged. If the mass is not in motion, this means that it remains stationary, but if it is, the velocity is unchanged and it will continue moving with the same speed. 
+Finally, if $u = 0$ there is no spring force present and the acceleration remains unchanged. If the mass is not in motion, this means that it remains stationary, but if it is, the velocity is unchanged and it will continue moving with the same speed. This is exactly what Newton's first law states: if the net force acting on an object is zero, its velocity will be constant.
 
 \subsection{Discrete-time}
 The displacement of the mass is approximated using 
@@ -432,7 +433,7 @@ The 1D Wave Equation}\label{sec:1DWave}
 Arguably the most important PDE in the field of physical modelling for sound synthesis is the 1D wave equation. It can be used to describe transverse vibration in an ideal string, longitudinal vibration in an ideal bar or the pressure in an acoustic tube (see Chapter \ref{ch:brass}). Although the behaviour of this equation alone does not appear in the real world \SWcomment[as such] -- as no physical system is ideal -- it is extremely useful as a test case and a basis for more complicated models. %Here, it will be used to introduce various concepts and analysis techniques in the field of FDTD methods.
 
 \subsection{Continuous time\todo{FULL DOC SWEEP: check hyphen in titles}}
-The 1D wave equation is a PDE that describes the motion of a system distributed in one dimension of space. Consider the state of a 1D system $u=u(x,t)$ of length $L$ defined for time $t\geq 0$ and $x\in \D$ with $D = [0, L]$. The PDE describing its motion is
+The 1D wave equation is a PDE that describes the motion of a system distributed in one dimension of space. Consider the state of a 1D system $u=u(x,t)$\todo{unit?} of length $L$ (in m) defined for time $t\geq 0$ and $x\in \D$ with $D = [0, L]$. The PDE describing its motion is
 \begin{equation}\label{eq:1DwavePDE}
     \ptt u = c^2 \pxx u,
 \end{equation}
@@ -495,7 +496,7 @@ where scaled wave speed $\gamma = c/L$ has units of frequency. The scaling has r
 
 Although this parameter reduction might be useful for resonators in isolation, when multiple resonators interact with each other (see Part \ref{part:interactions}), it is better to keep the systems dimensional. As a big part of this work includes interaction between multiple resonators, only dimensional systems will appear here.\todo{check whether still correct}
 
-\subsection{Discrete time}
+\subsection{Discrete time}\label{sec:1DWaveDisc}
 The most straightforward discretisation of Eq. \eqref{eq:1DwavePDE} is the following FD scheme
 \begin{equation}\label{eq:1DwaveFDS}
     \dtt \uln = c^2 \dxx \uln,

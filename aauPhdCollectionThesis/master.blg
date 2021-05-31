@@ -9,58 +9,51 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bib/mybib.bib
 Warning--I didn't find a database entry for ""
-Warning--I didn't find a database entry for "BilbaoTutorial2018"
-Warning--I didn't find a database entry for "Coulomb"
-Warning--I didn't find a database entry for "Morin1833"
-Warning--I didn't find a database entry for "Reynolds1886"
-Warning--I didn't find a database entry for "Stribeck1902"
-Warning--I didn't find a database entry for "Webster19"
-Warning--I didn't find a database entry for "Bilbao2016"
 -- IEEEtranS.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 ** Sorting version - not for normal IEEE work.
 
 Done.
-You've used 19 entries,
+You've used 20 entries,
             4566 wiz_defined-function locations,
-            1042 strings with 11472 characters,
-and the built_in function-call counts, 13949 in all, are:
-= -- 1247
-> -- 349
-< -- 85
-+ -- 177
-- -- 86
-* -- 730
-:= -- 2230
-add.period$ -- 38
-call.type$ -- 19
-change.case$ -- 97
-chr.to.int$ -- 192
-cite$ -- 19
-duplicate$ -- 890
-empty$ -- 1055
-format.name$ -- 94
-if$ -- 3109
+            1034 strings with 11748 characters,
+and the built_in function-call counts, 15116 in all, are:
+= -- 1339
+> -- 402
+< -- 93
++ -- 203
+- -- 100
+* -- 795
+:= -- 2366
+add.period$ -- 40
+call.type$ -- 20
+change.case$ -- 106
+chr.to.int$ -- 213
+cite$ -- 20
+duplicate$ -- 960
+empty$ -- 1163
+format.name$ -- 111
+if$ -- 3398
 int.to.chr$ -- 0
-int.to.str$ -- 19
-missing$ -- 155
-newline$ -- 86
-num.names$ -- 38
-pop$ -- 424
+int.to.str$ -- 20
+missing$ -- 163
+newline$ -- 83
+num.names$ -- 40
+pop$ -- 444
 preamble$ -- 1
-purify$ -- 81
+purify$ -- 90
 quote$ -- 2
-skip$ -- 1034
+skip$ -- 1132
 stack$ -- 0
-substring$ -- 548
-swap$ -- 644
-text.length$ -- 21
+substring$ -- 604
+swap$ -- 698
+text.length$ -- 22
 text.prefix$ -- 0
 top$ -- 6
-type$ -- 182
+type$ -- 184
 warning$ -- 0
-while$ -- 70
-width$ -- 21
-write$ -- 200
-(There were 8 warnings)
+while$ -- 75
+width$ -- 22
+write$ -- 201
+(There was 1 warning)

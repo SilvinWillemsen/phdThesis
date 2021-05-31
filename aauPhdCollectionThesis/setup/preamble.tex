@@ -240,12 +240,16 @@
 \usepackage{subfig}
 
 \usepackage{tikz}
-\usetikzlibrary{decorations.markings}
+\tikzset{>=latex}
+\tikzstyle{block} = [draw,minimum size=0.5cm]
+\usetikzlibrary{math,arrows,positioning,shapes.geometric, decorations.markings}
 
 \usepackage{listings}
 \usepackage{courier}
 
 \usepackage[most]{tcolorbox}
+\usepackage{tabstackengine}
+\stackMath
 
 
 \def\eqrefMatlab[#1]{%
