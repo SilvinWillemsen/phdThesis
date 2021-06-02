@@ -324,59 +324,126 @@ The $p$\th eigenvector appears in the $p$\th column of $p\times p$ matrix \textt
 \end{center}
 
 \section{Mathematical Tools and Product Identities}
-Some useful mathematical tools used for the energy analysis techniques presented in Section \ref{sec:energyAnalysis} will be shown here.
+Some useful mathematical tools used for the energy analysis techniques presented in Section \ref{sec:energyAnalysis} will be shown here. The tools shown here can be applied to 1D systems. Tools for 2D systems will be introduced in Chapter \ref{ch:2Dsyst}.
 
-\subsection{Inner products}
-For two functions $f(x)$ and $g(x)$ defined for $x\in\D$ where $\mathcal{D} = [0,L]$, their $l_2$ inner product and $l_2$ norm are defined as
+\subsection{Inner product}\label{sec:innerProduct}
+For two functions $f(x,t)$ and $g(x,t)$ defined for $x\in\D$ where $\mathcal{D} = [0,L]$, their $l_2$ inner product and $l_2$ norm are defined as
 \begin{equation}\label{eq:contInnerProd}
     \langle f, g\rangle_\D = \int_\D fg dx \quad \text{and} \quad \lVert f \rVert_\D = \sqrt{\langle f, f \rangle_\D}.
 \end{equation}
-The discrete inner product of any (1D) grid function $f_l^n$ and $g_l^n$ defined for $l \in d$, with domain $d = \{0,\hdots,N\}$, is
+These functions do not have to be time-dependent (i.e., they can also simply be $f(x)$ and $g(x)$), but as all functions used in this work are in fact time-dependent, this is left for coherence. It is also important to note that these functions do not have to be `isolated' state variables per se (such as $u(x,t)$ used in the previous chapter), but could also be a state variable with a derivative applied to it. 
+
+The discrete inner product of any two (1D) functions $f_l^n$ and $g_l^n$ defined for $l \in d$, with discrete domain $d = \{0,\hdots,N\}$, is
 \begin{equation}\label{eq:discInnerProd}
-    \langle f^n, g^n \rangle_d = \sum_{l = 0}^N h f_l^n g_l^n,
+    \langle f_l^n, g_l^n \rangle_d = \sum_{l = 0}^N h f_l^n g_l^n,
 \end{equation}
 where the multiplication by $h$ is the discrete counterpart of $dx$ in the continuous definition in \eqref{eq:contInnerProd}. 
 
 Also useful are the primed inner product
 \begin{equation}\label{eq:primedInnerProd}
-    \langle f^n, g^n \rangle_d' = \sum_{l=1}^{N-1} h f_l^n g_l^n + \frac{h}{2}f_0^ng_0^n + \frac{h}{2}f_N^ng_N^n,
+    \langle f_l^n, g_l^n \rangle_d' = \sum_{l=1}^{N-1} h f_l^n g_l^n + \frac{h}{2}f_0^ng_0^n + \frac{h}{2}f_N^ng_N^n,
 \end{equation}
 and the more general weighted inner product
 \begin{equation}\label{eq:weightedInnerProd}
-    \langle f^n, g^n \rangle_d^{\epsilon_\text{l}, \epsilon_\text{r}} = \sum_{l=1}^{N-1} h f_l^n g_l^n + \frac{\epsilon_\text{l}}{2}hf_0^ng_0^n + \frac{\epsilon_\text{r}}{2}hf_N^ng_N^n,
+    \langle f_l^n, g_l^n \rangle_d^{\el, \er} = \sum_{l=1}^{N-1} h f_l^n g_l^n + \frac{\el}{2}hf_0^ng_0^n + \frac{\er}{2}hf_N^ng_N^n,
 \end{equation}
-which scale the boundary points of the regular inner product in \eqref{eq:discInnerProd}. 
+which scale the boundary points of the regular inner product. Naturally, if $\el = \er = 1$, Eq. \eqref{eq:weightedInnerProd} reduces to \eqref{eq:primedInnerProd}, and if $\el = \er = 2$, \eqref{eq:weightedInnerProd} reduces to \eqref{eq:discInnerProd}.
 
-\subsection{Summation by Parts}
+\subsection{Summation by Parts}\label{sec:summationByParts}
 Extremely useful when performing energy analysis on distributed systems is \textit{summation by parts}, which is the discrete counterpart to integration by parts. Although its application will be only be apparent when actually performing an energy analysis (see fx. Section \ref{sec:energyAnalysisString}) some definitions will be presented here for future reference.
 
-Using the same functions $f(x)$ and $g(x)$ and domain $\D$ as before, and taking a spatial derivative of $g$, integration by parts is defined as
-\begin{equation}
+Here, the same functions as in the previous section, $f(x,t)$ and $g(x,t)$ and domain $\D$, will be used. Applying a spatial derivative to $g$, and using the discrete inner product defined in Eq. \eqref{eq:discInnerProd},integration by parts is defined as
+\begin{equation}\label{eq:integrationByParts}
     \langle f, \px g \rangle_\D = -\langle \px f, g\rangle_\D + fg|_0^L
 \end{equation}
-where $fg|_0^L$ describes the boundary terms. One can observe that the spatial derivative is now applied to $f$ rather than $g$ and the sign of the inner product has inverted. 
+where $fg|_0^L$ describes the boundary terms that appeared in the process. One can observe that the spatial derivative switched function and is now applied to $f$ rather than $g$. Also notice that the sign of the inner product has inverted. 
 
-Using discrete domain $d=\{0, \hdots, N\}$, summation by parts is defined as \cite{theBible}\todo{check whether this reference is necessary}
+Defining two (1D) functions $f_l^n$ and $g_l$ defined for $l\in d$ with discrete domain $d=\{0, \hdots, N\}$, two variants of summation by parts are defined as \cite{theBible}\todo{check whether this reference is necessary}
+\begin{subequations}\label{eq:summationByParts}
+    \begin{align}
+        \langle f_l^n, \dxm g_l^n \rangle_d  &= -\langle \dxp f_l^n, g_l^n\rangle_d + f_{N+1}^ng_N^n - f_0^ng_{-1}^n,\label{eq:summationByPartsMinus}\\
+        \langle f_l^n, \dxp g_l^n \rangle_d 
+        &= -\langle \dxm f_l^n, g_l^n\rangle_d + f_N^ng_{N+1}^n - f_{-1}^ng_0^n.\label{eq:summationByPartsPlus}
+    \end{align}
+\end{subequations}
+A derivation of Eq. \eqref{eq:summationByPartsMinus} is given below. As in the continuous case in Eq. \eqref{eq:integrationByParts}, the process causes the derivative to be applied to the other function and the sign of the resulting inner product changes. Important to note, is that the sign (forward / backward) of the derivative operator has changed. Lastly, discrete boundary terms have appeared and it can be seen that values outside of the defined domain are needed, i.e., $g_{N+1}^n$ and $f_{-1}^n$. These can be accounted for by the boundary conditions imposed on the system (see Section \ref{sec:1DWaveDisc} as an example). 
+
+One could also choose to work with reduced domains after summation by parts. Domains that have one fewer point at the boundaries are defined as $\underline{d} = \{0, \hdots, N-1\}$, 
+$\overline{d} = \{1, \hdots, N\}$ and $\underline{\overline{d}} = \{1, \hdots, N-1\}$. The following identities can be shown to hold
+\begin{subequations}\label{eq:summationByParts}
+    \begin{align}
+        \langle f_l^n, \dxm g_l^n \rangle_d  &= -\langle \dxp f_l^n, g_l^n\rangle_{\underline{d}} + f_N^ng_N^n - f_0^ng_{-1}^n,\label{eq:summationByPartsMinusBar}\\
+        \langle f_l^n, \dxp g_l^n \rangle_d 
+        &= -\langle \dxm f_l^n, g_l^n\rangle_{\overline{d}} + f_N^ng_{N+1}^n - f_0^ng_0^n,\label{eq:summationByPartsPlusBar}
+    \end{align}
+\end{subequations}
+and, using the primed inner product in Eq. \eqref{eq:primedInnerProd},
+\begin{subequations}
+    \begin{align}
+        \langle f_l^n, \dxm g_l^n \rangle_d'  = -\langle \dxp f_l^n, g_l^n \rangle_{\underline{d}}+f_N^n(\mxm g_N^n)-f_0^n(\mxm g_0^n)\label{eq:primedIdentityMinus}\\
+        \langle f_l^n, \dxp g_l^n \rangle_d'  = -\langle \dxm f_l^n, g_l^n \rangle_{\overline{d}}+f_N^n(\mxp g_N^n)-f_0^n(\mxp g_0^n)\label{eq:primedIdentityPlus}
+    \end{align}
+\end{subequations}
+%
+all of which will prove useful in energy analysis techniques later on. A derivation of \eqref{eq:summationByPartsMinusBar} is given below. 
+
+
+Finally, one can apply summation by parts twice to get: 
 \begin{align}
-    \langle f^n, \dxp g^n \rangle_d 
-    %&= \sum_{l = 0}^N h f_l^n\frac{1}{h}\left(g_{l+1}^n - g_l^n\right)\nonumber\\
-    % &= \sum_{l = 0}^N h\frac{1}{h}\left(f_l^n-f_{l-1}\right)g_l^n + f_N^ng_{N+1}^n - f_{-1}^ng_0^n \nonumber\\
-    % &
-    = -\langle \dxm f^n, g^n\rangle_d + f_N^ng_{N+1}^n - f_{-1}^ng_0^n\label{eq:summationByParts}
+    \langle f, \dxx g\rangle = \langle \delta_{xx}f, g \rangle_d+f_N\delta_{x+}g_N-g_N\delta_{x+}f_N -f_0\delta_{x-}g_0+g_0\delta_{x-}f_0,
 \end{align}
-As one can observe, the 
-It might be easier to see what happens with a derivation using $N = 2$ as an example. Suppressing the $n$ superscript for brevity, we get 
-\begin{align*}
-    \langle f, \dxp g \rangle_d &= \sum_{l = 0}^2 h f_l\frac{1}{h}\left(g_{l+1} - g_l\right),\\
-    &= f_0g_1 - f_0g_0 + f_1g_2 - f_1g_1 + f_2g_3-f_2g_2,\\
-    &= g_0(f_{-1}-f_0) - f_{-1}g_0 + g_1(f_0-f_1) + g_2(f_1-f_2) + f_2g_3,\\
-    &= -g_0(f_0-f_{-1}) - g_1(f_1 - f_0) - g_2(f_2-f_1) + f_2g_3 - f_{-1}g_0,\\
-    &= -\sum_{l=0}^2 h g_l\frac{1}{h}\left(f_l - f_{l-1}\right) + f_2g_3 - f_{-1}g_0,\\
-    &= -\langle \dxm f, g\rangle_d + f_2g_3 - f_{-1}g_0.
-\end{align*}
-As $N=2$, the result is identical to Eq. \eqref{eq:summationByParts}
+or, using the reduced domains,
+\begin{align}
+    \langle f, \dxx g\rangle = \langle \delta_{xx}f, g \rangle_{\underline{\overline{d}}}+f_N\dxp g_N-g_N\dxm f_N -f_0\dxm g_0+g_0\dxp f_0.
+\end{align}
 
-\subsection{Product identities}
+\subsubsection{Derivations}
+To see why the above identities hold true, it is useful to go through a derivation. As an example, we go through Eqs. \eqref{eq:summationByPartsMinus} and \eqref{eq:summationByPartsMinusBar} as they have the same inner product as a starting point, but yield different results. In the following, $d=\{0, \hdots, N\}$ and $N = 2$ are used. 
+
+Starting with Eq. \eqref{eq:summationByPartsMinus}, suppressing the $n$ superscript for brevity, and using the definition for the discrete inner product in Eq. \eqref{eq:discInnerProd}, we get 
+\begin{align*}
+    \langle f_l, \dxm g_l \rangle_d &= \sum_{l = 0}^2 h f_l\frac{1}{h}\left(g_l - g_{l-1}\right),\\
+    &= f_0g_0 - f_0g_{-1} + f_1g_1 - f_1g_0 + f_2g_2-f_2g_1,\\
+    &= g_0(f_0-f_1) - f_0g_{-1} + g_1(f_1-f_2) + g_2(f_2-f_3) + f_3g_2,\\
+    &= -g_0(f_1-f_0)- g_1(f_2-f_1) - g_2(f_3-f_2) + f_3g_2 - f_0g_{-1},\\
+    &= -\sum_{l=0}^2 h g_l\frac{1}{h}\left(f_{l+1} - f_l\right) + f_3g_2 - f_0g_{-1},\\
+    &= -\langle \dxp f_l, g_l\rangle_d + f_3g_2 - f_0g_{-1}.
+\end{align*}
+As $N=2$, the result is identical to Eq. \eqref{eq:summationByPartsMinus}. 
+
+Using the same inner product as a starting point, identity \eqref{eq:summationByPartsMinusBar} can be proven to hold:
+\begin{align*}
+    \langle f_l, \dxm g_l \rangle_d &= \sum_{l = 0}^2 h f_l\frac{1}{h}\left(g_l - g_{l-1}\right),\\
+    &= f_0g_0 - f_0g_{-1} + f_1g_1 - f_1g_0 + f_2g_2-f_2g_1,\\
+    &= -f_0g_{-1} + g_0(f_0-f_1) + g_1(f_1-f_2) + f_2g_2,\\
+    &= - g_0(f_1 - f_0) - g_1(f_2-f_1) + f_2g_2 - f_0g_{-1},\\
+    &=\sum_{l=0}^1hg_l\frac{1}{h}(f_{l+1}-f_l) + f_2g_2 - f_0g_{-1},\\
+    &= -\langle \dxp f_l, g_l\rangle_{\underline{d}} + f_2g_2 - f_0g_{-1}
+\end{align*} 
+Similar processes can be used to prove the other identities presented in this section.
+
+% Notes on primed plus:
+% \begin{equation*}
+%     \begin{aligned}
+%         \langle f_l, \dxp g_l\rangle_d' &= \sum_{l=1}^{N-1} hf_l\dxp g_l + \frac{h}{2}f_0\dxp g_0 + \frac{h}{2}f_3\dxp g_3\\
+%         &= \frac{h}{2}f_0\frac{1}{h}(g_1-g_0)+hf_1\frac{1}{h}(g_2-g_1)+ hf_2\frac{1}{h}(g_3-g_2)+ \frac{h}{2}f_3\frac{1}{h}(g_4-g_3)\\
+%         &= \frac{1}{2}f_0g_1-\frac{1}{2}f_0g_0+f_1g_2-f_1g_1+f_2g_3-f_2g_2+\frac{1}{2}f_3g_4-\frac{1}{2}f_3g_3\\
+%         &= -\frac{1}{2}f_0g_0 - g_1(f_1-f_0) - \frac{1}{2}f_0g_1-g_2(f_2-f_1)-g_3(f_3-f_2) + \frac{1}{2}f_3g_3 + \frac{1}{2}f_3g_4 \\
+%         &= -\sum_{l=1}^N hg_l\dxm f_l - \frac{1}{2}f_0g_0-\frac{1}{2}f_0g_1+\frac{1}{2}f_3g_3+\frac{1}{2}f_3g_4\\
+%         &= - \langle \dxm f_l, g_l \rangle_{\underline{d}} + f_3(\mxp g_3) - f_0(\mxp g_0)
+%     \end{aligned}
+% \end{equation*}
+
+% Alternative domains the following:
+% \begin{align*}
+%     \langle f, \dxp g \rangle_d &= \sum_{l = 0}^2 h f_l\frac{1}{h}\left(g_{l+1} - g_l\right),\\
+%     &= f_0g_1 - f_0g_0 + f_1g_2 - f_1g_1 + f_2g_3-f_2g_2,\\
+%     &= -f_0g_0 + g_1(f_0-f_1) + g_2(f_1-f_2) + f_2g_3,\\
+%     &= - g_1(f_1 - f_0) - g_2(f_2-f_1) + f_2g_3 - f_0g_0,\\
+%     &= -\langle \dxm f, g\rangle_{\overline{d}} + f_2g_3 - f_0g_0
+% \end{align*} 
+
+\subsection{Product identities}\label{sec:prodIdentities}
 Some useful identities used in this work are
 \begin{subequations}
     \begin{align}
@@ -584,13 +651,25 @@ Observing that all terms in $\lambda^2\sin^2(\beta h/2)$ are squared, this term 
 \begin{equation*}
     \lambda \leq 1.
 \end{equation*}
-This is the CFL condition in \eqref{eq:CFL}. To obtain the stability condition in terms of the grid spacing, the definition for $\lambda$ is substituted and written in terms of the grid spacing
+This is the CFL condition given in \eqref{eq:CFL}. To obtain the stability condition in terms of the grid spacing, the definition for $\lambda$ is substituted and written in terms of the grid spacing
 \begin{equation}
     h \geq ck,
 \end{equation}
 which is the stability condition given in Eq. \eqref{eq:1DWaveStabilityCond}.
 
 \section{Energy Analysis}\label{sec:energyAnalysis}
+
+\SWcomment[Energy steps for copying /////]
+\subsubsection{Step 1: Obtain $\dtp \h$}
+
+\subsubsection{Step 2: Identify energy types and isolate $\dtp$}
+
+\subsubsection{Step 3: Check units}
+
+\subsubsection{Step 4: Implementation}
+
+\SWcomment[/////]
+
 Energy analysis techniques first appeared in (the first edition of) \cite{Gustafsson2013}\todo{shouldn't I just cite this one then?}
 
 \SWcomment[(also see p. 54 in \cite{theBible}, specifically the section \textbf{Finite precision and round-off error for more references})]
@@ -599,11 +678,11 @@ Energy analysis techniques first appeared in (the first edition of) \cite{Gustaf
 For the 1D wave equation this means to multiply the scheme with $\left(\dtd \uln \right)$
 
 
-The Hamiltonian or $\mathfrak{H}$
+The total energy of the system, or Hamiltonian $\mathfrak{H}$
 
 
 In implementation it can be very helpful to debug physical models...
-One can plot the energy of the system and in a lossless system, the rate of change of the total energy should be 0, i.e.,
+One can plot the energy of the system and in a lossless system without external energy input, the rate of change of the total energy should be 0, i.e.,
 \begin{equation}\label{eq:unchangedEnergy}
     \delta_{t+}\mathfrak{h} = 0 \quad \Longrightarrow \quad \mathfrak{h}^n = \mathfrak{h}^0.
 \end{equation}
@@ -616,66 +695,167 @@ Plotting energy should be within \textit{machine precision}, which mostly is in 
 In this work, the focus of the energy analysis will be in discrete time...
 
 The following steps can be followed to perform a full energy analysis of a FD scheme:
-\subsubsection{Step 1: Obtain the rate of change of the energy (power) $\dtp \h$}
- The first step to energy analysis is to take the appropriate \textit{norm} of the scheme (see Eq. \eqref{eq:contInnerProd}). This yields the \textit{power} of the scheme, or in other words, the rate of change of the energy.
 
- \subsubsection{Step 2: Obtain the Energy $\h$ by isolating $\dtp$}
- As the interest lies in the energy, not the power, $\dtp$ must be isolated in the definition for the power.
+\subsubsection{Step 1: Obtain the rate of change of the total energy $\dtp \h$}
+The first step to energy analysis is to take the appropriate \textit{norm} of the scheme (see Eq. \eqref{eq:contInnerProd}), which yields and expression for the rate of change of the energy of the system. Usually, this means to take the inner product of the scheme with $(\dtd \uln)$. See Section \ref{sec:innerProduct} for more details on the inner product.
 
-\subsubsection{Step 3: Check Units}
-To know that the previous steps have been carried out correctly, it is good to check whether the units of the resulting expression for $\h$ is indeed in Joules, or in SI units: kg $\cdot$ m$^2 \cdot $ s$^{-2}$. 
+For the units of the resulting energy balance to add up (also see Step 4), it is useful to perform the analysis on a scheme with all physical parameters written out (so the discretised version of Eq. \eqref{eq:massSpringPDE} rather than Eq. \eqref{eq:massSpringCompact})
 
-A first-order temporal difference operator will `add' one `s$^{-1}$'-unit (because of the $1/k$) and a first-order spatial difference operator will `add' one `m$^{-1}$'-unit ($1/h$). Along these lines, a second-order time or difference operator will `add' a `s$^{-2}$' ($1/k^2$) or `m$^{-2}$'-unit ($1/h^2$) respectively. It is important to note that the time shift operator ($e_{t-}$) does not influence the units. Finally, if the state $u$ describes a displacement in m, it will `add' this to the equation. If it describes anything else, it will `add' that.
+\subsubsection{Step 2: Identify different types of energy and obtain the total energy $\h$ by isolating $\dtp$}
+The energy of an FD scheme can generally be divided into three different types: the total energy contained within the system, or Hamiltonian $\h$, energy losses through damping $\mathfrak{q}$ and energy input through external forces or excitations $\mathfrak{p}$. For distributed systems, an additional boundary term $\mathfrak{b}$ appears, but vanishes under `regular' (lossless and not energy-storing) boundary conditions. Nearly any energy balance is thus of the form 
+\begin{equation}\label{eq:energyForm}
+    \dtp \h = \mathfrak{b}-\mathfrak{q} - \mathfrak{p}
+\end{equation}
+This equation essentially says that the total energy in the system changes due to losses and inputs. For a lossless system without externally supplied energy over the course of the simulation (so initial conditions excluded), the energy should remain unchanged over the course of the simulation, \begin{equation}
+    \dtp \h = 0 \quad \Longrightarrow \quad \h^n = \h^0.
+\end{equation}
 
-\subsubsection{Step 4: Identify Kinetic Energy $\t$ and Potential Energy $\v$}
-As a rule of thumb, the kinetic energy $\t$ contains `velocity squared' and the potential energy $\v$ is everything else. 
+As the eventual interest lies in the total energy of the system $\h$ and not its rate of change, $\dtp$ must be isolated in the definition of $\dtp \h$. In this step, the identities in Section \ref{sec:prodIdentities} will come in handy, as well as summation by parts described in Section \ref{sec:summationByParts} for distributed systems.
+ 
+The Hamiltonian itself can usually be further subdivided into kinetic energy and potential energy, denoted by the symbols $\t$ and $\v$ respectively:
+\begin{equation}
+    \h = \t + \v
+\end{equation}
+As a rule of thumb, the definition for kinetic energy contains `velocity squared' (as in the classical-mechanics definition $E_\text{kin}=\tfrac{1}{2}M\dot u$) and the potential energy includes the restoring forces of the system. 
 
-\subsubsection{Step 5: Implement the definitions for energy and debug the FD scheme}
-In the end, the definition for $\h$ can be implemented and used as a check for whether the FD scheme has been implemented correctly.
+\subsubsection{Step 3: Check units}
+To know that the previous steps have been carried out correctly, it is good to check whether the units of the resulting expression for $\h$ is indeed in Joules, or in SI units: kg $\cdot$ m$^2 \cdot $ s$^{-2}$. The other quantities such as energy losses $\mathfrak{q}$ and inputs $\mathfrak{p}$, should be in Joules per second or in SI units: kg $\cdot$ m$^2 \cdot $ s$^{-3}$. Some information about operators and grid functions and how they `add' units to the equation will be given below.
+
+An (1D) inner product (or norm) will `add' one `m' unit due to the $h$ in its definition in \eqref{eq:contInnerProd}. A first-order temporal difference operator will `add' one `s$^{-1}$'-unit (because of the $1/k$) and a first-order spatial difference operator will `add' one `m$^{-1}$'-unit ($1/h$). Along these lines, a second-order time or difference operator will `add' a `s$^{-2}$' ($1/k^2$) or `m$^{-2}$'-unit ($1/h^2$) respectively. It is important to note that the time shift operator ($e_{t-}$) does not influence the units. Finally, if the state $u$ describes a displacement in m, it will `add' this to the equation. If it describes anything else, it will `add' that.
+
+\subsubsection{Step 4: Implement the definitions for energy and debug the FD scheme}
+In the end, the definition for the energy can be implemented and used as a check for whether the FD scheme has been implemented correctly.
+
+Subtract $\h^0$
 
 \subsection{Mass-spring system}
+Recalling the FD scheme for the simple mass-spring system in Eq. \eqref{eq:massSpringFDS}
+\begin{equation*}
+    M\dtt \un = -K\un
+\end{equation*}
+we can start to perform an energy analysis using the five steps described above. 
+
 \subsubsection{Step 1: Obtain $\dtp \h$}
 The energy balance of the simple mass-spring system presented in Section \ref{sec:massSpringSystem} can be obtained by first taking the product of scheme \eqref{eq:massSpringFDS} with $(\dtd \un)$:
-\begin{equation*}
-    M(\dtd\un)(\dtt \un) = -K(\dtd\un)(\un)
-\end{equation*}
-Note that the inner product is not necessary as the system is not distributed. 
+\begin{equation}\label{eq:rOCmassSpring}
+    \dtp \h = M(\dtd\un)(\dtt \un) + K(\dtd\un)(\un) = 0.
+\end{equation}
+Note that the inner product is not necessary as the system is not distributed.
 
-\subsubsection{Step 2: Isolate $\dtp$}
-Identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2}, can be used to get the following:
+\subsubsection{Step 2: Identify energy types and isolate $\dtp$}
+As there are no losses or externally supplied energy present in the system, all terms are part of the Hamiltonian $\h$. To isolate $\dtp$ from \eqref{eq:rOCmassSpring}, one can use identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2} to get the following:
 \begin{equation}
     \dtp \h = \dtp\left(\frac{M}{2}(\dtm\un)^2 + \frac{K}{2}\un e_{t-}\un\right) = 0,
 \end{equation}
-and the following energy balance results 
+and the following definition for $\h$ can be obtained
 \begin{equation}\label{eq:energyBalanceMassSpring}
-    \h = \frac{M}{2}(\dtm\un)^2 + \frac{K}{2}\un e_{t-}\un = 0,
+    \h = \frac{M}{2}(\dtm\un)^2 + \frac{K}{2}\un e_{t-}\un = 0.
+\end{equation}
+This can be rewritten in terms of the kinetic energy $\t$ and potential energy $\v$ according to
+\begin{equation}
+    \h = \t + \v, \qwiq
+    \t = \frac{M}{2}(\dtm\un)^2, \qaq \v = \frac{K}{2}\un e_{t-}\un.
+\end{equation} 
+
+\subsubsection{Step 3: Check units}
+As mentioned above, the energy $\h$ needs to be in Joules, or kg $\cdot$ m$^2 \cdot$ s$^{-2}$. Taking the terms in Eq. \eqref{eq:energyBalanceMassSpring} one-by-one and writing them in their units results in 
+\begin{align*}
+    \t = \frac{M}{2}(\dtm\un)^2 &\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad\text{kg}\cdot(\text{s}^{-1}\cdot \text{m})^{2}= \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
+    \v = \frac{K}{2}\un e_{t-}\un&\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad \text{N} \cdot \text{m}^{-1} \cdot \text{m}\cdot \text{m} = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},
+\end{align*}
+and indeed have the correct units. 
+
+\subsubsection{Step 4: Implementation}
+\todo{todo}
+
+\subsection{1D Wave Equation}
+Energy analysis could be directly performed on the FD scheme in \eqref{eq:1DwaveFDS}. However, in order for the units of the scheme to add up to energy in Joules, it is better to write out all physical parameters. Taking the definition for the wave speed for the ideal string $c = \sqrt{T/\rho A}$ and multiplying both sides of scheme \eqref{eq:1DwaveFDS} by $\rho A$ yields
+\begin{equation}\label{eq:1DWavePhysical}
+    \rho A \dtt \uln = T \dxx \uln,
+\end{equation}
+where $l\in d$ with discrete domain $d\in\{0, \hdots, N\}$ and number of grid points $N+1$. Furthermore, Dirichlet boundary conditions as given in Eq. \eqref{eq:discreteDirichlet} are used. A note on using Neumann boundary conditions is given at the end of this section.
+
+\subsubsection{Step 1: Obtain $\dtp \h$}
+Taking an inner product of Eq. \eqref{eq:1DWavePhysical} with $\left( \dtd \uln \right)$ and moving all terms to the left-hand side yields the definition for the rate of change of the Hamiltonian:
+\begin{equation}\label{eq:rOC1DWave}
+    \dtp \h = \rho A \langle \dtd \uln, \dtt \uln \rangle_d - T \langle \dtd\uln, \dxx \uln\rangle_d = 0.
+\end{equation}
+
+
+\subsubsection{Step 2: Identify energy types and isolate $\dtp$}
+As in the case of the mass-spring system in the previous section, there are no losses or externally supplied energy present in the system, and all terms are part of the Hamiltonian $\h$.
+
+To isolate $\dtp$ in Eq. \eqref{eq:rOC1DWave}, the terms have to be rewritten in a way that fits the product identities in Section \ref{sec:prodIdentities}.
+Recalling that $\dxx = \dxp\dxm$ we can use summation by parts as described in Eq. \eqref{eq:summationByPartsMinusBar} with $f_l^n \triangleq \dtd \uln$ and $g_l^n \triangleq \dxp \uln$. The second term can then be rewritten to 
+%
+\begin{equation*}
+    - T \langle \dtd\uln, \dxx \uln\rangle_d  = T\langle \dxp(\dtd\uln), \dxp\uln\rangle_{\underline{d}} - \mathfrak{b},
+\end{equation*}
+where the boundary term
+\begin{equation*}
+    \mathfrak{b} = T(\dtd u_N^n)(\dxp u_N^n) - T(\dtd u_0^n) (\dxp u_{-1}^n),
+\end{equation*}
+and reduced domain $\underline{d} = \{0, \hdots, N-1\}$. As Dirichlet boundary conditions are used, the boundary term vanishes as 
+\begin{equation*}
+    u_0^n = u_N^n = 0 \quad \Longrightarrow \quad \dtd u_0^n = \dtd u_N^n = 0 \quad \Longrightarrow \quad \mathfrak{b} = 0.
+\end{equation*}
+In other words, if the states of the system at the boundaries are zero, their velocity will also be zero. 
+Then, using the discrete inner product in Eq. \eqref{eq:discInnerProd}, Eq. \eqref{eq:rOC1DWave} can be expanded to
+\begin{equation}
+    \dtp \h = \rho A \sum_{l = 0}^N h(\dtd \uln)(\dtt \uln) - T \sum_{l = 0}^N h(\dtd \dxp \uln)(\dxp \uln)
+\end{equation}
+Then, using identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2}, $\dtp$ can be isolated 
+\begin{equation}
+    \dtp \h = \dtp \left(\frac{\rho A}{2}\lVert\dtm \uln\rVert^2_d + \frac{T}{2}\langle\dxp\uln, e_{t-}\dxp\uln\rangle_{\underline{d}}\right),
+\end{equation}
+and the definition for the Hamiltonian and the kinetic and potential energy can be found:
+\begin{equation}\label{eq:energyBalance1DWave}
+    \begin{gathered}
+        \h = \t + \v,\\
+        \text{with}\quad \t = \frac{\rho A}{2}\lVert\dtm \uln\rVert^2_d, \qaq \v = \frac{T}{2}\langle\dxp\uln, e_{t-}\dxp\uln\rangle_{\underline{d}}.
+    \end{gathered}
 \end{equation}
 
 \subsubsection{Step 3: Check units}
-As mentioned above, the energy $\h$ needs to be in Joules, or kg $\cdot$ m$^2 \cdot$ s$^{-2}$. Taking the terms in \eqref{eq:energyBalanceMassSpring} one-by-one and writing them in their units results in 
+Writing out the definitions for kinetic and potential energy in Eq. \eqref{eq:energyBalance1DWave} respectively, yields
 \begin{align*}
-    \frac{M}{2}(\dtm\un)^2 &\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad\text{kg}\cdot(\text{s}^{-1}\cdot \text{m})^{2}= \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
-    \frac{K}{2}\un e_{t-}\un&\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad \text{N} \cdot \text{m}^{-1} \cdot \text{m}\cdot \text{m} = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2}.
+    \t = \frac{\rho A}{2}\lVert\dtm \uln\rVert^2_d \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \ \text{kg}\cdot \text{m}^{-3} \cdot \text{m}^2\cdot \text{m} \cdot(\text{s}^{-1}\cdot \text{m})^{2}\\
+    & = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
+    \v = \frac{T}{2}\langle\dxp\uln, e_{t-}\dxp\uln\rangle_{\underline{d}}\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \ \text{N} \cdot \text{m}\cdot (\text{m}^{-1}\cdot\text{m}\cdot \text{m}^{-1}\cdot\text{m}^{-1}\text{m}) \\
+    & = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-2}.
 \end{align*}
-These have the correct units. 
+Notice that an extra `m' unit appears due to the 1D norm and inner product.
 
-\subsubsection{Step 4: Identifying $\t$ and $\v$}
-As the first term in Eq. \eqref{eq:energyBalanceMassSpring} has a velocity-squared term in it, the following can be concluded:
+\subsubsection{Step 4: Implementation}
+
+ \todo{todo}
+    
+\subsubsection{Neumann boundary conditions}
+If Neumann boundary conditions -- as given in Eq. \eqref{eq:discreteNeumann} -- are used instead, the primed inner product in Eq. \eqref{eq:primedInnerProd} needs to be used in Step 1. Using the identity in \eqref{eq:primedIdentityMinus}, summation by parts of the second term results in
+\begin{equation*}
+    - T \langle \dtd\uln, \dxx \uln\rangle_d'  = T\langle \dxp(\dtd\uln), \dxp\uln\rangle_{\underline{d}} - \mathfrak{b},
+\end{equation*}
+where the boundary term
+\begin{align*}
+    \mathfrak{b} &= T(\dtd u_N^n)(\mxm\dxp u_N^n) - T(\dtd u_0^n) (\mxm \dxp u_0^n),\\[-1em]
+    \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:identity2}}\ } \quad &= T(\dtd u_N^n)(\dxd u_N^n) - T(\dtd u_0^n) (\dxd u_0^n).
+\end{align*}
+As the Neumann boundary condition states that
 \begin{equation}
-    \t = \frac{M}{2}(\dtm\un)^2, \qaq \v = \frac{K}{2}\un e_{t-}\un.
-\end{equation} 
-\subsubsection{Step 5: Implementation}
-
-
-\subsection{1D Wave Equation}
-In order for the units in step 3
-
-\subsubsection{Step 2: Isolate}
-
+    \dxd u_0^n = \dxd u_N^n = 0
+\end{equation}
+the boundary term vanishes and the energy balance results in
+%
+\begin{equation}
+    \begin{gathered}
+        \h = \t + \v,\\
+        \text{with}\quad \t = \frac{\rho A}{2}\Big(\lVert \dtm \uln \rVert'_d\Big)^2, \qaq \frac{T}{2}\langle\dxp\uln, e_{t-}\dxp\uln\rangle_{\underline{d}}.
+    \end{gathered}
+\end{equation}
 \subsection{Stability Analysis}
 One can perform stability analysis using the energy analysis techniques presented here. To arrive at a condition the energy must be \textit{positive definite} 
 
-As opposed to the frequency domain analysis presented in Section \ref{sec:stabilityAnalysis}, energy analysis techniques do not operate in the frequency domain. However, stability can be shown using the techniques presented here. Stability analysis using the energy method might even be considered more powerful than the frequency domain approach, as it also applies (to some degree) to non-linear and time-varying systems!
+As opposed to the frequency domain analysis presented in Section \ref{sec:stabilityAnalysis}, energy analysis techniques do not operate in the frequency domain. However, stability can be shown using the techniques presented here. Stability analysis using the energy method might even be considered more powerful than the frequency domain approach, as it can also (to some degree) be used to non-linear and time-varying systems!
 
 Rather than the roots of a characteristic equation needing to be bound by $1$, to arrive at a condition the energy must be \textit{positive definite}.
 

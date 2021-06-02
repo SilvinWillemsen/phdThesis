@@ -20,11 +20,11 @@ parameterised by material density $\rho$ (in kg/m$^3$), cross-sectional area $A 
 The 4th-order spatial derivative models \textit{frequency dispersion}, a phenomenon that causes different frequencies to travel at different speeds. As opposed to the undesired numerical dispersion 
 
 \subsection{Adding Losses}
-Before moving on to the discretisation of the PDE in \eqref{eq:stiffStringPDENoLosses}, losses can be added to the system. This is done by simply adding terms to the PDE according to \todo{First appeared in \cite{Bensa2003}}
+Before moving on to the discretisation of the PDE in \eqref{eq:stiffStringPDENoLosses}, losses can be added to the system. In the physical world, strings lose energy through fx. air viscosity and thermoelastic effects. All frequencies die out (dampen) over time, but higher frequencies do so at a much faster rate. This phenomenon is called frequency-dependent damping and can be modelled using a mixed derivative $\pt \pxx$. This way of frequency-dependent damping first appeared in \cite{Bensa2003} and has been used extensively in the literature since. The model of a damped stiff string is
 \begin{equation}\label{eq:stiffStringPDE}
     \rho A \ptt u = T \pxx u - EI \pxxxx u - 2 \sz \rho A \pt u + 2 \so \rho A\pt \pxx u
 \end{equation}
-where the non-negative loss coefficients $\sz$ (in s$^{-1}$) and $\so$ (in m$^2$/s) describe the frequency dependent and frequency independent losses respectively. 
+where the non-negative loss coefficients $\sz$ (in s$^{-1}$) and $\so$ (in m$^2$/s) determine the frequency dependent and frequency independent losses respectively. 
 
 A more compact way to write Eq. \eqref{eq:stiffStringPDE}, and as is also found often in the literature \cite{theBible} \todo{etc.} is to divide both sides by $\rho A$ to get
 \begin{equation}\label{eq:stiffStringPDECompact}
@@ -288,19 +288,42 @@ which is a quadratic equation in $h^2$ with $h$ bounded by
 This is the stability condition for the damped stiff string also shown in Eq. \eqref{eq:stiffStringStability}.
 
 \section{Energy Analysis}\label{sec:energyAnalysisString}
-As mentioned in Section \ref{sec:energyAnalysis}, it is useful to perform the energy analysis on the scheme with physical parameters so that the units add up... 
-
-This section will be divided into $5$ steps, as done in Section \ref{sec:energyAnalysis}.
-
-\subsubsection{Step 1: Obtaining $\dtp \h$}
-
-
-Skipping the energy for the continuous case, an expression for the energy of scheme \eqref{eq:stiffStringFDS} can be obtained following Section \ref{sec:energyAnalysis}, . The first step is to take the inner product of the scheme with $(\dtd \uln)$
-
+As mentioned in Section \ref{sec:energyAnalysis}, it is useful to perform the energy analysis on the scheme with all physical parameters written out. Discretising PDE \eqref{eq:stiffStringPDE} yields
 \begin{equation}
-    \langle
+    \rho A \dtt \uln = T \dxx \uln - EI \dxxxx \uln - 2\sz \rho A \dtd \uln + 2 \so \rho A \dtm \dxx \uln,
+\end{equation}
+defined for $l\in d$ with discrete domain $d = \{0, \hdots, N\}$.
+
+This section will follow the 4 steps, described in Section \ref{sec:energyAnalysis}.
+
+\subsubsection{Step 1: Obtain $\dtp \h$}
+The first step is to take the inner product of the scheme with $(\dtd \uln)$ over discrete domain $d$
+\begin{equation}\label{eq:rOCStiffString}
+    \begin{aligned}
+    \dtp \h =&\ \rho A \langle \dtd \uln, \dtt \uln \rangle_d - T \langle \dtd \uln, \dxx \uln\rangle_d + EI \langle \dtd \uln, \dxxxx \uln \rangle_d\\
+    & + 2\sz\rho A \langle \dtd \uln, \dtd \uln \rangle_d - 2\so \rho A\langle \dtd \uln, \dtm \dxx \uln \rangle_d = 0.
+    \end{aligned}
+\end{equation}  
+
+
+\subsubsection{Step 2: Identify energy types and isolate $\dtp$}
+As there is damping present in the system, and the system is distributed, the energy balance will be of the form 
+\begin{equation}
+    \dtp \h = \mathfrak{b}-\mathfrak{q},
+\end{equation}
+where the boundary term $\mathfrak{b}$ appears after summation by parts shown shortly, and
+\begin{equation}
+    \mathfrak{q} = 2\sz \rho A \lVert\dtd\uln\rVert_d^2 - 2 so \rho A 
 \end{equation}
 
+which, after summation by parts (see Section \ref{sec:summationByParts}) and re-arranging the terms becomes
+\begin{equation}
+    \dtp\h = - 2\sz \rho A \lVert\dtd\uln\rVert + 2\so \rho A\langle \dtd \uln, \dtm \dxx \uln \rangle_d
+\end{equation}
+
+\subsubsection{Step 3: Check units}
+
+\subsubsection{Step 4: Implementation}
 
 
 \section{Modal analysis}

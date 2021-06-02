@@ -327,7 +327,7 @@ Using dots to indicate a temporal derivative, the ODE of a simple mass-spring sy
     M\ddot u = -Ku,
 \end{equation}
 where $u = u(t)$ is the distance from the equilibrium position (in m), $M$ \SWcomment[$>0$] is the mass of the mass (in kg) and $K$ \SWcomment[$\geq 0$] is the spring constant (in N/m). In the literature \cite{theBible, }, Eq. \eqref{eq:massSpringPDE} is often written as
-\begin{equation}
+\begin{equation}\label{eq:massSpringCompact}
     \ddot u = -\omega_0^2u
 \end{equation}
 with 
@@ -530,7 +530,7 @@ It can be useful to visualise the \textit{stencil}, or region of operation, of a
     \caption{The stencil, or region of operation, for the FD scheme in \eqref{eq:1DwaveFDS}.\label{fig:stencil1DWave}}
 \end{figure}
 
-\subsubsection{Boundary Conditions}
+\subsubsection{Boundary Conditions and Virtual Grid Points}
 The end points of the discrete domain are located at $l = 0$ and $l = N$.
 Substituting these locations into Eq. \eqref{eq:1DwaveUpdate} seemingly shows that grid points outside of the defined domain are needed, namely $u_{-1}^n$ and $u_{N+1}^n$. These can be referred to as \textit{virtual grid points} and can be accounted for %/defined
 by discretising the boundary conditions in Eq. \eqref{eq:boundaryCond1DWave}. Discretising these (using the centred spatial difference operator for the Neumann condition) yields
