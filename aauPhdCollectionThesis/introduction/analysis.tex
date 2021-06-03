@@ -450,7 +450,8 @@ Some useful identities used in this work are
         (\dtd \uln)(\dtt \uln) &= \dtp \left(\frac{1}{2}(\dtm \uln)^2\right),\label{eq:prodIdentity1}\\
         (\dtd \uln)\uln &= \dtp \left(\frac{1}{2}\uln e_{t-}\uln\right),\label{eq:prodIdentity2}\\
         (\dtp \uln)(\mtp \uln) &= \dtp \left(\frac{1}{2}(\uln)^2\right),\label{eq:prodIdentity3}\\
-        (\dtd \uln)(\mu_{t\cdot}\uln) &= \dtd\left(\frac{1}{2} (\uln)^2\right).\label{eq:prodIdentity4}
+        (\dtd \uln)(\mu_{t\cdot}\uln) &= \dtd\left(\frac{1}{2} (\uln)^2\right),\label{eq:prodIdentity4}\\
+        \uln e_{t-}\uln &=  (\mtm \uln)^2 - \frac{k^2}{4}(\dtm \uln)^2\label{eq:prodIdentityEnergyStab}
     \end{align}
 \end{subequations}
 Again, these can be used for spatial derivatives as well by substituting the `$t$' subscripts for `$x$'. Also to 
@@ -535,11 +536,11 @@ Examples of various temporal operators applied to grid functions in their freque
 and for spatial operators identity \eqref{eq:sinIdentity} can be used to obtain
 \begin{subequations}
 \begin{align}
-    \dxx\uln&\ansatz \frac{-4}{h^2} \sin^2(\beta h / 2), \quad \label{eq:dxxAnsatz}\\
+    \dxx\uln&\ansatz -\frac{4}{h^2} \sin^2(\beta h / 2), \quad \label{eq:dxxAnsatz}\\
     \dxxxx \uln&\ansatz\frac{16}{h^4} \sin^4(\beta h / 2).\label{eq:dxxxxAnsatz}
 \end{align}
 \end{subequations}
-Frequency domain analysis only works on linear and time-invariant (LTI) systems. Nonlinear\todo{FULL DOC SWEEP: nonlinear, non-linear or non linear} systems can be analysed using energy analysis (see Section \ref{sec:energyAnalysis}).\todo{not talking about nonlinear systems though}   
+Frequency domain analysis only works on linear and time-invariant (LTI) systems. Nonlinear \todo{FULL DOC SWEEP: nonlinear, non-linear or non linear} systems can be analysed using energy analysis (see Section \ref{sec:energyAnalysis}).\todo{not talking about nonlinear systems though}   
 
 \subsubsection{Proving stability}
 Just as with digital filters, the system is stable when the roots of the polynomial in $z$ are bounded by $1$ (unity)
@@ -574,22 +575,22 @@ Gathering the terms and moving all to the left-hand side, the characteristic equ
 \begin{equation}\label{eq:massSpringCharacteristic}
     z - \left(2-\frac{Kk^2}{M} \right) + z^{-1} = 0    
 \end{equation}
-To begin to prove stability, this equation needs to be written in the form found in \eqref{eq:polynomialForm}. Multiplying all the terms by $z$, and noticing that $a^{(2)} = 1$, we can continue with condition \eqref{eq:simplerCondition215}:
+To begin to prove stability, this equation needs to be written in the form found in \eqref{eq:polynomialForm}. Multiplying all the terms by $z$, and noticing that $a^{(2)} = 1$, we could continue with condition \eqref{eq:simplerCondition215}. However, the scheme used here is a special case where the roots of the characteristic equation can not be identical \cite{theBible}. When this happens, the output of the system will grow linearly and is called ``marginally unstable''. This means that $|a^{(1)}|\neq 1$ and the condition in \eqref{eq:simplerCondition215} becomes $|a^{(1)}|<2$:
 \begin{align*}
-    \left|-2+\frac{Kk^2}{M}\right| &\leq 2,\\
-    -2 \leq -2+\frac{Kk^2}{M} &\leq 2,\\
-    0 \leq \frac{Kk^2}{M} &\leq 4.
+    \left|-2+\frac{Kk^2}{M}\right| &< 2,\\
+    -2 < -2+\frac{Kk^2}{M} &< 2,\\
+    0 < \frac{Kk^2}{M} &< 4.
 \end{align*}
-As $K$, $k$ and $M$ are positive variables, the first condition is always satisfied. The second condition is then easily solved for $k$ by
+If only non-zero values are chosen for $K$, $k$ and $M$ they are positive and the first condition is always satisfied. The second condition is then easily solved for $k$ by
 \begin{equation}\label{eq:stabilityMK}
-    k \leq 2\sqrt{\frac{M}{K}}
+    k < 2\sqrt{\frac{M}{K}}
 \end{equation}
 Recalling that $\omega_0 = \sqrt{K/M}$, Eq \eqref{eq:stabilityMK} can be more compactly written as 
 \begin{equation}
-    k \leq \frac{2}{\omega_0}.
-\end{equation}\todo{Ask Stefan why he has $<$ and not $\leq$}
+    k <\frac{2}{\omega_0}.
+\end{equation}
 
-\subsection{1D Wave Equation}
+\subsection{1D Wave Equation}\label{sec:vonNeumann1DWave}
 This section will derive the stability condition for the 1D wave equation presented in Section \ref{sec:1DWave} using von Neumann analysis.
 
 Recalling the FD scheme in \eqref{eq:1DwaveFDS},
@@ -598,7 +599,7 @@ Recalling the FD scheme in \eqref{eq:1DwaveFDS},
 \end{equation*}
 its frequency-domain representation can be obtained using the definitions in Eqs. \eqref{eq:temporalAnsatz} and \eqref{eq:dxxAnsatz}:
 \begin{equation}
-    \frac{1}{k^2}\left(z - 2 + z^{-1}\right) = -\frac{4c^2}{h^2}\sin^2\left(\beta h / 2)\right).
+    \frac{1}{k^2}\left(z - 2 + z^{-1}\right) = -\frac{4c^2}{h^2}\sin^2\left(\beta h / 2\right).
 \end{equation}
 Also recalling that
 \begin{equation*}
@@ -606,7 +607,7 @@ Also recalling that
 \end{equation*}
 the characteristic equation of the 1D wave equation is
 \begin{equation}\label{eq:1dWaveCharacteristic}
-    z + \left(4\lambda^2\sin^2(\beta h / 2) -2\right) - z^{-1} = 0.
+    z + \left(4\lambda^2\sin^2(\beta h / 2) -2\right) + z^{-1} = 0.
 \end{equation}
 % we can now perform von Neumann analysis. Moving all terms to the left-hand side and performing a z-transform and spatial Fourier transform we get:
 % \begin{equation}\label{eq:zFDS}
@@ -636,8 +637,8 @@ the characteristic equation of the 1D wave equation is
 % \begin{equation}
 %     z_\pm = 1-2\lambda^2\sin^2(\beta h/2) \pm \sqrt{(1 - 2\lambda^2\sin^2(\beta h/2))^2 - 1}.
 % \end{equation}
-The scheme is then stable if condition \eqref{eq:boundByUnity} is satisfied for the roots of \eqref{eq:1dWaveCharacteristic}. As the characteristic equation is of the form \eqref{eq:polynomialForm} with $a^{(2)} = 1$, stability is shown by abiding condition 
-\eqref{eq:simplerCondition215} and when applied to the characteristic equation \eqref{eq:1dWaveCharacteristic} (after multiplication with $z$), it can be seen that
+The scheme is then stable if the roots satisfy condition \eqref{eq:boundByUnity}. As the characteristic equation is of the form in \eqref{eq:polynomialForm} (after multiplication with $z$) with $a^{(2)} = 1$, stability is shown by abiding condition 
+\eqref{eq:simplerCondition215} for all $\beta$ and when applied to the characteristic equation \eqref{eq:1dWaveCharacteristic}, it can be seen that
 \begin{equation}\nonumber
     \begin{aligned}
         |4\lambda^2\sin^2(\beta h/2) - 2| &\leq 2,\\
@@ -671,6 +672,8 @@ which is the stability condition given in Eq. \eqref{eq:1DWaveStabilityCond}.
 \SWcomment[/////]
 
 Energy analysis techniques first appeared in (the first edition of) \cite{Gustafsson2013}\todo{shouldn't I just cite this one then?}
+
+called the energy method
 
 \SWcomment[(also see p. 54 in \cite{theBible}, specifically the section \textbf{Finite precision and round-off error for more references})]
 
@@ -802,7 +805,7 @@ and reduced domain $\underline{d} = \{0, \hdots, N-1\}$. As Dirichlet boundary c
 In other words, if the states of the system at the boundaries are zero, their velocity will also be zero. 
 Then, using the discrete inner product in Eq. \eqref{eq:discInnerProd}, Eq. \eqref{eq:rOC1DWave} can be expanded to
 \begin{equation}
-    \dtp \h = \rho A \sum_{l = 0}^N h(\dtd \uln)(\dtt \uln) - T \sum_{l = 0}^N h(\dtd \dxp \uln)(\dxp \uln)
+    \dtp \h = \rho A \sum_{l = 0}^N h(\dtd \uln)(\dtt \uln) + T \sum_{l = 0}^N h(\dtd \dxp \uln)(\dxp \uln)
 \end{equation}
 Then, using identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2}, $\dtp$ can be isolated 
 \begin{equation}
@@ -828,10 +831,10 @@ Notice that an extra `m' unit appears due to the 1D norm and inner product.
 
 \subsubsection{Step 4: Implementation}
 
- \todo{todo}
-    
+\todo{todo}
+   
 \subsubsection{Neumann boundary conditions}
-If Neumann boundary conditions -- as given in Eq. \eqref{eq:discreteNeumann} -- are used instead, the primed inner product in Eq. \eqref{eq:primedInnerProd} needs to be used in Step 1. Using the identity in \eqref{eq:primedIdentityMinus}, summation by parts of the second term results in
+If Neumann boundary conditions -- as per Eq. \eqref{eq:discreteNeumann} -- are used instead, the primed inner product in Eq. \eqref{eq:primedInnerProd} needs to be used in Step 1. Using the identity in \eqref{eq:primedIdentityMinus}, summation by parts of the second term results in
 \begin{equation*}
     - T \langle \dtd\uln, \dxx \uln\rangle_d'  = T\langle \dxp(\dtd\uln), \dxp\uln\rangle_{\underline{d}} - \mathfrak{b},
 \end{equation*}
@@ -841,9 +844,9 @@ where the boundary term
     \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:identity2}}\ } \quad &= T(\dtd u_N^n)(\dxd u_N^n) - T(\dtd u_0^n) (\dxd u_0^n).
 \end{align*}
 As the Neumann boundary condition states that
-\begin{equation}
+\begin{equation*}
     \dxd u_0^n = \dxd u_N^n = 0
-\end{equation}
+\end{equation*}
 the boundary term vanishes and the energy balance results in
 %
 \begin{equation}
@@ -852,15 +855,75 @@ the boundary term vanishes and the energy balance results in
         \text{with}\quad \t = \frac{\rho A}{2}\Big(\lVert \dtm \uln \rVert'_d\Big)^2, \qaq \frac{T}{2}\langle\dxp\uln, e_{t-}\dxp\uln\rangle_{\underline{d}}.
     \end{gathered}
 \end{equation}
-\subsection{Stability Analysis}
+\subsection{Stability Analysis using Energy Analysis Techniques}
 One can perform stability analysis using the energy analysis techniques presented here. To arrive at a condition the energy must be \textit{positive definite} 
 
 As opposed to the frequency domain analysis presented in Section \ref{sec:stabilityAnalysis}, energy analysis techniques do not operate in the frequency domain. However, stability can be shown using the techniques presented here. Stability analysis using the energy method might even be considered more powerful than the frequency domain approach, as it can also (to some degree) be used to non-linear and time-varying systems!
 
-Rather than the roots of a characteristic equation needing to be bound by $1$, to arrive at a condition the energy must be \textit{positive definite}.
+Rather than the roots of a characteristic equation needing to be bound by unity, to arrive at a condition the energy must be \textit{positive definite}. It can be shown that an equation of the form 
+\begin{equation}\label{eq:quadraticForm}
+    x^2 + y^2  + 2axy
+\end{equation} 
+is positive definite if $|a| < 1$. If $|a| = 1$, the function is non-negative, but not positive definite.
 
+Equation \eqref{eq:quadraticForm} can be used to prove stability for the mass spring system using the energy balance in Eq. \eqref{eq:energyBalanceMassSpring}. 
+ easily conclude that $\t$ is positive definite due to non-negative $M$ and the fact that $\dtm \un$ is squared. The potential energy $\v$, however, is of indefinite sign. Expanding the operators in Eq. \eqref{eq:energyBalanceMassSpring} yields
+\begin{align*}
+    \h &= \frac{M}{2k^2}\Big((\un)^2 - 2\un u^{n-1} + (u^{n-1})^2\Big)+ \frac{K}{2}\un u^{n-1},\\
+    &= \frac{M}{2k^2}\Big((\un)^2+ (u^{n-1})^2\Big)+ \left(\frac{K}{2}-\frac{M}{k^2}\right)\un u^{n-1}.
+\end{align*}
+Dividing all terms by $M/2k^2$ this equation is of the form in Eq. \eqref{eq:quadraticForm}:
+\begin{equation*}
+    \h = (\un)^2+ (u^{n-1})^2+ \left(\frac{Kk^2}{M} - 2\right)\un u^{n-1}
+\end{equation*}
+and for $\h$ to be positive definite, i.e., $\h > 0$ the following condition must hold
+\begin{equation*}
+    \left|\frac{Kk^2}{2M} - 1\right| < 1.
+\end{equation*}
+This can then be solved for $k$ according to
+\begin{align*}
+    -1&<\frac{Kk^2}{2M} - 1<1\\
+    0 &< \frac{Kk^2}{2M} < 2
+\end{align*}
+where, as long as $K$ and $k$ are non-zero, the first inequality is always satisfied. Then the condition can easily be shown to be
+\begin{equation}
+    k < 2\sqrt{\frac{M}{K}}
+\end{equation}
+which is identical to the definition in Eq. \eqref{eq:stabilityMK}.
 
-\SWcomment[1D wave stability from energy can be found in Section 6.2.7 in \cite{theBible}]
+For the 1D wave equation, one can take the energy balance in Eq. \eqref{eq:energyBalance1DWave} and conclude that $\t$ is positive definite due to the non-negativity of the parameters and $(\dtm \uln)$ being squared. The potential energy, however, is of indefinite sign. One can rewrite $\v$ using identity \eqref{eq:prodIdentityEnergyStab} as
+\begin{align*}
+    \v &= \frac{T}{2} \langle \dxp \uln, e_{t-}\dxp \uln\rangle_{\underline{d}},\\
+    &= \frac{T}{2} \sum_{l=0}^{N-1} h(\dxp \uln)(e_{t-}\dxp\uln),\\
+    &= \frac{T}{2} \sum_{l=0}^{N-1} h\left((\mtm \dxp \uln)^2 - \frac{k^2}{4}(\dtm\dxp \uln)^2\right),\\
+    &= \frac{T}{2}\left(\lVert\mtm\dxp\uln\rVert_{\underline{d}}^2-\frac{k^2}{4}\lVert\dtm\dxp \uln\rVert_{\underline{d}}^2\right).
+\end{align*}
+One can then use the following bound \cite{theBible}
+\begin{equation}\label{eq:spatialBound}
+    \lVert \dxp \uln \rVert_{\underline{d}} \leq \frac{2}{h}\lVert \uln \rVert_d' \leq \frac{2}{h}\lVert \uln \rVert_d,
+\end{equation}
+to put a condition on $\v$
+\begin{align*}
+    \v &\geq \frac{T}{2}\left(\lVert\mtm\dxp\uln\rVert_{\underline{d}}^2 - \frac{k^2}{4}\left(\frac{2}{h}\lVert\dtm\uln\rVert_{d}\right)^2\right),\\
+    &\geq \frac{T}{2}\left(\lVert\mtm\dxp\uln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\lVert\dtm\uln\rVert_{d}^2\right),
+\end{align*}
+Filling this condition into the energy balance in Eq. \eqref{eq:energyBalance1DWave} yields
+\begin{align*}
+    \h = \t + \v &\geq \frac{\rho A}{2}\lVert\dtm \uln\rVert^2_d + \frac{T}{2}\left(\lVert\mtm\dxp\uln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\lVert\dtm\uln\rVert_{d}^2\right),\\
+    &\geq \left(\frac{\rho A}{2} - \frac{Tk^2}{2h^2}\right)\lVert \dtm \uln\rVert_d^2 + \frac{T}{2}
+    \lVert\mtm\dxp \uln\rVert_{\underline{d}}^2,
+\end{align*}
+which, recalling that $c = \sqrt{T /\rho A}$ and $\lambda = ck/h$ yields
+\begin{equation}
+    \h = \t + \v \geq \frac{1}{2}\left(1 - \lambda^2\right)\lVert \dtm \uln\rVert_d^2 + \frac{c^2}{2}
+    \lVert\mtm\dxp \uln\rVert_{\underline{d}}^2,
+\end{equation}
+and is non-negative for
+\begin{align*}
+    1-\lambda^2 &\geq 0,\\
+    \lambda \leq 1.
+\end{align*}
+This is the same (CFL) condition obtained through von Neumann analysis in Section \ref{sec:vonNeumann1DWave}.
 
 \section{Modal Analysis}
 \label{sec:modalAnalysis}
