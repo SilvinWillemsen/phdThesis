@@ -192,9 +192,9 @@ Finally, the identity matrix is a matrix with only $1$s on the diagonal and $0$s
 \subsubsection{Schemes and Update Equations in Matrix Form}
 With the spatial operators in matrix form presented above, the FD scheme of the 1D wave equation in \eqref{eq:1DwaveFDS} can be written in matrix form.
 
-If the Dirichlet boundary conditions in \eqref{eq:discreteDirichlet} are used, the end points of the system do not have to be included in the calculation. The values of the grid function $\uln$ for $l\in \{1, \hdots, N-1\}$ can then be stored in a column vector according to $\u^n = [u_1^n, \hdots, u_{N-1}^n]^T$. Furthermore, $(N-1) \times (N-1)$ matrices $\mathbf{D}_{x+}$ and $\mathbf{D}_{x-}$ can be multiplied to get a same-sized matrix $\Dxx$:
+If the Dirichlet boundary conditions in \eqref{eq:discreteDirichlet} are used, the end points of the system do not have to be included in the calculation. The values of the grid function $\uln$ for $l\in \{1, \hdots, N-1\}$ can then be stored in a column vector according to $\u^n = [u_1^n, \hdots, u_{N-1}^n]^T$. Furthermore, $(N-1) \times (N-1)$ matrix $\Dxx$ is defined as
 \begin{equation}\label{eq:DxxDef}
-    \Dxx = \mathbf{D}_{x+}\mathbf{D}_{x-} = \frac{1}{h^2}\xbracketMatrixstack{
+    \Dxx = \mathbf{D}_{x+} - \mathbf{D}_{x-} = \frac{1}{h^2}\xbracketMatrixstack{
         -2 & 1 & & &\mathbf{0}\\
         1 & -2 & 1 & & \\
         & \ddots & \ddots & \ddots & \\
@@ -204,7 +204,7 @@ If the Dirichlet boundary conditions in \eqref{eq:discreteDirichlet} are used, t
 \end{equation}
 
 If instead, Neumann boundary conditions in Eq. \eqref{eq:discreteDirichlet} are used, the values of $\uln$ for the full range $l\in \{0, \hdots, N\}$ need be stored as $\u^n=[u_0^n, \hdots, u_N^n]^T$ and the $(N+1) \times (N+1)$ matrix $\Dxx$ will be 
-\begin{equation}
+\begin{equation}\label{eq:DxxDefNeumann}
     \Dxx = \frac{1}{h^2}
     \xbracketMatrixstack{
         -2 & 2 & & &\mathbf{0}\\
@@ -380,22 +380,21 @@ $\overline{d} = \{1, \hdots, N\}$ and $\underline{\overline{d}} = \{1, \hdots, N
 and, using the primed inner product in Eq. \eqref{eq:primedInnerProd},
 \begin{subequations}
     \begin{align}
-        \langle f_l^n, \dxm g_l^n \rangle_d'  = -\langle \dxp f_l^n, g_l^n \rangle_{\underline{d}}+f_N^n(\mxm g_N^n)-f_0^n(\mxm g_0^n)\label{eq:primedIdentityMinus}\\
-        \langle f_l^n, \dxp g_l^n \rangle_d'  = -\langle \dxm f_l^n, g_l^n \rangle_{\overline{d}}+f_N^n(\mxp g_N^n)-f_0^n(\mxp g_0^n)\label{eq:primedIdentityPlus}
+        \langle f_l^n, \dxm g_l^n \rangle_d'  = -\langle \dxp f_l^n, g_l^n \rangle_{\underline{d}}+f_N^n(\mxm g_N^n)-f_0^n(\mxm g_0^n),\label{eq:primedIdentityMinus}\\
+        \langle f_l^n, \dxp g_l^n \rangle_d'  = -\langle \dxm f_l^n, g_l^n \rangle_{\overline{d}}+f_N^n(\mxp g_N^n)-f_0^n(\mxp g_0^n),\label{eq:primedIdentityPlus}
     \end{align}
 \end{subequations}
 %
 all of which will prove useful in energy analysis techniques later on. A derivation of \eqref{eq:summationByPartsMinusBar} is given below. 
 
-
-Finally, one can apply summation by parts twice to get: 
-\begin{align}
-    \langle f, \dxx g\rangle = \langle \delta_{xx}f, g \rangle_d+f_N\delta_{x+}g_N-g_N\delta_{x+}f_N -f_0\delta_{x-}g_0+g_0\delta_{x-}f_0,
-\end{align}
-or, using the reduced domains,
-\begin{align}
-    \langle f, \dxx g\rangle = \langle \delta_{xx}f, g \rangle_{\underline{\overline{d}}}+f_N\dxp g_N-g_N\dxm f_N -f_0\dxm g_0+g_0\dxp f_0.
-\end{align}
+Finally, one can apply summation by parts twice to get the following identities
+\begin{subequations}
+    \begin{align}
+        \langle f, \dxx g\rangle_d &= \langle \delta_{xx}f, g \rangle_d+f_N\delta_{x+}g_N-g_N\delta_{x+}f_N -f_0\delta_{x-}g_0+g_0\delta_{x-}f_0,\label{eq:summationsummationByPartsTwice}\\
+        \langle f, \dxx g\rangle_d &= \langle \delta_{xx}f, g \rangle_{\underline{\overline{d}}}+f_N\dxp g_N-g_N\dxm f_N -f_0\dxm g_0+g_0\dxp f_0,\label{eq:summationByPartsTwiceReduced}\\
+        \langle f, \dxx g\rangle_d' &= \langle \dxx f, g\rangle_d' + f_N\dxd g_N - g_N \dxd f_N - f_0 \dxd g_0 + g_0 \dxd f_0\label{eq:summationByPartsTwicePrimed}
+    \end{align}
+\end{subequations}
 
 \subsubsection{Derivations}
 To see why the above identities hold true, it is useful to go through a derivation. As an example, we go through Eqs. \eqref{eq:summationByPartsMinus} and \eqref{eq:summationByPartsMinusBar} as they have the same inner product as a starting point, but yield different results. In the following, $d=\{0, \hdots, N\}$ and $N = 2$ are used. 
@@ -562,7 +561,7 @@ If $a^{(2)} = 1$, the simpler condition
 \end{equation}
 suffices. 
 
-\subsection{Mass-Spring System}
+\subsection{Mass-Spring System}\label{sec:massSpringStability}
 Recalling the FD scheme of the mass-spring system \eqref{eq:massSpringUpdate}
 \begin{equation*}
     M \dtt \uln = -K \uln
@@ -825,9 +824,9 @@ Writing out the definitions for kinetic and potential energy in Eq. \eqref{eq:en
     \t = \frac{\rho A}{2}\lVert\dtm \uln\rVert^2_d \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \ \text{kg}\cdot \text{m}^{-3} \cdot \text{m}^2\cdot \text{m} \cdot(\text{s}^{-1}\cdot \text{m})^{2}\\
     & = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
     \v = \frac{T}{2}\langle\dxp\uln, e_{t-}\dxp\uln\rangle_{\underline{d}}\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \ \text{N} \cdot \text{m}\cdot (\text{m}^{-1}\cdot\text{m}\cdot \text{m}^{-1}\cdot\text{m}^{-1}\text{m}) \\
-    & = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-2}.
+    & = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-2},
 \end{align*}
-Notice that an extra `m' unit appears due to the 1D norm and inner product.
+and have the correct units. Notice that an extra `m' unit appears due to the 1D norm and inner product.
 
 \subsubsection{Step 4: Implementation}
 
@@ -856,49 +855,50 @@ the boundary term vanishes and the energy balance results in
     \end{gathered}
 \end{equation}
 \subsection{Stability Analysis using Energy Analysis Techniques}
-One can perform stability analysis using the energy analysis techniques presented here. To arrive at a condition the energy must be \textit{positive definite} 
+As opposed to the frequency domain analysis presented in Section \ref{sec:stabilityAnalysis}, energy analysis techniques do not operate in the frequency domain. However, stability can be shown using the techniques presented here. Stability analysis using the energy method might even be considered more powerful than the frequency domain approach, as it can also (to some degree) be used to analyse non-linear and time-varying systems!
 
-As opposed to the frequency domain analysis presented in Section \ref{sec:stabilityAnalysis}, energy analysis techniques do not operate in the frequency domain. However, stability can be shown using the techniques presented here. Stability analysis using the energy method might even be considered more powerful than the frequency domain approach, as it can also (to some degree) be used to non-linear and time-varying systems!
+One can perform stability analysis using the energy analysis techniques presented here. To arrive at a condition the energy must be \textit{non-negative} ($\h \geq 0$) or, in some cases \textit{positive definite} ($\h > 0$).
 
-Rather than the roots of a characteristic equation needing to be bound by unity, to arrive at a condition the energy must be \textit{positive definite}. It can be shown that an equation of the form 
+\subsubsection{Mass-spring system}
+Section \ref{sec:massSpringStability} mentions that the mass-spring system is a special case in that the roots of its characteristic equation can not be identical. When proving stability using energy analysis, this means that the energy of the system needs to be positive definite. It can be shown that an equation of the form 
 \begin{equation}\label{eq:quadraticForm}
     x^2 + y^2  + 2axy
 \end{equation} 
-is positive definite if $|a| < 1$. If $|a| = 1$, the function is non-negative, but not positive definite.
+is positive definite if $|a| < 1$.% If $|a| = 1$, the function is non-negative, but not positive definite.
 
-Equation \eqref{eq:quadraticForm} can be used to prove stability for the mass spring system using the energy balance in Eq. \eqref{eq:energyBalanceMassSpring}. 
- easily conclude that $\t$ is positive definite due to non-negative $M$ and the fact that $\dtm \un$ is squared. The potential energy $\v$, however, is of indefinite sign. Expanding the operators in Eq. \eqref{eq:energyBalanceMassSpring} yields
+Equation \eqref{eq:quadraticForm} can be used to prove stability for the mass spring system using the energy balance in Eq. \eqref{eq:energyBalanceMassSpring}. One can easily conclude that $\t$ is positive definite due to non-negative $M$ and the fact that $(\dtm \un)$ is squared. The potential energy $\v$, however, is of indefinite sign. Expanding the operators in Eq. \eqref{eq:energyBalanceMassSpring} yields
 \begin{align*}
     \h &= \frac{M}{2k^2}\Big((\un)^2 - 2\un u^{n-1} + (u^{n-1})^2\Big)+ \frac{K}{2}\un u^{n-1},\\
     &= \frac{M}{2k^2}\Big((\un)^2+ (u^{n-1})^2\Big)+ \left(\frac{K}{2}-\frac{M}{k^2}\right)\un u^{n-1}.
 \end{align*}
 Dividing all terms by $M/2k^2$ this equation is of the form in Eq. \eqref{eq:quadraticForm}:
 \begin{equation*}
-    \h = (\un)^2+ (u^{n-1})^2+ \left(\frac{Kk^2}{M} - 2\right)\un u^{n-1}
+    \h = (\un)^2+ (u^{n-1})^2+ \left(\frac{Kk^2}{M} - 2\right)\un u^{n-1}.
 \end{equation*}
-and for $\h$ to be positive definite, i.e., $\h > 0$ the following condition must hold
+For $\h$ to be positive definite, the following condition must hold
 \begin{equation*}
     \left|\frac{Kk^2}{2M} - 1\right| < 1.
 \end{equation*}
-This can then be solved for $k$ according to
+This can then be written as
 \begin{align*}
     -1&<\frac{Kk^2}{2M} - 1<1\\
     0 &< \frac{Kk^2}{2M} < 2
 \end{align*}
-where, as long as $K$ and $k$ are non-zero, the first inequality is always satisfied. Then the condition can easily be shown to be
+where, as long as $K$ and $k$ are non-zero, the first inequality is always satisfied. Then the condition solved for $k$ can easily be shown to be
 \begin{equation}
     k < 2\sqrt{\frac{M}{K}}
 \end{equation}
 which is identical to the definition in Eq. \eqref{eq:stabilityMK}.
 
-For the 1D wave equation, one can take the energy balance in Eq. \eqref{eq:energyBalance1DWave} and conclude that $\t$ is positive definite due to the non-negativity of the parameters and $(\dtm \uln)$ being squared. The potential energy, however, is of indefinite sign. One can rewrite $\v$ using identity \eqref{eq:prodIdentityEnergyStab} as
+\subsubsection{1D wave equation}
+For the 1D wave equation, one can take the energy balance in Eq. \eqref{eq:energyBalance1DWave} and conclude that $\t$ is non-negative due to the non-negativity of the parameters and $(\dtm \uln)$ being squared. The potential energy, however, is of indefinite sign. One can rewrite $\v$ using identity \eqref{eq:prodIdentityEnergyStab} as
 \begin{align*}
     \v &= \frac{T}{2} \langle \dxp \uln, e_{t-}\dxp \uln\rangle_{\underline{d}},\\
     &= \frac{T}{2} \sum_{l=0}^{N-1} h(\dxp \uln)(e_{t-}\dxp\uln),\\
     &= \frac{T}{2} \sum_{l=0}^{N-1} h\left((\mtm \dxp \uln)^2 - \frac{k^2}{4}(\dtm\dxp \uln)^2\right),\\
     &= \frac{T}{2}\left(\lVert\mtm\dxp\uln\rVert_{\underline{d}}^2-\frac{k^2}{4}\lVert\dtm\dxp \uln\rVert_{\underline{d}}^2\right).
 \end{align*}
-One can then use the following bound \cite{theBible}
+One can then use the following bound for spatial differences \cite{theBible}
 \begin{equation}\label{eq:spatialBound}
     \lVert \dxp \uln \rVert_{\underline{d}} \leq \frac{2}{h}\lVert \uln \rVert_d' \leq \frac{2}{h}\lVert \uln \rVert_d,
 \end{equation}
@@ -907,7 +907,7 @@ to put a condition on $\v$
     \v &\geq \frac{T}{2}\left(\lVert\mtm\dxp\uln\rVert_{\underline{d}}^2 - \frac{k^2}{4}\left(\frac{2}{h}\lVert\dtm\uln\rVert_{d}\right)^2\right),\\
     &\geq \frac{T}{2}\left(\lVert\mtm\dxp\uln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\lVert\dtm\uln\rVert_{d}^2\right),
 \end{align*}
-Filling this condition into the energy balance in Eq. \eqref{eq:energyBalance1DWave} yields
+Substituting this condition into the energy balance in Eq. \eqref{eq:energyBalance1DWave} yields
 \begin{align*}
     \h = \t + \v &\geq \frac{\rho A}{2}\lVert\dtm \uln\rVert^2_d + \frac{T}{2}\left(\lVert\mtm\dxp\uln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\lVert\dtm\uln\rVert_{d}^2\right),\\
     &\geq \left(\frac{\rho A}{2} - \frac{Tk^2}{2h^2}\right)\lVert \dtm \uln\rVert_d^2 + \frac{T}{2}
@@ -921,7 +921,7 @@ which, recalling that $c = \sqrt{T /\rho A}$ and $\lambda = ck/h$ yields
 and is non-negative for
 \begin{align*}
     1-\lambda^2 &\geq 0,\\
-    \lambda \leq 1.
+    \lambda &\leq 1.
 \end{align*}
 This is the same (CFL) condition obtained through von Neumann analysis in Section \ref{sec:vonNeumann1DWave}.
 

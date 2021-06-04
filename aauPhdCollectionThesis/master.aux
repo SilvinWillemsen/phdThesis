@@ -429,6 +429,7 @@
 \mph@setcol{ii:32}{\mph@nr}
 \@writefile{toc}{\contentsline {subsubsection}{Schemes and Update Equations in Matrix Form}{33}{subsubsection*.57}}
 \newlabel{eq:DxxDef}{{3.5}{33}{Schemes and Update Equations in Matrix Form}{equation.3.1.5}{}}
+\newlabel{eq:DxxDefNeumann}{{3.6}{33}{Schemes and Update Equations in Matrix Form}{equation.3.1.6}{}}
 \newlabel{eq:1DwaveMatrix}{{3.7}{33}{Schemes and Update Equations in Matrix Form}{equation.3.1.7}{}}
 \mph@setcol{ii:33}{\mph@nr}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Matrix Inverse}{34}{subsection.3.1.2}}
@@ -480,6 +481,9 @@
 \newlabel{eq:primedIdentityMinus}{{3.21a}{37}{Summation by Parts}{equation.3.2.21a}{}}
 \newlabel{eq:primedIdentityPlus}{{3.21b}{37}{Summation by Parts}{equation.3.2.21b}{}}
 \mph@setcol{ii:37}{\mph@nr}
+\newlabel{eq:summationsummationByPartsTwice}{{3.22a}{38}{Summation by Parts}{equation.3.2.22a}{}}
+\newlabel{eq:summationByPartsTwiceReduced}{{3.22b}{38}{Summation by Parts}{equation.3.2.22b}{}}
+\newlabel{eq:summationByPartsTwicePrimed}{{3.22c}{38}{Summation by Parts}{equation.3.2.22c}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Derivations}{38}{subsubsection*.62}}
 \mph@setcol{ii:38}{\mph@nr}
 \citation{Park2010}
@@ -488,11 +492,11 @@
 \citation{theBible}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Product identities}{39}{subsection.3.2.3}}
 \newlabel{sec:prodIdentities}{{3.2.3}{39}{Product identities}{subsection.3.2.3}{}}
-\newlabel{eq:prodIdentity1}{{3.24a}{39}{Product identities}{equation.3.2.24a}{}}
-\newlabel{eq:prodIdentity2}{{3.24b}{39}{Product identities}{equation.3.2.24b}{}}
-\newlabel{eq:prodIdentity3}{{3.24c}{39}{Product identities}{equation.3.2.24c}{}}
-\newlabel{eq:prodIdentity4}{{3.24d}{39}{Product identities}{equation.3.2.24d}{}}
-\newlabel{eq:prodIdentityEnergyStab}{{3.24e}{39}{Product identities}{equation.3.2.24e}{}}
+\newlabel{eq:prodIdentity1}{{3.23a}{39}{Product identities}{equation.3.2.23a}{}}
+\newlabel{eq:prodIdentity2}{{3.23b}{39}{Product identities}{equation.3.2.23b}{}}
+\newlabel{eq:prodIdentity3}{{3.23c}{39}{Product identities}{equation.3.2.23c}{}}
+\newlabel{eq:prodIdentity4}{{3.23d}{39}{Product identities}{equation.3.2.23d}{}}
+\newlabel{eq:prodIdentityEnergyStab}{{3.23e}{39}{Product identities}{equation.3.2.23e}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Frequency Domain Analysis}{39}{section.3.3}}
 \newlabel{sec:stabilityAnalysis}{{3.3}{39}{Frequency Domain Analysis}{section.3.3}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Frequency domain representation and Ansatz}{39}{subsubsection*.63}}
@@ -509,7 +513,7 @@
 \def\mph@nr{31}
 \pgfsyspdfmark {pgfid153}{2321883}{30534954}
 \pgfsyspdfmark {pgfid154}{4170178}{30307053}
-\newlabel{eq:ansatz}{{3.27}{40}{Frequency domain representation and Ansatz}{equation.3.3.27}{}}
+\newlabel{eq:ansatz}{{3.26}{40}{Frequency domain representation and Ansatz}{equation.3.3.26}{}}
 \@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check}{40}{section*.66}}
 \pgfsyspdfmark {pgfid157}{22522844}{24090046}
 \def\mph@nr{32}
@@ -519,11 +523,11 @@
 \newlabel{tab:zIdentities}{{3.1}{40}{Frequency-domain representation of a grid function using ansatz \eqref {eq:ansatz} with frequently appearing temporal and spatial shifts.\relax }{table.caption.67}{}}
 \mph@setcol{ii:40}{\mph@nr}
 \citation{theBible}
-\newlabel{eq:sinIdentity}{{3.28a}{41}{Frequency domain representation and Ansatz}{equation.3.3.28a}{}}
-\newlabel{eq:cosIdentity}{{3.28b}{41}{Frequency domain representation and Ansatz}{equation.3.3.28b}{}}
-\newlabel{eq:temporalAnsatz}{{3.29}{41}{Frequency domain representation and Ansatz}{equation.3.3.29}{}}
-\newlabel{eq:dxxAnsatz}{{3.30a}{41}{Frequency domain representation and Ansatz}{equation.3.3.30a}{}}
-\newlabel{eq:dxxxxAnsatz}{{3.30b}{41}{Frequency domain representation and Ansatz}{equation.3.3.30b}{}}
+\newlabel{eq:sinIdentity}{{3.27a}{41}{Frequency domain representation and Ansatz}{equation.3.3.27a}{}}
+\newlabel{eq:cosIdentity}{{3.27b}{41}{Frequency domain representation and Ansatz}{equation.3.3.27b}{}}
+\newlabel{eq:temporalAnsatz}{{3.28}{41}{Frequency domain representation and Ansatz}{equation.3.3.28}{}}
+\newlabel{eq:dxxAnsatz}{{3.29a}{41}{Frequency domain representation and Ansatz}{equation.3.3.29a}{}}
+\newlabel{eq:dxxxxAnsatz}{{3.29b}{41}{Frequency domain representation and Ansatz}{equation.3.3.29b}{}}
 \@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ FULL DOC SWEEP: nonlinear, non-linear or non linear}{41}{section*.68}}
 \pgfsyspdfmark {pgfid162}{9708478}{12834054}
 \def\mph@nr{33}
@@ -535,19 +539,20 @@
 \pgfsyspdfmark {pgfid170}{29344904}{9476771}
 \pgfsyspdfmark {pgfid171}{31193199}{9248870}
 \@writefile{toc}{\contentsline {subsubsection}{Proving stability}{41}{subsubsection*.70}}
-\newlabel{eq:boundByUnity}{{3.31}{41}{Proving stability}{equation.3.3.31}{}}
+\newlabel{eq:boundByUnity}{{3.30}{41}{Proving stability}{equation.3.3.30}{}}
 \mph@setcol{ii:41}{\mph@nr}
 \citation{theBible}
-\newlabel{eq:polynomialForm}{{3.32}{42}{Proving stability}{equation.3.3.32}{}}
-\newlabel{eq:condition214}{{3.33}{42}{Proving stability}{equation.3.3.33}{}}
-\newlabel{eq:simplerCondition215}{{3.34}{42}{Proving stability}{equation.3.3.34}{}}
+\newlabel{eq:polynomialForm}{{3.31}{42}{Proving stability}{equation.3.3.31}{}}
+\newlabel{eq:condition214}{{3.32}{42}{Proving stability}{equation.3.3.32}{}}
+\newlabel{eq:simplerCondition215}{{3.33}{42}{Proving stability}{equation.3.3.33}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.1}Mass-Spring System}{42}{subsection.3.3.1}}
-\newlabel{eq:massSpringCharacteristic}{{3.35}{42}{Mass-Spring System}{equation.3.3.35}{}}
+\newlabel{sec:massSpringStability}{{3.3.1}{42}{Mass-Spring System}{subsection.3.3.1}{}}
+\newlabel{eq:massSpringCharacteristic}{{3.34}{42}{Mass-Spring System}{equation.3.3.34}{}}
 \mph@setcol{ii:42}{\mph@nr}
-\newlabel{eq:stabilityMK}{{3.36}{43}{Mass-Spring System}{equation.3.3.36}{}}
+\newlabel{eq:stabilityMK}{{3.35}{43}{Mass-Spring System}{equation.3.3.35}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3.2}1D Wave Equation}{43}{subsection.3.3.2}}
 \newlabel{sec:vonNeumann1DWave}{{3.3.2}{43}{1D Wave Equation}{subsection.3.3.2}{}}
-\newlabel{eq:1dWaveCharacteristic}{{3.39}{43}{1D Wave Equation}{equation.3.3.39}{}}
+\newlabel{eq:1dWaveCharacteristic}{{3.38}{43}{1D Wave Equation}{equation.3.3.38}{}}
 \mph@setcol{ii:43}{\mph@nr}
 \citation{Gustafsson2013}
 \citation{theBible}
@@ -562,20 +567,20 @@
 \def\mph@nr{35}
 \pgfsyspdfmark {pgfid173}{2321883}{20894029}
 \pgfsyspdfmark {pgfid174}{4170178}{20666128}
-\newlabel{eq:unchangedEnergy}{{3.41}{44}{Step 4: Implementation}{equation.3.4.41}{}}
+\newlabel{eq:unchangedEnergy}{{3.40}{44}{Step 4: Implementation}{equation.3.4.40}{}}
 \mph@setcol{ii:44}{\mph@nr}
 \@writefile{toc}{\contentsline {subsubsection}{Step 1: Obtain the rate of change of the total energy $\delta _{t+}\mathfrak  {h}$}{45}{subsubsection*.76}}
 \@writefile{toc}{\contentsline {subsubsection}{Step 2: Identify different types of energy and obtain the total energy $\mathfrak  {h}$ by isolating $\delta _{t+}$}{45}{subsubsection*.77}}
-\newlabel{eq:energyForm}{{3.42}{45}{Step 2: Identify different types of energy and obtain the total energy $\h $ by isolating $\dtp $}{equation.3.4.42}{}}
+\newlabel{eq:energyForm}{{3.41}{45}{Step 2: Identify different types of energy and obtain the total energy $\h $ by isolating $\dtp $}{equation.3.4.41}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Step 3: Check units}{45}{subsubsection*.78}}
 \mph@setcol{ii:45}{\mph@nr}
 \@writefile{toc}{\contentsline {subsubsection}{Step 4: Implement the definitions for energy and debug the FD scheme}{46}{subsubsection*.79}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.1}Mass-spring system}{46}{subsection.3.4.1}}
 \@writefile{toc}{\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak  {h}$}{46}{subsubsection*.80}}
-\newlabel{eq:rOCmassSpring}{{3.45}{46}{Step 1: Obtain $\dtp \h $}{equation.3.4.45}{}}
+\newlabel{eq:rOCmassSpring}{{3.44}{46}{Step 1: Obtain $\dtp \h $}{equation.3.4.44}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{46}{subsubsection*.81}}
 \mph@setcol{ii:46}{\mph@nr}
-\newlabel{eq:energyBalanceMassSpring}{{3.47}{47}{Step 2: Identify energy types and isolate $\dtp $}{equation.3.4.47}{}}
+\newlabel{eq:energyBalanceMassSpring}{{3.46}{47}{Step 2: Identify energy types and isolate $\dtp $}{equation.3.4.46}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Step 3: Check units}{47}{subsubsection*.82}}
 \@writefile{toc}{\contentsline {subsubsection}{Step 4: Implementation}{47}{subsubsection*.83}}
 \@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ todo}{47}{section*.84}}
@@ -584,45 +589,47 @@
 \pgfsyspdfmark {pgfid180}{29344904}{21291758}
 \pgfsyspdfmark {pgfid181}{31193199}{21063857}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.2}1D Wave Equation}{47}{subsection.3.4.2}}
-\newlabel{eq:1DWavePhysical}{{3.49}{47}{1D Wave Equation}{equation.3.4.49}{}}
+\newlabel{eq:1DWavePhysical}{{3.48}{47}{1D Wave Equation}{equation.3.4.48}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak  {h}$}{47}{subsubsection*.85}}
-\newlabel{eq:rOC1DWave}{{3.50}{47}{Step 1: Obtain $\dtp \h $}{equation.3.4.50}{}}
+\newlabel{eq:rOC1DWave}{{3.49}{47}{Step 1: Obtain $\dtp \h $}{equation.3.4.49}{}}
 \mph@setcol{ii:47}{\mph@nr}
 \@writefile{toc}{\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{48}{subsubsection*.86}}
-\newlabel{eq:energyBalance1DWave}{{3.53}{48}{Step 2: Identify energy types and isolate $\dtp $}{equation.3.4.53}{}}
+\newlabel{eq:energyBalance1DWave}{{3.52}{48}{Step 2: Identify energy types and isolate $\dtp $}{equation.3.4.52}{}}
 \mph@setcol{ii:48}{\mph@nr}
 \@writefile{toc}{\contentsline {subsubsection}{Step 3: Check units}{49}{subsubsection*.87}}
 \@writefile{toc}{\contentsline {subsubsection}{Step 4: Implementation}{49}{subsubsection*.88}}
 \@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ todo}{49}{section*.89}}
-\pgfsyspdfmark {pgfid182}{4661699}{27190538}
+\pgfsyspdfmark {pgfid182}{4661699}{26475415}
 \def\mph@nr{37}
-\pgfsyspdfmark {pgfid185}{29344904}{27197747}
-\pgfsyspdfmark {pgfid186}{31193199}{26969846}
+\pgfsyspdfmark {pgfid185}{29344904}{26482624}
+\pgfsyspdfmark {pgfid186}{31193199}{26254723}
 \@writefile{toc}{\contentsline {subsubsection}{Neumann boundary conditions}{49}{subsubsection*.90}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4.3}Stability Analysis using Energy Analysis Techniques}{49}{subsection.3.4.3}}
 \mph@setcol{ii:49}{\mph@nr}
-\newlabel{eq:quadraticForm}{{3.55}{50}{Stability Analysis using Energy Analysis Techniques}{equation.3.4.55}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Mass-spring system}{50}{subsubsection*.91}}
+\newlabel{eq:quadraticForm}{{3.54}{50}{Mass-spring system}{equation.3.4.54}{}}
 \mph@setcol{ii:50}{\mph@nr}
 \citation{theBible}
-\newlabel{eq:spatialBound}{{3.57}{51}{Stability Analysis using Energy Analysis Techniques}{equation.3.4.57}{}}
+\@writefile{toc}{\contentsline {subsubsection}{1D wave equation}{51}{subsubsection*.92}}
+\newlabel{eq:spatialBound}{{3.56}{51}{1D wave equation}{equation.3.4.56}{}}
 \mph@setcol{ii:51}{\mph@nr}
 \citation{theBible}
 \@writefile{toc}{\contentsline {section}{\numberline {3.5}Modal Analysis}{52}{section.3.5}}
 \newlabel{sec:modalAnalysis}{{3.5}{52}{Modal Analysis}{section.3.5}{}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ more explanation, perhaps refer to von neumann analysis in \ref  {sec:stabilityAnalysis}}{52}{section*.91}}
-\pgfsyspdfmark {pgfid187}{21667350}{29680017}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ more explanation, perhaps refer to von neumann analysis in \ref  {sec:stabilityAnalysis}}{52}{section*.93}}
+\pgfsyspdfmark {pgfid187}{21667350}{22611905}
 \def\mph@nr{38}
-\pgfsyspdfmark {pgfid188}{2321883}{29687226}
-\pgfsyspdfmark {pgfid189}{4170178}{29459325}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}One-Step Form}{52}{subsection.3.5.1}}
-\newlabel{sec:oneStepForm}{{3.5.1}{52}{One-Step Form}{subsection.3.5.1}{}}
+\pgfsyspdfmark {pgfid188}{2321883}{22619114}
+\pgfsyspdfmark {pgfid189}{4170178}{22391213}
 \mph@setcol{ii:52}{\mph@nr}
-\newlabel{eq:modalForm}{{3.62}{53}{One-Step Form}{equation.3.5.62}{}}
-\newlabel{eq:oneStepForm}{{3.63}{53}{One-Step Form}{equation.3.5.63}{}}
-\newlabel{eq:sp}{{3.66}{53}{One-Step Form}{equation.3.5.66}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Dispersion analysis}{53}{section.3.6}}
-\newlabel{sec:dispersionAnalysis}{{3.6}{53}{Dispersion analysis}{section.3.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5.1}One-Step Form}{53}{subsection.3.5.1}}
+\newlabel{sec:oneStepForm}{{3.5.1}{53}{One-Step Form}{subsection.3.5.1}{}}
+\newlabel{eq:modalForm}{{3.61}{53}{One-Step Form}{equation.3.5.61}{}}
+\newlabel{eq:oneStepForm}{{3.62}{53}{One-Step Form}{equation.3.5.62}{}}
+\newlabel{eq:sp}{{3.65}{53}{One-Step Form}{equation.3.5.65}{}}
 \mph@setcol{ii:53}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Dispersion analysis}{54}{section.3.6}}
+\newlabel{sec:dispersionAnalysis}{{3.6}{54}{Dispersion analysis}{section.3.6}{}}
 \mph@setcol{ii:54}{\mph@nr}
 \@writefile{toc}{\contentsline {part}{II\hspace  {1em}Resonators}{55}{part.2}}
 \mph@setcol{ii:55}{\mph@nr}
@@ -634,184 +641,204 @@
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \newlabel{ch:stiffString}{{4}{59}{Stiff string}{chapter.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Continuous time}{59}{section.4.1}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ should I even include the lossless one? It's just so that we can slowly build up to the damped model...}{59}{section*.93}}
-\pgfsyspdfmark {pgfid192}{10528258}{14742391}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ not done}{59}{section*.95}}
+\pgfsyspdfmark {pgfid192}{7983715}{16950757}
 \def\mph@nr{39}
-\pgfsyspdfmark {pgfid195}{29344904}{14749600}
-\pgfsyspdfmark {pgfid196}{31193199}{14521699}
+\pgfsyspdfmark {pgfid195}{29344904}{16957966}
+\pgfsyspdfmark {pgfid196}{31193199}{16730065}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Continuous time}{59}{section.4.1}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ should I even include the lossless one? It's just so that we can slowly build up to the damped model...}{59}{section*.96}}
+\pgfsyspdfmark {pgfid197}{10528258}{13090879}
+\def\mph@nr{40}
+\pgfsyspdfmark {pgfid200}{29344904}{13098088}
+\pgfsyspdfmark {pgfid201}{31193199}{12870187}
 \newlabel{eq:stiffStringPDENoLosses}{{4.1}{59}{Continuous time}{equation.4.1.1}{}}
 \mph@setcol{ii:59}{\mph@nr}
 \citation{Bensa2003}
 \citation{theBible}
-\@writefile{toc}{\contentsline {subsubsection}{Dispersion Analysis}{60}{subsubsection*.94}}
+\@writefile{toc}{\contentsline {subsubsection}{Dispersion Analysis}{60}{subsubsection*.97}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Adding Losses}{60}{subsection.4.1.1}}
 \newlabel{eq:stiffStringPDE}{{4.2}{60}{Adding Losses}{equation.4.1.2}{}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ etc.}{60}{section*.95}}
-\pgfsyspdfmark {pgfid197}{8420841}{23248154}
-\def\mph@nr{40}
-\pgfsyspdfmark {pgfid198}{2321883}{23255363}
-\pgfsyspdfmark {pgfid199}{4170178}{23027462}
-\newlabel{eq:stiffStringPDECompact}{{4.3}{60}{Adding Losses}{equation.4.1.3}{}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check wavespeed or wave speed (entire document)}{60}{section*.96}}
-\pgfsyspdfmark {pgfid202}{15704371}{20285922}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ etc.}{60}{section*.98}}
+\pgfsyspdfmark {pgfid202}{8420841}{23156406}
 \def\mph@nr{41}
-\pgfsyspdfmark {pgfid203}{2321883}{20293131}
-\pgfsyspdfmark {pgfid204}{4170178}{20065230}
-\@writefile{toc}{\contentsline {subsubsection}{Intuition}{60}{subsubsection*.97}}
-\@writefile{toc}{\contentsline {subsubsection}{Boundary Conditions}{60}{subsubsection*.98}}
+\pgfsyspdfmark {pgfid203}{2321883}{23163615}
+\pgfsyspdfmark {pgfid204}{4170178}{22935714}
+\newlabel{eq:stiffStringPDECompact}{{4.3}{60}{Adding Losses}{equation.4.1.3}{}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check wavespeed or wave speed (entire document)}{60}{section*.99}}
+\pgfsyspdfmark {pgfid207}{15704371}{20194174}
+\def\mph@nr{42}
+\pgfsyspdfmark {pgfid208}{2321883}{20201383}
+\pgfsyspdfmark {pgfid209}{4170178}{19973482}
+\@writefile{toc}{\contentsline {subsubsection}{Intuition}{60}{subsubsection*.100}}
+\@writefile{toc}{\contentsline {subsubsection}{Boundary Conditions}{60}{subsubsection*.101}}
 \newlabel{eq:stiffStringBoundConds}{{4.4}{60}{Boundary Conditions}{equation.4.1.4}{}}
 \newlabel{eq:BCclamped}{{4.4a}{60}{Boundary Conditions}{equation.4.1.4a}{}}
 \newlabel{eq:BCsimplySupported}{{4.4b}{60}{Boundary Conditions}{equation.4.1.4b}{}}
 \newlabel{eq:BCfree}{{4.4c}{60}{Boundary Conditions}{equation.4.1.4c}{}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ insert figure showing virtual grid points}{60}{section*.99}}
-\pgfsyspdfmark {pgfid207}{8080613}{6703238}
-\def\mph@nr{42}
-\pgfsyspdfmark {pgfid208}{2321883}{6710447}
-\pgfsyspdfmark {pgfid209}{4170178}{6482546}
 \mph@setcol{ii:60}{\mph@nr}
+\newlabel{fig:clamped}{{4.1a}{61}{Subfigure 4 4.1a}{subfigure.4.1.1}{}}
+\newlabel{sub@fig:clamped}{{(a)}{a}{Subfigure 4 4.1a\relax }{subfigure.4.1.1}{}}
+\newlabel{fig:simplySupported}{{4.1b}{61}{Subfigure 4 4.1b}{subfigure.4.1.2}{}}
+\newlabel{sub@fig:simplySupported}{{(b)}{b}{Subfigure 4 4.1b\relax }{subfigure.4.1.2}{}}
+\newlabel{fig:free}{{4.1c}{61}{Subfigure 4 4.1c}{subfigure.4.1.3}{}}
+\newlabel{sub@fig:free}{{(c)}{c}{Subfigure 4 4.1c\relax }{subfigure.4.1.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces The first (normalised) modal shape for the three boundary conditions in Eqs. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:stiffStringBoundConds}\unskip \@@italiccorr )}}. The extremes are indicated with black and grey lines respectively. \relax }}{61}{figure.caption.102}}
+\newlabel{fig:boundaryCondsStiffString}{{4.1}{61}{The first (normalised) modal shape for the three boundary conditions in Eqs. \eqref {eq:stiffStringBoundConds}. The extremes are indicated with black and grey lines respectively. \relax }{figure.caption.102}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Clamped.}}}{61}{subfigure.1.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Simply supported.}}}{61}{subfigure.1.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Free.}}}{61}{subfigure.1.3}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.2}Discrete Time}{61}{section.4.2}}
 \newlabel{eq:stiffStringFDS}{{4.5}{61}{Discrete Time}{equation.4.2.5}{}}
 \newlabel{eq:dxxxx}{{4.6}{61}{Discrete Time}{equation.4.2.6}{}}
-\newlabel{eq:expandedStringFDS}{{4.10}{61}{Discrete Time}{equation.4.2.10}{}}
 \mph@setcol{ii:61}{\mph@nr}
+\newlabel{eq:expandedStringFDS}{{4.10}{62}{Discrete Time}{equation.4.2.10}{}}
 \newlabel{eq:stiffStringCourant}{{4.12}{62}{Discrete Time}{equation.4.2.12}{}}
 \newlabel{eq:stiffStringStability}{{4.13}{62}{Discrete Time}{equation.4.2.13}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Stencil}{62}{subsubsection*.100}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Boundary conditions}{62}{subsection.4.2.1}}
 \mph@setcol{ii:62}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces The stencil for the damped stiff string scheme in \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:stiffStringFDS}\unskip \@@italiccorr )}}.\relax }}{63}{figure.caption.101}}
-\newlabel{fig:stencilStiffString}{{4.1}{63}{The stencil for the damped stiff string scheme in \eqref {eq:stiffStringFDS}.\relax }{figure.caption.101}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Stencil}{63}{subsubsection*.103}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces The stencil for the damped stiff string scheme in \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:stiffStringFDS}\unskip \@@italiccorr )}}.\relax }}{63}{figure.caption.104}}
+\newlabel{fig:stencilStiffString}{{4.2}{63}{The stencil for the damped stiff string scheme in \eqref {eq:stiffStringFDS}.\relax }{figure.caption.104}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Boundary conditions}{63}{subsection.4.2.1}}
 \newlabel{eq:stiffStringBoundCondsDisc}{{4.14}{63}{Boundary conditions}{equation.4.2.14}{}}
 \newlabel{eq:BCclampedDisc}{{4.14a}{63}{Boundary conditions}{equation.4.2.14a}{}}
 \newlabel{eq:BCsimplySupportedDisc}{{4.14b}{63}{Boundary conditions}{equation.4.2.14b}{}}
 \newlabel{eq:BCfreeDisc}{{4.14c}{63}{Boundary conditions}{equation.4.2.14c}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Clamped}{63}{subsubsection*.102}}
-\@writefile{toc}{\contentsline {subsubsection}{Simply supported}{63}{subsubsection*.103}}
-\mph@setcol{ii:63}{\mph@nr}
-\newlabel{eq:simplySupportedResult}{{4.16}{64}{Simply supported}{equation.4.2.16}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Free}{64}{subsubsection*.104}}
-\mph@setcol{ii:64}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Implementation and Matrix Form}{65}{subsection.4.2.2}}
-\newlabel{eq:matrixFormStiffStringImplicit}{{4.21}{65}{Implementation and Matrix Form}{equation.4.2.21}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}von Neumann Analysis and Stability Condition}{65}{section.4.3}}
-\newlabel{sec:stiffStringStability}{{4.3}{65}{von Neumann Analysis and Stability Condition}{section.4.3}{}}
-\mph@setcol{ii:65}{\mph@nr}
-\newlabel{eq:charDampedString}{{4.24}{66}{von Neumann Analysis and Stability Condition}{equation.4.3.24}{}}
-\mph@setcol{ii:66}{\mph@nr}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ different wording}{67}{section*.105}}
-\pgfsyspdfmark {pgfid212}{6501143}{38830192}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ insert figure showing virtual grid points somewhere in this section}{63}{section*.105}}
+\pgfsyspdfmark {pgfid212}{5644739}{4882391}
 \def\mph@nr{43}
-\pgfsyspdfmark {pgfid215}{29344904}{38837401}
-\pgfsyspdfmark {pgfid216}{31193199}{38609500}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Energy Analysis}{67}{section.4.4}}
-\newlabel{sec:energyAnalysisString}{{4.4}{67}{Energy Analysis}{section.4.4}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak  {h}$}{67}{subsubsection*.106}}
-\newlabel{eq:rOCStiffString}{{4.27}{67}{Step 1: Obtain $\dtp \h $}{equation.4.4.27}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{67}{subsubsection*.107}}
+\pgfsyspdfmark {pgfid215}{29344904}{4889600}
+\pgfsyspdfmark {pgfid216}{31193199}{4661699}
+\mph@setcol{ii:63}{\mph@nr}
+\@writefile{toc}{\contentsline {subsubsection}{Clamped}{64}{subsubsection*.106}}
+\@writefile{toc}{\contentsline {subsubsection}{Simply supported}{64}{subsubsection*.107}}
+\newlabel{eq:simplySupportedResult}{{4.16}{64}{Simply supported}{equation.4.2.16}{}}
+\mph@setcol{ii:64}{\mph@nr}
+\@writefile{toc}{\contentsline {subsubsection}{Free}{65}{subsubsection*.108}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Implementation and Matrix Form}{65}{subsection.4.2.2}}
+\newlabel{eq:matrixFormStiffStringImplicit}{{4.20}{65}{Implementation and Matrix Form}{equation.4.2.20}{}}
+\mph@setcol{ii:65}{\mph@nr}
+\mph@setcol{ii:66}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}von Neumann Analysis and Stability Condition}{67}{section.4.3}}
+\newlabel{sec:stiffStringStability}{{4.3}{67}{von Neumann Analysis and Stability Condition}{section.4.3}{}}
+\newlabel{eq:charDampedString}{{4.25}{67}{von Neumann Analysis and Stability Condition}{equation.4.3.25}{}}
 \mph@setcol{ii:67}{\mph@nr}
-\@writefile{toc}{\contentsline {subsubsection}{Step 3: Check units}{68}{subsubsection*.108}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 4: Implementation}{68}{subsubsection*.109}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Modal analysis}{68}{section.4.5}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.6}Implicit scheme}{68}{section.4.6}}
-\newlabel{sec:implicitStiffString}{{4.6}{68}{Implicit scheme}{section.4.6}{}}
-\newlabel{eq:stiffStringFDSImplicit}{{4.31}{68}{Implicit scheme}{equation.4.6.31}{}}
-\newlabel{eq:matrixFormStiffStringImplicit}{{4.32}{68}{Implicit scheme}{equation.4.6.32}{}}
-\mph@setcol{ii:68}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces The stencil for the damped stiff string scheme in \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:stiffStringFDSImplicit}\unskip \@@italiccorr )}}.\relax }}{69}{figure.caption.110}}
-\newlabel{fig:stencilStiffStringImplicit}{{4.2}{69}{The stencil for the damped stiff string scheme in \eqref {eq:stiffStringFDSImplicit}.\relax }{figure.caption.110}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.1}von Neumann analysis}{69}{subsection.4.6.1}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ below is the exact same wording as above}{69}{section*.111}}
-\pgfsyspdfmark {pgfid217}{11377169}{23815444}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ different wording}{68}{section*.109}}
+\pgfsyspdfmark {pgfid217}{6501143}{33318257}
 \def\mph@nr{44}
-\pgfsyspdfmark {pgfid220}{29344904}{23822653}
-\pgfsyspdfmark {pgfid221}{31193199}{23594752}
-\newlabel{eq:charDampedStiffSTring}{{4.34}{69}{von Neumann analysis}{equation.4.6.34}{}}
+\pgfsyspdfmark {pgfid218}{2321883}{33325466}
+\pgfsyspdfmark {pgfid219}{4170178}{33097565}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Energy Analysis}{68}{section.4.4}}
+\newlabel{sec:energyAnalysisString}{{4.4}{68}{Energy Analysis}{section.4.4}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak  {h}$}{68}{subsubsection*.110}}
+\newlabel{eq:rOCStiffString}{{4.28}{68}{Step 1: Obtain $\dtp \h $}{equation.4.4.28}{}}
+\mph@setcol{ii:68}{\mph@nr}
+\@writefile{toc}{\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{69}{subsubsection*.111}}
+\newlabel{eq:dampingTermStiffString}{{4.30}{69}{Step 2: Identify energy types and isolate $\dtp $}{equation.4.4.30}{}}
+\newlabel{eq:energyBalanceStiffString}{{4.31}{69}{Step 2: Identify energy types and isolate $\dtp $}{equation.4.4.31}{}}
 \mph@setcol{ii:69}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.2}Modal analysis}{70}{subsection.4.6.2}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 3: Check units}{70}{subsubsection*.112}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 4: Implementation}{70}{subsubsection*.113}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Modal analysis}{70}{section.4.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Implicit scheme}{70}{section.4.6}}
+\newlabel{sec:implicitStiffString}{{4.6}{70}{Implicit scheme}{section.4.6}{}}
+\newlabel{eq:stiffStringFDSImplicit}{{4.32}{70}{Implicit scheme}{equation.4.6.32}{}}
 \mph@setcol{ii:70}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Brass}{71}{chapter.5}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:brass}{{5}{71}{Brass}{chapter.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Second-order system}{71}{section.5.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}First-order system}{71}{section.5.2}}
-\mph@setcol{ii:71}{\mph@nr}
-\mph@setcol{ii:72}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}2D Systems}{73}{chapter.6}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:2Dsyst}{{6}{73}{2D Systems}{chapter.6}{}}
-\newlabel{eq:laplacian}{{6.1}{73}{2D Systems}{equation.6.0.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Analysis Techniques in 2D}{73}{section.6.1}}
-\newlabel{sec:analysis2D}{{6.1}{73}{Analysis Techniques in 2D}{section.6.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Frequency Domain Analysis}{73}{subsection.6.1.1}}
-\mph@setcol{ii:73}{\mph@nr}
-\citation{Duyne1993}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Energy Analysis}{74}{subsection.6.1.2}}
-\newlabel{eq:2DInnerProd}{{6.4}{74}{Energy Analysis}{equation.6.1.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.3}Modal Analysis}{74}{subsection.6.1.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}2D Wave Equation}{74}{section.6.2}}
-\newlabel{eq:2DwavePDE}{{6.5}{74}{2D Wave Equation}{equation.6.2.5}{}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check whether this is right..}{74}{section*.112}}
-\pgfsyspdfmark {pgfid222}{7737956}{19772621}
+\newlabel{eq:matrixFormStiffStringImplicit}{{4.33}{71}{Implicit scheme}{equation.4.6.33}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces The stencil for the damped stiff string scheme in \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:stiffStringFDSImplicit}\unskip \@@italiccorr )}}.\relax }}{71}{figure.caption.114}}
+\newlabel{fig:stencilStiffStringImplicit}{{4.3}{71}{The stencil for the damped stiff string scheme in \eqref {eq:stiffStringFDSImplicit}.\relax }{figure.caption.114}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.1}von Neumann analysis}{71}{subsection.4.6.1}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ below is the exact same wording as above}{71}{section*.115}}
+\pgfsyspdfmark {pgfid222}{11377169}{11350302}
 \def\mph@nr{45}
-\pgfsyspdfmark {pgfid223}{2321883}{19779830}
-\pgfsyspdfmark {pgfid224}{4170178}{19551929}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Thin plate}{74}{section.6.3}}
-\newlabel{eq:platePDE}{{6.6}{74}{Thin plate}{equation.6.3.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.4}Stiff membrane}{74}{section.6.4}}
-\newlabel{eq:2DwavePDE}{{6.7}{74}{Stiff membrane}{equation.6.4.7}{}}
+\pgfsyspdfmark {pgfid225}{29344904}{11357511}
+\pgfsyspdfmark {pgfid226}{31193199}{11129610}
+\mph@setcol{ii:71}{\mph@nr}
+\newlabel{eq:charDampedStiffSTring}{{4.35}{72}{von Neumann analysis}{equation.4.6.35}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.2}Modal analysis}{72}{subsection.4.6.2}}
+\mph@setcol{ii:72}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Brass}{73}{chapter.5}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:brass}{{5}{73}{Brass}{chapter.5}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Second-order system}{73}{section.5.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}First-order system}{73}{section.5.2}}
+\mph@setcol{ii:73}{\mph@nr}
 \mph@setcol{ii:74}{\mph@nr}
-\@writefile{toc}{\contentsline {part}{III\hspace  {1em}Interactions}{75}{part.3}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}2D Systems}{75}{chapter.6}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:2Dsyst}{{6}{75}{2D Systems}{chapter.6}{}}
+\newlabel{eq:laplacian}{{6.1}{75}{2D Systems}{equation.6.0.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Analysis Techniques in 2D}{75}{section.6.1}}
+\newlabel{sec:analysis2D}{{6.1}{75}{Analysis Techniques in 2D}{section.6.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.1}Frequency Domain Analysis}{75}{subsection.6.1.1}}
 \mph@setcol{ii:75}{\mph@nr}
+\citation{Duyne1993}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.2}Energy Analysis}{76}{subsection.6.1.2}}
+\newlabel{eq:2DInnerProd}{{6.4}{76}{Energy Analysis}{equation.6.1.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1.3}Modal Analysis}{76}{subsection.6.1.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}2D Wave Equation}{76}{section.6.2}}
+\newlabel{eq:2DwavePDE}{{6.5}{76}{2D Wave Equation}{equation.6.2.5}{}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check whether this is right..}{76}{section*.116}}
+\pgfsyspdfmark {pgfid227}{7737956}{19772621}
+\def\mph@nr{46}
+\pgfsyspdfmark {pgfid228}{2321883}{19779830}
+\pgfsyspdfmark {pgfid229}{4170178}{19551929}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Thin plate}{76}{section.6.3}}
+\newlabel{eq:platePDE}{{6.6}{76}{Thin plate}{equation.6.3.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Stiff membrane}{76}{section.6.4}}
+\newlabel{eq:2DwavePDE}{{6.7}{76}{Stiff membrane}{equation.6.4.7}{}}
 \mph@setcol{ii:76}{\mph@nr}
-\newlabel{part:interactions}{{III}{77}{Interactions}{part.3}{}}
-\newlabel{eq:identityIJ}{{6.11}{77}{Interactions}{equation.6.4.11}{}}
+\@writefile{toc}{\contentsline {part}{III\hspace  {1em}Interactions}{77}{part.3}}
 \mph@setcol{ii:77}{\mph@nr}
 \mph@setcol{ii:78}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Connections}{79}{chapter.7}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:connections}{{7}{79}{Connections}{chapter.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Alternative interpretation of grid points}{79}{subsubsection*.114}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces Alternative interpretation of the discretisation of $u(x,t)$. The continuous system is divided into $N-1$ sections of width $h$ plus $2$ sections of width $h/2$ at the boundaries. Through this interpretation, the `weight' of a grid point can be calculated from its physical parameters. \relax }}{79}{figure.caption.115}}
-\newlabel{fig:gridExp2}{{7.1}{79}{Alternative interpretation of the discretisation of $u(x,t)$. The continuous system is divided into $N-1$ sections of width $h$ plus $2$ sections of width $h/2$ at the boundaries. Through this interpretation, the `weight' of a grid point can be calculated from its physical parameters. \relax }{figure.caption.115}{}}
+\newlabel{part:interactions}{{III}{79}{Interactions}{part.3}{}}
+\newlabel{eq:identityIJ}{{6.11}{79}{Interactions}{equation.6.4.11}{}}
 \mph@setcol{ii:79}{\mph@nr}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}Rigid connection}{80}{section.7.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.2}Spring-like connections}{80}{section.7.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}Connection with rigid barrier (scaled)}{80}{subsection.7.2.1}}
-\newlabel{eq:1DwaveConnRigid}{{7.1}{80}{Connection with rigid barrier (scaled)}{equation.7.2.1}{}}
-\newlabel{eq:1DwaveConnRigidForce}{{7.2}{80}{Connection with rigid barrier (scaled)}{equation.7.2.2}{}}
-\newlabel{eq:etaRigid}{{7.3}{80}{Connection with rigid barrier (scaled)}{equation.7.2.3}{}}
-\newlabel{eq:1DwaveConnRigidInnerProd}{{7.4}{80}{Connection with rigid barrier (scaled)}{equation.7.2.4}{}}
 \mph@setcol{ii:80}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}String-plate connection}{81}{subsection.7.2.2}}
-\@writefile{toc}{\contentsline {subsubsection}{Continuous}{81}{subsubsection*.116}}
-\newlabel{eq:connStringPlatePDEs}{{7.7}{81}{Continuous}{equation.7.2.7}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Discrete}{81}{subsubsection*.117}}
-\newlabel{eq:connStringPlateFDSs}{{7.10}{81}{Discrete}{equation.7.2.10}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Expansion}{81}{subsubsection*.118}}
-\mph@setcol{ii:81}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.3}Solving for $f$}{82}{subsection.7.2.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.4}Non-dimensional}{82}{subsection.7.2.4}}
-\mph@setcol{ii:82}{\mph@nr}
-\citation{theBible}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}Collisions}{83}{chapter.8}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {7}Connections}{81}{chapter.7}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{ch:collisions}{{8}{83}{Collisions}{chapter.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.1}Classic models}{83}{section.8.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.2}Michele's tricks}{83}{section.8.2}}
+\newlabel{ch:connections}{{7}{81}{Connections}{chapter.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Alternative interpretation of grid points}{81}{subsubsection*.118}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces Alternative interpretation of the discretisation of $u(x,t)$. The continuous system is divided into $N-1$ sections of width $h$ plus $2$ sections of width $h/2$ at the boundaries. Through this interpretation, the `weight' of a grid point can be calculated from its physical parameters. \relax }}{81}{figure.caption.119}}
+\newlabel{fig:gridExp2}{{7.1}{81}{Alternative interpretation of the discretisation of $u(x,t)$. The continuous system is divided into $N-1$ sections of width $h$ plus $2$ sections of width $h/2$ at the boundaries. Through this interpretation, the `weight' of a grid point can be calculated from its physical parameters. \relax }{figure.caption.119}{}}
+\mph@setcol{ii:81}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {7.1}Rigid connection}{82}{section.7.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {7.2}Spring-like connections}{82}{section.7.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}Connection with rigid barrier (scaled)}{82}{subsection.7.2.1}}
+\newlabel{eq:1DwaveConnRigid}{{7.1}{82}{Connection with rigid barrier (scaled)}{equation.7.2.1}{}}
+\newlabel{eq:1DwaveConnRigidForce}{{7.2}{82}{Connection with rigid barrier (scaled)}{equation.7.2.2}{}}
+\newlabel{eq:etaRigid}{{7.3}{82}{Connection with rigid barrier (scaled)}{equation.7.2.3}{}}
+\newlabel{eq:1DwaveConnRigidInnerProd}{{7.4}{82}{Connection with rigid barrier (scaled)}{equation.7.2.4}{}}
+\mph@setcol{ii:82}{\mph@nr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}String-plate connection}{83}{subsection.7.2.2}}
+\@writefile{toc}{\contentsline {subsubsection}{Continuous}{83}{subsubsection*.120}}
+\newlabel{eq:connStringPlatePDEs}{{7.7}{83}{Continuous}{equation.7.2.7}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Discrete}{83}{subsubsection*.121}}
+\newlabel{eq:connStringPlateFDSs}{{7.10}{83}{Discrete}{equation.7.2.10}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Expansion}{83}{subsubsection*.122}}
 \mph@setcol{ii:83}{\mph@nr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.3}Solving for $f$}{84}{subsection.7.2.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.4}Non-dimensional}{84}{subsection.7.2.4}}
+\mph@setcol{ii:84}{\mph@nr}
+\citation{theBible}
+\@writefile{toc}{\contentsline {chapter}{\numberline {8}Collisions}{85}{chapter.8}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:collisions}{{8}{85}{Collisions}{chapter.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.1}Classic models}{85}{section.8.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {8.2}Michele's tricks}{85}{section.8.2}}
+\mph@setcol{ii:85}{\mph@nr}
 \bibstyle{IEEEtranS}
 \bibdata{bib/mybib}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check whether all references are used}{84}{section*.119}}
-\pgfsyspdfmark {pgfid227}{4661699}{39655948}
-\def\mph@nr{46}
-\pgfsyspdfmark {pgfid228}{2321883}{39627902}
-\pgfsyspdfmark {pgfid229}{4170178}{39400001}
-\mph@setcol{ii:84}{\mph@nr}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check whether all references are used}{86}{section*.123}}
+\pgfsyspdfmark {pgfid232}{4661699}{39655948}
+\def\mph@nr{47}
+\pgfsyspdfmark {pgfid233}{2321883}{39627902}
+\pgfsyspdfmark {pgfid234}{4170178}{39400001}
+\mph@setcol{ii:86}{\mph@nr}
 \bibcite{Bensa2003}{1}
 \bibcite{Bilbao2009}{2}
 \bibcite{theBible}{3}
@@ -821,7 +848,7 @@
 \bibcite{Bilbao2019CMJb}{7}
 \bibcite{Courant1928}{8}
 \bibcite{Desvages2016}{9}
-\mph@setcol{ii:85}{\mph@nr}
+\mph@setcol{ii:87}{\mph@nr}
 \bibcite{Desvages2018}{10}
 \bibcite{Fletcher1998}{11}
 \bibcite{Gustafsson2013}{12}
@@ -833,110 +860,110 @@
 \bibcite{Duyne1993}{18}
 \bibcite{Villeneuve2019}{19}
 \bibcite{Abramowitz1972}{20}
-\@writefile{toc}{\contentsline {chapter}{References}{86}{chapter*.120}}
-\mph@setcol{ii:86}{\mph@nr}
-\@writefile{toc}{\contentsline {part}{IV\hspace  {1em}Appendix}{87}{part.4}}
-\mph@setcol{ii:87}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{References}{88}{chapter*.124}}
 \mph@setcol{ii:88}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}List of Symbols}{89}{Appendix.b.A}}
+\@writefile{toc}{\contentsline {part}{IV\hspace  {1em}Appendix}{89}{part.4}}
+\mph@setcol{ii:89}{\mph@nr}
+\mph@setcol{ii:90}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}List of Symbols}{91}{Appendix.b.A}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{app:listOfSymbols}{{A}{89}{List of Symbols}{Appendix.b.A}{}}
-\mph@setcol{ii:89}{\mph@nr}
+\newlabel{app:listOfSymbols}{{A}{91}{List of Symbols}{Appendix.b.A}{}}
+\mph@setcol{ii:91}{\mph@nr}
 \gdef \LT@i {\LT@entry 
     {1}{68.9055pt}\LT@entry 
     {1}{196.9429pt}\LT@entry 
     {1}{83.13188pt}}
-\mph@setcol{ii:90}{\mph@nr}
-\mph@setcol{ii:91}{\mph@nr}
 \mph@setcol{ii:92}{\mph@nr}
+\mph@setcol{ii:93}{\mph@nr}
+\mph@setcol{ii:94}{\mph@nr}
 \gdef \LT@ii {\LT@entry 
     {1}{97.35826pt}\LT@entry 
     {1}{239.62204pt}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}List of Abbreviations}{93}{Appendix.b.B}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}List of Abbreviations}{95}{Appendix.b.B}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\mph@setcol{ii:93}{\mph@nr}
-\mph@setcol{ii:94}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {C}Code Snippets}{95}{Appendix.b.C}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {C.1}Mass-Spring System (Section \ref  {sec:massSpringSystem})}{95}{section.b.A}}
-\newlabel{app:massSpringCode}{{C.1}{95}{Mass-Spring System (Section \ref {sec:massSpringSystem})}{section.b.A}{}}
 \mph@setcol{ii:95}{\mph@nr}
-\@writefile{toc}{\contentsline {section}{\numberline {C.2}1D Wave Equation (Section \ref  {sec:1DWave})}{96}{section.b.B}}
-\newlabel{app:1DWave}{{C.2}{96}{1D Wave Equation (Section \ref {sec:1DWave})}{section.b.B}{}}
 \mph@setcol{ii:96}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {C}Code Snippets}{97}{Appendix.b.C}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {C.1}Mass-Spring System (Section \ref  {sec:massSpringSystem})}{97}{section.b.A}}
+\newlabel{app:massSpringCode}{{C.1}{97}{Mass-Spring System (Section \ref {sec:massSpringSystem})}{section.b.A}{}}
 \mph@setcol{ii:97}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {C.2}1D Wave Equation (Section \ref  {sec:1DWave})}{98}{section.b.B}}
+\newlabel{app:1DWave}{{C.2}{98}{1D Wave Equation (Section \ref {sec:1DWave})}{section.b.B}{}}
 \mph@setcol{ii:98}{\mph@nr}
-\@writefile{toc}{\contentsline {part}{V\hspace  {1em}Papers}{99}{part.5}}
 \mph@setcol{ii:99}{\mph@nr}
 \mph@setcol{ii:100}{\mph@nr}
-\citation{Bilbao2019CMJa}
-\newlabel{part:papers}{{V}{101}{Papers}{part.5}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Real-Time Tromba [\ref  {paper:D}]}{101}{subsubsection*.122}}
-\@writefile{toc}{\contentsline {subsubsection}{DigiDrum [\ref  {paper:F}]}{101}{subsubsection*.123}}
-\@writefile{toc}{\contentsline {subsubsection}{Dynamic grids [\ref  {paper:G}]}{101}{subsubsection*.124}}
+\@writefile{toc}{\contentsline {part}{V\hspace  {1em}Papers}{101}{part.5}}
 \mph@setcol{ii:101}{\mph@nr}
 \mph@setcol{ii:102}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{103}{Paper.c.A}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{paper:A}{{A}{103}{Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{Paper.c.A}{}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ changed the template here, should check if it's ok like this}{103}{section*.125}}
-\pgfsyspdfmark {pgfid232}{5921890}{5924416}
-\def\mph@nr{47}
-\pgfsyspdfmark {pgfid235}{29344904}{5990608}
-\pgfsyspdfmark {pgfid236}{31193199}{5762707}
+\citation{Bilbao2019CMJa}
+\newlabel{part:papers}{{V}{103}{Papers}{part.5}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Real-Time Tromba [\ref  {paper:D}]}{103}{subsubsection*.126}}
+\@writefile{toc}{\contentsline {subsubsection}{DigiDrum [\ref  {paper:F}]}{103}{subsubsection*.127}}
+\@writefile{toc}{\contentsline {subsubsection}{Dynamic grids [\ref  {paper:G}]}{103}{subsubsection*.128}}
 \mph@setcol{ii:103}{\mph@nr}
-\@writefile{toc}{\contentsline {section}{\numberline {A.1}Introduction}{104}{section.c.A}}
-\newlabel{sec:paperA:introduction}{{A.1}{104}{Introduction}{section.c.A}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {A.2}Conclusion}{104}{section.c.B}}
-\newlabel{sec:paperA:conclusion}{{A.2}{104}{Conclusion}{section.c.B}{}}
 \mph@setcol{ii:104}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}Physical Models and Real-Time Control with the Sensel Morph}{105}{Paper.c.B}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{105}{Paper.c.A}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{paper:B}{{B}{105}{Physical Models and Real-Time Control with the Sensel Morph}{Paper.c.B}{}}
+\newlabel{paper:A}{{A}{105}{Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{Paper.c.A}{}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ changed the template here, should check if it's ok like this}{105}{section*.129}}
+\pgfsyspdfmark {pgfid237}{5921890}{5924416}
+\def\mph@nr{48}
+\pgfsyspdfmark {pgfid240}{29344904}{5990608}
+\pgfsyspdfmark {pgfid241}{31193199}{5762707}
 \mph@setcol{ii:105}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {A.1}Introduction}{106}{section.c.A}}
+\newlabel{sec:paperA:introduction}{{A.1}{106}{Introduction}{section.c.A}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {A.2}Conclusion}{106}{section.c.B}}
+\newlabel{sec:paperA:conclusion}{{A.2}{106}{Conclusion}{section.c.B}{}}
 \mph@setcol{ii:106}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {C}Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite Difference Schemes}{107}{Paper.c.C}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}Physical Models and Real-Time Control with the Sensel Morph}{107}{Paper.c.B}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{paper:C}{{C}{107}{Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite Difference Schemes}{Paper.c.C}{}}
+\newlabel{paper:B}{{B}{107}{Physical Models and Real-Time Control with the Sensel Morph}{Paper.c.B}{}}
 \mph@setcol{ii:107}{\mph@nr}
 \mph@setcol{ii:108}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {D}Real-time Implementation of a Physical Model of the Tromba Marina}{109}{Paper.c.D}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {C}Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite Difference Schemes}{109}{Paper.c.C}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{paper:D}{{D}{109}{Real-time Implementation of a Physical Model of the Tromba Marina}{Paper.c.D}{}}
+\newlabel{paper:C}{{C}{109}{Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite Difference Schemes}{Paper.c.C}{}}
 \mph@setcol{ii:109}{\mph@nr}
 \mph@setcol{ii:110}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {E}Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{111}{Paper.c.E}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {D}Real-time Implementation of a Physical Model of the Tromba Marina}{111}{Paper.c.D}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{paper:E}{{E}{111}{Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{Paper.c.E}{}}
+\newlabel{paper:D}{{D}{111}{Real-time Implementation of a Physical Model of the Tromba Marina}{Paper.c.D}{}}
 \mph@setcol{ii:111}{\mph@nr}
 \mph@setcol{ii:112}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {F}DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{113}{Paper.c.F}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {E}Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{113}{Paper.c.E}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{paper:F}{{F}{113}{DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{Paper.c.F}{}}
+\newlabel{paper:E}{{E}{113}{Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{Paper.c.E}{}}
 \mph@setcol{ii:113}{\mph@nr}
 \mph@setcol{ii:114}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {G}Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{115}{Paper.c.G}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {F}DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{115}{Paper.c.F}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{paper:G}{{G}{115}{Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{Paper.c.G}{}}
+\newlabel{paper:F}{{F}{115}{DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{Paper.c.F}{}}
 \mph@setcol{ii:115}{\mph@nr}
 \mph@setcol{ii:116}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {H}A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{117}{Paper.c.H}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {G}Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{117}{Paper.c.G}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{paper:H}{{H}{117}{A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{Paper.c.H}{}}
+\newlabel{paper:G}{{G}{117}{Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{Paper.c.G}{}}
 \mph@setcol{ii:117}{\mph@nr}
-\gdef\mph@lastpage{118}
+\mph@setcol{ii:118}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {H}A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{119}{Paper.c.H}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{paper:H}{{H}{119}{A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{Paper.c.H}{}}
+\mph@setcol{ii:119}{\mph@nr}
+\gdef\mph@lastpage{120}
 \csname mph@do@warn\endcsname
-\newlabel{LastPage}{{}{117}{}{page.117}{}}
-\xdef\lastpage@lastpage{117}
-\xdef\lastpage@lastpageHy{117}
+\newlabel{LastPage}{{}{119}{}{page.119}{}}
+\xdef\lastpage@lastpage{119}
+\xdef\lastpage@lastpageHy{119}
