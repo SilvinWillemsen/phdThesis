@@ -1,44 +1,45 @@
 \chapter{Stiff string}\label{ch:stiffString}
-Earlier, in Section \ref{sec:1DWave},the case of the ideal string was presented modelled using the 1D wave equation. As shown, the model generates an output with harmonic partials that are integer multiples of the fundamental frequency. In the real world, however, strings exhibit a phenomenon called \textit{inharmonicity} due to stiffness in the material. 
+In earlier chapters, the case of the ideal string was presented modelled using the 1D wave equation. As shown, if the CFL condition is satisfied with equality, the model generates an output with harmonic partials which are integer multiples of the fundamental frequency. In the real world, however, strings exhibit a phenomenon called \textit{inharmonicity} due to stiffness in the material. 
 
-The restoring force of the 1D wave equation is only due to tension. In the real world, however, this force is also due to stiffness, dependent on the material and geometry of the string. This stiffness causes frequency dispersion and inharmonicity: the partials get exponentially further apart with frequency. 
+The restoring force of the 1D wave equation is only due to tension. In the real world, however, this force is also due to stiffness, dependent on the material and geometry of the string. This stiffness causes frequency dispersion and inharmonicity: the ``harmonic'' partials get exponentially further apart the higher their frequency is. 
 
-The stiff string played a prominent part in many of the published works:
-\citeP[A], \citeP[B], \citeP[C], \citeP[D] and \citeP[E]. 
+The stiff string played a prominent part in the following published works \citeP[A], \citeP[B], \citeP[C], \citeP[D] and \citeP[E]. 
 
-This chapter will go into the PDE of the stiff string, and discretise it. The analysis techniques presented in the previous chapter will be applied to the stiff string. \todo{not done}
+This chapter present the PDE of the stiff string, and go through the discretisation process afterwards. The analysis techniques presented in the previous chapter will then be applied to the stiff string. \todo{not done}
 
 \section{Continuous time}
-Consider a lossless \todo{should I even include the lossless one? It's just so that we can slowly build up to the damped model...}stiff string with a circular cross-section of length $L$. Its transverse displacement is described by $u=u(x,t)$ defined for $x\in \D$ with domain $\D = [0, L]$ and time $t\geq 0$. The PDE describing its motion is 
+Consider a lossless \todo{should I even include the lossless one? It's just so that we can slowly build up to the damped model...}stiff string of length $L$ and a circular cross-section. Its transverse displacement is described by $u=u(x,t)$ defined for $x\in \D$ with domain $\D = [0, L]$ and time $t\geq 0$. The PDE describing its motion is 
 \begin{equation}\label{eq:stiffStringPDENoLosses}
     \rho A \ptt u = T \pxx u - EI \pxxxx u
 \end{equation}
-parameterised by material density $\rho$ (in kg/m$^3$), cross-sectional area $A = \pi r^2$ (in m$^2$), radius $r$ (in m) tension $T$ (in N), Young's modulus $E$ (in Pa) and area moment of inertia $I = \pi r^4/4$ (in m$^4$). If either $E$ or $I$ is 0, Eq \eqref{eq:stiffStringPDENoLosses} reduces to the 1D wave equation in Eq. \eqref{eq:1DwavePDE} where $c = \sqrt{T/\rho A}$. If instead $T = 0$, Eq. \eqref{eq:stiffStringPDENoLosses} reduces to the \textit{ideal bar} equation.
+parameterised by material density $\rho$ (in kg/m$^3$), cross-sectional area $A = \pi r^2$ (in m$^2$), radius $r$ (in m), tension $T$ (in N), Young's modulus $E$ (in Pa) and area moment of inertia $I = \pi r^4/4$ (in m$^4$). If either $E$ or $I$ is 0, Eq \eqref{eq:stiffStringPDENoLosses} reduces to the 1D wave equation in Eq. \eqref{eq:1DwavePDE} where $c = \sqrt{T/\rho A}$. If instead $T = 0$, Eq. \eqref{eq:stiffStringPDENoLosses} reduces to the \textit{ideal bar} equation.
 
 
-\subsubsection{Dispersion Analysis}
-The 4th-order spatial derivative models \textit{frequency dispersion}, a phenomenon that causes different frequencies to travel at different speeds. As opposed to the undesired numerical dispersion 
+\subsubsection{Dispersion Analysis \SWcomment[or: Frequency Dispersion]}
+The 4\thOrder spatial derivative models \textit{frequency dispersion}, a phenomenon that causes different frequencies to travel at different speeds. As opposed to the undesired numerical dispersion 
+
+\SWcomment[not done]
 
 \subsection{Adding Losses}
-Before moving on to the discretisation of the PDE in \eqref{eq:stiffStringPDENoLosses}, losses can be added to the system. In the physical world, strings lose energy through fx. air viscosity and thermoelastic effects. All frequencies die out (damp) over time, but higher frequencies do so at a much faster rate. This phenomenon is called \textit{frequency-dependent damping} and can be modelled using a mixed derivative $\pt \pxx$. This way of frequency-dependent damping first appeared in \cite{Bensa2003} and has been used extensively in the literature since. The model of a damped stiff string is
+Before moving on to the discretisation of the PDE in Eq. \eqref{eq:stiffStringPDENoLosses}, losses can be added to the system. In the physical world, strings lose energy through fx. air viscosity and thermoelastic effects. All frequencies lose energy and die out (damp) over time, but higher frequencies do so at a much faster rate. This phenomenon is called \textit{frequency-dependent damping} and can be modelled using a mixed derivative $\pt \pxx$. This way of frequency-dependent damping first appeared in \cite{Bensa2003} and has been used extensively in the literature since\todo{citations here?}. A damped stiff string can be modelled as
 \begin{equation}\label{eq:stiffStringPDE}
-    \rho A \ptt u = T \pxx u - EI \pxxxx u - 2 \sz \rho A \pt u + 2 \so \rho A\pt \pxx u
+    \rho A \ptt u = T \pxx u - EI \pxxxx u - 2 \sz \rho A \pt u + 2 \so \rho A\pt \pxx u,
 \end{equation}
-where the non-negative loss coefficients $\sz$ (in s$^{-1}$) and $\so$ (in m$^2$/s) determine the frequency dependent and frequency independent losses respectively. 
+where the non-negative loss coefficients $\sz$ (in s$^{-1}$) and $\so$ (in m$^2$/s) determine the frequency-independent and frequency-dependent losses respectively. 
 
-A more compact way to write Eq. \eqref{eq:stiffStringPDE}, and as is also found often in the literature \cite{theBible} \todo{etc.} is to divide both sides by $\rho A$ to get
+A more compact way to write Eq. \eqref{eq:stiffStringPDE}, and as is also found often in the literature \cite{theBible}\todo{etc.}, is to divide both sides by $\rho A$ to get
 \begin{equation}\label{eq:stiffStringPDECompact}
     \ptt u = c^2 \pxx u - \kappa^2 \pxxxx u - 2 \sz \pt u + 2 \so \pt \pxx u
 \end{equation}
-where $c=\sqrt{T/\rho A}$ is the wave speed \todo{check wavespeed or wave speed (entire document)} (in m/s) as in the 1D wave equation in \eqref{eq:1DwavePDE} and $\kappa = \sqrt{EI / \rho A}$ is a \textit{stiffness coefficient} (in m$^2$/s).
+where $c=\sqrt{T/\rho A}$ is the wave speed \todo{check wavespeed or wave speed (entire document)} (in m/s) as in the 1D wave equation in \eqref{eq:1DwavePDE} and $\kappa = \sqrt{EI / \rho A}$ is referred to as the stiffness coefficient (in m$^2$/s).
 
 \subsubsection{Intuition}
 Although Eq. \eqref{eq:stiffStringPDE} might look daunting at first, the principle of Newton's second law remains the same. 
 
-Something about the 4th spatial derivative and the loss terms here...
+\SWcomment[Something about the 4th spatial derivative and the loss terms here...]
 
 \subsubsection{Boundary Conditions}
-The boundary conditions found in Eq. \eqref{eq:boundaryCond1DWave} can be extended to
+Section \ref{sec:1DWave} presents two types of boundary conditions for the 1D wave equation in Eq. \eqref{eq:boundaryCond1DWave}. In the case of the stiff string, these can be extended to
 \begin{subequations}\label{eq:stiffStringBoundConds}
     \begin{align}
         u = \px u &= 0 \quad \text{(clamped)}\label{eq:BCclamped}\\
@@ -64,7 +65,7 @@ Equation \eqref{eq:stiffStringPDECompact} can be discretised as
     \dtt \uln = c^2 \dxx \uln - \kappa^2 \dxxxx \uln - 2 \sz \dtd \uln + 2 \so\dtm\dxx \uln,
 \end{equation}
 and is defined for domain $l\in\{0, \hdots, N\}$ and number of grid points $N+1$. 
-The $\dxxxx$ operator is the second-order spatial difference in Eq. \eqref{eq:discSecondSpace} applied to itself
+The $\dxxxx$ operator is defined as the second-order spatial difference in Eq. \eqref{eq:discSecondSpace} applied to itself:
 \begin{equation}\label{eq:dxxxx}
     \dxxxx = \dxx\dxx = \frac{1}{h^4}\left(e_{x+}^2 - 4e_{x+}+6 - 4e_{x-}+e_{x-}^2\right).
 \end{equation} 
@@ -122,7 +123,7 @@ This condition can then be used to calculate the number of intervals $N$ in a si
 which can then be used to calculate $\lambda$ and $\mu$ in \eqref{eq:stiffStringCourant}.
 
 \subsubsection{Stencil}
-As done in Section \ref{sec:1DWaveDisc}, a stencil for the FD scheme implementing the damped stiff string can be created. This is shown in Figure \ref{fig:stencilStiffString}. In order to calculate $u_l^{n+1}$, $5$ points at the current time step are needed due to the 4\th-order spatial derivative. Due to the mixed derivative in the frequency-dependent damping term neighbouring points at the previous time step are also required. 
+As done in Section \ref{sec:1DWaveDisc}, a stencil for the FD scheme implementing the damped stiff string can be created. This is shown in Figure \ref{fig:stencilStiffString}. In order to calculate $u_l^{n+1}$, $5$ points at the current time step are needed due to the 4\thOrder spatial derivative. Due to the mixed derivative in the frequency-dependent damping term neighbouring points at the previous time step are also required. 
 %, the coefficient multiplied onto $u_l^{n+1}$.
 
 % and the terms collected to obtain the following update equation
@@ -146,11 +147,11 @@ As done in Section \ref{sec:1DWaveDisc}, a stencil for the FD scheme implementin
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/resonators/stencilDampedStiffString.eps}
-    \caption{The stencil for the damped stiff string scheme in \eqref{eq:stiffStringFDS}.\label{fig:stencilStiffString}}
+    \caption{The stencil for the damped stiff string scheme in Eq. \eqref{eq:stiffStringFDS}.\label{fig:stencilStiffString}}
 \end{figure}
 
 \subsection{Boundary conditions}
-Due to the 4\th-order spatial derivative, two virtual grid points need to be accounted for at the boundaries of the system. Discretising the boundary conditions in \eqref{eq:stiffStringBoundConds} yields
+Due to the 4\thOrder spatial derivative, two virtual grid points need to be accounted for at the boundaries of the system. Discretising the boundary conditions in \eqref{eq:stiffStringBoundConds} yields
 \begin{subequations}\label{eq:stiffStringBoundCondsDisc}
     \begin{align}
         \uln = \delta_{x\pm} \uln &= 0 \quad \text{(clamped)}\label{eq:BCclampedDisc}\\
@@ -158,9 +159,9 @@ Due to the 4\th-order spatial derivative, two virtual grid points need to be acc
         \dxx \uln = \dxd\dxx \uln &= 0 \quad \text{(free)}\label{eq:BCfreeDisc}
     \end{align}
 \end{subequations}
-at $l = 0, N$. The operator in the clamped condition uses the $\dxp$ operator at the left boundary ($l = 0$) and $\dxm$ at the right ($l = N$). Note that for the free boundary condition, to discretise $\px^3$ in Eq. \eqref{eq:BCfree} the less accurate $\dtm \dxx$ and $\dtp \dxx$ operators could be chosen for the left and right boundary respectively. Here, however, we use the most accurate option $\dxd\dxx$. 
+at $l = 0, N$. The operator in the clamped condition uses the $\dxp$ operator at the left boundary ($l = 0$) and $\dxm$ at the right ($l = N$). Note that for the free boundary condition in Eq. \eqref{eq:BCfree}, to discretise $\px^3$ the more accurate $\dxd\dxx$ operator has been chosen over the less accurate $\dtm \dxx$ and $\dtp \dxx$ operators for the left and right boundary respectively.
 
-Below, the boundary conditions are solved and update equations at the boundaries are given.
+Below, the boundary conditions are expanded to get definitions for the virtual grid points. 
 
 \todo{insert figure showing virtual grid points somewhere in this section}
 
@@ -172,7 +173,7 @@ Expanding the operators for the clamped condition yields
 This can be simplified by reducing the range of calculation to $l\in \{ 2, \hdots, N-2\}$.
 
 \subsubsection{Simply supported}
-As the states of the end points of a system with simply supported boundary conditions are $0$ at all times, the range of calculation can be reduced to $l\in \{ 1, \hdots, N-1\}$. At $l=1$ and $l=N-1$ the virtual grid points $u_{-1}^n$ and $u_{N+1}^n$ are needed. A definition for $u_{-1}^n$ can be found by expanding Eq. \eqref{eq:BCsimplySupportedDisc} at $l = 0$:
+As the states of the end points of a system with simply supported boundary conditions are $0$ at all times, the range of calculation can be reduced to $l\in \{ 1, \hdots, N-1\}$. At $l=1$ and $l=N-1$, definitions for the virtual grid points $u_{-1}^n$ and $u_{N+1}^n$ are needed. A definition for $u_{-1}^n$ can be found by expanding Eq. \eqref{eq:BCsimplySupportedDisc} at $l = 0$:
 \begin{align}
     &\frac{1}{h^2}\left(u_1^n - 2 u_0^n + u_{-1}^n\right) = 0,\nonumber\\[-1em]
     \xLeftrightarrow{\mystrut\ u^n_0 = 0\ } \quad & u_1^n + u_{-1}^n = 0,\nonumber\\[0.25em]
@@ -182,14 +183,14 @@ and similarly for $u_{N+1}^n$ by expanding the condition at $l=N$:
 \begin{equation*}
     u_{N+1}^n = -u_{N-1}^n.
 \end{equation*}
-Filling these definitions into the expanded scheme at $l=1$ in \eqref{eq:expandedStringFDS} and collecting the terms yields
+Filling the first definition into the expanded scheme at $l=1$ in \eqref{eq:expandedStringFDS} and collecting the terms yields
 \begin{equation}
     \begin{aligned}
         \!\!\!\!\!(1+\sz k) u_1^{n+1} =&\ \left(2 - 2\lambda^2 - 5\mu^2 - \frac{4\so k}{h^2}\right) u_1^n + \left(\lambda^2 + 4\mu^2 + \frac{2\so k}{h^2}\right) u_{2}^n \\
         &-\mu^2u_3^n+ \left(-1+\sz k + \frac{4\sz k}{h^2}\right)u_1^{n-1} - \frac{2\so k}{h^2}u_{2}^{n-1}.
     \end{aligned}
 \end{equation}
-Doing the same for $l=N-1$:
+Doing the same for $l=N-1$, we get
 \begin{equation}
     \begin{aligned}
         \!\!\!\!\!(1+\sz k) u_{N-1}^{n+1} =&\ \left(2 - 2\lambda^2 - 5\mu^2 - \frac{4\so k}{h^2}\right) u_{N-1}^n + \left(\lambda^2 + 4\mu^2 + \frac{2\so k}{h^2}\right) u_{N-2}^n \\
@@ -198,14 +199,14 @@ Doing the same for $l=N-1$:
 \end{equation}
 
 \subsubsection{Free}
-Finally, the free boundary condition requires all points to be calculated and $l\in\{0, \hdots, N\}$. 
+Finally, the free boundary condition requires all points to be calculated and the range of calculation is $l\in\{0, \hdots, N\}$. At each respective boundary, two virtual grid points are needed: $u_{-1}^n$ and $u_{-2}^n$ at the left and $u_{N+1}^n$ and $u_{N+2}^n$ at the right boundary respectively.
 The combined operator in Eq. \eqref{eq:BCfreeDisc} is defined as:
 \begin{align}
     \dxd\dxx &= \frac{1}{2h^3}\left(e_{x+}-e_{x-}\right)\left(e_{x+}-2+e_{x-}\right),\nonumber\\
     &=\frac{1}{2h^3}\left(e_{x+}^2 - 2e_{x+} + 1 - (1 - 2e_{x-} + e_{x-}^2\right),\nonumber\\
-    &=\frac{1}{2h^3}\left(e_{x+}^2 - 2e_{x+} + 2e_{x-} -e_{x-}^2\right).
+    &=\frac{1}{2h^3}\left(e_{x+}^2 - 2e_{x+} + 2e_{x-} -e_{x-}^2\right),
 \end{align}
-This can be used to solve for the virtual grid points in the free condition at $l=0$:
+and can be used to solve for $u_{-2}^n$ at $l=0$:
 \begin{align*}
     \frac{1}{2h^3} &\left(u_2^n - 2 u_1^n + 2u_{-1}^n - u_{-2}^n\right) = 0,\\%[0.25em]
     u_{-2}^n &= u_2^n - 2 u_1^n + 2u_{-1}^n.
@@ -221,12 +222,12 @@ As $u_0^n$ is not necessarily $0$ at all times, solving the first part of the bo
     % \!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\xLeftrightarrow{\mystrut\ \dxx \uln = 0\ \Rightarrow\ \text{ Eq. \eqref{eq:simplySupportedResult}}\ }
     % \quad u_{-2}^n &= u_2^n - 4 u_1^n 
 \end{align*}
-The same can be done at $l=N$ to get
+The same can be done at $l=N$ to get the following definitions for the virtual grid points
 \begin{equation*}
     u_{N+2}^n = u_{N-2}^n - 2 u_{N-1}^n + 2u_{N+1}^n
     \qaq u_{N+1}^n = 2u_N^n - u_{N-1}^n.
 \end{equation*}
-The update equations for the boundary points will not be given here. Instead the matrix form the scheme will be provided below. 
+The update equations for the boundary points will not be given here. Instead the matrix form of the FD scheme with free boundaries will be provided below. 
 % The update equation at $l=0$ then becomes
 % \begin{equation}
 %     \begin{aligned}
@@ -242,10 +243,10 @@ The update equations for the boundary points will not be given here. Instead the
 %     \end{aligned}
 % \end{equation}
 
-In practice, the simply supported boundary condition is mostly chosen as this reflects reality most. The clamped condition could be chosen for simplicity as this does not require an alternative update at the boundaries. The free boundary condition is more often used to model a (damped) ideal bar, (Eq. \eqref{eq:stiffStringPDE} with $T = 0$).
+In practice, the simply supported boundary condition is mostly chosen as this reflects reality the most. The clamped condition could be chosen for simplicity as this does not require an alternative update at the boundaries. The free boundary condition is more often used to model a (damped) ideal bar, (Eq. \eqref{eq:stiffStringPDE} with $T = 0$).
 
 \subsection{Implementation and Matrix Form}\label{sec:implementationStiffString}
-When using \texttt{MATLAB}, to prevent clutter in the code, it is useful to write the scheme in matrix form. The FD scheme of the stiff string in \eqref{eq:stiffStringFDS} can be written as 
+When using \texttt{MATLAB}, for a more compact implementation, it is useful to write the scheme in matrix form. The FD scheme of the stiff string in \eqref{eq:stiffStringFDS} can be written as 
 \begin{equation}\label{eq:matrixFormStiffString}
     A\u^{n+1} = \B\u^n + \C \u^{n-1}
 \end{equation}
@@ -271,7 +272,7 @@ The size of the state vectors and the matrix-form operators depend on the bounda
 
 For simply supported conditions, the state vectors and matrices will be of size $(N-1) \times 1$ and $(N-1) \times (N-1)$ respectively. Again, $\Dxx$ is as defined in \eqref{eq:DxxDef} and $\Dxxxx$ can be obtained by multiplying two $\Dxx$ matrices according to 
 \begin{equation}
-    \Dxx\Dxx = \mathbf{D}_{xxxx} = \frac{1}{h^4}\begin{bmatrix}
+    \mathbf{D}_{xxxx} = \Dxx\Dxx = \frac{1}{h^4}\begin{bmatrix}
         5& -4 & 1 & & & \mathbf{0}& \\
         -4 & 6 &\ddots &\ddots & & & \\
         1& \ddots & \ddots & -4 & 1 & & \\
@@ -302,7 +303,7 @@ Finally for free boundary conditions as given in \eqref{eq:BCfreeDisc}, the stat
 \subsection{Parameters and output}
 
 
-There exists a formula to calculate the loss coefficients $\sz$ and $\so$ from $T_{60}$ values at different frequencies (see \cite[Eq (7.29)]{theBible}). During this project, however, these values have been tuned by ear and are usually put on 
+There exists a formula to calculate the loss coefficients $\sz$ and $\so$ from $T_{60}$ values at different frequencies (see \cite[Eq (7.29)]{theBible}). During this project, however, these values have been tuned by ear and are usually set to be in the range of $\sz = 1$ $\so = 0.005$. See Table \ref{tab:stiffStringParams} for parameters most commonly used in this project. 
 
 \begin{table}[h]
     \begin{center}
@@ -312,24 +313,24 @@ There exists a formula to calculate the loss coefficients $\sz$ and $\so$ from $
         Length & $L$ (m) & $1$\\
         Material density & $\rho$ (kg/m$^3$) & $7850$\\
         Radius & $r$ (m) & $5\cdot10^{-3}$\\
-        Tension & $T$ (N) &\\
+        Tension & $T$ (N) &$100 \leq T \leq 15^4$\\
         Young's modulus & $E$ (Pa) & $2\cdot10^{11}$\\
         Freq.-independent damping & $\so$ (s$^{-1}$) & $1$\\
         Freq.-dependent damping & $\sz$ (m$^2$/s) & $0.005$\\\hline
     \end{tabular}
-    \caption{Parameters and the values most commonly used over the course of this project.\label{tab:zIdentities}}
+    \caption{Parameters and the values most commonly used over the course of this project.\label{tab:stiffStringParams}}
     \end{center}
 \end{table}
 {\renewcommand{\arraystretch}{1}
 
 
 \subsubsection{Output}
-Apart from the obvious material properties such as density, stiffness and geometry, the sound surprisingly much determined by $\so$! For low values the output can be extremely metallic, whereas for high values the
+Apart from the obvious material properties such as density, stiffness and geometry, the sound surprisingly much determined by $\so$, and for lower values the output can become extremely metallic.
 
 \todo{time-domain and fft}
 
 \section{von Neumann Analysis and Stability Condition}\label{sec:stiffStringStability}
-In order to obtain the stability condition for the damped stiff string, one can perform von Neumann analysis as presented in Section \ref{sec:stabilityAnalysis} on scheme \eqref{eq:stiffStringFDS}.
+In order to obtain the stability condition for the damped stiff string, one can perform von Neumann analysis as presented in Section \ref{sec:stabilityAnalysis} on the FD scheme in \eqref{eq:stiffStringFDS}.
 
 Using the definitions found in Eq. \eqref{eq:temporalAnsatz} for the temporal operators and Eqs. \eqref{eq:dxxAnsatz} and \eqref{eq:dxxxxAnsatz} for the spatial operators, the frequency-domain representation of Eq. \eqref{eq:stiffStringFDS} can be obtained:
 \begin{align*}
@@ -341,11 +342,11 @@ and after collecting the terms, the characteristic equation follows:
     (1+\sz k)z + \left(16\mu^2\sin^4(\beta h/2)+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\sin^2(\beta h/2) - 2\right)\nonumber\\
     +\left(1-\sz k-\frac{8\so k}{h^2}\sin^2(\beta h/2)\right)z^{-1}=0.\label{eq:charDampedString}
 \end{gather}
-Rewriting this to the form in \eqref{eq:polynomialForm}, and using $\S = \sin^2(\beta h /2)$ for brevity, yields
+Rewriting this to the form in Eq. \eqref{eq:polynomialForm}, and using $\S = \sin^2(\beta h /2)$ for brevity, yields
 \begin{equation*}
     z^2 + \left(\frac{16\mu^2\S^2+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\S - 2}{1 + \sz k}\right)z+\frac{1-\sz k-\frac{8\so k}{h^2}\S}{1 + \sz k}=0.
 \end{equation*}
-Stability of the system can then be proven using condition \eqref{eq:condition214}. Substituting the coefficients into this condition yields
+Stability of the system can then be proven using condition \eqref{eq:condition214} and substituting the coefficients into this condition yields
 \begin{equation}\nonumber
     \begin{aligned}
         \left|\frac{16\mu^2\S^2+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\S - 2}{1+\sz k}\right|-1 &\leq \frac{1-\sz k-\frac{8\so k}{h^2}\S}{1+\sz k}\leq 1,\\
@@ -369,11 +370,11 @@ As $\S$ is bounded by $1$, this can be substituted as it challenges the conditio
     4\kappa^2k^2+(c^2k^2+ 4\so k)h^2&\leq h^4,\\
     h^4- (c^2k^2+ 4\so k)h^2 - 4\kappa^2k^2 &\geq 0 ,
 \end{align*}
-which is a quadratic equation in $h^2$ with $h$ bounded by
+which is a quadratic equation in $h^2$. The grid spacing $h$ is then bounded by
 \begin{equation}
-    h \geq \sqrt{\frac{c^2k^2+4\so k + \sqrt{(c^2k^2 + 4\so k)^2+16\kappa^2k^2}}{2}}.
+    h \geq \sqrt{\frac{c^2k^2+4\so k + \sqrt{(c^2k^2 + 4\so k)^2+16\kappa^2k^2}}{2}},
 \end{equation}
-This is the stability condition for the damped stiff string also shown in Eq. \eqref{eq:stiffStringStability}.
+which is the stability condition for the damped stiff string also shown in Eq. \eqref{eq:stiffStringStability}.
 
 \section{Energy Analysis}\label{sec:energyAnalysisString}
 As mentioned in Section \ref{sec:energyAnalysis}, it is useful to perform the energy analysis on the scheme with all physical parameters written out. Discretising the PDE in \eqref{eq:stiffStringPDE} yields
@@ -383,36 +384,36 @@ As mentioned in Section \ref{sec:energyAnalysis}, it is useful to perform the en
 defined for $l\in d$ with discrete domain $d = \{0, \hdots, N\}$. This section will follow the 4 steps described in Section \ref{sec:energyAnalysis}.
 
 \subsubsection{Step 1: Obtain $\dtp \h$}
-The first step is to take the inner product of the scheme with $(\dtd \uln)$ over discrete domain $d$:
+The first step is to take the inner product (see Eq. \eqref{eq:discInnerProd}) of the scheme with $(\dtd \uln)$ over discrete domain $d$:
 \begin{equation}\label{eq:rOCStiffString}
     \begin{aligned}
     \dtp \h =&\ \rho A \langle \dtd \uln, \dtt \uln \rangle_d - T \langle \dtd \uln, \dxx \uln\rangle_d + EI \langle \dtd \uln, \dxxxx \uln \rangle_d\\
     & + 2\sz\rho A \langle \dtd \uln, \dtd \uln \rangle_d - 2\so \rho A\langle \dtd \uln, \dtm \dxx \uln \rangle_d = 0.
     \end{aligned}
 \end{equation}  
-
+% If the free boundary conditions in \eqref{eq:BCfreeDisc} are used, the primed inner product in Eq. \eqref{eq:primedInnerProd} needs to be used. Here we continue with clamped / simply supported boundaries.
 
 \subsubsection{Step 2: Identify energy types and isolate $\dtp$}
-As there is damping present in the system, and the system is distributed, the energy balance will be of the form 
+As there is damping present in the system, and the system is distributed, the damping term $\mathfrak{q}$ and boundary term $\mathfrak{b}$ appear and the energy balance will be of the form 
 \begin{equation}
-    \dtp \h = \mathfrak{b}-\mathfrak{q},
+    \dtp \h = \mathfrak{b}-\mathfrak{q}.
 \end{equation}
-where the damping term
+The damping term is defined as
 \begin{equation}\label{eq:dampingTermStiffString}
     \mathfrak{q} = 2\sz \rho A \lVert\dtd\uln\rVert_d^2 - 2 \so \rho A \langle \dtd \uln, \dtm \dxx \uln \rangle_d,
 \end{equation}
 and the boundary term $\mathfrak{b}$ appears after rewriting Equation \eqref{eq:rOCStiffString} using summation by parts (see Section \ref{sec:summationByParts}). Specifically, using Eq. \eqref{eq:summationByPartsMinusBar} for the second term and Eq. \eqref{eq:summationByPartsTwiceReduced} for the third, we get
-\begin{equation*}
-    \dtp \h = \rho A \langle \dtd \uln, \dtt \uln \rangle_d + T \langle \dtd \dxp \uln, \dxp \uln\rangle_{\underline{d}} + EI \langle \dtd \dxx \uln, \dxx \uln \rangle_{\overline{\underline{d}}} = \mathfrak{b} - \mathfrak{q}
-\end{equation*}
+\begin{align*}
+    \dtp \h &= \rho A \langle \dtd \uln, \dtt \uln \rangle_d + T \langle \dtd \dxp \uln, \dxp \uln\rangle_{\underline{d}} + EI \langle \dtd \dxx \uln, \dxx \uln \rangle_{\overline{\underline{d}}} \\
+    &= \mathfrak{b} - \mathfrak{q}
+\end{align*}
 where the boundary term becomes
 \begin{align*}
     \mathfrak{b} =&\ T\Big((\dtd u_N^n)(\dxp u_N^n) - (\dtd u_0^n) (\dxp u_{-1}^n)\Big) \\
     &+ EI \Big((\dtd u_N^n)(\dxp \dxx u_N^n) - (\dxx u_N^n)(\dxm \dtd u_N^n) \Big)\\
     &+ EI \Big(- (\dtd u_0^n)(\dxm \dxx u_0^n) + (\dxx u_0^n)(\dxp \dtd u_0^n)\Big).
 \end{align*}
-For the clamped and simply supported boundary conditions in \eqref{eq:BCclampedDisc} and \eqref{eq:BCsimplySupportedDisc} it can easily be shown that $\mathfrak{b} = 0$. For the boundary conditions to vanish when using the the free condition in 
-\eqref{eq:BCfreeDisc}, the primed inner product and identity \eqref{eq:summationByPartsTwicePrimed} should be used. Here we continue with the unprimed inner product.
+For the clamped and simply supported boundary conditions in \eqref{eq:BCclampedDisc} and \eqref{eq:BCsimplySupportedDisc} it can easily be shown that $\mathfrak{b} = 0$. If free conditions as in Eq. \eqref{eq:BCfreeDisc} are used, the boundary conditions will vanish when the primed inner product in Eq. \eqref{eq:primedInnerProd} is used in Step 1 and identity \eqref{eq:summationByPartsTwicePrimed} when performing summation by parts. Here, we continue with the clamped / simply supported case. 
 
 Isolating $\dtp$ to obtain the total energy $\h$ in the definition for $\dtp \h$ above, requires identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2} and yields
 \begin{equation*}
@@ -430,13 +431,13 @@ From this, the definition for the Hamiltonian $\h$, the kinetic energy $\t$ and 
 \end{equation}
 
 \subsubsection{Step 3: Check units}
-Comparing the energy balance in Eq. \eqref{eq:energyBalanceStiffString} to the energy balance for the 1D wave equation in Eq. \eqref{eq:energyBalance1DWave}, one can observe that the balances are identical, apart from the second term in the definition for $\v$ in Eq. \eqref{eq:energyBalanceStiffString}. 
+Comparing the acquired energy balance in Eq. \eqref{eq:energyBalanceStiffString} to the energy balance for the 1D wave equation in Eq. \eqref{eq:energyBalance1DWave}, one can observe that the balances are nearly identical, the only difference being the second term in the definition for $\v$ in Eq. \eqref{eq:energyBalanceStiffString}. 
 Writing this term out in units, and recalling that Pa (the unit for $E$) in SI units is kg$\cdot$m$^{-1}\cdot$s$^{-2}$, yields
 \begin{align*}
     \frac{EI}{2}\langle\dxx\uln, e_{t-}\dxx\uln\rangle_{\overline{\underline{d}}}\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \ \text{Pa}\cdot \text{m}^4 \cdot \text{m} \cdot (\text{m}^{-2} \cdot \text{m} \cdot \text{m}^{-2} \cdot \text{m}) \\
     & = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-2},
 \end{align*}
-and has indeed the correct units. 
+and indeed has the correct units. 
 
 The damping terms in $\mathfrak{q}$ need to be in Joules per second, or kg $\cdot$ m$^2 \cdot$ s$^{-3}$. Writing the terms in Eq. \eqref{eq:dampingTermStiffString} out in their units yields
 \begin{align*}
@@ -444,16 +445,14 @@ The damping terms in $\mathfrak{q}$ need to be in Joules per second, or kg $\cdo
     &= \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-3},\\
     - 2 \so \rho A \langle \dtd \uln, \dtm \dxx \uln \rangle_d \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}&\  \text{m}^2\cdot\text{s}^{-1}\cdot\text{kg}\cdot\text{m}^{-3}\cdot\text{m}^2\\
     &\cdot\text{m}\cdot(\text{s}^{-1}\cdot\text{m})(\text{s}^{-1}\cdot\text{m}^{-2}\cdot \text{m}),\\
-    &= \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-3}
+    &= \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-3},
 \end{align*}
-
+and also have the correct units.
 \subsubsection{Step 4: Implementation}
-Matrix form...
+\SWcomment[Matrix form...]
 
 \section{Modal Analysis}
-This section follows the process for modal analysis of a scheme in one-step form described in Section \ref{sec:oneStepForm}.
-
-To be able to perform a modal analysis on the FD scheme in \eqref{eq:stiffStringFDS}, it must be written in one-step form due to the damping present in the system (see Section \ref{sec:oneStepForm}). Using with the matrix form in \eqref{eq:matrixFormStiffString}, the damped stiff string can be written as
+To be able to perform a modal analysis on the FD scheme in \eqref{eq:stiffStringFDS}, it must be written in one-step form -- introduced in Section \ref{sec:oneStepForm} -- due to the damping present in the system. Using with the matrix form of the damped stiff string in Eq. \eqref{eq:matrixFormStiffString}, it can be written as
 %needs be used. As there are damping terms present in the system, it is useful to write the update in one-step form as explained in Section \ref{sec:oneStepForm}.
 \begin{equation}\label{eq:oneStepFormStiffSTring}
     \underbrace{\begin{bmatrix}
@@ -471,7 +470,7 @@ To be able to perform a modal analysis on the FD scheme in \eqref{eq:stiffString
 \end{equation}
 where the definitions for $\B$, $\C$ and $A$ can be found in Section \ref{sec:implementationStiffString}. The definitions for $\Dxx$ and $\Dxxxx$ those for simply supported boundary conditions as these are used most often in the case of strings.
 
-Assuming test solutions of the form $\w = z\boldPhi$, and recalling that $z=e^{sk}$ and complex frequency $s = j\omega + \sigma$, we get the following eigenvalue problem (see Section \ref{sec:eigenValueProblems})
+Assuming test solutions of the form $\w = z^n\boldPhi$, and recalling that $z=e^{sk}$ and complex frequency $s = j\omega + \sigma$, we get the following eigenvalue problem (see Section \ref{sec:eigenValueProblems})
 \begin{equation}
     z\boldPhi = \Q \boldPhi,
 \end{equation}
@@ -479,20 +478,20 @@ which has the following solutions
 \begin{equation}
     s_p = \frac{1}{k}\ln \left(\eig_p(\Q)\right).
 \end{equation}
-The (angular) frequency of the $p$\th mode can then be obtained using $\mathfrak{I}(s_p)$ and the damping per mode as $\mathfrak{R}(s_p)$. Plots of modal frequencies and their damping coefficients have been plotted for different parameter values
+The (angular) frequency of the $p$\th mode can then be obtained using $\mathfrak{I}(s_p)$ and the damping per mode as $\mathfrak{R}(s_p)$. Only selecting the non-negative frequencies obtained from $\mathfrak{I}(s_p)$, these can be plotted and are shown in Figure \ref{fig:stiffStringModalPlot}. \todo{make figure}
 
-
-As the values of $\Q$ are real, the solutions come in complex conjugates. Only the modes with a positive frequency have been chosen frequencies of interest are the positive
+The parameters used are the ones found in Table \ref{tab:stiffStringParams} with $T = 13000$ N, $\fs = 44100$. \todo{not done...}
 
 \section{Implicit Scheme}\label{sec:implicitStiffString}
-Although not used in the published work of this project, I would like to touch upon an example of an implicit scheme. Consider a discretisation of Eq. \eqref{eq:stiffStringPDECompact} where the (more accurate) centred operator is used for the frequency-dependent damping term:
+Although not used in the published work of this project, it is useful to touch upon an example of an implicit scheme. Consider a discretisation of Eq. \eqref{eq:stiffStringPDECompact} where the (more accurate) centred operator is used for the frequency-dependent damping term:
 \begin{equation}\label{eq:stiffStringFDSImplicit}
     \dtt \uln = c^2 \dxx \uln - \kappa^2 \dxxxx \uln - 2 \sz \dtd \uln + 2 \so\dtd\dxx \uln.
 \end{equation}
-Using the centred operator in the mixed-spatial-temporal operator renders the system implicit, meaning that a definition for $u_l^{n+1}$ can not explicitly be found. The stencil in Figure \ref{fig:stencilStiffStringImplicit} also shows this: in order to calculate $u_l^{n+1}$, neighbouring points at the next time step $u_{l+1}^{n+1}$ and $u_{l-1}^{n+1}$ are needed. The issue is that these values are unknown at the time of calculation.
+Using the centred operator in the mixed-spatial-temporal operator renders the system \textit{implicit}, meaning that a definition for $u_l^{n+1}$ can not explicitly be found from known values. The stencil in Figure \ref{fig:stencilStiffStringImplicit} also shows this: in order to calculate $u_l^{n+1}$, neighbouring points at the next time step $u_{l+1}^{n+1}$ and $u_{l-1}^{n+1}$ are needed. The issue is that these values are unknown at the time of calculation.
 
 Luckily, as the scheme is linear, it can be treated as a system of linear equations and solved following the technique described in Section \ref{sec:linearEquations}. The drawback is that this requires one matrix inversion per iteration which can be extremely costly (see Section \ref{sec:RTmatrixInversion}). However, both von Neumann and modal analysis (below) show that using the centred instead of the backwards operator has a positive effect on the stability and the modal behaviour of the scheme. 
 
+\SWcomment[Left off here!!]
 taking simply supported boundary conditions such that $l \in \{1, \hdots, N-1\}$ are $N-1$ unknowns that can be calculated using $N-1$ equations. The column vector $\u^n = [u_1^n, u_2^n, \hdots, u_{N-1}^n]$
 
 \begin{equation}\label{eq:matrixFormStiffStringImplicit}

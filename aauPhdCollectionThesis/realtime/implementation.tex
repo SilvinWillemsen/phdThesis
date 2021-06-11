@@ -15,9 +15,15 @@ Here, an interactive application is considered real-time when
     Control of the application generates or manipulates audio with no noticeable latency.
 \end{center}
 
+For human-computer interaction, the task at hand greatly determines how much latency is acceptable. Wessel and Wright \cite{Wessel2002} place the upper limit of latency when interacting with computers for musical purposes at $10$ ms. Moreover, they place the a limit on the \textit{jitter}, or of variation of the latency, at $1$ ms. \SWcomment[It is thus important to keep the CPU usage at a fixed level, and different ways of controlling and interacting with the application should not influence the amount of computations much...]
+
 Also the application needs to be controlled continuously
 
+
+
 Helps to (informally) evaluate the models by interacting with it in a natural way (rather than static parameters)
+ 
+Refer to \cite{Webb2015} somewhere here
 
 \section{MATLAB vs. C++}
 It is usually a good idea to prototype a physical modelling application in MATLAB for several reasons:
@@ -46,6 +52,7 @@ Some of the things I learned (the hard way)...
     \item Structure your application into classes 
     \item Use pointer switches
     \item Comment your code (hehe)
+    \item Working with JUCE: select your audio output before building the application...
 \end{itemize}
 
 \subsubsection{Create a limiter}

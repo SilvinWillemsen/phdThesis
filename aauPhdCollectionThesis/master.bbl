@@ -27,7 +27,7 @@ J.~Bensa, S.~Bilbao, R.~Kronland-Martinet, and J.~O. Smith, ``The simulation of
   digital waveguides,'' \emph{Journal of the Acoustical Society of America
   (JASA)}, vol. 114, no.~2, pp. 1095--1107, 2003.
 
-\bibitem{Bilbao2009}
+\bibitem{Bilbao2009Modular}
 S.~Bilbao, ``A modular percussion synthesis environment,'' in \emph{Proceedings
   of the 12th International Conference on Digital Audio Effects (DAFx-09)},
   2009.
@@ -60,6 +60,48 @@ S.~Bilbao, J.~Perry, P.~Graham, A.~Gray, K.~Kavoussanakis, G.~Delap, T.~Mudd,
   in practice,'' \emph{Computer Music Journal}, vol.~43, no. 2-3, pp. 31--47,
   2019.
 
+\bibitem{Borin1989}
+G.~Borin, G.~De~Poli, and A.~Sarti, ``A modular approach to excitator-resonator
+  interaction in physical models syntheses,'' \emph{Proceedings of the
+  International Computer Music Conference}, 1989.
+
+\bibitem{Bowden1939}
+F.~P. Bowden and L.~Leben, ``The nature of sliding and the analysis of
+  friction,'' in \emph{Proceedings of the Royal Society of London}, vol. 169,
+  1939.
+
+\bibitem{Cadoz1979}
+C.~Cadoz, ``Synth{\`e}se sonore par simulation de m{\'e}canismes vibratoires,''
+  1979, th{\`e}se de Docteur Ing{\'e}nieur, I.N.P.G. Grenoble, France.
+
+\bibitem{Cadoz1983}
+C.~Cadoz, A.~Luciani, and J.-L. Florens, ``Responsive input devices and sound
+  synthesis by simulation of instrumental mechanisms,'' \emph{Computer Music
+  Journal}, vol.~8, no.~3, pp. 60--73, 1983.
+
+\bibitem{Cadoz1993}
+------, ``{CORDIS-ANIMA}: a modeling and simulation system for sound and image
+  synthesis: the general formalism,'' \emph{Computer Music Journal}, vol.~17,
+  no.~1, pp. 19--29, 1993.
+
+\bibitem{Chaigne1992}
+A.~Chaigne, ``On the use of finite differences for musical synthesis.
+  {A}pplication to plucked stringed instruments,'' \emph{Journal d'Acoustique},
+  vol.~5, no.~2, pp. 181--211, 1992.
+
+\bibitem{Chaigne1994}
+A.~Chaigne and A.~Askenfelt, ``Numerical simulations of struck strings. {I}.
+  {A} physical model for a struck string using finite difference methods,''
+  \emph{Journal of Acoustical Society of America}, vol.~95, no.~2, pp.
+  1112--1118, 1994.
+
+\bibitem{Coulomb1773}
+C.~A. Coulomb, ``Sur une application des r\`egles de maximis et minimis \`a
+  quelques probl\`emes de statique, relatifs \`a l'architecture [{O}n maximums
+  and minimums of rules to some static problems relating to architecture],''
+  \emph{M\'emoires de Mathematique de l'Acad\'emie Royale de Science}, vol.~7,
+  pp. 343--382, 1773.
+
 \bibitem{Courant1928}
 R.~Courant, K.~Friedrichs, and H.~Lewy, ``{\"U}ber die partiellen
   differenzengleichungen de mathematischen physik,'' \emph{Mathematische
@@ -74,9 +116,32 @@ C.~Desvages and S.~Bilbao, ``Two-polarisation physical model of bowed strings
 C.~G.~M. Desvages, ``Physical modelling of the bowed string and applications to
   sound synthesis,'' Ph.D. dissertation, The University of Edinburgh, 2018.
 
+\bibitem{Erkut2002}
+C.~Erkut and M.~Karjalainen, ``Finite difference method vs. digital waveguide
+  method in string instrument modeling and synthesis,'' \emph{International
+  Symposium on Musical Acoustics}, 2002.
+
 \bibitem{Fletcher1998}
 N.~H. Fletcher and T.~D. Rossing, \emph{The Physics of Musical
   Instruments}.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 1998.
+
+\bibitem{Glenn2014}
+\BIBentryALTinterwordspacing
+T.~L. Glenn, ``Amazing hammered dulcimer musician - joshua messick,'' 2014.
+  [Online]. Available: \url{https://youtu.be/veuGTnzgNRU?t=215}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Gomm2011}
+\BIBentryALTinterwordspacing
+J.~Gomm, ``Passionflower,'' 2011. [Online]. Available:
+  \url{https://www.youtube.com/watch?v=nY7GnAq6Znw}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Eigen}
+\BIBentryALTinterwordspacing
+G.~Guennebaud, B.~Jacob \emph{et~al.}, ``Eigen,'' 2021. [Online]. Available:
+  \url{http://eigen.tuxfamily.org}
+\BIBentrySTDinterwordspacing
 
 \bibitem{Gustafsson2013}
 B.~Gustafsson, H.-O. Kreiss, and J.~Oliger, \emph{Time-Dependent Problems and
@@ -88,33 +153,126 @@ B.~Hamilton, ``Finite difference and finite volume methods for wave-based
   modelling of room acoustics,'' Ph.D. dissertation, The University of
   Edinburgh, 2016.
 
+\bibitem{Harrison2018}
+R.~L. Harrison-Harsley, ``Physical modelling of brass instruments using
+  finite-difference time-domain methods,'' Ph.D. dissertation, University of
+  Edinburgh, 2018.
+
+\bibitem{Hiller1971I}
+L.~Hiller and P.~Ruiz, ``Synthesizing musical sounds by solving the wave
+  equation for vibrating objects: {P}art {I},'' \emph{Journal of the Audio
+  Engineering Society (JASA)}, vol.~19, no.~6, pp. 462--470, 1971.
+
+\bibitem{Hiller1971II}
+------, ``Synthesizing musical sounds by solving the wave equation for
+  vibrating objects: {P}art {II},'' \emph{Journal of the Audio Engineering
+  Society (JASA)}, vol.~19, no.~7, pp. 542--550, 1971.
+
+\bibitem{Leonard2019}
+J.~Leonard and J.~Villeneuve, ``{MI-GEN}\~: An efficient and accessible mass
+  interaction sound synthesis toolbox,'' \emph{{Proceedings of the 16th Sound
+  and Music Computing Conference (SMC)}}, 2019.
+
+\bibitem{Maestre2014}
+E.~Maestre, C.~Spa, and J.~Smith, ``A bowed string physical model including
+  finite-width thermal friction and hair dynamics,'' \emph{Proceedings
+  ICMC|SMC|2014}, pp. 1305--1311, 2014.
+
+\bibitem{Matignon1992}
+D.~Matignon, P.~Depalle, and X.~Rodet, ``State space models for wind-instrument
+  synthesis,'' \emph{ICMC}, 1992.
+
+\bibitem{Mayer2008}
+\BIBentryALTinterwordspacing
+J.~Mayer, ``{Gravity (Live in L.A.)},'' 2008. [Online]. Available:
+  \url{https://youtu.be/dBFW8OvciIU?t=284}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Moore1965}
 G.~E. Moore, ``Cramming more components onto integrated circuits,''
   \emph{Electronics}, vol.~38, no.~8, pp. 114--–117, 1965.
 
-\bibitem{Bustamante2017}
-F.~Ordu{\~n}a-Bustamente, ``Auralization in space and in rooms of arbitrary $d$
-  dimensions,'' in \emph{Proceedings of the 14th Sound and Music Computing
-  Conference}, 2017, pp. 250--253.
+\bibitem{Morin1833}
+A.~Morin, ``New friction experiments carried out at metz in 1831-1833,'' in
+  \emph{Proceedings of the French Royal Academy of Sciences}, 1833, pp. 1--128.
+
+\bibitem{Morrison1993}
+J.~Morrison and J.-M. Adrien, ``Mosaic: A framework for modal synthesis,''
+  \emph{Computer Music Journal}, vol.~17, no.~1, pp. 45--56, 1993.
 
 \bibitem{Park2010}
 T.~H. Park, \emph{Introduction To Digital Signal Processing: Computer Musically
   Speaking}.\hskip 1em plus 0.5em minus 0.4em\relax World Scientific Publishing
   Co. Pte. Ltd, 2010.
 
+\bibitem{Reynolds1886}
+O.~Reynolds, ``On the theory of lubrication and its application to {Mr.
+  Beauchamp} tower’s experiments, including an experimental determination of
+  the viscosity of olive oil,'' in \emph{Proceedings of the Royal Society of
+  London}, vol.~40, 1886, pp. 191--203.
+
+\bibitem{MichonMesh2Faust2017}
+J.~O.~S. Romain~Michon, Sara~Martin, ``{MESH2FAUST}: a modal physical model
+  generator for the faust programming language - application to bell
+  modeling,'' in \emph{Proceedings of the 2017 International Computer Music
+  Conference, ICMC}, 2017.
+
+\bibitem{Ruiz1969}
+P.~Ruiz, ``A technique for simulating the vibrations of strings with a digital
+  computer,'' Master's thesis, University of Illinois, 1969.
+
+\bibitem{Smith2010a}
+J.~O. Smith, ``Virtual acoustic musical instruments: Review and update,''
+  \emph{Center for computer research in music and acoustics (CCRMA)}, 2010.
+
+\bibitem{Smith1992}
+J.~Smith, ``Physical modeling using digital waveguides,'' \emph{Computer Music
+  Journal}, vol.~16, no.~4, pp. 74--91, 1992.
+
+\bibitem{Smith2010b}
+\BIBentryALTinterwordspacing
+J.~O. Smith, ``Physical audio signal processing (online book),'' 2010.
+  [Online]. Available: \url{http://ccrma.stanford.edu/~jos/pasp/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Stribeck1902}
+R.~Stribeck, ``Die wesentlichen eigenschaften der gleit- und rollenlager [{T}he
+  essential properties of sliding and roller bearings],'' \emph{Zeitschrift des
+  Vereins Deutscher Ingenieure}, vol.~46, no. (38,39), pp. 1342--48,1432--37,
+  1902.
+
 \bibitem{Strikwerda1989}
 J.~C. Strikwerda, \emph{Finite Difference Schemes and Partial Differential
   Equations}.\hskip 1em plus 0.5em minus 0.4em\relax Pacific Grove, California:
   Wadsworth and Brooks/Cole Advanced Books and Software, 1989.
 
+\bibitem{Trautmann2003}
+L.~Trautmann and R.~Rabenstein, \emph{Digital Sound Synthesis by Physical
+  Modeling Using the Functional Transformation Method}.\hskip 1em plus 0.5em
+  minus 0.4em\relax Springer-Science + Business Media LLC, 2003.
+
+\bibitem{Valimaki2006}
+V.~V\"{a}lim\"{a}ki, J.~Pakarinen, C.~Erkut, and M.~Karjalainen,
+  ``Discrete-time modelling of musical instruments,'' \emph{Institute of
+  Physics Publishing}, 2006.
+
 \bibitem{Duyne1993}
-S.~A. van Duyne and J.~O. Smith, ``Physical modeling with the 2-d digital
+S.~A. van Duyne and J.~O. Smith, ``Physical modeling with the {2-D} digital
   waveguide mesh,'' in \emph{ICMC Proceedings}, 1993.
 
 \bibitem{Villeneuve2019}
 J.~Villeneuve and J.~Leonard, ``Mass-interaction physical models for sound and
   multi-sensory creation: Starting anew,'' in \emph{Proceedings of the 16th
   Sound and Music Computing Conference}, 2019.
+
+\bibitem{Webb2015}
+C.~Webb and S.~Bilbao, ``On the limits of real-time physical modelling
+  synthesis with a modular environment,'' in \emph{Proceedings of the 18th
+  International Conference on Digital Audio Effects (DAFx)}, 2015.
+
+\bibitem{Wessel2002}
+D.~Wessel and M.~Wright, ``Problems and prospects for intimate musical control
+  of computers,'' \emph{Computer Music Journal}, vol.~26, no.~3, 2002.
 
 \bibitem{Abramowitz1972}
 R.~Zucker, \emph{Handbook of Mathematical Functions with Formulas, Graphs, and
