@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  11 JUN 2021 14:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  24 JUN 2021 12:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1033,12 +1033,31 @@ Package: titlesec 2016/03/21 v2.10.2 Sectioning titles
 \f@ncyO@orf=\skip72
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/mparhack/mparhack.sty
 Package: mparhack 2005/04/17 v1.4 (T. Sgouros and S. Ulrich)
+) (/usr/local/texlive/2016/texmf-dist/tex/latex/ms/ragged2e.sty
+Package: ragged2e 2009/05/21 v2.1 ragged2e Package (MS)
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/ms/everysel.sty
+Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
+)
+\CenteringLeftskip=\skip73
+\RaggedLeftLeftskip=\skip74
+\RaggedRightLeftskip=\skip75
+\CenteringRightskip=\skip76
+\RaggedLeftRightskip=\skip77
+\RaggedRightRightskip=\skip78
+\CenteringParfillskip=\skip79
+\RaggedLeftParfillskip=\skip80
+\RaggedRightParfillskip=\skip81
+\JustifyingParfillskip=\skip82
+\CenteringParindent=\skip83
+\RaggedLeftParindent=\skip84
+\RaggedRightParindent=\skip85
+\JustifyingParindent=\skip86
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
-\LTleft=\skip73
-\LTright=\skip74
-\LTpre=\skip75
-\LTpost=\skip76
+\LTleft=\skip87
+\LTright=\skip88
+\LTpre=\skip89
+\LTpost=\skip90
 \LTchunksize=\count149
 \LTcapwidth=\dimen291
 \LT@head=\box41
@@ -1055,22 +1074,23 @@ Package: multibib 2008/12/10 v1.4 Multiple bibliographies for one document.
 \mb@biblabelwidth=\count154
 )
 \@auxoutmain=\write4
- (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/main.aux)
+
+No file main.aux.
 \openout4 = `main.aux'.
 
 \@auxoutA=\write5
- (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/A.aux)
+No file A.aux.
 \openout5 = `A.aux'.
 
 \@auxoutB=\write6
- (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/B.aux)
+No file B.aux.
 \openout6 = `B.aux'.
 
 \@auxoutC=\write7
- (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/C.aux)
+No file C.aux.
 \openout7 = `C.aux'.
 
- (/usr/local/texlive/2016/texmf-dist/tex/latex/tocbibind/tocbibind.sty
+(/usr/local/texlive/2016/texmf-dist/tex/latex/tocbibind/tocbibind.sty
 Package: tocbibind 2010/10/13 v1.5k extra ToC listings
 Package tocbibind Info: The document has chapter divisions on input line 50.
 
@@ -1188,15 +1208,15 @@ File: hpdftex.def 2016/05/05 v6.83n Hyperref driver for pdfTeX
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 282.
 )
-\Hy@SectionHShift=\skip77
+\Hy@SectionHShift=\skip91
 )
 
 Package hyperref Warning: Option `pdfpagelabels' has already been used,
-(hyperref)                setting the option has no effect on input line 228.
+(hyperref)                setting the option has no effect on input line 227.
 
-Package hyperref Info: Option `plainpages' set `false' on input line 228.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 228.
-Package hyperref Info: Option `colorlinks' set `true' on input line 228.
+Package hyperref Info: Option `plainpages' set `false' on input line 227.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 227.
+Package hyperref Info: Option `colorlinks' set `true' on input line 227.
 (/usr/local/texlive/2016/texmf-dist/tex/latex/cases/cases.sty
 Package: cases 2002/05/02 ver 2.5 
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/pdfpages/pdfpages.sty
@@ -1220,18 +1240,18 @@ Package: dirtytalk 2010/11/21 A package making "quoting" easier
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
 \c@KVtest=\count171
-\sf@farskip=\skip78
+\sf@farskip=\skip92
 \sf@captopadj=\dimen298
-\sf@capskip=\skip79
-\sf@nearskip=\skip80
+\sf@capskip=\skip93
+\sf@nearskip=\skip94
 \c@subfigure=\count172
 \c@subfigure@save=\count173
 \c@lofdepth=\count174
 \c@subtable=\count175
 \c@subtable@save=\count176
 \c@lotdepth=\count177
-\sf@top=\skip81
-\sf@bottom=\skip82
+\sf@top=\skip95
+\sf@bottom=\skip96
 ) (/usr/local/texlive/2016/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymath.code.tex
 \tikz@math@for@depth=\count178
 \tikz@math@dimen=\dimen299
@@ -1306,12 +1326,12 @@ L3 Module: l3skip 2016/01/05 v6366 L3 Dimensions and skips
 \l_tmpb_dim=\dimen308
 \g_tmpa_dim=\dimen309
 \g_tmpb_dim=\dimen310
-\c_zero_skip=\skip83
-\c_max_skip=\skip84
-\l_tmpa_skip=\skip85
-\l_tmpb_skip=\skip86
-\g_tmpa_skip=\skip87
-\g_tmpb_skip=\skip88
+\c_zero_skip=\skip97
+\c_max_skip=\skip98
+\l_tmpa_skip=\skip99
+\l_tmpb_skip=\skip100
+\g_tmpa_skip=\skip101
+\g_tmpb_skip=\skip102
 \c_zero_muskip=\muskip12
 \c_max_muskip=\muskip13
 \l_tmpa_muskip=\muskip14
@@ -1395,7 +1415,7 @@ Package: xtemplate 2016/05/18 v6512 L3 Experimental prototype document functions
 \l__xtemplate_tmp_dim=\dimen336
 \l__xtemplate_tmp_int=\count281
 \l__xtemplate_tmp_muskip=\muskip18
-\l__xtemplate_tmp_skip=\skip89
+\l__xtemplate_tmp_skip=\skip103
 )
 Package: xfrac 2016/05/18 v6512 L3 Experimental split-level fractions
 \l__xfrac_slash_box=\box65
@@ -1505,10 +1525,10 @@ Package: tabstackengine 2014/02/19 (V1.10) tabbed stacking
  (/usr/local/texlive/2016/texmf-dist/tex/latex/stackengine/stackengine.sty
 Package: stackengine 2014/01/06 v3.24\ Stacking text and objects in convenient ways
 \c@@stackindex=\count290
-\@boxshift=\skip90
-\stack@tmplength=\skip91
-\temp@stkl=\skip92
-\@stackedboxwidth=\skip93
+\@boxshift=\skip104
+\stack@tmplength=\skip105
+\temp@stkl=\skip106
+\@stackedboxwidth=\skip107
 \@addedbox=\box79
 \@anchorbox=\box80
 \stackedbox=\box81
@@ -1517,7 +1537,7 @@ Package: stackengine 2014/01/06 v3.24\ Stacking text and objects in convenient w
 )
 \c@TAB@stackindex=\count292
 \c@TABcellindex@=\count293
-\maxTAB@width=\skip94
+\maxTAB@width=\skip108
 \c@TABalignmentindex@=\count294
 )) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/setup/hyphenations.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/setup/macros.tex
 \c@currexactr=\count295
@@ -1526,20 +1546,7 @@ Package: stackengine 2014/01/06 v3.24\ Stacking text and objects in convenient w
 \c@currassctr=\count298
 \c@endassctr=\count299
 \c@ass=\count300
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.aux
-
-LaTeX Warning: Label `eq:discFirstSpace' multiply defined.
-
-
-LaTeX Warning: Label `eq:summationByParts' multiply defined.
-
-
-LaTeX Warning: Label `eq:2DwavePDE' multiply defined.
-
-
-LaTeX Warning: Label `part:instrument' multiply defined.
-
-)
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.aux)
 \openout1 = `master.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
@@ -1636,12 +1643,14 @@ Package pgfplots Warning: running in backwards compatibility mode (unsuitable ti
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+ABD: EverySelectfont initializing macros
+LaTeX Info: Redefining \selectfont on input line 5.
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
 (lastpage)             ! on input line 5.
 \AtBeginShipoutBox=\box84
 Package hyperref Info: Link coloring ON on input line 5.
-(/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
@@ -1651,7 +1660,6 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 5.
 LaTeX Info: Redefining \pageref on input line 5.
 LaTeX Info: Redefining \nameref on input line 5.
- (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.out) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.out)
 \@outlinefile=\write10
 \openout10 = `master.out'.
 
@@ -1704,7 +1712,7 @@ LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <24.88> not available
 (Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 2.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
 (Font)              scaled to size 24.88pt on input line 2.
- <frontmatter/cvPicture.png, id=754, 139.52126pt x 139.52126pt> <use frontmatter/cvPicture.png> <use frontmatter/cvPicture.png>
+ <frontmatter/cvPicture.png, id=56, 139.52126pt x 139.52126pt> <use frontmatter/cvPicture.png> <use frontmatter/cvPicture.png>
 File: frontmatter/cvPicture.png Graphic file (type png)
  <use frontmatter/cvPicture.png>
 Package pdftex.def Info: frontmatter/cvPicture.png used on input line 7.
@@ -1722,128 +1730,423 @@ LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
 (Font)              scaled to size 10.0pt on input line 7.
 ) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/frontmatter/listOfPublications.tex [5] [6
 
-] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/A.bbl
+]
 LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <10> not available
-(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 2.
+(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 4.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 10.0pt on input line 2.
- [7]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/B.bbl) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/C.bbl)) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/frontmatter/abstract.tex [8] [9
+(Font)              scaled to size 10.0pt on input line 4.
 
-] [10
+
+LaTeX Warning: Reference `part:papers' on page vii undefined on input line 4.
+
+No file A.bbl.
+No file B.bbl.
+No file C.bbl.
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/frontmatter/abstract.tex [7] [8
+
+] [9] [10
 
 ]) [11] [12
 
-] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.toc
-LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <12> not available
-(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 9.
-LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 12.0pt on input line 9.
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 13.
-LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 7.0pt on input line 13.
- [13
-
-] [14] [15] [16] [17])
+]
 \tf@toc=\write11
 \openout11 = `master.toc'.
 
- [18] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.tdo [19
+ [13
 
-])
-\tf@tdo=\write12
-\openout12 = `master.tdo'.
-
- (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/frontmatter/preface.tex [20] [21
+] [14
 
 ]
 
-LaTeX Warning: Citation `Smith2010' on page xxii undefined on input line 26.
+Package hyperref Warning: old tdo file detected, not used; run LaTeX again.
 
-) [22]
+\tf@tdo=\write12
+\openout12 = `master.tdo'.
+
+(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/frontmatter/preface.tex [15] [16
+
+] [17]
+
+LaTeX Warning: Citation `Smith2010' on page xviii undefined on input line 29.
+
+
+LaTeX Warning: Reference `part:introduction' on page xviii undefined on input line 41.
+
+
+LaTeX Warning: Reference `ch:physMod' on page xviii undefined on input line 41.
+
+
+LaTeX Warning: Reference `ch:FDTD' on page xviii undefined on input line 41.
+
+
+LaTeX Warning: Reference `ch:analysis' on page xviii undefined on input line 41.
+
+
+LaTeX Warning: Reference `part:resonators' on page xviii undefined on input line 43.
+
+
+LaTeX Warning: Reference `part:exciters' on page xviii undefined on input line 45.
+
+
+LaTeX Warning: Reference `part:interactions' on page xviii undefined on input line 47.
+
+) [18]
 LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 20.74pt on input line 131.
+(Font)              scaled to size 20.74pt on input line 138.
 LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <20.74> not available
-(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 131.
+(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 138.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 20.74pt on input line 131.
+(Font)              scaled to size 20.74pt on input line 138.
  [1
 
 
 
 ] [2] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/introduction.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/physMod.tex
 Chapter 1.
-LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 10.
-LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
-(Font)              scaled to size 14.4pt on input line 10.
+
+LaTeX Warning: Citation `additive' on page 3 undefined on input line 2.
+
+
+LaTeX Warning: Citation `Chowning' on page 3 undefined on input line 2.
+
+
+LaTeX Warning: Citation `DX7' on page 3 undefined on input line 2.
+
+LaTeX Font Info:    Try loading font information for T1+zplsups on input line 12.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/newpx/t1zplsups.fd
+File: t1zplsups.fd 2015/01/17 v1.0
+)
+LaTeX Font Info:    Font shape `T1/zplsups/m/n' will be
+(Font)              scaled to size 10.0pt on input line 12.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 8.0pt on input line 12.
+LaTeX Font Info:    Font shape `T1/zplsups/m/n' will be
+(Font)              scaled to size 8.0pt on input line 12.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
+(Font)              scaled to size 8.0pt on input line 12.
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 12.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 7.0pt on input line 12.
+
+
+LaTeX Warning: Citation `Valimaki2006' on page 3 undefined on input line 30.
+
+
+LaTeX Warning: Citation `Smith2010b' on page 3 undefined on input line 30.
+
+
+LaTeX Warning: Citation `theBible' on page 3 undefined on input line 30.
+
+
+LaTeX Warning: Citation `Smith2010a' on page 3 undefined on input line 30.
+
 [3
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 16--29
+LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 35.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 14.4pt on input line 35.
+
+
+LaTeX Warning: Citation `Fletcher1998' on page 4 undefined on input line 36.
+
+
+LaTeX Warning: Citation `theBible' on page 4 undefined on input line 36.
+
+
+LaTeX Warning: Citation `Fletcher1998' on page 4 undefined on input line 36.
+
+
+LaTeX Warning: Citation `Valimaki2006' on page 4 undefined on input line 36.
+
+
+LaTeX Warning: Citation `Smith2010a' on page 4 undefined on input line 36.
+
+
+LaTeX Warning: Citation `Smith2010b' on page 4 undefined on input line 36.
+
+
+LaTeX Warning: Citation `Morrison1993' on page 4 undefined on input line 41.
+
+
+LaTeX Warning: Citation `Bilbao2018' on page 4 undefined on input line 41.
+
+
+LaTeX Warning: Citation `Smith2010a' on page 4 undefined on input line 41.
+
+
+LaTeX Warning: Citation `MichonMesh2Faust2017' on page 4 undefined on input line 41.
+
+
+LaTeX Warning: Citation `Ruiz1969' on page 4 undefined on input line 44.
+
+
+LaTeX Warning: Citation `Hiller1971I' on page 4 undefined on input line 44.
+
+
+LaTeX Warning: Citation `Hiller1971II' on page 4 undefined on input line 44.
+
+
+LaTeX Warning: Citation `Chaigne1992' on page 4 undefined on input line 44.
+
+
+LaTeX Warning: Citation `Chaigne1994' on page 4 undefined on input line 44.
+
+
+LaTeX Warning: Citation `theBible' on page 4 undefined on input line 44.
+
+
+LaTeX Warning: Citation `Bilbao2018' on page 4 undefined on input line 44.
+
+
+LaTeX Warning: Citation `Smith1992' on page 4 undefined on input line 47.
+
+
+LaTeX Warning: Citation `Valimaki2006' on page 4 undefined on input line 47.
+
+
+LaTeX Warning: Citation `Erkut2002' on page 4 undefined on input line 47.
+
+
+LaTeX Warning: Citation `Maestre2014' on page 4 undefined on input line 47.
+
+
+LaTeX Warning: Citation `Cadoz1979' on page 4 undefined on input line 50.
+
+
+LaTeX Warning: Citation `Cadoz1983' on page 4 undefined on input line 50.
+
+
+LaTeX Warning: Citation `Cadoz1993' on page 4 undefined on input line 50.
+
+
+LaTeX Warning: Citation `Villeneuve2019' on page 4 undefined on input line 50.
+
+
+LaTeX Warning: Citation `Leonard2019' on page 4 undefined on input line 50.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 38--51
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--29
+Underfull \hbox (badness 10000) in paragraph at lines 38--51
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--29
+Underfull \hbox (badness 10000) in paragraph at lines 38--51
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 16--29
+Underfull \hbox (badness 10000) in paragraph at lines 38--51
 
  []
 
 [4]
-Overfull \hbox (17.89632pt too wide) in paragraph at lines 30--31
+
+LaTeX Warning: Citation `Trautmann2003' on page 5 undefined on input line 52.
+
+
+LaTeX Warning: Citation `Matignon1992' on page 5 undefined on input line 52.
+
+
+Overfull \hbox (12.33632pt too wide) in paragraph at lines 52--53
 \T1/zpltlf/m/n/10 space mod-elling [[]], []wave-domain mod-elling and energy-based port-Hamiltonian[][][][] 
  []
 
+
+LaTeX Warning: Citation `Gustafsson2013' on page 5 undefined on input line 66.
+
+
+LaTeX Warning: Citation `Strikwerda1989' on page 5 undefined on input line 67.
+
+
+LaTeX Warning: Citation `Moore1965' on page 5 undefined on input line 70.
+
+
+LaTeX Warning: Citation `Borin1989' on page 5 undefined on input line 72.
+
+LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <7> not available
+(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 72.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 7.0pt on input line 72.
+
+LaTeX Warning: Citation `Borin1989' on page 5 undefined on input line 72.
+
+
+LaTeX Warning: Citation `Borin1989' on page 5 undefined on input line 72.
+
+
+LaTeX Warning: Citation `Borin1989' on page 5 undefined on input line 72.
+
+
+LaTeX Warning: Citation `Borin1989' on page 5 undefined on input line 72.
+
+
+LaTeX Warning: Reference `part:interactions' on page 5 undefined on input line 72.
+
 [5]
 
-LaTeX Warning: Citation `Mehes2016' on page 6 undefined on input line 71.
+LaTeX Warning: Citation `Mehes2016' on page 6 undefined on input line 83.
 
 
-LaTeX Warning: Citation `Pfeifle2012' on page 6 undefined on input line 71.
+LaTeX Warning: Citation `Pfeifle2012' on page 6 undefined on input line 83.
 
 
-LaTeX Warning: Citation `Pfeifle2015' on page 6 undefined on input line 71.
+LaTeX Warning: Citation `Pfeifle2015' on page 6 undefined on input line 83.
 
 
-LaTeX Warning: Citation `Pfeifle2017' on page 6 undefined on input line 71.
+LaTeX Warning: Citation `Pfeifle2017' on page 6 undefined on input line 83.
 
 
-LaTeX Warning: Citation `Bybee2019' on page 6 undefined on input line 71.
+LaTeX Warning: Citation `Bybee2019' on page 6 undefined on input line 83.
+
+
+LaTeX Warning: Citation `Bilbao2019CMJa' on page 6 undefined on input line 83.
+
+
+LaTeX Warning: Citation `Bilbao2019CMJb' on page 6 undefined on input line 83.
+
+
+LaTeX Warning: Citation `theBible' on page 6 undefined on input line 87.
+
+
+LaTeX Warning: Citation `theBible' on page 6 undefined on input line 87.
+
+
+LaTeX Warning: Citation `theBible' on page 6 undefined on input line 87.
+
+
+LaTeX Warning: Citation `theBible' on page 6 undefined on input line 87.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\todo' on input line 75.
+(hyperref)                removing `\todo' on input line 87.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\@ifnextchar' on input line 75.
+(hyperref)                removing `\@ifnextchar' on input line 87.
 
+LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <12> not available
+(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 93.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 12.0pt on input line 93.
 [6]
 
-LaTeX Warning: Reference `SOTA' on page 7 undefined on input line 95.
+LaTeX Warning: Citation `Smith2010a' on page 7 undefined on input line 114.
 
-[7]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/sec2name.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/FDTDBasics.tex [8]
-Chapter 2.
-[9
+
+LaTeX Warning: Citation `theBible' on page 7 undefined on input line 116.
+
+
+LaTeX Warning: Citation `theBible' on page 7 undefined on input line 116.
+
+
+LaTeX Warning: Citation `theBible' on page 7 undefined on input line 116.
+
+
+LaTeX Warning: Citation `theBible' on page 7 undefined on input line 116.
+
+[7]
+
+LaTeX Warning: Citation `Fletcher1998' on page 8 undefined on input line 119.
+
+
+LaTeX Warning: Citation `Bilbao2019CMJb' on page 8 undefined on input line 119.
+
+
+LaTeX Warning: Reference `sec:physModTech' on page 8 undefined on input line 127.
+
+
+LaTeX Warning: Reference `part:resonators' on page 8 undefined on input line 142.
+
+
+LaTeX Warning: Reference `part:exciters' on page 8 undefined on input line 142.
+
+
+LaTeX Warning: Reference `part:interactions' on page 8 undefined on input line 142.
+
+
+LaTeX Warning: Reference `part:realtime' on page 8 undefined on input line 144.
+
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/sec2name.tex [8]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/FDTDBasics.tex [9]
+
+/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/FDTDBasics.tex:1: LaTeX Error: Float(s) lost.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \chapter
+            {Introduction to Finite-Difference Time-Domain Methods}\label{ch...
+You've lost some text.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+[10
 
 ]
+Chapter 2.
+
+LaTeX Warning: Citation `theBible' on page 11 undefined on input line 13.
+
+
+LaTeX Warning: Citation `Strikwerda1989' on page 11 undefined on input line 13.
+
+
+LaTeX Warning: Citation `Hamilton2016' on page 11 undefined on input line 20.
+
+
+LaTeX Warning: Reference `sec:dimensions' on page 11 undefined on input line 21.
+
+[11]
 LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
 (Font)              scaled to size 5.0pt on input line 28.
- [10pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.1}) has been already used, duplicate ignored
+
+
+LaTeX Warning: Reference `sec:FDoperators' on page 12 undefined on input line 55.
+
+
+LaTeX Warning: Reference `ch:tromba' on page 12 undefined on input line 55.
+
+
+LaTeX Warning: Citation `Bilbao2018' on page 12 undefined on input line 55.
+
+[12pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.1}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
-l.76 G
-      enerally, the spatial distribution of an object can be simplified if o...] [11]
+l.75 
+     ]
+
+LaTeX Warning: Reference `ch:stiffString' on page 13 undefined on input line 79.
+
+
+LaTeX Warning: Citation `Desvages2018' on page 13 undefined on input line 81.
+
+
+LaTeX Warning: Citation `Desvages2016' on page 13 undefined on input line 81.
+
+
+LaTeX Warning: Citation `theBible' on page 13 undefined on input line 81.
+
+
+LaTeX Warning: Citation `Bilbao2009spring' on page 13 undefined on input line 81.
+
+
+LaTeX Warning: Citation `Villeneuve2019' on page 13 undefined on input line 82.
+
+[13]
+
+LaTeX Warning: Reference `sec:stabilityAnalysis' on page 14 undefined on input line 99.
+
+
+LaTeX Warning: Citation `theBible' on page 14 undefined on input line 103.
+
+[14]
 Package epstopdf Info: Source file: <figures/fdtd/gridFigure.eps>
 (epstopdf)                    date: 2021-05-18 15:37:56
 (epstopdf)                    size: 323053 bytes
@@ -1853,41 +2156,33 @@ Package epstopdf Info: Source file: <figures/fdtd/gridFigure.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/gridFigure-eps-converted-to.pdf figures/fdtd/gridFigure.eps>
 (epstopdf)             \includegraphics on input line 107.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/gridFigure-eps-converted-to.pdf, id=1328, 1003.75pt x 301.125pt>
+ <figures/fdtd/gridFigure-eps-converted-to.pdf, id=232, 1003.75pt x 301.125pt>
 File: figures/fdtd/gridFigure-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/gridFigure-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/gridFigure-eps-converted-to.pdf used on input line 107.
 (pdftex.def)             Requested size: 341.43307pt x 102.43167pt.
-LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 8.0pt on input line 108.
 LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <8> not available
 (Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 108.
 LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
 (Font)              scaled to size 8.0pt on input line 108.
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[12]
-
-LaTeX Warning: Marginpar on page 13 moved.
+LaTeX Warning: Marginpar on page 15 moved.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\todo' on input line 111.
 
 
-LaTeX Warning: Marginpar on page 13 moved.
+LaTeX Warning: Marginpar on page 15 moved.
 
-LaTeX Font Info:    Try loading font information for T1+zplsups on input line 116.
-(/usr/local/texlive/2016/texmf-dist/tex/latex/newpx/t1zplsups.fd
-File: t1zplsups.fd 2015/01/17 v1.0
-)
-LaTeX Font Info:    Font shape `T1/zplsups/m/n' will be
-(Font)              scaled to size 10.0pt on input line 116.
-LaTeX Font Info:    Font shape `T1/zplsups/m/n' will be
-(Font)              scaled to size 8.0pt on input line 117.
- <figures/fdtd/gridExplanation2.pdf, id=1338, 1304.875pt x 250.9375pt>
+
+LaTeX Warning: Reference `sec:domains' on page 15 undefined on input line 115.
+
+
+LaTeX Warning: Reference `fig:gridExp' on page 15 undefined on input line 118.
+
+<figures/fdtd/gridExplanation2.pdf, id=234, 1304.875pt x 250.9375pt>
 File: figures/fdtd/gridExplanation2.pdf Graphic file (type pdf)
  <use figures/fdtd/gridExplanation2.pdf>
 Package pdftex.def Info: figures/fdtd/gridExplanation2.pdf used on input line 138.
@@ -1896,21 +2191,70 @@ Package pdftex.def Info: figures/fdtd/gridExplanation2.pdf used on input line 13
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[13 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/gridFigure-eps-converted-to.pdf>]
+[15 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/gridFigure-eps-converted-to.pdf>]
 
-LaTeX Warning: Marginpar on page 14 moved.
+LaTeX Warning: Reference `sec:energyAnalysis' on page 16 undefined on input line 156.
 
-[14 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/gridExplanation2.pdf>] <figures/fdtd/operatorsT.pdf, id=1434, 186.6975pt x 175.61609pt>
+
+LaTeX Warning: Marginpar on page 16 moved.
+
+[16 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/gridExplanation2.pdf>]
+
+LaTeX Warning: Reference `fig:operators' on page 17 undefined on input line 193.
+
+<figures/fdtd/operatorsT.pdf, id=335, 186.6975pt x 175.61609pt>
 File: figures/fdtd/operatorsT.pdf Graphic file (type pdf)
  <use figures/fdtd/operatorsT.pdf>
 Package pdftex.def Info: figures/fdtd/operatorsT.pdf used on input line 196.
 (pdftex.def)             Requested size: 153.64383pt x 144.53134pt.
- <figures/fdtd/operatorsX.pdf, id=1435, 182.6022pt x 175.61609pt>
+ <figures/fdtd/operatorsX.pdf, id=336, 182.6022pt x 175.61609pt>
 File: figures/fdtd/operatorsX.pdf Graphic file (type pdf)
  <use figures/fdtd/operatorsX.pdf>
 Package pdftex.def Info: figures/fdtd/operatorsX.pdf used on input line 197.
 (pdftex.def)             Requested size: 153.64383pt x 147.77107pt.
- [15 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/operatorsT.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/operatorsX.pdf>] [16] [17]
+
+
+LaTeX Warning: Reference `eq:discFirstTime' on page 17 undefined on input line 209.
+
+
+LaTeX Warning: Reference `eq:centredTimeOperator' on page 17 undefined on input line 209.
+
+
+LaTeX Warning: Reference `eq:averagingTime' on page 17 undefined on input line 210.
+
+[17]
+
+LaTeX Warning: Reference `ch:2Dsyst' on page 18 undefined on input line 238.
+
+[18 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/operatorsT.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/operatorsX.pdf>]
+
+LaTeX Warning: Citation `theBible' on page 19 undefined on input line 248.
+
+
+LaTeX Warning: Reference `sec:differentialEquations' on page 19 undefined on input line 257.
+
+
+LaTeX Warning: Reference `eq:taylorStartForward' on page 19 undefined on input line 257.
+
+
+LaTeX Warning: Reference `eq:forwardTimeCont' on page 19 undefined on input line 261.
+
+
+LaTeX Warning: Reference `eq:backwardTimeOperator' on page 19 undefined on input line 268.
+
+[19]
+
+LaTeX Warning: Reference `eq:centredTimeOperator' on page 20 undefined on input line 281.
+
+
+LaTeX Warning: Reference `eq:taylorStartForward' on page 20 undefined on input line 285.
+
+
+LaTeX Warning: Reference `eq:taylorStartBackward' on page 20 undefined on input line 285.
+
+
+LaTeX Warning: Reference `fig:taylor' on page 20 undefined on input line 293.
+
 Package epstopdf Info: Source file: <figures/fdtd/taylor.eps>
 (epstopdf)                    date: 2021-05-02 09:33:35
 (epstopdf)                    size: 123857 bytes
@@ -1920,12 +2264,57 @@ Package epstopdf Info: Source file: <figures/fdtd/taylor.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/taylor-eps-converted-to.pdf figures/fdtd/taylor.eps>
 (epstopdf)             \includegraphics on input line 296.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/taylor-eps-converted-to.pdf, id=1503, 1004.75375pt x 314.17375pt>
+<figures/fdtd/taylor-eps-converted-to.pdf, id=393, 1004.75375pt x 314.17375pt>
 File: figures/fdtd/taylor-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/taylor-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/taylor-eps-converted-to.pdf used on input line 296.
 (pdftex.def)             Requested size: 341.43307pt x 106.76013pt.
- [18 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/taylor-eps-converted-to.pdf>] [19] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/massSpringTikz.tex
+
+
+LaTeX Warning: Reference `eq:discFirstTime' on page 20 undefined on input line 297.
+
+
+LaTeX Warning: Reference `eq:discFirstTime' on page 20 undefined on input line 297.
+
+
+LaTeX Warning: Reference `eq:discSecondTime' on page 20 undefined on input line 300.
+
+
+LaTeX Warning: Reference `eq:taylorStartForward' on page 20 undefined on input line 304.
+
+
+LaTeX Warning: Reference `eq:taylorStartBackward' on page 20 undefined on input line 304.
+
+[20 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/taylor-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `eq:identity3' on page 21 undefined on input line 328.
+
+
+LaTeX Warning: Reference `eq:identity3' on page 21 undefined on input line 328.
+
+
+LaTeX Warning: Reference `eq:identity3' on page 21 undefined on input line 328.
+
+
+LaTeX Warning: Reference `eq:identity3' on page 21 undefined on input line 328.
+
+
+LaTeX Warning: Reference `sec:FDoperators' on page 21 undefined on input line 329.
+
+
+LaTeX Warning: Reference `ch:physMod' on page 21 undefined on input line 333.
+
+
+LaTeX Warning: Reference `sec:FDoperators' on page 21 undefined on input line 333.
+
+
+LaTeX Warning: Reference `eq:massSpringPDE' on page 21 undefined on input line 340.
+
+[21]
+
+LaTeX Warning: Reference `fig:massSpring' on page 22 undefined on input line 350.
+
+(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/massSpringTikz.tex
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -2058,11 +2447,48 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-) [20] [21]
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 396.
- (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
+
+LaTeX Warning: Reference `eq:massSpringPDE' on page 22 undefined on input line 355.
+
+
+LaTeX Warning: Reference `eq:massSpringPDE' on page 22 undefined on input line 357.
+
+
+LaTeX Warning: Reference `eq:massSpringPDE' on page 22 undefined on input line 365.
+
+[22]
+
+LaTeX Warning: Reference `eq:hookesLaw' on page 23 undefined on input line 367.
+
+
+LaTeX Warning: Reference `eq:newton2nd' on page 23 undefined on input line 368.
+
+
+LaTeX Warning: Reference `sec:discUsingFDTD' on page 23 undefined on input line 377.
+
+
+LaTeX Warning: Reference `eq:massSpringPDE' on page 23 undefined on input line 377.
+
+
+LaTeX Warning: Reference `sec:FDoperators' on page 23 undefined on input line 384.
+
+
+LaTeX Warning: Reference `eq:massSpringPDE' on page 23 undefined on input line 384.
+
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 396.
+(/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+) [23]
+
+LaTeX Warning: Reference `app:massSpringCode' on page 24 undefined on input line 399.
+
+
+LaTeX Warning: Reference `eq:massSpringUpdate' on page 24 undefined on input line 399.
+
+
+LaTeX Warning: Reference `sec:massSpringCont' on page 24 undefined on input line 401.
+
 Package epstopdf Info: Source file: <figures/fdtd/massSpringOutput.eps>
 (epstopdf)                    date: 2021-05-19 10:38:23
 (epstopdf)                    size: 79621 bytes
@@ -2072,17 +2498,42 @@ Package epstopdf Info: Source file: <figures/fdtd/massSpringOutput.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/massSpringOutput-eps-converted-to.pdf figures/fdtd/massSpringOutput.eps>
 (epstopdf)             \includegraphics on input line 415.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/massSpringOutput-eps-converted-to.pdf, id=1570, 830.10126pt x 220.825pt>
+<figures/fdtd/massSpringOutput-eps-converted-to.pdf, id=440, 830.10126pt x 220.825pt>
 File: figures/fdtd/massSpringOutput-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/massSpringOutput-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/massSpringOutput-eps-converted-to.pdf used on input line 415.
 (pdftex.def)             Requested size: 341.43307pt x 90.8286pt.
- [22 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/massSpringOutput-eps-converted-to.pdf>]
+
+
+LaTeX Warning: Reference `sec:stabilityAnalysis' on page 24 undefined on input line 423.
+
+
+LaTeX Warning: Reference `fig:massSpringOutput' on page 24 undefined on input line 425.
+
+[24 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/massSpringOutput-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `ch:brass' on page 25 undefined on input line 448.
+
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `\todo' on input line 450.
 
-[23]
+
+LaTeX Warning: Reference `sec:massSpringSystem' on page 25 undefined on input line 464.
+
+
+LaTeX Warning: Reference `eq:1DwavePDE' on page 25 undefined on input line 464.
+
+
+LaTeX Warning: Reference `eq:1DwavePDE' on page 25 undefined on input line 466.
+
+
+LaTeX Warning: Reference `eq:1DwavePDE' on page 25 undefined on input line 470.
+
+
+LaTeX Warning: Reference `fig:curvature' on page 25 undefined on input line 470.
+
+[25]
 Package epstopdf Info: Source file: <figures/fdtd/curvature.eps>
 (epstopdf)                    date: 2021-06-06 13:56:19
 (epstopdf)                    size: 30964 bytes
@@ -2092,11 +2543,21 @@ Package epstopdf Info: Source file: <figures/fdtd/curvature.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/curvature-eps-converted-to.pdf figures/fdtd/curvature.eps>
 (epstopdf)             \includegraphics on input line 474.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/curvature-eps-converted-to.pdf, id=1598, 602.25pt x 200.75pt>
+ <figures/fdtd/curvature-eps-converted-to.pdf, id=466, 602.25pt x 200.75pt>
 File: figures/fdtd/curvature-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/curvature-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/curvature-eps-converted-to.pdf used on input line 474.
 (pdftex.def)             Requested size: 341.43307pt x 113.81604pt.
+
+
+LaTeX Warning: Reference `eq:1DwavePDE' on page 26 undefined on input line 475.
+
+
+LaTeX Warning: Reference `eq:1DwavePDE' on page 26 undefined on input line 475.
+
+
+LaTeX Warning: Reference `fig:boundaryCondsCont' on page 26 undefined on input line 488.
+
 Package epstopdf Info: Source file: <figures/fdtd/dirichletCont.eps>
 (epstopdf)                    date: 2021-05-19 12:10:29
 (epstopdf)                    size: 48171 bytes
@@ -2106,11 +2567,18 @@ Package epstopdf Info: Source file: <figures/fdtd/dirichletCont.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/dirichletCont-eps-converted-to.pdf figures/fdtd/dirichletCont.eps>
 (epstopdf)             \includegraphics on input line 497.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/dirichletCont-eps-converted-to.pdf, id=1602, 602.25pt x 354.32375pt>
+<figures/fdtd/dirichletCont-eps-converted-to.pdf, id=467, 602.25pt x 354.32375pt>
 File: figures/fdtd/dirichletCont-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/dirichletCont-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/dirichletCont-eps-converted-to.pdf used on input line 497.
 (pdftex.def)             Requested size: 153.64383pt x 90.3919pt.
+
+
+LaTeX Warning: Reference `eq:contDirichlet' on page 26 undefined on input line 497.
+
+
+LaTeX Warning: Reference `eq:contDirichlet' on page 26 undefined on input line 497.
+
 Package epstopdf Info: Source file: <figures/fdtd/neumannCont.eps>
 (epstopdf)                    date: 2021-05-19 12:10:02
 (epstopdf)                    size: 48178 bytes
@@ -2120,12 +2588,77 @@ Package epstopdf Info: Source file: <figures/fdtd/neumannCont.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/neumannCont-eps-converted-to.pdf figures/fdtd/neumannCont.eps>
 (epstopdf)             \includegraphics on input line 498.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/neumannCont-eps-converted-to.pdf, id=1605, 602.25pt x 354.32375pt>
+<figures/fdtd/neumannCont-eps-converted-to.pdf, id=468, 602.25pt x 354.32375pt>
 File: figures/fdtd/neumannCont-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/neumannCont-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/neumannCont-eps-converted-to.pdf used on input line 498.
 (pdftex.def)             Requested size: 153.64383pt x 90.3919pt.
- [24 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/curvature-eps-converted-to.pdf>] [25 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/dirichletCont-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/neumannCont-eps-converted-to.pdf>]
+
+
+LaTeX Warning: Reference `eq:contNeumann' on page 26 undefined on input line 498.
+
+
+LaTeX Warning: Reference `eq:contNeumann' on page 26 undefined on input line 498.
+
+
+LaTeX Warning: Citation `theBible' on page 26 undefined on input line 503.
+
+
+LaTeX Warning: Citation `theBible' on page 26 undefined on input line 503.
+
+
+LaTeX Warning: Citation `Bilbao2009Modular' on page 26 undefined on input line 503.
+
+
+LaTeX Warning: Citation `Bilbao2009spring' on page 26 undefined on input line 503.
+
+[26 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/curvature-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `eq:1DwavePDE' on page 27 undefined on input line 505.
+
+
+LaTeX Warning: Reference `part:interactions' on page 27 undefined on input line 511.
+
+
+LaTeX Warning: Reference `eq:1DwavePDE' on page 27 undefined on input line 514.
+
+
+LaTeX Warning: Reference `eq:1DwavePDE' on page 27 undefined on input line 514.
+
+[27 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/dirichletCont-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/neumannCont-eps-converted-to.pdf>]
+
+LaTeX Warning: Citation `theBible' on page 28 undefined on input line 519.
+
+
+LaTeX Warning: Reference `sec:FDoperators' on page 28 undefined on input line 519.
+
+
+LaTeX Warning: Citation `Courant1928' on page 28 undefined on input line 531.
+
+
+LaTeX Warning: Reference `eq:1DwaveFDS' on page 28 undefined on input line 535.
+
+
+LaTeX Warning: Reference `sec:quality1DWave' on page 28 undefined on input line 535.
+
+
+LaTeX Warning: Reference `eq:CFL' on page 28 undefined on input line 537.
+
+
+LaTeX Warning: Reference `sec:stabilityAnalysis' on page 28 undefined on input line 543.
+
+
+LaTeX Warning: Reference `fig:operators' on page 28 undefined on input line 546.
+
+
+LaTeX Warning: Reference `fig:stencil1DWave' on page 28 undefined on input line 546.
+
+
+LaTeX Warning: Reference `eq:1DwaveFDS' on page 28 undefined on input line 546.
+
+
+LaTeX Warning: Reference `eq:1DwaveUpdate' on page 28 undefined on input line 546.
+
 Package epstopdf Info: Source file: <figures/fdtd/1DWaveStencil.eps>
 (epstopdf)                    date: 2021-05-25 15:29:30
 (epstopdf)                    size: 52081 bytes
@@ -2135,16 +2668,35 @@ Package epstopdf Info: Source file: <figures/fdtd/1DWaveStencil.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/1DWaveStencil-eps-converted-to.pdf figures/fdtd/1DWaveStencil.eps>
 (epstopdf)             \includegraphics on input line 550.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/1DWaveStencil-eps-converted-to.pdf, id=1658, 602.25pt x 401.5pt>
+<figures/fdtd/1DWaveStencil-eps-converted-to.pdf, id=503, 602.25pt x 401.5pt>
 File: figures/fdtd/1DWaveStencil-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/1DWaveStencil-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/1DWaveStencil-eps-converted-to.pdf used on input line 550.
 (pdftex.def)             Requested size: 273.14749pt x 182.1069pt.
 
 
+LaTeX Warning: Reference `eq:1DwaveFDS' on page 28 undefined on input line 551.
+
+
+LaTeX Warning: Reference `eq:1DwaveFDS' on page 28 undefined on input line 551.
+
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[26]
+
+LaTeX Warning: Reference `eq:1DwaveUpdate' on page 28 undefined on input line 556.
+
+
+LaTeX Warning: Reference `eq:boundaryCond1DWave' on page 28 undefined on input line 557.
+
+[28]
+
+LaTeX Warning: Reference `eq:discreteNeumann' on page 29 undefined on input line 567.
+
+
+LaTeX Warning: Reference `eq:1DwaveUpdate' on page 29 undefined on input line 585.
+
+
 Overfull \hbox (9.67502pt too wide) in paragraph at lines 569--586
 []$[]$ $[]$ 
  []
@@ -2154,10 +2706,35 @@ Underfull \hbox (badness 10000) in paragraph at lines 569--586
 
  []
 
-[27 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/1DWaveStencil-eps-converted-to.pdf>]
+[29 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/1DWaveStencil-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `app:1DWave' on page 30 undefined on input line 596.
+
+
+LaTeX Warning: Reference `part:exciters' on page 30 undefined on input line 598.
+
+
+LaTeX Warning: Reference `sec:massSpringImplementation' on page 30 undefined on input line 612.
+
+
+LaTeX Warning: Reference `tab:1DWaveParams' on page 30 undefined on input line 617.
+
+
+LaTeX Warning: Reference `fig:1DWaveOutput' on page 30 undefined on input line 617.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+
+LaTeX Warning: Reference `fig:1DWaveOutput' on page 30 undefined on input line 643.
+
+
+LaTeX Warning: Reference `fig:modes' on page 30 undefined on input line 643.
+
+
+LaTeX Warning: Reference `ch:physMod' on page 30 undefined on input line 643.
+
+[30]
 Package epstopdf Info: Source file: <figures/fdtd/oneDWaveOutput.eps>
 (epstopdf)                    date: 2021-06-06 18:05:29
 (epstopdf)                    size: 97966 bytes
@@ -2167,24 +2744,30 @@ Package epstopdf Info: Source file: <figures/fdtd/oneDWaveOutput.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/oneDWaveOutput-eps-converted-to.pdf figures/fdtd/oneDWaveOutput.eps>
 (epstopdf)             \includegraphics on input line 646.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/oneDWaveOutput-eps-converted-to.pdf, id=1697, 830.10126pt x 220.825pt>
+ <figures/fdtd/oneDWaveOutput-eps-converted-to.pdf, id=536, 830.10126pt x 220.825pt>
 File: figures/fdtd/oneDWaveOutput-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/oneDWaveOutput-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/oneDWaveOutput-eps-converted-to.pdf used on input line 646.
 (pdftex.def)             Requested size: 341.43307pt x 90.8286pt.
 LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
 (Font)              scaled to size 6.0pt on input line 647.
- [28]
+
+
+LaTeX Warning: Reference `eq:raisedCos' on page 31 undefined on input line 647.
+
+
+LaTeX Warning: Reference `eq:raisedCos' on page 31 undefined on input line 647.
+
 Package epstopdf Info: Source file: <figures/fdtd/modes.eps>
-(epstopdf)                    date: 2021-06-07 09:57:07
-(epstopdf)                    size: 38847 bytes
+(epstopdf)                    date: 2021-06-24 09:15:52
+(epstopdf)                    size: 42186 bytes
 (epstopdf)             Output file: <figures/fdtd/modes-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-06-07 09:58:55
-(epstopdf)                    size: 15241 bytes
+(epstopdf)                    date: 2021-06-24 09:15:56
+(epstopdf)                    size: 16897 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/modes-eps-converted-to.pdf figures/fdtd/modes.eps>
 (epstopdf)             \includegraphics on input line 651.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/modes-eps-converted-to.pdf, id=1711, 859.21pt x 257.96375pt>
+<figures/fdtd/modes-eps-converted-to.pdf, id=537, 859.21pt x 257.96375pt>
 File: figures/fdtd/modes-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/modes-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/modes-eps-converted-to.pdf used on input line 651.
@@ -2193,7 +2776,50 @@ Package pdftex.def Info: figures/fdtd/modes-eps-converted-to.pdf used on input l
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[29 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/oneDWaveOutput-eps-converted-to.pdf>] [30 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/modes-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `sec:modalAnalysis' on page 31 undefined on input line 655.
+
+[31 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/oneDWaveOutput-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `fig:1DWaveOutput' on page 32 undefined on input line 658.
+
+
+LaTeX Warning: Reference `fig:modes' on page 32 undefined on input line 659.
+
+
+LaTeX Warning: Reference `eq:CFL' on page 32 undefined on input line 662.
+
+
+LaTeX Warning: Reference `eq:1DwaveFDS' on page 32 undefined on input line 665.
+
+
+LaTeX Warning: Reference `eq:1DwavePDE' on page 32 undefined on input line 665.
+
+
+LaTeX Warning: Reference `fig:1DWaveDisp1' on page 32 undefined on input line 665.
+
+
+LaTeX Warning: Reference `eq:1DWaveStabilityCond' on page 32 undefined on input line 665.
+
+[32 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/modes-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `ch:stiffString' on page 33 undefined on input line 667.
+
+
+LaTeX Warning: Reference `fig:1DWaveDisp09' on page 33 undefined on input line 667.
+
+
+LaTeX Warning: Reference `fig:1DWaveDisp1' on page 33 undefined on input line 667.
+
+
+LaTeX Warning: Reference `fig:1DWaveBandwidth' on page 33 undefined on input line 667.
+
+
+LaTeX Warning: Reference `sec:modalAnalysis' on page 33 undefined on input line 667.
+
+
+LaTeX Warning: Reference `fig:1DWaveDisp1001' on page 33 undefined on input line 669.
+
 Package epstopdf Info: Source file: <figures/fdtd/ulnLambda1.eps>
 (epstopdf)                    date: 2021-02-02 11:47:30
 (epstopdf)                    size: 19877 bytes
@@ -2203,7 +2829,7 @@ Package epstopdf Info: Source file: <figures/fdtd/ulnLambda1.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/ulnLambda1-eps-converted-to.pdf figures/fdtd/ulnLambda1.eps>
 (epstopdf)             \includegraphics on input line 676.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/ulnLambda1-eps-converted-to.pdf, id=1741, 401.5pt x 301.125pt>
+<figures/fdtd/ulnLambda1-eps-converted-to.pdf, id=558, 401.5pt x 301.125pt>
 File: figures/fdtd/ulnLambda1-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/ulnLambda1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/ulnLambda1-eps-converted-to.pdf used on input line 676.
@@ -2217,7 +2843,7 @@ Package epstopdf Info: Source file: <figures/fdtd/ulnLambda09.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/ulnLambda09-eps-converted-to.pdf figures/fdtd/ulnLambda09.eps>
 (epstopdf)             \includegraphics on input line 677.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/ulnLambda09-eps-converted-to.pdf, id=1742, 401.5pt x 301.125pt>
+ <figures/fdtd/ulnLambda09-eps-converted-to.pdf, id=559, 401.5pt x 301.125pt>
 File: figures/fdtd/ulnLambda09-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/ulnLambda09-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/ulnLambda09-eps-converted-to.pdf used on input line 677.
@@ -2231,11 +2857,18 @@ Package epstopdf Info: Source file: <figures/fdtd/ulnLambda1001.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/ulnLambda1001-eps-converted-to.pdf figures/fdtd/ulnLambda1001.eps>
 (epstopdf)             \includegraphics on input line 678.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/ulnLambda1001-eps-converted-to.pdf, id=1743, 401.5pt x 301.125pt>
+ <figures/fdtd/ulnLambda1001-eps-converted-to.pdf, id=560, 401.5pt x 301.125pt>
 File: figures/fdtd/ulnLambda1001-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/ulnLambda1001-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/ulnLambda1001-eps-converted-to.pdf used on input line 678.
 (pdftex.def)             Requested size: 109.26108pt x 81.9435pt.
+
+
+LaTeX Warning: Reference `eq:CFL' on page 33 undefined on input line 679.
+
+
+LaTeX Warning: Reference `eq:CFL' on page 33 undefined on input line 679.
+
 Package epstopdf Info: Source file: <figures/fdtd/bandwidthLambda1.eps>
 (epstopdf)                    date: 2021-02-02 11:47:30
 (epstopdf)                    size: 84627 bytes
@@ -2245,7 +2878,7 @@ Package epstopdf Info: Source file: <figures/fdtd/bandwidthLambda1.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/bandwidthLambda1-eps-converted-to.pdf figures/fdtd/bandwidthLambda1.eps>
 (epstopdf)             \includegraphics on input line 684.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/bandwidthLambda1-eps-converted-to.pdf, id=1746, 401.5pt x 301.125pt>
+<figures/fdtd/bandwidthLambda1-eps-converted-to.pdf, id=561, 401.5pt x 301.125pt>
 File: figures/fdtd/bandwidthLambda1-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/bandwidthLambda1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/bandwidthLambda1-eps-converted-to.pdf used on input line 684.
@@ -2259,7 +2892,7 @@ Package epstopdf Info: Source file: <figures/fdtd/bandwidthLambda09.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/bandwidthLambda09-eps-converted-to.pdf figures/fdtd/bandwidthLambda09.eps>
 (epstopdf)             \includegraphics on input line 685.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/bandwidthLambda09-eps-converted-to.pdf, id=1747, 401.5pt x 301.125pt>
+ <figures/fdtd/bandwidthLambda09-eps-converted-to.pdf, id=562, 401.5pt x 301.125pt>
 File: figures/fdtd/bandwidthLambda09-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/bandwidthLambda09-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/bandwidthLambda09-eps-converted-to.pdf used on input line 685.
@@ -2273,42 +2906,321 @@ Package epstopdf Info: Source file: <figures/fdtd/bandwidthLambda05.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/bandwidthLambda05-eps-converted-to.pdf figures/fdtd/bandwidthLambda05.eps>
 (epstopdf)             \includegraphics on input line 686.
 Package epstopdf Info: Output file is already uptodate.
- <figures/fdtd/bandwidthLambda05-eps-converted-to.pdf, id=1748, 401.5pt x 301.125pt>
+ <figures/fdtd/bandwidthLambda05-eps-converted-to.pdf, id=563, 401.5pt x 301.125pt>
 File: figures/fdtd/bandwidthLambda05-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/fdtd/bandwidthLambda05-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/bandwidthLambda05-eps-converted-to.pdf used on input line 686.
 (pdftex.def)             Requested size: 109.26108pt x 81.9435pt.
- [31 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/ulnLambda1-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/ulnLambda09-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/ulnLambda1001-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/bandwidthLambda1-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/bandwidthLambda09-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/bandwidthLambda05-eps-converted-to.pdf>]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/analysis.tex [32]
-Chapter 3.
-[33
 
-] <figures/analysis/matrixA1.pdf, id=1814, 175.61609pt x 91.3011pt>
+
+LaTeX Warning: Reference `sec:gridFunctions' on page 33 undefined on input line 691.
+
+
+LaTeX Warning: Reference `eq:1DWaveStabilityCond' on page 33 undefined on input line 691.
+
+
+LaTeX Warning: Reference `eq:1DWaveStabilityCond' on page 33 undefined on input line 695.
+
+
+LaTeX Warning: Reference `eq:courantNumber' on page 33 undefined on input line 695.
+
+[33 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/ulnLambda1-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/ulnLambda09-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/ulnLambda1001-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `eq:fundamentalFreq' on page 34 undefined on input line 697.
+
+
+LaTeX Warning: Reference `eq:1DWaveStabilityCond' on page 34 undefined on input line 697.
+
+
+LaTeX Warning: Reference `eq:orderOfCalc' on page 34 undefined on input line 697.
+
+
+LaTeX Warning: Reference `eq:orderOfCalc' on page 34 undefined on input line 697.
+
+
+LaTeX Warning: Reference `eq:CFL' on page 34 undefined on input line 697.
+
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/analysis.tex [34 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/bandwidthLambda1-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/bandwidthLambda09-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/bandwidthLambda05-eps-converted-to.pdf>]
+Chapter 3.
+
+LaTeX Warning: Reference `fig:matrixA' on page 35 undefined on input line 12.
+
+[35
+
+]
+
+LaTeX Warning: Reference `sec:inverse' on page 36 undefined on input line 38.
+
+
+LaTeX Warning: Reference `fig:matrixTransp' on page 36 undefined on input line 45.
+
+<figures/analysis/matrixA1.pdf, id=619, 175.61609pt x 91.3011pt>
 File: figures/analysis/matrixA1.pdf Graphic file (type pdf)
  <use figures/analysis/matrixA1.pdf>
 Package pdftex.def Info: figures/analysis/matrixA1.pdf used on input line 49.
 (pdftex.def)             Requested size: 153.64383pt x 79.8799pt.
- <figures/analysis/matrixAT1.pdf, id=1815, 175.61609pt x 111.29579pt>
+ <figures/analysis/matrixAT1.pdf, id=620, 175.61609pt x 111.29579pt>
 File: figures/analysis/matrixAT1.pdf Graphic file (type pdf)
  <use figures/analysis/matrixAT1.pdf>
 Package pdftex.def Info: figures/analysis/matrixAT1.pdf used on input line 50.
 (pdftex.def)             Requested size: 153.64383pt x 97.37337pt.
 
 
+LaTeX Warning: Reference `eq:matrixTransposition' on page 36 undefined on input line 51.
+
+
+LaTeX Warning: Reference `eq:matrixTransposition' on page 36 undefined on input line 51.
+
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[34] <figures/analysis/matrixVector.pdf, id=1827, 780.99776pt x 349.305pt>
+
+LaTeX Warning: Reference `fig:matrixVector' on page 36 undefined on input line 55.
+
+[36] <figures/analysis/matrixVector.pdf, id=629, 780.99776pt x 349.305pt>
 File: figures/analysis/matrixVector.pdf Graphic file (type pdf)
  <use figures/analysis/matrixVector.pdf>
 Package pdftex.def Info: figures/analysis/matrixVector.pdf used on input line 65.
 (pdftex.def)             Requested size: 341.43307pt x 152.70862pt.
- [35 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixA1.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixAT1.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixVector.pdf>] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45]
+ [37 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixA1.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixAT1.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixVector.pdf>]
 
-LaTeX Warning: Marginpar on page 46 moved.
+LaTeX Warning: Reference `fig:matrixVector' on page 38 undefined on input line 70.
 
 
-LaTeX Warning: Marginpar on page 46 moved.
+LaTeX Warning: Reference `sec:FDoperators' on page 38 undefined on input line 98.
 
-[46] [47] [48]pdfTeX warning (ext4): destination with the same identifier (name{equation.3.3.39}) has been already used, duplicate ignored
+
+LaTeX Warning: Reference `eq:discFirstSpace' on page 38 undefined on input line 98.
+
+[38]
+
+LaTeX Warning: Reference `eq:1DwaveFDS' on page 39 undefined on input line 217.
+
+
+LaTeX Warning: Reference `eq:discreteDirichlet' on page 39 undefined on input line 219.
+
+[39]
+
+LaTeX Warning: Reference `eq:discreteDirichlet' on page 40 undefined on input line 229.
+
+
+LaTeX Warning: Reference `eq:1DWaveLeftBound' on page 40 undefined on input line 240.
+
+
+LaTeX Warning: Reference `eq:1DWaveRightBound' on page 40 undefined on input line 240.
+
+
+LaTeX Warning: Reference `eq:1DwaveFDS' on page 40 undefined on input line 242.
+
+
+LaTeX Warning: Reference `eq:1DwaveUpdate' on page 40 undefined on input line 246.
+
+[40]
+
+LaTeX Warning: Reference `sec:inverse' on page 41 undefined on input line 305.
+
+
+LaTeX Warning: Reference `sec:inverse' on page 41 undefined on input line 311.
+
+[41]
+
+LaTeX Warning: Reference `sec:modalAnalysis' on page 42 undefined on input line 321.
+
+
+LaTeX Warning: Reference `sec:energyAnalysis' on page 42 undefined on input line 347.
+
+
+LaTeX Warning: Reference `ch:2Dsyst' on page 42 undefined on input line 347.
+
+[42]
+
+LaTeX Warning: Reference `eq:contInnerProd' on page 43 undefined on input line 360.
+
+
+LaTeX Warning: Reference `eq:weightedInnerProd' on page 43 undefined on input line 369.
+
+
+LaTeX Warning: Reference `eq:primedInnerProd' on page 43 undefined on input line 369.
+
+
+LaTeX Warning: Reference `eq:weightedInnerProd' on page 43 undefined on input line 369.
+
+
+LaTeX Warning: Reference `eq:discInnerProd' on page 43 undefined on input line 369.
+
+
+LaTeX Warning: Reference `sec:1DWaveEnergyAnalysis' on page 43 undefined on input line 372.
+
+
+LaTeX Warning: Reference `sec:energyAnalysisString' on page 43 undefined on input line 372.
+
+
+LaTeX Warning: Reference `eq:contInnerProd' on page 43 undefined on input line 374.
+
+
+LaTeX Warning: Reference `eq:discInnerProd' on page 43 undefined on input line 380.
+
+[43]
+
+LaTeX Warning: Reference `eq:summationByPartsMinus' on page 44 undefined on input line 388.
+
+
+LaTeX Warning: Reference `eq:integrationByParts' on page 44 undefined on input line 388.
+
+
+LaTeX Warning: Reference `sec:1DWaveDisc' on page 44 undefined on input line 388.
+
+
+LaTeX Warning: Reference `eq:primedInnerProd' on page 44 undefined on input line 399.
+
+
+LaTeX Warning: Reference `eq:summationByPartsMinusBar' on page 44 undefined on input line 407.
+
+
+LaTeX Warning: Reference `eq:summationByPartsMinus' on page 44 undefined on input line 419.
+
+
+LaTeX Warning: Reference `eq:summationByPartsMinusBar' on page 44 undefined on input line 419.
+
+
+LaTeX Warning: Reference `eq:summationByPartsMinus' on page 44 undefined on input line 421.
+
+
+LaTeX Warning: Reference `eq:discInnerProd' on page 44 undefined on input line 421.
+
+[44]
+
+LaTeX Warning: Reference `eq:summationByPartsMinus' on page 45 undefined on input line 430.
+
+
+LaTeX Warning: Reference `eq:summationByPartsMinusBar' on page 45 undefined on input line 432.
+
+[45]
+
+LaTeX Warning: Citation `theBible' on page 46 undefined on input line 484.
+
+
+LaTeX Warning: Citation `Park2010' on page 46 undefined on input line 487.
+
+
+LaTeX Warning: Citation `Strikwerda1989' on page 46 undefined on input line 489.
+
+
+LaTeX Warning: Citation `theBible' on page 46 undefined on input line 489.
+
+
+LaTeX Warning: Citation `theBible' on page 46 undefined on input line 489.
+
+[46]
+
+LaTeX Warning: Reference `sec:modalAnalysis' on page 47 undefined on input line 493.
+
+
+LaTeX Warning: Reference `sec:analysis2D' on page 47 undefined on input line 493.
+
+
+LaTeX Warning: Citation `Strikwerda1989' on page 47 undefined on input line 495.
+
+
+LaTeX Warning: Marginpar on page 47 moved.
+
+
+LaTeX Warning: Reference `sec:FDoperators' on page 47 undefined on input line 501.
+
+
+LaTeX Warning: Reference `tab:zIdentities' on page 47 undefined on input line 501.
+
+
+LaTeX Warning: Reference `eq:ansatz' on page 47 undefined on input line 521.
+
+
+LaTeX Warning: Reference `eq:ansatz' on page 47 undefined on input line 521.
+
+
+LaTeX Warning: Citation `Abramowitz1972' on page 47 undefined on input line 527.
+
+[47]
+
+LaTeX Warning: Reference `eq:sinIdentity' on page 48 undefined on input line 540.
+
+
+LaTeX Warning: Reference `eq:sinIdentity' on page 48 undefined on input line 555.
+
+
+LaTeX Warning: Reference `sec:energyAnalysis' on page 48 undefined on input line 562.
+
+
+LaTeX Warning: Marginpar on page 48 moved.
+
+
+LaTeX Warning: Marginpar on page 48 moved.
+
+
+LaTeX Warning: Reference `eq:boundByUnity' on page 48 undefined on input line 569.
+
+
+LaTeX Warning: Reference `eq:boundByUnity' on page 48 undefined on input line 574.
+
+
+LaTeX Warning: Citation `theBible' on page 48 undefined on input line 574.
+
+[48]
+
+LaTeX Warning: Reference `eq:massSpringUpdate' on page 49 undefined on input line 585.
+
+
+LaTeX Warning: Reference `eq:ansatz' on page 49 undefined on input line 589.
+
+
+LaTeX Warning: Reference `tab:zIdentities' on page 49 undefined on input line 589.
+
+
+LaTeX Warning: Reference `eq:temporalAnsatz' on page 49 undefined on input line 589.
+
+
+LaTeX Warning: Reference `eq:polynomialForm' on page 49 undefined on input line 597.
+
+
+LaTeX Warning: Reference `eq:simplerCondition215' on page 49 undefined on input line 597.
+
+
+LaTeX Warning: Citation `theBible' on page 49 undefined on input line 597.
+
+
+LaTeX Warning: Reference `eq:simplerCondition215' on page 49 undefined on input line 597.
+
+[49]
+
+LaTeX Warning: Reference `eq:stabilityMK' on page 50 undefined on input line 607.
+
+
+LaTeX Warning: Reference `sec:1DWave' on page 50 undefined on input line 613.
+
+
+LaTeX Warning: Reference `eq:1DwaveFDS' on page 50 undefined on input line 615.
+
+
+LaTeX Warning: Reference `eq:temporalAnsatz' on page 50 undefined on input line 619.
+
+
+LaTeX Warning: Reference `eq:dxxAnsatz' on page 50 undefined on input line 619.
+
+
+LaTeX Warning: Reference `eq:boundByUnity' on page 50 undefined on input line 659.
+
+
+LaTeX Warning: Reference `eq:polynomialForm' on page 50 undefined on input line 659.
+
+
+LaTeX Warning: Reference `eq:simplerCondition215' on page 50 undefined on input line 660.
+
+
+LaTeX Warning: Reference `eq:1dWaveCharacteristic' on page 50 undefined on input line 660.
+
+
+LaTeX Warning: Reference `eq:CFL' on page 50 undefined on input line 674.
+
+[50]pdfTeX warning (ext4): destination with the same identifier (name{equation.3.3.39}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.675 \begin{equation}
@@ -2325,12 +3237,101 @@ l.675 \begin{equation}
                    \relax 
 l.675 \begin{equation}
                       
+
+LaTeX Warning: Reference `eq:1DWaveStabilityCond' on page 51 undefined on input line 678.
+
+
+LaTeX Warning: Reference `sec:stabilityAnalysis' on page 51 undefined on input line 683.
+
+
+LaTeX Warning: Citation `theBible' on page 51 undefined on input line 683.
+
+
+LaTeX Warning: Citation `Gustafsson2013' on page 51 undefined on input line 685.
+
+
+LaTeX Warning: Citation `theBible' on page 51 undefined on input line 685.
+
 LaTeX Font Info:    Try loading font information for U+euf on input line 687.
- (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/ueuf.fd
+(/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-) [49] [50] [51] (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
+)
+
+LaTeX Warning: Reference `ch:FDTD' on page 51 undefined on input line 689.
+
+
+LaTeX Warning: Reference `eq:contInnerProd' on page 51 undefined on input line 694.
+
+
+LaTeX Warning: Reference `sec:innerProduct' on page 51 undefined on input line 694.
+
+[51]
+
+LaTeX Warning: Reference `eq:massSpringPDE' on page 52 undefined on input line 696.
+
+
+LaTeX Warning: Reference `eq:massSpringCompact' on page 52 undefined on input line 696.
+
+
+LaTeX Warning: Reference `sec:prodIdentities' on page 52 undefined on input line 708.
+
+
+LaTeX Warning: Reference `sec:summationByParts' on page 52 undefined on input line 708.
+
+[52]
+
+LaTeX Warning: Reference `eq:contInnerProd' on page 53 undefined on input line 719.
+
+
+LaTeX Warning: Reference `eq:unchangedEnergy' on page 53 undefined on input line 723.
+
+
+LaTeX Warning: Reference `fig:energyMassSpring' on page 53 undefined on input line 730.
+
+
+LaTeX Warning: Reference `fig:energy1DWave' on page 53 undefined on input line 730.
+
+
+LaTeX Warning: Citation `Harrison2018' on page 53 undefined on input line 732.
+
+
+LaTeX Warning: Reference `eq:massSpringFDS' on page 53 undefined on input line 738.
+
+[53]
+
+LaTeX Warning: Reference `sec:massSpringSystem' on page 54 undefined on input line 745.
+
+
+LaTeX Warning: Reference `eq:massSpringFDS' on page 54 undefined on input line 745.
+
+
+LaTeX Warning: Reference `eq:rOCmassSpring' on page 54 undefined on input line 752.
+
+
+LaTeX Warning: Reference `eq:prodIdentity1' on page 54 undefined on input line 752.
+
+
+LaTeX Warning: Reference `eq:prodIdentity2' on page 54 undefined on input line 752.
+
+
+LaTeX Warning: Reference `eq:energyBalanceMassSpring' on page 54 undefined on input line 767.
+
+
+LaTeX Warning: Reference `eq:energyBalance1DWave' on page 54 undefined on input line 775.
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) [52]
+)
+
+LaTeX Warning: Reference `eq:energyBalanceMassSpring' on page 54 undefined on input line 778.
+
+[54]
+
+LaTeX Warning: Reference `fig:energyMassSpring' on page 55 undefined on input line 789.
+
+
+LaTeX Warning: Reference `eq:normalisedEnergy' on page 55 undefined on input line 789.
+
 Package epstopdf Info: Source file: <figures/analysis/massSpringEnergy2.eps>
 (epstopdf)                    date: 2021-06-08 09:43:27
 (epstopdf)                    size: 47293 bytes
@@ -2340,7 +3341,7 @@ Package epstopdf Info: Source file: <figures/analysis/massSpringEnergy2.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/analysis/massSpringEnergy2-eps-converted-to.pdf figures/analysis/massSpringEnergy2.eps>
 (epstopdf)             \includegraphics on input line 797.
 Package epstopdf Info: Output file is already uptodate.
- <figures/analysis/massSpringEnergy2-eps-converted-to.pdf, id=2116, 830.10126pt x 220.825pt>
+<figures/analysis/massSpringEnergy2-eps-converted-to.pdf, id=838, 830.10126pt x 220.825pt>
 File: figures/analysis/massSpringEnergy2-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/analysis/massSpringEnergy2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/analysis/massSpringEnergy2-eps-converted-to.pdf used on input line 797.
@@ -2350,7 +3351,65 @@ Overfull \hbox (6.66595pt too wide) in paragraph at lines 805--806
  [][] 
  []
 
-[53 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/massSpringEnergy2-eps-converted-to.pdf>] [54]
+
+LaTeX Warning: Reference `eq:normalisedEnergy' on page 55 undefined on input line 806.
+
+
+LaTeX Warning: Reference `eq:normalisedEnergy' on page 55 undefined on input line 806.
+
+
+LaTeX Warning: Reference `eq:1DwaveFDS' on page 55 undefined on input line 810.
+
+
+LaTeX Warning: Reference `eq:1DwaveFDS' on page 55 undefined on input line 810.
+
+
+LaTeX Warning: Reference `eq:discreteDirichlet' on page 55 undefined on input line 814.
+
+
+LaTeX Warning: Reference `eq:1DWavePhysical' on page 55 undefined on input line 817.
+
+[55 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/massSpringEnergy2-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `eq:rOC1DWave' on page 56 undefined on input line 826.
+
+
+LaTeX Warning: Reference `sec:prodIdentities' on page 56 undefined on input line 826.
+
+
+LaTeX Warning: Reference `sec:summationByParts' on page 56 undefined on input line 827.
+
+
+LaTeX Warning: Reference `eq:summationByPartsMinusBar' on page 56 undefined on input line 827.
+
+
+LaTeX Warning: Reference `eq:discInnerProd' on page 56 undefined on input line 841.
+
+
+LaTeX Warning: Reference `eq:rOC1DWave' on page 56 undefined on input line 841.
+
+
+LaTeX Warning: Reference `eq:prodIdentity1' on page 56 undefined on input line 845.
+
+
+LaTeX Warning: Reference `eq:prodIdentity2' on page 56 undefined on input line 845.
+
+
+LaTeX Warning: Reference `eq:energyBalance1DWave' on page 56 undefined on input line 858.
+
+[56]
+
+LaTeX Warning: Reference `eq:energyBalance1DWave' on page 57 undefined on input line 868.
+
+
+LaTeX Warning: Reference `eq:energyBalance1DWave' on page 57 undefined on input line 871.
+
+
+LaTeX Warning: Reference `fig:energy1DWave' on page 57 undefined on input line 884.
+
+
+LaTeX Warning: Reference `eq:normalisedEnergy' on page 57 undefined on input line 884.
+
 Package epstopdf Info: Source file: <figures/analysis/1dWaveEnergy.eps>
 (epstopdf)                    date: 2021-06-08 09:45:32
 (epstopdf)                    size: 45333 bytes
@@ -2360,7 +3419,7 @@ Package epstopdf Info: Source file: <figures/analysis/1dWaveEnergy.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/analysis/1dWaveEnergy-eps-converted-to.pdf figures/analysis/1dWaveEnergy.eps>
 (epstopdf)             \includegraphics on input line 894.
 Package epstopdf Info: Output file is already uptodate.
- <figures/analysis/1dWaveEnergy-eps-converted-to.pdf, id=2164, 830.10126pt x 220.825pt>
+<figures/analysis/1dWaveEnergy-eps-converted-to.pdf, id=871, 830.10126pt x 220.825pt>
 File: figures/analysis/1dWaveEnergy-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/analysis/1dWaveEnergy-eps-converted-to.pdf>
 Package pdftex.def Info: figures/analysis/1dWaveEnergy-eps-converted-to.pdf used on input line 894.
@@ -2371,17 +3430,186 @@ Overfull \hbox (6.66595pt too wide) in paragraph at lines 902--903
  []
 
 
+LaTeX Warning: Reference `eq:normalisedEnergy' on page 57 undefined on input line 903.
+
+
+LaTeX Warning: Reference `eq:normalisedEnergy' on page 57 undefined on input line 903.
+
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[55] [56 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/1dWaveEnergy-eps-converted-to.pdf>] [57] [58] [59] [60])) [61] [62
 
-] [63] [64] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/resonators.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/stiffString.tex [65
+LaTeX Warning: Reference `eq:discreteNeumann' on page 57 undefined on input line 907.
 
-] [66
+
+LaTeX Warning: Reference `eq:primedInnerProd' on page 57 undefined on input line 907.
+
+
+LaTeX Warning: Reference `eq:primedIdentityMinus' on page 57 undefined on input line 907.
+
+
+LaTeX Warning: Reference `eq:identity2' on page 57 undefined on input line 915.
+
+
+LaTeX Warning: Reference `eq:identity2' on page 57 undefined on input line 915.
+
+
+LaTeX Warning: Reference `eq:identity2' on page 57 undefined on input line 915.
+
+
+LaTeX Warning: Reference `eq:identity2' on page 57 undefined on input line 915.
+
+[57]
+
+LaTeX Warning: Reference `eq:energyBalance1DWaveNeumann' on page 58 undefined on input line 932.
+
+
+LaTeX Warning: Reference `sec:stabilityAnalysis' on page 58 undefined on input line 950.
+
+[58 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/1dWaveEnergy-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `sec:massSpringStability' on page 59 undefined on input line 955.
+
+
+LaTeX Warning: Reference `eq:quadraticForm' on page 59 undefined on input line 961.
+
+
+LaTeX Warning: Reference `eq:energyBalanceMassSpring' on page 59 undefined on input line 961.
+
+
+LaTeX Warning: Reference `eq:energyBalanceMassSpring' on page 59 undefined on input line 961.
+
+
+LaTeX Warning: Reference `eq:quadraticForm' on page 59 undefined on input line 966.
+
+[59]
+
+LaTeX Warning: Reference `eq:stabilityMK' on page 60 undefined on input line 983.
+
+
+LaTeX Warning: Reference `eq:energyBalance1DWave' on page 60 undefined on input line 986.
+
+
+LaTeX Warning: Reference `eq:prodIdentityEnergyStab' on page 60 undefined on input line 986.
+
+
+LaTeX Warning: Citation `theBible' on page 60 undefined on input line 993.
+
+
+LaTeX Warning: Reference `eq:energyBalance1DWave' on page 60 undefined on input line 1002.
+
+[60]
+
+LaTeX Warning: Reference `sec:vonNeumann1DWave' on page 61 undefined on input line 1018.
+
+
+LaTeX Warning: Reference `sec:output1DWave' on page 61 undefined on input line 1022.
+
+
+LaTeX Warning: Reference `eq:1DwaveMatrix' on page 61 undefined on input line 1024.
+
+
+LaTeX Warning: Citation `theBible' on page 61 undefined on input line 1028.
+
+
+LaTeX Warning: Reference `sec:stabilityAnalysis' on page 61 undefined on input line 1028.
+
+
+LaTeX Warning: Reference `sec:stabilityAnalysis' on page 61 undefined on input line 1028.
+
+
+LaTeX Warning: Reference `sec:stabilityAnalysis' on page 61 undefined on input line 1028.
+
+
+LaTeX Warning: Reference `sec:stabilityAnalysis' on page 61 undefined on input line 1028.
+
+
+LaTeX Warning: Reference `sec:eigenValueProblems' on page 61 undefined on input line 1032.
+
+
+LaTeX Warning: Reference `eq:1DWaveModalIntermediate' on page 61 undefined on input line 1038.
+
+
+LaTeX Warning: Reference `eq:sinIdentity' on page 61 undefined on input line 1043.
+
+[61]
+
+LaTeX Warning: Reference `eq:trigIdentities' on page 62 undefined on input line 1056.
+
+[62]
+
+LaTeX Warning: Reference `eq:sp' on page 63 undefined on input line 1098.
+
+)) [63] [64
+
+] [65] [66] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/resonators.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/introduction.tex
+
+LaTeX Warning: Reference `ch:stiffString' on page 67 undefined on input line 4.
+
+
+LaTeX Warning: Reference `ch:brass' on page 67 undefined on input line 4.
+
+
+LaTeX Warning: Reference `ch:2Dsyst' on page 67 undefined on input line 4.
+
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/stiffString.tex [67
+
+] [68
 
 ]
 Chapter 4.
-[67]
+
+LaTeX Warning: Reference `paper:A' on page 69 undefined on input line 6.
+
+
+LaTeX Warning: Reference `paper:B' on page 69 undefined on input line 6.
+
+
+LaTeX Warning: Reference `paper:C' on page 69 undefined on input line 6.
+
+
+LaTeX Warning: Reference `paper:D' on page 69 undefined on input line 6.
+
+
+LaTeX Warning: Reference `paper:E' on page 69 undefined on input line 6.
+
+
+LaTeX Warning: Reference `eq:stiffStringPDENoLosses' on page 69 undefined on input line 15.
+
+
+LaTeX Warning: Reference `eq:1DwavePDE' on page 69 undefined on input line 15.
+
+
+LaTeX Warning: Reference `eq:stiffStringPDENoLosses' on page 69 undefined on input line 15.
+
+[69]
+
+LaTeX Warning: Reference `eq:stiffStringPDENoLosses' on page 70 undefined on input line 24.
+
+
+LaTeX Warning: Citation `Bensa2003' on page 70 undefined on input line 24.
+
+
+LaTeX Warning: Reference `eq:stiffStringPDE' on page 70 undefined on input line 30.
+
+
+LaTeX Warning: Citation `theBible' on page 70 undefined on input line 30.
+
+
+LaTeX Warning: Reference `eq:1DwavePDE' on page 70 undefined on input line 34.
+
+
+LaTeX Warning: Reference `eq:stiffStringPDE' on page 70 undefined on input line 37.
+
+
+LaTeX Warning: Reference `sec:1DWave' on page 70 undefined on input line 42.
+
+
+LaTeX Warning: Reference `eq:boundaryCond1DWave' on page 70 undefined on input line 42.
+
+
+LaTeX Warning: Reference `fig:boundaryCondsStiffString' on page 70 undefined on input line 50.
+
 Package epstopdf Info: Source file: <figures/resonators/clamped.eps>
 (epstopdf)                    date: 2021-06-03 10:46:50
 (epstopdf)                    size: 14186 bytes
@@ -2391,7 +3619,7 @@ Package epstopdf Info: Source file: <figures/resonators/clamped.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/clamped-eps-converted-to.pdf figures/resonators/clamped.eps>
 (epstopdf)             \includegraphics on input line 54.
 Package epstopdf Info: Output file is already uptodate.
- <figures/resonators/clamped-eps-converted-to.pdf, id=2339, 306.14375pt x 194.7275pt>
+<figures/resonators/clamped-eps-converted-to.pdf, id=991, 306.14375pt x 194.7275pt>
 File: figures/resonators/clamped-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/resonators/clamped-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/clamped-eps-converted-to.pdf used on input line 54.
@@ -2405,7 +3633,7 @@ Package epstopdf Info: Source file: <figures/resonators/simplySupported.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/simplySupported-eps-converted-to.pdf figures/resonators/simplySupported.eps>
 (epstopdf)             \includegraphics on input line 55.
 Package epstopdf Info: Output file is already uptodate.
- <figures/resonators/simplySupported-eps-converted-to.pdf, id=2340, 306.14375pt x 194.7275pt>
+ <figures/resonators/simplySupported-eps-converted-to.pdf, id=992, 306.14375pt x 194.7275pt>
 File: figures/resonators/simplySupported-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/resonators/simplySupported-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/simplySupported-eps-converted-to.pdf used on input line 55.
@@ -2419,16 +3647,69 @@ Package epstopdf Info: Source file: <figures/resonators/free.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/free-eps-converted-to.pdf figures/resonators/free.eps>
 (epstopdf)             \includegraphics on input line 56.
 Package epstopdf Info: Output file is already uptodate.
- <figures/resonators/free-eps-converted-to.pdf, id=2341, 306.14375pt x 194.7275pt>
+ <figures/resonators/free-eps-converted-to.pdf, id=993, 306.14375pt x 194.7275pt>
 File: figures/resonators/free-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/resonators/free-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/free-eps-converted-to.pdf used on input line 56.
 (pdftex.def)             Requested size: 109.26108pt x 69.49568pt.
 
 
+LaTeX Warning: Reference `eq:stiffStringBoundConds' on page 70 undefined on input line 57.
+
+
+LaTeX Warning: Reference `eq:stiffStringBoundConds' on page 70 undefined on input line 57.
+
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[68] [69 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/clamped-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/simplySupported-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/free-eps-converted-to.pdf>] [70]
+[70]
+
+LaTeX Warning: Reference `eq:stiffStringPDECompact' on page 71 undefined on input line 61.
+
+
+LaTeX Warning: Reference `eq:stiffStringPDE' on page 71 undefined on input line 61.
+
+
+LaTeX Warning: Reference `eq:stiffStringPDECompact' on page 71 undefined on input line 63.
+
+
+LaTeX Warning: Reference `eq:discSecondSpace' on page 71 undefined on input line 68.
+
+
+LaTeX Warning: Reference `eq:backwardTimeOperator' on page 71 undefined on input line 78.
+
+
+LaTeX Warning: Reference `eq:discSecondSpace' on page 71 undefined on input line 78.
+
+
+LaTeX Warning: Reference `sec:implicitStiffString' on page 71 undefined on input line 87.
+
+[71 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/clamped-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/simplySupported-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/free-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `eq:stiffStringFDS' on page 72 undefined on input line 90.
+
+
+LaTeX Warning: Reference `eq:stiffStringFDS' on page 72 undefined on input line 114.
+
+
+LaTeX Warning: Reference `sec:stiffStringStability' on page 72 undefined on input line 118.
+
+
+LaTeX Warning: Reference `eq:orderOfCalc' on page 72 undefined on input line 119.
+
+
+LaTeX Warning: Reference `eq:stiffStringStability' on page 72 undefined on input line 119.
+
+
+LaTeX Warning: Reference `eq:stiffStringCourant' on page 72 undefined on input line 123.
+
+
+LaTeX Warning: Reference `sec:1DWaveDisc' on page 72 undefined on input line 126.
+
+
+LaTeX Warning: Reference `fig:stencilStiffString' on page 72 undefined on input line 126.
+
+[72]
 Package epstopdf Info: Source file: <figures/resonators/stencilDampedStiffString.eps>
 (epstopdf)                    date: 2021-05-25 15:28:22
 (epstopdf)                    size: 57860 bytes
@@ -2438,21 +3719,191 @@ Package epstopdf Info: Source file: <figures/resonators/stencilDampedStiffString
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/stencilDampedStiffString-eps-converted-to.pdf figures/resonators/stencilDampedStiffString.eps>
 (epstopdf)             \includegraphics on input line 149.
 Package epstopdf Info: Output file is already uptodate.
- <figures/resonators/stencilDampedStiffString-eps-converted-to.pdf, id=2410, 602.25pt x 401.5pt>
+ <figures/resonators/stencilDampedStiffString-eps-converted-to.pdf, id=1049, 602.25pt x 401.5pt>
 File: figures/resonators/stencilDampedStiffString-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/resonators/stencilDampedStiffString-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/stencilDampedStiffString-eps-converted-to.pdf used on input line 149.
 (pdftex.def)             Requested size: 273.14749pt x 182.1069pt.
- [71 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/stencilDampedStiffString-eps-converted-to.pdf>] [72] [73] [74] [75] [76] [77pdfTeX warning (ext4): destination with the same identifier (name{equation.4.3.25}) has been already used, duplicate ignored
+
+
+LaTeX Warning: Reference `eq:stiffStringFDS' on page 73 undefined on input line 150.
+
+
+LaTeX Warning: Reference `eq:stiffStringFDS' on page 73 undefined on input line 150.
+
+
+LaTeX Warning: Reference `eq:stiffStringBoundConds' on page 73 undefined on input line 154.
+
+
+LaTeX Warning: Reference `eq:BCfree' on page 73 undefined on input line 162.
+
+[73 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/stencilDampedStiffString-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `eq:BCsimplySupportedDisc' on page 74 undefined on input line 176.
+
+
+LaTeX Warning: Reference `eq:expandedStringFDS' on page 74 undefined on input line 186.
+
+
+LaTeX Warning: Reference `eq:BCfreeDisc' on page 74 undefined on input line 203.
+
+[74]
+
+LaTeX Warning: Reference `eq:stiffStringPDE' on page 75 undefined on input line 246.
+
+
+LaTeX Warning: Reference `eq:stiffStringFDS' on page 75 undefined on input line 249.
+
+
+LaTeX Warning: Reference `eq:DxxDef' on page 75 undefined on input line 262.
+
+[75]
+
+LaTeX Warning: Reference `eq:DxxDef' on page 76 undefined on input line 273.
+
+
+LaTeX Warning: Reference `eq:BCfreeDisc' on page 76 undefined on input line 286.
+
+
+LaTeX Warning: Reference `eq:DxxDefNeumann' on page 76 undefined on input line 286.
+
+
+LaTeX Warning: Citation `theBible' on page 76 undefined on input line 306.
+
+
+LaTeX Warning: Reference `tab:stiffStringParams' on page 76 undefined on input line 306.
+
+[76]
+
+LaTeX Warning: Reference `sec:stabilityAnalysis' on page 77 undefined on input line 333.
+
+
+LaTeX Warning: Reference `eq:stiffStringFDS' on page 77 undefined on input line 333.
+
+
+LaTeX Warning: Reference `eq:temporalAnsatz' on page 77 undefined on input line 335.
+
+
+LaTeX Warning: Reference `eq:dxxAnsatz' on page 77 undefined on input line 335.
+
+
+LaTeX Warning: Reference `eq:dxxxxAnsatz' on page 77 undefined on input line 335.
+
+
+LaTeX Warning: Reference `eq:stiffStringFDS' on page 77 undefined on input line 335.
+
+[77]
+
+LaTeX Warning: Reference `eq:polynomialForm' on page 78 undefined on input line 345.
+
+
+LaTeX Warning: Reference `eq:condition214' on page 78 undefined on input line 349.
+
+
+LaTeX Warning: Reference `eq:stiffStringCourant' on page 78 undefined on input line 367.
+
+[78]
+
+LaTeX Warning: Reference `eq:stiffStringStability' on page 79 undefined on input line 377.
+
+
+LaTeX Warning: Reference `sec:energyAnalysis' on page 79 undefined on input line 380.
+
+
+LaTeX Warning: Reference `eq:stiffStringPDE' on page 79 undefined on input line 380.
+
+
+LaTeX Warning: Reference `sec:energyAnalysis' on page 79 undefined on input line 384.
+
+
+LaTeX Warning: Reference `eq:discInnerProd' on page 79 undefined on input line 387.
+
+
+LaTeX Warning: Reference `eq:rOCStiffString' on page 79 undefined on input line 405.
+
+
+LaTeX Warning: Reference `sec:summationByParts' on page 79 undefined on input line 405.
+
+
+LaTeX Warning: Reference `eq:summationByPartsMinusBar' on page 79 undefined on input line 405.
+
+
+LaTeX Warning: Reference `eq:summationByPartsTwiceReduced' on page 79 undefined on input line 405.
+
+[79pdfTeX warning (ext4): destination with the same identifier (name{equation.4.3.25}) has been already used, duplicate ignored
 
 \@EveryShipout@Output ...@Org@Shipout \box \@cclv 
                                                   
 l.415 \end{align*}
-                  ] [78]
+                  ]
 
-LaTeX Warning: Reference `fig:stiffStringModalPlot' on page 79 undefined on input line 481.
+LaTeX Warning: Reference `eq:BCclampedDisc' on page 80 undefined on input line 416.
 
-[79]
+
+LaTeX Warning: Reference `eq:BCsimplySupportedDisc' on page 80 undefined on input line 416.
+
+
+LaTeX Warning: Reference `eq:BCfreeDisc' on page 80 undefined on input line 416.
+
+
+LaTeX Warning: Reference `eq:primedInnerProd' on page 80 undefined on input line 416.
+
+
+LaTeX Warning: Reference `eq:summationByPartsTwicePrimed' on page 80 undefined on input line 416.
+
+
+LaTeX Warning: Reference `eq:prodIdentity1' on page 80 undefined on input line 418.
+
+
+LaTeX Warning: Reference `eq:prodIdentity2' on page 80 undefined on input line 418.
+
+
+LaTeX Warning: Reference `eq:energyBalanceStiffString' on page 80 undefined on input line 434.
+
+
+LaTeX Warning: Reference `eq:energyBalance1DWave' on page 80 undefined on input line 434.
+
+
+LaTeX Warning: Reference `eq:energyBalanceStiffString' on page 80 undefined on input line 434.
+
+
+LaTeX Warning: Reference `eq:dampingTermStiffString' on page 80 undefined on input line 442.
+
+[80]
+
+LaTeX Warning: Reference `eq:stiffStringFDS' on page 81 undefined on input line 455.
+
+
+LaTeX Warning: Reference `sec:oneStepForm' on page 81 undefined on input line 455.
+
+
+LaTeX Warning: Reference `eq:matrixFormStiffString' on page 81 undefined on input line 455.
+
+
+LaTeX Warning: Reference `sec:implementationStiffString' on page 81 undefined on input line 471.
+
+
+LaTeX Warning: Reference `sec:eigenValueProblems' on page 81 undefined on input line 473.
+
+
+LaTeX Warning: Reference `fig:stiffStringModalPlot' on page 81 undefined on input line 481.
+
+
+LaTeX Warning: Reference `tab:stiffStringParams' on page 81 undefined on input line 483.
+
+
+LaTeX Warning: Reference `eq:stiffStringPDECompact' on page 81 undefined on input line 486.
+
+[81]
+
+LaTeX Warning: Reference `fig:stencilStiffStringImplicit' on page 82 undefined on input line 490.
+
+
+LaTeX Warning: Reference `sec:linearEquations' on page 82 undefined on input line 492.
+
+
+LaTeX Warning: Reference `sec:RTmatrixInversion' on page 82 undefined on input line 492.
+
 Package epstopdf Info: Source file: <figures/resonators/stencilImplicitStiffString.eps>
 (epstopdf)                    date: 2021-05-27 12:31:06
 (epstopdf)                    size: 59806 bytes
@@ -2462,833 +3913,179 @@ Package epstopdf Info: Source file: <figures/resonators/stencilImplicitStiffStri
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf figures/resonators/stencilImplicitStiffString.eps>
 (epstopdf)             \includegraphics on input line 503.
 Package epstopdf Info: Output file is already uptodate.
- <figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf, id=2540, 602.25pt x 401.5pt>
+<figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf, id=1135, 602.25pt x 401.5pt>
 File: figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf Graphic file (type pdf)
  <use figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf used on input line 503.
 (pdftex.def)             Requested size: 273.14749pt x 182.1069pt.
- [80 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf>]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/brass.tex [81] [82
+
+
+LaTeX Warning: Reference `eq:stiffStringFDSImplicit' on page 82 undefined on input line 504.
+
+
+LaTeX Warning: Reference `eq:stiffStringFDSImplicit' on page 82 undefined on input line 504.
+
+
+LaTeX Warning: Reference `sec:stabilityAnalysis' on page 82 undefined on input line 508.
+
+[82 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf>]
+
+LaTeX Warning: Reference `eq:polynomialForm' on page 83 undefined on input line 519.
+
+
+LaTeX Warning: Reference `eq:condition214' on page 83 undefined on input line 523.
+
+
+LaTeX Warning: Reference `eq:matrixFormStiffStringImplicit' on page 83 undefined on input line 533.
+
+
+LaTeX Warning: Reference `eq:modalForm' on page 83 undefined on input line 533.
+
+
+LaTeX Warning: Reference `sec:oneStepForm' on page 83 undefined on input line 533.
+
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/brass.tex [83] [84
 
 ]
 Chapter 5.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/2Dsystems.tex [83] [84
 
-]
+LaTeX Warning: Citation `Bilbao2018' on page 85 undefined on input line 7.
+
+
+LaTeX Warning: Reference `eq:webstersPDE' on page 85 undefined on input line 14.
+
+
+LaTeX Warning: Citation `Bilbao2018' on page 85 undefined on input line 14.
+
+
+LaTeX Warning: Reference `eq:discWebster' on page 85 undefined on input line 22.
+
+
+LaTeX Warning: Citation `theBible' on page 85 undefined on input line 22.
+
+
+LaTeX Warning: Reference `eq:discWebster' on page 85 undefined on input line 26.
+
+
+LaTeX Warning: Reference `app:webstersUpdateEq' on page 85 undefined on input line 26.
+
+[85]
+
+LaTeX Warning: Citation `Bilbao2018' on page 86 undefined on input line 30.
+
+
+LaTeX Warning: Citation `Bilbao2018' on page 86 undefined on input line 33.
+
+
+LaTeX Warning: Citation `theBible' on page 86 undefined on input line 42.
+
+
+LaTeX Warning: Reference `eq:webstersUpdateEq' on page 86 undefined on input line 53.
+
+[86pdfTeX warning (ext4): destination with the same identifier (name{equation.5.1.9}) has been already used, duplicate ignored
+
+\@EveryShipout@Output ...@Org@Shipout \box \@cclv 
+                                                  
+l.69 \end{equation}
+                   ]
+
+LaTeX Warning: Reference `sec:radiating' on page 87 undefined on input line 70.
+
+
+LaTeX Warning: Reference `eq:openClosed' on page 87 undefined on input line 74.
+
+
+LaTeX Warning: Reference `eq:openClosed' on page 87 undefined on input line 80.
+
+
+LaTeX Warning: Citation `theBible' on page 87 undefined on input line 84.
+
+
+LaTeX Warning: Citation `Atig2004' on page 87 undefined on input line 88.
+
+
+LaTeX Warning: Reference `eq:radCont' on page 87 undefined on input line 88.
+
+
+LaTeX Warning: Reference `eq:radCont' on page 87 undefined on input line 95.
+
+
+LaTeX Warning: Citation `theBible' on page 87 undefined on input line 95.
+
+
+LaTeX Warning: Reference `eq:webstersUpdateEq' on page 87 undefined on input line 104.
+
+
+LaTeX Warning: Reference `app:centeredRad' on page 87 undefined on input line 104.
+
+[87]
+
+LaTeX Warning: Citation `theBible' on page 88 undefined on input line 108.
+
+
+LaTeX Warning: Reference `eq:webstersUpdateEq' on page 88 undefined on input line 117.
+
+
+LaTeX Warning: Reference `app:nonCentRad' on page 88 undefined on input line 117.
+
+
+Overfull \hbox (58.01448pt too wide) detected at line 120
+[][]\OT1/cmr/m/n/10 	[] = []\OML/cmm/m/it/10 :
+ []
+
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/resonators/2Dsystems.tex [88]
 Chapter 6.
-[85])) [86] [87
 
-] [88] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/exciters.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/initialcond.tex [89
+LaTeX Warning: Reference `ch:FDTD' on page 89 undefined on input line 15.
 
-] [90
 
-]
-Chapter 7.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/continuous.tex [91] [92
+LaTeX Warning: Reference `ch:analysis' on page 89 undefined on input line 21.
+
+[89
 
 ]
-Chapter 8.
-Package epstopdf Info: Source file: <figures/exciters/helmholtz.eps>
-(epstopdf)                    date: 2021-05-28 12:18:17
-(epstopdf)                    size: 30929 bytes
-(epstopdf)             Output file: <figures/exciters/helmholtz-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-05-28 12:18:22
-(epstopdf)                    size: 9184 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/exciters/helmholtz-eps-converted-to.pdf figures/exciters/helmholtz.eps>
-(epstopdf)             \includegraphics on input line 34.
-Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/helmholtz-eps-converted-to.pdf, id=2635, 562.1pt x 284.06125pt>
-File: figures/exciters/helmholtz-eps-converted-to.pdf Graphic file (type pdf)
- <use figures/exciters/helmholtz-eps-converted-to.pdf>
-Package pdftex.def Info: figures/exciters/helmholtz-eps-converted-to.pdf used on input line 34.
-(pdftex.def)             Requested size: 341.43307pt x 172.54457pt.
 
-Overfull \hbox (6.66595pt too wide) in paragraph at lines 38--39
- [][] 
- []
+LaTeX Warning: Citation `Duyne1993' on page 90 undefined on input line 44.
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: Reference `paper:A' on page 90 undefined on input line 53.
 
-[93]
-Package epstopdf Info: Source file: <figures/exciters/frictionCharacteristic.eps>
-(epstopdf)                    date: 2021-05-28 11:44:05
-(epstopdf)                    size: 56411 bytes
-(epstopdf)             Output file: <figures/exciters/frictionCharacteristic-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-05-28 11:45:36
-(epstopdf)                    size: 14347 bytes
-(epstopdf)             Command: <repstopdf --outfile=figures/exciters/frictionCharacteristic-eps-converted-to.pdf figures/exciters/frictionCharacteristic.eps>
-(epstopdf)             \includegraphics on input line 60.
-Package epstopdf Info: Output file is already uptodate.
- <figures/exciters/frictionCharacteristic-eps-converted-to.pdf, id=2651, 562.1pt x 235.88126pt>
-File: figures/exciters/frictionCharacteristic-eps-converted-to.pdf Graphic file (type pdf)
- <use figures/exciters/frictionCharacteristic-eps-converted-to.pdf>
-Package pdftex.def Info: figures/exciters/frictionCharacteristic-eps-converted-to.pdf used on input line 60.
-(pdftex.def)             Requested size: 273.14749pt x 114.62183pt.
- [94 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/helmholtz-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/frictionCharacteristic-eps-converted-to.pdf>]
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
-(Font)              scaled to size 8.0pt on input line 217.
-LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
-(Font)              scaled to size 6.0pt on input line 217.
-LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
-(Font)              scaled to size 5.0pt on input line 217.
-)) [95] [96
 
-] [97] [98] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/interactions.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/connections.tex [99
+LaTeX Warning: Reference `paper:B' on page 90 undefined on input line 53.
 
-] [100
 
-]
-Chapter 9.
-<figures/fdtd/gridFigure2.pdf, id=2711, 1304.875pt x 250.9375pt>
-File: figures/fdtd/gridFigure2.pdf Graphic file (type pdf)
- <use figures/fdtd/gridFigure2.pdf>
-Package pdftex.def Info: figures/fdtd/gridFigure2.pdf used on input line 16.
-(pdftex.def)             Requested size: 256.0748pt x 49.24467pt.
- [101 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/gridFigure2.pdf>] [102]
+LaTeX Warning: Reference `paper:D' on page 90 undefined on input line 53.
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 99.
 
+LaTeX Warning: Reference `paper:E' on page 90 undefined on input line 53.
 
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 99.
 
-[103]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/collisions.tex [104]
-Chapter 10.
-)) [105
+LaTeX Warning: Reference `eq:laplacian' on page 90 undefined on input line 54.
 
-] [106
 
-] [107] [108] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/dynamic.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/background.tex
-Chapter 11.
-[109
+LaTeX Warning: Reference `eq:2DwavePDE' on page 90 undefined on input line 60.
 
-]
-Overfull \hbox (80.99535pt too wide) in paragraph at lines 32--33
-[]\T1/zpltlf/m/n/10 Flex-a-tone (could also be 1D tbh..): https://www.youtube.com/watch?v=HEW1aG8XJQk. 
- []
 
+LaTeX Warning: Reference `eq:platePDE' on page 90 undefined on input line 60.
 
-Overfull \hbox (105.62613pt too wide) in paragraph at lines 43--45
-[]\T1/zpltlf/m/n/10 Something about time-dependent vari-able co-ef-fi-cient Stokes flow: https://arxiv.org/abs/1010.2832 
- []
 
+LaTeX Warning: Reference `paper:F' on page 90 undefined on input line 65.
 
-Overfull \hbox (92.51633pt too wide) in paragraph at lines 46--47
-[]\T1/zpltlf/m/n/10 Time-varying prop-a-ga-tion speed in waveg-uides: https://quod.lib.umich.edu/cgi/p/pod/dod-
- []
+)) [90]
 
+LaTeX Warning: Marginpar on page 91 moved.
 
-Overfull \hbox (161.7167pt too wide) in paragraph at lines 46--47
-\T1/zpltlf/m/n/10 idx/fractional-delay-application-time-varying-propagation-speed.pdf?c=icmc;idno=bbp2372.1997.069;format=pdf 
- []
+No file master.bbl.
+[91] [92
 
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/method.tex
-Overfull \hbox (29.25662pt too wide) in paragraph at lines 48--1
-\T1/zpltlf/m/n/10 Room Acous-tics Sim-u-la-tion ([][]$\T1/pcr/m/n/10 https : / / www . researchgate . net / publication /
- []
-
-
-Overfull \hbox (48.56693pt too wide) in paragraph at lines 48--1
-\T1/pcr/m/n/10 260701231 _ Modeling _ of _ Complex _ Geometries _ and _ Boundary _ Conditions _
- []
-
-
-Overfull \hbox (24.56693pt too wide) in paragraph at lines 48--1
-\T1/pcr/m/n/10 in _ Finite _ DifferenceFinite _ Volume _ Time _ Domain _ Room _ Acoustics _
- []
-
-
-LaTeX Warning: Reference `eq:compactLambda' on page 110 undefined on input line 8.
-
-[110]
-
-LaTeX Warning: Reference `eq:orderOfCalcGrid' on page 111 undefined on input line 11.
-
-Package epstopdf Info: Source file: <dynamic/fullGrid.eps>
-(epstopdf)                    date: 2020-10-16 16:29:27
-(epstopdf)                    size: 38683 bytes
-(epstopdf)             Output file: <dynamic/fullGrid-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-15 18:04:16
-(epstopdf)                    size: 18795 bytes
-(epstopdf)             Command: <repstopdf --outfile=dynamic/fullGrid-eps-converted-to.pdf dynamic/fullGrid.eps>
-(epstopdf)             \includegraphics on input line 18.
-Package epstopdf Info: Output file is already uptodate.
-<dynamic/fullGrid-eps-converted-to.pdf, id=2868, 501.875pt x 301.125pt>
-File: dynamic/fullGrid-eps-converted-to.pdf Graphic file (type pdf)
- <use dynamic/fullGrid-eps-converted-to.pdf>
-Package pdftex.def Info: dynamic/fullGrid-eps-converted-to.pdf used on input line 18.
-(pdftex.def)             Requested size: 170.71654pt x 102.43167pt.
-
-
-LaTeX Warning: Reference `eq:compactLambda' on page 111 undefined on input line 22.
-
-
-LaTeX Warning: Reference `eq:fmax' on page 111 undefined on input line 24.
-
-[111 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/fullGrid-eps-converted-to.pdf>]
-
-LaTeX Warning: Reference `eq:orderOfCalcGrid' on page 112 undefined on input line 36.
-
-Package epstopdf Info: Source file: <dynamic/simplySupportedBoundary.eps>
-(epstopdf)                    date: 2020-10-16 15:43:09
-(epstopdf)                    size: 20778 bytes
-(epstopdf)             Output file: <dynamic/simplySupportedBoundary-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-15 18:04:46
-(epstopdf)                    size: 8765 bytes
-(epstopdf)             Command: <repstopdf --outfile=dynamic/simplySupportedBoundary-eps-converted-to.pdf dynamic/simplySupportedBoundary.eps>
-(epstopdf)             \includegraphics on input line 56.
-Package epstopdf Info: Output file is already uptodate.
-<dynamic/simplySupportedBoundary-eps-converted-to.pdf, id=2883, 562.1pt x 421.575pt>
-File: dynamic/simplySupportedBoundary-eps-converted-to.pdf Graphic file (type pdf)
- <use dynamic/simplySupportedBoundary-eps-converted-to.pdf>
-Package pdftex.def Info: dynamic/simplySupportedBoundary-eps-converted-to.pdf used on input line 56.
-(pdftex.def)             Requested size: 239.0021pt x 179.2474pt.
-
-
-LaTeX Warning: Reference `eq:numberOfIntervals' on page 112 undefined on input line 60.
-
-[112 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/simplySupportedBoundary-eps-converted-to.pdf>]
-Package epstopdf Info: Source file: <dynamic/boundaryGrid.eps>
-(epstopdf)                    date: 2020-10-16 11:05:46
-(epstopdf)                    size: 21885 bytes
-(epstopdf)             Output file: <dynamic/boundaryGrid-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-15 18:05:08
-(epstopdf)                    size: 23013 bytes
-(epstopdf)             Command: <repstopdf --outfile=dynamic/boundaryGrid-eps-converted-to.pdf dynamic/boundaryGrid.eps>
-(epstopdf)             \includegraphics on input line 73.
-Package epstopdf Info: Output file is already uptodate.
- <dynamic/boundaryGrid-eps-converted-to.pdf, id=2898, 562.1pt x 421.575pt>
-File: dynamic/boundaryGrid-eps-converted-to.pdf Graphic file (type pdf)
- <use dynamic/boundaryGrid-eps-converted-to.pdf>
-Package pdftex.def Info: dynamic/boundaryGrid-eps-converted-to.pdf used on input line 73.
-(pdftex.def)             Requested size: 239.0021pt x 179.2474pt.
- [113 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/boundaryGrid-eps-converted-to.pdf>]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/analysis.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/dynamic/conclusion.tex)) [114] [115
-
-] [116] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/realtime.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/implementation.tex [117
-
-] [118
-
-]
-Chapter 12.
-[119] (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2015/06/04 1.6 listings language file
-) (/usr/local/texlive/2016/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-) [120] <figures/realtime/vectorCopy.pdf, id=2963, 459.63718pt x 211.7511pt>
-File: figures/realtime/vectorCopy.pdf Graphic file (type pdf)
- <use figures/realtime/vectorCopy.pdf>
-Package pdftex.def Info: figures/realtime/vectorCopy.pdf used on input line 94.
-(pdftex.def)             Requested size: 341.43307pt x 157.29755pt.
- <figures/realtime/pointerSwitch.pdf, id=2964, 472.64577pt x 225.7233pt>
-File: figures/realtime/pointerSwitch.pdf Graphic file (type pdf)
- <use figures/realtime/pointerSwitch.pdf>
-Package pdftex.def Info: figures/realtime/pointerSwitch.pdf used on input line 95.
-(pdftex.def)             Requested size: 341.43307pt x 163.06483pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 113.
-[121]
-Overfull \hbox (16.55943pt too wide) detected at line 150
-[][]\OML/cmm/m/it/10 u[] \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 u[] \OT1/cmr/m/n/10 + [] [] [] [] [] \OML/cmm/m/it/10 u[]:
- []
-
-[122] [123] [124]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/realtime/control.tex [125] [126 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/realtime/vectorCopy.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/realtime/pointerSwitch.pdf>]
-Chapter 13.
-)) [127
-
-] [128
-
-] [129] [130] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/instrument.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/introduction.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/largeScale.tex [131
-
-] [132
-
-]
-Chapter 14.
-[133]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/tromba.tex [134]
-Chapter 15.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/instrument/trombone.tex [135
-
-] [136
-
-]
-Chapter 16.
-
-LaTeX Warning: Citation `Webster19' on page 137 undefined on input line 18.
-
-
-LaTeX Warning: Citation `Bilbao2016' on page 137 undefined on input line 18.
-
-[137]
-
-LaTeX Warning: Reference `eq:connectionInterpol' on page 138 undefined on input line 26.
-
-)) [138] [139
-
-] [140] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/conclusion/conclusion.tex
-Chapter 17.
-) [141
-
-]
-
-LaTeX Warning: Marginpar on page 142 moved.
-
-(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.bbl [142] [143
-
-] [144] [145] [146]) [147] [148
-
-] [149] [150] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/appendices.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/listOfSymbols.tex
+] [93] [94] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/appendices.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/listOfSymbols.tex
 Appendix A.
+
+LaTeX Warning: Reference `ch:trombone' on page 95 undefined on input line 2.
+
+
+LaTeX Warning: Reference `ch:2Dsyst' on page 95 undefined on input line 2.
+
 
 Overfull \hbox (7.54721pt too wide) in alignment at lines 5--8
  [] [] [] 
@@ -3304,31 +4101,72 @@ Overfull \hbox (7.54721pt too wide) in alignment at lines 29--50
  [] [] [] 
  []
 
-[151
+[95
 
 ]
 Overfull \hbox (7.54721pt too wide) in alignment at lines 50--70
  [] [] [] 
  []
 
-[152]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/listOfAbbreviations.tex [153] [154
+[96]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/listOfAbbreviations.tex [97] [98
 
 ]
 Appendix B.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/codeSnippets.tex [155] [156
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/codeSnippets.tex [99] [100
 
 ]
 Appendix C.
-[157] [158])) [159] [160
 
-] [161] [162] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperErrata.tex
+LaTeX Warning: Reference `sec:massSpringSystem' on page 101 undefined on input line 4.
+
+
+LaTeX Warning: Reference `eq:massSpringUpdate' on page 101 undefined on input line 28.
+
+[101]
+
+LaTeX Warning: Reference `sec:1DWave' on page 102 undefined on input line 39.
+
+
+LaTeX Warning: Reference `eq:1DwaveUpdate' on page 102 undefined on input line 84.
+
+
+LaTeX Warning: Reference `eq:1DWaveLeftBound' on page 102 undefined on input line 88.
+
+[102]
+
+LaTeX Warning: Reference `eq:1DWaveRightBound' on page 103 undefined on input line 94.
+
+))
+LaTeX Font Info:    Font shape `T1/zpltlf/bx/n' in size <9> not available
+(Font)              Font shape `T1/zpltlf/b/n' tried instead on input line 211.
+LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
+(Font)              scaled to size 9.0pt on input line 211.
+
+
+LaTeX Warning: Reference `sec:1DWave' on page 103 undefined on input line 211.
+
+[103] [104
+
+] [105] [106] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperErrata.tex
 Underfull \hbox (badness 10000) in paragraph at lines 2--4
 
  []
 
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/papers.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/paperA.tex [163
 
-] [164
+LaTeX Warning: Reference `paper:D' on page 107 undefined on input line 4.
+
+
+LaTeX Warning: Reference `paper:F' on page 107 undefined on input line 11.
+
+
+LaTeX Warning: Reference `paper:G' on page 107 undefined on input line 21.
+
+
+LaTeX Warning: Citation `Bilbao2019CMJa' on page 107 undefined on input line 23.
+
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/papers.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/paperA.tex [107
+
+] [108
 
 ]
 Paper A.
@@ -3336,48 +4174,67 @@ LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
 (Font)              scaled to size 7.0pt on input line 10.
 LaTeX Font Info:    Font shape `TS1/zpltlf/m/it' will be
 (Font)              scaled to size 7.0pt on input line 10.
-(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/abstract.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/introduction.tex [165]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/conclusion.tex)) [166]
+(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/abstract.tex) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/introduction.tex [109]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/sections/conclusion.tex)) [110]
 Paper B.
-[167
+[111
 
-] [168
+] [112
 
 ]
 Paper C.
-[169] [170
+[113] [114
 
 ]
 Paper D.
-[171] [172
+[115] [116
 
 ]
 Paper E.
-[173] [174
+[117] [118
 
 ]
 Paper F.
-[175] [176
+[119] [120
 
 ]
 Paper G.
-[177] [178
+[121] [122
 
 ]
 Paper H.
-)
+) [123]
 \tf@thm=\write13
 \openout13 = `master.thm'.
 
- [179] 
-AED: lastpage setting LastPage
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 231.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 231.
-(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 231.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 231.
-Package rerunfilecheck Info: File `master.out' has not changed.
-(rerunfilecheck)             Checksum: 4D4A5D4BC8FE83ABA24372752331916A;13093.
 
+
+LaTeX Warning: Marginpar on page 124 moved.
+
+[124]
+
+Package lastpage Warning: Rerun to get the references right on input line 241.
+
+
+AED: lastpage setting LastPage
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 241.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 241.
+(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.aux
+
+Package mparhack Warning: Marginpars may have changed.
+(mparhack)                Rerun to get them right.
+
+)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 241.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 241.
+
+
+Package rerunfilecheck Warning: File `master.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `master.out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  9D09FB4A551532D71B5EE0F138013849;7976.
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.5pt have occurred.
@@ -3386,7 +4243,7 @@ LaTeX Font Warning: Size substitutions with differences
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  )
 (\end occurred inside a group at level 3)
@@ -3396,18 +4253,18 @@ LaTeX Warning: There were multiply-defined labels.
 ### simple group (level 1) entered at line 504 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 51416 strings out of 493014
- 1134050 string characters out of 6133351
- 1536098 words of memory out of 5000000
- 52799 multiletter control sequences out of 15000+600000
- 97100 words of font info for 112 fonts, out of 8000000 for 9000
+ 49969 strings out of 493014
+ 1106226 string characters out of 6133351
+ 1500943 words of memory out of 5000000
+ 51831 multiletter control sequences out of 15000+600000
+ 96502 words of font info for 101 fonts, out of 8000000 for 9000
  1146 hyphenation exceptions out of 8191
- 65i,21n,101p,10491b,3881s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/newpx/ecsups.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplb.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
-Output written on /Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.pdf (201 pages, 1725696 bytes).
+ 65i,21n,112p,10491b,3289s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/newpx/ecsups.enc}{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplb.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplr.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
+Output written on /Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.pdf (142 pages, 1463971 bytes).
 PDF statistics:
- 3834 PDF objects out of 4296 (max. 8388607)
- 3438 compressed objects within 35 object streams
- 1115 named destinations out of 1200 (max. 500000)
- 1734 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1744 PDF objects out of 2073 (max. 8388607)
+ 1483 compressed objects within 15 object streams
+ 748 named destinations out of 1000 (max. 500000)
+ 302 words of extra memory for PDF output out of 10000 (max. 10000000)
 

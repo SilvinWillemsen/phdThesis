@@ -33,7 +33,11 @@
 \def\wln{w_l^n}
 \def\un{u^n}
 \def\ulmn{u_{l,m}^n}
-
+\def\Psiln{\Psi_l^n}
+\def\Psinp{\Psi_l^{n+1}}
+\def\Psinm{\Psi_l^{n-1}}
+\def\Psilp{\Psi_{l+1}^n}
+\def\Psilm{\Psi_{l-1}^n}
 
 % bold symbols (state vectors and matrices)
 \def\u{\mathbf{u}}
@@ -97,6 +101,9 @@
 \def\sz{\sigma_{0}}
 \def\so{\sigma_{1}}
 \def\vrel{v_\text{rel}}
+\def\Sbar{\bar{S}}
+\def\Sm{S_{l-1}}
+\def\Sp{S_{l+1}}
 
 \def\szX[#1]{\sigma_{0{#1}}}
 \def\soX[#1]{\sigma_{1{#1}}}
@@ -134,23 +141,23 @@
 \part{Resonators}\label{part:resonators}
 \input{resonators/resonators}
 
-\part{Exciters}\label{part:exciters}
-\input{exciters/exciters}
+% \part{Exciters}\label{part:exciters}
+% \input{exciters/exciters}
 
-\part{Interactions}\label{part:interactions}
-\input{interactions/interactions}
+% \part{Interactions}\label{part:interactions}
+% \input{interactions/interactions}
 
-\part{Dynamic Grid}\label{part:dynamicGrid}
-\input{dynamic/dynamic}
+% \part{Dynamic Grid}\label{part:dynamicGrid}
+% \input{dynamic/dynamic}
 
-\part{Real-Time Implementation and Control}\label{part:realtime}
-\input{realtime/realtime}
+% \part{Real-Time Implementation and Control}\label{part:realtime}
+% \input{realtime/realtime}
 
-\part{Complete Instruments}\label{part:instrument}
-\input{instrument/instrument}
+% \part{Complete Instruments}\label{part:instrument}
+% \input{instrument/instrument}
 
-\part{Conclusions and Perspectives}\label{part:instrument}
-\input{conclusion/conclusion.tex}
+% \part{Conclusions and Perspectives}\label{part:conclusion}
+% \input{conclusion/conclusion.tex}
 
 
 \pagebreak
@@ -225,7 +232,10 @@ display%
 [%code after title
 ]
   \end{center}}
-
+\pagebreak
+\pagestyle{empty}
+\justify
+\todo{format the blurb}Digital versions of musical instruments have been created for several decades, and for good reason! They are more compact, more easy to maintain, and less difficult to play than their real-life counterparts. One way to digitise an instrument is to record it and play back the samples, but this does not capture the entire range of expression of the real instrument. Simulating an instrument based on its physics, including its geometry and material properties, is much more flexible to player control. Although it requires more computational power to generate the sound in real time, the simulation could possibly go beyond what is physically possible. A violin growing into a cello, bowing your trumpet, your imagination is the limit...
 % \includepaper{papers/paperA/paperA}
 % \includepaper{papers/paperB/paperB}
 \end{document}

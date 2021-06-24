@@ -1,16 +1,38 @@
 \chapter{Physical Modelling of Musical Instruments}\label{ch:physMod}
-The interest in digitising musical instruments 
+Digital sound synthesis an increased interest in the last few decades. In the 1960s, efficient sinusoidal-based sound synthesis techniques such as additive synthesis \cite{additive}, or FM (frequency modulation) synthesis \cite{Chowning} were invented. The latter became widely popular through the Yamaha DX7 synthesiser created in 1983 that synthesised sounds based solely on this technique \cite{DX7}. Through a simple change of variables 
 
-This is for various reasons...
+As computing power increased, so did the popularity of using physically-based simulations of musical instruments.  using digital counterparts of 
 
-Physical modelling%, along with sampling synthesis (also known as wavetable synthesis \cite{Smith2010a}) and spectral modelling, 
-is a technique to synthesise sound. According to many, physical modelling is the best way to realistically and naturally simulate real-world musical instruments \cite{Valimaki2006, Smith2010b, theBible}. As this technique simulates the instrument based on its physics rather than using pre-recorded samples, it is more flexible to player-interaction and thus more realistic when synthesising sound in performance. Although physical models could potentially sound indistinguishable from the instrument that they are simulating, it has been impossible, until recently, to make high-quality -- defined here as non-linear and based on finite-difference (FD) schemes -- physical models ‘playable’ in real-time \cite{Smith2010a}. With the computational power we currently possess, we can run the simulations in real-time and make them available for musicians in latency-less applications. These applications include digital instrument plug-ins that can be used by music producers, but also resurrect old or rare instruments that can not be played anymore due to damage, or because they are too valuable. 
+to more to more computationally demanding techniques in the 
 
+
+
+
+
+The simulation\footnote{The term \textit{emulated} is only used in the title of this work (because of the alliteration), but is synonymous to \textit{simulated} in this context.} \todo{haha.. not sure whether to include} of traditional musical instruments has seen . From 
+
+
+
+
+\SWcomment[Stefania, I need you here for the proper references :)]
+
+The interest in creating virtual or digital musical instruments 
+
+Virtualisation or digitisation 
+
+A simulation of a musical instrument is defined as an implementation of 
+
+where the sound is generated on the spot. Sample-based sound synthesis, where the sound of a real instrument has been recorded and is played back through a digital device is not considered a simulation.
+
+The umbrella term would be digital musical instrument,  
+
+Physical modelling %, along with sampling synthesis (also known as wavetable synthesis \cite{Smith2010a}) and spectral modelling, 
+is a technique \SWcomment[/approach] to synthesise sound. It is widely accepted that physical modelling is the best way to realistically and naturally simulate real-world musical instruments \cite{Valimaki2006, Smith2010b, theBible}. As this technique simulates the instrument based on its physics rather than using pre-recorded samples, it is more flexible to player-interaction and thus more realistic when synthesising sound in performance. Although physical models could potentially sound indistinguishable from the instrument that they are simulating, it has been impossible, until recently, to make highly physically accurate physical models ‘playable’ in real-time \cite{Smith2010a}. With the computational power we currently possess, we can run the simulations in real-time and make them available for musicians in latency-less applications. These applications include digital instrument plug-ins that can be used by music producers, but also resurrect old or rare instruments that can not be played anymore due to damage, or because they are too valuable. 
+
+
+The history of physical modelling of musical instruments..?
 
 \section{Physical Modelling Techniques}\label{sec:physModTech}
-Nearly any musical instrument can be subdivided into a resonator component, an exciter component, and the interaction between them. This modular approach to musical instruments was first introduced by Borin, De Poli and Sarti in \cite{Borin1989} and is used to structure this work.
-
-
 The time-evolution of dynamic systems, including that of musical instruments, can be well described by partial differential equations (PDEs) \cite{Fletcher1998, theBible}. Examples of a dynamic systems are a guitar string, a drum-membrane, or air propagation in a concert hall; three very different concepts, but all based on the same types of equations of motion. Many of these equations and other knowledge currently available on the physics of musical instruments have been collected by Fletcher and Rossing in \cite{Fletcher1998}. Though these equations are very powerful, only few have a closed-form solution, and in order for them to be implemented, they need to be approximated. In the past decades, much research has been done on implementing these PDEs to model and simulate different musical instruments. Great overviews of implementation techniques are given by, for example, Vesa V{\"a}lim{\"a}ki et al. in \cite{Valimaki2006} and Julius O. Smith in \cite{Smith2010a, Smith2010b}. 
 
 Some techniques that are described in this literature can be found below:
@@ -19,53 +41,43 @@ Some techniques that are described in this literature can be found below:
 \textit{Modal Synthesis} decomposes a system into a series of uncoupled `modes of vibration'. First used in a musical context by Morrison and Adrien in \cite{Morrison1993}, it is a technique that is still used today due to its computational efficiency, especially when simulating higher dimensional systems such as (two-dimensional) plates or (three-dimensional) rooms. It is especially effective when used to describe a linear system \cite{Bilbao2018} with a small number of long-resonating modes \cite{Smith2010a}. When used to describe non-linear systems, however, the modes become `coupled’ and the system will quickly become more computationally expensive. Recent developments using the FAUST programming language allow a 3D-mesh model of any three-dimensional object to directly be decomposed into its modes of vibration \cite{MichonMesh2Faust2017}.
 \\
 \\
-\textit{Finite-Difference Time Domain} methods (FDTD) aim to solve PDEs by approximating them with difference equations, discretising a continuous system into grid-points in space and time. In a musical context, this technique was first used for the case of string vibration in \cite{Ruiz1969, Hiller1971I, Hiller1971II} and later in \cite{Chaigne1992, Chaigne1994}. Stefan Bilbao extensively describes this method in \cite{theBible, Bilbao2018}. Although computationally expensive, especially when working with higher-dimensional systems this technique can accurately resemble any system, whether it is linear or non-linear, time-invariant or time-variant.
+\textit{Finite-Difference Time Domain} methods (FDTD) aim to solve PDEs by approximating them with difference equations, discretising a continuous system into grid-points in space and time. In a musical context, this technique was first used for the case of string vibration in \cite{Ruiz1969, Hiller1971I, Hiller1971II} and later in \cite{Chaigne1992, Chaigne1994}. Stefan Bilbao extensively describes this method in \cite{theBible, Bilbao2018}. Although computationally expensive, especially when working with higher-dimensional systems, this technique can accurately model any system, whether it is linear or non-linear, time-invariant or time-variant.
 \\
 \\
-\textit{Digital Waveguide Modelling} (or Digital Waveguides (DWG)) is a modelling technique that discretises wave propagation and scattering. The technique was first presented in \cite{Smith1992}, and is mostly used for one-dimensional systems, such as strings and acoustic tubes and decomposes their system into travelling wave components. This technique has also been used in higher-dimensional systems, but is superior in efficiency when used in the one-dimensional case \cite{Valimaki2006}. Some authors have combined DWGs with FD schemes (such as in \cite{Erkut2002, Maestre2014}) to accurately model non-linear behaviour while maintaining high-speed implementation.
+\textit{Digital Waveguide Modelling} (or Digital Waveguides (DWGs)) is a modelling technique that discretises wave propagation and scattering. The technique was first presented in \cite{Smith1992}, and is mostly used for one-dimensional systems, such as strings and acoustic tubes and decomposes their system into travelling wave components. This technique has also been used in higher-dimensional systems, but is superior in efficiency when used in the one-dimensional case \cite{Valimaki2006}. Some authors have combined DWGs with FD schemes (such as in \cite{Erkut2002, Maestre2014}) to accurately model non-linear behaviour while maintaining high-speed implementation.
 \\
 \\
 \textit{Mass-spring networks} can be similar in nature to FDTD methods, but treat each grid point as an individual mass connected to other masses through springs in a network. Pioneered in a musical context by Cadoz in \cite{Cadoz1979, Cadoz1983, Cadoz1993} it is currently being further developed by Leonard and Villeneuve in a real-time, interactive environment \cite{Villeneuve2019, Leonard2019}.
 
 Other techniques include Functional Transformation Method \cite{Trautmann2003}, state-space modelling \cite{Matignon1992}, \SWcomment[wave-domain modelling  and energy-based port-Hamiltonian]\todo{should I include this}
 
-\begin{itemize}
-    \item Modal Synthesis
-    \begin{itemize}
-        \item modes of vibration
-        \item additive synthesis
-        \item independent vibration
-    \end{itemize}
-    \item Finite-difference Time-domain methods
-    \item Finite Element Methods
-    \item Digital waveguides
-    \item Mass-spring systems / networks 
-    \begin{itemize}
-        \item Cadoz with CORDIS-ANIMA
-        \item mi-Creative
-    \end{itemize}
-\end{itemize}
-Weird
-\begin{itemize}
-    \item Functional transformation method
-    \item State-space
-    \item Wave-domain
-    \item Energy-based (port-hamiltonian)
-\end{itemize}
-    
-FDTD: 
+
+This work focuses on FDTD methods 
+
+
+The main advantage of FDTD methods is that they are extremely general and flexible in terms of the type and amount of systems they can model. They allow any set of PDEs can be directly numerically simulated without making any assumptions regarding the 
+
+modular: PDEs can be connected
+
+Compared to other techniques ....
+
+DWGs could be considered `physically inspired' FDTD methods 
 
 Energy techniques: \cite{Gustafsson2013}
 von Neumann analysis: \cite{Strikwerda1989}
 
-
-The main advantage of FDTD methods is that they are extremely general and flexible in terms of  the amount of systems they can model. Any set of PDEs can be directly numerically simulated. 
-
 Using FDTD methods can be quite computationally heavy. 
 Moore's law \cite{Moore1965}
 
+Nearly any musical instrument can be subdivided into a resonator component, an exciter component, and the interaction between them. This modular approach to musical instruments was first introduced by Borin, De Poli and Sarti in \cite{Borin1989} and is used to structure this work\todo{interactions in \cite{Borin1989} are not the same as the interactions "Part" here..}. Examples or resonator-exciter combinations are the violin and the bow, or the trumpet and the lips of the player. Note that Part \ref{part:interactions} does not include the interactions between the resonator and exciter, but rather the interactions between different parts of the resonator itself, for example, the interactions between the string and the body of a violin, which both are resonators. \todo{reread} 
+
+A resonator is a passive system, in this work mostly assumed to be linear, that does not emit sound unless triggered by an external source. Exciters can be seen as these external sources, and generally have a nonlinear element. Exciters insert energy into a resonator and cause it to vibrate and emit sound.
+
+In the real world, the interaction between the exciter and the resonator is bi-directional, hence called an interaction. In other words, the exciter not only affects the state of the resonator, but the resonator affects the exciter as well. For the most part, this is also what is attempted to model in this work.
+
 \section{Real-Time Implementation}
 Although many techniques to digitally simulate musical instruments exist
+
 proving that we have only recently reached the computing power in personal computers to make real-time playability of these models an option. The biggest challenge in real-time audio applications as opposed to those only involving graphics, is that the sample rate is extremely high. As Nyquist's sampling theory tells us, a sampling rate of at least 40 kHz is necessary to produce frequencies up to the human hearing limit of 20 kHz \textbf{[Nyquist]}. Visuals 
 
 Even though physical modelling has been a popular research field in the past few decades, relatively little research has been done on making the models work in real-time, i.e., `playable’ \cite{Mehes2016}. Several virtual string instruments and different electric pianos have been made real-time by Pfeifle and Bader in \cite{Pfeifle2012, Pfeifle2015, Pfeifle2017}. They used field programmable gate arrays (FPGAs) for implementing models based on FDTD methods. Furthermore, Roland’s V-series use COSM (Composite Object Sound Modelling) technology \cite{Bybee2019} that implement real-time physical models in hardware instruments. In the NESS project \cite{Bilbao2019CMJa,Bilbao2019CMJb}, Stefan Bilbao and his team focused on implementing systems using FDTD methods in real-time.
@@ -73,9 +85,13 @@ Even though physical modelling has been a popular research field in the past few
 Real-time: no noticeable latency
 
 \section{Why?\todo{exactly as in \cite{theBible}}}
+So why would we go through all this hassle of modelling musical instruments? Could we not use a recording of the original and play that back at the right moment? Or taking another step back, why not buy a real instrument and learn to play that instead? ``I'm a musician. Will I be out of a job if you keep making physical models?''
 
-\subsection{Samples vs. Physical Modelling} 
-Digital musical instruments based on samples, or recordings of an actual instrument, have an advantage of having an optimally realistic sound, as the output is exactly that of the original instrument. The digital version should thus sound indistinguishable from the instrument they try to digitise. Furthermore, the playback of samples is extremely computationally efficient as it simply requires loading data and playing this through a set of speakers.
+
+Physical modelling is not here to replace the original instruments and the musicians playing them. Instead, it can be used as a tool to understand the physics of existing instruments and possibly go beyond. Simulated instruments are not restricted by physics anymore and could provide new ways of expression for the musician. 
+
+\subsection{Samples vs. Physical Modelling}
+Digital musical instruments based on recordings of an actual instrument, referred to as \textit{samples}, have an advantage of having an optimally realistic sound. As the output of the digitised instrument is exactly that of the original instrument, the digital version should sound indistinguishable from the original. Furthermore, using samples is extremely computationally efficient as it simply requires loading the data and playing this back to the player.
 
 That said, these are the only advantages of using samples over physical models for digitising a musical instrument. Samples are static and unable to adapt to changes in performance; the recording is made by one player, using a specific microphone and location. Moreover, capturing the the entire interaction space of an instrument is nearly impossible. Imagine recording a violin with every single combination of bowing force, velocity, position, duration and other aspects such as vibrato, pizzicato. Even if a complete sample library could be created, this would contain an immense amount of data. Using physical models to simulate the musical instrument, on the other hand, allows the sound to be generated on the spot based on physical parameters that the user can interact with. The 
 
@@ -83,17 +99,19 @@ Trade off between storage and speed, or hard-disk and processing power.
 
 
 \subsection{Resurrect Old or Rare Instruments}
-In some cases, recording samples of an instrument is not even possible as they are too old, too rare or too vulnerable to be played. 
+Why not use the real instrument in the first place? 
+In some cases, recording samples of an instrument is not even possible as they are too old, too rare or too vulnerable to be played. The physics of the instrument, including the geometry and material properties, are available, and could potentially be modelled digitally. 
 
 
 Even popular instruments require maintenance and might need to be replaced after years of usage. 
 
-
+Entire orchestras come from plug-ins\todo{FULL DOC SWEEP: plugins or plug-ins}
 
 
 \subsection{Go beyond what is physically possible} 
-Even though there are already existing real-time PMs (see Section \ref{SOTA}), in my opinion, they do not make use of the full potential of using physical modelling for sound synthesis. PMs make it possible for parameters like shape, size, material properties, etc. to be changed, which is physically impossible or very hard to do. Furthermore, different instrument components can be combined to create hybrid instruments which can result in unique sounds that can only be created using PMs.
-The history of physical modelling of musical instruments
+As a virtual\todo{check wording} instrument is not restricted to the laws of physics in the real world, this opens up a world of possibilities.
+
+Musical instrument simulations make it possible for parameters like shape, size, material properties, etc. to be dynamically changed, which is physically impossible or very hard to do. Furthermore, different instrument components can be combined to create hybrid instruments. For example, one could bow the air in a trumpet, or lip-excite a string (similar to what Smith states in \cite{Smith2010a}). This could potentially resulting in unique sounds that can only be created using physical models.
 
 \section{Project Objectives and Main Contributions}
 Over the past few decades, much work has been done on the accurate modelling of physical phenomena. In the field of sound and musical instruments.. 

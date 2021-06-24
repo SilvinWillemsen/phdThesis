@@ -682,7 +682,7 @@ Of all analysis techniques described in this chapter, energy analysis is without
 First of all, from a practical point of view, it is essential for debugging implementations of FD schemes. Especially when trying to model more complex systems, programming errors are unavoidable, and energy analysis can be extremely helpful in pinpointing where the error lies. 
 Secondly, energy analysis techniques can be used to obtain stability conditions in a much more general sense than the frequency-domain analysis techniques presented in Section \ref{sec:stabilityAnalysis}. Where frequency-domain analysis is restricted to LTI systems with infinite domains (for distributed systems), energy analysis can be applied to nonlinear systems and boundary conditions \cite{theBible}. 
 
-Energy analysis techniques first appeared in (the first edition of) \cite{Gustafsson2013}\todo{shouldn't I just cite the first edition then?}and was back then referred to the energy method. In \cite{theBible} they have been extensively used to show stability of the FD schemes used. 
+Energy analysis techniques first appeared in (the first edition of) \cite{Gustafsson2013}\todo{shouldn't I just cite the first edition then?} and was back then referred to the energy method. In \cite{theBible} they have been extensively used to show stability of the FD schemes used. 
 
 One of the main goals when performing energy analysis is to find an expression for the total energy present in the system. This is referred to as the \textit{Hamiltonian} and denoted by $\mathfrak{H}$ in continuous time and $\h$ in discrete time. In this work, the focus of the energy analysis will be in discrete time. %Although it is useful to perform the analysis in continuous time to have some sort of
 
@@ -1053,7 +1053,7 @@ and can be rewritten to
 to get the modal frequency of the $p$\th mode in Hz.
 
 \subsection{One-Step Form}\label{sec:oneStepForm}
-For more complicated systems, specifically those containing damping terms, it is useful to rewrite the update in \textit{one-step form}. The damping terms cause the coefficients of $z$ and $z^{-1}$ in the characteristic equation to not be identical and the trigonometric identities in \eqref{eq:trigIdentities} can not be used directly. Although the eigenfrequency calculation needs to be done on a larger matrix, it allows for a more general and direct way to calculate the modal frequencies and damping coefficients per mode. 
+For more complicated systems, specifically those containing damping terms, it is useful to rewrite the update in \textit{one-step form} (also referred to as a state-space representation). The damping terms cause the coefficients of $z$ and $z^{-1}$ in the characteristic equation to not be identical and the trigonometric identities in \eqref{eq:trigIdentities} can not be used directly. Although the eigenfrequency calculation needs to be done on a larger matrix, it allows for a more general and direct way to calculate the modal frequencies and damping coefficients per mode. 
 
 If matrix $\A$ has an inverse, any scheme of the form
 \begin{equation}\label{eq:modalForm}
