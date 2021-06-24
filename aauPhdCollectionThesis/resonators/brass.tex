@@ -1,14 +1,20 @@
 \chapter{Brass}\label{ch:brass}
 
-Bore
+\SWcomment[terms I could use: bore, tube, cylinder]
 
-\section{Second-order system}
+In this work, the wave propagation in tubes is approximated using a 1D system
 
-The first main difference between the 1D brass PDE and the 1D wave equation is the possibility of having a variable cross-section. Following Section 19.3 from \cite{Bilbao2018}, the PDE for a 1D (axially symmetric) acoustic tube with variable cross-section is (also known as \textit{Webster}'s equation)
+\section{Webster's Equation}
+
+The main difference between the 1D brass PDE and the 1D wave equation is the presence of a variable cross-section. For low-amplitude vibrations in an (axially symmetric) acoustic tube and for which the wavelengths are much larger than the radius of this tube, one can describe its dynamics using \textit{Webster}'s equation \cite{Webster1919}
 \begin{equation}\label{eq:webstersPDE}
     S\partial_t^2\Psi = c^2\partial_x(S\partial_x\Psi),
 \end{equation}
-with \textit{acoustic potential} $\Psi = \Psi(x,t)$ (m$^2$/s), $S = S(x)$ is the cross sectional area (m$^2$) and wave speed $c$ (m/s).
+with \textit{acoustic potential} $\Psi = \Psi(x,t)$ (in m$^2$/s), $S = S(x)$ is the cross sectional area (in m$^2$) and the speed of sound in air $c$ (in m/s). If $S(x) = 1$ for all values of $x$, Eq. \eqref{eq:webstersPDE} reduces to the 1D wave equation in Eq. \eqref{eq:1DwavePDE}. The acoustic potential can be related to pressure $p = p(x,t)$ (in Pa) and particle velocity $v = v(x,t)$ (in m/s) according to
+\begin{equation}
+    p = \rho \pt \Psi, \qaq v = -\px \Psi.
+\end{equation}
+
 
 \subsection{Discretisation}
 Introducing interleaved gridpoints at $n-1/2$ and $n+1/2$ for $S$, a we can discretise Eq. \eqref{eq:webstersPDE} (following \cite{Bilbao2018}) to
@@ -17,7 +23,7 @@ Introducing interleaved gridpoints at $n-1/2$ and $n+1/2$ for $S$, a we can disc
 \end{equation}
 where
 \begin{equation}
-    \Sbar = \mu_{t+}\Sm = \frac{\Sp + \Sm}{2}.
+    \Sbar = \mxp\Sm = \frac{\Sp + \Sm}{2}.
 \end{equation}
 The right side of the equation in \eqref{eq:discWebster} contains an operator applied to two grid functions ($S$ and $\Psi$) multiplied onto each other. In order to expand this, we need to use the product rule (Eq. (2.23) in \cite{theBible}) which is
 \begin{equation}
@@ -28,6 +34,13 @@ In the case of \eqref{eq:discWebster}, $u_l \triangleq \Sm$ and $w_l \triangleq 
     \Psinp = 2(1-\lambda^2)\Psiln-\Psinm+ \frac{\lambda^2\Sp}{\Sbar}\Psilp + \frac{\lambda^2\Sm}{\Sbar}\Psilm,\label{eq:webstersUpdateEq}
 \end{equation}
 which is identical to Eq. (19.51) in \cite{Bilbao2018}.
+Also see Figure \ref{fig:variableCrossSection}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/resonators/variableCrossSection.eps}
+    \caption{Approximations to $S(x)$..\SWcomment[left off here!] \label{fig:variableCrossSection}}
+\end{figure}
 
 \subsection{Boundary Conditions}
 The choices for boundary conditions in an acoustic tube are open and closed, defined as \cite{Bilbao2018}

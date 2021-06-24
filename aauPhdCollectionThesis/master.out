@@ -3,101 +3,113 @@
 \BOOKMARK [0][-]{chapter*.2}{Acknowledgements}{}% 3
 \BOOKMARK [0][-]{chapter*.3}{List of Publications}{}% 4
 \BOOKMARK [0][-]{chapter*.4}{Abstract}{}% 5
-\BOOKMARK [0][-]{chapter*.5}{Resum\351}{}% 6
+\BOOKMARK [0][-]{chapter*.6}{Resum\351}{}% 6
 \BOOKMARK [0][-]{label:contents.0}{Contents}{}% 7
-\BOOKMARK [0][-]{chapter*.6}{Contents}{}% 8
-\BOOKMARK [0][-]{chapter*.8}{Preface}{}% 9
+\BOOKMARK [0][-]{chapter*.7}{Contents}{}% 8
+\BOOKMARK [0][-]{chapter*.11}{Preface}{}% 9
 \BOOKMARK [-1][-]{part.1}{I Introduction}{}% 10
 \BOOKMARK [0][-]{chapter.1}{1 Physical Modelling of Musical Instruments}{part.1}% 11
-\BOOKMARK [1][-]{section.1.1}{1.1 Physical Modelling Techniques}{chapter.1}% 12
-\BOOKMARK [1][-]{section.1.2}{1.2 Real-Time Implementation}{chapter.1}% 13
-\BOOKMARK [1][-]{section*.13}{1.3 Why?exactly as in theBible}{chapter.1}% 14
-\BOOKMARK [2][-]{subsection.1.3.1}{1.3.1 Samples vs. Physical Modelling}{section*.13}% 15
-\BOOKMARK [2][-]{subsection.1.3.2}{1.3.2 Resurrect Old or Rare Instruments}{section*.13}% 16
-\BOOKMARK [2][-]{subsection.1.3.3}{1.3.3 Go beyond what is physically possible}{section*.13}% 17
-\BOOKMARK [1][-]{section*.16}{1.4 Project Objectives and Main Contributions}{chapter.1}% 18
-\BOOKMARK [1][-]{section.1.5}{1.5 Thesis Outline}{chapter.1}% 19
-\BOOKMARK [0][-]{chapter.2}{2 Introduction to Finite-Difference Time-Domain Methods}{part.1}% 20
-\BOOKMARK [1][-]{section.2.1}{2.1 Differential Equations}{chapter.2}% 21
-\BOOKMARK [2][-]{subsection.2.1.1}{2.1.1 Dimensions and Degrees of Freedom}{section.2.1}% 22
-\BOOKMARK [2][-]{subsection.2.1.2}{2.1.2 Ranges of Definition and Domains}{section.2.1}% 23
-\BOOKMARK [1][-]{section.2.2}{2.2 Discretisation using FDTD methods}{chapter.2}% 24
-\BOOKMARK [2][-]{section*.22}{2.2.1 Grid Functions FULL DOC SWEEP: check capitalisation of headings throughout document}{section.2.2}% 25
-\BOOKMARK [2][-]{subsection.2.2.2}{2.2.2 Finite-Difference Operators}{section.2.2}% 26
-\BOOKMARK [2][-]{subsection.2.2.3}{2.2.3 Identities}{section.2.2}% 27
-\BOOKMARK [1][-]{section.2.3}{2.3 The Mass-Spring System}{chapter.2}% 28
-\BOOKMARK [2][-]{subsection.2.3.1}{2.3.1 Continuous-time}{section.2.3}% 29
-\BOOKMARK [2][-]{subsection.2.3.2}{2.3.2 Discrete-time}{section.2.3}% 30
-\BOOKMARK [2][-]{subsection.2.3.3}{2.3.3 Implementation and Output}{section.2.3}% 31
-\BOOKMARK [1][-]{section.2.4}{2.4 The 1D Wave Equation}{chapter.2}% 32
-\BOOKMARK [2][-]{section*.40}{2.4.1 Continuous timeFULL DOC SWEEP: check hyphen in titles}{section.2.4}% 33
-\BOOKMARK [2][-]{subsection.2.4.2}{2.4.2 Discrete time}{section.2.4}% 34
-\BOOKMARK [2][-]{subsection.2.4.3}{2.4.3 Implementation: Excitation and Output}{section.2.4}% 35
-\BOOKMARK [2][-]{subsection.2.4.4}{2.4.4 Stability and Simulation Quality}{section.2.4}% 36
-\BOOKMARK [0][-]{chapter.3}{3 Analysis Techniques}{part.1}% 37
-\BOOKMARK [1][-]{section.3.1}{3.1 Matrices}{chapter.3}% 38
-\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 Operations}{section.3.1}% 39
-\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 In a FDTD context}{section.3.1}% 40
-\BOOKMARK [2][-]{subsection.3.1.3}{3.1.3 Matrix Inverse}{section.3.1}% 41
-\BOOKMARK [2][-]{subsection.3.1.4}{3.1.4 Systems of Linear Equations}{section.3.1}% 42
-\BOOKMARK [2][-]{subsection.3.1.5}{3.1.5 Eigenvalue Problems}{section.3.1}% 43
-\BOOKMARK [1][-]{section.3.2}{3.2 Mathematical Tools and Product Identities}{chapter.3}% 44
-\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 Inner product}{section.3.2}% 45
-\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Summation by Parts}{section.3.2}% 46
-\BOOKMARK [2][-]{subsection.3.2.3}{3.2.3 Product identities}{section.3.2}% 47
-\BOOKMARK [1][-]{section.3.3}{3.3 Frequency Domain Analysis}{chapter.3}% 48
-\BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 Mass-Spring System}{section.3.3}% 49
-\BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 1D Wave Equation}{section.3.3}% 50
-\BOOKMARK [1][-]{section.3.4}{3.4 Energy Analysis}{chapter.3}% 51
-\BOOKMARK [2][-]{subsection.3.4.1}{3.4.1 Energy Analysis: A 4-Step Tutorial}{section.3.4}% 52
-\BOOKMARK [2][-]{subsection.3.4.2}{3.4.2 Mass-spring system}{section.3.4}% 53
-\BOOKMARK [2][-]{subsection.3.4.3}{3.4.3 1D Wave Equation}{section.3.4}% 54
-\BOOKMARK [2][-]{subsection.3.4.4}{3.4.4 Stability Analysis using Energy Analysis Techniques}{section.3.4}% 55
-\BOOKMARK [1][-]{section.3.5}{3.5 Modal Analysis}{chapter.3}% 56
-\BOOKMARK [2][-]{subsection.3.5.1}{3.5.1 One-Step Form}{section.3.5}% 57
-\BOOKMARK [1][-]{section.3.6}{3.6 Dispersion analysis}{chapter.3}% 58
-\BOOKMARK [-1][-]{part.2}{II Resonators}{}% 59
-\BOOKMARK [0][-]{chapter.4}{4 Stiff string}{part.2}% 60
-\BOOKMARK [1][-]{section.4.1}{4.1 Continuous time}{chapter.4}% 61
-\BOOKMARK [2][-]{subsection.4.1.1}{4.1.1 Adding Losses}{section.4.1}% 62
-\BOOKMARK [1][-]{section.4.2}{4.2 Discrete Time}{chapter.4}% 63
-\BOOKMARK [2][-]{subsection.4.2.1}{4.2.1 Boundary conditions}{section.4.2}% 64
-\BOOKMARK [2][-]{subsection.4.2.2}{4.2.2 Implementation and Matrix Form}{section.4.2}% 65
-\BOOKMARK [2][-]{subsection.4.2.3}{4.2.3 Parameters and output}{section.4.2}% 66
-\BOOKMARK [1][-]{section.4.3}{4.3 von Neumann Analysis and Stability Condition}{chapter.4}% 67
-\BOOKMARK [1][-]{section.4.4}{4.4 Energy Analysis}{chapter.4}% 68
-\BOOKMARK [1][-]{section.4.5}{4.5 Modal Analysis}{chapter.4}% 69
-\BOOKMARK [1][-]{section.4.6}{4.6 Implicit Scheme}{chapter.4}% 70
-\BOOKMARK [2][-]{subsection.4.6.1}{4.6.1 von Neumann analysis}{section.4.6}% 71
-\BOOKMARK [2][-]{subsection.4.6.2}{4.6.2 Modal analysis}{section.4.6}% 72
-\BOOKMARK [0][-]{chapter.5}{5 Brass}{part.2}% 73
-\BOOKMARK [1][-]{section.5.1}{5.1 Second-order system}{chapter.5}% 74
-\BOOKMARK [2][-]{subsection.5.1.1}{5.1.1 Discretisation}{section.5.1}% 75
-\BOOKMARK [2][-]{subsection.5.1.2}{5.1.2 Boundary Conditions}{section.5.1}% 76
-\BOOKMARK [1][-]{section.5.2}{5.2 First-order system}{chapter.5}% 77
-\BOOKMARK [0][-]{chapter.6}{6 2D Systems}{part.2}% 78
-\BOOKMARK [1][-]{section.6.1}{6.1 Analysis Techniques in 2D}{chapter.6}% 79
-\BOOKMARK [2][-]{subsection.6.1.1}{6.1.1 Frequency Domain Analysis}{section.6.1}% 80
-\BOOKMARK [2][-]{subsection.6.1.2}{6.1.2 Energy Analysis}{section.6.1}% 81
-\BOOKMARK [2][-]{subsection.6.1.3}{6.1.3 Modal Analysis}{section.6.1}% 82
-\BOOKMARK [1][-]{section.6.2}{6.2 2D Wave Equation}{chapter.6}% 83
-\BOOKMARK [1][-]{section.6.3}{6.3 Thin plate}{chapter.6}% 84
-\BOOKMARK [1][-]{section.6.4}{6.4 Stiff membrane}{chapter.6}% 85
-\BOOKMARK [0][-]{section*.132}{References}{part.2}% 86
-\BOOKMARK [-1][-]{part.3}{III Appendix}{}% 87
-\BOOKMARK [0][-]{Appendix.b.A}{A List of Symbols}{part.3}% 88
-\BOOKMARK [0][-]{Appendix.b.B}{B List of Abbreviations}{part.3}% 89
-\BOOKMARK [0][-]{Appendix.b.C}{C Code Snippets}{part.3}% 90
-\BOOKMARK [1][-]{section.b.A}{C.1 Mass-Spring System \(Section ??\)}{Appendix.b.C}% 91
-\BOOKMARK [1][-]{section.b.B}{C.2 1D Wave Equation \(Section ??\)}{Appendix.b.C}% 92
-\BOOKMARK [-1][-]{part.4}{IV Papers}{}% 93
-\BOOKMARK [0][-]{Paper.c.A}{A Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{part.4}% 94
-\BOOKMARK [1][-]{section.c.A}{A.1 Introduction}{Paper.c.A}% 95
-\BOOKMARK [1][-]{section.c.B}{A.2 Conclusion}{Paper.c.A}% 96
-\BOOKMARK [0][-]{Paper.c.B}{B Physical Models and Real-Time Control with the Sensel Morph}{part.4}% 97
-\BOOKMARK [0][-]{Paper.c.C}{C Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite Difference Schemes}{part.4}% 98
-\BOOKMARK [0][-]{Paper.c.D}{D Real-time Implementation of a Physical Model of the Tromba Marina}{part.4}% 99
-\BOOKMARK [0][-]{Paper.c.E}{E Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{part.4}% 100
-\BOOKMARK [0][-]{Paper.c.F}{F DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{part.4}% 101
-\BOOKMARK [0][-]{Paper.c.G}{G Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{part.4}% 102
-\BOOKMARK [0][-]{Paper.c.H}{H A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{part.4}% 103
+\BOOKMARK [1][-]{section.1.1}{1.1 Exciter-Resonator Approach}{chapter.1}% 12
+\BOOKMARK [1][-]{section.1.2}{1.2 Physical Modelling Techniques}{chapter.1}% 13
+\BOOKMARK [1][-]{section.1.3}{1.3 Real-Time Implementation}{chapter.1}% 14
+\BOOKMARK [1][-]{section.1.4}{1.4 Why?}{chapter.1}% 15
+\BOOKMARK [2][-]{subsection.1.4.1}{1.4.1 Samples vs. Physical Modelling}{section.1.4}% 16
+\BOOKMARK [2][-]{subsection.1.4.2}{1.4.2 Resurrect Old or Rare Instruments}{section.1.4}% 17
+\BOOKMARK [2][-]{subsection.1.4.3}{1.4.3 Go beyond what is physically possible}{section.1.4}% 18
+\BOOKMARK [1][-]{section.1.5}{1.5 Project Objectives and Main Contributions}{chapter.1}% 19
+\BOOKMARK [1][-]{section.1.6}{1.6 Thesis Outline}{chapter.1}% 20
+\BOOKMARK [0][-]{chapter.2}{2 Introduction to Finite-Difference Time-Domain Methods}{part.1}% 21
+\BOOKMARK [1][-]{section.2.1}{2.1 Differential Equations}{chapter.2}% 22
+\BOOKMARK [2][-]{subsection.2.1.1}{2.1.1 Dimensions and Degrees of Freedom}{section.2.1}% 23
+\BOOKMARK [2][-]{subsection.2.1.2}{2.1.2 Ranges of Definition and Domains}{section.2.1}% 24
+\BOOKMARK [1][-]{section.2.2}{2.2 Discretisation using FDTD methods}{chapter.2}% 25
+\BOOKMARK [2][-]{section*.24}{2.2.1 Grid Functions FULL DOC SWEEP: check capitalisation of headings throughout document}{section.2.2}% 26
+\BOOKMARK [2][-]{subsection.2.2.2}{2.2.2 Finite-Difference Operators}{section.2.2}% 27
+\BOOKMARK [2][-]{subsection.2.2.3}{2.2.3 Identities}{section.2.2}% 28
+\BOOKMARK [1][-]{section.2.3}{2.3 The Mass-Spring System}{chapter.2}% 29
+\BOOKMARK [2][-]{subsection.2.3.1}{2.3.1 Continuous-time}{section.2.3}% 30
+\BOOKMARK [2][-]{subsection.2.3.2}{2.3.2 Discrete-time}{section.2.3}% 31
+\BOOKMARK [2][-]{subsection.2.3.3}{2.3.3 Implementation and Output}{section.2.3}% 32
+\BOOKMARK [1][-]{section.2.4}{2.4 The 1D Wave Equation}{chapter.2}% 33
+\BOOKMARK [2][-]{section*.42}{2.4.1 Continuous timeFULL DOC SWEEP: check hyphen in titles}{section.2.4}% 34
+\BOOKMARK [2][-]{subsection.2.4.2}{2.4.2 Discrete time}{section.2.4}% 35
+\BOOKMARK [2][-]{subsection.2.4.3}{2.4.3 Implementation: Excitation and Output}{section.2.4}% 36
+\BOOKMARK [2][-]{subsection.2.4.4}{2.4.4 Stability and Simulation Quality}{section.2.4}% 37
+\BOOKMARK [0][-]{chapter.3}{3 Analysis Techniques}{part.1}% 38
+\BOOKMARK [1][-]{section.3.1}{3.1 Matrices}{chapter.3}% 39
+\BOOKMARK [2][-]{subsection.3.1.1}{3.1.1 Operations}{section.3.1}% 40
+\BOOKMARK [2][-]{subsection.3.1.2}{3.1.2 In a FDTD context}{section.3.1}% 41
+\BOOKMARK [2][-]{subsection.3.1.3}{3.1.3 Matrix Inverse}{section.3.1}% 42
+\BOOKMARK [2][-]{subsection.3.1.4}{3.1.4 Systems of Linear Equations}{section.3.1}% 43
+\BOOKMARK [2][-]{subsection.3.1.5}{3.1.5 Eigenvalue Problems}{section.3.1}% 44
+\BOOKMARK [1][-]{section.3.2}{3.2 Mathematical Tools and Product Identities}{chapter.3}% 45
+\BOOKMARK [2][-]{subsection.3.2.1}{3.2.1 Inner product}{section.3.2}% 46
+\BOOKMARK [2][-]{subsection.3.2.2}{3.2.2 Summation by Parts}{section.3.2}% 47
+\BOOKMARK [2][-]{subsection.3.2.3}{3.2.3 Product identities}{section.3.2}% 48
+\BOOKMARK [1][-]{section.3.3}{3.3 Frequency Domain Analysis}{chapter.3}% 49
+\BOOKMARK [2][-]{subsection.3.3.1}{3.3.1 Mass-Spring System}{section.3.3}% 50
+\BOOKMARK [2][-]{subsection.3.3.2}{3.3.2 1D Wave Equation}{section.3.3}% 51
+\BOOKMARK [1][-]{section.3.4}{3.4 Energy Analysis}{chapter.3}% 52
+\BOOKMARK [2][-]{subsection.3.4.1}{3.4.1 Energy Analysis: A 4-Step Tutorial}{section.3.4}% 53
+\BOOKMARK [2][-]{subsection.3.4.2}{3.4.2 Mass-spring system}{section.3.4}% 54
+\BOOKMARK [2][-]{subsection.3.4.3}{3.4.3 1D Wave Equation}{section.3.4}% 55
+\BOOKMARK [2][-]{subsection.3.4.4}{3.4.4 Stability Analysis using Energy Analysis Techniques}{section.3.4}% 56
+\BOOKMARK [1][-]{section.3.5}{3.5 Modal Analysis}{chapter.3}% 57
+\BOOKMARK [2][-]{subsection.3.5.1}{3.5.1 One-Step Form}{section.3.5}% 58
+\BOOKMARK [1][-]{section.3.6}{3.6 Dispersion analysis}{chapter.3}% 59
+\BOOKMARK [-1][-]{part.2}{II Resonators}{}% 60
+\BOOKMARK [0][-]{chapter.4}{4 Stiff string}{part.2}% 61
+\BOOKMARK [1][-]{section.4.1}{4.1 Continuous time}{chapter.4}% 62
+\BOOKMARK [2][-]{subsection.4.1.1}{4.1.1 Adding Losses}{section.4.1}% 63
+\BOOKMARK [1][-]{section.4.2}{4.2 Discrete Time}{chapter.4}% 64
+\BOOKMARK [2][-]{subsection.4.2.1}{4.2.1 Boundary conditions}{section.4.2}% 65
+\BOOKMARK [2][-]{subsection.4.2.2}{4.2.2 Implementation and Matrix Form}{section.4.2}% 66
+\BOOKMARK [2][-]{subsection.4.2.3}{4.2.3 Parameters and output}{section.4.2}% 67
+\BOOKMARK [1][-]{section.4.3}{4.3 von Neumann Analysis and Stability Condition}{chapter.4}% 68
+\BOOKMARK [1][-]{section.4.4}{4.4 Energy Analysis}{chapter.4}% 69
+\BOOKMARK [1][-]{section.4.5}{4.5 Modal Analysis}{chapter.4}% 70
+\BOOKMARK [1][-]{section.4.6}{4.6 Implicit Scheme}{chapter.4}% 71
+\BOOKMARK [2][-]{subsection.4.6.1}{4.6.1 von Neumann analysis}{section.4.6}% 72
+\BOOKMARK [2][-]{subsection.4.6.2}{4.6.2 Modal analysis}{section.4.6}% 73
+\BOOKMARK [0][-]{chapter.5}{5 Brass}{part.2}% 74
+\BOOKMARK [1][-]{section.5.1}{5.1 Webster's Equation}{chapter.5}% 75
+\BOOKMARK [2][-]{subsection.5.1.1}{5.1.1 Discretisation}{section.5.1}% 76
+\BOOKMARK [2][-]{subsection.5.1.2}{5.1.2 Boundary Conditions}{section.5.1}% 77
+\BOOKMARK [1][-]{section.5.2}{5.2 First-order system}{chapter.5}% 78
+\BOOKMARK [0][-]{chapter.6}{6 2D Systems}{part.2}% 79
+\BOOKMARK [1][-]{section.6.1}{6.1 Analysis Techniques in 2D}{chapter.6}% 80
+\BOOKMARK [2][-]{subsection.6.1.1}{6.1.1 Frequency Domain Analysis}{section.6.1}% 81
+\BOOKMARK [2][-]{subsection.6.1.2}{6.1.2 Energy Analysis}{section.6.1}% 82
+\BOOKMARK [2][-]{subsection.6.1.3}{6.1.3 Modal Analysis}{section.6.1}% 83
+\BOOKMARK [1][-]{section.6.2}{6.2 2D Wave Equation}{chapter.6}% 84
+\BOOKMARK [1][-]{section.6.3}{6.3 Thin plate}{chapter.6}% 85
+\BOOKMARK [1][-]{section.6.4}{6.4 Stiff membrane}{chapter.6}% 86
+\BOOKMARK [-1][-]{part.3}{III Interactions}{}% 87
+\BOOKMARK [0][-]{chapter.7}{7 Connections}{part.3}% 88
+\BOOKMARK [1][-]{section.7.1}{7.1 Rigid connection}{chapter.7}% 89
+\BOOKMARK [1][-]{section.7.2}{7.2 Spring-like connections}{chapter.7}% 90
+\BOOKMARK [2][-]{subsection.7.2.1}{7.2.1 Connection with rigid barrier \(scaled\)}{section.7.2}% 91
+\BOOKMARK [2][-]{subsection.7.2.2}{7.2.2 String-plate connection}{section.7.2}% 92
+\BOOKMARK [2][-]{subsection.7.2.3}{7.2.3 Solving for f}{section.7.2}% 93
+\BOOKMARK [2][-]{subsection.7.2.4}{7.2.4 Non-dimensional}{section.7.2}% 94
+\BOOKMARK [0][-]{chapter.8}{8 Collisions}{part.3}% 95
+\BOOKMARK [1][-]{section.8.1}{8.1 Classic models}{chapter.8}% 96
+\BOOKMARK [1][-]{section.8.2}{8.2 Michele's tricks}{chapter.8}% 97
+\BOOKMARK [0][-]{chapter*.143}{References}{part.3}% 98
+\BOOKMARK [-1][-]{part.4}{IV Appendix}{}% 99
+\BOOKMARK [0][-]{Appendix.b.A}{A List of Symbols}{part.4}% 100
+\BOOKMARK [0][-]{Appendix.b.B}{B List of Abbreviations}{part.4}% 101
+\BOOKMARK [0][-]{Appendix.b.C}{C Code Snippets}{part.4}% 102
+\BOOKMARK [1][-]{section.b.A}{C.1 Mass-Spring System \(Section 2.3\)}{Appendix.b.C}% 103
+\BOOKMARK [1][-]{section.b.B}{C.2 1D Wave Equation \(Section 2.4\)}{Appendix.b.C}% 104
+\BOOKMARK [-1][-]{part.5}{V Papers}{}% 105
+\BOOKMARK [0][-]{Paper.c.A}{A Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{part.5}% 106
+\BOOKMARK [1][-]{section.c.A}{A.1 Introduction}{Paper.c.A}% 107
+\BOOKMARK [1][-]{section.c.B}{A.2 Conclusion}{Paper.c.A}% 108
+\BOOKMARK [0][-]{Paper.c.B}{B Physical Models and Real-Time Control with the Sensel Morph}{part.5}% 109
+\BOOKMARK [0][-]{Paper.c.C}{C Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite Difference Schemes}{part.5}% 110
+\BOOKMARK [0][-]{Paper.c.D}{D Real-time Implementation of a Physical Model of the Tromba Marina}{part.5}% 111
+\BOOKMARK [0][-]{Paper.c.E}{E Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{part.5}% 112
+\BOOKMARK [0][-]{Paper.c.F}{F DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{part.5}% 113
+\BOOKMARK [0][-]{Paper.c.G}{G Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{part.5}% 114
+\BOOKMARK [0][-]{Paper.c.H}{H A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{part.5}% 115

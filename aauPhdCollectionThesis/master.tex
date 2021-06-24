@@ -22,7 +22,10 @@
 \input{frontmatter/preface}
 \cleardoublepage
 
-\def\citeP[#1]{[\ref{paper:#1}]}
+\def\makeAlph[#1]{\symbol{\numexpr96+#1}}
+
+% \def\bLabel{\renewcommand\@biblabel[1]{[##1]}}
+\def\citeP[#1]{[\hyperref[ch:listOfPublications]{#1}]}
 
 \def\ctxt{\text{c}} %connection subscript (text)
 \def\stxt{\text{s}} %string subscript (text)
@@ -102,8 +105,8 @@
 \def\so{\sigma_{1}}
 \def\vrel{v_\text{rel}}
 \def\Sbar{\bar{S}}
-\def\Sm{S_{l-1}}
-\def\Sp{S_{l+1}}
+\def\Sm{S_{l-1/2}}
+\def\Sp{S_{l+1/2}}
 
 \def\szX[#1]{\sigma_{0{#1}}}
 \def\soX[#1]{\sigma_{1{#1}}}
@@ -144,8 +147,8 @@
 % \part{Exciters}\label{part:exciters}
 % \input{exciters/exciters}
 
-% \part{Interactions}\label{part:interactions}
-% \input{interactions/interactions}
+\part{Interactions}\label{part:interactions}
+\input{interactions/interactions}
 
 % \part{Dynamic Grid}\label{part:dynamicGrid}
 % \input{dynamic/dynamic}
@@ -186,8 +189,8 @@
       \endlist}
 \makeatother
 
-{\bibliographystyle{IEEEtranS}\bibliography{bib/mybib}}
-\addcontentsline{toc}{chapter}{References}
+{\bibliographystyle{IEEEtran}\bibliography{bib/mybib}}
+\addcontentsline{toc}{chapter}{References}\todo{check whether to sort references or not}
 
 
 %backmatter
