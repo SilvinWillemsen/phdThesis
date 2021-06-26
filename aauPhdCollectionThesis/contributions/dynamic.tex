@@ -1,3 +1,54 @@
+\chapter{Dynamic Grid}\label{ch:dynamicGrid}
+
+\textit{Often in math, you should view the definition not as a starting point, but as a target. Contrary to the structure of textbooks, mathematicians do not start by making definitions and then listing a lot of theorems, and proving them, and showing some examples. The process of discovering math typically goes the other way around. They start by chewing on specific problems, and then generalising those problems, then coming up with constructs that might be helpful in those general cases,and only then you write down a new definition (or extend an old one). - Grant Sanderson (AKA 3Blue1Brown) https://youtu.be/O85OWBJ2ayo?t=359}
+\section{Background and Motivation}
+Simulating musical instruments using physical modelling -- as mentioned in Part \ref{part:introduction}\todo{check if is still true} -- allows for manipulations of the instrument that are impossible in the physical world. Examples of this are changes in material density or stiffness, cross-sectional area (1D), thickness (2D) and size. Apart from being potentially sonically interesting, there are examples in the physical world where certain aspects of the instrument are manipulated in real-time.
+
+Tension in a string is changed when tuning it
+
+Some artists even use this in their performances \cite{Gomm2011, Mayer2008}
+Or gr4yhound: https://www.youtube.com/watch?v=fSQ9Dg65EFo
+
+The hammered dulcimer is another example where the strings are tensioned over a bridge where one can play the string at one side of the bridge, while pushing down on the same string on the other side \cite{Glenn2014}.
+
+\noindent 1D:
+\begin{itemize}
+    \item Trombone
+    \item Slide whistle
+    \item Guitar strings
+    \begin{itemize}
+        \item Fretting finger pitch bend
+        \item Above the nut \cite{Mayer2008}
+        \item Tuning pegs directly \cite{Gomm2011}
+    \end{itemize}
+    \item Hammered dulcimer \cite{Glenn2014}
+    \item Erhu? 
+\end{itemize}
+%
+2D: 
+\begin{itemize}
+    \item Timpani
+    \item Bodhr\'an: https://youtu.be/b9HyB5yNS1A?t=146
+    \item Talking drum (hourglass drum): https://youtu.be/B4oQJZ2TEVI?t=9
+    \item Flex-a-tone (could also be 1D tbh..): https://www.youtube.com/watch?v=HEW1aG8XJQk.
+\end{itemize}
+
+A more relevant example is that of the trombone, where the size of the instrument is changed in order to play different pitches. Modelling this using FDTD methods would require
+
+% \section{Issues with FDTD methods}
+
+
+In his thesis, Harrison points out that in order to model the trombone, grid points need to be introduced 
+
+
+Something about time-dependent variable coefficient Stokes flow:
+https://arxiv.org/abs/1010.2832
+
+Time-varying propagation speed in waveguides: https://quod.lib.umich.edu/cgi/p/pod/dod-idx/fractional-delay-application-time-varying-propagation-speed.pdf?c=icmc;idno=bbp2372.1997.069;format=pdf
+
+Special boundary conditions (look at!):
+Modeling of Complex Geometries and Boundary Conditions in Finite Difference/Finite Volume Time Domain Room Acoustics Simulation (\url{https://www.researchgate.net/publication/260701231_Modeling_of_Complex_Geometries_and_Boundary_Conditions_in_Finite_DifferenceFinite_Volume_Time_Domain_Room_Acoustics_Simulation})
+
 \section{Method}
 Iterations have been:
 \begin{itemize}
@@ -15,7 +66,7 @@ One way to go from one grid to another is performing a full-grid interpolation \
 
 %% \reprintcolumnwidth is the same in preprint and reprint for
 %% ease of use for authors:
-\includegraphics[width=0.5\textwidth]{dynamic/fullGrid.eps}
+\includegraphics[width=0.5\textwidth]{figures/contributions/dynamicgrid/fullGrid.eps}
 \caption{\label{fig:fullGrid}{Upsampling $u$ (with an arbitrary state) using (linear) full-grid interpolation with $N^{n-1} = 30$ and $N^n = 31$. The horizontal axis is normalised with respect to $N^n$.}}
 \end{figure} 
 
@@ -53,7 +104,7 @@ This is visualised in Figure \ref{fig:simplySupportedBound}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.7\textwidth]{dynamic/simplySupportedBoundary.eps}
+    \includegraphics[width=0.7\textwidth]{figures/contributions/dynamicgrid/simplySupportedBoundary.eps}
     \caption{\label{fig:simplySupportedBound}{The simply supported boundary condition: both the state and the curvature at the boundary -- at $l=0$ -- should be $0$.}}
 \end{figure} 
 
@@ -70,7 +121,7 @@ their interactions change through a change in the grid spacing and wave speed. T
     \centering
 %% \reprintcolumnwidth is the same in preprint and reprint for
 %% ease of use for authors:
-\includegraphics[width=0.7\textwidth]{dynamic/boundaryGrid.eps}
+\includegraphics[width=0.7\textwidth]{figures/contributions/dynamicgrid/boundaryGrid.eps}
 \caption{\label{fig:changingBoundary}{The grid changing over time}}
 \end{figure}
 
@@ -97,3 +148,15 @@ with $K = K(\alpha)$
 \begin{equation}
     K = (1-\alpha)^\epsilon.
 \end{equation}
+
+
+\section{%Modal 
+Analysis and Experiments}
+\subsection{Interpolation technique}
+\subsection{Interpolation range}
+\subsection{Location}
+... where to add and remove points
+
+Using the whole range, we can still add/remove points at the sides. 
+
+\section{Discussion and Conclusion}\label{sec:conclusion}

@@ -4,7 +4,9 @@
 In this work, it is mainly used to model a simplified body in papers...
 
 
-State variable $u = u(x,y,t)$  where $t\geq 0$ and $(x,y) \in \D$ where $\D$ is 2-dimensional. The state variable can then be discretised according to $u(x, y, t) \approx \ulmn$ with space $x = lh$ and $y = mh$ and time $t = nk$ and $k=1/\fs$. For simplicity the grid spacing in both the $x$ and $y$ directions are set to be the same but could be different.
+Rectangular system described by state variable $u = u(x,y,t)$  where $t\geq 0$ and $(x,y) \in \D$ where $\D$ is 2-dimensional. The state variable can then be discretised according to $u(x, y, t) \approx \ulmn$ with space $x = lh$ and $y = mh$ and time $t = nk$ and $k=1/\fs$. For simplicity the grid spacing in both the $x$ and $y$ directions are set to be the same but could be different.
+
+Circular or elliptical systems can be modelled using a staircase approximation or radial coordinates \cite{theBible}
 
 In continuous time the  operators:
 \begin{equation}\label{eq:laplacian}

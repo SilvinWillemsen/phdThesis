@@ -31,7 +31,7 @@ If $u$ is univariate, and only a function of time, the differential equation tha
     \end{aligned}
 \end{equation}
 %
-Leibniz' notation could be considered the most standard notation but is not necessarily compact. Newton's notation on the other hand allows for an ultra compact notation using a dot above the function to denote a time-derivative. In this work, for ODEs in isolation, Newton's notation will be used for this reason. The drawback of this notation is that it only be used for univariate functions. Finally, Euler's notation indicates a derivative using an operator which can be applied to a function. 
+Leibniz's notation could be considered the most standard notation but is not necessarily compact. Newton's notation on the other hand allows for an ultra compact notation using a dot above the function to denote a time-derivative. In this work, for ODEs in isolation, Newton's notation will be used for this reason. The drawback of this notation is that it only be used for univariate functions. Finally, Euler's notation indicates a derivative using an operator which can be applied to a function. 
  
 If $u$ is also a function of at least one spatial dimension, the equation of motion is a called a \textit{partial differential equation} (PDE).
 The literature uses different types of notation for taking (continuous-time) partial derivatives. Applied to a state variable $u$ these can look like 
@@ -73,7 +73,7 @@ where the subscript notation could be seen as the partial derivative counterpart
 All objects in the physical world are three-dimensional (3D) as they have a non-zero width, length and depth. Moreover, these objects can move in these three dimensions and thus have three translational \textit{degrees of freedom (DoF)} \SWcomment[(the three rotational DoF are ignored here)]. 
 To reduce the complexity of the model as well as computational complexity (computational cost), simplifications can be made to reduce both the dimensionality of the spatial distribution of a physical object as well as that of the translational DoF. 
 
-Generally, the spatial distribution of an object can be simplified if one (or more) of the dimensions is orders of magnitude smaller than the others without affecting its behaviour much. A guitar string, for instance, has much greater length than its width or depth and can therefore be reduced to a one-dimensional (1D) system. If a 3D description were to be kept, the relative displacement between two locations on one cross-section along the length of the string would be taken into account. One could imagine that this displacement will always be orders of magnitude smaller than the relative displacement of two points along the string length and is thus negligible. Similarly, the thickness of a drum membrane is much smaller than its length and width and can therefore be simplified to a two-dimensional (2D) system. 
+Generally, the spatial distribution of an object can be simplified if one (or more) of the dimensions are small relative to the wavelengths of interest. A guitar string, for instance, has much greater length than its width or depth and can therefore be reduced to a one-dimensional (1D) system. If a 3D description were to be kept, the relative displacement between two locations on one cross-section along the length of the string would be taken into account. One could imagine that this displacement will always be orders of magnitude smaller than the relative displacement of two points along the string length and is thus negligible. Similarly, the thickness of a drum membrane is much smaller than its length and width and can therefore be simplified to a two-dimensional (2D) system. 
 
 The translational DoF\todo{check whether this needs to be per point along a system}, on the other hand, describe now many ``coordinates'' a state variable includes. 
 In much of the literature on FDTD methods in the field of musical acoustics, the state variable only has one coordinate. In most string models, for example, only the transverse displacement in one polarisation is considered (see Chapter \ref{ch:stiffString}) and the other polarisation as well as the longitudinal motion of the string (motion along the string length) is ignored. In other words, every point along the string can only move up and down, not side-to-side and not forward and back. Although this greatly simplifies the system at hand and reduces computational complexity, this is not what happens in reality, and non-linear effects such as phantom partials and pitch glides due to tension modulation are not present in the simplified model. 
@@ -93,7 +93,7 @@ The translational DoF, on the other hand, determines the amount of coordinates t
 \subsection{Ranges of Definition and Domains}\label{sec:domains}
 When modelling physical systems, one needs to provide a \textit{range of definition} over which they are defined. For a 1D system $u = u(x,t)$, ranges of definition must be given for $x$ and $t$. Usually, the temporal range $t\geq 0$, meaning that the system is defined for non-negative time. 
 
-In space, the range of definition is usually referred to as a (spatial) \textit{domain}, denoted by the symbol $\D$. Using the example above, $x$ may be defined over $\D$, which is written as $x\in \D$. For analysis purposes, infinite domains ($\D = \mathbb{R} = (-\infty, \infty)$) or semi-infinite domains ($\D = \mathbb{R}^+ = [0, \infty)$) may be used, but for implementation purposes, a finite domain needs to be established. For higher dimensional systems, one needs to define higher dimensional domains. A 2D system $u=u(x,y,t)$, may be defined over `horizontal domain' $\D_x$ and `vertical domain' $\D_y$, which are both 1D domains. The system is then defined for $(x,y)\in \D$ where $\D = \D_x\times \D_y$. 
+In space, the range of definition is usually referred to as a (spatial) \textit{domain}, denoted by the symbol $\D$. Using the example above, $x$ may be defined over $\D$, which is written as $x\in \D$. For analysis purposes, infinite domains ($\D = \mathbb{R} = (-\infty, \infty)$) or semi-infinite domains ($\D = \mathbb{R}^+ = [0, \infty)$) may be used, but for implementation purposes, a finite domain needs to be established. For higher dimensional systems, one needs to define higher dimensional domains. A 2D system $u=u(x,y,t)$, for simplicity assumed to be rectangular, may be defined over `horizontal domain' $\D_x$ and `vertical domain' $\D_y$, which are both 1D domains. The system is then defined for $(x,y)\in \D$ where $\D = \D_x\times \D_y$. 
 
 \section{Discretisation using FDTD methods}\label{sec:discUsingFDTD}
 Differential equations are powerful tools to describe the motion of physical systems. Despite this, only few of these have a closed-form, or analytical, solution. More complex systems require methods that do not perfectly solve, but rather \textit{approximate} the solutions to these equations. FDTD methods are the most straightforward approach to numerically approximate differential equations. These methods are considered of the most general and flexible techniques in terms of the systems they can model, and frankly, relatively simple to understand once some familiarity with them is obtained. The main concern with these methods is the numerical stability of the eventual approximation. Conditions for stability can be mathematically derived and will be introduced in Section \ref{sec:stabilityAnalysis}.
@@ -115,7 +115,7 @@ The first step to approximate continuous PDEs, is to define a discrete \textit{g
 As mentioned in Section \ref{sec:domains}, a 1D system needs to be defined over a temporal range of definition and one spatial domain.
 In discrete time, $t \geq 0$ is discretised to $n \in \mathbb{N}^0$.\footnote{In this work, $\mathbb{N}^0$ is used to denote the set of non-negative integers ($\mathbb{N}^0 = 0, 1, 2, 
 \hdots$).} 
-The spatial domain $\D$ can be subdivided into $N$ equal sections, or intervals, of length $h$ (see Figure \ref{fig:gridExp}). The grid points describing the state of the system are placed between and around these intervals. The spatial range of interest then becomes $l\in \{0, \hdots, N\}$ and the total number of grid points is $N+1$, which is one more than the number of intervals.
+The spatial domain $\D$ can be subdivided into $N$ equal sections, or intervals, of length $h$ (see Figure \ref{fig:gridExp}). The grid points describing the state of the system are placed at the edge of each interval, including the end points. The spatial range of interest then becomes $l\in \{0, \hdots, N\}$ and the total number of grid points is $N+1$, which is one more than the number of intervals.
 
 %The grid points interact with their neighbouring grid points according to the model at hand.
 
@@ -191,7 +191,7 @@ where ``$2$'' is the identity operator applied twice. This can similarly be done
     \pxx \approxeq \dxp\dxm = \dxx \triangleq \frac{1}{h^2}\left(e_{x+}-2+e_{x-}\right),
 \end{equation}
 both of which can be applied to a grid function $\uln$ in a similar fashion. Figure \ref{fig:operators} shows the \textit{stencils} of the operators introduced above. A stencil shows the grid points needed to perform the operation of a FD operator.  
-\begin{figure}[b!]
+\begin{figure}[h]
     \centering
     \subfloat[Temporal operators.\label{fig:temporalOperators}]{\includegraphics[width=0.45\textwidth]{figures/fdtd/operatorsT.pdf}}\hspace{0.06\textwidth}
     \subfloat[Spatial operators.\label{fig:spatialOperators}]{\includegraphics[width=0.45\textwidth]{figures/fdtd/operatorsX.pdf}}
@@ -351,7 +351,7 @@ Apart from the choices of $K$ and $M$, the behaviour of the mass-spring system i
 
 \input{introduction/massSpringTikz.tex}
 
-\subsubsection{Intuition}
+\subsubsection{Intuition}\todo{move section up (stefan's comment)}
 The behaviour of the mass-spring system in Eq. \eqref{eq:massSpringPDE} arises from two basic laws of physics: \textit{Newton's second law} and \textit{Hooke's law}. 
 
 Starting with Newton's second law -- \textit{force equals mass times acceleration} -- and relating this to the variables used in Eq. \eqref{eq:massSpringPDE} yields an expression for force
@@ -371,7 +371,7 @@ That the frequency of the system is also dependent on the mass $M$ can be explai
 
 %From the definition of $\omega_0$ in Eq. \eqref{eq:omega0MassSpring} one can observe that a smaller $M$ will cause a higher frequency explained by the fact that a smaller mass is more easily moved. Similarly, a higher spring constant $K$ will cause a higher frequency, as the force caused by Hooke's law ``pulls'' the mass back to the equilibrium to a higher degree.
 
-Finally, if $u = 0$ there is no spring force present and the acceleration remains unchanged. This is exactly what Newton's first law states: if the net force acting on an object is zero, its velocity will be constant. If the mass is not in motion, this means that it remains stationary. If it is, the velocity is unchanged and it will continue moving with the same speed. 
+Finally, if $u = 0$ there is no spring force present and the acceleration remains unchanged. This is exactly what Newton's first law states: if the net force acting on an object is zero, its velocity will be constant. If the mass is not in motion, this means that it remains stationary. If it is, at the exact moment that $u=0$, the velocity is unchanged.
 
 \subsection{Discrete-time}
 Following the discretisation process introduced in Section \ref{sec:discUsingFDTD}, one can approximate the PDE in Eq. \eqref{eq:massSpringPDE}. The displacement of the mass is approximated using 
@@ -398,18 +398,18 @@ which can be implemented in a programming language such as \texttt{MATLAB}.
 \subsection{Implementation and Output}\label{sec:massSpringImplementation}
 A simple \texttt{MATLAB} script implementing the mass-spring system described in this section is shown in Appendix \ref{app:massSpringCode}. The most important part of the algorithm happens in a for-loop recursion, where update equation \eqref{eq:massSpringUpdate} is implemented. At the end of each loop, the system states are updated and prepared for the next iteration. %See Algorithm \ref{alg:massSpringLoop}
 
-To be able to calculate the scheme at $n=0$ (the first time index of the simulation), values must be provided for $u^0$ and $u^{-1}$. These are determined by the initial conditions mentioned in Section \ref{sec:massSpringCont}. A simple way to obtain a sinusoidal motion with an amplitude of $1$, is to set the initial conditions as follows (using the backwards time difference operator for discretising the first-order time derivative): 
+To be able to start the simulation of the scheme, the initial conditions given in Section \ref{sec:massSpringCont} must be discretised at $n=0$. As $n$ is only defined for values greater than zero, the forward difference operator is used. A simple way to obtain a sinusoidal motion with an amplitude of $1$, is to set the initial conditions as follows: 
 %
 \begin{equation}
-    u^0 = 1 \quad \text{and} \quad \dtm u^n = 0.
+    u^0 = 1 \quad \text{and} \quad \dtp u^0 = 0.
 \end{equation}
-The latter equality can be solved for $u^{-1}$ \todo{figure out if this is valid as it falls outside of the defined temporal region of operation} to obtain its definition: 
+The latter equality can be solved for $u^1$ to obtain its definition: 
 \begin{align*}
-    &\frac{1}{k}\left(u^0 - u^{-1}\right) = 0,\\[-1em]
-    \xLeftrightarrow{\mystrut\ u^0 = 1\ }\quad &1 - u^{-1} = 0,\\[0.1em]
- &u^{-1} = 1.
+    &\frac{1}{k}\left(u^1 - u^0\right) = 0,\\[-1em]
+    \xLeftrightarrow{\mystrut\ u^0 = 1\ }\quad &u^1 - 1 = 0,\\[0.1em]
+ &u^1 = 1.
 \end{align*}
-In short, setting $u^0 = u^{-1} \neq 0$ \todo{maybe a bit short...} yields an oscillatory behaviour. 
+In short, setting $u^0 = u^1 \neq 0$ yields an oscillatory behaviour with an amplitude of $1$. Note that any other non-zero initial condition will also yield oscillatory behaviour, but likely with a different amplitude.
 
 \begin{figure}[b]
     \includegraphics[width=\textwidth]{figures/fdtd/massSpringOutput.eps}
@@ -452,7 +452,17 @@ The 1D wave equation is a PDE that describes the motion of a system distributed 
 \begin{equation}\label{eq:1DwavePDE}
     \ptt u = c^2 \pxx u,
 \end{equation}
-where $c$ is the wave speed of the system (in m/s). 
+where $c$ is the wave speed of the system (in m/s). Figure \ref{eq:1DWavePropagation} shows the wave propagation of the 1D wave equation excited using a raised cosine
+
+\def\figWidth{0.32}
+\begin{figure}[h]
+    \centering
+    \subfloat[$t = 0$ ms.\label{fig:1DWaveProp1}]{\includegraphics[width=\figWidth\textwidth]{figures/fdtd/1DWaveProp1.eps}}\hfill
+    \subfloat[$t = 1$ ms.\label{fig:1DWaveProp2}]{\includegraphics[width=\figWidth\textwidth]{figures/fdtd/1DWaveProp2.eps}}\hfill
+    \subfloat[$t = 2$ ms.\label{fig:1DWaveProp3}]{\includegraphics[width=\figWidth\textwidth]{figures/fdtd/1DWaveProp3.eps}}
+    \caption{Wave propagation in the 1D wave equation in Eq. \eqref{eq:1DwavePDE} wtih $c \approx 127$ m/s.\label{eq:1DWavePropagation}}
+\end{figure}
+
 
 \subsubsection{Intuition}
 % Although the 1D wave equation often appears in the literature, an intuition or interpretation of why it works the way it does is hard to find. In the following, $u$ describes the transverse displacement of an ideal string.
@@ -516,7 +526,7 @@ Coming back to the PDE presented in Eq. \eqref{eq:1DwavePDE}, we continue by fin
     \dtt \uln = c^2 \dxx \uln,
 \end{equation}
 with $l\in\{0, \hdots, N\}$ and number of grid points $N + 1$.
-Other schemes exist (see fx. \cite{theBible}), but are excluded as they have not been used in this work. Expanding the operators using the definitions given in Section \ref{sec:FDoperators} yields
+Other schemes exist (see e.g. \cite{theBible}), but are excluded as they have not been used in this work. Expanding the operators using the definitions given in Section \ref{sec:FDoperators} yields
 \begin{equation}
     \frac{1}{k^2}\left(u_l^{n+1}-2 \uln + u_l^{n-1}\right) = \frac{c^2}{h^2} \left(u_{l+1}^n - 2 \uln + u_{l-1}^n\right).
 \end{equation}
@@ -597,19 +607,19 @@ See Appendix \ref{app:1DWave} for a \texttt{MATLAB} implementation of the 1D wav
 
 A simple way to excite the system is to initialise the state using a raised cosine, or Hann window. More information on excitations will be given in Part \ref{part:exciters}, but for completeness, the formula for a discrete raised cosine will be given here. 
 
-The discrete raised cosine can be parameterised by its center location $l_\text{c}$ and width $w$ from which the start index $l_\text{s}$ and end index $l_\text{e}$ can be calculated, according to 
+The discrete raised cosine can be parametrised by its center location $l_\text{c}$ and width $w$ from which the start index $l_\text{s}$ and end index $l_\text{e}$ can be calculated, according to 
 \begin{equation}
     l_\text{s} = l_\text{c} - \floor[w/2]\qaq l_\text{e} = l_\text{c} + \floor[w/2],
 \end{equation}
 where $\floor[\cdot]$ denotes the flooring operation and needs to be used as all the above variables are integers. Furthermore, both $l_\text{s}$ and $l_\text{e}$ must fall into the defined spatial range of calculation. Then, a raised cosine with an amplitude of $1$ can be calculated and used as an initial condition for the system according to
 \begin{equation}\label{eq:raisedCos}
-    u_l^0 = u_l^{-1} =
+    u_l^1 = u_l^0 =
     \begin{cases}
         0.5 - 0.5\cos\left(\frac{2\pi (l - l_\text{s})}{w - 1}\right), & l_\text{s} \leq l < l_\text{e},\\
         0, & \text{otherwise}.
     \end{cases}
 \end{equation}
-As done for the implementation of the mass-spring system in Section \ref{sec:massSpringImplementation}, both $u_l^0$ and $u_l^{n-1}$ are initialised with the same state, as to only have an initial displacement, and not an initial velocity. 
+As done for the implementation of the mass-spring system in Section \ref{sec:massSpringImplementation}, both $u_l^0$ and $u^1_l$ are initialised with the same state, as to only have an initial displacement, and not an initial velocity. 
 
 In \texttt{MATLAB}, an easier way to obtain a raised cosine is to use the \texttt{hann(w)} function which returns a raised cosine (or Hann window) of width \texttt{w}.
 
@@ -649,7 +659,7 @@ As can be seen from Figure \ref{fig:1DWaveOutput}, the output of the 1D wave equ
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{figures/fdtd/modes.eps}
-    \caption{The first $10$ modal shapes of the 1D wave equation with Dirichlet boundary conditions defined for $x\in[0, L]$ (only shown for mode $1$). All modes are The modes are normalised to have the same amplitude. The number of the shape can be determined by the amount of antinodes present in the shape. \label{fig:modes}}
+    \caption{The first $10$ modal shapes of the 1D wave equation with Dirichlet boundary conditions defined for $x\in[0, L]$ (only shown for mode $1$). The modes are normalised to have the same amplitude and vibrate at their respective modal frequencies with the extremes indicated by the black and the grey plot. The number of the shape can be determined by the amount of antinodes present in the shape. \label{fig:modes}}
 \end{figure}
 
 The amount of modes present in the continuous PDE of the 1D wave equation is theoretically infinite. The amount present in the discrete FD scheme, however, is determined by the number of moving points in the system. If Dirichlet boundary conditions are used, this means that there are $N-1$ modes, and $N+1$ modes for Neumann boundary conditions. If the CFL condition is satisfied with equality, the frequencies of these modes are integer multiples of the fundamental: $f_m = mf_0$ for mode number $m \in \{1, \hdots, N-1\}$ for Dirichlet and $m \in \{0, \hdots, N\}$ for Neumann boundary conditions. The frequency of the harmonics -- and even the modal shapes -- can be analytically derived using modal analysis as will be explained in Section \ref{sec:modalAnalysis}.
@@ -664,7 +674,7 @@ As shown in Eq. \eqref{eq:CFL}, the Courant number needs to abide the CFL condit
 Besides stability, the value of $\lambda$ is closely related to the quality of the simulation. 
 If $\lambda = 1$, Eq. \eqref{eq:1DwaveFDS} is actually an exact solution to Eq. \eqref{eq:1DwavePDE}, which is quite uncommon in the realm of differential equations! See Figure \ref{fig:1DWaveDisp1}. Identically, if Eq. \eqref{eq:1DWaveStabilityCond} is satisfied with equality, the FD scheme is an exact solution to the PDE, and if $h$ deviates from this condition, the quality of the simulation decreases. 
 
-If $\lambda < 1$, the quality of the simulation quality decreases in an effect called \textit{numerical dispersion}. Dispersion is a phenomenon where some frequencies travel faster through a medium than others, which is desired in some models (see fx. Chapter \ref{ch:stiffString}). Numerical dispersion, however, which is due to numerical inaccuracy, is usually not. Figure \ref{fig:1DWaveDisp09} shows an example when $\lambda = 0.9$, and one can observe that the wave propagation does not match the ideal case as Figure \ref{fig:1DWaveDisp1} shows. Moreover, bandlimiting effects occur, meaning that the highest frequency that the system can generate decreases. See Figure \ref{fig:1DWaveBandwidth}. Higher modes get `squished' together and are not exact multiples of the fundamental anymore. Section \ref{sec:modalAnalysis} elaborates on how to calculate the exact modal frequencies of a FD implementation of the 1D wave equation.
+If $\lambda < 1$, the quality of the simulation quality decreases in an effect called \textit{numerical dispersion}. Dispersion is a phenomenon where some frequencies travel faster through a medium than others, which is desired in some models (see fx. Chapter \ref{ch:stiffString}). Numerical dispersion, however, which is due to numerical inaccuracy, never is! Figure \ref{fig:1DWaveDisp09} shows an example when $\lambda = 0.9$, and one can observe that the wave propagation does not match the ideal case as Figure \ref{fig:1DWaveDisp1} shows. Moreover, bandlimiting effects occur, meaning that the highest frequency that the system can generate decreases. See Figure \ref{fig:1DWaveBandwidth}. Higher modes get `squished' together and are not exact multiples of the fundamental anymore. Section \ref{sec:modalAnalysis} elaborates on how to calculate the exact modal frequencies of a FD implementation of the 1D wave equation.
 
 Finally, if $\lambda > 1$ the system becomes unstable. An example is shown in Figure \ref{fig:1DWaveDisp1001}. Unstable behaviour usually comes in the form of high frequencies (around the Nyquist frequency of $\fs / 2$) growing without bounds.
 
