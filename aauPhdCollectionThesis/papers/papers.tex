@@ -36,16 +36,14 @@
     \includepdf[pages=-, pagecommand={}]{papers/paperF/paperF.pdf}
 \fi
 
+\pagestyle{plain} %disable headers and footers
+\input{papers/paperG/frontPage.tex}
+\ifpapers
+    \includepdf[pages=-, pagecommand={}]{papers/paperG/paperG.pdf}
+\fi
 
-% \chapter{DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}\label{paper:F}
-% \ifpapers
-%     \includepdf[pages=-, pagecommand={}]{papers/PaperF.pdf}
-% \fi
-
-% \chapter{Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}\label{paper:G}
-% \ifpapers
-% \fi
-
-% \chapter{A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}\label{paper:H}
-% \ifpapers
-% \fi
+\pagestyle{plain} %disable headers and footers
+\input{papers/paperH/frontPage.tex}
+\ifpapers
+    \includepdf[pages=-, pagecommand={}]{papers/paperH/paperH.pdf}
+\fi

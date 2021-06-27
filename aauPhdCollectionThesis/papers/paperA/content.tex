@@ -413,7 +413,7 @@ Bowed Sitar &32 &63 &85 \\
 Dulcimer &30 &66 &85 \\
 Hurdy Gurdy &28 &58 &78 \\
 \hline
-\end{tabular}\caption{CPU usage (in \%) for the instruments found in Section \ref{sec:instruments}. Values show usage of one (virtual) thread and have been taken as an average (with a margin of \texttildelow5\%) over a short period of time. The two middle columns show usage when the sound or graphics thread has been turned off.}\label{tab:CPU}
+\end{tabular}\caption{CPU usage (in \%) for the instruments found in Section \ref{sec:instruments}. Values show usage of one (virtual) thread and have been taken as an average (with a margin of \textapprox5\%) over a short period of time. The two middle columns show usage when the sound or graphics thread has been turned off.}\label{tab:CPU}
 \end{table}
 
 \noindent As can be seen from the table, all instruments use about the same amount of CPU and none of them have audible dropouts (CPU $<$ 100\%). It can be observed that the graphics use about 20\% of the CPU, indicating that there is still much room to increase the complexity of the instrument-configurations before dropouts will occur. On the other hand, should the instruments be used in parallel with other audio applications or plug-ins, the CPU usage has to be greatly reduced. The first step towards this would be to vectorise the FDSs using AVX instructions.

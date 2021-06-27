@@ -1,0 +1,42 @@
+\input{setup/preamble.tex}% package inclusion and set up of the document
+\input{setup/hyphenations.tex}% 
+\input{setup/macros.tex}% my new macros
+
+\begin{document}
+\DeclareGraphicsExtensions{.png,.jpg,.pdf, eps.}
+\renewcommand\thesection{\arabic{section}}
+\pagestyle{empty} %disable headers and footers
+
+\graphicspath{figures/}
+\def\paperFigWidth{0.8}
+
+\input{content.tex}
+% \defaultbib
+\pagestyle{empty} %disable headers and footers
+
+\makeatletter
+\renewenvironment{thebibliography}[1]
+     {\section{\bibname}%
+      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\makeatother
+
+\bibliographystyle{IEEEtran} 
+\bibliography{bib/paperG}
+
+\end{document}

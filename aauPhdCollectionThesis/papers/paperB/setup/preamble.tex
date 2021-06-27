@@ -103,10 +103,12 @@
 % Modify how \chapter, \section, etc. look
 % \renewcommand{\thesection}{\arabic{section}}
 % The titlesec package is very configureable
+
+\setcounter{secnumdepth}{3}
 \usepackage{titlesec}
 \titleformat*{\section}{\normalfont\Large\bfseries\color{aaublue}}
 \titleformat*{\subsection}{\normalfont\large\bfseries\color{aaublue}}
-\titleformat*{\subsubsection}{\normalfont\normalsize\bfseries\color{aaublue}}
+\titleformat*{\subsubsection}{\it\normalsize\color{aaublue}}
 %\titleformat*{\paragraph}{\normalfont\normalsize\bfseries\color{aaublue}}
 %\titleformat*{\subparagraph}{\normalfont\normalsize\bfseries\color{aaublue}}
 % Change some default names
