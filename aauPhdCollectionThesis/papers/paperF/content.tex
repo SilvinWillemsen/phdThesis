@@ -1,0 +1,371 @@
+\begin{abstract}
+    This paper presents DigiDrum -- a novel virtual reality musical instrument (VRMI) which consists of a physical drum augmented by virtual reality (VR) to produce enhanced auditory and haptic feedback. The physical drum membrane is driven by a simulated membrane of which the parameters can be changed on the fly. The design and implementation of the instrument setup are detailed together with the preliminary results of a user study which investigates users' haptic perception of the material stiffness of the drum membrane. The study tests whether the tension in the membrane simulation and the sound damping (how fast the sound dies out) changes users' perception of drum membrane stiffness. Preliminary results show that higher values for both tension and damping give the illusion of higher material stiffness in the drum membrane, where the damping appears to be the more important factor. The goal and contribution of this work is twofold: on the one hand it introduces a musical instrument which allows for enhanced musical expression possibilities through VR. On the other hand, it presents an early investigation on how haptics influence users' interaction in VRMIs by presenting a preliminary study.
+    \end{abstract}
+    \section{Introduction}\label{sec:introduction}
+    Virtual Reality (VR) is described as an immersive environment provided by technology and experienced through sensory stimuli \cite{Serafin:2017}. % In VR, one's actions partially determine what happens in the environment. 
+    %
+    Different types of technologies are available for creating VR experiences, and head-mounted displays (HMDs) are among the most popular. VR has been used as a platform for the creation of perceptual illusions, and much research has gone into producing realistic or otherwise compelling visual and auditory experiences. By comparison, the sense of touch has been neglected in spite of its obvious potential to increase a sense of presence in a simulated world \cite{Serafin:2017}.
+    
+    Virtual musical instruments (VMIs) are defined as software simulations or extensions of existing musical instruments with a focus on sonic emulation. Virtual reality musical instruments (VRMIs), are those which also include a simulated visual component \cite{Serafin:2016}. 
+    
+    The design and evaluation of DigiDrum -- a novel VRMI where a physical darbuka (a djembe-like drum) is enhanced by VR is presented. The user wears a HMD which puts them in a recording studio where a virtual drum is aligned with the physical drum, so that both drums can be played at the same time. Interaction with the (physical + virtual) drum triggers a virtually simulated sound of a drum membrane. This sound is sent to the user through sound-isolating headphones for auditory feedback, and a vibration motor (haptuator) attached to the inside of the physical drum's membrane creating a vibrotactile response in the physical drum -- similar to the haptic response a real membrane would produce. As the drum's sound is being simulated, its properties can be changed on the fly, something which is impossible to do in the physical world. 
+    
+    %The user wears a HMD which puts them in a recording studio where a virtual drum is aligned with the physical drum, so that both drums can be played at the same time. Interaction with the (physical + virtual) drum triggers a virtually simulated sound of a drum membrane. This simulated sound is the physical model of a drum. The output sound is sent to the user through sound-isolating headphones for auditory feedback - meaning users only hear the simulated sound, and not the one produced by their drumming of the physical drum. The same virtual sound actuates a vibration motor (haptuator) attached to the inside of the physical drum's membrane creating a vibrotactile response in the physical drum -- similar to the haptic response a real membrane would produce. As the drum's sound is being simulated, its properties can be changed on the fly, something which is impossible to do in the physical world. 
+    
+    An initial user study was conducted on DigiDrum with a twofold goal. On the one hand, in order to study how users interact with the installation and use this feedback to improve the drum, and on the other hand, for trying to understand whether there is a correlation between material stiffness perception and the way users interact with the drum. More specifically, the study investigated which parameters influence the perception of the material stiffness of the drum membrane. Different combinations of values for: (1) tension in the virtual membrane and (2) damping, or how quickly the sound dies out were used. The initial hypothesis was that higher values for both tension and damping would influence the perception of stiffness positively. In other words, higher tension and higher damping (sound dying out faster) will result in users perceiving the drum membrane as being more stiff. It was suspected that tension would be the most important parameter in the perception of stiffness. In the test, the auditory and haptic cues were linked, or matching. 
+    
+    The research question which guides this work is:
+    \vspace{0.2cm}
+    
+    \centerline{\it Can a user's perception of}
+    
+    \centerline{\it material stiffness in an enhanced drum membrane change}
+    
+    \centerline{\it by using auditory and haptic cues?}
+    \vspace{0.2cm}
+    \noindent 
+    
+    The ultimate goal of the paper is to (1) present an installation which helps to enhance musical expression possibilities through a novel VRMI, and (2) investigate users' interaction with a VRMI focused not only on the visual and auditory experience, but also on haptics.
+    
+    The paper is structured as follows: 
+     Section \ref{sec:relwork} presents a selection of related work. Section \ref{sec:haptics} is an introduction to haptic perception. Section \ref{sec:Design_criteria} describes the design criteria used in for DigiDrum. %Section \ref{sec:desex} details a few design avenues we explored during the course of this project.
+     In Section \ref{sec:sys} we describe the system overview and Section \ref{sec:unity} details the implementation of the visual virtual environment. In Section \ref{sec:PM}, the physical model sound algorithm is described. 
+    In Section \ref{sec:exp} a user study looking at the interaction with the setup is presented and preliminary results are shown and discussed in Section \ref{sec:resDisc}. Conclusive remarks and future development are made in Section \ref{sec:conc}.
+    
+    \section{Related Work}\label{sec:relwork}
+    
+    Several investigations on the connection between haptic and auditory cues and perception of material stiffness have been done. Some look specifically at playing percussion musical instruments as the music community has long had a strong interest in haptic technology \cite{Berdahl2008PracticalHA}, where others investigate haptics, visuals and sound in relation to human computer interaction. 
+    
+    In \cite{O'Mohdrain:2001}, Sile O'Mohrain describes a series of studies where experienced musicians played VMIs with both haptic and auditory feedback with the aim of finding out whether adding haptic feedback to these instruments would improve their playability. The results indicate that the presence of haptic feedback can improve a player's ability to learn the behavior of a VMI.
+    
+    In \cite{Dahl:2004}, Dahl gives a detailed analysis of four experienced drummers performing the same musical sequence using drumsticks on drums with three striking surfaces (soft, me\-dium and hard). The study finds that the main parameter influencing the preparatory movement and the striking velocity was the dynamic level and, to a lesser extent, the striking surface.
+    
+    The work of Avanzini and Crosato's \cite{avanzini2006}, that of Passalenti \emph{et al.}  \cite{passalenti2019}, and that of Liu et. al. use the haptic device PHANTOM\textregistered{} Omni\textsuperscript{TM} (now Touch) \cite{phantom}. Avanzini and Crosato test the influence of haptic and auditory cues on perception of material stiffness separately, in an experiment where subjects had to tap on virtual surfaces, and were presented with audio-haptic feedback. In each condition the haptic stiffness had the same value while the acoustic stiffness was varied. The study indicates that subjects consistently ranked surfaces according to the auditory stimuli.
+    Passalenti \emph{et al.}'s experiment focuses on haptics and guitar strings. In \cite{Liu:2008}, a multimodal interface that synchronizes visual, haptic and auditory stimuli to give users a feeling of presence of virtual objects is presented and thoroughly detailed. The study notices that although the stiffness parameters of different materials were set to be the same, the sound effects biased user's judgment of the hardness of surfaces.
+    
+    The preliminary experiment conducted in relation to Digi\-Drum takes inspiration from these works, but looks at the specificity of a VR-enhanced drum.
+    
+    In \cite{Berdahl2007API}, the design of a physically intuitive haptic drumstick is presented. The paper suggests that physically intuitive new musical instruments may help performers transfer motor skills from familiar, traditional musical instruments. 
+    
+    
+    \section{Haptics}\label{sec:haptics}
+    % \subsection{Introduction}
+    The sense of touch is the first to develop in humans -- a sense we cannot shut down. Vision is the last sense to develop, a sense we are able to ``turn off" \cite{Barnett1972} by closing our eyes. Despite this, tactile awareness generally receives less attention than other sensory modalities when it comes to technological development \cite{Gallace2012}. We live in a world over-saturated by visuals, and VR is a technology where this has been the case notably. %One reason for the under-evaluation of tactile stimuli could be the broad number of sensations touch comprises: pressure, temperature, pleasure, pain, joint position, muscle sense, and movement. %The experiment we are going to introduce requires subjective evaluation of drum skin vibration in form of a circular membrane. 
+    In this section, we describe in further detail haptic perception and how it works from a neurophysiological point of view as well as the basis for subjective decision making on tactile sensation.
+    
+    \subsection{Haptic Perception}
+    The peripheral nervous system gathers environmental stimuli in form of visual, audible, tactile, olfactory (smell) and gustatory (taste) inputs and transfers them to the central nervous system for further elaboration and integration. Tactile information is collected in the skin, muscles, and joints and sent to an area in the brain called the primary somato-sensory cortex\cite{Blatow2007}. This cortical area is the first stage for the tactile awareness occurring across the surface of the body. %The primary somato-sensory cortex represents tactile stimuli following an inverted order from the toe to mouth \cite{Narici1999}.
+    Several other structures of the central nervous system take part in the generation of tactile feedback, as generally, a single brain area is never responsible for information awareness \cite{Manzoni1986}. 
+    Light touch and tactile attention are processed in the secondary somato-sensory cortex -- an area directly connected with the primary somato-sensory cortex \cite{Eickhoff2005}. Literature reports that people undergoing tactile training improve their perception but also strengthen the connections and cortical representations of the stimulated body area \cite{Saito2007}. There is a direct relationship between size of cortical region and haptic performance. 
+    
+    A specific area of the central parietal lobe, placed in the back of the primary somato-sensory cortex, integrates the information from the visual and haptic regions to help locate objects in space. 
+    
+    The sense of hearing is connected to the sense of touch and touching objects in different ways produce abundant sounds which convey information about the object and the interaction, such as material, shape, roughness, stiffness, the gesture, rate and strength of our actions. In VR systems, users may immediately notice the unnaturalness if the interface has no sound or provides mismatched sound \cite{Liu:2008}.
+    
+    As Cao \emph{et al.} explain in  \cite{Cao:2016}, skilled interactions with sounding objects, such as drumming, rely on resolving the uncertainty in the acoustical and tactual feedback signals generated by vibrating objects. 
+    
+    \subsection{Notes on Experiments Involving Haptics}
+    Conducting experiments on haptics can prove difficult because there are no proper technological devices for delivering controlled and reliable tactile stimuli \cite{Gallace2012}. 
+    When users interact with a physical object, uncertainty may arise from mis-estimation of the objects’ geometry-independent mechanical properties, such as surface stiffness. How multisensory information feeds back into the fine-tuning of sound-generating actions remains unexplored \cite{Cao:2016}. 
+    
+    In virtual environments (as used in VR) and using hand tracking devices such as Leap Motion \cite{leapwebsite} (see Section \ref{sec:sys}), subjects are able to move their hands freely, which could confound somato-sensory processing with activations related to motor planning and movement \cite{Bodegard2001}. These uncontrolled motor activities result in uncontrolled somatic stimulation. There is an anatomical explanation of this close somato-motor functional relationship: areas involved in the perception of touch on the hands in the primary somato-sensory cortex are located mostly in front of the areas responsible for hand movements \cite{Penfield1950}.
+    Another problem with haptics is the subjective quantification of the stimuli. Contents of tactile consciousness vary between individuals and a common lexicon to evaluate haptic sensation through surveys still seems far to be conceived \cite{Gallace2010}.
+    
+    \subsection{Interaction between Visual Information and Tactile Feedback}
+    In a famous experiment, Pavani \emph{et al.} \cite{Pavani2000},  asked a group of participants to detect the position of vibro-tactile stimuli on their arm. The participant's own arm was placed under a table (out of sight) while a fake rubber hand was laid in front of them. The rubber hand was laid out in a position that was anatomically compatible with participant's real hand. When seeing the mannequin hand being touched, all participants reported that their own hand was being touched, even though that was not the case. In short, the perception of tactile stimulation was simulated through visuals. A similar experiment was conducted by \cite{Schaefer2006} asking subjects to watch a video of a hand being touched on the first finger while their own hand was stimulated synchronously. Brain activity during synchronous stimulation showed an improved tactile acuity. Taking into account previous literature findings, we can conclude that in virtual environments hand manipulations and interactions are important factors that enhance realism and user experience. 
+    
+    \section{Design Criteria for DigiDrum}\label{sec:Design_criteria}
+    
+    As explained by \cite{Berdahl2007API}, a new musical instrument is physically intuitive if the physics of haptic interaction are similar to those supported by a traditional musical instrument. Physically intuitive new musical instruments may help performers transfer motor skills from familiar, traditional musical instruments. This is why we choose to augment an existing drum, instead of suggesting a completely new musical instrument -- seeing a physical drum will invite users to play the new instrument in an intuitive way and as a regular drum. The mechanics of a musical instrument’s interface -- what the instrument feels like -- determines much of its playability \cite{O'Modhrain:2018}.
+    
+    In creating DigiDrum, the design criteria for VRMIs suggested by Serafin \emph{et al.} were used as guidelines \cite{Serafin:2016}. The setup integrates visuals, audio and haptics and extends an existing musical instrument using VR seeking to create a ``magical interaction". Creating a sense of presence is attempted by mapping the virtual drum's location to that of the physical one, and by representing the user's hands in the simulated world. DigiDrum was designed to create three types of illusions: (1) a place illusion -- users should feel like they are in a music production studio, (2) a plausibility illusion -- users should feel like the experience is really happening, and (3) virtual body ownership -- users should see their own body in the virtual world and feel ownership of their virtual body.
+    
+    % \section{Design Iterations}\label{sec:desex}
+    % Re-creating the user's hands in the virtual world is an important aspect in the design of an enhanced drum. During the design development process of this project, two different ways of tracking users' hand movement in the virtual world were explored: (1) the Myo armband -- a device which tracks forearm movement, converting muscle activation to electric potentials and (2) the Leap Motion -- a device which can track and reconstruct a user's hands in VR.
+    
+    % The Myo (by Thalmic Labs, now North) \cite{northwebsite} is a wireless sensor that records surface electromyographic (sEMG) activity from 8 sensors placed around the forearm. Sensors record EMG signals converting muscle activation in electric potentials. The Myo can detect the forearm movement in space, flexion and extension of the wrist and when a subject is spreading the fingers or closing the fist. %The sampling frequency of the device is 200 Hz and the signal amplitude is expressed in “units of activation” and not in millivolts (mV) like standard electromyographic recorders. The armband encloses a nine axis inertial measurement unit which contains a three axis gyroscope, three axis accelerometer and a three axis magnetometer \cite{northwebsite}. From these measurements of spatial information, the wearer’s arm can be tracked both in the orientation and movement. The orientation data indicates the positioning of the armband in terms of the euler angles (roll, pitch and yaw). The angular velocity of the armband is provided in a vector format and the accelerometer represents the acceleration the Myo armband is undergoing at a given time. It should be considered that the Myo armband is better suited for determining the relative positioning of the arm rather than the absolute position. The Myo armband has been made to work best at the widest part of the forearm, that is, the upper forearm %(\autoref{fig:arm1})
+    % % \begin{figure}[h]
+    % % \includegraphics[width=0.5\textwidth]{myo_armband_muscles}
+    % % \caption{Muscle detected and armband position}
+    % % \centering
+    % % \label{fig:arm1}
+    % % \end{figure}
+    % % The Myo can detect the forearm movement in space, flexion and extension of the wrist and when a subject is spreading the fingers or closing the fist. 
+    % % \subsection{Raw signals and pre-processing for the Myo Armband}
+    % % To obtain gestural data from a subject after wearing the armband it is possible to extract the raw signals as shown in \autoref{fig:signals} (a). The armband uses a bluetooth connection to stream data to the PC for data collection and interpretation. It is suggested “warm-up” the band following the app's procedure before starting to collect sEMG signals.
+    % % % \begin{figure}[h]
+    % % % \includegraphics[width=0.5\textwidth]{signals0}
+    % % % \caption{Raw sEMG signals as extracted from Myo armband}
+    % % % \centering
+    % % % \label{fig:sig0}
+    % % % \end{figure}
+    
+    % % However, as raw signals have limited practical application, after common pre-processing, involving rectification and envelope calculation (see \autoref{fig:signals} (b)), these signals are more easily interpreted and could be integrated in the Unity environment \cite{unity} (see Section \ref{sec:sys}) for hand gesture control. 
+    % % % \begin{figure}[h]
+    % % % \includegraphics[width=0.5\textwidth]{signal1}
+    % % % \caption{Post-processed sEMG signals}
+    % % % \centering
+    % % % \label{fig:sig1}
+    % % % \end{figure}
+    % % In Unity, the armband needs to sit on the subject for at least 2 minutes to be considered “stable”. A simple controller was created using a thin rectangle with a box on the top to simulate a drum-stick. One end-point is fixed in the same way human forearm connects at the elbow. The box changes colour according to wrist movement in extension (green) or flexion (blue). In other positions, the box stays gray. In \autoref{fig:mm1}, the extension of the palm of the hand is detected by the system and the colour of the box turned to green. Using forearm motion and wrist extension or flexion it could be possible to create a virtual drum using collisions with virtual drum parts. When collision between the virtual stick controlled with Myo and the drum component is detected, a sound file could be played with a pre-sampled musical tone. A simple demo was created using this procedure using a cymbal and a snare-drum.
+    
+    % % \subsection{Leap Motion}
+    
+    % The Leap Motion \cite{leapwebsite} is an infrared-sensor-based camera that allows for accurate hand tracking and can be used in VR and AR environments. The sensor can be simply mounted on top of a HMD and, once calibrated, its software development kit allows for accurate hand tracking.
+    
+    %  The Leap Motion was chosen for implementation since obtaining  the exact location of the hands, or more specifically, the fingertips, for interaction was very important for a digital drum. Through design iterations, the Leap Motion proved much better at obtaining this data than the Myo. Theoretically, data from the Leap Motion could be combined with the data from both Myo armband in order to create a full 3D simulation of the forearm, hand and fingers. This might be done in a later, more thorough study where drummer movements are analyzed. For the first iteration of the DigiDrum, visualisation of ones own hands is sufficient for tactile evaluation of drum interaction.
+    
+    \begin{figure}[t]
+        \centering
+    \includegraphics[width=\paperFigWidth\textwidth]{figures/VRDrumSetup.png}
+    \caption{The physical setup of the system. The Leap Motion is mounted to the front of the HMD.}
+    \centering
+    \label{fig:userOverview}
+    \end{figure}
+    
+    \begin{figure}[t]
+        \centering
+
+    \includegraphics[width=\paperFigWidth\textwidth]{figures/user.png}
+    \caption{A user interacting with the setup.}
+    \centering
+    \label{fig:user}
+    \end{figure}
+    \begin{figure}[t]
+        \centering
+
+    \includegraphics[width=\paperFigWidth\textwidth]{figures/systemlayout-updated.png}
+    \caption{Detailed system layout. The user interacts with the system using their hands and gets haptic feedback from the haptuator attached to the drum membrane, auditory feedback from closed headphones and visual feedback from the Oculus Rift headset. A detailed explanation can be found in Section \ref{sec:sys}.}
+    \centering
+    \label{fig:systemLayout}
+    \end{figure}
+    \section{System Overview} \label{sec:sys}
+    
+    \autoref{fig:userOverview} shows the overall design of DigiDrum and its setup and \autoref{fig:user} shows a user interacting with the setup. For hand-tracking, the Leap Motion \cite{leapwebsite}, which is an infrared-sensor-based camera that allows for accurate hand tracking is used. It is mounted to the front of an Oculus Rift HMD so that the user's hands are in the field of view when they look at the virtual drum. The drum is fixed in-place and played like a djembe. In the application, the virtual drum was placed slightly higher than the physical drum to make sure the physical model was triggered when the physical drum was hit.
+    
+    A detailed overview of the system is given in \autoref{fig:systemLayout}. The hand movement data is retrieved by a PC which runs the cross-platform game engine Unity \cite{unity}. The Unity `scene' contains the virtual environment (see Section \ref{sec:unity}) that the user will see through the HMD and the physical model used for the sound and haptics (see Section \ref{sec:PM}). The HMD also sends data back to the PC regarding location and head rotation. Once the tracked hand touches (or collides with) the virtual drum, the physical model is triggered and its output sound is sent to a haptuator which is attached to the inside of the drum membrane. This effectively causes the physical membrane to be actuated by a virtual membrane. To accommodate for the plausability illusion mentioned in Section \ref{sec:Design_criteria}, the chosen haptuator has a very high fidelity, i.e. can play realistic audio signals as opposed to non-realistic `buzzes'. Other forms of haptic feedback have been considered, but -- according to the authors -- the use of this actuator attached to the drum membrane had the highest potential of resembling realistic drum membrane vibration in the end.
+    
+    Finally, the same sound that is sent to the haptuator is also sent to sound-isolating headphones. Sound-isolation is important as the sound coming from the physical drum should not interfere with the audio coming from the simulated drum.
+    
+    \section{Unity Implementation}\label{sec:unity}
+    The virtual environment was  created using Unity. All the hardware drivers and software components were linked together using this platform. Here, a virtual drum playable with hand motion using Leap Motion was created. The user enters the VR environment (rendered as a recording studio) and Leap Motion reconstructs (in VR) the subject's own hands. In the virtual recording studio a drum was placed at the center and programmed to detect collision with the reconstructed hands. When a collision was detected, a C\# script, in which a physical model of a drum membrane was programmed, was activated to reproduce the beating sound of the drum through an actuator placed inside the drum skin.
+    
+    \section{Physical Model}\label{sec:PM}
+    The behaviour of musical instruments can be well described by partial differential equations (PDEs) \cite{Fletcher1998}. In this section, the continuous-time PDE for a drum-membrane is given and explained. This is followed by an explanation of the discretisation method used. Finally, the parameter values used for the implementation are given. 
+    
+    \subsection{Continuous Time}
+    A rectangular (stiff) membrane with dimensions $L_x$ (m) and $L_y$ (m) can be described by the following equation \cite{bilbao2009numerical}:
+    
+    \begin{equation}\label{eq:PDE}
+    \rho H\frac{\partial^2u}{\partial t^2} = T\Delta u - D\Delta\Delta u - 2 \sigma_0\frac{\partial u}{\partial t} + 2 \sigma_1 \Delta \frac{\partial u}{\partial t}.
+    \end{equation}
+    Here, state variable, $u = u(x,y,t)$ is a function of horizontal coordinate $x \in [0, L_x]$, vertical coordinate $y \in [0, L_y]$ and time $t\geq0$ and is parameterised in terms of material density $\rho$ (kg/m$^3$), membrane thickness $H$ (m), tension $T$ (N) and frequency independent and dependent damping coefficients $\sigma_0$ (s$^{-1}$) and $\sigma_1$ (m$^2$/s). Furthermore, $D = EH^3/12(1-\nu^2)$ with Young's modulus $E$ (Pa) and Poisson's ratio $\nu$. Lastly, $\Delta$ represents the 2D Laplacian \cite{bilbao2009numerical}:
+    \begin{equation}
+        \Delta = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2}.
+    \end{equation}
+    Furthermore, clamped boundary conditions -- i.e., the state $u$ at all plate edges and their gradients are 0 -- have been chosen for simplicity:
+    \begin{equation}
+        u = \nabla u = 0 \quad \text{with} \quad \nabla = \frac{\partial}{\partial x} + \frac{\partial}{\partial y}.
+    \end{equation}
+    \subsection{Discretisation}
+    For implementing the physical model, finite-difference time-domain (FDTD) methods were used \cite{bilbao2009numerical}. These methods were chosen over others, such as the 2D waveguide mesh \cite{Duyne1993}, as they allow parameters and real-time changes of these to be better controlled. FDTD methods discretise $u(x,y,t)$ shown in Equation \eqref{eq:PDE} to $u_{(l,m)}^n$ using $t = nk$ with sample $n$ and time step $k$ (s), $x=lh$ where $l \in [0, ..., N_x-1]$ and $y=mh$ where $m \in [0, ..., N_y-1]$ where $N_x$ and $N_y$ are the number of horizontal and vertical grid points respectively. Furthermore, grid spacing $h$ (m) can be calculated using 
+    \begin{equation}\label{eq:h}
+        h \geq h_\text{min} =  2\sqrt{\frac{c^2k^2 + 4\sigma_1k + \sqrt{(c^2k^2 + 4\sigma_1k)^2 + 4\kappa^2 k^2} }{2}},
+    \end{equation}
+    where $c = \sqrt{T/\rho H}$ and $\kappa = \sqrt{D/\rho H}$. The closer $h$ is to $h_\text{min}$, the higher the accuracy of the implementation.
+    
+    \begin{table}[t]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Parameter & Symbol (unit) & Value \\
+        \hline
+        Membrane width & $L_x$ (m) & $0.3$\\
+        Membrane length & $L_y$ (m) & $0.3$ \\
+        Material density & $\rho$ (kg/m$^3$)& $10$ \\
+        Thickness & $H$ (m) & $0.001$ \\
+        Tension & $T$ (N) & $\{15, 40, 80\}$ \\
+        Young's modulus & $E$ (Pa)& $2\cdot 10^3$ \\
+        Poisson's ratio & $\nu$ (-)& $0.3$ \\
+        Freq. indep. damping & $\sigma_0$ (s$^{-1}$) & $\{0.5, 2, 5\}$\\
+        Freq. dep. damping & $\sigma_1$ (m$^2$/s) & $[0, 0.005]$\\
+        Time step & $k$ (s) & $1/44100$\\
+        Grid spacing & $h$ (m) & $4h_\text{min}$\\
+        \hline
+    \end{tabular}
+    \caption{Table showing parameter values.}\label{tab:parameters}
+    \end{table}
+    
+    \subsection{Parameters}
+    Most parameters used in the simulation were chosen empirically and can be found in \autoref{tab:parameters}. With these parameters a small (30$\times$30 cm) membrane with a low density and stiffness is simulated. For the purpose of getting the model to work in real time, the minimum grid spacing $h_\text{min}$ in Equation \eqref{eq:h} is multiplied by 4 ($h_\text{min}$ in \eqref{eq:h} is calculated based on the highest value of $T$ and $\sigma_1 = 0.005$). The values for $T$ and $\sigma_0$ correspond to the cases used in the experiment. The frequency dependent damping  $\sigma_1$ follows an exponentially decaying curve, 
+    \begin{equation}
+        \sigma_1(t) = 0.005e^{-0.01 t},
+    \end{equation}
+    where $t=0$ at the time of excitation. This allows for very low damping, i.e., very long sound, while taking away some of the high frequency content present immediately after excitation. This ultimately results in a more natural drum sound, even when $\sigma_0$ is set low.
+    
+    \section{User study}\label{sec:exp}
+    %In the above we presented a drum augmented using virtual reality and a vibration motor. Considering that different physical drums would produce different acoustic results our virtual reality musical instrument is an implementation of 3 different drum types into a single setup. While getting the haptic feedback of a drumming experience, one can switch between different musical instruments, explore their potential and train their stroke. 
+    % DigiDrum should allow for novel ways of musical expression. We now wish to test it in order to understand how we can improve our design, and to see if we were right in focusing on haptic and auditory cues for a VRMI design. 
+    
+    This work hopes to add to the corpus of design guidelines for VRMIs, more specifically those VRMIs which involve a touch based stroking movement. In \cite{Serafin:2016}, Serafin et al. describe three layers of evaluation for VRMIs, namely: (1) investigating modalities of interaction, (2) evaluating VR specific aspects, with engagement being the most interesting from a VRMI perspective, and (3) looking at quality and goals of interaction.
+    
+    An initial user study was conducted with a towfold goal: on the one hand - to study how users interact with DigiDrum and create guidelines for improving the setup, and on the other hand to investigate the relationship between tension and frequency independent damping coefficient ($T$ and $\sigma_0$ respectively in Section \ref{sec:PM}) and user's perception of material stiffness.
+    
+    As shown in Section \ref{sec:PM}, there are 3 different cases for both tension $T$ and frequency independent damping $\sigma_0$. All combinations were tested, resulting in 9 different cases. Sound examples of each individual case can be found in \cite{soundfiles}. Participants' experiences were evaluated through both qualitative and quantitative methods, namely by: (1) asking them during the test how they rate the stiffness of the material in each of the 9 cases, (2) a questionnaire including questions about their relationship and experience with playing a musical instrument, virtual body ownership and whether they thought their interaction patterns changed between the different cases and (3) observation while the participants interacted with the setup to retrieve data on engagement and stroke patterns which possibly correlate to the haptics and sound.
+    
+    \subsection{Process for the User Study}
+    Before the experiment, participants were told that they would be ``drumming in VR", that their perception of the stiffness of the material they were interacting with was tested and that their performances did not need to be musical in any way. Furthermore, participants were told they would hear 9 different cases in between which the ``parameters of the experience" would be changed and that for each of these cases they would have to rate the stiffness of the material they were interacting with on a scale of 1 to 7, 1 being ``extremely soft or loose", 7 being ``extremely stiff or hard". The order in which the cases were presented was randomised to reduce bias. Between cases, the participants did not take off the headset or headphones, and the authors noted their answers. After the test, the participants filled out a questionnaire with the following questions (the last two taken from \cite{avanzini2006}):
+    
+    \begin{itemize}
+        \item I felt like the hands in the simulation were my own. (1-7 rating)
+        \item In order to express your judgements to the questions during the simulation, you relied mainly on... (multiple answers possible: visuals\textbar audio\textbar\\
+         haptics)
+        \item In your opinion what was varying between each condition? (multiple answers possible: visuals\textbar audio\textbar\ haptics)
+    \end{itemize}
+    From participant-observation during the experiment and the the final two questions of the questionnaire, ``Did your behaviour change between different cases, and if so what did you do differently?" and ``Anything you would like to add?", information on the user interaction and the quality of the setup was collected.
+    
+    The experiment was done on 16 participants, 9 of which were experienced musicians ($>$ 5 years of instrument practice). Three participants were drummers. 
+    
+    \section{Results and Discussion}\label{sec:resDisc}
+    This section will give the results of the user study and discuss these. Due to the small sample size and some issues regarding interaction described at the end of this section, the presented results should be considered preliminary.
+    
+    \subsection{Statistical Analysis}
+    The results of the stiffness ratings can be found in \autoref{fig:results}. Intriguingly, there was a significant correlation between the cases sorted by damping first and then by tension (both sorted from low to high) and the subjective ratings ($\rho$ = 0.9372, p \textless \ 0.01) using Spearman correlation. The Spearman methodology was used because the low number of values did not allow modelling a normal distribution \cite{Kirk2007}.% As mentioned before, subjective scores ranged from 1 to 7 while we organised the drum stiffness values in 9 levels as shown in Fig. 7.   
+    \begin{figure}[t]
+        \centering
+    \includegraphics[width=\paperFigWidth\textwidth]{figures/corr_anal}
+    \caption{Relation between stiffness perception and subjective ratings.}
+    \centering
+    \label{fig:results}
+    \end{figure} 
+    A quasi-linear relationship between subjective stiffness perception and the values for tension and damping used by the simulation can be observed. %It should be noted how lower values of stiffness (between 2 to 4) deviate from the linear trend: subjects had more uncertainty when they had to evaluate lower levels of membrane stiffness. \textbf{this was still assuming that the 9 cases were sorted by stiffness}
+    
+    \autoref{fig:averagedResults} shows the average participant scores for each level of damping and tension both grouped in levels (low, medium and high). As previously hypothesised, the ratings of material stiffness increases with tension and damping.
+    \begin{figure}[t]
+        \centering
+    \includegraphics[width=\paperFigWidth\textwidth]{figures/tens_dump}
+    \caption{Subjective ratings grouped by different tension and damping levels.}
+    \centering
+    \label{fig:averagedResults}
+    \end{figure} 
+    %\textbf{We also ran a group level statistical analysis using the Mann-Whitney U-test between tension and damping levels.} \textbf{\textleftarrow Something more about this?}
+    
+    A statistical analysis was run on each single level based on non-parametric Mann-Whitney U-test with the results reported in \autoref{tab:utest}. This test helps to identify significant differences between groups in presence of small samples made by ordinal variables. Abbreviations are T for ``tension" and D for ``damping" while letters L, M and H mean the levels ``low", ``medium" and ``high". It is important to take into account the multi-comparison problem and in this case the threshold level for significance should be equal to 0.0056 following the Bonferroni correction.
+    
+    \def \columnW {0.60cm}
+    \begin{table}[t]
+    \scriptsize
+    \centering
+    \begin{tabular}{ |p{0.9cm}||p{\columnW}|p{\columnW}|p{\columnW}|p{\columnW}|p{\columnW}|p{\columnW}|p{\columnW}|p{\columnW}|p{\columnW}|  }
+     \hline
+     \multicolumn{10}{|c|}{Mann-Whitney U-test [p-values]} \\
+     \hline
+      & LT LD & MT LD & HT LD & LT MD & MT MD & HT MD & LT HD & MT HD & HT HD \\
+     \hline
+    LT LD &	 &.0642 &.0163 &.1268 &.0049 &.0041 &.0034 &.0004 &.0002\\
+    \hline
+    MT LD &.0642 &	 &.6463 &.3465 &.6582 &.1802 &.1584 &.034 &.0091\\
+    \hline
+    HT LD &.0163 &.6463 &	 &.2123 &.8933 &.5413 &.4455 &.1737 &.0915\\
+    \hline
+    LT MD &.1268 &.3465 &.2123 &	 &.0791 &.0254 &.0283 &.0012 &.0009\\
+    \hline
+    MT MD &.0049 &.6582 &.8933 &.0791 &	 &.3191 &.3114 &.0449 &.0174\\
+    \hline
+    HT MD &.0041 &.1802 &.5413 &.0254 &.3191 &	 &.7732 &.5214 &.1383\\
+    \hline
+    LT HD &.0034 &.1584 &.4455 &.0283 &.3114 &.7732 &	 &.7725 &.3424\\
+    \hline
+    MT HD &.0004 &.034 &.1737 &.0012 &.0449 &.5214 &.7725 &	 &.2991\\
+    \hline
+    HT HD &.0002 &.0091 &.0915 &.0009 &.0174 &.1383 &.3424 &.2991 &	\\
+    
+     \hline
+     \multicolumn{10}{|c|}{Note: Bonferroni adjusted significance threshold for multi-comparison p\textless0.0056} \\
+     \hline
+    \end{tabular}
+    \caption{Mann-Whitney U-test (p-values).}
+    \label{tab:utest}
+    \end{table}
+    
+    As we can observe from \autoref{tab:utest}, there isn't a significant difference between ``high tension -- low damping" and ``low tension -- medium damping" (p = 0.2123) suggesting that the linear relation shown in Figure \ref{fig:averagedResults} holds despite the discontinuity between points as seen on the scatterplot. However, we should consider it similar to a monotonically increasing function rather than a pure linear trend. 
+    
+    Lastly, \autoref{tab:groupComp} shows group comparisons between the three different values of damping and tension. 
+    \begin{table}[t]
+    \centering
+    \begin{tabular}{ |c|c|c| } 
+     \hline
+     \multicolumn{2}{| c |}{Different levels of tension/damping} & p-values\\
+     \hline
+     Low Damping & Medium Damping & 0.2560 \\ 
+     Medium Damping & High Damping & 0.0078 \\
+     Low Damping & High Damping & 6.5071e-04 \\
+     Low Tension & Medium Tension & 0.0950 \\
+     Medium Tension & High Tension & 0.4268 \\
+     Low Tension & High Tension & 0.0297 \\
+     \hline
+    \end{tabular}
+    \caption{Comparison between different levels of tension and damping.}\label{tab:groupComp}
+    \end{table}
+    A significant difference in participant's ratings between medium-high damping and low-high damping levels can be noticed while tension shows significance only between low to high tension. It can be deducted from the results that damping is a more important factor than tension in material stiffness perception. This result was unexpected, as it was hypothesised that tension would be the most dominant factor in stiffness perception. Additionally, it appears difficult for participants to evaluate low to medium levels of both damping and tension. In a future test, the values could be chosen differently, or more alternatives for the parameter values could be investigated to better see the perceptual differences between these values. 
+    
+    \subsection{Statistical Analysis: Reliability}
+    Individual ratings were initially analysed with Cronbach's alpha \cite{Cronbach1951} to test the internal consistency of the responses. This measure is generally known as a metric to validate a questionnaire with higher values of alpha as those more desirable. The non-standardised Cronbach's alpha value was 0.6348 while the standardised value reached 0.6589. According to \cite{Kline2000}, a value between 0.6 to 0.7 is questionable (questionnaire scale is not fully reliable) with 0.7 as the threshold for an acceptable test. Despite the outcomes being slightly below threshold (probably caused by subjective difficulties in evaluating stiffness), it appears that in future a good reliability can be reached by increasing the sample size. Moreover, if we don't consider all factors loadings as evenly distributed, we could assume that the Cronbach's alpha underestimates the true reliability. 
+    
+    \subsection{Questionnaire}
+    The questionnaire results in \autoref{tab:results} show that the participants generally found that the hands in the simulation were their own. This proves that the Leap Motion is a good way to track the hands and that it was well implemented. The visuals had no influence on participants' judgement, probably because they were unchanged. The audio seemed to be the most predominant feature the participants focused on when expressing their judgements (93.8\%). Haptics for expressing judgements was only chosen by 5 participants (31.3\%). In the future, removing the audio, only leaving the haptics might be a better way to force the participants to use their sense of touch and test the influence of this modality on perception.
+    
+    \begin{table}[t]
+    \small
+    \centering
+    \begin{tabular}{|p{7cm}|p{1.75cm}|}
+        \hline
+        Question & Result \\
+        \hline
+        \vspace{0.05em}
+        I felt like the hands in the simulation were my & \vspace{0.05em}$\mu = 5.44$,\\
+        own. (1-7 rating) & $\sigma = 1.26$ \\
+        & \\
+        In order to express your judgements to the ques- & visuals: \, 0,\\
+        tions during the simulation, you relied mainly & audio: \: 15, \\ on... (visuals\textbar audio\textbar haptics) & haptics: \: 5 \\
+        &\\
+        In your opinion what was varying between each & visuals: \, 0, \\
+        condition? (visuals\textbar audio\textbar haptics) & audio: \: 14,\\
+        & haptics: 10 \\
+        \hline
+    \end{tabular}
+    \caption{Questionnaire results. The last two questions were taken from \cite{avanzini2006}.}\label{tab:results}
+    \end{table}
+    
+    \subsection{Qualitative Observations}
+    From participant observation during the experiment, comments they gave during and after the test, and the two last (open) questions of the questionnaire (see Section \ref{sec:exp}) additional findings were compiled. 
+    
+    Due to the fact that the virtual drum was placed slightly higher than the physical drum (see Section \ref{sec:sys}), many participants interacted with the air above the drum rather than finishing their stroke to actually hit the drum. This was an issue, as the haptic sensation would not be felt in that case. This might also explain the result of the second question in \autoref{tab:results}. Either before or during the test, the participants were instructed to finish their stroke to actually physically interact with the drum. 
+    
+    The interaction was programmed in such a way, that when a tracked hand collides with the virtual drum, this hand would not be able to trigger the physical model until it was  completely out of the ``collision zone". Due to the misalignment mentioned above, many interactions were not captured. Again, either before or during the experiment, the participants were instructed to make longer movements to ensure that their hands were completely outside of this ``collision zone" before interacting with the drum again.
+    
+    Another technical issue was that sometimes participants would look forward rather than down to the hands. This caused the hands not to be tracked anymore as the Leap Motion was mounted on the HMD. A solution for this would be to mount it at a lower angle rather than straight forward (as is the current case).
+    
+    The experiment could be improved by addressing the above interaction issues to yield stronger data. The issues could potentially be solved by adding a more precise and reliable sensor to the setup, such as a contact microphone placed on the drum membrane. Even though a feedback loop could occur due to the haptuator being present on the same membrane, there is a potential to filter out its vibrations and only use the transients due to the interaction with the membrane for control.
+    
+    Some participants commented that they would have liked to have reference points for ``the stiffest" and ``the softest" cases before testing as they said they would have judged the first few cases differently if they had known these references in advance. This could, however, bias the participants' answers.
+    
+    The movements of participants were observed during the test and sporadically noted. There was a small tendency towards slower and longer movements in the case of lower tension and faster and shorter movements in the opposite case, but as these observations were not done systematically, to be able to say anything about this, this should be properly tested, possibly using raw data from the hand tracking.
+    
+    %The physical model of the membrane allows for sound experimentation with sounds which 
+    %In this paper we presented a setup made of: a virtual reality drum which involves a physical prop providing haptic feedback. Considering that different physical drums would produce different acoustic results and a musician would have to spend hours practicing and improving their stroke techniques for a specific one - our virtual reality musical instrument is an implementation of 3 different drum types into a single setup. While getting the haptic feedback of a drumming experience, one can switch between different musical instruments, explore their potential and train their stroke. This takes advantage of the fact that VR allows for possibilities which could not happen in the real world.
+    
+    \section{Conclusion}\label{sec:conc}
+    
+    In this paper, we presented and evaluated a novel VRMI where a physical drum was enhanced by VR. The physical drum was augmented by a vibration motor and the sound was simulated using a physical model of a drum membrane. In an experiment run during the study, preliminary results show that higher values for both tension and damping increase the perception of material stiffness of the drum membrane, as hypothesised. However, the damping appeared to be a more important factor in this perception than the tension, which was contrary to expectations. 
+    
+    In future work, improving the experiment by, for example, adding a contact microphone to the membrane for more accurate control and re-conducting the experiment with a larger sample size will be necessary to validate or improve the results presented in this paper.
+    
+    Other future work includes decoupling the audio and the haptics, to test the perceptual influence of each individual modality separately. More alternatives of the parameter values could be presented in a future test to more deeply investigate the connection between parameter values and stiffness perception.
+    
+    Additionally, the tracking of the user's hands should be improved by mounting the Leap Motion more downwards on the HMD. Furthermore, the virtual and physical drum should be better aligned in space as to make the interaction less confusing and more intuitive.
+    Lastly, in order to test whether the interaction patterns change depending on the changes in parameters, the raw data from the hand tracking should be analysed. %As an addition to this, the Myo armband could be used to get more complex interaction data.
+    
+    %% if specified like this the section will be committed in review mode
+    \subsection*{Acknowledgments}
+    The authors wish to thank Stefania Serafin, Cumhur Erkut, Niels Nilsson, Rolf Nordahl, and Michele Geronazzo -- our teachers of the ``Virtual, Augmented, Mixed realities" PhD course at Aalborg University Copenhagen -- for their help, and all the participants who were kind enough to participate in our experiment.

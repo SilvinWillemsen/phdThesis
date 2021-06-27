@@ -198,7 +198,7 @@
 \apptrue % uncomment to include appendices
 
 \newif\ifpapers
-% \paperstrue % uncomment to include appendices
+\paperstrue % uncomment to include papers
 
 \ifapp
   \renewcommand\thesection{\thechapter.\arabic{section}}
@@ -210,31 +210,47 @@
     \begin{appendices}
       \renewcommand\appendixname{Paper} 
       \setcounter{chapter}{0} % reset stuff
-      \renewcommand\thesection{\thechapter.\arabic{section}}
+      \renewcommand\thesection{\arabic{section}}
       \part{Papers}\label{part:papers}
       \input{papers/paperErrata}
       \pagestyle{plain}
+      \titleformat{%command
+        \chapter
+      }[%shape
+      display%
+      ]{%format
+        \normalfont\huge
+      }{%label
+        \begin{center}\color{aaublue}\chaptertitlename\ \thechapter\end{center}
+      }{%style
+        1cm
+      }{%code before title
+        \thispagestyle{empty}\begin{center}\Large
+      }[%code after title
+        \end{center}
+      ]
+
       \input{papers/papers.tex}
       \pagestyle{fancy}
       % \input{papers/paperA/paperA.tex}
     \end{appendices}
   \end{subappendices}
 \fi
-\titleformat{%command
-  \chapter
-}[%shape
-display%
-]{%format
-  \normalfont\huge 
-}{%label
-  \begin{center}\color{aaublue}\chaptertitlename\ \thechapter\end{center}
-}{%style
-  1cm
-}{%code before title
-  \thispagestyle{empty}\begin{center}\Large
-[%code after title
-]
-  \end{center}}
+% \titleformat{%command
+%   \chapter
+% }[%shape
+% display%
+% ]{%format
+%   \normalfont\huge 
+% }{%label
+%   \begin{center}\color{aaublue}\chaptertitlename\ \thechapter\end{center}
+% }{%style
+%   1cm
+% }{%code before title
+%   \thispagestyle{empty}\begin{center}\Large
+% [%code after title
+% ]
+%   \end{center}}
 \pagebreak
 \pagestyle{empty}
 \justify

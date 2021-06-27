@@ -147,9 +147,11 @@
 % \addbibresource{bib/mybib.bib}
 
 \newcites{main}{References}
-\newcites{A}{Main Publications}
-\newcites{B}{Publications with a Supervisory Role}
-\newcites{C}{Other Publications}
+\newcites{M}{Main Publications}
+\newcites{S}{Publications with a Supervisory Role}
+\newcites{O}{Other Publications}
+\newcites{A}{References}
+
 % \renewcommand*{\bibliographyitemlabel}{[\alph{enumiv}]}
 
 % \makeatletter
@@ -226,6 +228,8 @@
 	pdfstartview=FitH%
 }
 
+\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n} % for paper A
+
 \usepackage{xcolor}
 \def\SBcomment[#1]{\textcolor{Red}{#1}}
 \def\SWcomment[#1]{\textcolor{Cyan}{#1}}
@@ -239,7 +243,7 @@
 
 \usepackage{dirtytalk}
 \usepackage{subfig}
-
+\usepackage{algorithm2e}
 \usepackage{tikz}
 \tikzset{>=latex}
 \tikzstyle{block} = [draw,minimum size=0.5cm]
@@ -325,4 +329,3 @@
     morestring=[b]"
   }
 }
-
