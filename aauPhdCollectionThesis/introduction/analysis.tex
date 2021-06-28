@@ -9,7 +9,7 @@ Starting off with some necessary theory on matrices and other mathematical tools
 \end{itemize}
 \todo{perhaps also dispersion analysis?}
 \section{Matrices}
-For several purposes, such as implementation in \texttt{MATLAB} and several analysis techniques described shortly, is useful to write a FD scheme in \textit{matrix form}. A matrix is a rectangular array with numerical elements and its dimensions are denoted using ``$row \times column$''. A $3\times 5$ matrix, for example, thus has $3$ rows and $5$ columns (see Figure \ref{fig:matrixA}). Along those lines, a \textit{row vector} is a matrix with $1$ row and more than $1$ column and a \textit{column vector} is a matrix with $1$ column and more than $1$ row. \SWcomment[If a matrix has only $1$ row and $1$ column, it can be used as a \textit{scalar}.] 
+For several purposes, such as implementation in \texttt{MATLAB} and several analysis techniques described shortly, it is useful to write a FD scheme in \textit{matrix form}. A matrix is a rectangular array with numerical elements and its dimensions are denoted using ``$row \times column$''. A $3\times 5$ matrix, for example, thus has $3$ rows and $5$ columns (see Figure \ref{fig:matrixA}). Along those lines, a \textit{row vector} is a matrix with $1$ row and more than $1$ column and a \textit{column vector} is a matrix with $1$ column and more than $1$ row. \SWcomment[If a matrix has only $1$ row and $1$ column, it can be used as a \textit{scalar}.] 
 
 In this document, matrices and vectors are written using bold symbols. %\SWcomment[Many notations exist, blabla $\bar a$ $\vec a$] 
 A matrix is denoted by a capital letter -- such as $\A$ -- whereas vectors are decapitalised -- such as $\u$. An element in a matrix is denoted with a non-bold, decapitalised variable, where the subscripts indicate the indices of the row and column. For example, the element in the 2\textsuperscript{nd} row and the 4\th column of a matrix $\A$ is denoted as $a_{24}$. An element in a vector only has one subscript, regardless of whether it is a row or a column vector.
@@ -28,7 +28,7 @@ Multiplying and dividing a matrix by a scalar (a single number) is valid and hap
 Notice that although a matrix can be divided by a scalar, a scalar can not necessarily be divided by a matrix. See Section \ref{sec:inverse} for more information.
 
 \subsubsection{Matrix transpose}
-A matrix or vector can be \textit{transposed}, and is indicated with the $T$ operator. Transposing a matrix $\A$ is denoted by $\A^T$.  means that the elements in the $i$\th row and the $j$\th column of the original matrix become the elements in the $j$\th row and the $i$\th column of the transposed matrix. Essentially the row and column indices of the elements inside the matrix get switched according to
+A matrix or vector can be \textit{transposed}, and is indicated with the $T$ operator. Transposing a matrix $\A$ is denoted by $\A^T$. This means that the elements in the $i$\th row and the $j$\th column of the original matrix become the elements in the $j$\th row and the $i$\th column of the transposed matrix. Essentially the row and column indices of the elements inside the matrix get switched according to
 \begin{equation}\label{eq:matrixTransposition}
     a_{ij} = a_{ji}.
 \end{equation} 
@@ -42,7 +42,11 @@ Also see Figure \ref{fig:matrixTransp}. For a row vector, the transpose operatio
 \end{figure}
 
 \subsubsection{Matrix Multiplication}
-Matrix multiplication (this includes matrix-vector multiplication) is different from regular multiplication in that it needs to abide several extra rules. In order for matrix multiplication to be valid, the number of columns of the first matrix needs to be equal to the number of rows in the second matrix. The result will then be a matrix with a number of rows equal to that of the first matrix and a number of columns equal to that of the second matrix. See Figure \ref{fig:matrixVector} for reference.
+Matrix multiplication (this includes matrix-vector multiplication) is different from regular multiplication in that it needs to abide several extra rules. The multiplication of two matrices $\A$ and $\B$ to a resulting matrix $\C$ is defined as
+\begin{equation}\label{eq:matrixMult}
+    c_{ij} = \sum_{k=1}^K a_{ik} b_{kj},
+\end{equation}
+where $K$ is both the number columns of matrix $\A$ and the number of rows in matrix $\B$. It thus follows that, order for matrix multiplication to be valid, the number of columns of the first matrix needs to be equal to the number of rows in the second matrix. The result will then be a matrix with a number of rows equal to that of the first matrix and a number of columns equal to that of the second matrix. See Figure \ref{fig:matrixVector} for reference.
 
 As an example, consider the $L\times M$ matrix $
 \A$ and a $M\times N$ matrix $\B$ with $L\neq N$. The multiplication $\A\B$ is defined as the number of columns of matrix $\A$ ($M$) is equal to the number of rows of matrix $\B$ (also $M$). The result, $\C$, is a $L \times N$ matrix. The multiplication $\B\A$ is undefined as the number of columns of the first matrix does not match the number of rows in the second matrix. A valid multiplication of two matrices written in their dimensions is
@@ -53,7 +57,7 @@ As an example, consider the $L\times M$ matrix $
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{figures/analysis/matrixVector.pdf}
-    \caption{Visualisation of valid matrix multiplications. The ``inner'' dimensions (columns of the left matrix and rows of the right) must match and result in a matrix with a size of ``outer'' dimensions (rows of the left matrix and columns of the right). \label{fig:matrixVector}}
+    \caption{Visualisation of valid matrix multiplications (see Eq. \eqref{eq:matrixMult}). The ``inner'' dimensions (columns of the left matrix and rows of the right) must match and result in a matrix with a size of ``outer'' dimensions (rows of the left matrix and columns of the right). \label{fig:matrixVector}}
 \end{figure}
 
 \subsection{In a FDTD context}
@@ -61,7 +65,7 @@ Matrix multiplication when working with FDTD methods usually involves multiplyin
 \begin{equation}
     \A\u = \w.
 \end{equation}
-Expanding this operation results in
+Expanding this operation (with reference to Eq. \eqref{eq:matrixMult}) results in
 \begin{equation}
     \underbrace{\begin{bmatrix}
         a_{00} & a_{01} & \hdots & a_{0N}\\
@@ -85,7 +89,7 @@ Expanding this operation results in
 where the indexing of the matrix elements starts at $0$ rather than $1$ here, as it relates better to a FDTD context.
 
 \subsubsection{Operators in Matrix Form}
-FD operators approximating spatial derivatives and averages introduced in Section \ref{sec:FDoperators} can be written in matrix form and applied to a column vector $\u^n$ containing the state of the system at time index $n$. These matrices are square and their sizes depend on the number of grid points the system is described for and the boundary conditions. Not assuming a specific size for now, the FD operators in \eqref{eq:discFirstSpace} can be written in matrix form according to
+FD operators approximating spatial derivatives and averages introduced in Section \ref{sec:FDoperators} can be written in matrix form and applied to a column vector $\u^n$ containing the state of the system at time index $n$. These matrices are square and their sizes depend on the number of grid points the system is described for and on the boundary conditions. Not assuming a specific size for now, the FD operators in \eqref{eq:discFirstSpace} can be written in matrix form according to
 % \setstackgap{L}{1.1\baselineskip}
 % \fixTABwidth{T}
 \setstackgap{L}{14pt}
@@ -190,7 +194,7 @@ Averaging operators $\mxp$, $\mxm$ and $\mxd$ are defined in a similar way:
 
 It is important to notice that only spatial operators are written in this matrix form and then applied to state vectors at different time steps ($\u^{n+1}$, $\u^n$ and $\u^{n-1}$). 
 
-Finally, the identity matrix is a matrix with only $1$s on the diagonal and $0$s elsewhere as
+Finally, the identity matrix is a matrix with only $1$s on the diagonal and $0$s elsewhere:
 \begin{equation*}
     \I = \xbracketMatrixstack{
         \ddots & & & & \mathbf{0}&\\
@@ -199,9 +203,12 @@ Finally, the identity matrix is a matrix with only $1$s on the diagonal and $0$s
         & & & 1 & & \\
         & & & & 1 & \\
         &\mathbf{0} & & &  & \ddots
-    }
+    },
 \end{equation*}
-
+and has the following special property
+\begin{equation*}
+    \I\A = \A\I = \A.
+\end{equation*}
 
 \subsubsection{Schemes and Update Equations in Matrix Form}
 With the spatial operators in matrix form presented above, the FD scheme of the 1D wave equation in Eq. \eqref{eq:1DwaveFDS} can be written in matrix form.
@@ -465,9 +472,10 @@ Some useful identities used in this work are
 These identities can be used for spatial derivatives as well by substituting the `$t$' subscripts for `$x$'.
 
 When an operator is applied to a product of two grid functions, the discrete counterpart of the product rule needs to be used according to
-\begin{equation}
+\begin{equation}\label{eq:productRule}
     \dtp (\uln\wln) = (\dtp \uln)(\mtp\wln) + (\mtp \uln)(\dtp \wln).
 \end{equation}
+The same rule applies when the backward operator $\dtm(\uln\wln)$ or centred operator $\dtd(\uln\wln)$ is used. In that case, the forward operators $\dtp$ and $\mtp$ in Eq. \eqref{eq:productRule} need to be substituted for the backward or centred versions of the operators respectively. 
 
 \section{Frequency Domain Analysis}\label{sec:stabilityAnalysis}
 Frequency domain analysis, also called Fourier analysis, is a way to determine various properties of a FD scheme, including conditions for stability. The process is similar to finding stability for digital filters. In essence, a FD scheme can be seen as a complex filter of which its coefficients are defined by physical parameters. This section will explain how to obtain a frequency-domain representation of a scheme and will mainly follow \cite{theBible}, albeit in a slightly more practical manner.
@@ -589,7 +597,7 @@ To begin to prove stability, this equation needs to be written in the form found
     -2 < -2+\frac{Kk^2}{M} &< 2,\\
     0 < \frac{Kk^2}{M} &< 4.
 \end{align*}
-If only non-zero values are chosen for $K$, $k$ and $M$ they are positive and the first condition is always satisfied. The second condition is then easily solved for $k$ by
+If only non-zero values are chosen for $K$, $k$ and $M$ they are positive (as they are already defined as being non-negative) and the first condition is always satisfied. The second condition is then easily solved for $k$ by
 \begin{equation}\label{eq:stabilityMK}
     k < 2\sqrt{\frac{M}{K}}.
 \end{equation}
@@ -855,6 +863,7 @@ and are indeed in Joules. Notice that an extra `m' unit appears due to the norm 
 
 \subsubsection{Step 4: Implementation}
 The energy balance in Eq. \eqref{eq:energyBalance1DWave} can be implemented with the following code in the for-loop recursion:
+
 \setlstMAT
 \begin{lstlisting}
 %% Calculate the energy using Eq. %*\eqrefMatlab[eq:energyBalance1DWave]*) 
@@ -869,7 +878,7 @@ potEnergy(n) = T/(2*h) * sum(([u; 0] - [0; u]) ...
 % Total energy (Hamiltonian)
 totEnergy(n) = kinEnergy(n) + potEnergy(n);
 \end{lstlisting}
-Here, \texttt{u} is the vector $\u = [u_1^n, \hdots, u_{N-1}^n]^T$ (as Dirichlet boundary conditions are used) and need to be concatenated with $0$ in the calculation of the potential energy as the boundaries need to be included in the calculation (despite them being 0!).
+Here, \texttt{u} is the vector $\u = [u_1^n, \hdots, u_{N-1}^n]^T$ (as Dirichlet boundary conditions are used) and need to be concatenated with $0$ in the calculation of the potential energy as the boundaries need to be included in the calculation, despite them being 0!\footnote{As can be seen from the definition of $\v$ in Eq. \eqref{eq:energyBalance1DWave}, the domain used for the inner product is $\underline{d} = \{0,\hdots, N-1\}$ and $\v$ contains a forward difference in its definition requiring $u_N^n$ as well.}
 Figure \ref{fig:energy1DWave} shows the plot of the normalised energy according to Eq. \eqref{eq:normalisedEnergy} and shows that the deviation of $\h^n$ is within machine precision.
 \begin{figure}[h]
     \centering
@@ -1005,7 +1014,7 @@ This is the same (CFL) condition obtained through von Neumann analysis in Sectio
 
 \section{Modal Analysis}
 \label{sec:modalAnalysis}
-Modes are the resonant frequencies of a system. The amount of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. This section will show how to numerically obtain the modal frequencies of an FD implementation using the 1D wave equation as a test case. 
+Modes are the resonant frequencies of a system. The amount of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. Modal analysis can be used to obtain objective data on what modes a FD scheme should contain. This can then be used to determine whether this matches one's expectations or whether the output of the system matches what the analysis predicted. This section will show how to numerically obtain the modal frequencies of an FD implementation using the 1D wave equation as a test case.
 
 We start by using the matrix form of the 1D wave equation from Eq. \eqref{eq:1DwaveMatrix}
 \begin{equation*}
@@ -1021,7 +1030,7 @@ This is an eigenvalue problem (see Section \ref{sec:eigenValueProblems}) where t
     z_p+\Big(-2-c^2k^2\text{eig}_p(\Dxx)\Big)+z_p^{-1}=0.
 \end{gather}
 %\SWcomment[If the CFL condition for the scheme is satisfied, the roots will lie on the unit circle.] 
-Furthermore, we can substitute a test solution $z_p = e^{s_pk}$ with complex frequency $s_p = j\omega_p + \sigma_p$ which contains the (angular) frequency $\omega_p$ and damping $\sigma_p \leq 0$ \todo{check with Stefan} of the $p$\th mode. As there is no damping present in the system, the test solution reduces to $z_p = e^{j\omega_p k}$ which can be substituted into Eq \eqref{eq:1DWaveModalIntermediate} to get
+Furthermore, we can substitute a test solution $z_p = e^{s_pk}$ with complex frequency $s_p = j\omega_p + \sigma_p$ which contains the (angular) frequency $\omega_p$ and damping $\sigma_p \leq 0$ \todo{check with Stefan} of the $p$\th mode.\footnote{Notice that regardless of the possible damping coefficient per mode, the eventual amplitude of each will mostly be determined by the locations of the excitation and output as discussed in \ref{sec:output1DWave}.} As there is no damping present in the system, the test solution reduces to $z_p = e^{j\omega_p k}$ which can be substituted into Eq \eqref{eq:1DWaveModalIntermediate} to get
 \begin{align*}
     e^{j\omega_pk}+e^{-j\omega_pk}-2-c^2k^2\text{eig}_p(\Dxx)&=0,\\
     \frac{e^{j\omega_pk}+e^{-j\omega_pk}}{-4}+\frac{1}{2}+\frac{c^2k^2}{4}\text{eig}_p(\Dxx)&=0.
