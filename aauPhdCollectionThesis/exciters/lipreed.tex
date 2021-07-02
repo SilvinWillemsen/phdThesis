@@ -1,0 +1,459 @@
+\section{Lip-reed}
+Lip-reed model
+
+
+
+Coupling to Tube
+
+
+To excite the system we can use a pulse train. A more physical approach, that is bidirectional, is to model a lip as a mass-spring system that interacts with the left boundary of the tube (see Figure \ref{fig:lipSystem}). Following \cite{Harrison2018} we get
+\begin{equation}
+    M_\text{r}\frac{d^2y}{dt^2} = -M_\text{r} \omega_0^2 y - M_\text{r} \sigma_\text{r} \frac{dy}{dt} + S_\text{r}\Delta p,
+\end{equation}
+with displacement of the lip reed from equilibrium $y = y(t)$, mass of the lip reed $M_\text{r}$ (kg) natural angular frequency of the lip reed $\omega_0 = \sqrt{K/M_\text{r}}$ (rad/s), spring stiffness of the lip $K$ (N/m), loss parameter $\sigma_\text{r}$ (\SWcomment[s$^{-1}$]), effective surface area of the lip $S_\text{r}$ (m$^2$) and 
+\begin{equation}
+    \Delta p = P_\text{m} - p(0,t)
+\end{equation}
+is the difference between the pressure in the mouth $P_\text{m}$ (\SWcomment[kPa]) and the pressure in the mouth piece $p(0,t)$ (\SWcomment[kPa]). 
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+    
+    \def\radius{6}; % Radius of the string (>2!)
+    \pgfmathsetmacro{\reps}{3}; % How may back-and-forths in the drawing of the springs
+    \def\bowSpacing{0.2};
+    \def\drawingSpacing{1.5}
+    \def\bowWidth{5};
+    
+    \def\woodWidth{1}; %>0.3
+    \def\massWidth{2};
+    \def\bridgeHeight{3};
+    \def\bridgeWidth{4};
+    \def\cornerRadius{0.15};
+    \def\stringWidth{0.2};
+    \pgfmathsetmacro{\tinyRadius}{\stringWidth*0.1};
+    \pgfmathsetmacro{\stringWidthMinTinyRad}{((\stringWidth-(2*\tinyRadius)))*0.5};
+    
+    % draw airflow
+    
+    %draw airflow
+    \def\rightAirFlow{0}; % have the right airflow bulge (1) or not (0)
+    \foreach \idx in {1,...,5}
+    {
+        \pgfmathsetmacro{\scaleLeft}{0.5 - 0.1 * \idx};
+        \ifnum\rightAirFlow=1
+            \pgfmathsetmacro{\scaleRight}{0.5 - 0.1 * \idx};
+        \else
+            \pgfmathsetmacro{\scaleRight}{0};
+        \fi
+        \begin{scope}[decoration={
+            markings,
+            mark=between positions 0.15 and 0.85 step 0.35
+         with {\arrow{>}}}
+            ]
+        % \node at (0, \idx) {\scale};
+         \draw [gray!40, 
+         xshift=-2.5cm, 
+         yshift= -\idx * 0.3cm, 
+         dotted, 
+         line width=0.3mm, postaction={decorate}] plot [smooth, tension = 0.5] coordinates { (0,1*\scaleLeft) (1,0.75*\scaleLeft) (2,0) (4, 0) (5, 0.75*\scaleRight) (6,1*\scaleRight)} ;
+         \end{scope}
+    }
+    % \def\scale{0.5};
+    % \draw [gray, xshift=-2.5cm, yshift=-0cm] plot [smooth, tension = 0.5] coordinates { (0,1*\scale) (1,0.75*\scale) (2,0) (4, 0) (5, 0.75*\scale) (6,1*\scale)};
+    % \def\scale{0.25};
+    % \draw [gray, xshift=-2.5cm, yshift=-1.2cm] plot [smooth, tension = 0.5] coordinates { (0,1*\scale) (1,0.75*\scale) (2,0) (4, 0) (5, 0.75*\scale) (6,1*\scale)};
+    % \def\scale{0};
+    % \draw [gray, xshift=-2.5cm, yshift=-1.5cm] plot [smooth, tension = 0.5] coordinates { (0,1*\scale) (1,0.75*\scale) (2,0) (4, 0) (5, 0.75*\scale) (6,1*\scale)};
+    
+    \node (r0) at ( 1.0,  -0.5 ) {}; % root
+    \node (s0) at ( 1.0, 0.1 ) {}; % extreme
+    \node (s1) at ( 1.6, 0.1 ) {}; % extreme
+
+    % DRAW TREE
+    \fill[fill=white] (r0.center)--(s0.center)--(s1.center);
+    
+    % \draw plot [smooth] coordinates {(-3, -3) (-2, 2) (-1, -3};
+    \node at (0,0) [rectangle,draw, fill = white, minimum height=1cm,minimum width= \massWidth cm] (Mr) {$M_\text{r}$};
+    %top
+    % \draw[-] (-3, 2) -- (3, 2) node[below, midway] (top) {};
+    % \draw[-] (-2, 3) -- (4, 3) node[below, midway] (top) {};
+    % \draw[-] (-3, 2) -- (-2, 3) node[below, midway] (top) {};
+    % \draw[-] (4, 3) -- (3, 2) node[below, midway] (top) {};
+    \draw[-] (-2.5, 2.5) -- (3.5, 2.5) node[below, midway] (top) {};
+    %bottom
+    \draw[-] (-3, -2) -- (3, -2) node[below, midway] (bottom) {};
+    \draw[-] (-2, -1) -- (4, -1) node[below, midway] (bottom) {};
+    \draw[-] (-3, -2) -- (-2, -1) node[below, midway] (top) {};
+    \draw[-] (4, -1) -- (3, -2) node[below, midway] (top) {};
+
+    % draw mass
+    
+    \draw[-] (-1, 0.5) -- (0, 1.5) node[] (left) {};
+
+    \draw[-] (1, 0.5) -- (2, 1.5) node[] (topRight) {};
+
+    \draw[-] (0, 1.5) -- (2, 1.5) node[] (top) {};
+
+    \draw[-] (2, 1.5) -- (2, 0.5) node[] (right) {};
+
+    \draw[-] (0.5 * \massWidth, -0.5) -- (2, 0.5) node[] (bottomRight) {};
+
+    \node[rotate = 0] at (0.5, 1) (Sr) {$S_\text{r}$};
+
+    \def\xOffset{0.3};
+    % draw spring
+    \filldraw[black] (-0.5 + \xOffset, 2.5) circle (1pt) node[anchor=center](topSpring){};    
+    \draw[-] (-0.5 + \xOffset, 2.5) -- (-0.5 + \xOffset, 2.3);
+    \draw[-] (-0.5 + \xOffset, 2.3) -- (-0.75 + \xOffset, 2.2);
+    %switched these around because of the color
+    \draw[-] (-0.25 + \xOffset, 2.02) -- (-0.75 + \xOffset, 1.84);
+    \draw[-] (-0.75 + \xOffset, 2.2) -- (-0.25 + \xOffset, 2.02);
+    \draw[-] (-0.75 + \xOffset, 1.84) -- (-0.25 + \xOffset, 1.66);
+    \draw[-] (-0.25 + \xOffset, 1.66) -- (-0.75 + \xOffset, 1.52);
+    \draw[-] (-0.75 + \xOffset, 1.52) -- (-0.25 + \xOffset, 1.3);
+    \draw[-] (-0.25 + \xOffset, 1.3) -- (-0.5 + \xOffset, 1.2);
+    \draw[-] (-0.5 + \xOffset, 1.2) -- (-0.5 + \xOffset, 1.0);
+    \filldraw[black] (-0.5 + \xOffset, 1.0) circle (1pt) node[anchor=center](bottomSpring){};    
+    \node at (-1 + \xOffset, 1.75) (K) {$K$};
+    
+    \def\dashpotHeight{-0.25}
+    % draw dashpot
+    \filldraw[black] (1.5 - \xOffset, 2.5) circle (1pt) node[anchor=center](topDashPot){};
+    \draw[-] (1.5 - \xOffset, 2.5) -- (1.5 - \xOffset, 1.4 - \dashpotHeight);
+
+    \draw[-] (1.3 - \xOffset, 1.4 - \dashpotHeight) -- (1.7 - \xOffset, 1.4 - \dashpotHeight);
+
+    \draw[-] (1.25 - \xOffset, 1.7 - \dashpotHeight) -- (1.25 - \xOffset, 1.35 - \dashpotHeight);
+    \draw[-] (1.75 - \xOffset, 1.35 - \dashpotHeight) -- (1.75 - \xOffset, 1.7 - \dashpotHeight);
+
+    \draw[-] (1.25 - \xOffset, 1.35 - \dashpotHeight) -- (1.75 - \xOffset, 1.35 - \dashpotHeight);
+    \draw[-] (1.5 - \xOffset, 1.35 - \dashpotHeight) -- (1.5 - \xOffset, 1.0);
+
+    \filldraw[black] (1.5 - \xOffset, 1.0) circle (1pt) node[anchor=center](bottomDashpot){};    
+    \node at (1.0 - \xOffset, 1.75) (sigma) {$\sigma_\text{r}$};
+    
+    
+    % pressure labels
+    \def\pressOffset{0.3}
+    \def\backgroundOpacity{0.4}
+    \node[fill = white, fill opacity=\backgroundOpacity, text opacity = 1] at (-2, -0.6 - \pressOffset) (Pm) {$P_\text{m}$};
+    \node[fill = white, fill opacity=\backgroundOpacity, text opacity = 1] at (0.5, -0.8 - \pressOffset) (deltaP) {$\Delta p$};
+    \node[fill = white, fill opacity=\backgroundOpacity, text opacity = 1] at (3.2, -0.6 - \pressOffset) (p) {$p(0,t)$};
+
+    
+    % y and H0
+    \def\axisLineWidth{0.07};
+    \draw[dashed, color = gray] (3.65, 0) -- (1.5, 0);
+    \node at (4, 1.5) {$y$};
+    
+    \draw[->] (3.75, -1.5) -- (3.75, 1.5);
+    \node at (4, 0) {$0$};
+    \draw (3.75 - \axisLineWidth, 0) -- (3.75 + \axisLineWidth, 0) {};
+
+    \draw (3.75 - \axisLineWidth, -1.5) -- (3.75 + \axisLineWidth, -1.5) {};
+    \node at (4.2, -1.5) {$-H_0$};
+    
+    % width
+    \draw[black!70] (-1, 0.6) -- (1, 0.6) {};
+    \draw[black!70] (-1, 0.55) -- (-1, 0.65) {};
+    \draw[black!70] (1, 0.55) -- (1, 0.65) {};
+    \node at (0, 0.75) (w) {$w$};
+% \begin{scope}[very thick,decoration={
+%     markings,
+%     mark=at position 0.5 with {\arrow{>}}}
+%     ] 
+%     \draw[postaction={decorate}] (-4,0)--(4,0);
+% \end{scope}
+    
+    \end{tikzpicture}
+    \caption{Lipsystem with the equilibrium at 0 and the distance from the lower lip $H_0$.}
+    \label{fig:lipSystem}
+\end{figure}
+This pressure difference causes a volume flow velocity following the Bernoulli equation
+\begin{equation}
+    U_\text{B} = w[y + H_0]_+\text{sgn}(\Delta p) \sqrt{\frac{2|\Delta p|}{\rho_0}},
+\end{equation}
+with effective lip-reed width $w$ (m), static equilibrium separation $H_0$ (m) and $[x]_+ = 0.5 (x + |x|)$ describes the ``positive part of''. Notice that when $y + H_0 \leq 0$, the lips are closed and the volume velocity $U_\text{B}$ is 0. Another volume flow is generated by the lip reed itself according to
+\begin{equation}
+    U_\text{r} = S_\text{r} \frac{dy}{dt}.
+\end{equation}
+Assuming that the volume flow velocity is conserved we define the total air volume entering the system as
+\begin{equation}
+    S(0)v(0,t) = U_\text{B}(t) + U_\text{r}(t).
+\end{equation}
+
+\subsection{Discrete Time}
+\def\nph{}
+\def\nphSys{n+1/2}
+
+Placing $y$, $\Delta p$, and thereby $U_\text{B}$ and $U_\text{r}$ on the interleaved temporal grid (but on the non-interleaved spatial grid), we discretise the equations above to get the following system
+\begin{subnumcases}{\label{eq:discreteLipSystem}}
+    M_\text{r}\delta_{tt}y^{\nphSys} & $= -M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nphSys}-M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nphSys} + S_\text{r}\Delta p^{\nphSys}$\label{eq:discReed}\\
+    \Delta p^{\nphSys} & $= P_\text{m} - \mu_{t+}p_0^n$\label{eq:pDiff}\\
+    U_\text{B}^{\nphSys} & $= w[y^{\nphSys}+H_0]_+\text{sgn}(\Delta p^{\nphSys})\sqrt{\frac{2|\Delta p^{\nphSys}|}{\rho_0}}$\label{eq:bernoulli}\\
+    U_\text{r}^{\nphSys} & $= S_\text{r}\delta_{t\cdot}y^{\nphSys}$\label{eq:Ur}\\
+    \mu_{x-}(S_{1/2}v_{1/2}^{\nphSys}) &$= U_\text{B}^{\nphSys} + U_\text{r}^{\nphSys}$\label{eq:UbUr}
+\end{subnumcases}
+In the following we will suppress the superscript $n+1/2$ for the aforementioned variables. Expanding and solving \eqref{eq:discReed} for $y^{n+3/2}$ yields
+\begin{align}
+    \left(1 + \frac{\omega_0^2 k^2}{2} + \frac{\sigma_\text{r} k}{2}\right)y^{n+3/2} &= 2 y^{n+1/2} - \left(1 + \frac{\omega_0^2 k^2}{2} - \frac{\sigma_\text{r} k}{2}\right) y^{n-1/2} + \frac{S_\text{r} k^2}{M_\text{r}} \Delta p^{\nph}\nonumber\\
+    \alpha_\text{r}y^{n+3/2} &= 4y^{n+1/2} + \beta_\text{r}y^{n-1/2} + \xi_\text{r}\Delta p^{\nph}
+\end{align}
+where
+\begin{equation}
+    \alpha_\text{r} = 2 + \omega_0^2k^2 + \sigma_\text{r} k\ , \qquad \beta_\text{r} =  \sigma_\text{r} k - 2 - \omega_0^2 k^2\ , \qquad \text{and} \qquad \xi_\text{r} = \frac{2 S_\text{r}k^2}{M_\text{r}}.
+\end{equation}
+\subsubsection{Obtaining $\Delta p$}\label{sec:obtainingDeltaP}
+With all other parameters user-defined, the only unknown in our system is now $\Delta p^{\nph}$. Using the following identities
+\begin{equation}
+    \delta_{tt} = \frac{2}{k}(\delta_{t\cdot} - \delta_{t-}), \quad \text{and} \quad \mu_{t\cdot} = k\delta_{t\cdot} + e_{t-}
+\end{equation}
+where $e_{t-}$ is a backwards time-shift of one sample (so $e_{t-}y^{n+1/2} = y^{n-1/2}$) we can rewrite \eqref{eq:discReed} to
+\begin{gather}
+    \frac{2}{k} (\delta_{t\cdot} - \delta_{t-})y^{\nph} = -\omega_0^2(k\delta_{t\cdot} + e_{t-})y^{\nph} - \sigma_\text{r}\delta_{t\cdot} y^{\nph} + \frac{S_\text{r}}{M_\text{r}}\Delta p^{\nph}\nonumber\\
+    a_1\delta_{t\cdot}y^{\nph} - a_2\Delta p^{\nph} - a_3^n = 0,\label{eq:preAEquation}
+\end{gather}
+where
+\begin{equation}\label{eq:aCoeffs}
+    a_1 = \frac{2}{k} + \omega_0^2k + \sigma_\text{r} \geq 0, \quad a_2 = \frac{S_\text{r}}{M_\text{r}} \geq 0\ , \quad \text{and} \quad a_3^n = \left(\frac{2}{k} \delta_{t\cdot} - \omega_0^2e_{t-}\right)y^{\nph}\ .
+\end{equation}
+Note that because $a_1$ and $a_2$ are calculated solely from non-negative parameters we can apply the condition that these are greater than or equal to 0. The same will be done for other coefficients below.
+We can substitute Eq. \eqref{eq:Ur} into Eq. \eqref{eq:preAEquation}
+\begin{equation}
+    \frac{a_1}{S_\text{r}}U_\text{r}^{\nph} - a_2 \Delta p^{\nph} - a_3^n = 0
+\end{equation}
+and consequently \eqref{eq:UbUr} to get
+\begin{equation}\label{eq:aEquation}
+    \frac{a_1}{S_\text{r}}\left(\mu_{x-}(S_{1/2}v_{1/2}^{\nph}) - U_\text{B}^{\nph}\right) - a_2 \Delta p^{\nph} - a_3^n = 0
+\end{equation}
+%
+To get a definition for $\mu_{x-}(S_{1/2}v_{1/2}^{\nph})$, we include the expression for Webster's equation at $l=0$
+\begin{equation}
+    \frac{\bar S_0}{\rho_0 c^2}\delta_{t+}p_0^n = -\delta_{x-}(S_{1/2}v_{1/2}^{\nph}),
+\end{equation}
+which, using the following identity (derived from Eq. (2.7d) from \cite{Bilbao2009})
+\begin{equation}\label{eq:identity}
+    \delta_{x\pm} = \pm\frac{2}{h}(\mu_{x\pm} - 1),
+\end{equation} 
+can be rewritten to
+\begin{equation}
+    \frac{\bar S_0}{\rho_0 c^2}\delta_{t+}p_0^n = \frac{2}{h} \left(\mu_{x-}(S_{1/2}v_{1/2}^{\nph})-S_{1/2}v_{1/2}^{\nph}\right).
+\end{equation}
+Then using the same identity \eqref{eq:identity} but for $\delta_{t+}$ we get
+\begin{equation}
+    \frac{2\bar S_0}{\rho_0 c^2k}(\mu_{t+}p_0^n-p_0^n) = \frac{2}{h} \left(\mu_{x-}(S_{1/2}v_{1/2}^{\nph})-S_{1/2}v_{1/2}^{\nph}\right).
+\end{equation}
+Using Eq. \eqref{eq:pDiff} we can rewrite this to
+\begin{align}
+    \frac{\bar S_0h}{\rho_0 c^2k}(P_\text{m} - \Delta p^{\nph}-p_0^n) &= \frac{2}{h} \left(\mu_{x-}(S_{1/2}v_{1/2}^{\nph})-S_{1/2}v_{1/2}^{\nph}\right).\nonumber\\
+    \mu_{x-}(S_{1/2}v_{1/2}^{\nph}) &= b_1^n - b_2\Delta p^{\nph}\label{eq:bEquation}
+\end{align}
+where
+\begin{equation}\label{eq:bCoeffs}
+    b_1^n = S_{1/2}v_{1/2}^{\nph} + \frac{\bar S_0h}{\rho_0 c^2k} (P_\text{m} - p_0^n), \quad \text{and} \quad b_2 = \frac{\bar S_0h}{\rho_0 c^2k} \geq 0\ .
+\end{equation}
+We can then substitute Eqs. \eqref{eq:bEquation} and \eqref{eq:bernoulli} into Eq. \eqref{eq:aEquation} to get
+\begin{gather}
+    \frac{a_1}{S_\text{r}}\left(b_1^n - b_2\Delta p^{\nph} - w[y^{\nph}+H_0]_+\text{sgn}(\Delta p^{\nph})\sqrt{\frac{2|\Delta p^{\nph}|}{\rho_0}}\right) - a_2 \Delta p^{\nph} - a_3^n = 0,\nonumber\\
+    - w[y^{\nph}+H_0]_+\text{sgn}(\Delta p^{\nph})\sqrt{\frac{2|\Delta p^{\nph}|}{\rho_0}} - b_2\Delta p^{\nph} - \frac{a_2S_\text{r}}{a_1} \Delta p^{\nph} + b_1^n - \frac{a_3^nS_\text{r}}{a_1} = 0,\nonumber\\
+    -c_1^n\text{sgn}(\Delta p^{\nph})\sqrt{|\Delta p^{\nph}|} - c_2\Delta p^{\nph} + c_3^n = 0\label{eq:cEquation}
+\end{gather}
+where
+\begin{equation}\label{eq:cCoeffs}
+    c_1^n = w[y^{\nph} + H_0]_+\sqrt{\frac{2}{\rho_0}} \geq 0, \quad c_2 = b_2 + \frac{a_2S_\text{r}}{a_1} \geq 0, \quad \text{and}\quad c_3^n = b_1^n - \frac{a_3^nS_\text{r}}{a_1}\ .
+\end{equation}
+We can then divide Eq. \eqref{eq:cEquation} by $-\text{sgn}(\Delta p^{\nph})$ to get a quadratic equation in $\sqrt{|\Delta p^{\nph}|}$
+\begin{equation}
+    c_2|\Delta p^{\nph}| + c_1^n\sqrt{|\Delta p^{\nph}|} - \frac{c_3^n}{\text{sgn}(\Delta p^{\nph})} = 0.
+\end{equation}
+Now, as we know that $c_1^n, c_2 \geq 0$, for any real solutions to exist the following must be true
+\begin{equation}\label{eq:sgnEquality}
+    \text{sgn}(c_3^n) = \text{sgn}(\Delta p^{\nph}) \quad \Longrightarrow \quad \frac{c_3^n}{\text{sgn}(\Delta p^{\nph})} = |c_3^n|.
+\end{equation}
+Now we can solve for $\sqrt{|\Delta p^{\nph}|}$:
+\begin{equation}
+    \sqrt{|\Delta p^{\nph}|} = \frac{-c_1^n \pm \sqrt{(c^n_1)^2+4c_2|c_3^n|}}{2c_2}\ .
+\end{equation}
+As $\sqrt{(c_1^n)^2 + 4c_2|c_3^n|} \geq c_1^n$, we can only guarantee that the solution is positive if we take the positive solution the square root. Furthermore, using Eq. \eqref{eq:sgnEquality} we can solve for the pressure difference
+\begin{equation}\label{eq:pressureDiff}
+    \Delta p^{\nph} = \text{sgn}(c_3^n)\left(\frac{-c_1^n + \sqrt{(c^n_1)^2+4c_2|c_3^n|}}{2c_2}\right)^2.
+\end{equation}
+This we can then apply to the update of the lip reed in Eq. \eqref{eq:discReed}. 
+
+\subsubsection{Coupling to the tube}
+To couple the reed to the tube, we take Eq. \eqref{eq:pressureUpdate} at $l=0$ and rewrite it to
+\begin{equation}\label{eq:tubeCoupling}
+    p^{n+1}_0 = p_0^n - \frac{\rho_0c\lambda}{\bar S_0}\left(-2\mu_{x-}(S_{1/2}v_{1/2}^{\nph}) + 2 S_{1/2}v_{1/2}^{\nph}\right),
+\end{equation}
+and substitute Eq. \eqref{eq:UbUr} to get
+\begin{equation}\label{eq:pressureCoupled}
+    p^{n+1}_0 = p_0^n - \frac{\rho_0c\lambda}{\bar S_0}\left(-2(U_\text{B}^{\nph} + U_\text{r}^{\nph}) + 2 S_{1/2}v_{1/2}^{\nph}\right).
+\end{equation}
+\subsection{Energy analysis}
+We start by multiplying Eq. \eqref{eq:discReed} by $\delta_{t\cdot}y$ (superscript $n+1/2$ is again suppressed):
+\begin{alignat}{2}
+    &\xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:pDiff}}\ }\qquad\qquad\qquad\qquad\qquad\qquad\quad M_\text{r}\delta_{t\cdot}y^{\nph}\delta_{tt}y^{\nph} + M_\text{r}\omega_0^2\delta_{t\cdot}y^{\nph}\mu_{t\cdot}y^{\nph} + M_\text{r} \sigma_\text{r}(\delta_{t\cdot}y^{\nph})^2 - S_\text{r}\delta_{t\cdot}y^{\nph}\Delta p^{\nph} &&= 0,\nonumber\\[-5pt]
+    &\xLeftrightarrow{\mystrut\ \text{Eqs. \eqref{eq:Ur} \& \eqref{eq:UbUr}}\ } \qquad \ \: M_\text{r}\delta_{t\cdot}y^{\nph}\delta_{tt}y^{\nph} + M_\text{r}\omega_0^2\delta_{t\cdot}y^{\nph}\mu_{t\cdot}y^{\nph} + M_\text{r} \sigma_\text{r}(\delta_{t\cdot}y^{\nph})^2 - \left(\mu_{x-}(S_{1/2}v_{1/2})-U_\text{B}\right)\Delta p^{\nph} &&= 0,\nonumber\\[-5pt]
+    &\xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:pDiff}}\ } \quad M_\text{r}\delta_{t\cdot}y^{\nph}\delta_{tt}y^{\nph} + M_\text{r}\omega_0^2\delta_{t\cdot}y^{\nph}\mu_{t\cdot}y^{\nph} + M_\text{r} \sigma_\text{r}(\delta_{t\cdot}y^{\nph})^2 + U_\text{B}\Delta p^{\nph}-\mu_{x-}(S_{1/2}v_{1/2})(P_\text{m} - \mu_{t+}p_0) &&= 0,\nonumber
+\end{alignat}
+\vspace{-5pt}\\
+Recalling that the energy of the tube $\delta_{t+}\mathfrak{h}_\text{t} = \mathfrak{b}_\text{r} + \mathfrak{b}_\text{l}$ and $\mathfrak{b}_\text{l} = -(\mu_{t+}p_0)\mu_{x-}(S_{1/2}v_{1/2})$ we get, assuming that $\mathfrak{b}_\text{r} = 0$\vspace{-5pt}
+\begin{alignat}{2}
+    &\xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:firstOrderLeftBoundary}}\ }\qquad\ \  M_\text{r}\delta_{t\cdot}y^{\nph}\delta_{tt}y^{\nph} + M_\text{r}\omega_0^2\delta_{t\cdot}y^{\nph}\mu_{t\cdot}y^{\nph} + M_\text{r} \sigma_\text{r}(\delta_{t\cdot}y^{\nph})^2 + U_\text{B}\Delta p^{\nph}-\mu_{x-}(S_{1/2}v_{1/2})P_\text{m} + \delta_{t+}\mathfrak{h}_\text{t} &&= 0,\nonumber
+\end{alignat}
+Then we arrive at the following energy balance
+\begin{equation}
+    \delta_{t+}\left(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r}\right) + \mathfrak{Q}_\text{r} + \mathfrak{p}_\text{r} = 0
+\end{equation}
+where
+\begin{gather}
+    \mathfrak{h}_\text{r} = \frac{M_\text{r}}{2}\left((\delta_{t-}y)^2+\omega_0^2\mu_{t-}(y^2)\right) \geq 0\\
+    \mathfrak{Q}_\text{r} = M_\text{r}\sigma_\text{r}(\dtd y)^2 + U_\text{B}\Delta p^{\nph} \geq 0\\
+    \mathfrak{p}_\text{r} = -(U_\text{B} + U_\text{r})P_\text{m}
+\end{gather}
+
+\subsection{Adding lip collision}
+We can use \SWcomment[Michele's tricks] to add a non-linear collision to the lip. As the collision happens at the interleaved temporal grid, we move the potential half a time step forward. We extend Eq. \eqref{eq:discReed} to be
+\begin{equation}
+    M_\text{r}\delta_{tt}y^{\nph} = -M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nph}-M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nph} + S_\text{r}\Delta p^{\nph} + \psi^{n+1/2}(\psi^{n+1/2})', 
+\end{equation}
+which, when using $\mu_{t+}\psi^n = \psi^{n+1/2}$, we can then rewrite to
+\begin{equation}
+    M_\text{r}\delta_{tt}y^{\nph} = -M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nph}-M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nph} + S_\text{r}\Delta p^{\nph} + (\mu_{t+}\psi^n)g^{n+1/2} 
+\end{equation}
+with
+\begin{equation}\label{eq:gnph}
+    g^{n+1/2} = \frac{\delta_{t+}\psi^n}{\delta_{t\cdot}\eta^{n+1/2}}\ ,
+\end{equation}
+distance between the lips
+\begin{equation}\label{eq:etaBarrier}
+    \eta^{n+1/2} = b - y^{n+1/2}
+\end{equation}
+and the location of the lower lip $b = -H_0$. Rewriting Eq. \eqref{eq:gnph} to
+\begin{equation}\label{eq:rewrittenPsi}
+    \delta_{t+}\psi^n = g^{n+1/2}\delta_{t\cdot}\eta^{n+1/2}
+\end{equation}
+and using identity
+\begin{equation}
+    \mu_{t+}\psi^n = \frac{k}{2}\delta_{t+}\psi^n + \psi^n
+\end{equation} 
+we arrive at
+\begin{equation}
+    M_\text{r}\delta_{tt}y^{\nph} = -M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nph}-M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nph} + S_\text{r}\Delta p^{\nph} + \left(\frac{k}{2}g^{n+1/2}\delta_{t\cdot}\eta^{n+1/2} + \psi^n\right)g^{n+1/2},
+\end{equation}
+where $g^{n+1/2}$ can be analytically obtained through 
+\begin{equation}\label{eq:gAnalytic}
+    g^{n+1/2} = (\psi^{n+1/2})'\bigg\rvert_{\eta = \eta^{n+1/2}} = \sqrt{\frac{K_\text{c}(\alpha_\text{c} + 1)}{2}}[\eta^{n+1/2}]_+^{\frac{\alpha_\text{c}-1}{2}},
+\end{equation}
+with collision stiffness $K_\text{c}$ (in N/m if $\alpha_\text{c} = 1$) and non-linear collision coefficient $\alpha_\text{c}$. Finally, because the barrier is static and below $y$ through \eqref{eq:etaBarrier}, this implies that
+\begin{equation}\label{eq:etaNegY} 
+    \delta_{t\cdot}\eta = -\delta_{t\cdot}y
+\end{equation}
+and we can solve for $y^{n+3/2}$ (suppressing the $n+1/2$ superscript for) $g$
+\begin{align}
+    \frac{1}{k^2}(y^{n+3/2} - 2y^{n+1/2} + y^{n-1/2}) = &-\frac{\omega_0^2}{2}(y^{n+3/2}+y^{n-1/2})-\frac{\sigma_\text{r}}{2k}(y^{n+3/2}-y^{n-1/2})\nonumber \\
+    &+ \frac{S_\text{r}}{M_\text{r}}\Delta p^{\nph}  -\frac{g^2}{4M_\text{r}}(y^{n+3/2}-y^{n-1/2}) + \frac{g}{M_\text{r}}\psi^n\nonumber\\
+    \left(2 + \omega_0^2 k^2 + \sigma_\text{r} k + \frac{g^2k^2}{2M_\text{r}}\right) y^{n+3/2} &= 4y^{n+1/2}+ \left(\sigma_\text{r}k - 2 - \omega_0^2k^2 + \frac{g^2k^2}{2M_\text{r}}\right) y^{n-1/2}\nonumber\\
+    &+ \frac{2S_\text{r}k^2}{M_\text{r}}\Delta p^{\nph} + \frac{2gk^2}{M_\text{r}}\psi^n\nonumber.
+\end{align}
+Finally we get
+\begin{equation}\label{eq:lipUpdateWithCollision}
+    \alpha_\text{r}y^{n+3/2} = 4 y^{n+1/2} + \beta_\text{r}y^{n-1/2} + \xi_\text{r}\Delta p + 4\psi^n\gamma_\text{r}
+\end{equation}
+with
+\begin{gather}
+    \alpha_\text{r} = 2 + \omega_0^2 k^2 + \sigma_\text{r} k + g\gamma_\text{r}, \quad \beta_\text{r} = \sigma_\text{r}k - 2 - \omega_0^2k^2 + g\gamma_\text{r}, \nonumber \\[10pt]
+    \xi_\text{r} = \frac{2S_\text{r}k^2}{M_\text{r}}, \quad \text{and} \quad \gamma_\text{r} = \frac{gk^2}{2M_\text{r}}\ .\nonumber
+\end{gather}
+For calculating $\Delta p$ we follow the same steps as in Section \ref{sec:obtainingDeltaP} to get
+\begin{gather}
+    \frac{2}{k} (\delta_{t\cdot} - \delta_{t-})y^{\nph} = -\omega_0^2(k\delta_{t\cdot} + e_{t-})y^{\nph} - \sigma_\text{r}\delta_{t\cdot} y^{\nph} + \frac{S_\text{r}}{M_\text{r}}\Delta p^{\nph} + \frac{1}{M_\text{r}}\left(-\frac{k}{2}g\delta_{t\cdot}y+\psi^n\right)g\nonumber\\
+    a_1\delta_{t\cdot}y^{\nph} - a_2\Delta p^{\nph} - a_3^n = 0,\label{eq:preAEquation}
+\end{gather}
+with 
+\begin{equation}\label{eq:aColCoeffs}
+    a_1^n = \frac{2}{k} + \omega_0^2k + \sigma_\text{r} + \frac{g^2k}{2M_\text{r}} \geq 0, \quad a_2 = \frac{S_\text{r}}{M_\text{r}} \geq 0\ , \quad \text{and} \quad a_3^n = \left(\frac{2}{k} \delta_{t\cdot} - \omega_0^2e_{t-}\right)y^{\nph} + \frac{g}{M_\text{r}}\psi^n\ .
+\end{equation}
+Note that $a_1^n$ is now time-dependent through $g$ but remains non-negative. The rest of the variables and process in Section \ref{sec:obtainingDeltaP} are unchanged.
+
+Knowing $y^{n+3/2}$ we can calculate $\psi^{n+1}$ through Eqs. \eqref{eq:etaBarrier} and \eqref{eq:rewrittenPsi} with
+\begin{equation}\label{eq:psiUpdate}
+    \psi^{n+1} = \psi^n - \frac{g}{2}\left(y^{n+3/2} - y^{n-1/2}\right)
+\end{equation}
+\subsubsection{Energy}
+The added energy to the system can be calculated by multiplying the added term with $\delta_{t\cdot}y$
+\begin{align}
+    \delta_{t+}(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r}) + \mathfrak{Q}_\text{r} + \mathfrak{p}_\text{r}&-(\mu_{t+}\psi^n) \frac{\delta_{t+}\psi^n}{\delta_{t\cdot}\eta^{n+1/2}}(\delta_{t\cdot}y^{n+1/2}) = 0\nonumber\\[-5pt]
+    \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:etaNegY}}\ }\quad \hdots &+ (\mu_{t+}\psi^n) (\delta_{t+}\psi^n) = 0\nonumber\\
+    \hdots &+ \frac{1}{2k}(\psi^{n+1}+\psi^n)(\psi^{n+1} - \psi^n)=0\nonumber\\
+    \hdots  &+\frac{1}{2k}((\psi^{n+1})^2 - (\psi^n)^2)=0\nonumber\\
+    \hdots &+ \frac{1}{2}\delta_{t+}\left((\psi^n)^2\right) = 0\nonumber\\
+    \delta_{t+}(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r} + \mathfrak{h}_\text{c}) &+ \mathfrak{Q}_\text{r} + \mathfrak{p}_\text{r} = 0
+\end{align}
+with
+\begin{equation}
+    \mathfrak{h}_\text{c} = \frac{(\psi^n)^2}{2 }\nonumber
+\end{equation}
+\section{Radiation}
+\def\r{\text{r}}
+\def\one{{(1)}}
+Following \cite{Harrison2018} we can add a radiation to the schemes using a circuit representation of the Levine and Schwinger radiation model \SWcomment[(See Figure \textbackslash ref\{fig:radiation\})]. The system can be described as
+\begin{subequations}\label{eq:barVPSystem}
+    \begin{align}
+        \bar v &= \mu_{t+}v_\one + \frac{1}{R_2}\mu_{t+}p_\one + C_\r \delta_{t+}p_\one,\label{eq:barV}\\
+        \bar p &= L_\r \delta_{t+}v_\one,\label{eq:barP1}\\
+        \bar p &= \left(1+\frac{R_1}{R_2}\right)\mu_{t+}p_\one+ R_1 C_\r\delta_{t+}p_\one\label{eq:barP2},
+    \end{align}
+\end{subequations}
+where $\bar p^{n+1/2}$ and $\bar v^{n+1/2}$ lie on the interleaved temporal grid and are related to the tube by
+\begin{equation}\label{eq:barVars}
+    \bar p = \mu_{t+}p^n_N, \quad \bar S_N \bar v = \mu_{x-}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}\right).
+\end{equation}
+We can couple this to the tube by taking Eq. \eqref{eq:pressureUpdate} at $l = N$
+\begin{equation}
+    p_N^{n+1} = p_N^n - \frac{\rho_0 c \lambda}{\bar{S}_N}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}-S_{N-1/2}v_{N-1/2}^{n+1/2}\right),
+\end{equation}
+and, similarly to \eqref{eq:tubeCoupling}, rewriting this to 
+\begin{align}
+    p_N^{n+1} &= p_N^n - \frac{\rho_0 c \lambda}{\bar{S}_N}\left(2\mu_{x-}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}\right)-2S_{N-1/2}v_{N-1/2}^{n+1/2}\right)\nonumber,\\
+    p_N^{n+1} &= p_N^n - \frac{2\rho_0 c \lambda}{\bar{S}_N}\left(\bar S_N \bar v-S_{N-1/2}v_{N-1/2}^{n+1/2}\right)\label{eq:preSolutP}.
+\end{align}
+We can then find a definition for $\bar v$ by expanding system \eqref{eq:barVPSystem} and make Eq. \eqref{eq:barV} solely dependent on known values of $v_\one$, $p_\one$ and $p_N^n$ and the unknown $p_N^{n+1}$ (as we can solve for the latter using \eqref{eq:preSolutP}).
+
+\begin{equation}\label{eq:vBarExpanded}
+    \bar v = \frac{1}{2}\left(v_\one^{n+1} + v_\one^n\right) + \left(\frac{1}{2R_2} + \frac{C_\r}{k}\right) p_\one^{n+1} +\left(\frac{1}{2R_2} - \frac{C_\r}{k}\right)p_\one^n
+\end{equation}
+where, after expanding Eq. \eqref{eq:barP1}
+\begin{equation}
+    v_\one^{n+1} = \frac{k}{L_\r}\bar p + v_\one^n ,
+\end{equation}
+and Eq. \eqref{eq:barP2}
+\begin{align}
+    \bar p &= \left(1+\frac{R_1}{R_2}\right)\mu_{t+}p_\one+ R_1 C_\r\delta_{t+}p_\one\nonumber\\
+    \bar p &= \frac{1}{2}\left(1+\frac{R_1}{R_2}\right)\left(p_\one^{n+1} + p_\one^n\right) + \frac{R_1C_\r}{k}\left(p_\one^{n+1} - p_\one^n\right)\nonumber\\
+    \left(\frac{1}{2}+\frac{R_1}{2R_2} + \frac{R_1C_\r}{k}\right)p_\one^{n+1} &= \bar p + \left(\frac{R_1C_\r}{k} - \frac{1}{2} - \frac{R_1}{2R_2}\right)p_\one^n\nonumber\\
+    p_\one^{n+1} &= \underbrace{\left(\frac{2R_2k}{2R_1R_2C_\r + k(R_1 + R_2)}\right)}_{\zeta_1}\bar p + \underbrace{\left(\frac{2R_1R_2C_\r - k(R_1 + R_2)}{2R_1R_2C_\r + k(R_1 + R_2)}\right)}_{\zeta_2} p_\one^n .
+\end{align}
+Filling these into Eq. \eqref{eq:vBarExpanded} and using the definition of $\bar p$ from Eq. \eqref{eq:barVars} yields
+\begin{align}
+    \bar v &= \frac{1}{2}\left(\frac{k}{L_\r}(\mu_{t+}p_N^n) + 2v_\one^n\right)+\left(\frac{1}{2R_2} + \frac{C_\r}{k}\right)\zeta_1\mu_{t+}p_N^n + \left(\frac{1}{2R_2} + \frac{C_\r}{k}\right)\zeta_2p_\one^n + \left(\frac{1}{2R_2} - \frac{C_\r}{k}\right)p_\one^n\nonumber\\
+    \bar v &= \underbrace{\left(\frac{k}{2L_\r} + \frac{\zeta_1}{2R_2}+\frac{C_\r\zeta_1}{k}\right)}_{\zeta_3}\mu_{t+}p_N^n + v_\one^n + \underbrace{\left(\frac{\zeta_2+1}{2R_2} + \frac{C_\r\zeta_2 - C_\r}{k}\right)}_{\zeta_4}p_\one^n.
+\end{align}
+Finally, filling in this definition for $\bar v$ into Eq. \eqref{eq:preSolutP}
+\begin{align}
+    p_N^{n+1} &= p_N^n - \frac{2\rho_0c\lambda}{\bar S_N}\left(\bar S_N
+    \left[\zeta_3\left(\frac{p_N^{n+1} + p_N^n}{2}\right) + v_\one^n + \zeta_4p_\one^n\right] - S_{N-1/2}v_{N-1/2}^{n+1/2}\right)\nonumber\\
+    p_N^{n+1} &= p_N^n - \rho_0c\lambda\left(\zeta_3(p_N^{n+1} + p_N^n) + 2(v_\one^n + \zeta_4p_\one^n)-\frac{2S_{N-1/2}v_{N-1/2}^{n+1/2}}{\bar S_N}\right)\nonumber\\
+    (1+\rho_0c\lambda\zeta_3)p_N^{n+1} &= (1 - \rho_0c\lambda\zeta_3)p_N^n - 2\rho_0c\lambda \left( v_\one^n+\zeta_4p_\one^n - \frac{S_{N-1/2}v_{N-1/2}^{n+1/2}}{\bar S_N}\right)
+\end{align}
+\subsection{Energy}
+Recalling the condition at the right boundary from \eqref{eq:firstOrderRightBoundary}
+\begin{equation}
+    \mathfrak{b}_\r = (\mu_{t+}p_N)\underbrace{\mu_{x+}(S_{N-1/2}v_{N-1/2})}_{\mu_{x-}S_{N+1/2}v_{N+1/2}},
+\end{equation}
+using Eq. \eqref{eq:barVars} we can rewrite this to
+\begin{equation}
+    \mathfrak{b}_\r = \bar p\bar S_N\bar v.
+\end{equation}
+then we can 

@@ -10,7 +10,7 @@ are always expressed in the language of differential equations.''\\
 \vspace{2em}
 This chapter introduces some important concepts needed to understand finite-difference time-domain (FDTD) methods. These techniques are what the implementation of the physical models presented later on in this document are based on. 
 By means of a simple mass-spring system and the 1D wave equation, the notation and terminology used throughout this document will be explained. 
-Unless denoted otherwise, the notation has been taken from \cite{theBible}, most of which originates from \cite{Strikwerda1989}. %Before diving into the mathematics, let us go over some useful terminology.
+Unless denoted otherwise, the theory presented in this chapter and the notation have been taken from \cite{theBible}. %Before diving into the mathematics, let us go over some useful terminology.
 
 \section{Differential Equations}\label{sec:differentialEquations}
 Differential equations are used to describe the motion of dynamic systems, including vibrations in musical instruments. In this work, these equations are used to describe, among others, the movement of a string, an instrument body and the air pressure in an acoustic tube.
@@ -109,7 +109,7 @@ FDTD methods essentially subdivide a continuous differential equation into discr
 \end{figure}\todo{Figure and caption are not done yet}
 
 \subsection{Grid Functions \todo{FULL DOC SWEEP: check capitalisation of headings throughout document}} \label{sec:gridFunctions}
-The first step to approximate continuous PDEs, is to define a discrete \textit{grid} over time and space\todo{grid figure}. A system described by state $u = u(x,t)$ defined over time $t$ and one spatial dimension $x$, can be discretised to a \textit{grid function} $u_l^n$. Here, integers $l$ and $n$ describe the spatial and temporal indices respectively and arise from the discretisation of the continuous variables $x$ and $t$ according to $x=lh$ and $t=nk$. The spatial step $h$, also called the \textit{grid spacing} describes the distance (in m) between two neighbouring \textit{grid points}, and is closely related to the stability of the FD scheme. The temporal step $k$, or \textit{time step} is the time (in s) between two consecutive temporal indices and can be calculated $k=1/\fs$ for a sample rate $\fs$ (in Hz). In many audio applications $\fs = 44100$ Hz which will be used in this work (unless denoted otherwise).
+The first step to approximate continuous PDEs, is to define a discrete \textit{grid} over time and space. See Figure \ref{fig:gridExp}. A system described by state $u = u(x,t)$ defined over time $t$ and one spatial dimension $x$, can be discretised to a \textit{grid function} $u_l^n$. Here, integers $l$ and $n$ describe the spatial and temporal indices respectively and arise from the discretisation of the continuous variables $x$ and $t$ according to $x=lh$ and $t=nk$. The spatial step $h$, also called the \textit{grid spacing} describes the distance (in m) between two neighbouring \textit{grid points}, and is closely related to the stability of the FD scheme. The temporal step $k$, or \textit{time step} is the time (in s) between two consecutive temporal indices and can be calculated $k=1/\fs$ for a sample rate $\fs$ (in Hz). In many audio applications $\fs = 44100$ Hz which will be used in this work (unless denoted otherwise).
 
 % \subsubsection{Discrete Domains}
 As mentioned in Section \ref{sec:domains}, a 1D system needs to be defined over a temporal range of definition and one spatial domain.
@@ -135,8 +135,8 @@ To summarise, for a 1D system
     \centering
     % \subfloat[If $N=5$ there are 5 sections of length $h$ and 6 grid points describing the state of the system ($l=\{0, \hdots, 5\}$).\label{fig:gridExp1}]{\includegraphics[width=0.45\textwidth]{figures/fdtd/gridExplanation.pdf}}\hspace{0.06\textwidth}
     % \subfloat[If $N$ is large (as is usually the case), The 1D system is divided into $N$ sections of length $h$ and $l=\{0, \hdots, N\}$.\label{fig:gridExp2}]{\includegraphics[width=0.45\textwidth]{figures/fdtd/gridExplanation2.pdf}}
-    \includegraphics[width=0.75\textwidth]{figures/fdtd/gridExplanation2.pdf}
-    \caption{When a 1D system $u(x,t)$ with $x\in \D$ is discretised to a grid function $\uln$, the spatial domain $\D$ is divided into $N$ intervals of length $h$ and spatial range of interest $l=\{0, \hdots, N\}$.\label{fig:gridExp}}
+    \includegraphics[width=\textwidth]{figures/fdtd/gridFigure3.pdf}
+    \caption{The spatio-temporal grid that appears when a 1D system $u(x,t)$ with $x\in \D$ is discretised to a grid function $\uln$. The spatial domain $\D$ is divided into $N$ intervals of length $h$ and spatial range of interest $l=\{0, \hdots, N\}$. Time is subdivided into time steps of duration $k$ and together with the discretised domain, forms a grid over space and time. Some grid points are labelled with the appropriate grid function. \label{fig:gridExp}}
 \end{figure}
 
 
@@ -553,7 +553,7 @@ As the time step $k$ is based on the sample rate and thus (usually) fixed, and $
 which, in implementation, is used as a stability condition for the scheme. See Section \ref{sec:stabilityAnalysis} for more information on how to derive a stability condition from a FD scheme.
 
 \subsubsection{Stencil}
-As was done for several FD operators in Figure \ref{fig:operators}, it can be useful to visualise the \textit{stencil}, or region of operation, of a FD scheme. A stencil of a scheme visualises what grid values are necessary to calculate the state at the next time step $u_l^{n+1}$. Figure \ref{fig:stencil1DWave} shows the stencil for scheme \eqref{eq:1DwaveFDS} and -- in essence -- visualises the various shifts of the grid function in \eqref{eq:1DwaveUpdate}. 
+As was done for several FD operators in Figure \ref{fig:operators}, it can be useful to visualise the \textit{stencil}, or region of operation, of a FD scheme. A stencil of a scheme visualises what grid values are necessary to calculate the state at the next time step $u_l^{n+1}$. Figure \ref{fig:stencil1DWave} shows the stencil for scheme \eqref{eq:1DwaveFDS} and -- in essence -- visualises the various shifts of the grid function in Eq. \eqref{eq:1DwaveUpdate}. One could visualise this stencil to be placed on the left-most point sof the grid shown in Figure \ref{fig:gridExp}. The update equation then iterates this stencil over the entire domain and calculates all values of $u_l^{n+1}$ based on known values of $u_l^n$ and $u_l^{n-1}$.
 
 \begin{figure}[h]
     \centering
@@ -721,5 +721,5 @@ If $h$ were to be chosen to be twice as big so that there are only half as many 
 
 If, on the other hand, $h$ were to be chosen to be twice as small so that there are twice as many intervals between grid points ($N = 60$), it is impossible for the waves to travel from one boundary to the other in $30$ samples. If they could interact with their second neighbour, this would be possible, but the working of the FD scheme in \eqref{eq:1DwaveFDS} does not allow for this. Indeed, as $\lambda = 2$ in this case, the effect that the grid points have on each other will be disproportionate. In a way, grid points have too much energy that they can not lose to their neighbours, because their effect should have reached their second neighbour over the course of one sample. The way to solve this would be to halve the time step $k$ (or double the sample rate $\fs$), which would allow grid points to interact with their second neighbours over the course of once the the old time step (as this is now divided into two time steps). This also shows in the fact that $\lambda = 1$ again (as halving $k$ cancels out halving $h$) and grid points transfer their energy to their neighbours proportionately again.\todo{figure?}
 
-\subsubsection{Solution?}
+\subsubsection{Possible solution}
 One of the main contributions of the PhD project is presented in Chapter \ref{ch:dynamicGrid}, where a `fractional' number of intervals is introduced. This removes the necessity of the flooring operation in Eq. \eqref{eq:orderOfCalc} and circumvents the recalculation of $h$ to always satisfy the stability condition with equality while retaining the correct fundamental frequency.

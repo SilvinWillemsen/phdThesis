@@ -1,11 +1,11 @@
 \chapter{Intuition for the Damping Terms in the Stiff String PDE}
-This appendix will delve deeper into the damping terms in the PDE of the stiff string presented in Chapter \ref{ch:stiffString}, especially frequency independent damping term $2\sigma_1\pt\pxx u$. Recalling the compact version of the PDE of the stiff string in Eq. \eqref{eq:stiffStringPDECompact}:
+This appendix will delve deeper into the damping terms in the PDE of the stiff string presented in Chapter \ref{ch:stiffString}, especially the frequency-dependent damping term $2\sigma_1\pt\pxx u$. Recalling the compact version of the PDE of the stiff string in Eq. \eqref{eq:stiffStringPDECompact}:
 \begin{equation}
     \ptt u = c^2 \pxx u - \kappa^2 \pxxxx u - 2 \sz \pt u + 2 \so \pt \pxx u
 \end{equation}
 Consider first the frequency-independent damping term $-2\sz\pt u$. The more positive the velocity $\partial_tu$ is, i.e., the string is moving upwards the more this term applies a negative, or downwards force (/effect) on the string. Vice versa, a more negative velocity will make this term apply a more positive force on the string. 
 
-As for the frequency dependent damping term, apart from the obvious $\sigma_1$, the effect of the term increases with an increase of $\partial_t\partial_x^2u$ which literally describes the `rate of change of the curvature' of the string.
+As for the frequency-dependent damping term, apart from the obvious $\sigma_1$, the effect of the term increases with an increase of $\partial_t\partial_x^2u$ which literally describes the `rate of change of the curvature' of the string.
 
 Let's first talk about positive and negative curvature, i.e., when $\partial_x^2u > 0$ or $\partial_x^2u < 0$. Counterintuitively, in the positive case, the curve points downwards. Think about the function $f(x) = x^2$. It has a positive curvature (at any point), but has a minimum. We can prove this by taking $x=0$ and setting grid spacing $h=1$.
 \begin{equation}
@@ -29,6 +29,8 @@ Let's see some examples. Take the same function described before, but now $f$ ch
   \end{alignat*}
 So the rate of change of the curvature is positive, i.e., the already positively curved function $x^2$ gets more curved over time.
 
-If the curvature around a point along a string gets more positive (or less negative) over time, the force applied to that point will be positive. Vice versa, if the curvature around a point along a string gets more negative (or less positive) over time, the force applied will be negative.
+If the curvature around a point along a string gets more positive (or less negative) over time, the force applied to that point will be positive, effectively `trying' to reduce the curvature. Vice versa, if the curvature around a point along a string gets more negative (or less positive) over time, the force applied will be negative, again `trying' to reduce the curvature. 
+
+From an auditory point of view, higher curvature generally means higher frequency. As the frequency-dependent damping term reduces curvature along the string it effectively damps higher frequencies.
  
-The fact the frequency dependent term to be added rather than subtracted to the FDS, is caused by the fact that a positive curvature implies a negative position in the string (think of the function $x^2$ which has a positive curvature, but the function `points' downwards). This translated to the force/effect this term has on the scheme means...
+% The fact the frequency dependent term to be added rather than subtracted, is caused by the fact that a location along the string with a positive curvature implies that its neighbouring locations have relatively more positive displacement than itself. This translated to the force/effect this term has on the scheme means...

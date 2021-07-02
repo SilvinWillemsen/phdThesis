@@ -340,7 +340,7 @@ The $p$\th eigenvector appears in the $p$\th column of $p\times p$ matrix \textt
 % \end{center}
 
 \section{Mathematical Tools and Product Identities}
-Some useful mathematical tools used for the energy analysis techniques presented in Section \ref{sec:energyAnalysis} will be shown here. The tools shown here can be applied to 1D systems. These will be extended to 2D systems in Chapter \ref{ch:2Dsyst}.
+Some useful mathematical tools used for the energy analysis techniques presented in Section \ref{sec:energyAnalysis} will be shown here. The tools shown here can be applied to 1D systems. These will be extended to 2D systems in Chapter \ref{ch:2Dsyst}. Unless denoted otherwise, the notation and theory will follow \cite{theBible}.
 
 \subsection{Inner product}\label{sec:innerProduct}
 For two functions $f(x,t)$ and $g(x,t)$ defined for $x\in\D$ where $\mathcal{D} = [0,L]$, their $l_2$ inner product and $l_2$ norm are defined as
@@ -1014,7 +1014,7 @@ This is the same (CFL) condition obtained through von Neumann analysis in Sectio
 
 \section{Modal Analysis}
 \label{sec:modalAnalysis}
-Modes are the resonant frequencies of a system. The amount of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. Modal analysis can be used to obtain objective data on what modes a FD scheme should contain. This can then be used to determine whether this matches one's expectations or whether the output of the system matches what the analysis predicted. This section will show how to numerically obtain the modal frequencies of an FD implementation using the 1D wave equation as a test case.
+Modes are the resonant frequencies of a system. The amount of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. Modal analysis \todo{some citation here} can be used to obtain objective data on what modes a FD scheme should contain. This can then be used to determine whether this matches one's expectations or whether the output of the system matches what the analysis predicted. This section will show how to numerically obtain the modal frequencies of an FD implementation using the 1D wave equation as a test case.
 
 We start by using the matrix form of the 1D wave equation from Eq. \eqref{eq:1DwaveMatrix}
 \begin{equation*}
@@ -1030,7 +1030,7 @@ This is an eigenvalue problem (see Section \ref{sec:eigenValueProblems}) where t
     z_p+\Big(-2-c^2k^2\text{eig}_p(\Dxx)\Big)+z_p^{-1}=0.
 \end{gather}
 %\SWcomment[If the CFL condition for the scheme is satisfied, the roots will lie on the unit circle.] 
-Furthermore, we can substitute a test solution $z_p = e^{s_pk}$ with complex frequency $s_p = j\omega_p + \sigma_p$ which contains the (angular) frequency $\omega_p$ and damping $\sigma_p \leq 0$ \todo{check with Stefan} of the $p$\th mode.\footnote{Notice that regardless of the possible damping coefficient per mode, the eventual amplitude of each will mostly be determined by the locations of the excitation and output as discussed in \ref{sec:output1DWave}.} As there is no damping present in the system, the test solution reduces to $z_p = e^{j\omega_p k}$ which can be substituted into Eq \eqref{eq:1DWaveModalIntermediate} to get
+Furthermore, we can substitute a test solution $z_p = e^{s_pk}$ with complex frequency $s_p = j\omega_p + \sigma_p$ which contains the (angular) frequency $\omega_p$ and damping $\sigma_p \leq 0$ \todo{check with Stefan} of the $p$\th mode.\footnote{Notice that regardless of the possible damping coefficient per mode, the eventual amplitude of each will mostly be determined by the locations of the excitation and output as discussed in Section \ref{sec:output1DWave}.} As there is no damping present in the system, the test solution reduces to $z_p = e^{j\omega_p k}$ which can be substituted into Eq \eqref{eq:1DWaveModalIntermediate} to get
 \begin{align*}
     e^{j\omega_pk}+e^{-j\omega_pk}-2-c^2k^2\text{eig}_p(\Dxx)&=0,\\
     \frac{e^{j\omega_pk}+e^{-j\omega_pk}}{-4}+\frac{1}{2}+\frac{c^2k^2}{4}\text{eig}_p(\Dxx)&=0.

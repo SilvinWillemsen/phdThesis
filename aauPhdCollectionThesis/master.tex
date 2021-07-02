@@ -11,25 +11,29 @@
 \input{frontmatter/frontpage}
 \input{frontmatter/colophon}
 \input{frontmatter/cv}
-\input{frontmatter/acknowledgements}
-\input{frontmatter/listOfPublications}
+% \input{frontmatter/acknowledgements}
 \input{frontmatter/abstract}
+\input{frontmatter/preface}
+\input{frontmatter/listOfPublications}
 \cleardoublepage
 \pdfbookmark[0]{Contents}{label:contents}
 \pagestyle{fancy} %enable headers and footers again
 \tableofcontents
 \listoftodos
-\input{frontmatter/preface}
 \cleardoublepage
 
 \def\makeAlph[#1]{\symbol{\numexpr96+#1}}
 
 % \def\bLabel{\renewcommand\@biblabel[1]{[##1]}}
-\def\citeP[#1]{[\hyperref[ch:listOfPublications]{#1}]}
+% \def\citeP[#1]{[\hyperref[ch:listOfPublications]{#1}]}
+\def\citeP[#1]{[\ref{paper:#1}]}
 
 \def\ctxt{\text{c}} %connection subscript (text)
 \def\stxt{\text{s}} %string subscript (text)
 \def\ptxt{\text{p}} %plate subscript (text)
+\def\itxt{\text{i}} %point of 'interest' subscript (text)
+\def\Btxt{\text{B}} %bow subscript (text)
+\def\sgn{\text{sgn}}
 
 % states
 \def\uln{u_l^n}
@@ -99,7 +103,6 @@
 \def\Dxx{\mathbf{D}_{xx}}
 \def\Dxxxx{\mathbf{D}_{xxxx}}
 
-
 % often-used variables
 \def\sz{\sigma_{0}}
 \def\so{\sigma_{1}}
@@ -138,6 +141,7 @@
 \def\eig{\text{eig}}
 %mainmatter
 \mainmatter
+
 \part{Introduction}\label{part:introduction}
 \input{introduction/introduction}
 
@@ -150,8 +154,8 @@
 % \part{Interactions}\label{part:interactions}
 % \input{interactions/interactions}
 
-% \part{Real-Time Implementation and Control}\label{part:realtime}
-% \input{realtime/realtime}
+% % \part{Real-Time Implementation and Control}\label{part:realtime}
+% % \input{realtime/realtime}
 
 % \part{Contributions}\label{part:contributions}
 % \input{contributions/contributions}
@@ -159,8 +163,8 @@
 % % \part{Complete Instruments}\label{part:instrument}
 % % \input{instrument/instrument}
 
-\part{Conclusions and Perspectives}\label{part:conclusion}
-\input{conclusion/conclusion.tex}
+% \part{Conclusions and Perspectives}\label{part:conclusion}
+% \input{conclusion/conclusion.tex}
 
 
 \pagebreak

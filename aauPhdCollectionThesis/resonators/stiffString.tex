@@ -15,7 +15,7 @@ parametrised by material density $\rho$ (in kg/m$^3$), cross-sectional area $A =
 with wave speed $c = \sqrt{T/\rho A}$ (in m/s) and stiffness coefficient $\kappa = \sqrt{EI / \rho A}$. 
 
 The difference between the ideal string (1D wave equation) and the stiff string is the presence of the 4\thOrder spatial derivative in the stiffness term which causes frequency dispersion. As opposed to unwanted numerical dispersion due to numerical error (see Section \ref{sec:quality1DWave}) this type of dispersion is physical and thus something desired in the model. This phenomenon causes higher frequencies to travel faster through a medium than lower frequencies. See Figure \ref{fig:dispersion}. Furthermore, frequency dispersion is closely tied to \textit{inharmonicity}, an effect where `harmonic' partials get exponentially further apart as frequency increases. For low values of $\kappa$, the frequency of these partials can be expressed in terms of the fundamental frequency $f_0 = c/2L$ (as in Eq. \eqref{eq:fundamentalFreq}) and frequency of partial $p$ (in Hz) is defined as
-\begin{equation}
+\begin{equation}\label{eq:inharmonicityEquation}
     f_p = f_0 p \sqrt{1 + B p^2},
 \end{equation}
 with inharmonicity coefficient 
@@ -102,7 +102,7 @@ Two different shift operators multiplied together still simply means to apply ea
 \begin{equation}
     \dtm \dxx \uln = \frac{1}{hk^2}\left(u_{l+1}^n - 2 \uln + u_{l-1}^n - u_{l+1}^{n-1} + 2 u_l^{n-1} - u_{l-1}^{n-1}\right).
 \end{equation}
-The reason a backwards difference is used here is to keep the system explicit. An example of an implicit scheme using the centred operator instead can be found in Section \ref{sec:implicitStiffString}.
+The reason a backwards difference is used here is to keep the system \textit{explicit}. A scheme is explicit if the values of $u_l^{n+1}$ can explicitly be calculated from known values. If this is not the case and values of fx. $u_{l+1}^{n+1}$ and $u_{l-1}^{n+1}$ are required to calculate $u_l^{n+1}$, the scheme is called an \textit{implicit}. An example of an implicit scheme using the centred operator for the temporal derivative in the frequency-dependent damping term instead can be found in Section \ref{sec:implicitStiffString}.
 
 With these definitions, 
 the operators in scheme \eqref{eq:stiffStringFDS} can be expanded to get
@@ -393,7 +393,7 @@ As $\S$ is bounded by $1$, this can be substituted as it challenges the conditio
     4\kappa^2k^2+(c^2k^2+ 4\so k)h^2&\leq h^4,\\
     h^4- (c^2k^2+ 4\so k)h^2 - 4\kappa^2k^2 &\geq 0 ,
 \end{align*}
-which is a quadratic equation in $h^2$. The grid spacing $h$ is then bounded by
+which is a quadratic equation in $h^2$. Using the quadratic formula, the grid spacing $h$ can then be shown to be bounded by
 \begin{equation}
     h \geq \sqrt{\frac{c^2k^2+4\so k + \sqrt{(c^2k^2 + 4\so k)^2+16\kappa^2k^2}}{2}},
 \end{equation}
@@ -603,19 +603,12 @@ and yields the following stability condition:
 Comparing this to the stability condition for the explicit scheme in Eq. \eqref{eq:stiffStringStability}, one can observe that the terms containing $\so$ have vanished. It can thus be concluded that if the centred (rather than the backwards) difference is used to discretise the temporal derivative in the frequency-dependent damping term, $\so$ no longer influences the stability of the scheme. What this means in terms of behaviour of the scheme will be elaborated on in the following section.
 
 \subsection{Modal analysis}
-As the matrix form of the implicit FD scheme in Eq. \eqref{eq:matrixFormStiffStringImplicit} matches the form in Eq. \eqref{eq:modalForm}, one can perform a modal analysis by writing the scheme in one-step form as explained in Section \ref{sec:oneStepForm}. The results of the analysis are shown in Figure \ref{fig:implicitModes}. To highlight the difference between using the backwards and centred difference for the frequency-dependent damping term, $\so $ has been set to $1$.
+As the matrix form of the implicit FD scheme in Eq. \eqref{eq:matrixFormStiffStringImplicit} matches the form in Eq. \eqref{eq:modalForm}, one can perform a modal analysis by writing the scheme in one-step form as explained in Section \ref{sec:oneStepForm}. The results of the analysis are shown in Figure \ref{fig:implicitModes}. To highlight the difference between using the backwards and centred difference for the frequency-dependent damping term, $\so $ has been set to $1$, which is much higher than one would normally use.
 
-One can observe that higher values of $\so$ start to influence the frequencies of especially higher-frequency modes in the explicit scheme. Looking at the expression 
+One can observe from Figure \ref{fig:implicitModes} that especially higher-frequency modes in the explicit scheme are affected by $\so$.  
+In the continuous case, the modal frequencies should only be affected by values for $c$ and $\kappa$ as per Eq. \eqref{eq:inharmonicityEquation} and the damping should not influence the frequencies of the partials, as one could expect. However, as $\so$ increases, $h$ increases due to Eq. \eqref{eq:stiffStringStability}, causing $\lambda$ and $\mu$ to decrease. This introduces numerical dispersion as explained in Section \ref{sec:quality1DWave}, and the higher the value of $\so$, the more numerical dispersion it introduces in the scheme.
 
-As $\so$ increases, $h$ increases due to Eq. \eqref{eq:stiffStringStability}, causing $\lambda^2$ and $\mu^2$ to decrease
-
-The modal frequencies 
-
-As the values for $\lambda$ and $\mu$ 
-
-the best approximation to the frequencies of these partials is obtained when $\so = 0$ 
-
-More specifically, higher modes decrease in frequency due to the numerical dispersion introduced by the inaccuracy of the backwards time difference operator in the frequency-dependent damping term. Furthermore, due to the absence of $\so$ in the the stability condition for the implicit scheme in Eq. \eqref{eq:implicitStability}, the bound on the grid spacing $h$ relaxes and it allows for one more grid point. As the frequency-dependent damping term no longer affects the stability condition for the implicit scheme,  and a more accurate simulation can be obtained with fewer numerically dispersive effects.
+As the stability condition for the implicit scheme in Eq. \eqref{eq:implicitStability} does not contain $\so$, this value will not affect $\lambda$ and $\mu$ and will thus not affect the modal frequencies. As can be observed from the figure, it even allows for one more grid point to be included in the simulation. It can be concluded that because the frequency-dependent damping term no longer affects the stability condition for the implicit scheme, a more accurate simulation can be obtained with fewer numerically dispersive effects.
 
 \begin{figure}[h]
     \centering
@@ -626,4 +619,4 @@ More specifically, higher modes decrease in frequency due to the numerical dispe
 \subsection{Conclusion}
 This section presented an implicit discretisation of the stiff string where the centred operator has been used to discretise the temporal derivative in the frequency-dependent damping term. By means of stability analysis and modal analysis some advantages that the implicit scheme has over its explicit counterpart (presented in Section \ref{sec:stiffStringDiscrete}) have been shown.
 
-As these advantages only show for higher values of $\so$, much higher than the ones used in this project, it has been chosen to use the explicit scheme for all further implementation in this project. The decrease in accuracy is negligible for lower values of $\so$ and the calculation of the scheme becomes orders of magnitude more computationally expensive if the implicit scheme is used. 
+As these advantages only show for higher values of $\so$, much higher than the ones used in this project, it has been chosen to use the explicit scheme for all further implementation. The decrease in accuracy is negligible for lower values of $\so$ and the calculation of the scheme becomes orders of magnitude more computationally expensive if the implicit scheme is used. 

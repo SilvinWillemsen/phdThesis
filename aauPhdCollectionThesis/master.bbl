@@ -87,12 +87,12 @@ J.~O. Smith, ``Music applications of digital waveguides,'' Technical Report,
   CCRMA Stanford University, 1987.
 
 \bibitem{Smith1992}
-J.~Smith, ``Physical modeling using digital waveguides,'' \emph{Computer Music
+------, ``Physical modeling using digital waveguides,'' \emph{Computer Music
   Journal}, vol.~16, no.~4, pp. 74--91, 1992.
 
 \bibitem{Adrien1991}
 J.-M. Adrien, ``The missing link: Modal synthesis,'' in \emph{Representations
-  of Musical Signals}, G.~D. Poli, A.~Picalli, and C.~Roads, Eds.\hskip 1em
+  of Musical Signals}, G.~{De Poli}, A.~Picalli, and C.~Roads, Eds.\hskip 1em
   plus 0.5em minus 0.4em\relax MIT Press, 1991, pp. 269--298.
 
 \bibitem{Morrison1993}
@@ -103,6 +103,10 @@ J.~D. Morrison and J.-M. Adrien, ``Mosaic: A framework for modal synthesis,''
 G.~Borin, G.~De~Poli, and A.~Sarti, ``A modular approach to excitator-resonator
   interaction in physical models syntheses,'' \emph{Proceedings of the
   International Computer Music Conference}, 1989.
+
+\bibitem{Poli1998}
+G.~{De Poli} and D.~Rocchesso, ``Physically based sound modelling,''
+  \emph{Organised Sound}, vol.~3, no.~1, pp. 61--76, 1998.
 
 \bibitem{Fletcher1998}
 N.~H. Fletcher and T.~D. Rossing, \emph{The Physics of Musical
@@ -136,7 +140,7 @@ C.~Erkut and M.~Karjalainen, ``Finite difference method vs. digital waveguide
   Symposium on Musical Acoustics}, 2002.
 
 \bibitem{Maestre2014}
-E.~Maestre, C.~Spa, and J.~Smith, ``A bowed string physical model including
+E.~Maestre, C.~Spa, and J.~O. Smith, ``A bowed string physical model including
   finite-width thermal friction and hair dynamics,'' \emph{Proceedings
   ICMC|SMC|2014}, pp. 1305--1311, 2014.
 
@@ -159,18 +163,40 @@ J.~Leonard and J.~Villeneuve, ``{MI-GEN\textapprox}: An efficient and
   accessible mass interaction sound synthesis toolbox,'' \emph{{Proceedings of
   the 16th Sound and Music Computing Conference (SMC)}}, 2019.
 
-\bibitem{Trautmann2003}
-L.~Trautmann and R.~Rabenstein, \emph{Digital Sound Synthesis by Physical
-  Modeling Using the Functional Transformation Method}.\hskip 1em plus 0.5em
-  minus 0.4em\relax Springer-Science + Business Media LLC, 2003.
-
-\bibitem{Fettweis1986}
-A.~Fettweis, ``Wave digital filters: Theory and practice,'' \emph{Proceedings
-  of the IEEE}, vol.~74, no.~2, pp. 270--327, 1986.
-
 \bibitem{Moore1965}
 G.~E. Moore, ``Cramming more components onto integrated circuits,''
   \emph{Electronics}, vol.~38, no.~8, pp. 114--–117, 1965.
+
+\bibitem{Nyquist}
+C.~E. Shannon, ``Communication in the presence of noise,'' \emph{Proceedings of
+  the IRE}, vol.~37, no.~1, pp. 10--21, 1949.
+
+\bibitem{Mehes2016}
+S.~Mehes, M.~van Walstijn, and P.~Stapleton, ``Towards a virtual-acoustic
+  string instrument,'' \emph{Proceedings of the 13th Sound and Music Computing
+  Conference (SMC)}, 2016.
+
+\bibitem{Pfeifle2012}
+F.~Pfeifle and R.~Bader, ``{Real-time finite difference physical models of
+  musical instruments on a field programmable gate array (FPGA)},''
+  \emph{Proceedings of the 15th International Conference on Digital Audio
+  Effects (DAFx)}, 2012.
+
+\bibitem{Pfeifle2015}
+------, ``Real-time finite-difference method physical modeling of musical
+  instruments using field-programmable gate array hardware,'' \emph{Journal of
+  the Audio Engineering Society (JASA)}, vol.~63, no.~12, pp. 1001--1016, 2015.
+
+\bibitem{Pfeifle2017}
+F.~Pfeifle, ``Real-time physical model of a wurlitzer and a rhodes electric
+  piano,'' \emph{Proceedings of the 20th International Conference on Digital
+  Audio Effects (DAFx)}, 2017.
+
+\bibitem{Bybee2019}
+\BIBentryALTinterwordspacing
+J.~Bybee, ``{COSM REVISITED},'' Accessed June 28, 2021. [Online]. Available:
+  \url{https://www.boss.info/us/community/boss_users_group/1319/}
+\BIBentrySTDinterwordspacing
 
 \bibitem{Bilbao2019CMJa}
 S.~Bilbao, C.~Desvages, M.~Ducceschi, B.~Hamilton, R.~Harrison-Harsley,
@@ -185,10 +211,17 @@ S.~Bilbao, J.~Perry, P.~Graham, A.~Gray, K.~Kavoussanakis, G.~Delap, T.~Mudd,
   in practice,'' \emph{Computer Music Journal}, vol.~43, no. 2-3, pp. 31--47,
   2019.
 
-\bibitem{Strikwerda1989}
-J.~C. Strikwerda, \emph{Finite Difference Schemes and Partial Differential
-  Equations}.\hskip 1em plus 0.5em minus 0.4em\relax Pacific Grove, California:
-  Wadsworth and Brooks/Cole Advanced Books and Software, 1989.
+\bibitem{sensel}
+\BIBentryALTinterwordspacing
+{Sensel Inc.}, ``{Sensel | Interaction Evolved},'' 2021. [Online]. Available:
+  \url{https://sensel.com/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{phantom}
+\BIBentryALTinterwordspacing
+{3D Systems, Inc}, ``{3D Systems Touch Haptic Device},'' 2021. [Online].
+  Available: \url{https://www.3dsystems.com/haptics-devices/touch}
+\BIBentrySTDinterwordspacing
 
 \bibitem{Hamilton2016}
 B.~Hamilton, ``Finite difference and finite volume methods for wave-based
@@ -228,6 +261,11 @@ T.~H. Park, \emph{Introduction To Digital Signal Processing: Computer Musically
 J.~G. Charney, R.~Fj{\"o}rtoft, and J.~V. Neumann, ``Numerical integration of
   the barotropic vorticity equation,'' \emph{Tellus}, vol.~2, no.~4, 1950.
 
+\bibitem{Strikwerda1989}
+J.~C. Strikwerda, \emph{Finite Difference Schemes and Partial Differential
+  Equations}.\hskip 1em plus 0.5em minus 0.4em\relax Pacific Grove, California:
+  Wadsworth and Brooks/Cole Advanced Books and Software, 1989.
+
 \bibitem{Abramowitz1972}
 R.~Zucker, \emph{Handbook of Mathematical Functions with Formulas, Graphs, and
   Mathematical Tables}.\hskip 1em plus 0.5em minus 0.4em\relax National Bureau
@@ -264,6 +302,19 @@ F.~P. Bowden and L.~Leben, ``The nature of sliding and the analysis of
   friction,'' in \emph{Proceedings of the Royal Society of London}, vol. 169,
   1939.
 
+\bibitem{Smith1986}
+J.~O. Smith, ``Efficient simulation of the reed bore and bow string
+  mechanics,'' \emph{ICMC 86}, pp. 275--280, 1986.
+
+\bibitem{Florens1986}
+J.-L. Florens, A.~Razafindrakoto, A.~Luciani, and C.~Cadoz, ``Optimized real
+  time simulation of objects for musical synthesis and animated image
+  synthesis,'' \emph{ICMC 86}, pp. 65--70, 1986.
+
+\bibitem{Woodhouse2003}
+J.~Woodhouse, ``Bowed string simulation using a thermal friction model,''
+  \emph{Acta Acustica united with Acustica}, vol.~89, pp. 355--368, 2003.
+
 \bibitem{Coulomb1773}
 C.~A. Coulomb, ``Sur une application des r\`egles de maximis et minimis \`a
   quelques probl\`emes de statique, relatifs \`a l'architecture [{O}n maximums
@@ -286,5 +337,37 @@ R.~Stribeck, ``Die wesentlichen eigenschaften der gleit- und rollenlager [{T}he
   essential properties of sliding and roller bearings],'' \emph{Zeitschrift des
   Vereins Deutscher Ingenieure}, vol.~46, no. (38,39), pp. 1342--48,1432--37,
   1902.
+
+\bibitem{Dahl1968}
+P.~Dahl, ``A solid friction model,'' Technical report, The Aerospace
+  Corporation, 1968.
+
+\bibitem{Canudas1993}
+C.~Canudas~de Wit, H.~Olsson, K.~J. \r{A}str\"om, and P.~Lischinsky, ``Dynamic
+  friction models and control design,'' \emph{Proceedings of the 1993 American
+  Control Conference}, pp. 1920--1926, 1993.
+
+\bibitem{Canudas1995}
+------, ``A new model for control of systems with friction,'' \emph{IEEE
+  Transactions on Automatic Control}, vol.~40, no.~3, pp. 419--425, 1995.
+
+\bibitem{Dupont2002}
+P.~Dupont, V.~Hayward, B.~Armstrong, and F.~Altpeter, ``Single state
+  elastoplastic friction models,'' \emph{IEEE Transactions on Automatic
+  Control}, vol.~47, no.~5, pp. 787--792, 2002.
+
+\bibitem{Serafin2003}
+S.~Serafin, F.~Avanzini, and D.~Rocchesso, ``Bowed string simulation using an
+  elasto-plastic friction model,'' \emph{SMAC 03}, pp. 95--98, 2003.
+
+\bibitem{Serafin2004}
+S.~Serafin, ``The sound of friction: Real-time models, playability and musical
+  applications,'' Ph.D. dissertation, CCRMA, 2004.
+
+\bibitem{Avanzini2005}
+F.~Avanzini, S.~Serafin, and D.~Rocchesso, ``Interactive simulation of rigid
+  body interaction with friction-induced sound generation,'' \emph{IEEE
+  Transactions on Speech and Audio Processing}, vol.~13, no.~5, pp. 1073--1080,
+  2005.
 
 \end{thebibliography}
