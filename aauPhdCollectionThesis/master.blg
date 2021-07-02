@@ -11,50 +11,53 @@ Database file #1: bib/mybib.bib
 Warning--I didn't find a database entry for "Smith2010"
 Warning--I didn't find a database entry for "Atig2004"
 Warning--I didn't find a database entry for "Bilbao2009"
+Warning--I didn't find a database entry for "Webster19"
+Warning--I didn't find a database entry for "Bilbao2016"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--missing publisher in Helmholtz1860
 
 Done.
-You've used 71 entries,
+You've used 80 entries,
             4087 wiz_defined-function locations,
-            1274 strings with 19095 characters,
-and the built_in function-call counts, 46851 in all, are:
-= -- 3933
-> -- 941
-< -- 393
-+ -- 516
-- -- 151
-* -- 2125
-:= -- 7363
-add.period$ -- 143
-call.type$ -- 71
-change.case$ -- 70
+            1326 strings with 20187 characters,
+and the built_in function-call counts, 50416 in all, are:
+= -- 4222
+> -- 995
+< -- 395
++ -- 542
+- -- 164
+* -- 2265
+:= -- 8026
+add.period$ -- 160
+call.type$ -- 80
+change.case$ -- 79
 chr.to.int$ -- 894
-cite$ -- 71
-duplicate$ -- 3412
-empty$ -- 3782
-format.name$ -- 190
-if$ -- 10865
+cite$ -- 81
+duplicate$ -- 3705
+empty$ -- 4133
+format.name$ -- 206
+if$ -- 11658
 int.to.chr$ -- 0
-int.to.str$ -- 71
-missing$ -- 570
-newline$ -- 244
-num.names$ -- 73
-pop$ -- 1274
+int.to.str$ -- 80
+missing$ -- 635
+newline$ -- 281
+num.names$ -- 82
+pop$ -- 1454
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 3706
+skip$ -- 3993
 stack$ -- 0
-substring$ -- 2134
-swap$ -- 2694
-text.length$ -- 95
+substring$ -- 2144
+swap$ -- 2862
+text.length$ -- 97
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 71
-warning$ -- 0
-while$ -- 224
-width$ -- 73
-write$ -- 694
-(There were 3 warnings)
+type$ -- 80
+warning$ -- 1
+while$ -- 233
+width$ -- 82
+write$ -- 779
+(There were 6 warnings)
