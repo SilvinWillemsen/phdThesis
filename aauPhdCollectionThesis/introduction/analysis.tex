@@ -1,71 +1,18 @@
 \chapter{Analysis Techniques}\label{ch:analysis}
-
 This chapter provides some useful techniques to analyse FD schemes. Techniques to analyse PDEs also exist, but the focus here is of a practical nature and will especially revolve around the discrete schemes. This chapter can be seen as a `tutorial' on how to use these techniques. 
-Starting off with some necessary theory on matrices and other mathematical tools, this chapter continues to introduce 
+Starting off with some necessary theory on matrices in a FDTD context and other mathematical tools, this chapter continues to introduce 
 \begin{itemize}
     \item \textit{Frequency domain analysis}, which can be used to determine stability conditions of (linear and time-invariant) FD schemes,
     \item \textit{Energy analysis}, which can both used to debug implementations of FD schemes, as well as determine stability conditions in a more general fashion, and
     \item \textit{Modal analysis} which can be used to determine the modal frequencies (and damping per mode) that a FD scheme exhibits.
 \end{itemize}
-\todo{perhaps also dispersion analysis?}
-\section{Matrices}
-For several purposes, such as implementation in \texttt{MATLAB} and several analysis techniques described shortly, it is useful to write a FD scheme in \textit{matrix form}. A matrix is a rectangular array with numerical elements and its dimensions are denoted using ``$row \times column$''. A $3\times 5$ matrix, for example, thus has $3$ rows and $5$ columns (see Figure \ref{fig:matrixA}). Along those lines, a \textit{row vector} is a matrix with $1$ row and more than $1$ column and a \textit{column vector} is a matrix with $1$ column and more than $1$ row. \SWcomment[If a matrix has only $1$ row and $1$ column, it can be used as a \textit{scalar}.] 
 
-In this document, matrices and vectors are written using bold symbols. %\SWcomment[Many notations exist, blabla $\bar a$ $\vec a$] 
-A matrix is denoted by a capital letter -- such as $\A$ -- whereas vectors are decapitalised -- such as $\u$. An element in a matrix is denoted with a non-bold, decapitalised variable, where the subscripts indicate the indices of the row and column. For example, the element in the 2\textsuperscript{nd} row and the 4\th column of a matrix $\A$ is denoted as $a_{24}$. An element in a vector only has one subscript, regardless of whether it is a row or a column vector.
-
-\subsection{Operations}
-Multiplying and dividing a matrix by a scalar (a single number) is valid and happens on an element-by-element basis. For a $2\times 2$ matrix $\A$ and scalar $p$ the following operations hold
-\begin{equation*}
-        p \A = \A p = \begin{bmatrix}
-        p\cdot a_{11}& p\cdot a_{12}\\
-        p\cdot a_{21} & p\cdot a_{22}
-    \end{bmatrix}, \qaq \A / p= \begin{bmatrix}
-            a_{11}/p& a_{12}/p\\
-            a_{21}/p & a_{22}/p
-    \end{bmatrix}.
-\end{equation*}
-Notice that although a matrix can be divided by a scalar, a scalar can not necessarily be divided by a matrix. See Section \ref{sec:inverse} for more information.
-
-\subsubsection{Matrix transpose}
-A matrix or vector can be \textit{transposed}, and is indicated with the $T$ operator. Transposing a matrix $\A$ is denoted by $\A^T$. This means that the elements in the $i$\th row and the $j$\th column of the original matrix become the elements in the $j$\th row and the $i$\th column of the transposed matrix. Essentially the row and column indices of the elements inside the matrix get switched according to
-\begin{equation}\label{eq:matrixTransposition}
-    a_{ij} = a_{ji}.
-\end{equation} 
-Also see Figure \ref{fig:matrixTransp}. For a row vector, the transpose operation simply changes it to a column vector and vice versa. Another way of seeing a transpose is that all the elements get flipped over the \textit{main diagonal} of the matrix. The main diagonal comprises the elements $a_{ij}$ where $i=j$ and a transpose does not affect the location of these elements. 
-
-\begin{figure}[h]
-    \centering
-    \subfloat[A $3\times 5$ matrix $\A$.\label{fig:matrixA}]{\includegraphics[width=0.45\textwidth]{figures/analysis/matrixA1.pdf}}\hspace{0.03cm}
-    \subfloat[A transposed matrix $\A^T$ of size $5\times 3$.\label{fig:matrixAT}]{\includegraphics[width=0.45\textwidth]{figures/analysis/matrixAT1.pdf}}
-    \caption{A matrix $\A$ and its transpose $\A^T$. The elements get flipped along the main diagonal of the matrix according to Eq. \eqref{eq:matrixTransposition}. \label{fig:matrixTransp}}
-\end{figure}
-
-\subsubsection{Matrix Multiplication}
-Matrix multiplication (this includes matrix-vector multiplication) is different from regular multiplication in that it needs to abide several extra rules. The multiplication of two matrices $\A$ and $\B$ to a resulting matrix $\C$ is defined as
-\begin{equation}\label{eq:matrixMult}
-    c_{ij} = \sum_{k=1}^K a_{ik} b_{kj},
-\end{equation}
-where $K$ is both the number columns of matrix $\A$ and the number of rows in matrix $\B$. It thus follows that, order for matrix multiplication to be valid, the number of columns of the first matrix needs to be equal to the number of rows in the second matrix. The result will then be a matrix with a number of rows equal to that of the first matrix and a number of columns equal to that of the second matrix. See Figure \ref{fig:matrixVector} for reference.
-
-As an example, consider the $L\times M$ matrix $
-\A$ and a $M\times N$ matrix $\B$ with $L\neq N$. The multiplication $\A\B$ is defined as the number of columns of matrix $\A$ ($M$) is equal to the number of rows of matrix $\B$ (also $M$). The result, $\C$, is a $L \times N$ matrix. The multiplication $\B\A$ is undefined as the number of columns of the first matrix does not match the number of rows in the second matrix. A valid multiplication of two matrices written in their dimensions is
-\begin{equation}
-    \overbrace{(L\times M)}^{\A}\cdot \overbrace{(M\times N)}^{\B} = \overbrace{(L
-    \times N)}^{\C}.
-\end{equation}
-
-\begin{figure}[h]
-    \includegraphics[width=\textwidth]{figures/analysis/matrixVector.pdf}
-    \caption{Visualisation of valid matrix multiplications (see Eq. \eqref{eq:matrixMult}). The ``inner'' dimensions (columns of the left matrix and rows of the right) must match and result in a matrix with a size of ``outer'' dimensions (rows of the left matrix and columns of the right). \label{fig:matrixVector}}
-\end{figure}
-
-\subsection{In a FDTD context}
-Matrix multiplication when working with FDTD methods usually involves multiplying a square matrix (with equal rows and columns) onto a column vector (see Figure \ref{fig:matrixVector}a). Consider a $(N+1)\times (N+1)$ square matrix $\A$ and a $(N+1) \times 1$ column vector $\u$. Multiplying these results in a $(N+1) \times 1$ column vector $\w$:
+\section{Matrices in a FDTD context}
+For several purposes, such as implementation in \texttt{MATLAB} and several analysis techniques described shortly, it is useful to write a FD scheme in \textit{matrix form}.\footnote{Appendix \ref{app:matrices} provides some basic knowledge on matrices and linear algebra for those unfamiliar with this.} Matrix multiplication when working with FDTD methods usually involves multiplying a square matrix (with equal rows and columns) onto a column vector. Consider a $(N+1)\times (N+1)$ square matrix $\A$ and a $(N+1) \times 1$ column vector $\u$. Multiplying these results in a $(N+1) \times 1$ column vector $\w$:
 \begin{equation}
     \A\u = \w.
 \end{equation}
-Expanding this operation (with reference to Eq. \eqref{eq:matrixMult}) results in
+Expanding this operation results in
 \begin{equation}
     \underbrace{\begin{bmatrix}
         a_{00} & a_{01} & \hdots & a_{0N}\\
@@ -86,7 +33,7 @@ Expanding this operation (with reference to Eq. \eqref{eq:matrixMult}) results i
         a_{N0}u_0 + a_{N1}u_1 + \hdots + a_{NN}u_N
     \end{bmatrix}}_{\w}
 \end{equation}
-where the indexing of the matrix elements starts at $0$ rather than $1$ here, as it relates better to a FDTD context.
+where the indexing of the matrix elements starts at $0$ rather than $1$ here, as it relates better to operations used in a FDTD context.
 
 \subsubsection{Operators in Matrix Form}
 FD operators approximating spatial derivatives and averages introduced in Section \ref{sec:FDoperators} can be written in matrix form and applied to a column vector $\u^n$ containing the state of the system at time index $n$. These matrices are square and their sizes depend on the number of grid points the system is described for and on the boundary conditions. Not assuming a specific size for now, the FD operators in \eqref{eq:discFirstSpace} can be written in matrix form according to
@@ -245,99 +192,6 @@ and rewritten to a matrix form of the update equation analogous to Eq. \eqref{eq
     \u^{n+1} = (2\I + c^2k^2 \Dxx )\u^n - \u^{n-1}.
 \end{equation}
 The identity matrix is necessary here for correct matrix addition.
-
-\subsection{Matrix Inverse}\label{sec:inverse}
-If a matrix has the same number of rows as columns, it is called a \textit{square matrix}. Square matrices have special properties, one of which is that it (usually) can be \textit{inverted}. A square matrix $\A$ is invertable if there exists a matrix $\B$ such that
-\begin{equation}
-    \A \B = \B \A = \I. 
-\end{equation}
-This matrix $\B$ is then called the \textit{inverse} of $\A$ and can be written as $\A^{-1}$. Not all square matrices have an inverse, in which case it is called \textit{singular}. Rather than going through manually inverting a matrix, or determining whether it is singular, the following function in \texttt{MATLAB} will provide the inverse of a matrix \texttt{A}:
-\begin{center}
-    \texttt{A\_inverted = inv(A);}
-\end{center}
-
-The inverse of a \textit{diagonal matrix} (a matrix with non-zero elements on its main diagonal and the rest zeros) is obtained by replacing the diagonal elements by their reciprocal. So for a diagonal $3\times 3$ matrix, the following holds:
-\begin{equation*}
-    \xbracketMatrixstack{
-        a_{11} & 0 & 0\\
-        0 & a_{12} & 0\\
-        0 & 0 & a_{33}
-    }^{-1} =\quad 
-    \xbracketMatrixstack{
-        \frac{1}{a_{11}} & 0 & 0\\
-        0 & \frac{1}{a_{12}} & 0\\
-        0 & 0 & \frac{1}{a_{33}}
-    }.
-\end{equation*}
-
-\subsection{Systems of Linear Equations}\label{sec:linearEquations}
-Matrices can be conveniently used to solve \textit{systems of linear equations}, a set of linear equations containing the same set of variables. 
-
-For example, take the system of linear equations
-\begin{align*}
-    x + z &= 6,\\
-    z - 3y &= 7,\\
-    2x + y + 3z &= 15,
-\end{align*}
-with independent variables $x$, $y$ and $z$. The goal is to find a solution for these variables that satisfy all three equations. This system could be solved by hand using algebraic methods, but alternatively, the system can be written in matrix form:
-\begin{equation}
-    \A \u = \w.
-\end{equation}
-Here, column vector $\u$ contains the independent variables $x$, $y$, and $z$, matrix $\A$ contains the coefficients multiplied onto these variables and $\w$ contains the right-hand side, i.e., the coefficients not multiplied onto any of the variables:
-\begin{equation*}
-    \underbrace{\xbracketMatrixstack{
-        1& 0& 1\\
-        0& -3& 1\\
-        2& 1& 3}}_{\A}
-    \underbrace{\xbracketMatrixstack{
-        x\\
-        y\\
-        z
-    }}_{\u} = \underbrace{\xbracketMatrixstack{
-        6\\
-        7\\
-        15
-    }}_{\w}
-\end{equation*}
-We can then solve for $\u$ by taking the inverse of $\A$ (see Section \ref{sec:inverse}) and multiplying this onto $\w$
-\begin{equation}
-    \u = \A^{-1}\w.
-\end{equation}
-Generally, if X unknowns are described by X equations, the unknowns can be solved for using this method.
-
-Solving a system of linear equations can be implemented in \texttt{MATLAB} by using the code given in Section \ref{sec:inverse} and multiplying this onto a vector \texttt{w}
-\begin{center}
-    \texttt{u = inv(A) * w;}
-\end{center}
-or more compactly, by using the `\texttt{\textbackslash}' operator:
-\begin{center}
-    \texttt{u = A\textbackslash w;}
-\end{center}
-
-\subsection{Eigenvalue Problems}\label{sec:eigenValueProblems}
-A square matrix $\A$ is characterised by its \textit{eigenvalues} and corresponding \textit{eigenvectors}. In a FDTD context, these are usually associated with the modes of a system, where the eigenvalues relate to the modal frequencies and \todo{ask stefan} the eigenvectors to the modal shapes. Section \ref{sec:modalAnalysis} will provide more information on this.
-
-To find these characteristic values for a $p\times p$ matrix $\A$, an equation of the following form must be solved 
-\begin{equation}
-    \A \boldPhi = \lambda \boldPhi.
-\end{equation}
-This is called is an \textit{eigenvalue problem} and has $p$ solutions (corresponding to the dimensions of $\A$). These are the $p$\th eigenvector $\boldPhi_p$ and the corresponding eigenvalue $\lambda_p$ which is calculated using
-\begin{equation}
-    \lambda_p = \eig_p(\A),
-\end{equation}
-where $\eig_p(\cdot)$ denotes the $p$\th eigenvalue of. Instead of delving too deep into eigenvalue problems and the process of how to solve them, an easy way to obtain the solutions using \texttt{MATLAB} is provided here:
-
-\begin{center}
-    \texttt{[phi, lambda] = eig(A, {\color[HTML]{A100F4}'vector'});}
-\end{center}
-The $p$\th eigenvector appears in the $p$\th column of $p\times p$ matrix \texttt{phi} and the corresponsding eigenvalues are given in a $p \times 1$ column vector \texttt{lambda}. %Note that the outcome is not necessarily sorted! To do this, do 
-%
-% \begin{center}
-%     \begin{tabular}{l}
-%     \texttt{[lambda, order] = sort(lambda);}\\
-%     \texttt{phi = phi(:, order);}
-%     \end{tabular}
-% \end{center}
 
 \section{Mathematical Tools and Product Identities}
 Some useful mathematical tools used for the energy analysis techniques presented in Section \ref{sec:energyAnalysis} will be shown here. The tools shown here can be applied to 1D systems. These will be extended to 2D systems in Chapter \ref{ch:2Dsyst}. Unless denoted otherwise, the notation and theory will follow \cite{theBible}.

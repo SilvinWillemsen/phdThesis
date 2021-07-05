@@ -252,18 +252,18 @@ Using continuous function $u=u(t)$ and following Bilbao's ``slight abuse of nota
 %
 Assuming that $u$ is infinitely differentiable, $u(t+k)$, i.e., $u$ at the next time step (in continuous time), can be approximated using a Taylor series expansion of $u$ about $t$ according to
 \begin{equation}\label{eq:taylorStartForward}
-    u(t+k) = u(t) + k \dot u + \frac{k^2}{2} \ddot u + \frac{k^3}{6} \dot{\ddot{u}} + \O(k^4).
+    u(t+k) = u(t) + k \dot u + \frac{k^2}{2} \ddot u + \frac{k^3}{6} \dot{\ddot{u}} + \OO(k^4).
 \end{equation}
-Here, (following Newton's notation introduced in Section \ref{sec:differentialEquations}) the dot describes a single temporal derivative and $\O$ includes additional terms in the expansion. The power of $k$ in the argument of $\O$ describes the order of accuracy, the higher the power of $k$ the more accurate the approximation. Equation \eqref{eq:taylorStartForward} can be rewritten to 
+Here, (following Newton's notation introduced in Section \ref{sec:differentialEquations}) the dot describes a single temporal derivative and $\OO$ includes additional terms in the expansion. The power of $k$ in the argument of $\OO$ describes the order of accuracy, the higher the power of $k$ the more accurate the approximation. Equation \eqref{eq:taylorStartForward} can be rewritten to 
 \begin{equation*}
-    \frac{u(t+k) - u(t)}{k} = \dot u + \frac{k}{2} \ddot u +\frac{k^2}{6} \dot{\ddot{u}} + \O(k^3),
+    \frac{u(t+k) - u(t)}{k} = \dot u + \frac{k}{2} \ddot u +\frac{k^2}{6} \dot{\ddot{u}} + \OO(k^3),
 \end{equation*}
 and using Eq. \eqref{eq:forwardTimeCont} can be written to
 \begin{equation}
-    \dtp u(t) = \dot u + \O(k).
+    \dtp u(t) = \dot u + \OO(k).
 \end{equation}
 This says that the forward difference operator approximates the continuous first order derivative with an additional error term that depends on $k$.
-As the power of $k$ in $\O$'s argument is $1$, the forward operator is first-order accurate. One can also observe that, as expected, the error gets smaller as the time step $k$ gets smaller and indicates that higher sample rates result in more accurate simulations (through $k=1/\fs$). \SWcomment[confirming our intuition]
+As the power of $k$ in $\OO$'s argument is $1$, the forward operator is first-order accurate. One can also observe that, as expected, the error gets smaller as the time step $k$ gets smaller and indicates that higher sample rates result in more accurate simulations (through $k=1/\fs$). \SWcomment[confirming our intuition]
 
 One can arrive at a similar result for the backward operator. Applying Eq. \eqref{eq:backwardTimeOperator} to $u(t) $ yields
 \begin{equation}
@@ -271,12 +271,12 @@ One can arrive at a similar result for the backward operator. Applying Eq. \eqre
 \end{equation}
 One can then approximate $u(t-k)$ by performing a Taylor series expansion of $u$ about $t$ according to
 \begin{align}
-    u(t-k) &= u(t) + (-k) \dot u + \frac{(-k)^2}{2} \ddot u +\frac{(-k)^3}{6}\dot{\ddot{u}} + \O(k^4),\label{eq:taylorStartBackward}\\
-    \frac{u(t-k) - u(t)}{k} &= -\dot u + \frac{k}{2} \ddot u - \frac{k^2}{6}\dot{\ddot{u}} + \O(k^3),\nonumber\\
-    % \dot u &= \frac{u(t) - u(t-k)}{k} + \O(k).
-    \dtm u(t) &= \dot u + \O(k).
+    u(t-k) &= u(t) + (-k) \dot u + \frac{(-k)^2}{2} \ddot u +\frac{(-k)^3}{6}\dot{\ddot{u}} + \OO(k^4),\label{eq:taylorStartBackward}\\
+    \frac{u(t-k) - u(t)}{k} &= -\dot u + \frac{k}{2} \ddot u - \frac{k^2}{6}\dot{\ddot{u}} + \OO(k^3),\nonumber\\
+    % \dot u &= \frac{u(t) - u(t-k)}{k} + \OO(k).
+    \dtm u(t) &= \dot u + \OO(k).
 \end{align}
-Notice that the sign of $\O$ does not matter.
+Notice that the sign of $\OO$ does not matter.
 
 Applying the centred operator in Eq. \eqref{eq:centredTimeOperator} to $u(t)$ yields
 \begin{equation}
@@ -284,9 +284,9 @@ Applying the centred operator in Eq. \eqref{eq:centredTimeOperator} to $u(t)$ yi
 \end{equation}
 indicating that to find the order of accuracy for this operator, both Eqs. \eqref{eq:taylorStartForward} and \eqref{eq:taylorStartBackward} are needed. Subtracting these and substituting their definitions yields
 \begin{align}
-    u(t+k) - u(t-k) &= 2k\dot u - \frac{2k^3}{6}\dot{\ddot{u}} + 2\O(k^5),\nonumber\\
-    \frac{u(t+k) - u(t-k)}{2k} &= \dot u + \O(k^2),\nonumber\\
-    \dtd u(t) &= \dot u + \O(k^2),
+    u(t+k) - u(t-k) &= 2k\dot u - \frac{2k^3}{6}\dot{\ddot{u}} + 2\OO(k^5),\nonumber\\
+    \frac{u(t+k) - u(t-k)}{2k} &= \dot u + \OO(k^2),\nonumber\\
+    \dtd u(t) &= \dot u + \OO(k^2),
 \end{align}
 and shows that the centred difference operator is second-order accurate. 
 
@@ -303,16 +303,16 @@ Higher-order differences, such as the second-order difference in time operator i
 \end{equation}
 and can be proven to be second-order accurate by adding Eqs. \eqref{eq:taylorStartForward} and \eqref{eq:taylorStartBackward}:
 \begin{align}
-    u(t+k) + u(t-k) &= 2 u(t) + k^2 \ddot u + \O(k^4),\nonumber\\
-    \frac{u(t+k) -2 u(t) + u(t-k)}{k^2} &= \ddot u + \O(k^2),\nonumber\\
-    \dtt u(t) &= \ddot u + \O(k^2).
+    u(t+k) + u(t-k) &= 2 u(t) + k^2 \ddot u + \OO(k^4),\nonumber\\
+    \frac{u(t+k) -2 u(t) + u(t-k)}{k^2} &= \ddot u + \OO(k^2),\nonumber\\
+    \dtt u(t) &= \ddot u + \OO(k^2).
 \end{align}
 
 The accuracy of averaging operators can be found in the same way and follow a similar pattern. 
 \begin{equation}
     \begin{gathered}
-    \mtp u(t) = u(t) + \O(k),\quad \mtm u(t)= u(t) + \O(k),\\
-    \mtd u(t)= u(t) + \O(k), \quad \mtt u(t)= u(t) + \O(k^2).
+    \mtp u(t) = u(t) + \OO(k),\quad \mtm u(t)= u(t) + \OO(k),\\
+    \mtd u(t)= u(t) + \OO(k), \quad \mtt u(t)= u(t) + \OO(k^2).
     \end{gathered}
 \end{equation}
 
@@ -715,11 +715,11 @@ To understand why $h$ needs to be recalculated, consider the following example. 
 \subsubsection{Intuition}
 It might not be immediately clear why a too low value for $h$ might cause instability. Some intuition is provided in \cite[Fig. 6.9]{theBible}, but here I would like to provide an alternative, hopefully more tangible way to see this. 
 
-In a FD implementation of the 1D wave equation, grid points can only affect their neighbours as seen in update equation \eqref{eq:1DwaveUpdate}. Using the values in Table \ref{tab:1DWaveParams}as an example, $N=30$ and if $\lambda = 1$, it takes exactly $30$ samples, or iterations, for a wave to travel from one boundary to the other. 
+In a FD implementation of the 1D wave equation, grid points can only affect their neighbours as seen in update equation \eqref{eq:1DwaveUpdate}. Using the values in Table \ref{tab:1DWaveParams} as an example, $N=30$ and if $\lambda = 1$, it takes exactly $30$ samples, or iterations of Eq. \eqref{eq:1DwaveUpdate}, for a wave to travel from one boundary to the other. 
 
 If $h$ were to be chosen to be twice as big so that there are only half as many intervals between the grid points as per Eq. \eqref{eq:orderOfCalc} ($N=15$), the grid points could be set to `affect' their neighbours to a lesser degree. This way, the wave still takes the same amount of time to travel between the boundaries and the fundamental frequency stays approximately the same. This is essentially what happens when $\lambda < 1$ (in this case $\lambda = 0.5$) and can be observed from the update equation in Eq. \eqref{eq:1DwaveUpdate}; the effect that the neighbouring grid points have on each other will indeed be less. The output of the system will have approximately the same fundamental frequency as if $\lambda = 1$, but its partials will be detuned due to numerical dispersion as explained in this section.
 
-If, on the other hand, $h$ were to be chosen to be twice as small so that there are twice as many intervals between grid points ($N = 60$), it is impossible for the waves to travel from one boundary to the other in $30$ samples. If they could interact with their second neighbour, this would be possible, but the working of the FD scheme in \eqref{eq:1DwaveFDS} does not allow for this. Indeed, as $\lambda = 2$ in this case, the effect that the grid points have on each other will be disproportionate. In a way, grid points have too much energy that they can not lose to their neighbours, because their effect should have reached their second neighbour over the course of one sample. The way to solve this would be to halve the time step $k$ (or double the sample rate $\fs$), which would allow grid points to interact with their second neighbours over the course of once the the old time step (as this is now divided into two time steps). This also shows in the fact that $\lambda = 1$ again (as halving $k$ cancels out halving $h$) and grid points transfer their energy to their neighbours proportionately again.\todo{figure?}
+If, on the other hand, $h$ were to be chosen to be twice as small so that there are twice as many intervals between grid points ($N = 60$), it is impossible for the waves to travel from one boundary to the other in $30$ samples. If they could interact with their second neighbour, this would be possible, but the FD scheme in \eqref{eq:1DwaveFDS} does not allow for this. Indeed, as $\lambda = 2$ in this case, the effect that the grid points have on each other will be disproportionate. In a way, grid points have too much energy that they can not lose to their neighbours, because their effect should have reached their second neighbour over the course of one sample. The way to solve this would be to halve the time step $k$ (or double the sample rate $\fs$), which would allow grid points to interact with their second neighbours over the course of once the the old time step (as this is now divided into two time steps). This also shows in the fact that $\lambda = 1$ again (as halving $k$ cancels out halving $h$) and grid points transfer their energy to their neighbours proportionately again.\todo{figure?}
 
 \subsubsection{Possible solution}
 One of the main contributions of the PhD project is presented in Chapter \ref{ch:dynamicGrid}, where a `fractional' number of intervals is introduced. This removes the necessity of the flooring operation in Eq. \eqref{eq:orderOfCalc} and circumvents the recalculation of $h$ to always satisfy the stability condition with equality while retaining the correct fundamental frequency.

@@ -4,25 +4,6 @@
 
 \begin{document}
 \DeclareGraphicsExtensions{.png,.jpg,.pdf, eps.}
-%frontmatter
-\frontmatter
-\pagestyle{empty} %disable headers and footers
-\pagenumbering{roman} %use roman page numbering in the frontmatter
-\input{frontmatter/frontpage}
-\input{frontmatter/colophon}
-\input{frontmatter/cv}
-% \input{frontmatter/acknowledgements}
-\input{frontmatter/abstract}
-\input{frontmatter/preface}
-\input{frontmatter/listOfPublications}
-\cleardoublepage
-\pdfbookmark[0]{Contents}{label:contents}
-\pagestyle{fancy} %enable headers and footers again
-\tableofcontents
-\listoftodos
-\cleardoublepage
-
-\def\makeAlph[#1]{\symbol{\numexpr96+#1}}
 
 % \def\bLabel{\renewcommand\@biblabel[1]{[##1]}}
 % \def\citeP[#1]{[\hyperref[ch:listOfPublications]{#1}]}
@@ -122,7 +103,7 @@
 % mathcals
 \def\D{\mathcal{D}}
 \def\L{\mathcal{L}}
-\def\O{\mathcal{O}}
+\def\OO{\mathcal{O}}
 \def\S{\mathcal{S}}
 
 % flooring ceiling
@@ -141,6 +122,29 @@
 
 \def\boldPhi{\boldsymbol{\phi}}
 \def\eig{\text{eig}}
+
+%frontmatter
+\frontmatter
+\pagestyle{empty} %disable headers and footers
+\pagenumbering{roman} %use roman page numbering in the frontmatter
+\input{frontmatter/frontpage}
+\input{frontmatter/colophon}
+\input{frontmatter/cv}
+% \input{frontmatter/acknowledgements}
+\input{frontmatter/abstract}
+\input{frontmatter/preface}
+\input{frontmatter/listOfPublications}
+% \input{frontmatter/listOfSymbols.tex}
+% \input{frontmatter/listOfAbbreviations.tex}
+\cleardoublepage
+\pdfbookmark[0]{Contents}{label:contents}
+\pagestyle{fancy} %enable headers and footers again
+\tableofcontents
+\listoftodos
+\cleardoublepage
+
+\def\makeAlph[#1]{\symbol{\numexpr96+#1}}
+
 %mainmatter
 \mainmatter
 
@@ -239,6 +243,8 @@
     \begin{appendices}
       \renewcommand\appendixname{Appendix} 
       \renewcommand\thesection{\thechapter.\arabic{section}}
+      \renewcommand{\theequation}{\thechapter.\arabic{equation}}
+
       \setcounter{chapter}{0} % reset stuff
       \part{Appendix}
       \input{appendices/appendices}   
