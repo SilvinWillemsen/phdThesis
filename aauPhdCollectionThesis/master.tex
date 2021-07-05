@@ -210,10 +210,6 @@
   \renewcommand\thesection{\thechapter.\arabic{section}}
   \begin{subappendices}
     \begin{appendices}
-      \part{Appendix}
-      \input{appendices/appendices}   
-    \end{appendices}
-    \begin{appendices}
       \renewcommand\appendixname{Paper} 
       \setcounter{chapter}{0} % reset stuff
       \renewcommand\thesection{\arabic{section}}
@@ -221,24 +217,31 @@
       \input{papers/paperErrata}
       \pagestyle{plain}
       \titleformat{%command
-        \chapter
+      \chapter
       }[%shape
       display%
       ]{%format
-        \normalfont\huge
+      \normalfont\huge
       }{%label
-        \begin{center}\color{aaublue}\chaptertitlename\ \thechapter\end{center}
+      \begin{center}\color{aaublue}\chaptertitlename\ \thechapter\end{center}
       }{%style
-        1cm
+      1cm
       }{%code before title
-        \thispagestyle{empty}\begin{center}\Large
-      }[%code after title
-        \end{center}
+      \thispagestyle{empty}\begin{center}\Large
+        }[%code after title
+      \end{center}
       ]
-
+      
       \input{papers/papers.tex}
       \pagestyle{fancy}
       % \input{papers/paperA/paperA.tex}
+    \end{appendices}
+    \begin{appendices}
+      \renewcommand\appendixname{Appendix} 
+      \renewcommand\thesection{\thechapter.\arabic{section}}
+      \setcounter{chapter}{0} % reset stuff
+      \part{Appendix}
+      \input{appendices/appendices}   
     \end{appendices}
   \end{subappendices}
 \fi

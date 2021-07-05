@@ -1,4 +1,6 @@
 \chapter{Tromba Marina}\label{ch:tromba}
+This chapter presents the work done in the papers ``Real-time Implementation of a Physical Model of the Tromba Marina'' \citeP[D] and ``Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling'' \cite[E]. After a brief introduction of the tromba marina, this chapter continues to elaborate on the contents of the above papers by providing more details on the implementation.
+
 \section{Introduction}
 The tromba marina is a bowed monochord instrument from medieval Europe. It has a long quasi-trapezoidal body and is unique due to its oddly-shaped bridge that the string rests on. The bridge is often called a `shoe' due to its shape and is free to rattle against the body in sympathy with the movement of the vibrating string. This rattling causes a sound with brass or trumpet-like qualities, hence the name \textit{tromba} which stems from the Italian word trumpet. The rarity of the instrument as well as its interesting physics makes it an ideal case for a physical modelling implementation.
 
@@ -17,6 +19,70 @@ where $q(\boldsymbol{x}, t)$
 Test
 \subsection{Discrete}
 
+
+\subsection{Solving the system}
+It is also possible to solve for  $\delta_{t\cdot}\eta_1^n$ and $\delta_{t\cdot}\eta_2^n$ instead. Recalling \eqref{eq:eta1Col} and \eqref{eq:eta2Col}, we know that the following has to be true:
+
+\begin{equation}
+\begin{aligned}
+    \delta_{t\cdot}\eta_1^n &= \delta_{t\cdot}(w^n - u_\text{br}^n) \quad \text{and}\\
+    \delta_{t\cdot}\eta_2^n &= \delta_{t\cdot}(v_\text{br}^n - w^n)
+    \end{aligned}
+\end{equation}
+which when (semi)expanded yields:
+\begin{equation}\label{eq:expandedEtas}
+\begin{aligned}
+    2k\delta_{t\cdot}\eta_1^n &= w^{n+1}-w^{n-1}-u_\text{br}^{n+1}+u_\text{br}^{n-1} \quad \text{and}\\  2k\delta_{t\cdot}\eta_2^n &= v_\text{br}^{n+1}-v_\text{br}^{n-1}-w^{n+1}+w^{n-1}
+    \end{aligned}
+\end{equation}
+Solving the equations described in \eqref{eq:fdsOperators} for their states at $n+1$ we get:
+\begin{subequations}
+\begin{align}
+    % \left(\frac{\rho_\text{s}A}{k^2}+\frac{\rho_\text{s}A\sigma_{0,\text{s}}}{k}\right) u_\text{br}^{n+1} =
+    % &\ \frac{\rho_\text{s}A}{k^2}(2u_\text{br}^n-u_\text{br}^{n-1}) + T\delta_{xx}u_\text{br}^n-EI\delta_{xxxx}u_\text{br}^n+\frac{\rho_\text{s}A\sigma_{0,\text{s}}}{k}u_\text{br}^{n-1}-2\rho_\text{s}A\sigma_{1,\text{s}}\delta_{t-}\delta_{xx}u_\text{br}^n\\
+    % & +\frac{1}{h_\text{s}}\left(\frac{(g_1^n)^2k}{2}\delta_{t\cdot}\eta_1^n+\psi_1^{n-1/2}\right)\nonumber\\
+    u_\text{br}^{n+1} &= u_\text{br}^\text{I}
+     +\frac{k^2}{h_\text{s}\rho_\text{s}A(1+\sigma_{0,\text{s}}k)}\left(\frac{(g_1^n)^2k}{2}\delta_{t\cdot}\eta_1^n+\psi_1^{n-1/2}g_1^n\right)\nonumber\\
+    % \left(\frac{M}{k^2}+\frac{MR}{2k}\right)w^{n+1} = &\ \frac{M}{k^2}(2w^n-w^{n-1}) - M\omega_0^2w^n + \frac{MR}{2k}w^{n-1}-\left(\frac{(g_1^n)^2k}{2}\delta_{t\cdot}\eta_1^n+\psi_1^{n-1/2}\right)\\
+    % &+\left(\frac{(g_2^n)^2k}{2}\delta_{t\cdot}\eta_2^n+\psi_2^{n-1/2}\right)\nonumber
+    w^{n+1} &= w^\text{I}-\frac{k^2}{M\left(1+\frac{Rk}{2}\right)}\left(\frac{(g_1^n)^2k}{2}\delta_{t\cdot}\eta_1^n+\psi_1^{n-1/2}g_1^n\right)+\frac{k^2}{M\left(1+\frac{Rk}{2}\right)}\left(\frac{(g_2^n)^2k}{2}\delta_{t\cdot}\eta_2^n+\psi_2^{n-1/2}g_2^n\right)\nonumber\\
+    v_\text{br}^{n+1} &= v_\text{br}^\text{I}-\frac{k^2}{h_\text{p}^2\rho_\text{p}H(1+\sigma_{0,\text{p}}k)}\left(\frac{(g_2^n)^2k}{2}\delta_{t\cdot}\eta_2^n+\psi_2^{n-1/2}g_2^n\right)\nonumber
+\end{align}
+\end{subequations}
+where
+\begin{subequations}\label{eq:intermediateColCol}
+    \begin{align}
+        u^\text{I}_\text{br}& = \frac{2u_\text{br}^n-u_\text{br}^{n-1}+\frac{Tk^2}{\rho_\text{s}A}\delta_{xx}u_\text{br}^n-\frac{EIk^2}{\rho_\text{s}A}\delta_{xxxx}u_\text{br}^n + \sigma_{0,\text{s}}ku_\text{br}^{n-1} + 2\sigma_{1,\text{s}}k^2\delta_{t-}\delta_{xx}u^n_\text{br}}{1 + \sigma_{0,\text{s}}k} \\
+        w^\text{I} & = \frac{2w^n-w^{n-1}-k^2\omega_0^2w^n+\frac{Rk}{2}w^{n-1}}{1 + \frac{Rk}{2}}\\
+        v^\text{I}_{\text{br}} & = \frac{2v_{\text{br}}^n-v_{\text{br}}^{n-1}-\frac{Dk^2}{\rho_\text{p}H}\delta_{\Delta\boxplus}\delta_{\Delta\boxplus}v_{\text{br}}^n+\sigma_{0,\text{p}}kv^{n-1}_\text{br}+ 2\sigma_{1,\text{p}}k^2\delta_{t-}\delta_{xx}v^n_\text{br}}{1+\sigma_{0,\text{p}}k}
+    \end{align}
+\end{subequations}
+These can then be inserted into \eqref{eq:expandedEtas} and solved for $\delta_{t\cdot}\eta_1^n$ and $\delta_{t\cdot}\eta_2^n$
+\begin{equation}
+    \begin{bmatrix}
+        \delta_{t\cdot}\eta_1^n\\
+        \delta_{t\cdot}\eta_2^n
+    \end{bmatrix}
+    = 
+    \mathbf{A}^{-1}\mathbf{v}
+\end{equation}
+where
+\begin{equation}
+\begin{gathered}
+\mathbf{A} = 
+    \begin{bmatrix}
+        1 + \frac{(g_1^n)^2k^2}{2M(2+Rk)} + \frac{(g_1^n)^2k^2}{4\rho_\text{s}Ah_\text{s}(1+\sigma_{0,\text{s}}k)} & -\frac{(g_2^n)^2k^2}{2M(2+Rk)} \\
+        -\frac{(g_1^n)^2k^2}{2M(2+Rk)} & 1+\frac{(g_2^n)^2k^2}{2M(2+Rk)}+\frac{(g_2^n)^2k^2}{4h_\text{p}^2\rho_\text{p}H(1+\sigma_{0,\text{p}}k)}
+    \end{bmatrix}
+    \quad \text{and}\\
+    \mathbf{v} = 
+    \begin{bmatrix}
+        \frac{w^\text{I}-w^{n-1}-u_\text{br}^\text{I}+u_\text{br}^{n-1}}{2k} - \frac{k(\psi_1^{n-1/2}g_1^n-\psi_2^{n-1/2}g_2^n)}{M(2+Rk)}-\frac{\psi_1^{n-1/2}g_1^nk}{2\rho_\text{s}Ah_\text{s}(1+\sigma_{0,\text{s}}k)}\\
+        \frac{v_\text{br}^\text{I}-v_\text{br}^{n-1}-w^\text{I}+w^{n-1}}{2k}+\frac{k(\psi_1^{n-1/2}g_1^n-\psi_2^{n-1/2}g_2^n)}{M(2+Rk)}-\frac{\psi_2^{n-1/2}g_2^nk}{2h_\text{p}^2\rho_\text{p}H(1+\sigma_{0,\text{p}}k)}
+    \end{bmatrix}
+    \nonumber
+\end{gathered}
+\end{equation}
 \section{Real-Time Implementation}
 
 \subsection{Control using Sensel Morph}

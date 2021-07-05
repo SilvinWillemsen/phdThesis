@@ -27,7 +27,7 @@ The first \SWcomment[$\leftarrow$ check with stefania] appearance of FDTD method
 Before introducing various friction models, a brief introduction on interpolation and spreading operators will be given, which will be necessary to work with this type of excitation.
 
 \section{Interpolation and Spreading operators}\label{sec:interpolationSpreading}
-As FD schemes are an approximation to continuous space (and time) using a finite amount of points, working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function.  This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. Heere, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$.
+As FD schemes are an approximation to continuous space (and time) using a finite amount of points, working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function.  This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. Here, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$.
 
 The simplest interpolation operator is of '0\textsuperscript{th}'-order and is defined as
 \begin{equation}\label{eq:zerothOrderI}
@@ -128,11 +128,18 @@ for any (grid) function $f$. From this, it follows that taking the norm of a spr
 \end{equation}
 See Section \eqref{sec:innerProduct} for more details on the inner product and the norm.
 
+\subsubsection{Other distributions}
+This section presented interpolation and spreading operators that interact with the state of a FD scheme at a single point $x_\itxt$ and either interpolates or distributes over a range of points. Although multiple grid points might be used to work with the scheme, the interpolation or spreading is not \textit{distributed}. One could make an arbitrary distribution function $E$ with elements $e_l$ (in 1D) where $l\in d$ for discrete domain $d$ of the system at hand. The \textit{distribution} and spreading operators become:
+\begin{equation}
+    I = E / \sum_d e_l \qaq J = \frac{1}{h}I
+\end{equation}
+
+Although any values for $E$ would work, to retain correct scaling, the sum of $E$ needs to be normalised to $1$.
 
 \section{The Newton-Raphson Method}\label{sec:newtonRaphson}
-Before moving on to more complex excitation mechanisms, it is useful to go over the process of how to solve some of these using en iterative root-finding method called the \textit{Newton-Raphson} method (or Newton's method for short). 
+Before moving on to more complex excitation mechanisms, it is useful to go over the process of how to solve some of these using en iterative root-finding method called the \textit{Newton-Raphson} method (or Newton-Raphson for short). 
 
-If the root of function can not be solved explicitly, due to the presence of a nonlinear dependence on a variable \todo{different wording here} for example, the Newton-Raphson method can be used. For a continuous and differentiable function $f(x) = 0$ its root can be approached using the following iteration
+If the root of function can not be solved explicitly, due to the presence of a nonlinear dependence on a variable \todo{different wording here} for example, Newton-Raphson can be used. For a continuous and differentiable function $f(x) = 0$ its root can be approached using the following iteration
 \begin{equation}\label{eq:newtonRaphson}
     x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}\ ,
 \end{equation}
@@ -143,9 +150,9 @@ This iteration will then be carried out until the difference between the values 
 \end{equation} 
 where $\epsilon$ is small, but its exact value depends on the situation at hand. To prevent Newton's method from iterating endlessly (which can happen in some cases), one can put a cap on the number of iterations allowed. 
 
-Preferably, the starting point of the iteration, $x_0$, should be close to the value of where the root is expected to be. This is especially the case for a higher-ordered function with multiple roots or many local variations. 
+Preferably, the starting point of the iteration, $x_0$, should be close to the value of where the root is expected to be. This is especially the case for a higher-ordered function with multiple roots (non-uniqueness) or many local variations. 
 
-Algorithm \ref{alg:NR} shows an example of an implementation of the Newton-Raphson method using $f(x) = e^x -1\ \Rightarrow\ f'(x) = e^x $.
+Algorithm \ref{alg:NR} shows an example of an implementation of Newton-Raphson using $f(x) = e^x -1\ \Rightarrow\ f'(x) = e^x $.
 
 \setlstMAT
 \begin{lstlisting}[caption={Example of an implementation of the Newton-Raphson method using $f(x) = e^{x} - 1$.}, label=alg:NR]
@@ -175,7 +182,7 @@ disp("The root of f(x) is at x = " + xNext)
 \end{lstlisting}
 
 \subsection{Multivariate Newton-Raphson}\label{sec:multivariateNR}
-For $M$ functions $f_m$ dependent on $M$ independent variables $x_m$ with $m = \{1, \hdots, M\}$, the Newton-Raphson method can be extended to the following \SWcomment[citation?]:
+For $M$ functions $f_m$ dependent on $M$ independent variables $x_m$ with $m = \{1, \hdots, M\}$,  Newton-Raphson can be extended to the following \SWcomment[citation?]:
 \begin{equation}\label{eq:multivariateNR}
     \mathbf{x}_{i+1} = 
     \mathbf{x}_i - 
@@ -217,7 +224,7 @@ The Jacobian matrix will be
         -x_2e^{-x_1x_2} & -x_1e^{-x_1x_2} & 20
     \end{bmatrix},
 \end{equation*}
-and its roots can be found by iteratively calculating Eq. \eqref{eq:multivariateNR} .
+and its roots can be found by iteratively calculating Eq. \eqref{eq:multivariateNR}.
 
 \section{Static Friction Models}\label{sec:staticFricMod}
 A friction model is a nonlinear function that is (at least) dependent on the relative velocity $\vrel$ between the bow and the string. This function scales how much the bow force affects the bowed object. 
@@ -251,7 +258,7 @@ one can add the bow force to the equation according to
 \begin{equation}\label{eq:bowedStiffStringPDE}
     \rho A \ptt u = T \pxx u - EI \pxxxx u - 2 \sz \rho A \pt u + 2 \so \rho A\pt \pxx u - \delta(x-x_\Btxt)f_\Btxt\Phi(\vrel)
 \end{equation}
-where spatial Dirac delta function $\delta(x-x_\Btxt)$ (in m$^{-1}$) (see Section \ref{sec:interpolationSpreading}) positions the bow along the string and $f_\Btxt = f_\Btxt(t)$ is the bow force (in N). 
+where spatial Dirac delta function $\delta(x-x_\Btxt)$ (in m$^{-1}$) (see Section \ref{sec:interpolationSpreading}) positions the bow along the string and $f_\Btxt = f_\Btxt(t)$ is the bow force (in N).\footnote{If the spatial Dirac delta function were omitted, the bow force would be applied to the entire string domain rather than only the bow location $x_\text{B}$.} 
 
 \subsubsection{Intuition}
 From Eq. \eqref{eq:bowedStiffStringPDE} it can be seen that the bow force gets scaled by the friction model $\Phi(\vrel)$ shown in Figure \ref{fig:frictionCharacteristic}. 
@@ -269,7 +276,7 @@ The relative velocity in Eq. \eqref{eq:vrel} is discretised using a centred diff
 \begin{equation}\label{eq:vrelDisc}
     \vrel^n = I(x_\Btxt^n)\dtd \uln - v_\Btxt^n.
 \end{equation}
-The main issue with Eq. \eqref{eq:vrelDisc} is that, due to the centred difference operator, the FD scheme is now nonlinearly dependent on $u_l^{n+1}$. To solve Eq. \eqref{eq:bowedStiffStringFDS}, an iterative solver is required, such as the Newton-Raphson method described in Section \ref{sec:newtonRaphson}. This process could be circumvented by using a backward  difference operator in Eq. \eqref{eq:vrelDisc}, but this will affect accuracy of the bow model.
+The main issue with Eq. \eqref{eq:vrelDisc} is that, due to the centred difference operator, the FD scheme is now nonlinearly dependent on $u_l^{n+1}$. To solve Eq. \eqref{eq:bowedStiffStringFDS}, an iterative solver is required, such as Newton-Raphson described in Section \ref{sec:newtonRaphson}. This process could be circumvented by using a backward  difference operator in Eq. \eqref{eq:vrelDisc}, but this will affect accuracy of the bow model.
 
 \subsubsection{Solution}
 To find a solution for $u_l^{n+1}$ at the bow location, an inner product of the scheme in Eq. \eqref{eq:bowedStiffStringFDS} with spreading operator $J(x_\Btxt^n)$ must be taken which isolates the scheme at the bowing location. Performing this operation and using identity \eqref{eq:identityIJ} yields
@@ -454,6 +461,9 @@ The derivatives can be shown to be... \SWcomment[should I give those here..? Cou
 
 \subsection{Implementation and output}
 \SWcomment[still need to write]
+
+\todo{Plots of output and hysteresis loops}
+
 \subsection{Stability through Energy Analysis}
 As the elasto-plastic bow model is a differential equation in itself, its approximation will need to abide a stability condition as well.
 As the system at hand is nonlinear, frequency domain analysis as described in Section \ref{sec:stabilityAnalysis} can not be performed. Energy analysis, on the other hand, can be used here to determine the necessary stability condition for this model. This section follows the concepts introduced in Section \ref{sec:stabilityAnalysisEnergy} to obtain a stability conditions for the elasto-plastic friction model. A similar process for finding stability for the LuGre model has been done by Olsson in \cite[p. 55]{Olsson1996} and the derivation below is inspired by his. 
