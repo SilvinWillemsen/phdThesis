@@ -45,19 +45,36 @@ The 2D wave equation be used to model an ideal membrane such as done in
 
 It has identical behaviour to the 2D waveguide mesh presented by van Duyne and Smith \cite{Duyne1993}.
 
+This section will present the 2D wave equation in continuous time and discretise it afterwards. Then it will be used as a test-case to explain the various analysis techniques presented in Chapter \ref{ch:analysis} in 2D.
+
+\subsection{Continuous time}
 Consider a square ideal membrane with side lengths $L_x$ and $L_y$ (both in m) and its transverse displacement described by $u = u(x,y,t)$. The membrane is defined over $(x,y) \in \D$ with domain $\D = [0, L_x] \times[0, L_y]$ and its motion is described by the following PDE
 \begin{equation}\label{eq:2DwavePDE}
     \ptt u = c^2\Delta u
 \end{equation}
 with wave speed $c = \sqrt{T/\rho H}$ (in m/s), tension per unit length (applied to the boundary)\todo{check whether this is right..}$T$ (in N/m), material density $\rho$ (in kg/m$^3$) and thickness $H$.
 
+
+
+\subsection{Energy Analysis}
+
 \section{Thin plate}\label{sec:thinPlate}
 Used in \citeP[A], \citeP[B], \citeP[D] and \citeP[E]
 biharmonic operator, Laplacian in \eqref{eq:laplacian} applied to itself.
-\begin{equation}\label{eq:platePDE}
+\begin{equation}\label{eq:platePDENoLosses}
     \rho H \ptt u = -D\Delta\Delta u
 \end{equation}
-where $D = EH^3/12(1-\nu^2)$
+where $D = EH^3/12(1-\nu^2)$.
+
+Adding losses to \eqref{eq:platePDE} yields 
+
+\begin{equation}\label{eq:platePDE}
+    \rho H \ptt u = -D\Delta\Delta u - 2\sz \rho H \pt u + 2 \rho H \so \pt \Delta u
+\end{equation}
+
+
+
+
 \section{Stiff membrane}
 Combination between Eqs. \eqref{eq:2DwavePDE} and \eqref{eq:platePDE}
 \begin{equation}\label{eq:2DwavePDE}
@@ -65,3 +82,5 @@ Combination between Eqs. \eqref{eq:2DwavePDE} and \eqref{eq:platePDE}
     \Delta\Delta u
 \end{equation}
 \citeP[F]
+
+Is essentially a 2D stiff string. 

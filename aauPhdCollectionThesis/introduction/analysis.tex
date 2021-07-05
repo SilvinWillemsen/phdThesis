@@ -868,7 +868,7 @@ This is the same (CFL) condition obtained through von Neumann analysis in Sectio
 
 \section{Modal Analysis}
 \label{sec:modalAnalysis}
-Modes are the resonant frequencies of a system. The amount of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. Modal analysis \todo{some citation here} can be used to obtain objective data on what modes a FD scheme should contain. This can then be used to determine whether this matches one's expectations or whether the output of the system matches what the analysis predicted. This section will show how to numerically obtain the modal frequencies of an FD implementation using the 1D wave equation as a test case.
+Modes are the resonant frequencies of a system. The amount of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. Modal analysis \todo{some citation here} can be used to obtain objective data on what modes a FD scheme should contain. This can then be used to determine whether this matches one's expectations or whether the output of the system matches what the analysis predicted. This section will show how to numerically obtain the modal frequencies of a FD implementation using the 1D wave equation as a test case.
 
 We start by using the matrix form of the 1D wave equation from Eq. \eqref{eq:1DwaveMatrix}
 \begin{equation*}
@@ -945,6 +945,3 @@ Solutions for the frequency and damping for the $p$th eigenvalue can then be obt
 where $\mathfrak{I}(\cdot)$ and $\mathfrak{R}(\cdot)$ denote the ``imaginary part of'' and ``real part of'' respectively. 
 
 As the elements of $\Q$ are real-valued, the solutions $s_p$ in Eq. \eqref{eq:sp} come in complex conjugates (pairs of numbers of which the imaginary part has an opposite sign). For analysis, only the $\mathfrak{I}(s_p)\geq 0$ should be considered as these correspond to non-negative frequencies. 
-
-\section{Dispersion analysis}\label{sec:dispersionAnalysis}
-\SWcomment[not sure whether to include..]

@@ -1,8 +1,15 @@
 \chapter{Dynamic Grid}\label{ch:dynamicGrid}
 
 \textit{Often in math, you should view the definition not as a starting point, but as a target. Contrary to the structure of textbooks, mathematicians do not start by making definitions and then listing a lot of theorems, and proving them, and showing some examples. The process of discovering math typically goes the other way around. They start by chewing on specific problems, and then generalising those problems, then coming up with constructs that might be helpful in those general cases,and only then you write down a new definition (or extend an old one). - Grant Sanderson (AKA 3Blue1Brown) https://youtu.be/O85OWBJ2ayo?t=359}
-\section{Background and Motivation}
-Simulating musical instruments using physical modelling -- as mentioned in Part \ref{part:introduction}\todo{check if is still true} -- allows for manipulations of the instrument that are impossible in the physical world. Examples of this are changes in material density or stiffness, cross-sectional area (1D), thickness (2D) and size. Apart from being potentially sonically interesting, there are examples in the physical world where certain aspects of the instrument are manipulated in real-time.
+
+This chapter provides an extended summary to the paper ``Dynamic grids for Finite-Difference Schemes in Musical Instrument Simulations'' \citeP[G]. The paper presents a novel method to smoothly add and remove grid points from a FD scheme which allows for dynamic parameter variations without compromising stability or quality of the simulation (see Section \ref{sec:quality1DWave}). The variations are assumed to be at sub-audio rate (i.e., human gestural control) so that analysis techniques are still valid to some degree
+
+Simulating musical instruments using physical modelling -- as mentioned in Chapter \ref{ch:physMod} -- allows for manipulations of the instrument that are impossible in the physical world. Examples of this are changes in material density or stiffness, cross-sectional area (1D), thickness (2D) and size of the system in general. 
+
+ 
+
+\subsection{Examples}
+Apart from being potentially sonically interesting, there are examples in the physical world where certain aspects of the instrument are manipulated in real-time.
 
 Tension in a string is changed when tuning it
 
@@ -49,7 +56,7 @@ Time-varying propagation speed in waveguides: https://quod.lib.umich.edu/cgi/p/p
 Special boundary conditions (look at!):
 Modeling of Complex Geometries and Boundary Conditions in Finite Difference/Finite Volume Time Domain Room Acoustics Simulation (\url{https://www.researchgate.net/publication/260701231_Modeling_of_Complex_Geometries_and_Boundary_Conditions_in_Finite_DifferenceFinite_Volume_Time_Domain_Room_Acoustics_Simulation})
 
-\section{Method}
+\section{Iterations}
 Iterations have been:
 \begin{itemize}
     \item Interpolated boundary conditions
@@ -130,25 +137,131 @@ their interactions change through a change in the grid spacing and wave speed. T
 \subsection{Sinc interpolation}
 
 
-\subsection{Displacement correction}
+\section{Displacement Correction Implementation} 
+One detail that was not provided in paper \citeP[G], is the impelmentation of the displacement correction.
+When the wavespeed is increased and points are removed, it is not necessarily true that $u_M = w_0$ at the time of removal and the rigid connection in \eqref{eq:rigid} is violated. On top of the virtual grid point ``generation'' from the interpolation described above, one could add a connection force that is dependent on how close the inner boundaries $u_M$ and $w_0$ are.
 
-The displacement correction can be interpreted as a spring force pulling $u_M^n$ and $w_0^n$ to the average displacement.
+We can extend \eqref{eq:systemHalfStrings} to have a spring force between $u_M$ and $w_0$ as
+\begin{equation}\label{eq:dispCorrSyst}
+    \begin{cases}
+        \delta_{tt}u^n &= c^2\delta_{xx}u^n + J(x_{u_M})F\\
+        \delta_{tt}w^n &= c^2\delta_{xx}w_0^n - J(x_{w_0})F
+    \end{cases}
+\end{equation}
+with 
+\begin{equation}\label{eq:corrForceNoDamp}
+    F = \beta \mu_{t\cdot}\eta^n.
+\end{equation}
+Here,
+\begin{equation}\label{eq:etaCorrDef}
+    \eta^n \triangleq w_0^n - u_M^n
+\end{equation}
+is the difference in displacement between the inner boundaries
+and $\beta = \beta(\alpha)$ 
+acts as a spring coefficient that is a function of the distance between the inner boundaries along the grid, i.e., $\alpha$. Furthermore, the centred temporal averaging operator $\mu_{t\cdot}$ is used in \eqref{eq:corrForceNoDamp} to ensure stability \cite{Bilbao2009Modular}.
+
+We then continue by finding a definition for $\beta$ that is inversely proportional to $\alpha$, i.e., the smaller $\alpha$ is the higher the `correction' effect, ideally approaching an infinite stiffness, or rigid connection, when $\alpha = 0$ and no stiffness when $\alpha \rightarrow 1$. This can be achieved by defining $\beta = \beta(\alpha)$ as
+\def\plusEps{+ \epsilon}
+% \def\plusEps{};
+\def\alfPlusEps{(\alpha \plusEps)}
+% \def\alfPlusEps{\alpha}
+\begin{equation}\label{eq:betaDef}
+    \beta = \frac{1 - \alpha}{\alpha \plusEps},
+\end{equation}
+with $0<\epsilon \ll 1$ to prevent a division by 0. It will be shown that when calculating the force after expansion, a division by 0 can be prevented and $\epsilon = 0$ will still yield a defined solution. We can observe that when $\alpha = 0$ and the correction effect needs to be at a maximum, $\beta\rightarrow \infty$. When $\alpha \rightarrow 1$, $\beta \rightarrow 0$.
+
+We can also add a damping term to \eqref{eq:corrForceNoDamp} which is also scaled by $\beta$ as
+\begin{equation}\label{eq:corrForce}
+    F = \beta \left(\mu_{t\cdot}\eta^n +\sigma_0\delta_{t\cdot}\eta^n \right),
+\end{equation}
+where $\sigma_0$ is the damping coefficient. Then, we can solve for $\eta^{n+1}$ 
+\begin{align}
+    F &= \beta\left(\frac{1}{2}\left(\eta^{n+1}+\eta^{n-1}\right) + \frac{\sigma_0}{2k}\left(\eta^{n+1}-\eta^{n-1}\right)\right)\nonumber\\
+    F&= \left(\frac{\beta (1 + \sigma_0/k)}{2}\right)\eta^{n+1} + \left(\frac{\beta (1 - \sigma_0/k)}{2}\right) \eta^{n-1}\nonumber\\
+    \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:betaDef}}\ } \quad \eta^{n+1} &= \left(\frac{2
+    \alfPlusEps}{(1+\sigma_0/k)(1-\alpha)}\right)F - \underbrace{\frac{1-\sigma_0/k}{1+\sigma_0/k}}_{r}\eta^{n-1}.\label{eq:etaSolut1}
+\end{align}
+Using superscript $\text{I}$ to denote an intermediate state describing of $u^{n+1}_M$ and $w^{n+1}_0$ without the connection force (see \eqref{eq:resultOneConnectedPoint}), we also know, through Eq. \eqref{eq:etaCorrDef}, that 
 
 \begin{align}
-    &\begin{aligned}
-        u_{M}^{n+1} &= 2u_M^n + \lambda^2 (u_{M-1} ^n- 2u_M^n  + u_{M+1}^n) - K \left(u_M^n - \frac{u_M^n + w_0^n}{2}\right)\\
-        w_0^{n+1} &= 2u_M^n + \lambda^2 (w_{-1} ^n- 2w_0^n  + w_1^n) - K \left(w_0^n - \frac{u_M^n + w_0^n}{2}\right) 
-    \end{aligned}\\
-    &\begin{aligned}
-        u_{M}^{n+1} &= 2u_M^n + \lambda^2 (u_{M-1} ^n- 2u_M^n  + u_{M+1}^n) + \frac{K}{2} (w_0^n - u_M^n)\\
-        w_0^{n+1} &= 2u_M^n + \lambda^2 (w_{-1} ^n- 2w_0^n  + w_1^n) - \frac{K}{2} (w_0^n - u_M^n) 
-    \end{aligned}
+    \eta^{n+1} &= w_0^\text{I}-\frac{k^2}{h}F-\left(u_M^\text{I}+\frac{k^2}{h}F\right)\nonumber\\
+    \eta^{n+1} &= w_0^\text{I} - u_M^\text{I} - \frac{2k^2}{h}F,\label{eq:etaNext}
 \end{align}
-with $K = K(\alpha)$
-\begin{equation}
-    K = (1-\alpha)^\epsilon.
+which can be set equal to \eqref{eq:etaSolut1} and solved for $F$ according to 
+
+\begin{align*}
+    \left(\frac{2
+    \alfPlusEps}{(1+\sigma_0/k)(1-\alpha)}\right)F - r \eta^{n-1} &= w_0^{I} - u_M^{I}- \frac{2k^2}{h}F\\
+    \left(\frac{2h
+    \alfPlusEps + 2k^2(1+\sigma_0/k)(1-\alpha)}{h(1+\sigma_0/k)(1-\alpha)}\right)F &= w_0^{I} - u_M^{I}+r\eta^{n-1}\\
+    F &= \left(w_0^{I} - u_M^{I}+r\eta^{n-1}\right)\left(\frac{h(1+\sigma_0/k)(1-\alpha)}{2h \alfPlusEps + 2k^2(1+\sigma_0/k)(1-\alpha)}\right).
+\end{align*}
+It is clear now that no matter the value of $\alpha$, no division by 0 will occur, so $\epsilon = 0$ is still defined. The final equation for $F$ can thus be written as
+\begin{equation}\label{eq:finalForce}
+    F = \left(w_0^{I} - u_M^{I}+r\eta^{n-1}\right)\underbrace{\left(\frac{h(1+\sigma_0/k)(1-\alpha)}{2h\alpha + 2k^2(1+\sigma_0/k)(1-\alpha)}\right)}_{\Psi}.
+\end{equation}
+This can then be filled into \eqref{eq:dispCorrSyst} and used to get $u_M^{n+1}$ and $w_0^{n+1}$ respectively. \SWcomment[Using $\alpha = 0$ and $\sigma_0 = 0$ as a test case to see what would happen to the scheme at the inner boundaries when they perfectly overlap (and without damping, just restoring force), we get that $r = 1$ and \eqref{eq:finalForce} becomes
+\begin{align*}
+    F &= \left(w_0^{I} - u_M^{I}+\eta^{n-1}\right)\left(\frac{h}{2k^2}\right)\\
+    \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:etaNext}}\ } \quad F &= \left(\eta^{n+1} + \frac{2k^2}{h}F + \eta^{n-1}\right)\left(\frac{h}{2k^2}\right)\\
+    F - F &= \eta^{n+1} + \eta^{n-1}\\
+    2\mu_{t\cdot}\eta^n &= 0\\
+    \mu_{t\cdot}\eta^n &= 0
+\end{align*}
+showing that when $\alpha = 0$, the $\eta^n$ should be 0 and thus boils down to a rigid connection.]
+
+\subsubsection{Modal Analysis}
+Due to the damping that is present in the system, it needs to be written in one-step form. Recalling \eqref{eq:uVecDef} we can write write \eqref{eq:dispCorrSyst} in vector-matrix form
+\begin{equation}\label{eq:formForOneStep}
+    \A \U^{n+1} = \B \U^n + \C\U^{n-1}
+\end{equation}
+and rewrite to one-step form as
+\begin{equation}\label{eq:oneStepForm}
+    \underbrace{\begin{bmatrix}
+        \U^{n+1}\\
+        \U^n
+    \end{bmatrix}}_{\mathbf{W}^{n+1}} = 
+    \underbrace{\begin{bmatrix}
+        \A^{-1}\B & \A^{-1}\C\\
+        \I & \mathbf{0}
+    \end{bmatrix}}_{\Q}
+    \underbrace{\begin{bmatrix}
+        \U^n\\
+        \U^{n-1}
+    \end{bmatrix}}_{\mathbf{W}^n}
 \end{equation}
 
+The most straightforward way to obtain the matrices, is to expand the forces in system \eqref{eq:dispCorrSyst} directly. 
+% \begin{equation}
+%     \begin{cases}
+%         \delta_{tt}u^n &= c^2\delta_{xx}u^n + J(x_{u_M})\frac{\beta}{2}(\eta^{n+1} + \eta^{n-1} + \sigma_0/k (\eta^{n+1} - \eta^{n-1}))\\
+%         \delta_{tt}w^n &= c^2\delta_{xx}w_0^n - J(x_{w_0})\frac{\beta}{2}(\eta^{n+1} + \eta^{n-1} + \sigma_0/k (\eta^{n+1} - \eta^{n-1}))
+%     \end{cases}
+% \end{equation}
+% and
+Recalling $\U$ from \eqref{eq:uVecDef} (of size $\mathcal{M} = M+M_w$) and including the virtual grid point definitions encapsulated in $\B_2$, we can rewrite the system to
+\begin{equation}
+    \I\U^{n+1} = \B_2\U^n - \I\U^{n-1} + (\J\boldsymbol{\eta})\frac{\beta k^2}{2}\left((1+\sigma_0/k)\U^{n+1} + (1-\sigma_0/k)\U^{n-1}\right)
+\end{equation}
+where 
+\begin{equation}
+    \J = [\mathbf{0}_{M-1}, 1/h, -1/h, \mathbf{0}_{M_w-1}]^T
+\end{equation}
+where $\mathbf{0}_i$ is a row-vector of zeros with length $i$ and
+\begin{equation}
+    \boldsymbol{\eta} = [\mathbf{0}_{M-1}, -1, 1, \mathbf{0}_{M_w-1}].
+\end{equation}
+vectorising the effect of \eqref{eq:etaCorrDef} on $\U$. Note that as $\J$ is a column vector and $\boldsymbol{\eta}$ a row vector, the multiplication of the two yields an $\mathcal{M}\times\mathcal{M}$ matrix.
+
+Then refactoring to the form in \eqref{eq:formForOneStep} and using identity matrix $\I$ with size $\mathcal{M} \times \mathcal{M}$ yields the following matrices
+% \begin{equation}
+%     \underbrace{\left(\I - \frac{\beta k^2 (1+\sigma_0/k)}{2}\J\boldsymbol{\eta}\right)}_{\A}\U^{n+1} = \underbrace{\mathbf{B}_2}_{\B}\U^n +\underbrace{\left(- \I - \frac{\beta k^2 (1-\sigma_0/k)}{2}\J\boldsymbol{\eta}\right)}_{\C} \U^{n-1}
+% \end{equation}
+
+\begin{equation}
+    \A = \I - \frac{\beta k^2 (1+\sigma_0/k)}{2}\J\boldsymbol{\eta}, \qquad \B = \mathbf{B}_2, \qquad \text{and} \qquad \C = -\left(\I - \frac{\beta k^2 (1-\sigma_0/k)}{2}\J\boldsymbol{\eta}\right)
+\end{equation}
+Although substituting these definitions into \eqref{eq:oneStepForm} gives an identical result to the matrix definitions above (comparisons show a difference between the $\Q$ matrices around machine precision), $\beta$ can still go to infinity. In this case, $\epsilon \neq 0$ in \eqref{eq:betaDef}. 
 
 \section{%Modal 
 Analysis and Experiments}

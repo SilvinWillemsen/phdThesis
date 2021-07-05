@@ -70,8 +70,8 @@ In this example, let's consider a string connected to a plate using a nonlinear 
 The systems in isolation are as in \eqref{eq:stiffStringPDE} and \eqref{eq:platePDE}, but with an added force term:
 \begin{subequations}\label{eq:connStringPlatePDEs}
 \begin{align}
-    \ptt u &= c^2 \pxx u - \kappa_\stxt^2 \pxxxx u - 2\szX[,\stxt]\pt u + 2\soX[,\stxt] \pt\pxx u - \delta(x-x_\ctxt)\frac{f}{\rho_\stxt A}\\
-   \ptt w &= -\kappa_\ptxt^2\Delta\Delta w - 2\szX[,\ptxt]\pt w + 2\soX[,\ptxt] \pt\pxx w + \delta(x-x_\ctxt, y-y_\ctxt)\frac{f}{ \rho_\ptxt H}
+    \ptt u &= c^2 \pxx u - \kappa_\stxt^2 \pxxxx u - 2\szX[\stxt]\pt u + 2\soX[\stxt] \pt\pxx u - \delta(x-x_\ctxt)\frac{f}{\rho_\stxt A}\\
+   \ptt w &= -\kappa_\ptxt^2\Delta\Delta w - 2\szX[\ptxt]\pt w + 2\soX[\ptxt] \pt\pxx w + \delta(x-x_\ctxt, y-y_\ctxt)\frac{f}{ \rho_\ptxt H}
 \end{align}
 \end{subequations}
 where
@@ -86,8 +86,8 @@ and
 \subsubsection{Discrete}
 System \eqref{eq:connStringPlatePDEs} can then be discretised as
 \begin{align}\label{eq:connStringPlateFDSs}
-    \!\!\!\dtt \uln &= c^2 \dxx \uln - \kappa_\stxt^2 \dxxxx \uln - 2\szX[,\stxt]\dtd \uln + 2\soX[,\stxt] \dtm\dxx \uln - J_\stxt(x_\ctxt)\frac{f^n}{\rho_\stxt A}\ ,\\
-    \!\!\!\dtt \wln &= -\kappa_\ptxt^2\dTwoD\dTwoD \wln - 2\szX[,\ptxt]\dtd \wln + 2\soX[,\ptxt] \dtm\dxx \wln + J_\ptxt(x_\ctxt, y_\ctxt)\frac{f^n}{ \rho_\ptxt H}\ ,
+    \!\!\!\dtt \uln &= c^2 \dxx \uln - \kappa_\stxt^2 \dxxxx \uln - 2\szX[\stxt]\dtd \uln + 2\soX[\stxt] \dtm\dxx \uln - J_\stxt(x_\ctxt)\frac{f^n}{\rho_\stxt A}\ ,\\
+    \!\!\!\dtt \wln &= -\kappa_\ptxt^2\dTwoD\dTwoD \wln - 2\szX[\ptxt]\dtd \wln + 2\soX[\ptxt] \dtm\dxx \wln + J_\ptxt(x_\ctxt, y_\ctxt)\frac{f^n}{ \rho_\ptxt H}\ ,
 \end{align}
 where
 \begin{equation}
@@ -108,8 +108,8 @@ System \eqref{eq:connStringPlateFDSs} can be expanded at the connection location
 \subsection{Non-dimensional}
 The scaled system can be written as:
 \begin{align}
-    \ptt u &= \gamma^2 \pxx u - \kappa_\stxt^2 \pxxxx u - 2\szX[,\stxt]\pt u + 2\soX[,\stxt] \pt\pxx u - \delta(x-x_\ctxt)F\\
-   \pt w &= -\kappa_\ptxt^2\Delta\Delta w - 2\szX[,\ptxt]\pt w + 2\soX[,\ptxt] \pt\pxx w + \delta(x-x_\ctxt, y-y_\ctxt)F
+    \ptt u &= \gamma^2 \pxx u - \kappa_\stxt^2 \pxxxx u - 2\szX[\stxt]\pt u + 2\soX[\stxt] \pt\pxx u - \delta(x-x_\ctxt)F\\
+   \pt w &= -\kappa_\ptxt^2\Delta\Delta w - 2\szX[\ptxt]\pt w + 2\soX[\ptxt] \pt\pxx w + \delta(x-x_\ctxt, y-y_\ctxt)F
 \end{align}
 where
 \begin{equation}

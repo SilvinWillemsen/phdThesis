@@ -1,7 +1,7 @@
 \chapter{Matrices}\label{app:matrices}
 This appendix aims to provide some fundamental knowledge on matrices and linear algebra used throughout this dissertation. 
 
-A matrix is a rectangular array with numerical elements and its dimensions are denoted using ``$row \times column$''. A $3\times 5$ matrix, for example, thus has $3$ rows and $5$ columns (see Figure \ref{fig:matrixA}). Along those lines, a \textit{row vector} is a matrix with $1$ row and more than $1$ column and a \textit{column vector} is a matrix with $1$ column and more than $1$ row. \SWcomment[If a matrix has only $1$ row and $1$ column, it can be used as a \textit{scalar}.] 
+A matrix is a rectangular array with numerical elements and its dimensions are denoted using ``$row \times column$''. A $3\times 5$ matrix, for example, thus has $3$ rows and $5$ columns (see Figure \ref{fig:matrixA}). Along those lines, a \textit{row vector} is a matrix with $1$ row and more than $1$ column and a \textit{column vector} is a matrix with $1$ column and more than $1$ row.
 
 In this document, matrices and vectors are written using bold symbols. %\SWcomment[Many notations exist, blabla $\bar a$ $\vec a$] 
 A matrix is denoted by a capital letter -- such as $\A$ -- whereas vectors are decapitalised -- such as $\u$. An element in a matrix is denoted with a non-bold, decapitalised variable, where the subscripts indicate the indices of the row and column. For example, the element in the 2\textsuperscript{nd} row and the 4\th column of a matrix $\A$ is denoted as $a_{24}$. An element in a vector only has one subscript, regardless of whether it is a row or a column vector.
@@ -121,7 +121,7 @@ or more compactly, by using the `\texttt{\textbackslash}' operator:
 \end{center}
 
 \section{Eigenvalue Problems}\label{sec:eigenValueProblems}
-A square matrix $\A$ is characterised by its \textit{eigenvalues} and corresponding \textit{eigenvectors}. In a FDTD context, these are usually associated with the modes of a system, where the eigenvalues relate to the modal frequencies and \todo{ask stefan} the eigenvectors to the modal shapes. Section \ref{sec:modalAnalysis} provides more information on this.
+A square matrix $\A$ is characterised by its \textit{eigenvalues} and corresponding \textit{eigenvectors}. In a FDTD context, these are usually associated with the modes of a system, where the eigenvalues relate to the modal frequencies and the eigenvectors to the modal shapes. Section \ref{sec:modalAnalysis} provides more information on this.
 
 To find these characteristic values for a $p\times p$ matrix $\A$, an equation of the following form must be solved 
 \begin{equation}

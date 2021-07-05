@@ -1,26 +1,120 @@
 \chapter{Tromba Marina}\label{ch:tromba}
-This chapter presents the work done in the papers ``Real-time Implementation of a Physical Model of the Tromba Marina'' \citeP[D] and ``Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling'' \cite[E]. After a brief introduction of the tromba marina, this chapter continues to elaborate on the contents of the above papers by providing more details on the implementation.
+This chapter presents the work done in the papers ``Real-time Implementation of a Physical Model of the Tromba Marina'' \citeP[D] and ``Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling'' \citeP[E]. After a brief introduction of the tromba marina, and summarising the physical model referring to the theory explained in the previous parts of this thesis, this chapter elaborates on the contents of the above papers by providing more details on the implementation. As much as possible, this chapter follows the notation of paper \citeP[D], as long as it is coherent with what has already been presented in this thesis. Discrepancies between this chapter and the paper will be clearly highlighted. 
 
 \section{Introduction}
 The tromba marina is a bowed monochord instrument from medieval Europe. It has a long quasi-trapezoidal body and is unique due to its oddly-shaped bridge that the string rests on. The bridge is often called a `shoe' due to its shape and is free to rattle against the body in sympathy with the movement of the vibrating string. This rattling causes a sound with brass or trumpet-like qualities, hence the name \textit{tromba} which stems from the Italian word trumpet. The rarity of the instrument as well as its interesting physics makes it an ideal case for a physical modelling implementation.
 
 \section{Physical Model}
-Using linear (partial) differential operator $\L$ 
-\begin{equation}
+The full musical instrument has been divided into three parts: the string, the bridge and the body each of which will briefly be elaborated on. 
+\subsection{Continuous Time}
+Each component in isolation is of the form 
+\begin{equation}\label{eq:trombaPDEForm}
     \L q = 0
 \end{equation}
-where $q(\boldsymbol{x}, t)$
-\subsection{Continuous}
-\begin{equation}
+with linear (partial) differential operator $\L$. Furthermore, $q(\boldsymbol{x}, t)$ describes the state of the component in isolation and is defined for time $t\geq 0$ and spatial coordinate $\boldsymbol{x}\in \D$ where the dimensions of domain $\D$ depend on the dimensions of the system at hand. Using the form in Eq. \eqref{eq:trombaPDEForm} allows for a much more compact notation later on. In the following, subscripts `s', `m' and `p' will be used to denote the `string', `bridge' (mass), and `body' (plate) respectively.
+
+\subsubsection{String}
+The string is modelled as a damped stiff string of length $L$ (in m). With reference to the form in \eqref{eq:trombaPDEForm}, its transverse displacement is described by $q = u(\chi, t)$ (in m) and is defined for $\chi \in \D_\stxt$ where domain $\D_\stxt = [0, L]$.\footnote{Notice that $\chi$ rather than $x$ is used here. As the $x$ will be used for the body later on, a different symbol is used for the spatial coordinate for the string to differentiate between different coordinate systems.} Using partial differential operator $\L = \L_\text{s}$, the PDE describing its motion is defined as
+\begin{equation}\label{eq:trombaStiffString}
+    \L_\stxt u =  0,
+\end{equation}
+where (see Eq. \eqref{eq:stiffStringPDE})
+\begin{equation*}
     \L_\stxt = \rho_\stxt A \ptt - T\partial_\chi^2 + E_\text{s}I\partial_\chi^4+2\rho_\stxt A\szX[\stxt]\pt-2\rho_\stxt A\soX[\stxt]\pt\partial_\chi^2\ .
+\end{equation*}
+The parameters are as defined for Eq. \eqref{eq:stiffStringPDE} with the possible addition of the `s' subscript.
+Compared to the schemes presented in previous chapters, using a partial differential operator to combine all operators like this, is purely different from a notational point of view, and does not change the behaviour of the system. If Eq. \eqref{eq:trombaStiffString} is expanded and all terms except for $\rho_\stxt A \ptt$ are moved to the right-hand side, one arrives again at the damped stiff string PDE in Eq. \eqref{eq:stiffStringPDE}.
+
+As the string is bowed, one can extend the PDE in \eqref{eq:trombaStiffString} can be extended to 
+\begin{equation}
+    \L_\stxt u =  - \delta(\chi-\chi_\text{B})F_\text{B}\Phi(\vrel),
+\end{equation}
+with bow position $\chi_\text{B} = \chi_\text{B}(t) \in \D_\stxt$ (in m), bow force $F_\text{B} = F_\text{B}(t)$ and relative velocity between the bow and the string $\vrel=\vrel(t)$. The static friction model in Eq. \eqref{eq:staticFriction} has been chosen for simplicity. For more details on this bow model, see Section \ref{sec:staticFricMod}.
+
+\subsubsection{Bridge}
+The bridge is modelled using a mass-spring-damper system (see Section \ref{sec:massSpringDamping}). With reference to Eq. \eqref{eq:trombaPDEForm}, the transverse displacement of the mass is described by $q = w(t)$ (in m) and using differential operator $\L = \L_\text{m}$ its PDE is 
+\begin{equation}
+    \L_\text{m} w = 0
+\end{equation}
+where (see Eq. \eqref{eq:massSpringDampingPDE})
+\begin{equation*}
+    \mathcal{L}_\text{m}=M\frac{d^2}{dt^2}+M\omega_0^2+M\sigma_\text{m}\frac{d}{dt}.
+\end{equation*}
+Here, $\omega_0 = \sqrt{K/M}$ (in s$^{-1}$) and $\sigma_\text{m} = R/M$ (in s$^{-1}$) and other parameters are as in Eq. \eqref{eq:massSpringDampingPDE}.\footnote{In paper \citeP[D], the symbol $R$ is used for the damping coefficient, but for coherence in this work, $\sigma_\text{m}$ is used instead.} 
+
+Notice that when using a differential operator for an ODE, the dots to denote a temporal derivative (as e.g. Eq. \eqref{eq:massSpringDampingPDE}) need to be written in an operator form. Here, Leibniz's notation is chosen (see Section \ref{sec:differentialEquations}). 
+
+
+\subsubsection{Body}
+The body of the instrument is simplified to a rectangular thin plate of side lengths $L_x$ and $L_y$ (in m). Again, with reference to Eq. \eqref{eq:trombaPDEForm}, its transverse displacement is described by $q = z(x, y, t)$ (in m) and is defined for $(x, y) \in \D_\ptxt$ where domain $\D_\stxt = [0, L_x] \times [0, L_y]$. Using partial differential operator $\L = \L_\ptxt$, the PDE describing the motion of the body is 
+\begin{equation*}
+    \L_\ptxt z = 0,
+\end{equation*}
+where (see Eq. \eqref{sec:thinPlate})
+\begin{equation}
+    \mathcal{L}_\text{p} = \rho_\text{p}H\partial_t^2 + D\Delta\Delta +2\rho_\text{p}H\sigma_{0,\text{p}}\partial_t-2\rho_\text{p}H\sigma_{1,\text{p}}\partial_t\Delta,
 \end{equation}
 
-\subsubsection{Complete system}
-Test
-\subsection{Discrete}
 
+\subsubsection{Interactions}
+The three components interact using the non-iterative collision methods presented in Chapter \ref{ch:collisions}. With reference to the importance of relative location of the various objects (see Section \ref{sec:massRigidBarrier}), the string is placed above the bridge which is placed above the body. This arrangement will determine the definitions of $\eta$ and the directions of the forces in the eventual system.
+
+The bridge-body interaction is modelled using the collision-potential in Eq. \eqref{eq:potential}:
+\begin{equation}
+    \phi(\eta) = \frac{K_\mp}{\alpha_\mp+1}[\eta_\mp]_+^{\alpha_\mp+1},
+\end{equation}
+where $\eta_\mp = \eta_\mp(t) = w(t) - z(x_\mp, y_\mp, t)$ and the location on the plate where the bridge collides is $(x_\mp, y_\mp)\in \D_\ptxt$. 
+
+The string interacts with the bridge using the two-sided collision potential presented in Section \ref{sec:twoSidedCollision}:
+\begin{equation}\label{eq:stringMassPotential}
+    \phi(\eta_\sm) = \frac{K_\sm}{\alpha_\sm+1}|\eta_\sm|^{\alpha_\sm+1},
+\end{equation}
+which acts as a connection.  Here, $\eta_\sm = \eta_\sm(t) = u(\chi_\sm, t) - w(t)$ (in m) and the location of where the bridge is connected along the string is $\chi_\sm \in \D_\stxt$. 
+
+Recalling the process of writing the collision potential in quadratic form in Eq. \eqref{eq:quadraticPotential}
+\begin{equation}\label{eq:quadraticPotentialTromba}
+    \phi'(\eta) = \psi\psi' \quad \text{where} \quad \psi = \sqrt{2\phi} \quad \text{and} \quad \psi' = \frac{\dot{\psi}}{\dot{\eta}}\ ,
+\end{equation}
+the complete system can be written next.
+
+\subsubsection{Complete system}
+Looking towards discretisation, the separate variables $g_\sm=\psi_\sm'$ and $g_\mp=\psi_\mp'$ are used and the full system can be written as 
+\begin{subequations}\label{eq:trombaSystemPDE}
+    \begin{align}
+        \L_\text{s}u &= -\delta(\chi-\chi_\Btxt)F_\Btxt + \delta(\chi - \chi_\sm)\psi_\sm g_\sm,\\
+        \L_\text{m}w &= - \psi_\sm g_\sm + \psi_\mp g_\mp,\\
+        \L_\text{p}z &= -\delta(x-x_\mp, y-y_\mp)\psi_\mp g_\mp,\\
+        \dot\psi_\sm &= g_\sm \dot \eta_\sm,\label{eq:trombaPDEPsiSM}\\
+        \dot\psi_\mp &= g_\mp \dot \eta_\mp,\label{eq:trombaPDEPsiMP}\\
+        \eta_\sm(t) &= w(t) - u(\chi_\sm, t),\\
+        \eta_\mp(t) &= z(x_\mp, y_\mp, t) - w(t).
+    \end{align}
+\end{subequations}
+Notice that when compared to the system presented in paper \citeP[D], Eqs. \eqref{eq:trombaPDEPsiSM} and \eqref{eq:trombaPDEPsiMP} have been added for coherency with the theory presented in Chapter \ref{ch:collisions} as well as the introduction of $g_\sm$ and $g_\mp$.
+
+\subsubsection{Discrete Time}
+Using the process explained in Section \ref{sec:solvingMassBarrier} for discretising the collision terms and introducing\footnote{This definition was wrong in paper \citeP[D], where $\psi^{n-1/2}$ was subtracted rather than added.} 
+\begin{equation}
+    \xi^n = \frac{k}{2}g^n\delta_{t\cdot}\eta^n + \psi^{n-1/2},
+\end{equation}
+for brevity, system \eqref{eq:trombaSystemPDE} can be discretised as follows:
+
+\begin{subequations}\label{eq:trombaSystemPDE}
+    \begin{align}
+        \ell_\text{s}\uln &= -J_3(\chi_\text{B})F_\Btxt + J_0(\chi_\sm)\xi_\sm^n g^n_\sm,\\
+        \ell_\text{m}w^n &= - \xi_\sm^n g^n_\sm + \xi_\mp^n g^n_\mp,\\
+        \ell_\text{p}\zlmn &= -J_0(x-x_\mp, y-y_\mp)\xi_\mp^n g^n_\mp,\\
+        \dtp\psi^{n-1/2}_\sm &= g^n_\sm \dtd \eta^n_\sm,\\
+        \dtp\psi^{n-1/2}_\mp &= g^n_\mp \dtd \eta^n_\mp,\\
+        \eta^n_\sm &= w^n - u_{l_\sm}^n,\label{eq:etaSM}\\
+        \eta^n_\mp &= z_{(l_\mp, m_\mp)}^n - w^n.\label{eq:etaMP}
+    \end{align}
+\end{subequations}
+As $0$\thOrder spreading operators are used for the collision terms in the string and body FD schemes, the definitions of Eqs. \eqref{eq:etaSM} and \eqref{eq:etaMP} do not use interpolation operators to obtain the values of interest for the string and the plate. Instead, these are simplified to have the subscripts $l_\sm = \floor[\chi_\sm / h_\stxt]$ and $(l_\mp, m_\mp) = (\floor[x_\mp / h_\ptxt], \floor[y_\mp / h_\ptxt])$ to indicate the grid-location of interest. 
 
 \subsection{Solving the system}
+
+
 It is also possible to solve for  $\delta_{t\cdot}\eta_1^n$ and $\delta_{t\cdot}\eta_2^n$ instead. Recalling \eqref{eq:eta1Col} and \eqref{eq:eta2Col}, we know that the following has to be true:
 
 \begin{equation}

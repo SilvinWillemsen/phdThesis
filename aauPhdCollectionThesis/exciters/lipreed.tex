@@ -5,12 +5,46 @@ Lip-reed model
 
 Coupling to Tube
 
+\section{Mass-Spring Systems Revisited: Adding Damping}\label{sec:massSpringDamping}
+Before moving on to the lip-reed system, a small extension to the mass-spring system given in Section \ref{sec:massSpringSystem} will be given here. 
+
+Damping can be easily be added to Eq. \eqref{eq:massSpringPDE} according to 
+\begin{equation}\label{eq:massSpringDampingPDE}
+    M\ddot u = -Ku - R\dot u
+\end{equation}
+with damping coefficient $R$ (in kg/s). The damping term is analogous to the frequency-independent damping in the damped stiff string in Eq. \eqref{eq:stiffStringPDE}. Equation \eqref{eq:massSpringDampingPDE} can then be discretised to the following FD scheme:
+\begin{equation}\label{eq:massSpringDampingFDS}
+    M\dtt \un = -K\un - R\dtd \un.
+\end{equation}
+Expanding and solving for $u^{n+1}$ yields the following update equation (before division with the term multiplied onto $u^{n+1}$):
+\begin{equation}\label{eq:massSpringDampingUpdate}
+    \left(1+\frac{Rk}{2M}\right)u^{n+1} = 2 \un - u^{n-1} - \frac{Kk^2}{M}\un + \frac{Rk}{2M}u^{n-1}.
+\end{equation}
+\subsubsection{Energy Analysis}
+Following Section \ref{sec:energyAnalysis}, one can obtain the energy of Eq. \eqref{eq:massSpringDampingFDS} through a multiplication of the scheme by $(\dtd \un)$ to get
+\begin{equation}\label{eq:massSpringDampingPreEnergyBalance}
+    M(\dtt \un)(\dtd \un) = -K(\dtd \un)\un - R(\dtd \un)^2.
+\end{equation}
+As there is damping present in the system, the energy balance will be of the form 
+\begin{equation*}
+    \dtp \h = -\q.
+\end{equation*}
+Using identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2}, $\h$ and $\q$ can be obtained from Eq. \eqref{eq:massSpringDampingPreEnergyBalance} 
+\begin{equation}\label{eq:energyBalanceMassSpringDamper}
+    \h = \t + \v, \qwiq
+    \t = \frac{M}{2}(\dtm\un)^2, \qaq \v = \frac{K}{2}\un e_{t-}\un.
+\end{equation} 
+and
+\begin{equation*}
+    \q = R(\dtd \un)^2.
+\end{equation*}
+
 \section{Continuous Time}
-To excite the system we can use a pulse train. A more physical approach, that is bidirectional, is to model a lip as a mass-spring system that interacts with the left boundary of the tube (see Figure \ref{fig:lipSystem}). Following \cite{Harrison2018} we get
+Following A more physical approach, that is bidirectional, is to model a lip as a mass-spring system that interacts with the left boundary of the tube (see Figure \ref{fig:lipSystem}). Following \cite{Harrison2018} we get
 \begin{equation}
     M_\text{r}\frac{d^2y}{dt^2} = -M_\text{r} \omega_0^2 y - M_\text{r} \sigma_\text{r} \frac{dy}{dt} + S_\text{r}\Delta p,
 \end{equation}
-with displacement of the lip reed from equilibrium $y = y(t)$, mass of the lip reed $M_\text{r}$ (kg) natural angular frequency of the lip reed $\omega_0 = \sqrt{K/M_\text{r}}$ (rad/s), spring stiffness of the lip $K$ (N/m), loss parameter $\sigma_\text{r}$ (\SWcomment[s$^{-1}$]), effective surface area of the lip $S_\text{r}$ (m$^2$) and 
+with displacement of the lip reed from equilibrium $y = y(t)$, mass of the lip reed $M_\text{r}$ (kg) natural angular frequency of the lip reed $\omega_0 = \sqrt{K/M_\text{r}}$ (rad/s), spring stiffness of the lip $K$ (N/m), loss parameter $\sigma_\text{r}$ (s$^{-1}$), effective surface area of the lip $S_\text{r}$ (m$^2$) and 
 \begin{equation}
     \Delta p = P_\text{m} - p(0,t)
 \end{equation}
