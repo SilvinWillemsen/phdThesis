@@ -1,0 +1,18 @@
+gin{equation}\label{eq:adhesionMap}
+    \alpha(v, z) = 
+    \begin{aligned}
+        \begin{cases}
+        \begin{rcases}
+            &0 & |z| \leq z_\text{ba}\\
+           &\alpha_\text{m}(v,z)&\ \, z_\text{ba}<|z|<|z_\text{ss}(v)|\\        &1 &|z|\geq|z_\text{ss}(v)|
+            \end{rcases} 
+            
+            &\!\!\!\!\!\text{if}\  \sgn(v)=\sgn(z)\\
+            \,0&\!\!\!\!\!\!\,\text{if}\  \sgn(v)\neq\sgn(z),
+        \end{cases}
+        \end{aligned}
+    \end{equation}
+    where the transition between the elastic and plastic behaviour is defined as
+    \begin{equation}\label{eq:alphaM}
+        \alpha_\text{m} = \frac{1}{2}\bigg[1+\sgn(z)\sin\bigg(\pi\frac{z-\sgn(z)\frac{1}{2}(|z_\text{ss}(v)|+z_\text{ba})}{|z_\text{ss}(v)|-z_\text{ba}}\bigg)\bigg],
+    \end{equatio

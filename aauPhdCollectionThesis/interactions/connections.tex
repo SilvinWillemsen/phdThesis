@@ -1,5 +1,9 @@
 \chapter{Connections}\label{ch:connections}
-Something about connections
+Part \ref{part:resonators} introduced various resonators in isolation. Most traditional musical instruments are made up of several of these systems which all interact with one another
+
+Although briefly mentioned in the previous chapter in Section \ref{sec:twoSidedCollision}, 
+
+One can use connections to simulate a point-like damping finger on a string to create different pitches.
 
 Pointlike $\delta(x-x_\ctxt)$ or distributed $E_\ctxt$
 \subsubsection{Alternative interpretation of grid points}
@@ -18,16 +22,18 @@ This provides a better intuition for the interactions between components shown i
 \end{figure}
 
 \section{Rigid connection}
-The simplest connection is Forces should be equal and opposite. 
+The simplest connection-type is the rigid connection. 
 
-If component $a$ is located `above' component $b$, and their relative displacement is defined as $\eta = a-b$, then a positive $\eta$ is going to have a negative effect on $a$ and a positive effect on $b$ and vice-versa. This is important for the signs when adding the force terms to the schemes. 
+Forces should be equal and opposite. 
+
+As explained in Chapter \ref{ch:collisions}, it is important to consider whether an object is located `above' or `below' the other. If component $a$ is located above component $b$, and their relative displacement is defined as $\eta = a-b$, then a positive $\eta$ is going to have a negative effect on $a$ and a positive effect on $b$ and vice-versa. This is important for the signs when adding the force terms to the schemes. 
 
 \section{Spring-like connections}
 
 \subsection{Connection with rigid barrier (scaled)}
 Consider the (scaled) 1D wave equation with an additional force term $F^n$
 \begin{equation}\label{eq:1DwaveConnRigid}
-    \dtt \uln = \gamma^2\dxx \uln + J(x_\ctxt)F^n
+    \dtt \uln = \gamma^2\dxx \uln + J_l(x_\ctxt)F^n
 \end{equation}
 where
 \begin{equation}\label{eq:1DwaveConnRigidForce}
@@ -35,37 +41,59 @@ where
 \end{equation}
 and
 \begin{equation}\label{eq:etaRigid}
-    \eta^n = I(x_\ctxt)\uln.
+    \eta^n = I_l(x_\ctxt)\uln.
 \end{equation}
 
-To obtain $F^n$, an inner product of scheme \eqref{eq:1DwaveConnRigid} needs to be taken with $J(x_\ctxt)$ over domain $\D$ which, using identity \eqref{eq:identityIJ} yields 
+To obtain $F^n$, an inner product of scheme \eqref{eq:1DwaveConnRigid} needs to be taken with $J_l(x_\ctxt)$ over domain $\D$ which, using identity \eqref{eq:identityIJ} yields 
 \begin{equation}\label{eq:1DwaveConnRigidInnerProd}
-    \dtt I(x_\ctxt)\uln = \gamma^2 I(x_\ctxt)\dxx \uln + \underbrace{I(x_\ctxt)J(x_\ctxt)}_{\lVert J(x_\ctxt) \rVert^2_\D}F^n.
+    \dtt I_l(x_\ctxt)\uln = \gamma^2 I_l(x_\ctxt)\dxx \uln + \underbrace{I_l(x_\ctxt)J_l(x_\ctxt)}_{\lVert J_l(x_\ctxt) \rVert^2_\D}F^n.
 \end{equation}
 As $u$ is connected to a rigid barrier according to \eqref{eq:etaRigid}, a shortcut can be taken and Eqs. \eqref{eq:1DwaveConnRigidForce} and \eqref{eq:etaRigid} can be directly substituted into Eq. \eqref{eq:1DwaveConnRigidInnerProd} to get
 \begin{equation}
-    \dtt \eta^n = \gamma^2 I(x_\ctxt)\dxx \uln + \lVert J(x_\ctxt)\rVert^2_\D\left( -\omega_0^2\mtd\eta^n - \omega_1^4(\eta^n)^2\mtd\eta^n - 2\sigma_\times \dtd \eta^n\right).
+    \dtt \eta^n = \gamma^2 I_l(x_\ctxt)\dxx \uln + \lVert J_l(x_\ctxt)\rVert^2_\D\left( -\omega_0^2\mtd\eta^n - \omega_1^4(\eta^n)^2\mtd\eta^n - 2\sigma_\times \dtd \eta^n\right).
 \end{equation}
 and solved for $\eta^{n+1}$:
 \begin{equation}
     \begin{aligned}
-    &\!\!\!\!\!\!\!\!\!\!\!\!\!\!\Big(1 + \lVert J(x_\ctxt)\rVert^2_\D k^2[\omega_0^2/2 + \omega_1^4(\eta^n)^2/2 + \sigma_\times/k] \Big)\eta^{n+1} \\
-   = &\ 2 \eta^n - \Big(1 + \lVert J(x_\ctxt)\rVert^2_\D k^2[\omega_0^2/2 + \omega_1^4(\eta^n)^2/2 - \sigma_\times/k]\Big)
+    &\!\!\!\!\!\!\!\!\!\!\!\!\!\!\Big(1 + \lVert J_l(x_\ctxt)\rVert^2_\D k^2[\omega_0^2/2 + \omega_1^4(\eta^n)^2/2 + \sigma_\times/k] \Big)\eta^{n+1} \\
+   = &\ 2 \eta^n - \Big(1 + \lVert J_l(x_\ctxt)\rVert^2_\D k^2[\omega_0^2/2 + \omega_1^4(\eta^n)^2/2 - \sigma_\times/k]\Big)
     \eta^{n-1}\\
-    &+ \gamma^2k^2 I(x_\ctxt)\dxx\uln
+    &+ \gamma^2k^2 I_l(x_\ctxt)\dxx\uln
     \end{aligned}
 \end{equation}
 This can then be used to calculate $F^n$ in \eqref{eq:1DwaveConnRigidForce} and can in turn be used to calculate $u_l^{n+1}$ in \eqref{eq:1DwaveConnRigid}.
 
-\subsection{String-plate connection}
+\section{String-plate connection}
 In this example, let's consider a string connected to a plate using a nonlinear damped spring. This could be interpreted as a simplified form of how guitar string would be connected to the body. 
 
+Extend section \ref{sec:interpolationSpreading} to 2D 
+
+\subsection{Interpolation and Spreading in 2D}\label{sec:interpolationSpreading2D}
+One can extend the interpolation and spreading operators presented in Section \ref{sec:interpolationSpreading} to 2D by adding an additional argument to the operators \cite{theBible}. Using $l_\itxt = \floor[x_\itxt / h]$ and $m_\itxt = \floor[y_\itxt / h]$, a $0$\thOrder interpolation operator $I_0(x_\itxt, y_\itxt) = I_{(l, m), 0}(x_\itxt, y_\itxt)$ is defined as
+\begin{equation}
+    I_0(x_\itxt, y_\itxt) = \begin{cases}
+        1, & \text{if } l = l_\itxt \text{ and } m = m_\itxt,\\
+        0, & \text{otherwise}.
+    \end{cases}
+\end{equation}
+Notice that the same value for the grid spacing $h$ is used for both the $x$ and $y$ direction.
+
+Using the fractional part of the flooring operations $\alpha_x = x_\itxt/h - l_\itxt$ and $\alpha_y= y_\itxt/h - m_\itxt$, a 2D linear interpolator  $I_1(x_\itxt, y_\itxt) = I_{(l, m), 1}(x_\itxt, y_\itxt)$ can then be composed of two 1D linear interpolators as
+\begin{equation}
+    I_1(x_\itxt, y_\itxt) = \begin{cases}
+        (1 - \alpha_x)(1 - \alpha_y)& \text{if } l = l_\itxt \text{ and } m = m_\itxt, \\
+        (1 - \alpha_x)\alpha_y& \text{if } l = l_\itxt \text{ and } m = m_\itxt + 1, \\
+        \alpha_x(1 - \alpha_y)& \text{if } l = l_\itxt + 1 \text{ and } m = m_\itxt, \\
+        \alpha_x\alpha_y& \text{if } l = l_\itxt+1 \text{ and } m = m_\itxt+1, \\
+        0, & \text{otherwise}.
+    \end{cases}
+\end{equation}
 \subsubsection{Continuous}
 The systems in isolation are as in \eqref{eq:stiffStringPDE} and \eqref{eq:platePDE}, but with an added force term:
 \begin{subequations}\label{eq:connStringPlatePDEs}
 \begin{align}
-    \ptt u &= c^2 \pxx u - \kappa_\stxt^2 \pxxxx u - 2\szX[,\stxt]\pt u + 2\soX[,\stxt] \pt\pxx u - \delta(x-x_\ctxt)\frac{f}{\rho_\stxt A}\\
-   \ptt w &= -\kappa_\ptxt^2\Delta\Delta w - 2\szX[,\ptxt]\pt w + 2\soX[,\ptxt] \pt\pxx w + \delta(x-x_\ctxt, y-y_\ctxt)\frac{f}{ \rho_\ptxt H}
+    \ptt u &= c^2 \pxx u - \kappa_\stxt^2 \pxxxx u - 2\szX[\stxt]\pt u + 2\soX[\stxt] \pt\pxx u - \delta(x-x_\ctxt)\frac{f}{\rho_\stxt A}\\
+   \ptt w &= -\kappa_\ptxt^2\Delta\Delta w - 2\szX[\ptxt]\pt w + 2\soX[\ptxt] \pt\pxx w + \delta(x-x_\ctxt, y-y_\ctxt)\frac{f}{ \rho_\ptxt H}
 \end{align}
 \end{subequations}
 where
@@ -80,10 +108,10 @@ and
 \subsubsection{Discrete}
 System \eqref{eq:connStringPlatePDEs} can then be discretised as
 \begin{align}\label{eq:connStringPlateFDSs}
-    \!\!\!\dtt \uln &= c^2 \dxx \uln - \kappa_\stxt^2 \dxxxx \uln - 2\szX[,\stxt]\dtd \uln + 2\soX[,\stxt] \dtm\dxx \uln - J_\stxt(x_\ctxt)\frac{f^n}{\rho_\stxt A}\ ,\\
-    \!\!\!\dtt \wln &= -\kappa_\ptxt^2\dTwoD\dTwoD \wln - 2\szX[,\ptxt]\dtd \wln + 2\soX[,\ptxt] \dtm\dxx \wln + J_\ptxt(x_\ctxt, y_\ctxt)\frac{f^n}{ \rho_\ptxt H}\ ,
+    \!\!\!\dtt \uln &= c^2 \dxx \uln - \kappa_\stxt^2 \dxxxx \uln - 2\szX[\stxt]\dtd \uln + 2\soX[\stxt] \dtm\dxx \uln - J_\stxt(x_\ctxt)\frac{f^n}{\rho_\stxt A}\ ,\\
+    \!\!\!\dtt \wlmn &= -\kappa_\ptxt^2\dTwoD\dTwoD \wlmn - 2\szX[\ptxt]\dtd \wlmn + 2\soX[\ptxt] \dtm\dxx \wlmn + J_\ptxt(x_\ctxt, y_\ctxt)\frac{f^n}{ \rho_\ptxt H}\ ,
 \end{align}
-where
+where $J_\text{s}(x_\ctxt) = J_l(x_\ctxt)$, $J_\text{p}(x_\ctxt) = J_{l, m}(x_\ctxt)$, and
 \begin{equation}
     f^n = K_1\mtt\eta^n+K_3(\eta^n)^2\mtd\eta^n+R\dtd\eta^n,
 \end{equation}
@@ -102,8 +130,8 @@ System \eqref{eq:connStringPlateFDSs} can be expanded at the connection location
 \subsection{Non-dimensional}
 The scaled system can be written as:
 \begin{align}
-    \ptt u &= \gamma^2 \pxx u - \kappa_\stxt^2 \pxxxx u - 2\szX[,\stxt]\pt u + 2\soX[,\stxt] \pt\pxx u - \delta(x-x_\ctxt)F\\
-   \pt w &= -\kappa_\ptxt^2\Delta\Delta w - 2\szX[,\ptxt]\pt w + 2\soX[,\ptxt] \pt\pxx w + \delta(x-x_\ctxt, y-y_\ctxt)F
+    \ptt u &= \gamma^2 \pxx u - \kappa_\stxt^2 \pxxxx u - 2\szX[\stxt]\pt u + 2\soX[\stxt] \pt\pxx u - \delta(x-x_\ctxt)F\\
+   \pt w &= -\kappa_\ptxt^2\Delta\Delta w - 2\szX[\ptxt]\pt w + 2\soX[\ptxt] \pt\pxx w + \delta(x-x_\ctxt, y-y_\ctxt)F
 \end{align}
 where
 \begin{equation}

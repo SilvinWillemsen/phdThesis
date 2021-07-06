@@ -1,0 +1,112 @@
+\chapter{Trombone}\label{ch:trombone}
+Published in \citeP[H]
+\section{Introduction}
+Interesting read: https://newt.phys.unsw.edu.au/jw/brassacoustics.html
+\section{Physical Model}
+Most has been described in Chapter \ref{ch:brass}
+
+\subsection{Tube}
+Just to save the conversation with Stefan about Webster's equation:
+
+Using operators $\partial_t$ and $\partial_x$ denoting partial derivatives with respect to time $t$ and spatial coordinate $x$, respectively, a system of first-order PDEs describing the wave propagation in an acoustic tube can then be written as \citeP[A]
+\begin{subequations}\label{eq:firstOrderSystem}
+    \begin{align}
+        \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv)\label{eq:contPressure}\\
+        \rho_0\partial_tv &= -\partial_xp\label{eq:contVelocity}
+    \end{align}
+\end{subequations}
+with acoustic pressure $p = p(x,t)$ (in N/m$^2$), particle velocity $v = v(x,t)$ (in m/s) and (circular) cross-sectional area $S(x)$ (in m$^2$). Furthermore, $\rho_0$ is the density of air (in kg/m$^3$) and $c$ is the speed of sound in air (in m/s). System \eqref{eq:firstOrderSystem} can be condensed into a second-order equation in $p$ alone, often referred to as Webster's equation \cite{Webster19}. \SWcomment[Interesting! In NSS it is the acoustic potential right? Can you go from that to a second-order PDE in $p$? There is a time-derivative hidden there somewhere right? (Just wondering :))]\SBcomment[Yes, the form in $p$ alone is the one you usually see. You get it by differentiating the first equation, giving you a $\dot{v}$ on the RHS, and then you can substitute the second equation in...I used the velocity potential one because it has direct energy balance properties. ] \SWcomment[Right. So Webster's eq. in $p$ and $\Psi$ are identical (will exhibit identical behaviour), except for the unit of the state variable..?]\SBcomment[yes that's right...using the velocity potential allows you to do all the energy analysis easily, in terms of physical impedances. But the scheme you get to in the end is the same, just one derivative down.] \SWcomment[Alright cool! Thanks for the explanation :)] For simplicity, effects of viscothermal losses have been neglected in \eqref{eq:firstOrderSystem}. For a full time domain model of such effects in an acoustic tube, see, e.g. \cite{Bilbao2016}. 
+\subsection{Discrete}
+
+\subsection{Lip-reed with collision}
+We can use \SWcomment[Michele's tricks] to add a non-linear collision to the lip. As the collision happens at the interleaved temporal grid, we move the potential half a time step forward. We extend Eq. \eqref{eq:discReed} to be
+\begin{equation}
+    M_\text{r}\delta_{tt}y^{\nph} = -M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nph}-M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nph} + S_\text{r}\Delta p^{\nph} + \psi^{n+1/2}(\psi^{n+1/2})', 
+\end{equation}
+which, when using $\mu_{t+}\psi^n = \psi^{n+1/2}$, we can then rewrite to
+\begin{equation}
+    M_\text{r}\delta_{tt}y^{\nph} = -M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nph}-M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nph} + S_\text{r}\Delta p^{\nph} + (\mu_{t+}\psi^n)g^{n+1/2} 
+\end{equation}
+with
+\begin{equation}\label{eq:gnph}
+    g^{n+1/2} = \frac{\delta_{t+}\psi^n}{\delta_{t\cdot}\eta^{n+1/2}}\ ,
+\end{equation}
+distance between the lips
+\begin{equation}\label{eq:etaBarrier}
+    \eta^{n+1/2} = b - y^{n+1/2}
+\end{equation}
+and the location of the lower lip $b = -H_0$. Rewriting Eq. \eqref{eq:gnph} to
+\begin{equation}\label{eq:rewrittenPsi}
+    \delta_{t+}\psi^n = g^{n+1/2}\delta_{t\cdot}\eta^{n+1/2}
+\end{equation}
+and using identity
+\begin{equation}
+    \mu_{t+}\psi^n = \frac{k}{2}\delta_{t+}\psi^n + \psi^n
+\end{equation} 
+we arrive at
+\begin{equation}
+    M_\text{r}\delta_{tt}y^{\nph} = -M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nph}-M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nph} + S_\text{r}\Delta p^{\nph} + \left(\frac{k}{2}g^{n+1/2}\delta_{t\cdot}\eta^{n+1/2} + \psi^n\right)g^{n+1/2},
+\end{equation}
+where $g^{n+1/2}$ can be analytically obtained through 
+\begin{equation}\label{eq:gAnalytic}
+    g^{n+1/2} = (\psi^{n+1/2})'\bigg\rvert_{\eta = \eta^{n+1/2}} = \sqrt{\frac{K_\text{c}(\alpha_\text{c} + 1)}{2}}[\eta^{n+1/2}]_+^{\frac{\alpha_\text{c}-1}{2}},
+\end{equation}
+with collision stiffness $K_\text{c}$ (in N/m if $\alpha_\text{c} = 1$) and non-linear collision coefficient $\alpha_\text{c}$. Finally, because the barrier is static and below $y$ through \eqref{eq:etaBarrier}, this implies that
+\begin{equation}\label{eq:etaNegY} 
+    \delta_{t\cdot}\eta = -\delta_{t\cdot}y
+\end{equation}
+and we can solve for $y^{n+3/2}$ (suppressing the $n+1/2$ superscript for) $g$
+\begin{align}
+    \frac{1}{k^2}(y^{n+3/2} - 2y^{n+1/2} + y^{n-1/2}) = &-\frac{\omega_0^2}{2}(y^{n+3/2}+y^{n-1/2})-\frac{\sigma_\text{r}}{2k}(y^{n+3/2}-y^{n-1/2})\nonumber \\
+    &+ \frac{S_\text{r}}{M_\text{r}}\Delta p^{\nph}  -\frac{g^2}{4M_\text{r}}(y^{n+3/2}-y^{n-1/2}) + \frac{g}{M_\text{r}}\psi^n\nonumber\\
+    \left(2 + \omega_0^2 k^2 + \sigma_\text{r} k + \frac{g^2k^2}{2M_\text{r}}\right) y^{n+3/2} &= 4y^{n+1/2}+ \left(\sigma_\text{r}k - 2 - \omega_0^2k^2 + \frac{g^2k^2}{2M_\text{r}}\right) y^{n-1/2}\nonumber\\
+    &+ \frac{2S_\text{r}k^2}{M_\text{r}}\Delta p^{\nph} + \frac{2gk^2}{M_\text{r}}\psi^n\nonumber.
+\end{align}
+Finally we get
+\begin{equation}\label{eq:lipUpdateWithCollision}
+    \alpha_\text{r}y^{n+3/2} = 4 y^{n+1/2} + \beta_\text{r}y^{n-1/2} + \xi_\text{r}\Delta p + 4\psi^n\gamma_\text{r}
+\end{equation}
+with
+\begin{gather}
+    \alpha_\text{r} = 2 + \omega_0^2 k^2 + \sigma_\text{r} k + g\gamma_\text{r}, \quad \beta_\text{r} = \sigma_\text{r}k - 2 - \omega_0^2k^2 + g\gamma_\text{r}, \nonumber \\[10pt]
+    \xi_\text{r} = \frac{2S_\text{r}k^2}{M_\text{r}}, \quad \text{and} \quad \gamma_\text{r} = \frac{gk^2}{2M_\text{r}}\ .\nonumber
+\end{gather}
+For calculating $\Delta p$ we follow the same steps as in Section \ref{sec:obtainingDeltaP} to get
+\begin{gather}
+    \frac{2}{k} (\delta_{t\cdot} - \delta_{t-})y^{\nph} = -\omega_0^2(k\delta_{t\cdot} + e_{t-})y^{\nph} - \sigma_\text{r}\delta_{t\cdot} y^{\nph} + \frac{S_\text{r}}{M_\text{r}}\Delta p^{\nph} + \frac{1}{M_\text{r}}\left(-\frac{k}{2}g\delta_{t\cdot}y+\psi^n\right)g\nonumber\\
+    a_1\delta_{t\cdot}y^{\nph} - a_2\Delta p^{\nph} - a_3^n = 0,\label{eq:preAEquation}
+\end{gather}
+with 
+\begin{equation}\label{eq:aColCoeffs}
+    a_1^n = \frac{2}{k} + \omega_0^2k + \sigma_\text{r} + \frac{g^2k}{2M_\text{r}} \geq 0, \quad a_2 = \frac{S_\text{r}}{M_\text{r}} \geq 0\ , \quad \text{and} \quad a_3^n = \left(\frac{2}{k} \delta_{t\cdot} - \omega_0^2e_{t-}\right)y^{\nph} + \frac{g}{M_\text{r}}\psi^n\ .
+\end{equation}
+Note that $a_1^n$ is now time-dependent through $g$ but remains non-negative. The rest of the variables and process in Section \ref{sec:obtainingDeltaP} are unchanged.
+
+Knowing $y^{n+3/2}$ we can calculate $\psi^{n+1}$ through Eqs. \eqref{eq:etaBarrier} and \eqref{eq:rewrittenPsi} with
+\begin{equation}\label{eq:psiUpdate}
+    \psi^{n+1} = \psi^n - \frac{g}{2}\left(y^{n+3/2} - y^{n-1/2}\right)
+\end{equation}
+\subsubsection{Energy}
+The added energy to the system can be calculated by multiplying the added term with $\delta_{t\cdot}y$
+\begin{align}
+    \delta_{t+}(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r}) + \mathfrak{Q}_\text{r} + \mathfrak{p}_\text{r}&-(\mu_{t+}\psi^n) \frac{\delta_{t+}\psi^n}{\delta_{t\cdot}\eta^{n+1/2}}(\delta_{t\cdot}y^{n+1/2}) = 0\nonumber\\[-5pt]
+    \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:etaNegY}}\ }\quad \hdots &+ (\mu_{t+}\psi^n) (\delta_{t+}\psi^n) = 0\nonumber\\
+    \hdots &+ \frac{1}{2k}(\psi^{n+1}+\psi^n)(\psi^{n+1} - \psi^n)=0\nonumber\\
+    \hdots  &+\frac{1}{2k}((\psi^{n+1})^2 - (\psi^n)^2)=0\nonumber\\
+    \hdots &+ \frac{1}{2}\delta_{t+}\left((\psi^n)^2\right) = 0\nonumber\\
+    \delta_{t+}(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r} + \mathfrak{h}_\text{c}) &+ \mathfrak{Q}_\text{r} + \mathfrak{p}_\text{r} = 0
+\end{align}
+with
+\begin{equation}
+    \mathfrak{h}_\text{c} = \frac{(\psi^n)^2}{2 }\nonumber
+\end{equation}
+\section{Real-Time Implementation}
+\subsubsection{Unity??}
+
+\section{Discussion}
+\SWcomment[more for your info, don't think I want to include this:]
+To combat the drift, experiments have been done involving different ways of connecting the left and right tube. One involved alternating between applying the connection to the pressures and the velocity. Here, rather than adding points to the left and right system in alternating fashion, points were added to pressures $p$ and $q$ and velocities $v$ and $w$ in an alternating fashion. Another experiment involved a ``staggered'' version of the connection where (fx.) for one system (either left or right), a virtual grid point of the velocity was created from known values according to \eqref{eq:connectionInterpol}, rather than both from pressures. This, however, showed unstable behaviour. No conclusory statements can be made about these experiments at this point. \SWcomment[$\leftarrow$ which is exactly why I don't want to include this section]
+
+
+
+As the geometry varies it matters a lot where points are added and removed as this might influence the way that the method is implemented. \SWcomment[speculative section coming up] The middle of the slide crook was chosen, both because it would be reasonable for the air on the tube to ``go away from'' or ``go towards'' that point as the slide is extended or contracted, and because the geometry does not vary there. Experiments with adding / removing grid points where the geometry varies have been left for future work. \SWcomment[even more speculative.. $\rightarrow$] It could be argued that it makes more sense to add points at the ends of the inner slides as ``tube material'' is also added there. This would mean that the system should be split in three parts: ``inner slide", ``outer slide" and ``rest", and would complicate things even more.

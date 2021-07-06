@@ -132,8 +132,7 @@
 \usepackage{calc}
 % fix the marginpar command so it is always on the correct side
 \usepackage{mparhack}
-
-
+\usepackage{ragged2e}
 \usepackage{longtable}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,9 +147,11 @@
 % \addbibresource{bib/mybib.bib}
 
 \newcites{main}{References}
-\newcites{A}{Main Publications}
-\newcites{B}{Publications with a Supervisory Role}
-\newcites{C}{Miscellaneous Publications}
+\newcites{M}{Main Publications}
+\newcites{S}{Publications with a Supervisory Role}
+\newcites{O}{Other Publications}
+\newcites{A}{References}
+
 % \renewcommand*{\bibliographyitemlabel}{[\alph{enumiv}]}
 
 % \makeatletter
@@ -227,6 +228,8 @@
 	pdfstartview=FitH%
 }
 
+\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n} % for paper A
+
 \usepackage{xcolor}
 \def\SBcomment[#1]{\textcolor{Red}{#1}}
 \def\SWcomment[#1]{\textcolor{Cyan}{#1}}
@@ -235,10 +238,12 @@
 
 \usepackage{cases}
 \usepackage[final]{pdfpages}
+\usepackage{textcomp}
+\newcommand{\textapprox}{\raisebox{0.5ex}{\texttildelow}}
 
 \usepackage{dirtytalk}
 \usepackage{subfig}
-
+\usepackage{algorithm2e}
 \usepackage{tikz}
 \tikzset{>=latex}
 \tikzstyle{block} = [draw,minimum size=0.5cm]
@@ -246,11 +251,17 @@
 
 \usepackage{listings}
 \usepackage{courier}
+\usepackage{multirow}
+\usepackage{xfrac}
 
 \usepackage[most]{tcolorbox}
 \usepackage{tabstackengine}
 \stackMath
+\newenvironment{rightcases}
+  {\left.\begin{alignedat}{2}}
+  {\end{alignedat}\right\rbrace}
 
+  \newcommand\norm[1]{\left\lVert#1\right\rVert}
 
 \def\eqrefMatlab[#1]{%
     \hypersetup{linkcolor=[HTML]008400}%
@@ -318,8 +329,7 @@
     tabsize=2,	                   % sets default tabsize to 2 spaces
     title=\lstname,                  % show the filename of files included with \lstinputlisting; also try caption instead of title
     columns=fixed,                   % Using fixed column width (for e.g. nice alignment)
-    deletekeywords={pi, zeros, plot, round, ceil, floor, cos, sin},            % if you want to delete keywords from the given language
+    deletekeywords={pi, zeros, plot, round, ceil, floor, cos, sin, sum, abs, eps, exp},            % if you want to delete keywords from the given language
     morestring=[b]"
   }
 }
-

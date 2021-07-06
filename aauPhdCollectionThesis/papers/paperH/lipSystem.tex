@@ -1,0 +1,164 @@
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+    
+    \def\radius{6}; % Radius of the string (>2!)
+    \pgfmathsetmacro{\reps}{3}; % How may back-and-forths in the drawing of the springs
+    \def\bowSpacing{0.2};
+    \def\drawingSpacing{1.5}
+    \def\bowWidth{5};
+    
+    \def\woodWidth{1}; %>0.3
+    \def\massWidth{2};
+    \def\bridgeHeight{3};
+    \def\bridgeWidth{4};
+    \def\cornerRadius{0.15};
+    \def\stringWidth{0.2};
+    \pgfmathsetmacro{\tinyRadius}{\stringWidth*0.1};
+    \pgfmathsetmacro{\stringWidthMinTinyRad}{((\stringWidth-(2*\tinyRadius)))*0.5};
+    
+    \def\axisLineWidth{0.07};
+
+    % draw airflow
+    
+    %draw airflow
+    \def\rightAirFlow{0}; % have the right airflow bulge (1) or not (0)
+    \foreach \idx in {1,...,5}
+    {
+        \pgfmathsetmacro{\scaleLeft}{0.5 - 0.1 * \idx};
+        \ifnum\rightAirFlow=1
+            \pgfmathsetmacro{\scaleRight}{0.5 - 0.1 * \idx};
+        \else
+            \pgfmathsetmacro{\scaleRight}{0};
+        \fi
+        \begin{scope}[decoration={
+            markings,
+            mark=between positions 0.15 and 0.85 step 0.35
+         with {\arrow{>}}}
+            ]
+        % \node at (0, \idx) {\scale};
+         \draw [gray!40, 
+         xshift=-2.5cm, 
+         yshift= -\idx * 0.3cm, 
+         dotted, 
+         line width=0.3mm, postaction={decorate}] plot [smooth, tension = 0.5] coordinates { (0,1*\scaleLeft) (1,0.75*\scaleLeft) (2,0) (4, 0) (5, 0.75*\scaleRight) (6,1*\scaleRight)} ;
+         \end{scope}
+    }
+    % \def\scale{0.5};
+    % \draw [gray, xshift=-2.5cm, yshift=-0cm] plot [smooth, tension = 0.5] coordinates { (0,1*\scale) (1,0.75*\scale) (2,0) (4, 0) (5, 0.75*\scale) (6,1*\scale)};
+    % \def\scale{0.25};
+    % \draw [gray, xshift=-2.5cm, yshift=-1.2cm] plot [smooth, tension = 0.5] coordinates { (0,1*\scale) (1,0.75*\scale) (2,0) (4, 0) (5, 0.75*\scale) (6,1*\scale)};
+    % \def\scale{0};
+    % \draw [gray, xshift=-2.5cm, yshift=-1.5cm] plot [smooth, tension = 0.5] coordinates { (0,1*\scale) (1,0.75*\scale) (2,0) (4, 0) (5, 0.75*\scale) (6,1*\scale)};
+    
+    \node (r0) at ( 1.0,  -0.5 ) {}; % root
+    \node (s0) at ( 1.0, 0.1 ) {}; % extreme
+    \node (s1) at ( 1.6, 0.1 ) {}; % extreme
+
+    % DRAW TREE
+    \fill[fill=white] (r0.center)--(s0.center)--(s1.center);
+    
+    % \draw plot [smooth] coordinates {(-3, -3) (-2, 2) (-1, -3};
+    \node at (0,0) [rectangle,draw, fill = white, minimum height=1cm,minimum width= \massWidth cm] (Mr) {$M_\text{r}$};
+    %top
+    % \draw[-] (-3, 2) -- (3, 2) node[below, midway] (top) {};
+    % \draw[-] (-2, 3) -- (4, 3) node[below, midway] (top) {};
+    % \draw[-] (-3, 2) -- (-2, 3) node[below, midway] (top) {};
+    % \draw[-] (4, 3) -- (3, 2) node[below, midway] (top) {};
+    \draw[-] (-2.5, 2.5) -- (3.5, 2.5) node[below, midway] (top) {};
+    %bottom
+    \draw[-] (-3, -2) -- (3, -2) node[below, midway] (bottom) {};
+    \draw[-] (-2, -1) -- (4, -1) node[below, midway] (bottom) {};
+    \draw[-] (-3, -2) -- (-2, -1) node[below, midway] (top) {};
+    \draw[-] (4, -1) -- (3, -2) node[below, midway] (top) {};
+
+    % draw mass
+    
+    \draw[-] (-1, 0.5) -- (0, 1.5) node[] (left) {};
+
+    \draw[-] (1, 0.5) -- (2, 1.5) node[] (topRight) {};
+
+    \draw[-] (0, 1.5) -- (2, 1.5) node[] (top) {};
+
+    \draw[-] (2, 1.5) -- (2, 0.5) node[] (right) {};
+
+    \draw[-] (0.5 * \massWidth, -0.5) -- (2, 0.5) node[] (bottomRight) {};
+
+    \node[rotate = 0] at (0.5, 1) (Sr) {$S_\text{r}$};
+
+    % eta line
+    \draw[-, color = black] (0.5*\massWidth+2*\axisLineWidth, -0.5) -- (0.5*\massWidth+2*\axisLineWidth, -1.95)
+    node[anchor = west] at (0.5*\massWidth +0.07, -1.33) (eta) {$-\eta$};
+
+    \draw[-] (0.5 * \massWidth + \axisLineWidth, -0.5) -- (0.5 * \massWidth + 3*\axisLineWidth, -0.5) {}; 
+    
+    \draw[-] (0.5 * \massWidth +\axisLineWidth, -1.95) -- (0.5 * \massWidth +3*\axisLineWidth, -1.95); 
+    \def\xOffset{0.3};
+    % draw spring
+    \filldraw[black] (-0.5 + \xOffset, 2.5) circle (1pt) node[anchor=center](topSpring){};    
+    \draw[-] (-0.5 + \xOffset, 2.5) -- (-0.5 + \xOffset, 2.3);
+    \draw[-] (-0.5 + \xOffset, 2.3) -- (-0.75 + \xOffset, 2.2);
+    %switched these around because of the color
+    \draw[-] (-0.25 + \xOffset, 2.02) -- (-0.75 + \xOffset, 1.84);
+    \draw[-] (-0.75 + \xOffset, 2.2) -- (-0.25 + \xOffset, 2.02);
+    \draw[-] (-0.75 + \xOffset, 1.84) -- (-0.25 + \xOffset, 1.66);
+    \draw[-] (-0.25 + \xOffset, 1.66) -- (-0.75 + \xOffset, 1.52);
+    \draw[-] (-0.75 + \xOffset, 1.52) -- (-0.25 + \xOffset, 1.3);
+    \draw[-] (-0.25 + \xOffset, 1.3) -- (-0.5 + \xOffset, 1.2);
+    \draw[-] (-0.5 + \xOffset, 1.2) -- (-0.5 + \xOffset, 1.0);
+    \filldraw[black] (-0.5 + \xOffset, 1.0) circle (1pt) node[anchor=center](bottomSpring){};    
+    \node at (-1 + \xOffset, 1.75) (K) {$K_\text{r}$};
+    
+    \def\dashpotHeight{-0.25}
+    % draw dashpot
+    \filldraw[black] (1.5 - \xOffset, 2.5) circle (1pt) node[anchor=center](topDashPot){};
+    \draw[-] (1.5 - \xOffset, 2.5) -- (1.5 - \xOffset, 1.4 - \dashpotHeight);
+
+    \draw[-] (1.3 - \xOffset, 1.4 - \dashpotHeight) -- (1.7 - \xOffset, 1.4 - \dashpotHeight);
+
+    \draw[-] (1.25 - \xOffset, 1.7 - \dashpotHeight) -- (1.25 - \xOffset, 1.35 - \dashpotHeight);
+    \draw[-] (1.75 - \xOffset, 1.35 - \dashpotHeight) -- (1.75 - \xOffset, 1.7 - \dashpotHeight);
+
+    \draw[-] (1.25 - \xOffset, 1.35 - \dashpotHeight) -- (1.75 - \xOffset, 1.35 - \dashpotHeight);
+    \draw[-] (1.5 - \xOffset, 1.35 - \dashpotHeight) -- (1.5 - \xOffset, 1.0);
+
+    \filldraw[black] (1.5 - \xOffset, 1.0) circle (1pt) node[anchor=center](bottomDashpot){};    
+    \node at (1.0 - \xOffset, 1.75) (sigma) {$\sigma_\text{r}$};
+    
+    
+    % pressure labels
+    \def\pressOffset{0.3}
+    \def\backgroundOpacity{0.4}
+    \node[fill = white, fill opacity=\backgroundOpacity, text opacity = 1] at (-2, -0.6 - \pressOffset) (Pm) {$P_\text{m}$};
+    \node[fill = white, fill opacity=\backgroundOpacity, text opacity = 1] at (0.5, -0.8 - \pressOffset) (deltaP) {$\Delta p$};
+    \node[fill = white, fill opacity=\backgroundOpacity, text opacity = 1] at (3.2, -0.6 - \pressOffset) (p) {$p(0,t)$};
+
+    
+    % y and H0
+    \draw[dashed, color = gray] (3.65, 0) -- (1.5, 0);
+    \node at (4, 1.5) {$y$};
+    
+    \draw[->] (3.75, -1.5) -- (3.75, 1.5);
+    \node at (4, 0) {$0$};
+    \draw (3.75 - \axisLineWidth, 0) -- (3.75 + \axisLineWidth, 0) {};
+
+
+    \draw (3.75 - \axisLineWidth, -1.5) -- (3.75 + \axisLineWidth, -1.5) {};
+    \node at (4.2, -1.5) {$-H_0$};
+    
+    % width
+    \draw[black!70] (-1, 0.6) -- (1, 0.6) {};
+    \draw[black!70] (-1, 0.55) -- (-1, 0.65) {};
+    \draw[black!70] (1, 0.55) -- (1, 0.65) {};
+    \node at (0, 0.75) (w) {$w_\text{r}$};
+% \begin{scope}[very thick,decoration={
+%     markings,
+%     mark=at position 0.5 with {\arrow{>}}}
+%     ] 
+%     \draw[postaction={decorate}] (-4,0)--(4,0);
+% \end{scope}
+    
+    \end{tikzpicture}
+    \caption{\it Diagram of the lip-reed system with the equilibrium at 0 and the distance from the lower lip $H_0$. The various symbols relate to those used in Eq. \eqref{eq:lipReedCont}.}
+    \label{fig:lipSystem}
+\end{figure}

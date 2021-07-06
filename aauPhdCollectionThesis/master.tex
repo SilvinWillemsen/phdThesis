@@ -4,36 +4,36 @@
 
 \begin{document}
 \DeclareGraphicsExtensions{.png,.jpg,.pdf, eps.}
-%frontmatter
-\frontmatter
-\pagestyle{empty} %disable headers and footers
-\pagenumbering{roman} %use roman page numbering in the frontmatter
-\input{frontmatter/frontpage}
-\input{frontmatter/colophon}
-\input{frontmatter/cv}
-\input{frontmatter/acknowledgements}
-\input{frontmatter/listOfPublications}
-\input{frontmatter/abstract}
-\cleardoublepage
-\pdfbookmark[0]{Contents}{label:contents}
-\pagestyle{fancy} %enable headers and footers again
-\tableofcontents
-\listoftodos
-\input{frontmatter/preface}
-\cleardoublepage
 
+% \def\bLabel{\renewcommand\@biblabel[1]{[##1]}}
+% \def\citeP[#1]{[\hyperref[ch:listOfPublications]{#1}]}
 \def\citeP[#1]{[\ref{paper:#1}]}
 
 \def\ctxt{\text{c}} %connection subscript (text)
 \def\stxt{\text{s}} %string subscript (text)
 \def\ptxt{\text{p}} %plate subscript (text)
+\def\mtxt{\text{m}} %mass subscript (text)
+\def\itxt{\text{i}} %point of 'interest' subscript (text)
+\def\Btxt{\text{B}} %bow subscript (text)
+\def\sgn{\text{sgn}}
+\def\sm{\text{sm}} %string-mass interaction tromba
+\def\mp{\text{mp}} %mass-plate interaction tromba
 
 % states
 \def\uln{u_l^n}
 \def\wln{w_l^n}
 \def\un{u^n}
 \def\ulmn{u_{l,m}^n}
+\def\wlmn{w_{l,m}^n}
+\def\zlmn{z_{l,m}^n}
+\def\ubr{u_\text{br}}
+\def\zbr{z_\text{br}}
 
+\def\Psiln{\Psi_l^n}
+\def\Psinp{\Psi_l^{n+1}}
+\def\Psinm{\Psi_l^{n-1}}
+\def\Psilp{\Psi_{l+1}^n}
+\def\Psilm{\Psi_{l-1}^n}
 
 % bold symbols (state vectors and matrices)
 \def\u{\mathbf{u}}
@@ -43,13 +43,17 @@
 \def\B{\mathbf{B}}
 \def\C{\mathbf{C}}
 \def\Q{\mathbf{Q}}
+\def\U{\mathbf{U}}
+\def\J{\mathbf{J}}
 
 % mathfraks
 \def\H{\mathfrak{H}}
 \def\h{\mathfrak{h}}
 \def\t{\mathfrak{t}}
 \def\v{\mathfrak{v}}
-
+\def\q{\mathfrak{q}}
+\def\b{\mathfrak{b}}
+\def\p{\mathfrak{p}}
 % continuous operators
 \def\ptt{\partial_t^2} 
 \def\pxx{\partial_x^2}
@@ -92,21 +96,24 @@
 \def\Dxx{\mathbf{D}_{xx}}
 \def\Dxxxx{\mathbf{D}_{xxxx}}
 
-
 % often-used variables
 \def\sz{\sigma_{0}}
 \def\so{\sigma_{1}}
 \def\vrel{v_\text{rel}}
+\def\Sbar{\bar{S}}
+\def\Sm{S_{l-1/2}}
+\def\Sp{S_{l+1/2}}
 
-\def\szX[#1]{\sigma_{0{#1}}}
-\def\soX[#1]{\sigma_{1{#1}}}
+\def\szX[#1]{\sigma_{0,{#1}}}
+\def\soX[#1]{\sigma_{1,{#1}}}
 
 \def\fs{f_\text{s}}
-
+\def\el{\epsilon_\text{l}}
+\def\er{\epsilon_\text{r}}
 % mathcals
 \def\D{\mathcal{D}}
 \def\L{\mathcal{L}}
-\def\O{\mathcal{O}}
+\def\OO{\mathcal{O}}
 \def\S{\mathcal{S}}
 
 % flooring ceiling
@@ -115,33 +122,66 @@
 \def\ansatz{\ \overset{\mathcal{A}}{\Longrightarrow}\ }
 % other
 \def\qaq{\quad \text{and} \quad}
+\def\qwiq{\quad \text{with} \quad}
+\def\qwhq{\quad \text{where} \quad}
+
 \def\mystrut{\rule[-.2\baselineskip]{0pt}{\baselineskip}}
 
 \def\th{\textsuperscript{th} }
+\def\thOrder{\textsuperscript{th}-order }
+
 \def\boldPhi{\boldsymbol{\phi}}
 \def\eig{\text{eig}}
+
+%frontmatter
+\frontmatter
+\pagestyle{empty} %disable headers and footers
+\pagenumbering{roman} %use roman page numbering in the frontmatter
+\input{frontmatter/frontpage}
+\input{frontmatter/colophon}
+\input{frontmatter/cv}
+% \input{frontmatter/acknowledgements}
+\input{frontmatter/abstract}
+\input{frontmatter/preface}
+\input{frontmatter/listOfPublications}
+% \input{frontmatter/listOfSymbols.tex}
+% \input{frontmatter/listOfAbbreviations.tex}
+\cleardoublepage
+\pdfbookmark[0]{Contents}{label:contents}
+\pagestyle{fancy} %enable headers and footers again
+\tableofcontents
+\listoftodos
+\cleardoublepage
+
+\def\makeAlph[#1]{\symbol{\numexpr96+#1}}
+
 %mainmatter
 \mainmatter
+
 \part{Introduction}\label{part:introduction}
 \input{introduction/introduction}
 
 \part{Resonators}\label{part:resonators}
 \input{resonators/resonators}
 
-% \part{Exciters}\label{part:exciters}
-% \input{exciters/exciters}
+\part{Exciters}\label{part:exciters}
+\input{exciters/exciters}
 
 \part{Interactions}\label{part:interactions}
 \input{interactions/interactions}
 
-% \part{Dynamic Grids}\label{part:dynamic}
-% \input{dynamic/dynamic}
-
 % \part{Real-Time Implementation and Control}\label{part:realtime}
 % \input{realtime/realtime}
 
+\part{Contributions}\label{part:contributions}
+\input{contributions/contributions}
+
 % \part{Complete Instruments}\label{part:instrument}
 % \input{instrument/instrument}
+
+\part{Conclusions and Perspectives}\label{part:conclusion}
+\input{conclusion/conclusion.tex}
+
 
 \pagebreak
 
@@ -169,8 +209,8 @@
       \endlist}
 \makeatother
 
-{\bibliographystyle{IEEEtranS}\bibliography{bib/mybib}}
-\addcontentsline{toc}{chapter}{References}
+{\bibliographystyle{IEEEtran}\bibliography{bib/mybib}}
+\addcontentsline{toc}{chapter}{References}\todo{check whether to sort references or not}
 
 
 %backmatter
@@ -178,44 +218,68 @@
 \apptrue % uncomment to include appendices
 
 \newif\ifpapers
-% \paperstrue % uncomment to include appendices
+% \paperstrue % uncomment to include papers
 
 \ifapp
   \renewcommand\thesection{\thechapter.\arabic{section}}
   \begin{subappendices}
     \begin{appendices}
-      \part{Appendix}
-      \input{appendices/appendices}   
-    \end{appendices}
-    \begin{appendices}
       \renewcommand\appendixname{Paper} 
       \setcounter{chapter}{0} % reset stuff
-      \renewcommand\thesection{\thechapter.\arabic{section}}
+      \renewcommand\thesection{\arabic{section}}
       \part{Papers}\label{part:papers}
       \input{papers/paperErrata}
       \pagestyle{plain}
+      \titleformat{%command
+      \chapter
+      }[%shape
+      display%
+      ]{%format
+      \normalfont\huge
+      }{%label
+      \begin{center}\color{aaublue}\chaptertitlename\ \thechapter\end{center}
+      }{%style
+      1cm
+      }{%code before title
+      \thispagestyle{empty}\begin{center}\Large
+        }[%code after title
+      \end{center}
+      ]
+      
       \input{papers/papers.tex}
       \pagestyle{fancy}
       % \input{papers/paperA/paperA.tex}
     \end{appendices}
+    \begin{appendices}
+      \renewcommand\appendixname{Appendix} 
+      \renewcommand\thesection{\thechapter.\arabic{section}}
+      \renewcommand{\theequation}{\thechapter.\arabic{equation}}
+
+      \setcounter{chapter}{0} % reset stuff
+      \part{Appendix}
+      \input{appendices/appendices}   
+    \end{appendices}
   \end{subappendices}
 \fi
-\titleformat{%command
-  \chapter
-}[%shape
-display%
-]{%format
-  \normalfont\huge 
-}{%label
-  \begin{center}\color{aaublue}\chaptertitlename\ \thechapter\end{center}
-}{%style
-  1cm
-}{%code before title
-  \thispagestyle{empty}\begin{center}\Large
-[%code after title
-]
-  \end{center}}
-
+% \titleformat{%command
+%   \chapter
+% }[%shape
+% display%
+% ]{%format
+%   \normalfont\huge 
+% }{%label
+%   \begin{center}\color{aaublue}\chaptertitlename\ \thechapter\end{center}
+% }{%style
+%   1cm
+% }{%code before title
+%   \thispagestyle{empty}\begin{center}\Large
+% [%code after title
+% ]
+%   \end{center}}
+\pagebreak
+\pagestyle{empty}
+\justify
+\todo{format the blurb}Digital versions of musical instruments have been created for several decades, and for good reason! They are more compact, more easy to maintain, and less difficult to play than their real-life counterparts. One way to digitise an instrument is to record it and play back the samples, but this does not capture the entire range of expression of the real instrument. Simulating an instrument based on its physics, including its geometry and material properties, is much more flexible to player control. Although it requires more computational power to generate the sound in real time, the simulation could possibly go beyond what is physically possible. A violin growing into a cello, bowing your trumpet, your imagination is the limit...
 % \includepaper{papers/paperA/paperA}
 % \includepaper{papers/paperB/paperB}
 \end{document}

@@ -4,7 +4,9 @@
 In this work, it is mainly used to model a simplified body in papers...
 
 
-State variable $u = u(x,y,t)$  where $t\geq 0$ and $(x,y) \in \D$ where $\D$ is 2-dimensional. The state variable can then be discretised according to $u(x, y, t) \approx \ulmn$ with space $x = lh$ and $y = mh$ and time $t = nk$ and $k=1/\fs$. For simplicity the grid spacing in both the $x$ and $y$ directions are set to be the same but could be different.
+Rectangular system described by state variable $u = u(x,y,t)$  where $t\geq 0$ and $(x,y) \in \D$ where $\D$ is 2-dimensional. The state variable can then be discretised according to $u(x, y, t) \approx \ulmn$ with space $x = lh$ and $y = mh$ and time $t = nk$ and $k=1/\fs$. For simplicity the grid spacing in both the $x$ and $y$ directions are set to be the same but could be different.
+
+Circular or elliptical systems can be modelled using a staircase approximation or radial coordinates \cite{theBible}
 
 In continuous time the  operators:
 \begin{equation}\label{eq:laplacian}
@@ -29,11 +31,12 @@ ansatz:
 \end{equation}
 
 \subsection{Energy Analysis}
-Squared domain 
-$d\in \{0, \hdots, N_x\} \times \{0, \hdots, N_y\}$
+Analogous to the continuous 2D domain $\D$, one can define a 2D discrete domain $d\in \{0, \hdots, N_x\} \times \{0, \hdots, N_y\}$
 \begin{equation}\label{eq:2DInnerProd}
-    \langle f^n, g^n \rangle_d = \sum_{l = 0}^{N_x}\sum_{m = 0}^{N_y} h^2 f_{l,m}^n g_{l,m}^n
+    \langle f^n_{l, m}, g^n_{l, m} \rangle_d = \sum_{l = 0}^{N_x}\sum_{m = 0}^{N_y} h^2 f_{l,m}^n g_{l,m}^n
 \end{equation}
+
+Reduced domains are defined as $\underline{d} = \{0, \hdots, N_x-1\} \times \{0, \hdots, N_y-1\}$ and $\underline{\overline{d}} = \{1, \hdots, N_x-1\}\times\{1, \hdots, N_y-1\}$.
 
 \subsection{Modal Analysis}
 Stacked matrix form
@@ -43,23 +46,56 @@ The 2D wave equation be used to model an ideal membrane such as done in
 
 It has identical behaviour to the 2D waveguide mesh presented by van Duyne and Smith \cite{Duyne1993}.
 
+This section will present the 2D wave equation in continuous time and discretise it afterwards. Then it will be used as a test-case to explain the various analysis techniques presented in Chapter \ref{ch:analysis} in 2D.
+
+\subsection{Continuous time}
 Consider a square ideal membrane with side lengths $L_x$ and $L_y$ (both in m) and its transverse displacement described by $u = u(x,y,t)$. The membrane is defined over $(x,y) \in \D$ with domain $\D = [0, L_x] \times[0, L_y]$ and its motion is described by the following PDE
 \begin{equation}\label{eq:2DwavePDE}
     \ptt u = c^2\Delta u
 \end{equation}
 with wave speed $c = \sqrt{T/\rho H}$ (in m/s), tension per unit length (applied to the boundary)\todo{check whether this is right..}$T$ (in N/m), material density $\rho$ (in kg/m$^3$) and thickness $H$.
 
-\section{Thin plate}
+
+
+\subsection{Energy Analysis}
+
+\section{Thin plate}\label{sec:thinPlate}
 Used in \citeP[A], \citeP[B], \citeP[D] and \citeP[E]
 biharmonic operator, Laplacian in \eqref{eq:laplacian} applied to itself.
-\begin{equation}\label{eq:platePDE}
+\begin{equation}\label{eq:platePDENoLosses}
     \rho H \ptt u = -D\Delta\Delta u
 \end{equation}
-where $D = EH^3/12(1-\nu^2)$
+where $D = EH^3/12(1-\nu^2)$.
+
+Adding losses to \eqref{eq:platePDE} yields 
+
+\begin{equation}\label{eq:platePDE}
+    \rho H \ptt u = -D\Delta\Delta u - 2\sz \rho H \pt u + 2 \so\rho H  \pt \Delta u
+\end{equation}
+
+\subsection{Energy Analysis}
+\begin{equation}
+    \dtp \h = -\q 
+\end{equation}
+where 
+\begin{equation}\label{eq:energyBalanceThinPlate}
+    \begin{gathered}
+        \h = \t + \v, \qwiq \t = \frac{\rho H}{2} \left\lVert\delta_{t-}\ulmn\right\rVert_{d}^2 \quad \text{and} \\
+        \v = \frac{D}{2}\langle\delta_{\Delta\boxplus} \ulmn, e_{t-}\delta_{\Delta\boxplus} \ulmn\rangle_{\overline{\underline{d}}}\ .
+    \end{gathered}
+\end{equation}
+and 
+\begin{equation}\label{eq:dampingTermThinPlate}
+    \mathfrak{q} = 2\sz \rho A \lVert\dtd\ulmn\rVert_d^2 - 2 \so \rho A \langle \dtd \ulmn, \dtm \delta_{\Delta\boxplus}\uln \rangle_d,
+\end{equation}
+
 \section{Stiff membrane}
-Combination between Eqs. \eqref{eq:2DwavePDE} and \eqref{eq:platePDE}
-\begin{equation}\label{eq:2DwavePDE}
+Like the stiff string, the membrane can be extended with a stiffness term to yield a \textit{stiff membrane} \cite{Fletcher1998}. This model has been used for paper \citeP[F]...
+Combining between Eqs. \eqref{eq:2DwavePDE} and \eqref{eq:platePDE} including the losses yields
+\begin{equation}\label{eq:stiffMembrane}
     \rho H \ptt u = T\Delta u - D
     \Delta\Delta u
 \end{equation}
-\citeP[F]
+
+
+Is essentially a 2D stiff string. 
