@@ -286,3 +286,8 @@ det = a00 * a11 - a01 * a10;
 u0 = (w0 * a11 - w1 * a01) / det;
 u1 = (-w0 * a10 + w1 * a00) / det;
 \end{lstlisting}
+
+
+The computational complexity of th inversion of an $n\times n$ matrix is (at worst) $\OO(n^3)$. For real-time applications, the size of matrices one wants to invert thus need to be kept to a minimum...
+
+The difference between inverting a $2\times 2$ matrix and a $3\times 3$ 

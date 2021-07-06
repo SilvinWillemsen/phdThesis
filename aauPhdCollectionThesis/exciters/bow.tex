@@ -27,18 +27,18 @@ The first \SWcomment[$\leftarrow$ check with stefania] appearance of FDTD method
 Before introducing various friction models, a brief introduction on interpolation and spreading operators will be given, which will be necessary to work with this type of excitation.
 
 \section{Interpolation and Spreading operators}\label{sec:interpolationSpreading}
-As FD schemes are an approximation to continuous space (and time) using a finite amount of points, working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function.  This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. Here, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$.
+As FD schemes are an approximation to continuous space (and time) using a finite amount of points, working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function \cite{theBible}.  This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. Here, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$.
 
 The simplest interpolation operator is of '0\textsuperscript{th}'-order and is defined as
 \begin{equation}\label{eq:zerothOrderI}
-    I_0(x_\itxt) = \begin{cases}
+    I_{l,0}(x_\itxt) = \begin{cases}
         1, & \text{if}\ l = l_\itxt,\\
         0, & \text{otherwise},
     \end{cases}
 \end{equation}
-where the grid location of interest is defined as $l_\itxt = \floor[x_\itxt / h]$. See Figure \ref{fig:zerothOrderInterpol}. Instead of actually performing an interpolation operation, $I_0$ simply floors its input to the grid location below. As an example, for a 1D system of length $L=1$ described by $u(x,t)$, the location of interest is at $x_\itxt = 0.25$. If the grid spacing $h = 0.2$ the grid point of interest will be $l_\itxt = \floor[0.25/0.2] = \floor[1.25] = 1$. Writing this in operator form yields
+where the grid location of interest is defined as $l_\itxt = \floor[x_\itxt / h]$ (see Figure \ref{fig:zerothOrderInterpol}). Instead of actually performing an interpolation operation, $I_0$ simply floors its input to the grid location below. As an example, for a 1D system of length $L=1$ described by $u(x,t)$, the location of interest is at $x_\itxt = 0.25$. If the grid spacing $h = 0.2$ the grid point of interest will be $l_\itxt = \floor[0.25/0.2] = \floor[1.25] = 1$. Writing this in operator form yields
 \begin{equation*}
-    u(0.25, t)\approxeq I_0(0.25)\uln = u_1^n.
+    u(0.25, t)\approxeq I_{l,0}(0.25)\uln = u_1^n.
 \end{equation*}
 
 % \input{exciters/interpolation.tex}
@@ -48,20 +48,20 @@ A slightly more accurate way to perform 0\thOrder interpolation is to \textit{ro
 
 First-order or linear interpolation also uses the fractional part of the flooring operation according to $\alpha_\itxt = x_\itxt / h - l_\itxt$ and is defined as
 \begin{equation}\label{eq:firstOrderI}
-    I_1(x_\itxt) = \begin{cases}
+    I_{l,1}(x_\itxt) = \begin{cases}
         (1-\alpha_\itxt), & \text{if}\ l = l_\itxt,\\
         \alpha_\itxt , & \text{if}\ l = l_\itxt + 1,\\
         0 & \text{otherwise.}
     \end{cases}
 \end{equation}
-See Figure \ref{fig:firstOrderInterpol}. When applied to a grid function, all multiplications get added to obtain the interpolated value. Using the same example as before, $\alpha = 1.25 - \floor[1.25] = 0.25$ and
+See Figure \ref{fig:firstOrderInterpol}. When applied to a grid function, its values will be multiplied multiplications get added to obtain the interpolated value. Using the same example as before, $\alpha = 1.25 - \floor[1.25] = 0.25$ and
 \begin{equation*}
-    u(0.25, t)\approxeq I_1(0.25)\uln = 0.75u_1^n + 0.25 u_2^n,
+    u(0.25, t)\approxeq I_{l,1}(0.25)\uln = 0.75u_1^n + 0.25 u_2^n,
 \end{equation*}
 
 The highest order interpolator used in this project is the Lagrange cubic interpolator: 
 \begin{equation}\label{eq:cubicI}
-    I_3(x_\itxt) = \begin{cases}
+    I_{l,3}(x_\itxt) = \begin{cases}
         -\alpha_\itxt (\alpha_\itxt-1)(\alpha_\itxt-2)/6, & l = l_\itxt-1,\\
         (\alpha_\itxt-1)(\alpha_\itxt+1)(\alpha_\itxt-2)/2,  & l = l_\itxt,\\
         -\alpha_\itxt (\alpha_\itxt+1)(\alpha_\itxt-2)/2, & l = l_\itxt + 1,\\
@@ -69,29 +69,35 @@ The highest order interpolator used in this project is the Lagrange cubic interp
         0, & \text{otherwise.}
     \end{cases}
 \end{equation}
-See Figure \ref{fig:cubicInterpol}. One could potentially create higher-order interpolation operators, but as one is restricted to a finite domain, the flexibility of the implementation will become less. Notice that if $\alpha_\itxt = 0$, the higher-order interpolators reduce to the $0$\thOrder one in Eq. \eqref{eq:zerothOrderI}.
+See Figure \ref{fig:cubicInterpol}. Applied to a grid function using the same example as before, yields
+\begin{equation*}
+    u(0.25, t)\approxeq I_{l,3}(0.25)\uln = -0.0547u_0^n + 0.8203u_1^n + 0.2734u_2^n -0.0391 u_3^n.
+\end{equation*}
+Notice that the sum of all values of $I(x_\itxt)$, regardless of the order of interpolation, add up to $1$.
 
 \def\figWidth{0.32}
 \begin{figure}[h]
     \centering
-    \subfloat[$0$\thOrder interpolation.\label{fig:zerothOrderInterpol}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/noInterpol.pdf}}\hfill
-    \subfloat[Linear interpolation.\label{fig:firstOrderInterpol}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/linearInterpol.pdf}}\hfill
-    \subfloat[Cubic interpolation.\label{fig:cubicInterpol}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/cubicInterpol.pdf}}
+    \subfloat[$0$\thOrder interpolation.\label{fig:zerothOrderInterpol}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/noInterpol2.pdf}}\hfill
+    \subfloat[Linear interpolation.\label{fig:firstOrderInterpol}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/linearInterpol2.pdf}}\hfill
+    \subfloat[Cubic interpolation.\label{fig:cubicInterpol}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/cubicInterpol2.pdf}}
     \caption{Interpolation with varying orders of accuracy.\label{fig:interpolation}}
 \end{figure}
 
-Apart form interpolation operators, one may define \textit{spreading operators} which can be interpreted as an inverse interpolation operation. A spreading operator $J(x_\itxt)$ is used to interact with a distributed FD scheme in the form of an excitation or other interactions such as connections or collisions between multiple schemes (see Part \ref{part:interactions}).
+One could potentially create higher-order interpolation operators, but as one is restricted to a finite domain, the flexibility of the implementation will become less. Notice that if $\alpha_\itxt = 0$, the higher-order interpolators reduce to the $0$\thOrder one in Eq. \eqref{eq:zerothOrderI}.
+
+Apart form interpolation operators, one may define \textit{spreading operators} which can be interpreted as an inverse interpolation operation. A spreading operator $J(x_\itxt)$ is used to interact with a distributed FD scheme in the form of an excitation or other interactions such as connections or collisions between multiple schemes (also see Part \ref{part:interactions}).
 
 The spreading operators can be defined in the same way as the interpolation operators described above, yielding a $0$\thOrder spreading operator
 \begin{equation}\label{eq:zerothOrderJ}
-    J_0(x_\itxt) = \frac{1}{h}\begin{cases}
+    J_{l,0}(x_\itxt) = \frac{1}{h}\begin{cases}
         1, & \text{if}\ l = l_\itxt,\\
         0, & \text{otherwise},
     \end{cases}
 \end{equation}
 a linear spreading operator
 \begin{equation}\label{eq:firstOrderJ}
-    J_1(x_\itxt) = \frac{1}{h}\begin{cases}
+    J_{l,1}(x_\itxt) = \frac{1}{h}\begin{cases}
         (1-\alpha_\itxt), & \text{if}\ l = l_\itxt,\\
         \alpha_\itxt , & \text{if}\ l = l_\itxt + 1,\\
         0 & \text{otherwise,}
@@ -99,7 +105,7 @@ a linear spreading operator
 \end{equation}
 and a Lagrange cubic spreading operator
 \begin{equation}\label{eq:cubicJ}
-    J_3(x_\itxt) = \frac{1}{h}\begin{cases}
+    J_{l,3}(x_\itxt) = \frac{1}{h}\begin{cases}
         -\alpha_\itxt (\alpha_\itxt-1)(\alpha_\itxt-2)/6, & l = l_\itxt-1,\\
         (\alpha_\itxt-1)(\alpha_\itxt+1)(\alpha_\itxt-2)/2,  & l = l_\itxt,\\
         -\alpha_\itxt (\alpha_\itxt+1)(\alpha_\itxt-2)/2, & l = l_\itxt + 1,\\
@@ -120,21 +126,21 @@ used in continuous time to locate an external force to a location $x_\itxt$ alon
 
 The following identity is extremely useful when solving systems including interpolation and spreading operators of the same order $o$
 \begin{equation}\label{eq:identityIJ}
-    \langle f, J_o(x_\itxt) \rangle_\D = I_o(x_\itxt) f,
+    \langle f, J_o(x_\itxt) \rangle_d = I_o(x_\itxt) f,
 \end{equation}
-for any (grid) function $f$. From this, it follows that taking the norm of a spreading operator $J_o(x_\itxt)$ over a given domain is identical to applying to its `dual' interpolation operator (of the same order $o$ and same input $x_\itxt$):
+for any (grid) function $f$ and discrete domain $d$. From this, it follows that taking the norm of a spreading operator $J_o(x_\itxt)$ over a given domain is identical to applying to its `dual' interpolation operator (of the same order $o$ and same input $x_\itxt$):
 \begin{equation}
-    \langle  J_o(x_\itxt), J_o(x_\itxt)\rangle_\D = \lVert J_o(x_\itxt)\rVert^2_\D = I_o(x_\itxt)J_o(x_\itxt).
+    \langle  J_o(x_\itxt), J_o(x_\itxt)\rangle_d = \lVert J_o(x_\itxt)\rVert^2_d = I_o(x_\itxt)J_o(x_\itxt).
 \end{equation}
 See Section \eqref{sec:innerProduct} for more details on the inner product and the norm.
 
 \subsubsection{Other distributions}
-This section presented interpolation and spreading operators that interact with the state of a FD scheme at a single point $x_\itxt$ and either interpolates or distributes over a range of points. Although multiple grid points might be used to work with the scheme, the interpolation or spreading is not \textit{distributed}. One could make an arbitrary distribution function $E$ with elements $e_l$ (in 1D) where $l\in d$ for discrete domain $d$ of the system at hand. The \textit{distribution} and spreading operators become:
+This section presented interpolation and spreading operators that interact with the state of a FD scheme at a single point $x_\itxt$ and either interpolates or distributes over a range of points. Although multiple grid points might be used for these operations, the interpolation or spreading is not \textit{distributed}. One could make an arbitrary distribution function $E$ with elements $e_l$ (in 1D) where $l\in d$ for discrete domain $d$ of the system at hand. The \textit{distribution} and spreading operators become
 \begin{equation}
-    I = E / \sum_d e_l \qaq J = \frac{1}{h}I
+    I_l = \frac{e_l}{\sum_d e_l} \qaq J_l = \frac{1}{h}I_l.
 \end{equation}
 
-Although any values for $E$ would work, to retain correct scaling, the sum of $E$ needs to be normalised to $1$.
+Although any values for $E$ would work, to retain correct scaling, the sum of $E$ needs to be normalised to $1$ as shown above.
 
 \section{The Newton-Raphson Method}\label{sec:newtonRaphson}
 Before moving on to more complex excitation mechanisms, it is useful to go over the process of how to solve some of these using en iterative root-finding method called the \textit{Newton-Raphson} method (or Newton-Raphson for short). 
@@ -258,7 +264,7 @@ one can add the bow force to the equation according to
 \begin{equation}\label{eq:bowedStiffStringPDE}
     \rho A \ptt u = T \pxx u - EI \pxxxx u - 2 \sz \rho A \pt u + 2 \so \rho A\pt \pxx u - \delta(x-x_\Btxt)f_\Btxt\Phi(\vrel)
 \end{equation}
-where spatial Dirac delta function $\delta(x-x_\Btxt)$ (in m$^{-1}$) (see Section \ref{sec:interpolationSpreading}) positions the bow along the string and $f_\Btxt = f_\Btxt(t)$ is the bow force (in N).\footnote{If the spatial Dirac delta function were omitted, the bow force would be applied to the entire string domain rather than only the bow location $x_\text{B}$.} 
+where spatial Dirac delta function $\delta(x-x_\Btxt)$ (in m$^{-1}$) (see Section \ref{sec:interpolationSpreading}) positions the bow along the string and $f_\Btxt = f_\Btxt(t) \geq 0$ is the bow force (in N).\footnote{If the spatial Dirac delta function were omitted, the bow force would be applied to the entire string domain rather than only the bow location $x_\text{B}$.} 
 
 \subsubsection{Intuition}
 From Eq. \eqref{eq:bowedStiffStringPDE} it can be seen that the bow force gets scaled by the friction model $\Phi(\vrel)$ shown in Figure \ref{fig:frictionCharacteristic}. 
@@ -268,48 +274,48 @@ The figure shows that if $\vrel$ is too large (either positively or negatively) 
 Dividing all terms in Eq. \eqref{eq:bowedStiffStringFDS} by $\rho A$ and discretising the system yields
 %
 \begin{equation}\label{eq:bowedStiffStringFDS}
-    \dtt \uln = c^2 \dxx \uln - \kappa^2 \dxxxx \uln - 2 \sz \dtd \uln + 2 \so\dtm\dxx \uln - J(x_\Btxt^n)F_\Btxt^n\Phi(\vrel^n),
+    \dtt \uln = c^2 \dxx \uln - \kappa^2 \dxxxx \uln - 2 \sz \dtd \uln + 2 \so\dtm\dxx \uln - J_l(x_\Btxt^n)F_\Btxt^n\Phi(\vrel^n),
 \end{equation}
-with $F_\Btxt^n = f_\Btxt^n/\rho A$ and spreading operator $J(x_\Btxt)$ (in m$^{-1}$) as described in Section \ref{sec:interpolationSpreading}, the order of which remains undetermined for now. Notice that, as the bow position, bow velocity and bow force are time-dependent, these have received a superscript $n$. These parameters are called control parameters and will be supplied by the performer in the eventual implementation.
+with $F_\Btxt^n = f_\Btxt^n/\rho A$ and spreading operator $J_l(x_\Btxt)$ (in m$^{-1}$) as described in Section \ref{sec:interpolationSpreading}, the order of which remains undetermined for now. Notice that, as the bow position, bow velocity and bow force are time-dependent, these have received a superscript $n$. These parameters are called control parameters and will be supplied by the performer in the eventual implementation.
 
 The relative velocity in Eq. \eqref{eq:vrel} is discretised using a centred difference operator according to
 \begin{equation}\label{eq:vrelDisc}
-    \vrel^n = I(x_\Btxt^n)\dtd \uln - v_\Btxt^n.
+    \vrel^n = I_l(x_\Btxt^n)\dtd \uln - v_\Btxt^n.
 \end{equation}
 The main issue with Eq. \eqref{eq:vrelDisc} is that, due to the centred difference operator, the FD scheme is now nonlinearly dependent on $u_l^{n+1}$. To solve Eq. \eqref{eq:bowedStiffStringFDS}, an iterative solver is required, such as Newton-Raphson described in Section \ref{sec:newtonRaphson}. This process could be circumvented by using a backward  difference operator in Eq. \eqref{eq:vrelDisc}, but this will affect accuracy of the bow model.
 
 \subsubsection{Solution}
-To find a solution for $u_l^{n+1}$ at the bow location, an inner product of the scheme in Eq. \eqref{eq:bowedStiffStringFDS} with spreading operator $J(x_\Btxt^n)$ must be taken which isolates the scheme at the bowing location. Performing this operation and using identity \eqref{eq:identityIJ} yields
+To find a solution for $u_l^{n+1}$ at the bow location, an inner product of the scheme in Eq. \eqref{eq:bowedStiffStringFDS} with spreading operator $J_l(x_\Btxt^n)$ must be taken over the discrete domain of the string $d$ which isolates the scheme at the bowing location. Performing this operation and using identity \eqref{eq:identityIJ} yields
 \begin{equation}\label{eq:bowLocFDS}
     \begin{aligned}
-    I(x_\Btxt^n)\dtt\uln =\ &c^2 I(x_\Btxt^n)\dxx \uln - \kappa^2 I(x_\Btxt^n)\dxxxx \uln- 2 \sz I(x_\Btxt^n)\dtd \uln\\
-    & + 2 \so I(x_\Btxt^n)\dtm\dxx \uln - \lVert J(x_\Btxt^n)\rVert^2_\D F_\Btxt^n\Phi(\vrel^n).
+    I_l(x_\Btxt^n)\dtt\uln =\ &c^2 I_l(x_\Btxt^n)\dxx \uln - \kappa^2 I_l(x_\Btxt^n)\dxxxx \uln- 2 \sz I_l(x_\Btxt^n)\dtd \uln\\
+    & + 2 \so I_l(x_\Btxt^n)\dtm\dxx \uln - \lVert J_l(x_\Btxt^n)\rVert^2_d F_\Btxt^n\Phi(\vrel^n).
     \end{aligned}
 \end{equation}
 One can rewrite Eq. \eqref{eq:vrelDisc} to 
-\begin{equation}
-   I(x_\Btxt^n)\dtd \uln =  \vrel^n + v_\Btxt^n,
+\begin{equation}\label{eq:vrelRewritten}
+   I_l(x_\Btxt^n)\dtd \uln =  \vrel^n + v_\Btxt^n,
 \end{equation}
 and using identity \eqref{eq:identity1}, Eq. \eqref{eq:bowLocFDS} can be rewritten and assigned to a function $g(\vrel^n)$ 
 \begin{equation}\label{eq:staticFrictionNRfunc}
-    g(\vrel^n) = \left(\frac{2}{k} + 2\sz\right)\vrel^n + \lVert J(x_\Btxt^n)\rVert^2_\D F_\Btxt^n\Phi(\vrel^n) + b^n = 0,
+    g(\vrel^n) = \left(\frac{2}{k} + 2\sz\right)\vrel^n + \lVert J_l(x_\Btxt^n)\rVert^2_d F_\Btxt^n\Phi(\vrel^n) + b^n = 0,
 \end{equation}
 % Here, $b$ contains all terms not dependent on $\vrel$. As the operators can be interchanged, i.e., the order of application does not matter, could write $b$ according to
 where the terms not dependent on $\vrel$ are collected in
 \begin{align*}
-    b^n =\ &-\frac{2}{k}I(x_\Btxt^n)\dtm \uln-c^2 I(x_\Btxt^n)\dxx \uln + \kappa^2 I(x_\Btxt^n)\dxxxx \uln \\
-    &+ \left( \frac{2}{k} + 2 \sz \right)v_\Btxt^n - 2 \so I(x_\Btxt^n)\dtm\dxx \uln.
+    b^n =\ &-\frac{2}{k}I_l(x_\Btxt^n)\dtm \uln-c^2 I_l(x_\Btxt^n)\dxx \uln + \kappa^2 I_l(x_\Btxt^n)\dxxxx \uln \\
+    &+ \left( \frac{2}{k} + 2 \sz \right)v_\Btxt^n - 2 \so I_l(x_\Btxt^n)\dtm\dxx \uln.
     % b =&\ \left(-\frac{2}{k}\dtm -c^2 \dxx+ \kappa^2\dxxxx - 2 \so \dtm\dxx\right) I(x_\Btxt^n)\uln + \left( \frac{2}{k} + 2 \sz \right)v_\Btxt^n.
 \end{align*}
 %
 One can then perform the Newton-Raphson method detailed in Section \ref{sec:newtonRaphson} to iteratively solve for $\vrel$ 
 %
 \begin{equation}
-    (\vrel^n)_{i+1} = (\vrel^n)_i - \frac{g((\vrel^n)_i)}{g'((\vrel^n)_i)}\ ,
+    (\vrel^n)_{i+1} = (\vrel^n)_i - \frac{g\left((\vrel^n)_i\right)}{g'\left((\vrel^n)_i\right)}\ ,
 \end{equation}
 where
 \begin{equation}
-    g'(\vrel^n) = \frac{2}{k} + 2\sz + \lVert J(x_\Btxt^n)\rVert^2_\D F_\Btxt^n\Phi'(\vrel^n),
+    g'(\vrel^n) = \frac{2}{k} + 2\sz + \lVert J_l(x_\Btxt^n)\rVert^2_\D F_\Btxt^n\Phi'(\vrel^n),
 \end{equation}
 and 
 \begin{equation*}
@@ -327,8 +333,26 @@ $\epsilon = 10^{-4}$\\
 Limit of iterations is set to $100$
 
 \begin{equation}
-    I(x_\Btxt^n) \dxx \uln = (1-\alpha)\dxx u_{l_\Btxt}^n + \alpha \dxx u_{l_\Btxt+1}^n
+    I_l(x_\Btxt^n) \dxx \uln = (1-\alpha)\dxx u_{l_\Btxt}^n + \alpha \dxx u_{l_\Btxt+1}^n
 \end{equation}
+
+\subsection{Energy Analysis}
+Following the energy analysis of the stiff string presented in Section \eqref{sec:energyAnalysisString}, taking an inner product of Eq. \eqref{eq:bowedStiffStringFDS} (after muliplication by $\rho A$) with $(\dtd \uln)$ over discrete domain $d$ one arrives at the following 
+\begin{align*}
+    \dtp \h + \q &=  - \langle (\dtd \uln), J_l(x_\Btxt^n)f_\Btxt^n\Phi(\vrel^n) \rangle_d\\[-5pt]
+    \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:identityIJ}}\ }\qquad &= -I_l(x_\Btxt^n)(\dtd \uln) f_\Btxt^n \Phi(\vrel^n) \\[-5pt]
+    \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:vrelRewritten}}\ } \qquad &= \underbrace{-f_\Btxt^n \Phi(\vrel^n) \vrel^n}_{\text{loss}} - \underbrace{f_\Btxt^n \Phi(\vrel^n)v_\Btxt^n}_{\text{power}},
+\end{align*}
+where $\h$ and $\q$ are as defined in Eqs. \eqref{eq:energyBalanceStiffString} and \eqref{eq:dampingTermStiffString} respectively. As $\sgn\left(\Phi(\vrel^n)\right) = \sgn\left(\vrel^n\right)$ through Eq \eqref{eq:staticFriction}, one can observe that the first term on the right-hand side always has a negative effect on the rate of change of the total energy. This term can therefore be interpreted as the loss of power through the bow (as indicated). The last term is of indeterminate sign and can thus be interpreted as the power supplied by the bow. 
+
+The final energy balance can thus be written as
+\begin{equation}\label{eq:energyBalanceBow}
+    \dtp \h = -\q - \q_\text{B} - \p 
+\end{equation}
+where 
+\begin{equation*}
+    \q_\text{B} = f_\Btxt^n \Phi(\vrel^n) \vrel^n \qaq \p = f_\Btxt^n \Phi(\vrel^n)v_\Btxt^n.
+\end{equation*}
 
 \section{Dynamic Friction Models}
 As opposed to less complex static friction models, dynamic friction models relate the relative velocity to the friction force using a differential equation. Dynamic friction models exhibit a phenomenon called \textit{hysteresis}, which is the dependence of a system on its history. 
@@ -344,7 +368,7 @@ Unless denoted otherwise, this section follows the original model by Dupont et a
 \begin{equation}\label{eq:elastoPlasticForce}
     f(v, z) = s_0z + s_1\dot z + s_2v + s_3w,
 \end{equation}
-with bristle stiffness $s_0$ (in N/m), bristle damping $s_1$ (in kg/s), viscous friction $s_2$ (in kg/s) and, as presented in \cite{Serafin2004}, a dimensionless noise coefficient $s_3$ multiplied onto a pseudorandom function $w = w(t)$ (in N) generating values between $-1$ and $1$. Moreover, the relative velocity between the string at bowing location $x_\Btxt = x_\Btxt(t)$ and the bow is (similar to Eq. \eqref{eq:vrel})
+with bristle stiffness $s_0 \geq 0$ (in N/m), bristle damping $s_1 \geq 0$ (in kg/s), viscous friction $s_2 \geq 0$ (in kg/s) and, as presented in \cite{Serafin2004}, a dimensionless noise coefficient $s_3$ multiplied onto a pseudorandom function $w = w(t)$ (in N) generating values between $-1$ and $1$. Moreover, for a string defined over domain $\D$, the relative velocity between the string at bowing location $x_\Btxt = x_\Btxt(t) \in \D$ and the bow is (similar to Eq. \eqref{eq:vrel})
 \begin{equation}\label{eq:vrelElasto}
     v = \pt u(x_\Btxt,t) - v_\Btxt,
 \end{equation}
@@ -412,17 +436,17 @@ is the discrete counterpart of \eqref{eq:zdot}. The discrete adhesion map is ide
 In the same way as done with the static friction model in Section \ref{sec:staticFricMod}, one can add the friction force to the stiff string PDE in Eq. \eqref{eq:stiffStringPDE} and discretise the system as follows:
 %
 \begin{equation}\label{eq:elastoStiffStringFDS}
-    \dtt \uln = c^2 \dxx \uln - \kappa^2 \dxxxx \uln - 2 \sz \dtd \uln + 2 \so\dtm\dxx \uln - J(x_\Btxt^n)\frac{f(v^n,z^n)}{\rho A}.
+    \dtt \uln = c^2 \dxx \uln - \kappa^2 \dxxxx \uln - 2 \sz \dtd \uln + 2 \so\dtm\dxx \uln - J_l(x_\Btxt^n)\frac{f(v^n,z^n)}{\rho A}.
 \end{equation}
-Following the same procedure as for the static friction model in Section \ref{sec:staticFricMod}, one takes an inner product with $J(x_\Btxt^n)$ and using identities \eqref{eq:identityIJ} and \eqref{eq:identity1}, one can rewrite this similarly to the static friction model in Eq. \eqref{eq:staticFrictionNRfunc} as
+Following the same procedure as for the static friction model in Section \ref{sec:staticFricMod}, one takes an inner product with $J_l(x_\Btxt^n)$ over discrete string domain $d$ and using identities \eqref{eq:identityIJ} and \eqref{eq:identity1}, one can rewrite this similarly to the static friction model in Eq. \eqref{eq:staticFrictionNRfunc} as
 %
 \begin{equation}
-    g_1(v^n,z^n) = \left(\frac{2}{k} + 2\sz\right)v^n + \lVert J(x_\Btxt^n)\rVert_\D^2\frac{f(v^n,z^n)}{\rho A}+ b^n= 0,
+    g_1(v^n,z^n) = \left(\frac{2}{k} + 2\sz\right)v^n + \lVert J_l(x_\Btxt^n)\rVert_d^2\frac{f(v^n,z^n)}{\rho A}+ b^n= 0,
 \end{equation}
 where
 \begin{align*}
-    b^n =&-\frac{2}{k}I(x_\text{B}^n)\delta_{t-}u_l^n - c^2 I(x_\text{B}^n)\delta_{xx} u_l^n +\kappa^2I(x_\text{B}^n)\delta_{xxxx} u_l^n\\
-    &+\left(\frac{2}{k}+ 2\sigma_0\right)v_\text{B}^n-2\sigma_1I(x_\text{B}^n)\delta_{t-}\delta_{xx}u_l^n.
+    b^n =&-\frac{2}{k}I_l(x_\text{B}^n)\delta_{t-}u_l^n - c^2 I_l(x_\text{B}^n)\delta_{xx} u_l^n +\kappa^2I_l(x_\text{B}^n)\delta_{xxxx} u_l^n\\
+    &+\left(\frac{2}{k}+ 2\sigma_0\right)v_\text{B}^n-2\sigma_1I_l(x_\text{B}^n)\delta_{t-}\delta_{xx}u_l^n.
 \end{align*}
 As $g_1$ contains two unknown variables $v^n$ and $z^n$ that need to be solved for, the multivariate Newton-Raphson method presented in \ref{sec:multivariateNR} must be performed. To be able to do this, an extra function must be included. 
 
@@ -478,7 +502,7 @@ where the definitions for the discrete Hamiltonian $\h_\text{s}$ and the damping
 \end{equation*}
 which, using identity \eqref{eq:identityIJ} can be written as 
 \begin{equation*}
-    \p_\Btxt = I(x_\text{B}^n)\dtd \uln f^n.
+    \p_\Btxt = I_l(x_\text{B}^n)\dtd \uln f^n.
 \end{equation*}
 Finally, using Eq. \eqref{eq:vrelElastoDisc} yields
 \begin{equation}

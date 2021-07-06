@@ -190,10 +190,13 @@ which, using identity \eqref{eq:prodIdentity3} can be rewritten to
     \dtp(\h + \h_\ctxt) = 0,
 \end{equation}
 with collision energy
-\begin{equation*}
+\begin{equation}\label{eq:collisionEnergy}
     \h_\ctxt = \frac{(\psi^{n-1/2})^2}{2}.
-\end{equation*}
+\end{equation}
 Recall that in order for a scheme to be passive, its energy must be non-negative. The fact that $\psi$ is squared proves passivity for the system in \eqref{eq:massBarrierSystem}.
+
+\subsubsection{Check units}
+
 
 \section{Mass-spring -- String collision}\label{sec:massString}
 The mass-spring -- string collision is slightly trickier than the mass -- rigid barrier collision, as there are two moving components rather than one. This system is chosen as an example as it has the interesting use-case of fretting a string to change the pitch, modelling the fretting finger as a mass.
@@ -212,16 +215,16 @@ where spatial Dirac delta function $\delta(x-x_\text{m})$ localises the mass (fi
 Discretising system \eqref{eq:massStringPDE}, with the collision discretised according to the process explained in Section \ref{sec:massRigidBarrier}, yields
 \begin{subequations}
     \begin{align}   
-        \rho A \delta_{tt}u^n_l & =T\delta_{xx}u^n_l - EI\delta_{xxxx}u_l^n + J(x_\text{m}) \big(\mu_{t+}\psi^{n-1/2}\big)g^n, \label{eq:massString1}\\
+        \rho A \delta_{tt}u^n_l & =T\delta_{xx}u^n_l - EI\delta_{xxxx}u_l^n + J_l(x_\text{m}) \big(\mu_{t+}\psi^{n-1/2}\big)g^n, \label{eq:massString1}\\
         M \delta_{tt}w^n &=-Kw^n - \big(\mu_{t+}\psi^{n-1/2}\big)g^n,\label{eq:massString2}\\
         \delta_{t+}\psi^{n-1/2} &= g^n\delta_{t\cdot}\eta^n,\label{eq:massString3}\\
-        \eta^n &= w^n - I(x_\text{m})\uln,\label{eq:massString4}
+        \eta^n &= w^n - I_l(x_\text{m})\uln,\label{eq:massString4}
     \end{align}
 \end{subequations}
-where spreading and interpolation operators $I(x_\text{m})$ and $J(x_\text{m})$ are as defined in Section \ref{sec:interpolationSpreading}. Following the same process as in Section \ref{sec:solvingMassBarrier}, Eqs. \eqref{eq:massString1} and \eqref{eq:massString2} can be rewritten to 
+where spreading and interpolation operators $I_l(x_\text{m})$ and $J_l(x_\text{m})$ are as defined in Section \ref{sec:interpolationSpreading} (the order is not specified here). Following the same process as in Section \ref{sec:solvingMassBarrier}, Eqs. \eqref{eq:massString1} and \eqref{eq:massString2} can be rewritten to 
 \begin{subequations}\label{eq:massStringComb}
     \begin{align}
-        \rho A \delta_{tt}u^n_l & =T\delta_{xx}u^n_l - EI\delta_{xxxx}u_l^n + J(x_\text{m}) \left(\frac{k}{2}g^n\delta_{t\cdot}\eta^n + \psi^{n-1/2}\right)g^n,\label{eq:massStringComb1}\\
+        \rho A \delta_{tt}u^n_l & =T\delta_{xx}u^n_l - EI\delta_{xxxx}u_l^n + J_l(x_\text{m}) \left(\frac{k}{2}g^n\delta_{t\cdot}\eta^n + \psi^{n-1/2}\right)g^n,\label{eq:massStringComb1}\\
         M \delta_{tt}w^n &=-Kw^n - \left(\frac{k}{2}g^n\delta_{t\cdot}\eta^n + \psi^{n-1/2}\right)g^n,\label{eq:massStringComb2}
     \end{align}
 \end{subequations}
@@ -229,30 +232,30 @@ which can be used as a starting point for solving the system.
 
 \subsection{Solving the system}
 As the colliding objects are both moving, Eq. \eqref{eq:derEtaEqDerU} is not valid anymore and another strategy needs to be used.
-One can start to solve the system by isolating the string at the collision location $x_\text{m}$ by taking an inner product of Eq. \eqref{eq:massStringComb1} with $J(x_\text{m})$. Using identity \eqref{eq:identityIJ} and dividing all terms by $\rho A$ yields
+One can start to solve the system by isolating the string at the collision location $x_\text{m}$ by taking an inner product of Eq. \eqref{eq:massStringComb1} with $J_l(x_\text{m})$. Using identity \eqref{eq:identityIJ} and dividing all terms by $\rho A$ yields
 \begin{align*}
-    \delta_{tt}I(x_\text{m})u^n_l =c^2I(x_\text{m})\delta_{xx}u^n_l &- \kappa^2I(x_\text{m})\delta_{xxxx}u_l^n \\
-    &\quad + \frac{\lVert J(x_\text{m})\rVert^2_\D}{\rho A} \left(\frac{k}{2}g^n\delta_{t\cdot}\eta^n + \psi^{n-1/2}\right)g^n.
+    \delta_{tt}I_l(x_\text{m})u^n_l =c^2I_l(x_\text{m})\delta_{xx}u^n_l &- \kappa^2I_l(x_\text{m})\delta_{xxxx}u_l^n \\
+    &\quad + \frac{\lVert J_l(x_\text{m})\rVert^2_\D}{\rho A} \left(\frac{k}{2}g^n\delta_{t\cdot}\eta^n + \psi^{n-1/2}\right)g^n.
 \end{align*}
 with $c = \sqrt{T/\rho A}$ and $\kappa = \sqrt{EI/\rho A}$. Expanding the temporal FD operators yields 
 \begin{align*}
-    I(x_\text{m})u_l^{n+1} &= u^\star+ \underbrace{\frac{\lVert J(x_\text{m})\rVert^2_\D k^2}{\rho A}}_{\mathfrak{J}} \left(\frac{(g^n)^2}{4}\left(\eta^{n+1}-\eta^{n-1}\right) + \psi^{n-1/2}g^n\right),
+    I_l(x_\text{m})u_l^{n+1} &= u^\star+ \underbrace{\frac{\lVert J_l(x_\text{m})\rVert^2_\D k^2}{\rho A}}_{\mathfrak{J}_l} \left(\frac{(g^n)^2}{4}\left(\eta^{n+1}-\eta^{n-1}\right) + \psi^{n-1/2}g^n\right),
 \end{align*}
 where 
 \begin{equation*}
-    u^\star = I(x_\text{m})(2u_l^n -u_l^{n-1}) + c^2k^2I(x_\text{m})\delta_{xx}\uln- \kappa^2k^2I(x_\text{m})\delta_{xxxx}\uln
+    u^\star = I_l(x_\text{m})(2u_l^n -u_l^{n-1}) + c^2k^2I_l(x_\text{m})\delta_{xx}\uln- \kappa^2k^2I_l(x_\text{m})\delta_{xxxx}\uln
 \end{equation*}
 is the result of the update equation of the string at $x_\text{m}$ without the collision term. Then, Eq. \eqref{eq:massString4} at $n+1$, which is $\eta^{n+1} = w^{n+1} - I(x_\text{m})u_l^{n+1}$, can be substituted, which results in
 \begin{equation}\label{eq:expandedMassString1}
     \begin{aligned}
-    \left(1 + \mathfrak{J}\frac{(g^n)^2}{4}\right)I(x_\text{m})u_l^{n+1} - \mathfrak{J}&\frac{(g^n)^2}{4} w^{n+1}= u^\star + \mathfrak{J} \left(-\frac{(g^n)^2}{4}\eta^{n-1} + \psi^{n-1/2}g^n\right).
+    \left(1 + \mathfrak{J}_l\frac{(g^n)^2}{4}\right)I_l(x_\text{m})u_l^{n+1} - \mathfrak{J}_l&\frac{(g^n)^2}{4} w^{n+1}= u^\star + \mathfrak{J}_l \left(-\frac{(g^n)^2}{4}\eta^{n-1} + \psi^{n-1/2}g^n\right).
     \end{aligned}
 \end{equation}
     
 Performing this same process on the FD scheme of the mass in Eq. \eqref{eq:massStringComb2} yields
 \begin{equation}\label{eq:expandedMassString2}
     \begin{aligned}
-    -\frac{(g^n)^2 k^2}{4M} I(x_\text{m})u_l^{n+1} + &\left(1 + \frac{(g^n)^2 k^2}{4M}\right)w^{n+1} = w^\star\\
+    -\frac{(g^n)^2 k^2}{4M} I_l(x_\text{m})u_l^{n+1} + &\left(1 + \frac{(g^n)^2 k^2}{4M}\right)w^{n+1} = w^\star\\
     & - \frac{k^2}{M} \left(-\frac{(g^n)^2}{4}\eta^{n-1} + \psi^{n-1/2}g^n\right),
     \end{aligned}
 \end{equation}
@@ -261,10 +264,10 @@ where
     w^\star = 2w^n - w^{n-1} - \frac{Kk^2}{M}w^n
 \end{equation*}
 is again the result of the update equation of the mass without the collision term.
-Equations \eqref{eq:expandedMassString1} and \eqref{eq:expandedMassString2} can be treated as a system of linear equations (see Section \ref{sec:linearEquations}) with unknowns $I(x_\text{m})u^{n+1}$ and $w^{n+1}$. Writing the aforementioned equations in matrix form yields
+Equations \eqref{eq:expandedMassString1} and \eqref{eq:expandedMassString2} can be treated as a system of linear equations (see Section \ref{sec:linearEquations}) with unknowns $I_l(x_\text{m})u^{n+1}$ and $w^{n+1}$. Writing the aforementioned equations in matrix form yields
 \begin{align}
     \begin{bmatrix}
-            I(x_\text{m})u^{n+1}_l\\
+            I_l(x_\text{m})u^{n+1}_l\\
             w^{n+1}
         \end{bmatrix}
         = 
@@ -275,13 +278,13 @@ Equations \eqref{eq:expandedMassString1} and \eqref{eq:expandedMassString2} can 
     \begin{gathered}
     \mathbf{A} = 
         \begin{bmatrix}
-            \left(1 + \mathfrak{J}\frac{(g^n)^2}{4}\right) & -\mathfrak{J}\frac{(g^n)^2}{4}\\
+            \left(1 + \mathfrak{J}_l\frac{(g^n)^2}{4}\right) & -\mathfrak{J}_l\frac{(g^n)^2}{4}\\
             -\frac{(g^n)^2 k^2}{4M} &\left(1 + \frac{(g^n)^2 k^2}{4M}\right)
         \end{bmatrix}
         \quad \text{and}\\
         \mathbf{v} = 
         \begin{bmatrix}
-            u^\star + \mathfrak{J} \left(-\frac{(g^n)^2}{4}\eta^{n-1} + \psi^{n-1/2}g^n\right)\\
+            u^\star + \mathfrak{J}_l \left(-\frac{(g^n)^2}{4}\eta^{n-1} + \psi^{n-1/2}g^n\right)\\
             w^\star- \frac{k^2}{M} \left(-\frac{(g^n)^2}{4}\eta^{n-1} + \psi^{n-1/2}g^n\right)
         \end{bmatrix}.
         \nonumber
@@ -290,9 +293,9 @@ Equations \eqref{eq:expandedMassString1} and \eqref{eq:expandedMassString2} can 
 From this, $\eta^{n+1}$ can be calculated, and can consequently be applied to the string and mass in system \eqref{eq:massStringComb}.
 
 \subsection{Energy Analysis}
-One can obtain the energy of the stiff string FD scheme in Eq. \eqref{eq:massString1} by taking the inner product of scheme by $\dtd \uln$ domain $\D$ to obtain 
+One can obtain the energy of the stiff string FD scheme in Eq. \eqref{eq:massString1} by taking the inner product of scheme by $\dtd \uln$ over domain $\D$ to obtain 
 \begin{equation}\label{eq:rOCEnergyString}
-    \dtp \h_\text{s} = \left\langle (\dtd \uln), J(x_\text{m})\left(\mtp \psi^{n-1/2}\right)g^n\right\rangle_\D
+    \dtp \h_\text{s} = \left\langle (\dtd \uln), J_l(x_\text{m})\left(\mtp \psi^{n-1/2}\right)g^n\right\rangle_\D
 \end{equation}
 where (see Eq. \eqref{eq:energyBalanceStiffString})
 \begin{equation*}
@@ -311,8 +314,8 @@ where (see Eq. \eqref{eq:energyBalanceMassSpring})
 \end{equation*}
 The total energy in the system is the addition of Eqs. \eqref{eq:rOCEnergyString} and \eqref{eq:rOCEnergyMass}, which, using identity \eqref{eq:identityIJ} for the former, can be written as:
 \begin{align*}
-    \dtp(\h_\text{s} + \h_\text{m}) &= \Big(I(x_\text{m})(\dtd \uln) - (\dtd w^n)\Big)\left(\mtp \psi^{n-1/2}\right)g^n,\\
-    &= \underbrace{\dtd\left(I(x_\text{m})\uln - w^n\right)}_{-\dtd \eta^n}\left(\mtp \psi^{n-1/2}\right)g^n.
+    \dtp(\h_\text{s} + \h_\text{m}) &= \Big(I_l(x_\text{m})(\dtd \uln) - (\dtd w^n)\Big)\left(\mtp \psi^{n-1/2}\right)g^n,\\
+    &= \underbrace{\dtd\left(I_l(x_\text{m})\uln - w^n\right)}_{-\dtd \eta^n}\left(\mtp \psi^{n-1/2}\right)g^n.
 \end{align*}
 Then, expanding $g^n$ according to Eq. \eqref{eq:approxPsi} yields 
 \begin{align*}
