@@ -1,10 +1,24 @@
 \chapter{Tromba Marina}\label{ch:tromba}
-This chapter provides an extended summary for the physical model used in the papers ``Real-time Implementation of a Physical Model of the Tromba Marina'' \citeP[D] and ``Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling'' \citeP[E]. After a brief introduction of the tromba marina, and summarising the physical model, with reference to the theory explained in the previous parts of this thesis, this chapter elaborates on the contents of the above papers by providing more details on the implementation. As much as possible, this chapter follows the notation of paper \citeP[D], as long as it is coherent with what has already been presented in this thesis. Discrepancies between this chapter and the paper will be clearly highlighted. 
+This chapter provides an extended summary for the physical model presented in the paper ``Real-time Implementation of a Physical Model of the Tromba Marina'' \citeP[D] and used in the paper ``Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling'' \citeP[E]. After a brief introduction of the tromba marina, and summarising the physical model -- with reference to the theory explained in the previous parts of this thesis -- this chapter elaborates on the contents of paper \citeP[D] by providing more details on the implementation. As much as possible, this chapter follows the notation of paper \citeP[D], as long as it is coherent with what has already been presented in this thesis. Discrepancies between this chapter and the paper will be clearly highlighted. 
 
 \section{Introduction}
-The tromba marina is a bowed monochord instrument from medieval Europe. It has a long quasi-trapezoidal body and is unique due to its oddly-shaped bridge that the string rests on. The bridge is often called a `shoe' due to its shape and is free to rattle against the body in sympathy with the movement of the vibrating string. This rattling causes a sound with brass or trumpet-like qualities, hence the name \textit{tromba} which stems from the Italian word trumpet. The rarity of the instrument as well as its interesting physics makes it an ideal case for a physical modelling implementation.
+The tromba marina is a bowed monochord instrument from medieval Europe (see Figure \ref{fig:tromba}). It has a long quasi-trapezoidal body and is unique due to its oddly-shaped bridge that the string rests on. The bridge is often called a `shoe' due to its shape and is free to rattle against the body in sympathy with the movement of the vibrating string (see Figure \ref{fig:bridge}). This rattling causes a sound with brass or trumpet-like qualities, hence the name \textit{tromba} which stems from the Italian word trumpet. The rarity of the instrument as well as its interesting physics makes it an ideal case for a physical modelling implementation.
 
 \SWcomment[Insert figures of the tromba and `shoe' here, like in the paper]
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/contributions/tromba/IMG_7980.pdf}
+    \caption{The tromba marina from the Danish Music Museum in Copenhagen. (As shown in paper \citeP[D].)}
+\label{fig:tromba}
+\end{figure}
+  
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/contributions/tromba/IMG_7982.JPG}
+    \caption{The bridge of the tromba marina from the Danish Music Museum in Copenhagen. The right side of the bridge is pressed against the body by the string while the left side is free and can rattle against the body. (As shown in paper \citeP[D].)}
+\label{fig:bridge}
+\end{figure}
 
 \section{Physical Model}
 The full musical instrument has been divided into three parts: the string, the bridge and the body each of which will briefly be presented here on. 
