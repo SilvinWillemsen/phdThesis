@@ -4,8 +4,6 @@ This chapter provides an extended summary for the physical model presented in th
 \section{Introduction}
 The tromba marina is a bowed monochord instrument from medieval Europe (see Figure \ref{fig:tromba}). It has a long quasi-trapezoidal body and is unique due to its oddly-shaped bridge that the string rests on. The bridge is often called a `shoe' due to its shape and is free to rattle against the body in sympathy with the movement of the vibrating string (see Figure \ref{fig:bridge}). This rattling causes a sound with brass or trumpet-like qualities, hence the name \textit{tromba} which stems from the Italian word trumpet. The rarity of the instrument as well as its interesting physics makes it an ideal case for a physical modelling implementation.
 
-\SWcomment[Insert figures of the tromba and `shoe' here, like in the paper]
-
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{figures/contributions/tromba/IMG_7980.pdf}
@@ -136,7 +134,7 @@ where the discrete linear (partial) differential operators $\ell$ are the discre
     \ell_\text{p} &= \rho_\text{p} H \delta_{tt} + D\delta_{\Delta \boxplus}\delta_{\Delta \boxplus} + 2\rho_\text{p}H\sigma_{0, \text{p}}\delta_{t\cdot} - 2\rho_\text{p}H\sigma_{1, \text{p}}\delta_{t-}\delta_{\Delta\boxplus}.
     \end{align}
 \end{subequations}
-Furthermore, the definitions for $g_\sm^n$ and $g_\mp^n$ can be found in Eq. \eqref{eq:gDef}\footnote{Paper \citeP[D] still uses the old definition in Eq. \eqref{eq:gDefOld}.} and $J_{l,0}(\chi_\sm)$ and $J_{l,3}(\chi_\text{B})$ are the $0$\thOrder and cubic spreading operators respectively as defined in Section \ref{sec:interpolationSpreading} and $J_{(l,m),0}(x_\mp, y_\mp)$ is a $0$\thOrder 2D spreading operator as defined in Section \ref{sec:interpolationSpreading2D}.
+Furthermore, the definitions for $g_\sm^n$ and $g_\mp^n$ can be found in Eq. \eqref{eq:gDef}\footnote{Paper \citeP[D] still uses the old definition of $g^n$ in Eq. \eqref{eq:gDefOld}.} and $J_{l,0}(\chi_\sm)$ and $J_{l,3}(\chi_\text{B})$ are the $0$\thOrder and cubic spreading operators respectively as defined in Section \ref{sec:interpolationSpreading} and $J_{(l,m),0}(x_\mp, y_\mp)$ is a $0$\thOrder 2D spreading operator as defined in Section \ref{sec:interpolationSpreading2D}.
 
 As $0$\thOrder spreading operators are used for the collision terms in the string and body FD schemes, the definitions of Eqs. \eqref{eq:etaSM} and \eqref{eq:etaMP} do not use interpolation operators to obtain the the string and plate values. Instead, for brevity, $\ubr^n = u_{l_\sm}^n$ with $l_\sm = \floor[\chi_\sm / h_\stxt]$ and $\zbr^n = z_{(l_\mp, m_\mp)}^n$ with $(l_\mp, m_\mp) = (\floor[x_\mp / h_\ptxt], \floor[y_\mp / h_\ptxt])$ are introduced for the string and the plate respectively. Here $h_\stxt$ is the grid spacing for the string and $h_\ptxt$ that for the plate. 
 
@@ -146,7 +144,7 @@ There are a few components presented in paper \citeP[D] that the system does not
 This section presents details on the solution of the string-bridge-body interaction which did not appear in paper \citeP[D].
 
 Following Section \ref{sec:massString} one could expand Eqs. \eqref{eq:trombaSystemFDSString}, \eqref{eq:trombaSystemFDSMass} and \eqref{eq:trombaSystemFDSPlate} and treat these as a system of linear equations (see Section \ref{sec:linearEquations}). This would require an inversion of a $3\times 3$ matrix each iteration.
-To simplify things slightly, and looking towards real-time implementation, one could instead solve for $\delta_{t\cdot}\eta_\sm^n$ and $\delta_{t\cdot}\eta_\mp^n$ directly, which would require a $2\times 2$ matrix inversion each iteration.
+To simplify things slightly, and looking towards real-time implementation, one could instead solve for $\delta_{t\cdot}\eta_\sm^n$ and $\delta_{t\cdot}\eta_\mp^n$ directly, which would require a $2\times 2$ matrix inversion each iteration and requires much fewer operations (see Section \ref{sec:realTimeMatrices}).
 
 % In the following, a short-hand notation is used for the grid points along the string and the plate that the bridge interacts with. These are . \todo{shorthand of shorthand?} Furthermore, a
 As it is assumed that one will not bow the bridge, i.e. $\chi_\text{B} \neq \chi_\sm$, the bowing term will be disregarded when calculating the interaction between the components. 
@@ -161,7 +159,7 @@ and expanding the right-hand sides yields
     \delta_{t\cdot}\eta_\sm^n &= \frac{w^{n+1}-w^{n-1}-\ubr^{n+1}+\ubr^{n-1}}{2k} \quad \text{and}\\ \delta_{t\cdot}\eta_\mp^n &= \frac{\zbr^{n+1}-\zbr^{n-1}-w^{n+1}+w^{n-1}}{2k}\ .
     \end{aligned}
 \end{equation}
-To solve the system, inner product of Eqs. \eqref{eq:trombaSystemFDSString} and \eqref{eq:trombaSystemFDSPlate} is taken with $J_{l,0}(\chi_\sm)$ and $J_{(l,m),0}(x_\mp, y_\mp)$ respectively. As $0$\thOrder spreading operators are used, their norms over discrete string domain $d_\stxt$ and discrete plate domain $d_\ptxt$ reduce as follows: $\lVert J_{l,0}(\chi_\sm) \rVert_{d_\stxt}^2 = 1/h_\stxt$ and $\lVert J_{(l,m),0}(x_\mp, y_\mp)\rVert_{d_\ptxt}^2 = 1/h_\ptxt^2$. The following updates for the locations of interaction appear
+To solve the system, inner product of Eqs. \eqref{eq:trombaSystemFDSString} and \eqref{eq:trombaSystemFDSPlate} is taken with $J_{l,0}(\chi_\sm)$ and $J_{(l,m),0}(x_\mp, y_\mp)$ respectively. As $0$\thOrder spreading operators are used, their norms over discrete string domain $d_\stxt$ and discrete plate domain $d_\ptxt$, respectively, reduce as follows: $\lVert J_{l,0}(\chi_\sm) \rVert_{d_\stxt}^2 = 1/h_\stxt$ and $\lVert J_{(l,m),0}(x_\mp, y_\mp)\rVert_{d_\ptxt}^2 = 1/h_\ptxt^2$. This yields the following updates for Eqs. \eqref{eq:trombaSystemFDSString}, \eqref{eq:trombaSystemFDSMass} and \eqref{eq:trombaSystemFDSPlate} at the locations of interaction
 \begin{subequations}\label{eq:statesBridgeNext}
     \begin{align}
         % \left(\frac{\rho_\text{s}A}{k^2}+\frac{\rho_\text{s}A\sigma_{0,\text{s}}}{k}\right) \ubr^{n+1} =
@@ -178,11 +176,11 @@ To solve the system, inner product of Eqs. \eqref{eq:trombaSystemFDSString} and 
 \end{subequations}
 where the update equations of the components in isolation (without the collision terms) at their respective interaction locations are
 \begin{align*}
-    \ubr^\star& = \frac{2\ubr^n-\ubr^{n-1}+c^2k^2\delta_{xx}\ubr^n-\kappa_\stxt^2k^2\delta_{xxxx}\ubr^n + \sigma_{0,\text{s}}k\ubr^{n-1} + 2\sigma_{1,\text{s}}k^2\delta_{t-}\delta_{xx}\ubr^n}{1 + \sigma_{0,\text{s}}k}, \\
+    \ubr^\star& = \frac{2\ubr^n\!-\!\ubr^{n-1}\!+\!c^2k^2\delta_{xx}\ubr^n\!-\!\kappa_\stxt^2k^2\delta_{xxxx}\ubr^n\! +\! \sigma_{0,\text{s}}k\ubr^{n-1}\! +\! 2\sigma_{1,\text{s}}k^2\delta_{t-}\delta_{xx}\ubr^n}{1 + \sigma_{0,\text{s}}k}, \\
     w^\star & = \frac{2w^n-w^{n-1}-k^2\omega_0^2w^n+\frac{\sigma_\text{m}k}{2}w^{n-1}}{1 + \frac{\sigma_\text{m}k}{2}},\\
-    \zbr^\star & = \frac{2\zbr^n-\zbr^{n-1}-\kappa_\ptxt^2k^2\delta_{\Delta\boxplus}\delta_{\Delta\boxplus}\zbr^n+\sigma_{0,\text{p}}k\zbr^{n-1}+ 2\sigma_{1,\text{p}}k^2\delta_{t-}\delta_{xx}\zbr^n}{1+\sigma_{0,\text{p}}k}.
+    \zbr^\star & = \frac{2\zbr^n-\zbr^{n-1}-\kappa_\ptxt^2k^2\delta_{\Delta\boxplus}\delta_{\Delta\boxplus}\zbr^n+\sigma_{0,\text{p}}k\zbr^{n-1}+ 2\sigma_{1,\text{p}}k^2\delta_{t-}\delta_{xx}\zbr^n}{1+\sigma_{0,\text{p}}k},
 \end{align*}
-Here, $c = \sqrt{T/\rho_\stxt A}$, $\kappa_\stxt = \sqrt{E_\stxt I /\rho_\stxt A}$ and $\kappa_\ptxt = \sqrt{D / \rho_\ptxt H}$.  
+with $c = \sqrt{T/\rho_\stxt A}$, $\kappa_\stxt = \sqrt{E_\stxt I /\rho_\stxt A}$ and $\kappa_\ptxt = \sqrt{D / \rho_\ptxt H}$.  
 
 The definitions in Eqs. \eqref{eq:statesBridgeNext} can then be inserted into Eqs. \eqref{eq:expandedEtas} and solved for $\delta_{t\cdot}\eta_\sm^n$ and $\delta_{t\cdot}\eta_\mp^n$. This can be treated as a system of linear equations and be solved according to
 \begin{equation}

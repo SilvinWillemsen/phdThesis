@@ -95,7 +95,7 @@ The main objective of this work is to implement physical models simulated using 
 As mentioned in Section \ref{sec:impossible}, using physical modelling to simulate real-life instruments relieves the physical limitations that the real world imposes on them.
 As FDTD methods are quite rigid, dynamically changing parameters while the instrument simulation is running, is a challenge. Other techniques, such as modal synthesis, are much more suitable for this, but come with the drawbacks mentioned in Section \ref{sec:physModTech}. Therefore, one of the main objectives of this project was to devise a method to allow parameters in musical instrument simulations based on FDTD methods to be dynamically varied.
 
-Throughout the PhD project, indeed a novel method was devised to smoothly change parameters over time, introducing this to FDTD methods. This method was published in \citeP[G] and will be described in detail in Part \ref{part:dynamic}.
+Throughout the PhD project, indeed a novel method was devised to smoothly change parameters over time, introducing this to FDTD methods. This method was published in \citeP[G] and will be elaborated on in Chapter \ref{ch:dynamicGrid}.
 
 \subsubsection{How can the now-virtual instruments be controlled in a natural way?}
 
@@ -106,14 +106,12 @@ The last objective of this PhD project is thus to find ways to control the instr
 Over the course of this PhD project, experiments have been done with the Sensel Morph, which is a controller containing ca. 20,000 pressure sensors that allow for highly expressive control of the instruments \cite{sensel}. This controller has been used in papers \citeP[A], \citeP[B], \citeP[C] and \citeP[D].
 
 Although the Sensel Morph allows for more expressive control than a keyboard and mouse, it does not resemble any of the interaction paradigms of the original instruments. It was thus attempted to include a controller that would be more suited for controlling the musical instrument simulation and allow for a more intuitive control.
-For one of the projects, described in paper \citeP[E], a Virtual Reality implementation of the tromba marina is controlled by the PHANTOM Omni \cite{phantom} which is a six-degrees-of-freedom haptic device. The controller contains a hand-held pen-like object that is attached to a robotic arm. The controller can be linked to a virtual environment and proviDe haptic feedback through the arm based on this environment. 
+For one of the projects, described in paper \citeP[E], a Virtual Reality implementation of the tromba marina is controlled by the PHANTOM Omni \cite{phantom} which is a six-degrees-of-freedom haptic device. The controller contains a hand-held pen-like object that is attached to a robotic arm. The controller can be linked to a virtual environment and provide haptic feedback through the arm based on this environment. 
 
-The controllers and their implementations will be discussed in-depth in \ref{part:realtime} \SWcomment[or \ref{part:contributions}].
+\section{Thesis Outline}
+Although a collection of papers format has been used, the `extended summary' has been written in a monographic style. This thesis is divided into several parts which in their turn are divided in chapters. See Figure \ref{fig:thesisOutline} for a visual overview of the thesis structure. \SWcomment[WILL SAVE THIS SECTION FOR THE END] 
 
-\section{Dissertation Outline}
-The dissertation is divided into several parts which in their turn are divided in chapters. See Figure \ref{fig:thesisOutline} for a visual overview of the thesis structure. \SWcomment[WILL SAVE THIS SECTION FOR THE END]
-
-\textbf{Part \ref{part:introduction}: Introduction} introduced the field of physical modelling for musical instruments here in Chapter \ref{ch:ch:physMod} by giving a brief history of the field and providing and background for the project. Furthermore, the project objectives and contributions to the field have been detailed. Chapter \ref{ch:FDTD} will provide a thorough introduction to finite-difference time-domain methods using simple sound-generating systems as examples, after which Chapter \ref{ch:analysis} will introduce several analysis techniques in a tutorial-like fashion. This part has -- as much as possible -- been written in layman's terms and perhaps more pedagogical than could be expected of a dissertation. 
+\textbf{Part \ref{part:introduction}: Introduction} introduced the field of physical modelling for musical instruments here in Chapter \ref{ch:physMod} by giving a brief history of the field and providing and background for the project. Furthermore, the project objectives and contributions to the field have been detailed. Chapter \ref{ch:FDTD} will provide a thorough introduction to finite-difference time-domain methods using simple sound-generating systems as examples, after which Chapter \ref{ch:analysis} will introduce several analysis techniques in a tutorial-like fashion. This part has -- as much as possible -- been written in layman's terms and is perhaps more pedagogical than could be expected of a dissertation.
 
 \textbf{Part \ref{part:resonators}: Resonators} introduces various physical models in isolation that have been used extensively throughout the project. 
 
@@ -133,6 +131,7 @@ Less focus on continuous equations and mathematical substantiation, but more on 
 
 Despite the ``collection of papers'' format that I chose to use for this work, the style of  
 
+\textbf{Part \ref{part:papers}: Papers} contains the main publications made over the course of this PhD project. Papers [A], [D], [G] and [H] 
 
 Focus on real-time implementation and control of the models in part \ref{part:realtime}
 
