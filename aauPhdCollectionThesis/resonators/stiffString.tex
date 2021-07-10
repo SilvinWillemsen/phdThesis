@@ -168,7 +168,7 @@ As done in Section \ref{sec:1DWaveDisc}, a stencil for the FD scheme implementin
     \caption{The stencil for the damped stiff string scheme in Eq. \eqref{eq:stiffStringFDS}. (Adapted from \citeP[A].)\label{fig:stencilStiffString}}
 \end{figure}
 
-\subsection{Boundary conditions}
+\subsection{Boundary conditions}\label{sec:stiffStringBoundaryConditions}
 Due to the 4\thOrder spatial derivative, two virtual grid points need to be accounted for at the boundaries of the system. Discretising the boundary conditions in \eqref{eq:stiffStringBoundConds} yields
 \begin{subequations}\label{eq:stiffStringBoundCondsDisc}
     \begin{align}
@@ -271,7 +271,7 @@ When using \texttt{MATLAB}, for a more compact implementation, it is useful to w
 where 
 \begin{equation*}
     \begin{gathered}
-    A = (1+\sz k), \quad \B = c^2 k^2 \Dxx - \kappa^2 k^2 \Dxxxx + 2 \so k \Dxx \\
+    A = (1+\sz k), \quad \B = 2\I + c^2 k^2 \Dxx - \kappa^2 k^2 \Dxxxx + 2 \so k \Dxx, \\
     \text{and} \quad \C = -(1-\sz k)\I - 2\so k \Dxx.
     \end{gathered}
 \end{equation*}
@@ -472,7 +472,23 @@ The damping terms in $\mathfrak{q}$ need to be in Joules per second, or kg $\cdo
 \end{align*}
 and also have the correct units.
 \subsubsection{Step 4: Implementation}
-An implementation of the energy for the stiff string is given in Appendix \ref{app:stiffStringCode} \todo{Add to appendix or refer to a gist}. Figure \ref{fig:energyStiffString} shows that the deviation of the total energy calculated using Eq. \eqref{eq:normalisedEnergyDamping} is within machine precision. 
+An implementation of the energy calculation for the simply supported boundary condition is given in Algorithm \ref{alg:stiffStringEnergy}. The damping is ignored but can be found in Appendix \ref{app:stiffstring}. \todo{Add to appendix or refer to a gist} Figure \ref{fig:energyStiffString} shows that the deviation of the total energy calculated using Eq. \eqref{eq:normalisedEnergyDamping} is within machine precision.
+
+\setlstMAT
+\begin{lstlisting}[caption=Calculating $\h$ for the simply supported boundary condition., label=alg:stiffStringEnergy]
+%%%% Before the main loop: %%%%
+
+% Initialise Dx+ operator to calculate potential energy due to tension
+% As the domain is reduced by one, the matrix needs to be of size N x N
+Dxp = sparse(1:N, 1:N, -ones(1, N), N, N) + ...
+        sparse(1:N-1, 2:N, ones(1, N-1), N, N);
+
+%%%% In the main loop: %%%%
+
+% energy in the system
+kinEnergy(n) = rho * A * h / 2 * sum((1/k * (u - uPrev)).^2);
+potEnergy(n) = T / 2 * h * sum((Dxp * [0; u]) .* (Dxp * [0; uPrev])) ... + E * I * h / 2 * sum((Dxx * u) .* (Dxx * uPrev));
+\end{lstlisting}
 
 \begin{figure}[h]
     \centering
@@ -489,7 +505,7 @@ An implementation of the energy for the stiff string is given in Appendix \ref{a
         \node[] (v) at (-5.75, 0.5) {\small $\color{red}\mathfrak{v}$};
         \node[] (t) at (-5.75, 0) {\small $\color{blue}\mathfrak{t}$};
       \end{tikzpicture}
-      \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the stiff string are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyStiffString}}
+      \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the stiff string are plotted in the left panel. Notice that the damping present in the system causes $\h$ to decrease. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyStiffString}}
 \end{figure}
 
 \section{Modal Analysis}

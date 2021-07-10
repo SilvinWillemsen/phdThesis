@@ -81,6 +81,9 @@
 \def\dxd{\delta_{x\cdot}} 
 \def\dxp{\delta_{x+}} 
 \def\dxm{\delta_{x-}} 
+\def\dyd{\delta_{y\cdot}} 
+\def\dyp{\delta_{y+}} 
+\def\dym{\delta_{y-}} 
 
 \def\mtt{\mu_{tt}} 
 \def\mtd{\mu_{t\cdot}} 
@@ -92,11 +95,17 @@
 \def\mxp{\mu_{x+}} 
 \def\mxm{\mu_{x-}} 
 
-\def\dTwoD{\delta_{\Delta}}
+\def\dDelta{\delta_{\Delta}}
+% \def\dDbox{\delta_{\Delta\boxplus}}
+\def\dyy{\delta_{yy}}
 
 % matrix operators
 \def\Dxx{\mathbf{D}_{xx}}
 \def\Dxxxx{\mathbf{D}_{xxxx}}
+\def\DDeltamat{\mathbf{D}_\Delta}
+\def\DDeltaDelta{\mathbf{D}_{\Delta\Delta}}
+
+\def\Dyy{\mathbf{D}_{yy}}
 
 % often-used variables
 \def\sz{\sigma_{0}}
@@ -146,8 +155,8 @@
 \input{frontmatter/abstract}
 \input{frontmatter/preface}
 \input{frontmatter/listOfPublications}
-% \input{frontmatter/listOfSymbols.tex}
-% \input{frontmatter/listOfAbbreviations.tex}
+\input{frontmatter/listOfSymbols.tex}
+\input{frontmatter/listOfAbbreviations.tex}
 \cleardoublepage
 \pdfbookmark[0]{Contents}{label:contents}
 \pagestyle{fancy} %enable headers and footers again
@@ -166,20 +175,20 @@
 \part{Resonators}\label{part:resonators}
 \input{resonators/resonators}
 
-\part{Exciters}\label{part:exciters}
-\input{exciters/exciters}
+% \part{Exciters}\label{part:exciters}
+% \input{exciters/exciters}
 
-\part{Interactions}\label{part:interactions}
-\input{interactions/interactions}
+% \part{Interactions}\label{part:interactions}
+% \input{interactions/interactions}
 
-% \part{Real-Time Implementation and Control}\label{part:realtime}
-% \input{realtime/realtime}
+% % % \part{Real-Time Implementation and Control}\label{part:realtime}
+% % % \input{realtime/realtime}
 
-\part{Contributions}\label{part:contributions}
-\input{contributions/contributions}
+% \part{Contributions}\label{part:contributions}
+% \input{contributions/contributions}
 
-% \part{Complete Instruments}\label{part:instrument}
-% \input{instrument/instrument}
+% % % \part{Complete Instruments}\label{part:instrument}
+% % % \input{instrument/instrument}
 
 \part{Conclusions and Perspectives}\label{part:conclusion}
 \input{conclusion/conclusion.tex}
@@ -230,8 +239,7 @@
       \setcounter{chapter}{0} % reset stuff
       \renewcommand\thesection{\arabic{section}}
       \part{Papers}\label{part:papers}
-      \input{papers/paperErrata}
-      \pagestyle{plain}
+      % \pagestyle{plain}
       \titleformat{%command
       \chapter
       }[%shape

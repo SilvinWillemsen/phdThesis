@@ -21,25 +21,10 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{Valimaki2006}
-V.~V\"{a}lim\"{a}ki, J.~Pakarinen, C.~Erkut, and M.~Karjalainen,
-  ``Discrete-time modelling of musical instruments,'' \emph{Institute of
-  Physics Publishing}, 2006.
-
-\bibitem{Smith2010b}
-\BIBentryALTinterwordspacing
-J.~O. Smith, ``Physical audio signal processing (online book),'' 2010.
-  [Online]. Available: \url{http://ccrma.stanford.edu/~jos/pasp/}
-\BIBentrySTDinterwordspacing
-
 \bibitem{theBible}
 S.~Bilbao, \emph{Numerical Sound Synthesis: Finite Difference Schemes and
   Simulation in Musical Acoustics}.\hskip 1em plus 0.5em minus 0.4em\relax John
   Wiley \& Sons, 2009.
-
-\bibitem{Smith2010a}
-J.~O. Smith, ``Virtual acoustic musical instruments: Review and update,''
-  \emph{Center for computer research in music and acoustics (CCRMA)}, 2010.
 
 \bibitem{Chowning1973}
 J.~Chowning, ``The synthesis of complex audio spectra by means of frequency
@@ -90,6 +75,12 @@ J.~O. Smith, ``Music applications of digital waveguides,'' Technical Report,
 ------, ``Physical modeling using digital waveguides,'' \emph{Computer Music
   Journal}, vol.~16, no.~4, pp. 74--91, 1992.
 
+\bibitem{Smith2010b}
+\BIBentryALTinterwordspacing
+------, ``Physical audio signal processing (online book),'' 2010. [Online].
+  Available: \url{http://ccrma.stanford.edu/~jos/pasp/}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Adrien1991}
 J.-M. Adrien, ``The missing link: Modal synthesis,'' in \emph{Representations
   of Musical Signals}, G.~{De Poli}, A.~Picalli, and C.~Roads, Eds.\hskip 1em
@@ -111,6 +102,15 @@ G.~{De Poli} and D.~Rocchesso, ``Physically based sound modelling,''
 \bibitem{Fletcher1998}
 N.~H. Fletcher and T.~D. Rossing, \emph{The Physics of Musical
   Instruments}.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 1998.
+
+\bibitem{Valimaki2006}
+V.~V\"{a}lim\"{a}ki, J.~Pakarinen, C.~Erkut, and M.~Karjalainen,
+  ``Discrete-time modelling of musical instruments,'' \emph{Institute of
+  Physics Publishing}, 2006.
+
+\bibitem{Smith2010a}
+J.~O. Smith, ``Virtual acoustic musical instruments: Review and update,''
+  \emph{Center for computer research in music and acoustics (CCRMA)}, 2010.
 
 \bibitem{Bilbao2018}
 S.~Bilbao, B.~Hamilton, R.~L. Harrison, and A.~Torin, ``Finite-difference
@@ -297,167 +297,18 @@ A.~Webster, ``Acoustical impedance, and the theory of horns and of the
 S.~A. van Duyne and J.~O. Smith, ``Physical modeling with the {2-D} digital
   waveguide mesh,'' in \emph{ICMC Proceedings}, 1993.
 
-\bibitem{Bowden1939}
-F.~P. Bowden and L.~Leben, ``The nature of sliding and the analysis of
-  friction,'' in \emph{Proceedings of the Royal Society of London}, vol. 169,
-  1939.
+\bibitem{Horn1991}
+R.~A. Horn and C.~R. Johnson, \emph{Topics in Matrix Analysis}.\hskip 1em plus
+  0.5em minus 0.4em\relax Cambridge University Press, 1991.
 
-\bibitem{Helmholtz1860}
-H.~L.~F. von Helmholtz, \emph{On the Sensations of Tone as a Physiological
-  Basis for the Theory of Music}, 1954, english translation of 1863 (German)
-  edition by A. J. Ellis.
+\bibitem{DAFxChapter}
+V.~V{\"a}lim{\"a}ki, S.~Bilbao, J.~O. Smith, J.~S. Abel, J.~Pakarinen, and
+  D.~Berners, ``Virtual analog effects,'' in \emph{DAFX: Digital Audio
+  Effects}, 2nd~ed., U.~Z{\"o}lzer, Ed.\hskip 1em plus 0.5em minus 0.4em\relax
+  John Wiley \& Sons Ltd., 2011, pp. 473--522.
 
-\bibitem{Smith1986}
-J.~O. Smith, ``Efficient simulation of the reed bore and bow string
-  mechanics,'' \emph{ICMC 86}, pp. 275--280, 1986.
-
-\bibitem{Florens1986}
-J.-L. Florens, A.~Razafindrakoto, A.~Luciani, and C.~Cadoz, ``Optimized real
-  time simulation of objects for musical synthesis and animated image
-  synthesis,'' \emph{ICMC 86}, pp. 65--70, 1986.
-
-\bibitem{Dupont2002}
-P.~Dupont, V.~Hayward, B.~Armstrong, and F.~Altpeter, ``Single state
-  elastoplastic friction models,'' \emph{IEEE Transactions on Automatic
-  Control}, vol.~47, no.~5, pp. 787--792, 2002.
-
-\bibitem{Serafin2003}
-S.~Serafin, F.~Avanzini, and D.~Rocchesso, ``Bowed string simulation using an
-  elasto-plastic friction model,'' \emph{SMAC 03}, pp. 95--98, 2003.
-
-\bibitem{Serafin2004}
-S.~Serafin, ``The sound of friction: Real-time models, playability and musical
-  applications,'' Ph.D. dissertation, CCRMA, 2004.
-
-\bibitem{Woodhouse2003}
-J.~Woodhouse, ``Bowed string simulation using a thermal friction model,''
-  \emph{Acta Acustica united with Acustica}, vol.~89, pp. 355--368, 2003.
-
-\bibitem{Coulomb1773}
-C.~A. Coulomb, ``Sur une application des r\`egles de maximis et minimis \`a
-  quelques probl\`emes de statique, relatifs \`a l'architecture [{O}n maximums
-  and minimums of rules to some static problems relating to architecture],''
-  \emph{M\'emoires de Mathematique de l'Acad\'emie Royale de Science}, vol.~7,
-  pp. 343--382, 1773.
-
-\bibitem{Morin1833}
-A.~Morin, ``New friction experiments carried out at metz in 1831-1833,'' in
-  \emph{Proceedings of the French Royal Academy of Sciences}, 1833, pp. 1--128.
-
-\bibitem{Reynolds1886}
-O.~Reynolds, ``On the theory of lubrication and its application to {Mr.
-  Beauchamp} tower’s experiments, including an experimental determination of
-  the viscosity of olive oil,'' in \emph{Proceedings of the Royal Society of
-  London}, vol.~40, 1886, pp. 191--203.
-
-\bibitem{Stribeck1902}
-R.~Stribeck, ``Die wesentlichen eigenschaften der gleit- und rollenlager [{T}he
-  essential properties of sliding and roller bearings],'' \emph{Zeitschrift des
-  Vereins Deutscher Ingenieure}, vol.~46, no. (38,39), pp. 1342--48,1432--37,
-  1902.
-
-\bibitem{Dahl1968}
-P.~Dahl, ``A solid friction model,'' Technical report, The Aerospace
-  Corporation, 1968.
-
-\bibitem{Canudas1993}
-C.~Canudas~de Wit, H.~Olsson, K.~J. \r{A}str\"om, and P.~Lischinsky, ``Dynamic
-  friction models and control design,'' \emph{Proceedings of the 1993 American
-  Control Conference}, pp. 1920--1926, 1993.
-
-\bibitem{Canudas1995}
-------, ``A new model for control of systems with friction,'' \emph{IEEE
-  Transactions on Automatic Control}, vol.~40, no.~3, pp. 419--425, 1995.
-
-\bibitem{Avanzini2005}
-F.~Avanzini, S.~Serafin, and D.~Rocchesso, ``Interactive simulation of rigid
-  body interaction with friction-induced sound generation,'' \emph{IEEE
-  Transactions on Speech and Audio Processing}, vol.~13, no.~5, pp. 1073--1080,
-  2005.
-
-\bibitem{Olsson1996}
-H.~Olsson, ``Control systems with friction,'' Ph.D. dissertation, Lund
-  University, 1996.
-
-\bibitem{Chatziioannou2013}
-V.~Chatziioannou and M.~van Walstijn, ``An energy conserving finite difference
-  scheme for simulation of collisions,'' in \emph{Proceedings of the Sound and
-  Music Computing Conference 2013}, 2013, pp. 584--591.
-
-\bibitem{Bilbao2014}
-S.~Bilbao, A.~Torin, and V.~Chatziioannou, ``Numerical modeling of collisions
-  in musical instruments,'' \emph{Acta Acustica united with Acustica}, vol.
-  101, no.~1, pp. 155--173, 2014.
-
-\bibitem{Ducceschi2021}
-M.~Ducceschi, S.~Bilbao, S.~Willemsen, and S.~Serafin, ``Linearly-implicit
-  schemes for collisions in musical acoustics based on energy quadratisation,''
-  \emph{Journal of the Acoustical Society of America (JASA)}, vol. 149, pp.
-  3502--3516, 2021.
-
-\bibitem{Lopes2015}
-N.~Lopes, T.~H{\`e}lie, and A.~Falaize, ``“explicit second-order accurate
-  method for the passive guaranteed simulation of port-hamiltonian systems,''
-  in \emph{Proceedings of the 5th IFAC 2015}, 2015, pp. 223--228.
-
-\bibitem{Yang2017}
-X.~Yang, ``Linear and unconditionally energy stable schemes for the binary
-  fluid-surfactant phase field model,'' \emph{Computer Methods in Applied
-  Mechanics and Engineering}, vol. 318, pp. 1005--1029, 2017.
-
-\bibitem{Jiang2019}
-C.~Jiang, W.~Cai, and Y.~Wang, ``A linearly implicit and local
-  energy-preserving scheme for the sine-gordon equation based on the invariant
-  energy quadratization approach,'' \emph{Journal of Scientific Computing},
-  vol.~80, 2019.
-
-\bibitem{Ducceschi2019}
-M.~Ducceschi and S.~Bilbao, ``Non-iterative solvers for nonlinear problems: The
-  case of collisions,'' \emph{Proceedings of the 22th International Conference
-  on Digital Audio Effects (DAFx-19)}, 2019.
-
-\bibitem{Bilbao2019}
-S.~Bilbao, M.~Ducceschi, and C.~Webb, ``Large-scale real-time modular physical
-  modeling sound synthesis,'' in \emph{Proceedings of the 22th International
-  Conference on Digital Audio Effects (DAFx-19)}, 2019.
-
-\bibitem{Gomm2011}
-\BIBentryALTinterwordspacing
-J.~Gomm, ``Passionflower,'' 2011. [Online]. Available:
-  \url{https://www.youtube.com/watch?v=nY7GnAq6Znw}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Mayer2008}
-\BIBentryALTinterwordspacing
-J.~Mayer, ``{Gravity (Live in L.A.)},'' 2008. [Online]. Available:
-  \url{https://youtu.be/dBFW8OvciIU?t=284}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Glenn2014}
-\BIBentryALTinterwordspacing
-T.~L. Glenn, ``Amazing hammered dulcimer musician - joshua messick,'' 2014.
-  [Online]. Available: \url{https://youtu.be/veuGTnzgNRU?t=215}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Wessel2002}
-D.~Wessel and M.~Wright, ``Problems and prospects for intimate musical control
-  of computers,'' \emph{Computer Music Journal}, vol.~26, no.~3, 2002.
-
-\bibitem{Webb2015}
-C.~Webb and S.~Bilbao, ``On the limits of real-time physical modelling
-  synthesis with a modular environment,'' in \emph{Proceedings of the 18th
-  International Conference on Digital Audio Effects (DAFx)}, 2015.
-
-\bibitem{CPPdenormalised}
-\BIBentryALTinterwordspacing
-exception, ``double - and how to use it,'' 2008. [Online]. Available:
-  \url{http://www.cplusplus.com/articles/Nb07M4Gy/}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Eigen}
-\BIBentryALTinterwordspacing
-G.~Guennebaud, B.~Jacob \emph{et~al.}, ``Eigen,'' 2021. [Online]. Available:
-  \url{http://eigen.tuxfamily.org}
-\BIBentrySTDinterwordspacing
+\bibitem{Kirchhoff1968}
+P.~Morse and U.~Ingard., \emph{Theoretical Acoustics}.\hskip 1em plus 0.5em
+  minus 0.4em\relax Princeton University Press, 1968.
 
 \end{thebibliography}

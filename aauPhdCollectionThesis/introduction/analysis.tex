@@ -197,7 +197,7 @@ The identity matrix is necessary here for correct matrix addition.
 Some useful mathematical tools used for the energy analysis techniques presented in Section \ref{sec:energyAnalysis} will be shown here. The tools shown here can be applied to 1D systems. These will be extended to 2D systems in Chapter \ref{ch:2Dsyst}. Unless denoted otherwise, the notation and theory will follow \cite{theBible}.
 
 \subsection{Inner product}\label{sec:innerProduct}
-For two functions $f(x,t)$ and $g(x,t)$ defined for $x\in\D$ where $\mathcal{D} = [0,L]$, their $l_2$ inner product and $l_2$ norm are defined as
+For two functions $f = f(x,t)$ and $g = g(x,t)$ defined for $x\in\D$ where $\mathcal{D} = [0,L]$, their $l_2$ inner product and $l_2$ norm are defined as
 \begin{equation}\label{eq:contInnerProd}
     \langle f, g\rangle_\D = \int_\D fg dx \quad \text{and} \quad \lVert f \rVert_\D = \sqrt{\langle f, f \rangle_\D}.
 \end{equation}
@@ -341,7 +341,7 @@ If a system is distributed in space, one can perform a spatial Fourier transform
 \begin{equation}
     \hat u  = \sum_{n=-\infty}^\infty \uln z^{-n}\qaq \tilde u = \sum_{l=-\infty}^\infty \uln e^{-jl\beta h}
 \end{equation}
-with complex number $z = e^{sk}$, complex frequency $s=j\omega + \sigma$ (more elaborated on in \ref{sec:modalAnalysis}) and real wavenumber $\beta$. Frequency-domain analysis in 2D will be elaborated on in Section \ref{sec:analysis2D}.\todo{check if I should not refer to a subsection}
+with complex number $z = e^{sk}$, complex frequency $s=j\omega + \sigma$ (more elaborated on in \ref{sec:modalAnalysis}) and real wavenumber $\beta$. Frequency-domain analysis in 2D will be elaborated on in Section \ref{sec:stability2Dwave}.
 
 A shortcut to performing a full frequency-domain analysis is to use a test solution, or \textit{ansatz}, and replace the grid functions by their transforms. The grid function for a 1D system can be replaced by an ansatz of the form (1D) \cite{Strikwerda1989}\todo{check reference}
 \begin{equation}\label{eq:ansatz}
@@ -541,6 +541,13 @@ In this section, four steps are presented and can be followed to perform a full 
 
 \subsection{Energy Analysis: A 4-Step Tutorial}
 
+%% 4 steps for copy-pasting:
+
+% \subsubsection{Step 1: Obtain $\dtp \h$}
+% \subsubsection{Step 2: Identify energy types and isolate $\dtp$}
+% \subsubsection{Step 3: Check units}
+% \subsubsection{Step 4: Implementation}
+
 \subsubsection{Step 1: Obtain the rate of change of the total energy $\dtp \h$.}
 The first step to energy analysis is to take the appropriate \textit{norm} of the scheme (see Eq. \eqref{eq:contInnerProd}), which yields and expression for the rate of change of the energy of the system: $\dtp\h$. Usually, this means to take the inner product of the scheme with $(\dtd \uln)$. See Section \ref{sec:innerProduct} for more details on the inner product. Note that the forward time difference $\dtp$ is used (and not the backwards or centred) because of convention and preference [Bilbao, verbally].
 
@@ -682,7 +689,7 @@ Summation by parts as described in Section \ref{sec:summationByParts}  can be us
 \end{equation*}
 where the boundary term
 \begin{equation*}
-    \mathfrak{b} = T(\dtd u_N^n)(\dxp u_N^n) - T(\dtd u_0^n) (\dxp u_{-1}^n),
+    \mathfrak{b} = T(\dtd u_N^n)(\dxp u_N^n) - T(\dtd u_0^n) \underbrace{(\dxp u_{-1}^n)}_{\dxm u_0^n},
 \end{equation*}
 and reduced domain $\underline{d} = \{0, \hdots, N-1\}$. As Dirichlet boundary conditions are used, the boundary term vanishes as 
 \begin{equation*}

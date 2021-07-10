@@ -1,9 +1,33 @@
 % mainfile: ../master.tex
 \chapter*{Abstract\markboth{Abstract}{Abstract}}\label{ch:Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-\todo{directly copy-pasted, also contains citations, etc.}
-Physical modelling %, along with sampling synthesis (also known as wavetable synthesis \cite{Smith2010a}) and spectral modelling, 
-is a technique \SWcomment[/approach] to synthesise sound. It is widely accepted that physical modelling is the best way to realistically and naturally simulate real-world musical instruments \cite{Valimaki2006, Smith2010b, theBible}. As this technique simulates the instrument based on its physics rather than using pre-recorded samples, it is more flexible to player-interaction and thus more realistic when synthesising sound in performance. Although physical models could potentially sound indistinguishable from the instrument that they are simulating, it has been impossible, until recently, to make highly physically accurate physical models ‘playable’ in real-time \cite{Smith2010a}. With the computational power we currently possess, we can run the simulations in real-time and make them available for musicians in latency-less applications. These applications include digital instrument plug-ins that can be used by music producers, but also resurrect old or rare instruments that can not be played anymore due to damage, or because they are too valuable.
+Digital musical instruments exist in large quantities and numerous strategies to virtualise traditional instruments exist. Although one could create digital musical instruments using pre-recorded samples of their real-life counterparts, the playability and interaction of the instruments will not be captured. Instead, a simulation of the underlying physics of the instrument could be created, and is much more flexible to player interaction. This \textit{physical model} will allow a musician to be much more expressive when playing the digital instrument than if static samples were to be used. Using ad hoc hardware to control the simulation could potentially make the simulated instrument feel identical to the original.
+
+% Physical models can be used to simulate traditional musical instruments that are too rare or valuable to be played. These cases 
+
+% Furthermore, 
+Applications of physical modelling for musical instruments include simulating instruments that are unplayable as they are too rare or vulnerable. A model of the underlying physics of the instrument could potentially resurrect the instrument make it available to the public again. 
+Furthermore, as a simulation is not restricted by the laws of physics, one could extend the possibilities of the original instrument. Properties such as the material or geometry of an instrument could be dynamically changed and broaden the range of expression of the musician. One could even imagine physically impossible musical instruments which still exhibit a natural sound due to the underlying models.
+
+Many physical modelling techniques exist, where finite-difference time-domain (FDTD) methods have an advantage in terms of generality and flexibility regarding the systems they can model. A drawback of these methods is that they are quite computationally expensive, and although many highly accurate models based on these methods have existed for years, the computing power to run them in real time has only recently become available. The main challenge %introduced by these methods 
+% and physical modelling in general are: 
+% \begin{enumerate}
+%     \item the underlying physical model needs to be formulated, which gets increasingly complex for higher accuracy, and
+%     \item  
+is thus to run the simulations in real time to allow for proper player interaction.
+
+This work presents the development and real-time implementation of various physical models of traditional musical instruments based on FDTD methods. These instruments include the trombone, the violin and more obscure instruments such as the hurdy gurdy and the tromba marina. Furthermore, a novel method is presented that paves the way for dynamic parameters in FDTD-based musical instrument simulations allowing for physically impossible instrument manipulations. Finally, this work doubles as an aid for beginners in the field of musical instrument simulations based on FDTD methods, and aims to provide a low-entry-level explanation of the literature and theory that the physical models are based on. 
+
 \chapter*{Resumé\markboth{Resumé}{Resumé}}\label{ch:Resume}
 \addcontentsline{toc}{chapter}{Resumé}
-Danish Abstract
+Digitale musikinstrumenter findes i store m{\ae}ngder, og der findes adskillige strategier til virtualisering af traditionelle instrumenter. Selvom man kunne oprette digitale musikinstrumenter ved hj{\ae}lp af optagelser eller samples af deres virkelige kolleger, bliver instrumenternes spilbarhed og interaktion ikke fanget. I stedet kunne en simulering af instrumentets underliggende fysik oprettes og er meget mere fleksibel for spillerinteraktion. Denne \textit{fysiske model} g{\o}r det muligt for en musiker at v{\ae}re meget mere udtryksfuld, når han spiller det digitale instrument, end hvis der skulle bruges statiske optagelser. Brug af ad hoc hardware til at kontrollere simuleringen kan muligvis få det simulerede instrument til at f{\o}les identisk med originalen.
+
+% Fysiske modeller kan bruges til at simulere traditionelle musikinstrumenter, der er for sj{\ae}ldne eller v{\ae}rdifulde til at blive spillet. Disse sager
+
+% Desuden,
+Anvendelser af fysisk modellering af musikinstrumenter inkluderer at simulerer instrumenter der ikke kan afspilles, da de er for sj{\ae}ldne eller sårbare. En model af instrumentets underliggende fysik kan potentielt genoplive instrumentet og g{\o}re det tilg{\ae}ngeligt for offentligheden igen.
+Desuden, da en simulering ikke er begr{\ae}nset af fysikens love, kunne man udvide mulighederne for det originale instrument. Egenskaber som et instruments materiale eller geometri kunne {\ae}ndres dynamisk og udvide musikerens udtryk. Man kunne endda forestille sig fysisk umulige musikinstrumenter, der stadig udviser en naturlig lyd på grund af de underliggende modeller.
+
+Der findes mange fysiske modelleringsteknikker, hvor FDTD (finite-difference time-domain) metoder har en fordel med hensyn til generalitet og fleksibilitet med hensyn til de systemer, de kan modellere. En ulempe ved disse metoder er, at de er ret beregningsdygtige, og selvom der har eksisteret mange meget n{\o}jagtige modeller baseret på disse metoder i årevis, er computerkraften til at k{\o}re dem i real time f{\o}rst for nylig blevet tilg{\ae}ngelig. Den st{\o}rste udfordring er således at k{\o}re simuleringerne i real time for at muligg{\o}re korrekt spillerinteraktion.
+
+Dette arbejde pr{\ae}senterer udviklingen og realtidsimplementeringen af forskellige fysiske modeller af traditionelle musikinstrumenter baseret på FDTD metoder. Disse instrumenter inkluderer trombonen, violinen og mere uklare instrumenter såsom den hurdy gurdy og den tromba marina. Desuden pr{\ae}senteres en ny metode, der baner vejen for dynamiske parametre i FDTD-baserede musikinstrumentsimuleringer, der muligg{\o}r fysisk umulige instrumentmanipulationer. Endelig fungerer dette arbejde som et hj{\ae}lpemiddel til begyndere inden for simuleringer af musikinstrumenter baseret på FDTD-metoder og sigter mod at give en low-entry-level forklaring af litteraturen og teorien, som de fysiske modeller er baseret på.

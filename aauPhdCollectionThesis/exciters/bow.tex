@@ -19,9 +19,9 @@ The string `sticks' to the bow after which it `slips' when the restoring force o
 The Helmholtz motion gives bowed string instruments, such as the violin and cello, their characteristic sound. \SWcomment[helmholtz output figure]
 
 \subsubsection{Brief history of bowed-string simulation}
-The first nonlinear systems in the context of musical instrument simulations, including the bowed string, were presented by McIntyre, et al. in 1983 \cite{McIntyre1983}. The first real-time implementation of the bowed string was due to Smith in 1986 and used digital waveguides for the string and a look-up table for the friction model \cite{Smith1986}. Simultaneously, Florens et al. published a real-time implementation of the bowed string, but instead, the string was modelled using mass-spring systems and the friction model used a static friction model \cite{Florens1986} (see Section \ref{sec:staticFricMod}). One of the most complex friction models applied in a musical context to-date is the elasto-plastic friction model due to Dupont \cite{Dupont2002}, which Serafin et al. \cite{Serafin2003, Serafin2004} applied to a digital waveguide implementation of the string. 
+The first nonlinear systems in the context of musical instrument simulations, including the bowed string, were presented by McIntyre, et al. in 1983 \cite{McIntyre1983}. The first real-time implementation of the bowed string was due to Smith in 1986 and used digital waveguides for the string and a look-up table for the friction model \cite{Smith1986}. Simultaneously, Florens et al. presented a real-time implementation of the bowed string, but instead, the string was modelled using mass-spring systems and the friction model used a static friction model \cite{Florens1986} (see Section \ref{sec:staticFricMod}). One of the most complex friction models applied in a musical context to-date is the elasto-plastic friction model due to Dupont \cite{Dupont2002}, which Serafin et al. \cite{Serafin2003, Serafin2004} applied to a digital waveguide implementation of the string. 
 
-The first \SWcomment[$\leftarrow$ check with stefania] appearance of FDTD methods in bowed string simulations was by Maestre et al. in \cite{Maestre2014} where these methods were used to implement a thermal friction model proposed by Woodhouse in \cite{Woodhouse2003}. The string, however, was implemented using digital waveguides. Desvages implemented a bowed string model using a static friction model and a two-polarisation FDTD model for the string in \cite{Desvages2016, Desvages2018}, but did not implement this in real-time. This chapter presents the first contribution of this dissertation published in papers \citeP[A] and \citeP[C]. Firstly, paper \citeP[A] shows the first real-time implementation of a bowed stiff string fully modelled using FDTD methods. Secondly, \citeP[C] presents the first (real-time) implementation of the elasto-plastic friction model applied to a FD scheme in a musical context.
+The first appearance of FDTD methods in bowed string simulations was in a publication by Pitteroff and Woodhouse in \cite{Pitteroff1998}. Later, Maestre et al. in \cite{Maestre2014} used FDTD methods to implement a thermal friction model proposed by Woodhouse in \cite{Woodhouse2003}. In both cases, the string was implemented using digital waveguides. Desvages implemented a bowed string model using a static friction model and a two-polarisation FDTD model for the string in \cite{Desvages2016, Desvages2018}, but did not implement this in real-time. This chapter presents the first contribution of this dissertation published in papers \citeP[A] and \citeP[C]. Firstly, paper \citeP[A] shows the first real-time implementation of a bowed stiff string fully modelled using FDTD methods. Secondly, \citeP[C] presents the first (real-time) implementation of the elasto-plastic friction model applied to a FD scheme in a musical context.
 \\
 
 Before introducing various friction models, a brief introduction on interpolation and spreading operators will be given, which will be necessary to work with this type of excitation.
@@ -36,14 +36,14 @@ The simplest interpolation operator is of '0\textsuperscript{th}'-order and is d
         0, & \text{otherwise},
     \end{cases}
 \end{equation}
-where the grid location of interest is defined as $l_\itxt = \floor[x_\itxt / h]$ (see Figure \ref{fig:zerothOrderInterpol}). Instead of actually performing an interpolation operation, $I_0$ simply floors its input to the grid location below. As an example, for a 1D system of length $L=1$ described by $u(x,t)$, the location of interest is at $x_\itxt = 0.25$. If the grid spacing $h = 0.2$ the grid point of interest will be $l_\itxt = \floor[0.25/0.2] = \floor[1.25] = 1$. Writing this in operator form yields
-\begin{equation*}
-    u(0.25, t)\approxeq I_{l,0}(0.25)\uln = u_1^n.
-\end{equation*}
-
+where the grid location of interest is defined as $l_\itxt = \floor[x_\itxt / h]$ (see Figure \ref{fig:zerothOrderInterpol}). Instead of actually performing an interpolation operation, $I_0$ simply floors its input to the grid location below. 
+%As an example, for a 1D system of length $L=1$ described by $u(x,t)$, the location of interest is at $x_\itxt = 0.25$. If the grid spacing $h = 0.2$ the grid point of interest will be $l_\itxt = \floor[0.25/0.2] = \floor[1.25] = 1$. Writing this in operator form yields
+% \begin{equation*}
+%     u(0.25, t)\approxeq I_{l,0}(0.25)\uln = u_1^n.
+% \end{equation*}
+%
 % \input{exciters/interpolation.tex}
-
-
+%
 A slightly more accurate way to perform 0\thOrder interpolation is to \textit{round} $x_\itxt/h$ to the nearest neighbour, rather than using the flooring operation. 
 
 First-order or linear interpolation also uses the fractional part of the flooring operation according to $\alpha_\itxt = x_\itxt / h - l_\itxt$ and is defined as
@@ -54,10 +54,11 @@ First-order or linear interpolation also uses the fractional part of the floorin
         0 & \text{otherwise.}
     \end{cases}
 \end{equation}
-See Figure \ref{fig:firstOrderInterpol}. When applied to a grid function, its values will be multiplied multiplications get added to obtain the interpolated value. Using the same example as before, $\alpha = 1.25 - \floor[1.25] = 0.25$ and
-\begin{equation*}
-    u(0.25, t)\approxeq I_{l,1}(0.25)\uln = 0.75u_1^n + 0.25 u_2^n,
-\end{equation*}
+See Figure \ref{fig:firstOrderInterpol}. When applied to a grid function, its values will be multiplied multiplications get added to obtain the interpolated value. 
+% Using the same example as before, $\alpha = 1.25 - \floor[1.25] = 0.25$ and
+% \begin{equation*}
+%     u(0.25, t)\approxeq I_{l,1}(0.25)\uln = 0.75u_1^n + 0.25 u_2^n,
+% \end{equation*}
 
 The highest order interpolator used in this project is the Lagrange cubic interpolator: 
 \begin{equation}\label{eq:cubicI}
@@ -69,14 +70,15 @@ The highest order interpolator used in this project is the Lagrange cubic interp
         0, & \text{otherwise.}
     \end{cases}
 \end{equation}
-See Figure \ref{fig:cubicInterpol}. Applied to a grid function using the same example as before, yields
-\begin{equation*}
-    u(0.25, t)\approxeq I_{l,3}(0.25)\uln = -0.0547u_0^n + 0.8203u_1^n + 0.2734u_2^n -0.0391 u_3^n.
-\end{equation*}
-Notice that the sum of all values of $I(x_\itxt)$, regardless of the order of interpolation, add up to $1$.
+See Figure \ref{fig:cubicInterpol}. 
+% Applied to a grid function using the same example as before, yields
+% \begin{equation*}
+%     u(0.25, t)\approxeq I_{l,3}(0.25)\uln = -0.0547u_0^n + 0.8203u_1^n + 0.2734u_2^n -0.0391 u_3^n.
+% \end{equation*}
+Notice that the sum of all values of $I(x_\itxt)$, regardless of the order of interpolation or the value of $\alpha_\itxt$, add up to $1$.
 
 \def\figWidth{0.32}
-\begin{figure}[h]
+\begin{figure}[b]
     \centering
     \subfloat[$0$\thOrder interpolation.\label{fig:zerothOrderInterpol}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/noInterpol2.pdf}}\hfill
     \subfloat[Linear interpolation.\label{fig:firstOrderInterpol}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/linearInterpol2.pdf}}\hfill
@@ -132,14 +134,13 @@ for any (grid) function $f$ and discrete domain $d$. From this, it follows that 
 \begin{equation}
     \langle  J_o(x_\itxt), J_o(x_\itxt)\rangle_d = \lVert J_o(x_\itxt)\rVert^2_d = I_o(x_\itxt)J_o(x_\itxt).
 \end{equation}
-See Section \eqref{sec:innerProduct} for more details on the inner product and the norm.
+See Section \ref{sec:innerProduct} for more details on the inner product and the norm.
 
 \subsubsection{Other distributions}
 This section presented interpolation and spreading operators that interact with the state of a FD scheme at a single point $x_\itxt$ and either interpolates or distributes over a range of points. Although multiple grid points might be used for these operations, the interpolation or spreading is not \textit{distributed}. One could make an arbitrary distribution function $E$ with elements $e_l$ (in 1D) where $l\in d$ for discrete domain $d$ of the system at hand. The \textit{distribution} and spreading operators become
 \begin{equation}
     I_l = \frac{e_l}{\sum_d e_l} \qaq J_l = \frac{1}{h}I_l.
 \end{equation}
-
 Although any values for $E$ would work, to retain correct scaling, the sum of $E$ needs to be normalised to $1$ as shown above.
 
 \section{The Newton-Raphson Method}\label{sec:newtonRaphson}
@@ -360,7 +361,7 @@ As opposed to less complex static friction models, dynamic friction models relat
 The first dynamic friction model was due to Dahl \cite{Dahl1968} and captured hysteresis effects. The Stribeck effect was, however, not taken into account. The LuGre model (named after the collaboration between Lund and Grenoble) was then proposed by Canudas de Wit et al. in \cite{Canudas1993, Canudas1995} and extended the Dahl model to take the Stribeck effect into account. The model assumes a large ensemble of bristles between the two sliding surfaces, each of which contributes a tiny amount to the total friction force. The drawback of this model is that it exhibits drift for extremely small external forces. In \cite{Dupont2002}, Dupont et al. extended the LuGre model by allowing for a purely elastic regime that solves the drift issue. This model is referred to as the \textit{elasto-plastic} friction model and is used in this project.
 
 \subsection{The Elasto-Plastic friction model}
-In a musical context, the elasto-plastic friction has been thoroughly investigated by Serafin et al. in \cite{Serafin2003, Serafin2004, Avanzini2005}. Like the LuGre model, the elasto-plastic friction model assumes that the friction between the bow and the string is caused by a large quantity of bristles, each of which contributes to the total amount of friction. See Figure \ref{fig:elastoPlastic}.
+In a musical context, the elasto-plastic friction has been investigated in-depth by Serafin et al. in \cite{Serafin2003, Serafin2004, Avanzini2005}. Like the LuGre model, the elasto-plastic friction model assumes that the friction between the bow and the string is caused by a large quantity of bristles, all contributing a fraction of the total amount of friction. See Figure \ref{fig:elastoPlastic}.
 
 \input{exciters/elastoPlasticFig.tex}
 
@@ -385,7 +386,7 @@ where the $v_\text{S}$ is the Stribeck velocity (in m/s). Furthermore, $f_\text{
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/exciters/steadyState.eps}
-    \caption{\label{fig:zss}A plot of the steady-state function $z_\text{ss}(v)$ with $s_0 = 10^4$, $\mu_\text{C} = 0.3$, $\mu_\text{S} = 0.8$, $v_\text{S} = 0.1$ and $f_\text{N} = 5$.}
+    \caption{\label{fig:zss}The steady-state function $z_\text{ss}(v)$ plotted against relative velocity $v$ with $s_0 = 10^4$, $\mu_\text{C} = 0.3$, $\mu_\text{S} = 0.8$, $v_\text{S} = 0.1$ and $f_\text{N} = 5$.}
 \end{figure}
 
 Finally, $\alpha(v,z)$ in Eq. \eqref{eq:zdot} is an adhesion map between the bow and the string and is defined as
@@ -412,7 +413,7 @@ with break-away displacement $z_\text{ba} = 0.7 f_\text{C}/s_0$ \todo{so is $z_\
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/exciters/drawAlpha3.eps}
-    \caption{\label{fig:alphaPlot}A plot of the adhesion map $\alpha(v,z)$ plotted against $z$ when the signs of $v$ and $z$ are the same. The different regions of the map are shown with the coloured areas and correspond to Figure \ref{fig:elastoPlastic} according to: yellow - a) \& b), orange - c) and red - d). (Adapted from paper \citeP[C])}
+    \caption{\label{fig:alphaPlot}A plot of the adhesion map $\alpha(v,z)$ in Eq. \eqref{eq:adhesionMap} plotted against $z$ when $\sgn(v)  = \sgn(z)$. The different coloured regions correspond to Figure \ref{fig:elastoPlastic} according to: yellow - a) \& b), orange - c) and red - d). (Adapted from paper \citeP[C].)}
 \end{figure}
 
 \subsubsection{Discrete time}

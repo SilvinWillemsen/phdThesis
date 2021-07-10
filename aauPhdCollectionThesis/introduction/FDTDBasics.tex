@@ -73,7 +73,7 @@ where the subscript notation could be seen as the partial derivative counterpart
 All objects in the physical world are three-dimensional (3D) as they have a non-zero width, length and depth. Moreover, these objects can move in these three dimensions and thus have three translational \textit{degrees of freedom (DoF)} \SWcomment[(the three rotational DoF are ignored here)]. 
 To reduce the complexity of the models describing physical systems as well as computational complexity (computational cost), simplifications can be made to reduce both the dimensionality of the spatial distribution of a physical object as well as that of the translational DoF. 
 
-Generally, the spatial distribution of an object can be simplified if one (or more) of the dimensions are small relative to the wavelengths of interest. A guitar string, for instance, has much greater length than its width or depth and can therefore be reduced to a one-dimensional (1D) system. If a 3D description were to be kept, the relative displacement between two locations on one cross-section along the length of the string would be taken into account. One could imagine that this displacement will always be orders of magnitude smaller than the relative displacement of two points along the string length and is thus negligible. Similarly, the thickness of a drum membrane is much smaller than its length and width and can therefore be simplified to a two-dimensional (2D) system. 
+Generally, the spatial distribution of an object can be simplified if one (or more) of the dimensions are small relative to the wavelengths of interest. A guitar string, for instance, has much greater length than its width or depth and can therefore be reduced to a one-dimensional (1D) system. If a 3D description were to be kept, the relative displacement between two locations on one cross-section along the length of the string would be taken into account. One could imagine that this displacement will always be orders of magnitude smaller than the relative displacement of two points along the string length and is thus negligible. Similarly, the thickness of a drum membrane is much smaller than its length and width and can therefore be simplified to a two-dimensional (2D) system.\footnote{In this work, `1D' and `2D' will also be used to abbreviate `one dimension' and `two dimensions'.}  
 
 The translational DoF\todo{check whether this needs to be per point along a system}, on the other hand, describe now many ``coordinates'' a state variable includes. 
 In much of the literature on FDTD methods in the field of musical acoustics, the state variable only has one coordinate. In most string models, for example, only the transverse displacement in one polarisation is considered (see Chapter \ref{ch:stiffString}) and the other polarisation as well as the longitudinal motion of the string (motion along the string length) is ignored. In other words, every point along the string can only move up and down, not side-to-side and not forward and back. Although this greatly simplifies the system at hand and reduces computational complexity, this is not what happens in reality. Nonlinear effects such as pitch glides due to tension modulation caused by high-amplitude string vibration are not present in the simplified model and are not presented in this work. 
@@ -452,7 +452,7 @@ The 1D wave equation is a PDE that describes the motion of a system distributed 
 \begin{equation}\label{eq:1DwavePDE}
     \ptt u = c^2 \pxx u,
 \end{equation}
-where $c$ is the wave speed of the system (in m/s). Figure \ref{eq:1DWavePropagation} shows the wave propagation of the 1D wave equation excited using a raised cosine
+where $c$ is the wave speed of the system (in m/s). Figure \ref{fig:1DWavePropagation} shows the wave propagation of the 1D wave equation excited using a raised cosine
 
 \def\figWidth{0.32}
 \begin{figure}[h]
@@ -460,7 +460,7 @@ where $c$ is the wave speed of the system (in m/s). Figure \ref{eq:1DWavePropaga
     \subfloat[$t = 0$ ms.\label{fig:1DWaveProp1}]{\includegraphics[width=\figWidth\textwidth]{figures/fdtd/1DWaveProp1.eps}}\hfill
     \subfloat[$t = 1$ ms.\label{fig:1DWaveProp2}]{\includegraphics[width=\figWidth\textwidth]{figures/fdtd/1DWaveProp2.eps}}\hfill
     \subfloat[$t = 2$ ms.\label{fig:1DWaveProp3}]{\includegraphics[width=\figWidth\textwidth]{figures/fdtd/1DWaveProp3.eps}}
-    \caption{Wave propagation in the 1D wave equation in Eq. \eqref{eq:1DwavePDE} wtih $c \approx 127$ m/s.\label{eq:1DWavePropagation}}
+    \caption{Wave propagation in the 1D wave equation in Eq. \eqref{eq:1DwavePDE} wtih $c \approx 127$ m/s.\label{fig:1DWavePropagation}}
 \end{figure}
 
 
@@ -558,7 +558,7 @@ As was done for several FD operators in Figure \ref{fig:operators}, it can be us
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/fdtd/1DWaveStencil.eps}
-    \caption{The stencil, or region of operation, for the FD scheme in \eqref{eq:1DwaveFDS}.\label{fig:stencil1DWave}}
+    \caption{The stencil, or region of operation, for the FD scheme in \eqref{eq:1DwaveFDS}. The time steps of the various grid points are colour-coded by yellow ($n+1$), light blue ($n$) and dark blue ($n-1$).\label{fig:stencil1DWave}}
 \end{figure}
 
 \subsubsection{Boundary Conditions and Virtual Grid Points}
@@ -722,4 +722,4 @@ If $h$ were to be chosen to be twice as big so that there are only half as many 
 If, on the other hand, $h$ were to be chosen to be twice as small so that there are twice as many intervals between grid points ($N = 60$), it is impossible for the waves to travel from one boundary to the other in $30$ samples. If they could interact with their second neighbour, this would be possible, but the FD scheme in \eqref{eq:1DwaveFDS} does not allow for this. Indeed, as $\lambda = 2$ in this case, the effect that the grid points have on each other will be disproportionate. In a way, grid points have too much energy that they can not lose to their neighbours, because their effect should have reached their second neighbour over the course of one sample. The way to solve this would be to halve the time step $k$ (or double the sample rate $\fs$), which would allow grid points to interact with their second neighbours over the course of once the the old time step (as this is now divided into two time steps). This also shows in the fact that $\lambda = 1$ again (as halving $k$ cancels out halving $h$) and grid points transfer their energy to their neighbours proportionately again.\todo{figure?}
 
 \subsubsection{Possible solution}
-One of the main contributions of the PhD project is presented in Chapter \ref{ch:dynamicGrid}, where a `fractional' number of intervals is introduced. This removes the necessity of the flooring operation in Eq. \eqref{eq:orderOfCalc} and circumvents the recalculation of $h$ to always satisfy the stability condition with equality while retaining the correct fundamental frequency.
+One of the main contributions of the PhD project is published in paper \citeP[G] and summarised in Chapter \ref{ch:dynamicGrid}, where a `fractional' number of intervals is introduced. This removes the necessity of the flooring operation in Eq. \eqref{eq:orderOfCalc} and circumvents the recalculation of $h$ to always satisfy the stability condition with equality while retaining the correct fundamental frequency.

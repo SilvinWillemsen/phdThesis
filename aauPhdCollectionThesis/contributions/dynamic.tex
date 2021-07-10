@@ -142,7 +142,7 @@ their interactions change through a change in the grid spacing and wave speed. T
 
 \section{Displacement Correction Implementation} 
 One detail that was not provided in paper \citeP[G], is the impelmentation of the displacement correction.
-When the wavespeed is increased and points are removed, it is not necessarily true that $u_M = w_0$ at the time of removal and the rigid connection in \eqref{eq:rigid} is violated. On top of the virtual grid point ``generation'' from the interpolation described above, one could add a connection force that is dependent on how close the inner boundaries $u_M$ and $w_0$ are.
+When the wave speed is increased and points are removed, it is not necessarily true that $u_M = w_0$ at the time of removal and the rigid connection in \eqref{eq:rigid} is violated. On top of the virtual grid point ``generation'' from the interpolation described above, one could add a connection force that is dependent on how close the inner boundaries $u_M$ and $w_0$ are.
 
 We can extend \eqref{eq:systemHalfStrings} to have a spring force between $u_M$ and $w_0$ as
 \begin{equation}\label{eq:dispCorrSyst}
