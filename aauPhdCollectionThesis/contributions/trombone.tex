@@ -19,6 +19,8 @@ with acoustic pressure $p = p(x,t)$ (in N/m$^2$), particle velocity $v = v(x,t)$
 \subsection{Discrete}
 
 \subsection{Lip-reed with collision}
+\def\nph{}
+\def\nphSys{n+1/2}
 We can use \SWcomment[Michele's tricks] to add a non-linear collision to the lip. As the collision happens at the interleaved temporal grid, we move the potential half a time step forward. We extend Eq. \eqref{eq:discReed} to be
 \begin{equation}
     M_\text{r}\delta_{tt}y^{\nph} = -M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nph}-M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nph} + S_\text{r}\Delta p^{\nph} + \psi^{n+1/2}(\psi^{n+1/2})', 

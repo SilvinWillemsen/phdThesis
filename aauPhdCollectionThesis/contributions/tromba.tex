@@ -131,7 +131,7 @@ where the discrete linear (partial) differential operators $\ell$ are the discre
 \begin{align}
     \ell_\text{s} &=\rho_\text{s}A\delta_{tt}- T\delta_{xx} + EI\delta_{xxxx}+ 2\rho_\text{s}A\sigma_{0,\text{s}}\delta_{t\cdot}-2\rho_\text{s}A\sigma_{1,\text{s}}\delta_{t-}\delta_{xx},\\
     \ell_\text{b} &= M\delta_{tt} + M\omega_0^2 + M\sigma_\text{m} \delta_{t\cdot},\\
-    \ell_\text{p} &= \rho_\text{p} H \delta_{tt} + D\delta_{\Delta \boxplus}\delta_{\Delta \boxplus} + 2\rho_\text{p}H\sigma_{0, \text{p}}\delta_{t\cdot} - 2\rho_\text{p}H\sigma_{1, \text{p}}\delta_{t-}\delta_{\Delta\boxplus}.
+    \ell_\text{p} &= \rho_\text{p} H \delta_{tt} + D\dDelta\dDelta + 2\rho_\text{p}H\sigma_{0, \text{p}}\delta_{t\cdot} - 2\rho_\text{p}H\sigma_{1, \text{p}}\delta_{t-}\dDelta.
     \end{align}
 \end{subequations}
 Furthermore, the definitions for $g_\sm^n$ and $g_\mp^n$ can be found in Eq. \eqref{eq:gDef}\footnote{Paper \citeP[D] still uses the old definition of $g^n$ in Eq. \eqref{eq:gDefOld}.} and $J_{l,0}(\chi_\sm)$ and $J_{l,3}(\chi_\text{B})$ are the $0$\thOrder and cubic spreading operators respectively as defined in Section \ref{sec:interpolationSpreading} and $J_{(l,m),0}(x_\mp, y_\mp)$ is a $0$\thOrder 2D spreading operator as defined in Section \ref{sec:interpolationSpreading2D}.
@@ -178,7 +178,7 @@ where the update equations of the components in isolation (without the collision
 \begin{align*}
     \ubr^\star& = \frac{2\ubr^n\!-\!\ubr^{n-1}\!+\!c^2k^2\delta_{xx}\ubr^n\!-\!\kappa_\stxt^2k^2\delta_{xxxx}\ubr^n\! +\! \sigma_{0,\text{s}}k\ubr^{n-1}\! +\! 2\sigma_{1,\text{s}}k^2\delta_{t-}\delta_{xx}\ubr^n}{1 + \sigma_{0,\text{s}}k}, \\
     w^\star & = \frac{2w^n-w^{n-1}-k^2\omega_0^2w^n+\frac{\sigma_\text{m}k}{2}w^{n-1}}{1 + \frac{\sigma_\text{m}k}{2}},\\
-    \zbr^\star & = \frac{2\zbr^n-\zbr^{n-1}-\kappa_\ptxt^2k^2\delta_{\Delta\boxplus}\delta_{\Delta\boxplus}\zbr^n+\sigma_{0,\text{p}}k\zbr^{n-1}+ 2\sigma_{1,\text{p}}k^2\delta_{t-}\delta_{xx}\zbr^n}{1+\sigma_{0,\text{p}}k},
+    \zbr^\star & = \frac{2\zbr^n-\zbr^{n-1}-\kappa_\ptxt^2k^2\dDelta\dDelta\zbr^n+\sigma_{0,\text{p}}k\zbr^{n-1}+ 2\sigma_{1,\text{p}}k^2\delta_{t-}\dDelta\zbr^n}{1+\sigma_{0,\text{p}}k},
 \end{align*}
 with $c = \sqrt{T/\rho_\stxt A}$, $\kappa_\stxt = \sqrt{E_\stxt I /\rho_\stxt A}$ and $\kappa_\ptxt = \sqrt{D / \rho_\ptxt H}$.  
 
@@ -235,7 +235,7 @@ the total energy of the mass is (Eq. \eqref{eq:energyBalanceMassSpringDamper})
 \end{equation*}
 and the total energy of the plate is (Eq. \eqref{eq:energyBalanceThinPlate})
 \begin{equation*}
-    \h_\ptxt = \frac{\rho_\ptxt H}{2} \left\lVert\delta_{t-}\zlmn\right\rVert_{d_\ptxt}^2 + \frac{D}{2}\langle\delta_{\Delta\boxplus} \zlmn, e_{t-}\delta_{\Delta\boxplus} \zlmn\rangle_{\overline{\underline{d_\ptxt}}}\ .
+    \h_\ptxt = \frac{\rho_\ptxt H}{2} \left\lVert\delta_{t-}\zlmn\right\rVert_{d_\ptxt}^2 + \frac{D}{2}\langle\dDelta \zlmn, e_{t-}\dDelta \zlmn\rangle_{\overline{\underline{d_\ptxt}}}\ .
 \end{equation*}
 The energy of the string-mass connection and the mass-plate collision are (Eq. \eqref{eq:collisionEnergy})
 \begin{equation*}

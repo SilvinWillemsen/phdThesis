@@ -264,7 +264,7 @@ The update equations for the boundary points will not be given here. Instead the
 In practice, the simply supported boundary condition is mostly chosen as this reflects reality the most. The clamped condition could be chosen for simplicity as this does not require an alternative update at the boundaries. The free boundary condition is more often used to model a (damped) ideal bar, (Eq. \eqref{eq:stiffStringPDE} with $T = 0$).
 
 \subsection{Implementation and Matrix Form}\label{sec:implementationStiffString}
-When using \texttt{MATLAB}, for a more compact implementation, it is useful to write the scheme in matrix form. The FD scheme of the stiff string in \eqref{eq:stiffStringFDS} can be written as 
+When using \texttt{MATLAB}, for a more compact implementation, it is useful to write the scheme in matrix form (see Section \ref{sec:matrixForm}). The FD scheme of the stiff string in \eqref{eq:stiffStringFDS} can be written as 
 \begin{equation}\label{eq:matrixFormStiffString}
     A\u^{n+1} = \B\u^n + \C \u^{n-1}
 \end{equation}
@@ -545,7 +545,7 @@ The (angular) frequency of the $p$\th mode can then be obtained using $\mathfrak
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/modesStiffString.eps}
-    \caption{The modal frequencies and damping per mode for the stiff string using the values in \ref{tab:stiffStringParams} and $T = 1885$ and $E = 2\cdot 10^{14}$ to highlight effects of stiffness.  Notice form the left panel that the frequency increases exponentially with the mode number. The right panel shows that higher modes exhibit a greater amount of damping due to the frequency-dependent damping term.\label{fig:modesStiffString}}
+    \caption{The modal frequencies and damping per mode for the stiff string using the values in Table \ref{tab:stiffStringParams} and $T = 1885$ and $E = 2\cdot 10^{14}$ to highlight effects of stiffness.  Notice form the left panel that the frequency increases exponentially with the mode number. The right panel shows that higher modes exhibit a greater amount of damping due to the frequency-dependent damping term.\label{fig:modesStiffString}}
 \end{figure}
 
 \section{Implicit Scheme}\label{sec:implicitStiffString}

@@ -6,11 +6,11 @@ In this work, the wave propagation in tubes is approximated using a 1D system
 
 \section{Webster's Equation}
 
-The main difference between the 1D brass PDE and the 1D wave equation is the presence of a variable cross-section. For low-amplitude vibrations in an (axially symmetric) acoustic tube and for which the wavelengths are much larger than the radius of this tube, one can describe its dynamics using \textit{Webster}'s equation \cite{Webster1919}
+The main difference between the PDE modelling a  the 1D brass PDE and the 1D wave equation is the presence of a variable cross-section. For low-amplitude vibrations in an (axially symmetric) acoustic tube and for which the wavelengths are much larger than the radius of this tube, one can describe its dynamics using \textit{Webster}'s equation \cite{Webster1919}
 \begin{equation}\label{eq:webstersPDE}
     S\partial_t^2\Psi = c^2\partial_x(S\partial_x\Psi),
 \end{equation}
-with \textit{acoustic potential} $\Psi = \Psi(x,t)$ (in m$^2$/s), $S = S(x)$ is the cross sectional area (in m$^2$) and the speed of sound in air $c$ (in m/s). If $S(x) = 1$ for all values of $x$, Eq. \eqref{eq:webstersPDE} reduces to the 1D wave equation in Eq. \eqref{eq:1DwavePDE}. The acoustic potential can be related to pressure $p = p(x,t)$ (in Pa) and particle velocity $v = v(x,t)$ (in m/s) according to
+with \textit{acoustic potential} $\Psi = \Psi(x,t)$ (in m$^2$/s), $S = S(x)$ is the cross sectional area (in m$^2$) and the speed of sound in air $c$ (in m/s). If $S(x)$ is constant, Eq. \eqref{eq:webstersPDE} reduces to the 1D wave equation in Eq. \eqref{eq:1DwavePDE}. The acoustic potential can be related to pressure $p = p(x,t)$ (in Pa) and particle velocity $v = v(x,t)$ (in m/s) according to
 \begin{equation}
     p = \rho \pt \Psi, \qaq v = -\px \Psi.
 \end{equation}
@@ -25,7 +25,7 @@ where
 \begin{equation}
     \Sbar = \mxp\Sm = \frac{\Sp + \Sm}{2}.
 \end{equation}
-The right side of the equation in \eqref{eq:discWebster} contains an operator applied to two grid functions ($S$ and $\Psi$) multiplied onto each other. In order to expand this, we need to use the product rule (Eq. (2.23) in \cite{theBible}) which is
+The right side of the equation in \eqref{eq:discWebster} contains an operator applied to two grid functions ($S$ and $\Psi$) multiplied onto each other. In order to expand this, we need to use the product rule in Eq. \eqref{eq:productRule} which is
 \begin{equation}
     \dxp (u_lw_l) = (\dxp u_l)(\mxp{w_l}) + (\mxp u_l)(\dxp w_l).
 \end{equation}
@@ -44,12 +44,12 @@ Also see Figure \ref{fig:variableCrossSection}
 
 \subsection{Boundary Conditions}
 The choices for boundary conditions in an acoustic tube are open and closed, defined as \cite{Bilbao2018}
-\begin{equation}
-    \begin{split}
-        \partial_t\Psi &= 0\ \text{(open, Dirichlet)}\\
-        \partial_x\Psi &= 0\ \text{(closed, Neumann)},
-    \end{split}
-\end{equation} 
+\begin{subequations}
+    \begin{align}
+        \partial_t\Psi &= 0\quad \text{(open, Dirichlet)}\\
+        \partial_x\Psi &= 0\quad \text{(closed, Neumann)},
+    \end{align}
+\end{subequations} 
 at the ends of the tube. This might be slightly counter-intuitive as in the case of a string ``closed" might imply the ``clamped" or Dirichlet boundary condition. The opposite can be intuitively shown imagining a wave front with a positive acoustic potential moving through a tube and hitting a closed end. What comes back is also a wave front with a positive acoustic potential, i.e., the sign of the potential does not flip, which also happens using the free or Neumann condition for the string.
 
 In this case we follow \cite[Chapter 9]{theBible} and use the following
@@ -59,8 +59,7 @@ In this case we follow \cite[Chapter 9]{theBible} and use the following
 i.e. closed at the left end and open at the right end. In discrete time we have two choices for the closed condition
 \begin{equation}\label{eq:centNonCentBound}
 \begin{split}
-    \delta_{x\cdot}\Psi_0^n &= 0 \ \Rightarrow \ \Psi_{-1}^n = \Psi_1^n \quad \text{(centered)}\\
-    \delta_{x-}\Psi_0^n &= 0\  \Rightarrow \ \Psi_{-1}^n = \Psi_0^n\quad \text{(non-centered)}
+    \delta_{x\cdot}\Psi_0^n &= 0 \ \Rightarrow \ \Psi_{-1}^n = \Psi_1^n \quad \text{(centered)}
 \end{split}
 \end{equation}
 At the left boundary we can now solve Eq. \eqref{eq:webstersUpdateEq} for the centered case:
@@ -157,7 +156,7 @@ We can couple this to the tube by taking Eq. \eqref{eq:pressureUpdate} at $l = N
 \begin{equation}
     p_N^{n+1} = p_N^n - \frac{\rho_0 c \lambda}{\bar{S}_N}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}-S_{N-1/2}v_{N-1/2}^{n+1/2}\right),
 \end{equation}
-and, similarly to \eqref{eq:tubeCoupling}, rewriting this to 
+and, similar to \eqref{eq:tubeCoupling}, rewriting this to 
 \begin{align}
     p_N^{n+1} &= p_N^n - \frac{\rho_0 c \lambda}{\bar{S}_N}\left(2\mu_{x-}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}\right)-2S_{N-1/2}v_{N-1/2}^{n+1/2}\right)\nonumber,\\
     p_N^{n+1} &= p_N^n - \frac{2\rho_0 c \lambda}{\bar{S}_N}\left(\bar S_N \bar v-S_{N-1/2}v_{N-1/2}^{n+1/2}\right)\label{eq:preSolutP}.

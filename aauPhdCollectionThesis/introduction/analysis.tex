@@ -7,7 +7,7 @@ Starting off with some necessary theory on matrices in a FDTD context and other 
     \item \textit{Modal analysis} which can be used to determine the modal frequencies (and damping per mode) that a FD scheme exhibits.
 \end{itemize}
 
-\section{Matrices in a FDTD context}
+\section{Matrices in a FDTD context}\label{sec:matricesFDTD}
 For several purposes, such as implementation in \texttt{MATLAB} and several analysis techniques described shortly, it is useful to write a FD scheme in \textit{matrix form}.\footnote{Appendix \ref{app:matrices} provides some basic knowledge on matrices and linear algebra for those unfamiliar with this.} Matrix multiplication when working with FDTD methods usually involves multiplying a square matrix (with equal rows and columns) onto a column vector. Consider a $(N+1)\times (N+1)$ square matrix $\A$ and a $(N+1) \times 1$ column vector $\u$. Multiplying these results in a $(N+1) \times 1$ column vector $\w$:
 \begin{equation}
     \A\u = \w.
@@ -35,7 +35,7 @@ Expanding this operation results in
 \end{equation}
 where the indexing of the matrix elements starts at $0$ rather than $1$ here, as it relates better to operations used in a FDTD context.
 
-\subsubsection{Operators in Matrix Form}
+\subsection{FD Operators in Matrix Form}
 FD operators approximating spatial derivatives and averages introduced in Section \ref{sec:FDoperators} can be written in matrix form and applied to a column vector $\u^n$ containing the state of the system at time index $n$. These matrices are square and their sizes depend on the number of grid points the system is described for and on the boundary conditions. Not assuming a specific size for now, the FD operators in \eqref{eq:discFirstSpace} can be written in matrix form according to
 % \setstackgap{L}{1.1\baselineskip}
 % \fixTABwidth{T}
@@ -157,7 +157,7 @@ and has the following special property
     \I\A = \A\I = \A.
 \end{equation*}
 
-\subsubsection{Schemes and Update Equations in Matrix Form}
+\subsection{Schemes and Update Equations in Matrix Form}\label{sec:matrixForm}
 With the spatial operators in matrix form presented above, the FD scheme of the 1D wave equation in Eq. \eqref{eq:1DwaveFDS} can be written in matrix form.
 
 If the Dirichlet boundary conditions in \eqref{eq:discreteDirichlet} are used, the end points of the system do not have to be included in the calculation. The values of the grid function $\uln$ for $l\in \{1, \hdots, N-1\}$ can then be stored in a column vector according to $\u^n = [u_1^n, \hdots, u_{N-1}^n]^T$. Furthermore, $(N-1) \times (N-1)$ matrix $\Dxx$ is defined as
@@ -906,7 +906,16 @@ and can be rewritten to
 \begin{equation}
     f_p = \frac{1}{\pi k}\sin^{-1}\left(\frac{ck}{2}\sqrt{-\text{eig}_p(\Dxx)}\right)\label{eq:1DWaveModes}
 \end{equation}
-to get the modal frequency of the $p$\th mode in Hz.
+to get the modal frequency of the $p$\th mode in Hz. 
+
+See Figure \ref{fig:modalFreqs1Dwave} for a plot of the modal frequencies of an implementation of the 1D wave equation with the parameters given in Table \ref{tab:1DWaveParams}.
+The figure shows one great advantage of performing modal analysis on an FD scheme, over only obtaining the spectrum of its output. Although the values from the analysis do correspond to the partials shown in the frequency domain output of the 1D wave equation in Figure \ref{fig:1DWaveOutput}, the latter does not show all modes present in the system. This is due to the input and output locations of the system as discussed in Section \ref{sec:output1DWave}. The modal analysis does obtain the frequency data regardless of the aforementioned input and output locations. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 0.6\textwidth]{figures/analysis/1dmodes.eps}
+    \caption{Modal frequencies of the 1D wave equation with the parameters given in Table \ref{tab:1DWaveParams}. \label{fig:modalFreqs1Dwave}}
+\end{figure}
 
 \subsection{One-Step Form}\label{sec:oneStepForm}
 For more complicated systems, specifically those containing damping terms, it is useful to rewrite the update in \textit{one-step form} (also referred to as a state-space representation). The damping terms cause the coefficients of $z$ and $z^{-1}$ in the characteristic equation to not be identical and the trigonometric identities in \eqref{eq:trigIdentities} can not be used directly. Although the eigenfrequency calculation needs to be done on a larger matrix, it allows for a more general and direct way to calculate the modal frequencies and damping coefficients per mode. 

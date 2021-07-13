@@ -100,13 +100,36 @@ Differential equations are powerful tools to describe the motion of physical sys
 
 % \SWcomment[It is important to note that a discrete FD scheme is an \textit{approximation} to a continuous PDE, not a sampled version of it. This means that the resulting schemes are rarely an exact solution to the original continuous equation.]
 
-FDTD methods essentially subdivide a continuous differential equation into discrete points in time and space, a process called \textit{discretisation}. Once an ODE or PDE is discretised using these methods it is now called a \textit{finite-difference (FD) scheme} which approximates the original differential equation. In the following, for generality and ease of explanation, a 1D system will be used. Unless denoted otherwise, the equations and theory used in this chapter has been taken from \cite{theBible}.
+FDTD methods essentially subdivide a continuous differential equation into discrete points in time and space, a process called \textit{discretisation}. Once an ODE or PDE is discretised using these methods it is now called a \textit{finite-difference (FD) scheme} which approximates the original differential equation. See Figure \ref{fig:discretisation}. In the following, for generality and ease of explanation, a 1D system will be used. Unless denoted otherwise, the equations and theory used in this chapter has been taken from \cite{theBible}.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=\textwidth]{figures/fdtd/gridFigure.eps}
-    \caption{\label{fig:discretisation} A continuous PDE is discretised... }
-\end{figure}\todo{Figure and caption are not done yet}
+    \begin{tikzpicture}[->,node distance=3cm,
+        thick,main node/.style={circle,draw}]
+    
+        \node[] (image) at (0,0) {
+        \includegraphics[width=\textwidth]{figures/fdtd/discretisation.eps}
+        };
+    
+        \draw [-stealth](-0.8,0) -- (0.3,0);
+        \draw [-stealth](-5.75,1.2) -- (-5.75,-1.5);
+        \node[] (t) at (-6, -1.2) {\small $t$};
+        
+        \draw[thin, ->, >=stealth] (5.0,0.88) arc (90:-90:0.25);
+        \node[] () at (5.5, 0.6) {\small $\tfrac{1}{\fs}$};
+        
+        \draw[thin, ->, >=stealth] (5.0,0.30) arc (90:-90:0.25);
+        \node[] () at (5.5, 0.02) {\small $\tfrac{1}{\fs}$};
+
+        \draw[thin, ->, >=stealth] (5.0,-0.28) arc (90:-90:0.25);
+        \node[] () at (5.5, -0.56) {\small $\tfrac{1}{\fs}$};
+
+        \draw[thin, ->, >=stealth] (5.0,-0.86) arc (90:-90:0.25);
+        \node[] () at (5.5, -1.12) {\small $\tfrac{1}{\fs}$};
+
+      \end{tikzpicture}
+      \caption{A continuous PDE is discretised to a FD scheme. In a PDE, time passes continuously, whereas for a FD scheme, time passes in finite increments with a duration of the reciprocal of the sample rate $\fs$. \label{fig:discretisation}}
+\end{figure}
 
 \subsection{Grid Functions \todo{FULL DOC SWEEP: check capitalisation of headings throughout document}} \label{sec:gridFunctions}
 The first step to approximate continuous PDEs, is to define a discrete \textit{grid} over time and space. See Figure \ref{fig:gridExp}. A system described by state $u = u(x,t)$ defined over time $t$ and one spatial dimension $x$, can be discretised to a \textit{grid function} $u_l^n$. Here, integers $l$ and $n$ describe the spatial and temporal indices respectively and arise from the discretisation of the continuous variables $x$ and $t$ according to $x=lh$ and $t=nk$. The spatial step $h$, also called the \textit{grid spacing} describes the distance (in m) between two neighbouring \textit{grid points}, and is closely related to the stability of the FD scheme. The temporal step $k$, or \textit{time step} is the time (in s) between two consecutive temporal indices and can be calculated $k=1/\fs$ for a sample rate $\fs$ (in Hz). In many audio applications $\fs = 44100$ Hz which will be used in this work (unless denoted otherwise).
@@ -186,7 +209,7 @@ Higher order differences can be approximated through a composition of first-orde
 \begin{equation}\label{eq:discSecondTime}
     \ptt \approxeq \dtp\dtm = \dtt \triangleq \frac{1}{k^2}\left(e_{t+}-2+e_{t-}\right),
 \end{equation}
-where ``$2$'' is the identity operator applied twice. This can similarly be done for the second-order difference in space
+where ``$2$'' is the identity operator applied twice. This can be done similarly for the second-order difference in space
 \begin{equation}\label{eq:discSecondSpace}
     \pxx \approxeq \dxp\dxm = \dxx \triangleq \frac{1}{h^2}\left(e_{x+}-2+e_{x-}\right),
 \end{equation}
@@ -452,7 +475,7 @@ The 1D wave equation is a PDE that describes the motion of a system distributed 
 \begin{equation}\label{eq:1DwavePDE}
     \ptt u = c^2 \pxx u,
 \end{equation}
-where $c$ is the wave speed of the system (in m/s). Figure \ref{fig:1DWavePropagation} shows the wave propagation of the 1D wave equation excited using a raised cosine
+where $c$ is the wave speed of the system (in m/s). If the PDE is used to model an ideal string, the wave speed can be defined as $c = \sqrt{T / \rho A}$, with tension $T$ (in N), material density $\rho$ (in kg/m$^3$) and cross-sectional area $A$. If instead, it is used to model pressure in an acoustic tube $c$ is the speed of sound in air. Figure \ref{fig:1DWavePropagation} shows the wave propagation of the 1D wave equation excited using a raised cosine. 
 
 \def\figWidth{0.32}
 \begin{figure}[h]
@@ -471,13 +494,23 @@ where $c$ is the wave speed of the system (in m/s). Figure \ref{fig:1DWavePropag
 
 % I would like to use this opportunity to provide some extra explanation as to how and why the 1D wave equation in \eqref{eq:1DwavePDE} works the way it does. This will hopefully provide some basic intuition into the workings of PDEs that will make it easier to work with later on. \SWcomment[somethingsomething]
 
-%As with the mass-spring system in Section \ref{sec:massSpringSystem} the working of the PDE in \eqref{eq:1DwavePDE} arises from Newton's second law, even though this connection might be less apparent. %As in the mass-spring case, the acceleration of a system state is calculated, but now this depends on 
+As with the mass-spring system in Section \ref{sec:massSpringSystem} the working of the PDE in \eqref{eq:1DwavePDE} arises from Newton's second law, even though this connection might be less apparent. %As in the mass-spring case, the acceleration of a system state is calculated, but now this depends on 
 
 The 1D wave equation in \eqref{eq:1DwavePDE} states that the acceleration of $u(x,t)$ at location $x$ is determined by the second-order spatial derivative of $u$ at that same location (scaled by a constant $c^2$). In the case that $u$ describes the transverse displacement of an ideal string, this second-order derivative denotes the \textit{curvature} of this string. As $c^2$ is always positive, the sign (or direction) of the acceleration is fully determined by the sign of the curvature. In other words, a `positive' curvature at location $x$ along the ideal string yields a `positive' or upwards acceleration at that same location. 
 
 What a `positive' or `negative' curvature implies is more easily seen when we take a simple function describing a parabola, $y(x) = x^2$, and take its second derivative to get $y''(x) = 2$. The answer is a positive number which means that $y$ has a positive curvature. 
 
 So, what does this mean for the 1D wave equation? As a positive curvature implies a positive or upwards acceleration as per Eq. \eqref{eq:1DwavePDE}, $u$ with a positive curvature at a location $x$ will start to move upwards and vice versa. Of course, the state of a physical system such as $u$ will rarely have a perfect parabolic shape, but the argument still applies. See Figure \ref{fig:curvature} for a visualisation of the forces acting on $u$ due to curvature.
+
+How the 1D wave equation relates to Newton's second law, becomes apparent by slightly rewriting Eq. \eqref{eq:1DwavePDE}. Recalling the definition of $c$ for an ideal string, one can rewrite the 1D wave equation to
+\begin{equation*}
+    \rho A \ptt u = T \pxx u,
+\end{equation*}
+where $\rho A$ describes the \textit{mass per unit length} of the string. As the forces present in the system act on infinitesimally small portions of the string Newton's second law appears by a multiplication of $dx$
+\begin{equation*}
+    \underbrace{\rho A \ptt u dx}_{ma} = \underbrace{T \pxx u dx}_{F},
+\end{equation*}
+where $\rho A dx$ is the mass of a (tiny) portion of the string of length $dx$ (in m), $\ptt u$ is the acceleration of that portion and $T \pxx u dx$ describes the force acting on that portion, yielding Newton's second law.  
 
 \begin{figure}[h]
     \centering
@@ -650,7 +683,7 @@ After the system is excited, one can retrieve the output of the system by select
     \end{center}
 \end{table}
 
-As can be seen from Figure \ref{fig:1DWaveOutput}, the output of the 1D wave equation contains many peaks in the frequency spectrum on top of the fundamental frequency. These are called \textit{harmonic partials} or \textit{harmonics} for short and arise from the various modes of vibration present in the system (see Figure \ref{fig:modes}). Although the PDE has not been implemented using modal synthesis (discussed in Chapter \ref{ch:physMod}), the system can still be decomposed into different modes of vibration, each corresponding to a harmonic frequency. These modes are assumed to vibrate independently, and their weighted sum yields the eventual behaviour of the system. 
+As can be seen from Figure \ref{fig:1DWaveOutput}, the output of the 1D wave equation contains many peaks in the frequency spectrum on top of the fundamental frequency. These are called \textit{harmonic partials} or \textit{harmonics} for short and arise from the various modes of vibration present in the system (see Figure \ref{fig:modes}). Although the PDE has not been implemented using modal synthesis (discussed in Chapter \ref{ch:physMod}), the system can still be decomposed into different modes of vibration, each corresponding to a harmonic frequency. These modes are assumed to vibrate independently, and their weighted sum yields the eventual behaviour of the system.\footnote{Modes of the vibrating string were first discovered by Sauveur in 1701 who said that  ``\textit{especially at night}'' he observed ``\textit{other small sounds}'' on top of the fundamental frequency and coined the terms `node' and `harmonic' \cite{Sauveur1701}.}
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{figures/fdtd/oneDWaveOutput.eps}
