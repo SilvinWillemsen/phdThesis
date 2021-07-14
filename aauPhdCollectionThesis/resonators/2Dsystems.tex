@@ -10,7 +10,7 @@ As in previous chapters, unless denoted otherwise, the theory follows \cite{theB
 \section{PDEs and FD schemes in 2D}
 Consider a rectangular 2D system with side lengths $L_x$ and $L_y$ (both in m) and its state described by $u = u(x,y,t)$. The system is defined for $t\geq 0$ and $(x,y) \in \D$ where domain $\D \in [0, L_x]\times [0, L_y]$ is two-dimensional. 
 
-Similar to the 1D case in Section \ref{sec:gridFunctions}, the state variable can be discretised to a 2D grid function according to $u(x, y, t) \approxeq \ulmn$ with space $x = lh$ and $y = mh$ and time $t = nk$ and $k=1/\fs$. For simplicity, in this work the grid spacing $h$ is set to be the same in both the $x$ and $y$ directions.
+Similar to the 1D case explained in Section \ref{sec:gridFunctions}, the state variable can be discretised to a 2D grid function according to $u(x, y, t) \approxeq \ulmn$ with space $x = lh$ and $y = mh$ and time $t = nk$ with $k=1/\fs$. The temporal index $n\in\mathbb{N}^0$ and spatial indices $l\in \{0, \hdots, N_x\}$ and $m\in \{0, \hdots, N_y\}$ index the grid function in space in the $x$ and $y$ directions respectively. Here, $N_x$ is the number of intervals between grid points in the $x$ direction and $N_y$ in the $y$ direction. For simplicity, the grid spacing $h$ is set to be the same in both the $x$ and $y$ directions in this work.
 
 \subsubsection{Additional operators}
 In continuous time, an additional operator, referred to as the \textit{Laplacian} can be defined as
@@ -256,7 +256,7 @@ Figure \ref{fig:2Dpropagation} shows the wave propagation of an implementation o
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/2d/output2Dwave.eps}
-    \caption{The output of the 2D wave equation at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref{fig:2Dpropagation}. The partials are extremely close together (notice that only frequency up to 5000 Hz are shown) and is related to the a-periodic nature of the system behaviour. \label{fig:output2DWave}}
+    \caption{The output of the 2D wave equation at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref{fig:2Dpropagation}. The partials are extremely close together (notice that only frequency up to 5000 Hz are shown) and is related to the aperiodic nature of the system behaviour. \label{fig:output2DWave}}
 \end{figure}
 
 \subsection{Frequency Domain Analysis in 2D}\label{sec:stability2Dwave}
@@ -584,8 +584,8 @@ As a starting point for implementation, possible parameters are given in Table \
 \end{table}
 {\renewcommand{\arraystretch}{1}
 
-Figure \ref{fig:thinPlatePropagation} shows the wave propagation of a thin plate excited with a 2D raised cosine at $(x,y) = (0.25L_x, 0.5L_y)$ and uses the parameters given in Table \ref{tab:thinPlateParams}. When compared to Figure \ref{fig:2Dpropagation}, dispersive effects -- where higher-frequency components travel faster than lower-frequency ones -- due to stiffness are apparent. Figure \ref{fig:outputThinPlate} shows the time-domain and frequency domain output of the thin plate at $(x,y) = (0.15L_x, 0.85 L_y)$
-
+Figure \ref{fig:thinPlatePropagation} shows the wave propagation of a thin plate excited with a 2D raised cosine at $(x,y) = (0.25L_x, 0.5L_y)$ and uses the parameters given in Table \ref{tab:thinPlateParams}. When compared to Figure \ref{fig:2Dpropagation}, dispersive effects -- where higher-frequency components travel faster than lower-frequency ones -- due to stiffness are apparent. Figure \ref{fig:outputThinPlate} shows the time-domain and frequency domain output of the thin plate at $(x,y) = (0.15L_x, 0.85 L_y)$.
+Compared to the output of the 2D wave equation in Figure \ref{fig:output2DWave}, there are several interesting differences due to dispersion. The amplitude is much lower, waves are closer together and the first wave arrives .
 \begin{figure}[h]
     \centering
     \includegraphics[width = \textwidth]{figures/resonators/2d/thinPlatePropagation.eps}
@@ -595,7 +595,7 @@ Figure \ref{fig:thinPlatePropagation} shows the wave propagation of a thin plate
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/2d/outputThinPlate.eps}
-    \caption{The output of the thin plate at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref{fig:thinPlatePropagation}. Compared to the output of the 2D wave equation in Figure \ref{fig:output2DWave}, the amplitude is much lower and waves are closer together due to the dispersion. \label{fig:outputThinPlate}}
+    \caption{The output of the thin plate at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref{fig:thinPlatePropagation}. \label{fig:outputThinPlate}}
 \end{figure}
 
 \subsection{Frequency Domain Analysis}\label{sec:stabilityThinPlate}

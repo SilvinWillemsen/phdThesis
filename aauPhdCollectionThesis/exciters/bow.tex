@@ -27,7 +27,7 @@ The first appearance of FDTD methods in bowed string simulations was in a public
 Before introducing various friction models, a brief introduction on interpolation and spreading operators will be given, which will be necessary to work with this type of excitation.
 
 \section{Interpolation and Spreading operators}\label{sec:interpolationSpreading}
-As FD schemes are an approximation to continuous space (and time) using a finite amount of points, working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function \cite{theBible}.  This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. Here, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$.
+As FD schemes are an approximation to continuous space (and time) using a finite number of points, working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function \cite{theBible}.  This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. Here, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$.
 
 The simplest interpolation operator is of '0\textsuperscript{th}'-order and is defined as
 \begin{equation}\label{eq:zerothOrderI}
@@ -168,7 +168,7 @@ Algorithm \ref{alg:NR} shows an example of an implementation of Newton-Raphson u
 x = 1;          % starting point
 eps = 1e-4;     % threshold
 
-% if the threshold has not been crossed before this amount of iterations, do not iterate more
+% if the threshold has not been crossed before this number of iterations, do not iterate more
 maxIterations = 100;    
     
 % loop until a maximum number of iterations

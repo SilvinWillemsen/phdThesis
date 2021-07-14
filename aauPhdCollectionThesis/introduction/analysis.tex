@@ -216,7 +216,7 @@ and the more general weighted inner product
 \begin{equation}\label{eq:weightedInnerProd}
     \langle f_l^n, g_l^n \rangle_d^{\el, \er} = \sum_{l=1}^{N-1} h f_l^n g_l^n + \frac{\el}{2}hf_0^ng_0^n + \frac{\er}{2}hf_N^ng_N^n,
 \end{equation}
-which scale the boundary points of the regular inner product. Naturally, if $\el = \er = 1$, Eq. \eqref{eq:weightedInnerProd} reduces to Eq. \eqref{eq:primedInnerProd}, and if $\el = \er = 2$, \eqref{eq:weightedInnerProd} reduces to \eqref{eq:discInnerProd}.
+where free parameters $\el, \er > 0$ scale the boundary points of the regular inner product. Naturally, if $\el = \er = 1$, Eq. \eqref{eq:weightedInnerProd} reduces to Eq. \eqref{eq:primedInnerProd}, and if $\el = \er = 2$, \eqref{eq:weightedInnerProd} reduces to \eqref{eq:discInnerProd}.
 
 \subsection{Summation by Parts}\label{sec:summationByParts}
 Extremely useful when performing energy analysis on distributed systems is \textit{summation by parts}, which is the discrete counterpart of integration by parts. Although its application will be only be apparent when actually performing an energy analysis (see fx. Sections \ref{sec:1DWaveEnergyAnalysis} and \ref{sec:energyAnalysisString}) some definitions will be presented here for future reference.
@@ -254,14 +254,27 @@ and, using the primed inner product in Eq. \eqref{eq:primedInnerProd},
     \end{align}
 \end{subequations}
 %
-all of which will prove useful in energy analysis techniques later on. A derivation of \eqref{eq:summationByPartsMinusBar} is given below. 
+or the more general weighted inner product in Eq. \eqref{eq:weightedInnerProd}
+\begin{subequations}
+    \begin{align}
+       &\begin{aligned}
+        \langle f_l^n, \dxm g_l^n \rangle_d^{\el,\er}  = -&\langle \dxp f_l^n, g_l^n \rangle_{\underline{d}}+ f_N^ng_{N-1}^n - f_0^ng_0^n \\
+        &+ \frac{\epsilon_\text{r}}{2}f_N^n(g_N^n-g_{N-1}^n)+ \frac{\epsilon_\text{l}}{2}f_0^n(g_0^n - g_{-1}^n),
+        \end{aligned}\label{eq:weightedIdentityMinus}\\
+        &\begin{aligned}
+            \langle f_l^n, \dxp g_l^n \rangle_d^{\el,\er}  = -&\langle \dxm f_l^n, g_l^n \rangle_{\overline{d}}+ f_N^ng_N^n - f_0^ng_1^n  \\
+            &+ \frac{\epsilon_\text{r}}{2}f_N^n(g_{N+1}^n-g_N^n)+ \frac{\epsilon_\text{l}}{2}f_0^n(g_1^n - g_0^n),
+        \end{aligned}\label{eq:weightedIdentityPlus}
+    \end{align}
+\end{subequations}
+all of which will prove useful in energy analysis techniques later on.\todo{will it though?} A derivation of \eqref{eq:summationByPartsMinusBar} is given below. 
 
 Finally, recalling that $\dxx = \dxp\dxm$, one can apply summation by parts twice to get the following identities
 \begin{subequations}
     \begin{align}
         \langle f, \dxx g\rangle_d &= \langle \delta_{xx}f, g \rangle_d+f_N\delta_{x+}g_N-g_N\delta_{x+}f_N -f_0\delta_{x-}g_0+g_0\delta_{x-}f_0,\label{eq:summationsummationByPartsTwice}\\
         \langle f, \dxx g\rangle_d &= \langle \delta_{xx}f, g \rangle_{\underline{\overline{d}}}+f_N\dxp g_N-g_N\dxm f_N -f_0\dxm g_0+g_0\dxp f_0,\label{eq:summationByPartsTwiceReduced}\\
-        \langle f, \dxx g\rangle_d' &= \langle \dxx f, g\rangle_d' + f_N\dxd g_N - g_N \dxd f_N - f_0 \dxd g_0 + g_0 \dxd f_0\label{eq:summationByPartsTwicePrimed}
+        \langle f, \dxx g\rangle_d' &= \langle \dxx f, g\rangle_d' + f_N\dxd g_N - g_N \dxd f_N - f_0 \dxd g_0 + g_0 \dxd f_0.\label{eq:summationByPartsTwicePrimed}
     \end{align}
 \end{subequations}
 
@@ -875,7 +888,7 @@ This is the same (CFL) condition obtained through von Neumann analysis in Sectio
 
 \section{Modal Analysis}
 \label{sec:modalAnalysis}
-Modes are the resonant frequencies of a system. The amount of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. Modal analysis \todo{some citation here} can be used to obtain objective data on what modes a FD scheme should contain. This can then be used to determine whether this matches one's expectations or whether the output of the system matches what the analysis predicted. This section will show how to numerically obtain the modal frequencies of a FD implementation using the 1D wave equation as a test case.
+Modes are the resonant frequencies of a system. The number of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. Modal analysis \todo{some citation here} can be used to obtain objective data on what modes a FD scheme should contain. This can then be used to determine whether this matches one's expectations or whether the output of the system matches what the analysis predicted. This section will show how to numerically obtain the modal frequencies of a FD implementation using the 1D wave equation as a test case.
 
 We start by using the matrix form of the 1D wave equation from Eq. \eqref{eq:1DwaveMatrix}
 \begin{equation*}

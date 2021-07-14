@@ -141,7 +141,7 @@ Dyy = toeplitz([-2, 1, zeros(1, Nyu-2)]);
 D = kron(speye(Nxu), Dyy) + kron(Dxx, speye(Nyu));
 D = D / h^2;
 
-% Total amount of grid points
+% Total number of grid points
 Nu = Nxu * Nyu;
     
 %% Initialise state vectors (one more grid point than the number of intervals)

@@ -86,9 +86,9 @@ Although the dimensionality reduction ignores some of the physical processes, su
 \subsubsection{Notation}
 When describing the state of a system, the spatial dimensions it is distributed over appears in the argument of the state variable. For example, the state of a 2D system, with 1 translational DoF is written as $u(x,y,t)$.
 
-The translational DoF, on the other hand, determines the amount of coordinates that the state variable describes. A 1D system with 3 translational DoF can thus be written as $\mathbf{u}(x,t)$ where $\mathbf{u}$ is a vector containing the coordinates for all three translational DoF.  
+The translational DoF, on the other hand, determines the number of coordinates that the state variable describes. A 1D system with 3 translational DoF can thus be written as $\mathbf{u}(x,t)$ where $\mathbf{u}$ is a vector containing the coordinates for all three translational DoF.  
 
-% What this means for the notation introduced in the previous section is  the amount of arguments for the state variable. As all systems (in this context) have one temporal dimension, the state of a 1D system -- such as a string -- is described using $u(x,t)$, a 2D system -- such as a membrane -- is described using $u(x,y,t)$, and the state of a simple zero-dimensional (0D) mass-spring system as $u(t)$.
+% What this means for the notation introduced in the previous section is  the number of arguments for the state variable. As all systems (in this context) have one temporal dimension, the state of a 1D system -- such as a string -- is described using $u(x,t)$, a 2D system -- such as a membrane -- is described using $u(x,y,t)$, and the state of a simple zero-dimensional (0D) mass-spring system as $u(t)$.
 
 \subsection{Ranges of Definition and Domains}\label{sec:domains}
 When modelling physical systems, one needs to provide a \textit{range of definition} over which they are defined. For a 1D system $u = u(x,t)$, ranges of definition must be given for $x$ and $t$. Usually, the temporal range $t\geq 0$, meaning that the system is defined for non-negative time. 
@@ -543,7 +543,7 @@ If both boundaries of the 1D wave equation share the same condition, the fundame
 \end{figure}
 
 \subsubsection{Scaling}
-As this work follows much of Bilbao's \textit{Numerical Sound Synthesis} \cite{theBible}, it might be good to talk about a major discrepancy between the PDEs and FD schemes that appear there and those used here. Non-dimensionalisation, or \textit{scaling}, is extensively used in \cite{theBible} and much of the literature published around that time (fx. \cite{Bilbao2009Modular,Bilbao2009spring}) and can be useful to reduce the amount of parameters used to describe a system.
+As this work follows much of Bilbao's \textit{Numerical Sound Synthesis} \cite{theBible}, it might be good to talk about a major discrepancy between the PDEs and FD schemes that appear there and those used here. Non-dimensionalisation, or \textit{scaling}, is extensively used in \cite{theBible} and much of the literature published around that time (fx. \cite{Bilbao2009Modular,Bilbao2009spring}) and can be useful to reduce the number of parameters used to describe a system.
 
 Scaling techniques normalise the domain $x\in[0, L]$ to $x' \in [0, 1]$ with $x' = x/L$ . The 1D wave equation in \eqref{eq:1DwavePDE} can then be rewritten to
 \begin{equation}\label{eq:scaled1Dwave}
@@ -554,11 +554,10 @@ where scaled wave speed $\gamma = c/L$ has units of frequency. The scaling has r
 Although this parameter reduction might be useful for resonators in isolation, when multiple resonators interact with each other (see Part \ref{part:interactions}), it is better to keep the systems dimensional. As a big part of this work includes interaction between multiple resonators, only dimensional systems will appear here.\todo{check whether still correct}
 
 \subsection{Discrete time}\label{sec:1DWaveDisc}
-Coming back to the PDE presented in Eq. \eqref{eq:1DwavePDE}, we continue by finding a discrete-time approximation for it. The most straightforward \todo{FULL DOC SWEEP: check straightforward or straight-forward} discretisation of Eq. \eqref{eq:1DwavePDE} is the following FD scheme
+Coming back to the PDE presented in Eq. \eqref{eq:1DwavePDE}, we continue by finding a discrete-time approximation for it. As explained in Section \ref{sec:gridFunctions}, a continuous state variable $u = u(x,t)$ can be discretised using $x=lh$ with grid spacing $h$ (in m) and $t=nk$ with time step $k$ (in s). The grid function $\uln$ approximating $u$ can then be indexed by spatial index $l \in \{0, \hdots, N\}$ with number of intervals between the grid points $N$ and temporal index $n\in \mathbb{N}^0$. Continuing with the approximations of the derivatives in the 1D wave equation, the most straightforward \todo{FULL DOC SWEEP: check straightforward or straight-forward} discretisation of Eq. \eqref{eq:1DwavePDE} is the following FD scheme
 \begin{equation}\label{eq:1DwaveFDS}
-    \dtt \uln = c^2 \dxx \uln,
+    \dtt \uln = c^2 \dxx \uln.
 \end{equation}
-with $l\in\{0, \hdots, N\}$ and number of grid points $N + 1$.
 Other schemes exist (see e.g. \cite{theBible}), but are excluded as they have not been used in this work. Expanding the operators using the definitions given in Section \ref{sec:FDoperators} yields
 \begin{equation}
     \frac{1}{k^2}\left(u_l^{n+1}-2 \uln + u_l^{n-1}\right) = \frac{c^2}{h^2} \left(u_{l+1}^n - 2 \uln + u_{l-1}^n\right).
@@ -600,8 +599,8 @@ Substituting these locations into Eq. \eqref{eq:1DwaveUpdate} shows that grid po
 by discretising the boundary conditions in Eq. \eqref{eq:boundaryCond1DWave}. Discretising these (using the most accurate centred spatial difference operator for the Neumann condition) yields
 \begin{subequations}
     \begin{align}
-        u_0^n = u_N^n &= 0, \quad\text{(Dirichlet)}\label{eq:discreteDirichlet}\\
-        \delta_{x\cdot} u_0^n = \delta_{x\cdot} u_N^n &= 0. \quad \text{(Neumann)}\label{eq:discreteNeumann}
+        u_0^n = u_N^n &= 0 \quad\text{(Dirichlet, fixed)}\label{eq:discreteDirichlet},\\
+        \delta_{x\cdot} u_0^n = \delta_{x\cdot} u_N^n &= 0 \quad \text{(Neumann, free)}.\label{eq:discreteNeumann}
     \end{align}
 \end{subequations}
 If Dirichlet boundary conditions are used, the states of the boundary points will always be zero and can therefore can be excluded from the calculations. The range of calculation then simply becomes $l\in\{1,\hdots, N-1\}$ and no virtual grid points are needed when performing the update.
@@ -692,10 +691,10 @@ As can be seen from Figure \ref{fig:1DWaveOutput}, the output of the 1D wave equ
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{figures/fdtd/modes.eps}
-    \caption{The first $10$ modal shapes of the 1D wave equation with Dirichlet boundary conditions defined for $x\in[0, L]$ (only shown for mode $1$). The modes are normalised to have the same amplitude and vibrate at their respective modal frequencies with the extremes indicated by the black and the grey plot. The number of the shape can be determined by the amount of antinodes present in the shape. \label{fig:modes}}
+    \caption{The first $10$ modal shapes of the 1D wave equation with Dirichlet boundary conditions defined for $x\in[0, L]$ (only shown for mode $1$). The modes are normalised to have the same amplitude and vibrate at their respective modal frequencies with the extremes indicated by the black and the grey plot. The number of the shape can be determined by the number of antinodes present in the shape. \label{fig:modes}}
 \end{figure}
 
-The amount of modes present in the continuous PDE of the 1D wave equation is theoretically infinite. The amount present in the discrete FD scheme, however, is determined by the number of moving points in the system. If Dirichlet boundary conditions are used, this means that there are $N-1$ modes, and $N+1$ modes for Neumann boundary conditions. If the CFL condition is satisfied with equality, the frequencies of these modes are integer multiples of the fundamental: $f_m = mf_0$ for mode number $m \in \{1, \hdots, N-1\}$ for Dirichlet and $m \in \{0, \hdots, N\}$ for Neumann boundary conditions. The frequency of the harmonics -- and even the modal shapes -- can be analytically derived using modal analysis as will be explained in Section \ref{sec:modalAnalysis}.
+The number of modes present in the continuous PDE of the 1D wave equation is theoretically infinite. The number present in the discrete FD scheme, however, is determined by the number of moving points in the system. If Dirichlet boundary conditions are used, this means that there are $N-1$ modes, and $N+1$ modes for Neumann boundary conditions. If the CFL condition is satisfied with equality, the frequencies of these modes are integer multiples of the fundamental: $f_m = mf_0$ for mode number $m \in \{1, \hdots, N-1\}$ for Dirichlet and $m \in \{0, \hdots, N\}$ for Neumann boundary conditions. The frequency of the harmonics -- and even the modal shapes -- can be analytically derived using modal analysis as will be explained in Section \ref{sec:modalAnalysis}.
 
 The amplitude of the different modes depends on the excitation location (and type) and the output location. 
 Figure \ref{fig:1DWaveOutput}, for example, seemingly shows that the system only exhibits $24$ modes, rather than the $29$ ($N-1$) predicted. As the system is excited at $0.2N$, or in other words, $1/5$\th of the length of the system, this means that that every $5$\th mode will be attenuated.

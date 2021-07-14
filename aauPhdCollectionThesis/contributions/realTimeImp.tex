@@ -15,7 +15,7 @@ Here, an interactive application is considered real-time when
     Control of the application generates or manipulates audio with no noticeable latency.
 \end{center}
 
-For human-computer interaction, the task at hand greatly determines how much latency is acceptable. Wessel and Wright \cite{Wessel2002} place the upper limit of latency when interacting with computers for musical purposes at $10$ ms. Moreover, they place the a limit on the \textit{jitter}, or of variation of the latency, at $1$ ms. \SWcomment[It is thus important to keep the CPU usage at a fixed level, and different ways of controlling and interacting with the application should not influence the amount of computations much...]
+For human-computer interaction, the task at hand greatly determines how much latency is acceptable. Wessel and Wright \cite{Wessel2002} place the upper limit of latency when interacting with computers for musical purposes at $10$ ms. Moreover, they place the a limit on the \textit{jitter}, or of variation of the latency, at $1$ ms. \SWcomment[It is thus important to keep the CPU usage at a fixed level, and different ways of controlling and interacting with the application should not influence the number of computations much...]
 
 Also the application needs to be controlled continuously
 
@@ -135,7 +135,7 @@ Recall the update equation for the 1D wave update equation in Eq. \eqref{eq:1Dwa
 \begin{equation*}
     u_l^{n+1} = (2 - 2 \lambda^2) \uln - u_l^{n-1} + \lambda^2\left(u_{l+1}^n + u_{l-1}^n\right).
 \end{equation*}
-Grouping the terms like this allows for the coefficients multiplied onto the grid function at different temporal and spatial indices to be precomputed. This can significantly decrease the amount of operations per sample.
+Grouping the terms like this allows for the coefficients multiplied onto the grid function at different temporal and spatial indices to be precomputed. This can significantly decrease the number of operations per sample.
 
 The undamped stiff string FD scheme%in \eqref{eq:stiffStringFDS}
 \begin{equation}
@@ -150,7 +150,7 @@ can be expanded to an update equation as
 \end{equation}
 where $\lambda = ck/h$ and $\mu = \kappa k / h^2$.
 
-For implementation purposes there is a better way to write this scheme that reduces the amount of computations. This is done by collecting the terms based on the grid function and pre-calculating the coefficients multiplied onto these. As the schemes are spatially symmetric, ``neighbouring points'' relative to $\uln$ can also be grouped to get
+For implementation purposes there is a better way to write this scheme that reduces the number of computations. This is done by collecting the terms based on the grid function and pre-calculating the coefficients multiplied onto these. As the schemes are spatially symmetric, ``neighbouring points'' relative to $\uln$ can also be grouped to get
 \def\semilarge{\fontsize{11}{11.6}\selectfont}
 \begin{equation}
     u_l^{n+1} = \underbrace{(2 - 2\lambda^2 - 6\mu^2)}_{\texttt{\semilarge B1}}\uln  + \underbrace{\left(\lambda^2 + 4\mu^2\right)}_{\texttt{\semilarge B2}}\left(u_{l+1}^n+u_{l-1}^n\right)\underbrace{-\mu^2}_{\texttt{\semilarge B3}} \left(u_{l+2}^n+u_{l-2}^n\right) \underbrace{-}_{\texttt{\semilarge C1}} u_l^{n-1}.

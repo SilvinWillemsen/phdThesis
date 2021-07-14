@@ -78,7 +78,7 @@ at $x = 0, L$. See Figure \ref{fig:boundaryCondsStiffString} for plots of the fi
 \section{Discrete Time}\label{sec:stiffStringDiscrete}
 For the sake of compactness, we continue with Eq. \eqref{eq:stiffStringPDECompact}, rather than Eq. \eqref{eq:stiffStringPDE}. Naturally, same process can be followed for the latter, the only difference being a multiplication by $\rho A$ of all terms.
 
-Equation \eqref{eq:stiffStringPDECompact} can be discretised as 
+Following Section \ref{sec:gridFunctions} and using the FD operators presented in Section \ref{sec:FDoperators}, Eq. \eqref{eq:stiffStringPDECompact} can be discretised as 
 \begin{equation}\label{eq:stiffStringFDS}
     \dtt \uln = c^2 \dxx \uln - \kappa^2 \dxxxx \uln - 2 \sz \dtd \uln + 2 \so\dtm\dxx \uln,
 \end{equation}
@@ -348,7 +348,8 @@ Apart from the obvious material properties such as density, stiffness and geomet
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{figures/resonators/outputFFT.eps}
-    \caption{The time-domain and frequency-domain output of the stiff string. The parameters are set as in Table \ref{tab:stiffStringParams} with $E = 7\cdot 10^{11}$ to highlight dispersive effects and $T = 1129$. From the left panel, one can observe that over time, dispersive effects show due to the stiffness in the string. In frequency domain (right panel) this shows through the partials not being perfect integer multiples of the fundamental. Lastly, higher frequency components have a lower amplitude due to the frequency-dependent damping.\label{fig:stiffStringOutput}}
+    \caption{The time-domain and frequency-domain output of the stiff string. The parameters are set as in Table \ref{tab:stiffStringParams} with $E = 7\cdot 10^{11}$ to highlight dispersive effects and $T = 1129$. %From the left panel, one can observe that over time, dispersive effects show due to the stiffness in the string. In frequency domain (right panel) this shows through the partials not being perfect integer multiples of the fundamental. Lastly, higher frequency components have a lower amplitude due to the frequency-dependent damping.
+    \label{fig:stiffStringOutput}}
 \end{figure}
 
 
