@@ -744,16 +744,16 @@
 \pgfsyspdfmark {pgfid154}{31193199}{38609500}
 \newlabel{eq:stiffStringPDE}{{4.4}{75}{Adding Losses}{equation.4.1.4}{}}
 \@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ etc.}{75}{section*.102}}
-\pgfsyspdfmark {pgfid155}{8584681}{32840357}
+\pgfsyspdfmark {pgfid155}{8584681}{32245285}
 \def\mph@nr{31}
-\pgfsyspdfmark {pgfid158}{29344904}{32847566}
-\pgfsyspdfmark {pgfid159}{31193199}{32619665}
+\pgfsyspdfmark {pgfid158}{29344904}{32252494}
+\pgfsyspdfmark {pgfid159}{31193199}{32024593}
 \newlabel{eq:stiffStringPDECompact}{{4.5}{75}{Adding Losses}{equation.4.1.5}{}}
 \@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check wavespeed or wave speed (entire document)}{75}{section*.103}}
-\pgfsyspdfmark {pgfid160}{15704371}{30153547}
+\pgfsyspdfmark {pgfid160}{15704371}{29789159}
 \def\mph@nr{32}
-\pgfsyspdfmark {pgfid163}{29344904}{30160756}
-\pgfsyspdfmark {pgfid164}{31193199}{29932855}
+\pgfsyspdfmark {pgfid163}{29344904}{29796368}
+\pgfsyspdfmark {pgfid164}{31193199}{29568467}
 \@writefile{toc}{\contentsline {subsubsection}{Boundary Conditions}{75}{subsubsection*.104}}
 \newlabel{eq:stiffStringBoundConds}{{4.6}{75}{Boundary Conditions}{equation.4.1.6}{}}
 \newlabel{eq:BCclamped}{{4.6a}{75}{Boundary Conditions}{equation.4.1.6a}{}}
@@ -874,6 +874,7 @@
 \mph@setcol{ii:92}{\mph@nr}
 \citation{theBible}
 \citation{Bilbao2018}
+\citation{Bilbao2018}
 \citation{Webster1919}
 \citation{Bilbao2018}
 \citation{Bilbao2018}
@@ -885,6 +886,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {5.1}Webster's Equation}{93}{section.5.1}}
 \newlabel{sec:webstersEq}{{5.1}{93}{Webster's Equation}{section.5.1}{}}
 \newlabel{eq:webstersPDE}{{5.1}{93}{Webster's Equation}{equation.5.1.1}{}}
+\newlabel{eq:pressureVelocityWebster}{{5.2}{93}{Webster's Equation}{equation.5.1.2}{}}
 \mph@setcol{ii:93}{\mph@nr}
 \citation{Bilbao2018}
 \citation{Bilbao2018}
@@ -901,490 +903,300 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Approximations to $S(x)$ used in the FD scheme implementing Webster's equation. Dashed lines indicate the interleaved grid on which $S$ is sampled according to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:sHalf}\unskip \@@italiccorr )}}. \relax }}{95}{figure.caption.126}}
 \newlabel{fig:variableCrossSection}{{5.1}{95}{Approximations to $S(x)$ used in the FD scheme implementing Webster's equation. Dashed lines indicate the interleaved grid on which $S$ is sampled according to Eq. \eqref {eq:sHalf}. \relax }{figure.caption.126}{}}
 \newlabel{eq:webstersUpdateEq}{{5.9}{95}{Discrete Time}{equation.5.2.9}{}}
+\newlabel{eq:CFLwebster}{{5.11}{95}{Discrete Time}{equation.5.2.11}{}}
 \newlabel{eq:Snph}{{5.12b}{95}{Discrete Time}{equation.5.2.12b}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Boundary Conditions}{95}{subsection.5.2.1}}
-\newlabel{eq:discBoundariesBrass}{{5.13}{95}{Boundary Conditions}{equation.5.2.13}{}}
-\newlabel{eq:closedLeftBrass}{{5.13a}{95}{Boundary Conditions}{equation.5.2.13a}{}}
-\newlabel{eq:openRightBrass}{{5.13b}{95}{Boundary Conditions}{equation.5.2.13b}{}}
 \mph@setcol{ii:95}{\mph@nr}
 \citation{theBible}
 \citation{Atig2004}
 \citation{theBible}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.1}Boundary Conditions}{96}{subsection.5.2.1}}
+\newlabel{eq:discBoundariesBrass}{{5.13}{96}{Boundary Conditions}{equation.5.2.13}{}}
+\newlabel{eq:closedLeftBrass}{{5.13a}{96}{Boundary Conditions}{equation.5.2.13a}{}}
+\newlabel{eq:openRightBrass}{{5.13b}{96}{Boundary Conditions}{equation.5.2.13b}{}}
+\newlabel{eq:leftBoundaryWebster}{{5.14}{96}{Boundary Conditions}{equation.5.2.14}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2.2}Radiation}{96}{subsection.5.2.2}}
 \newlabel{sec:radiating}{{5.2.2}{96}{Radiation}{subsection.5.2.2}{}}
 \newlabel{eq:radCont}{{5.15}{96}{Radiation}{equation.5.2.15}{}}
 \newlabel{eq:centRadBound}{{5.17}{96}{Radiation}{equation.5.2.17}{}}
 \mph@setcol{ii:96}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Output and Matrix Form}{97}{subsection.5.2.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.4}Energy Analysis}{97}{subsection.5.2.4}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak  {h}$}{97}{subsubsection*.127}}
-\newlabel{eq:powerBalanceWebster}{{5.21}{97}{Step 1: Obtain $\dtp \h $}{equation.5.2.21}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{97}{subsubsection*.128}}
-\newlabel{eq:radiatingEnergyForm}{{5.22}{97}{Step 2: Identify energy types and isolate $\dtp $}{equation.5.2.22}{}}
+\citation{theBible}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.3}Excitation}{97}{subsection.5.2.3}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ maybe refer to section instead}{97}{section*.127}}
+\pgfsyspdfmark {pgfid186}{24255943}{27605868}
+\def\mph@nr{37}
+\pgfsyspdfmark {pgfid189}{29344904}{27613077}
+\pgfsyspdfmark {pgfid190}{31193199}{27385176}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.4}Output and Matrix Form}{97}{subsection.5.2.4}}
+\newlabel{sec:outputWebster}{{5.2.4}{97}{Output and Matrix Form}{subsection.5.2.4}{}}
 \mph@setcol{ii:97}{\mph@nr}
-\newlabel{eq:centStrictDissip}{{5.26}{98}{Step 2: Identify energy types and isolate $\dtp $}{equation.5.2.26}{}}
-\newlabel{eq:centStrictDissipRight}{{5.26a}{98}{Step 2: Identify energy types and isolate $\dtp $}{equation.5.2.26a}{}}
-\newlabel{eq:centStrictDissipLeft}{{5.26b}{98}{Step 2: Identify energy types and isolate $\dtp $}{equation.5.2.26b}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 3: Check units}{98}{subsubsection*.129}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces A pulse train with a frequency of $213$ Hz. This is used to excite the implementation of Webster's equation in Section \ref  {sec:outputWebster}. \relax }}{98}{figure.caption.128}}
+\newlabel{fig:inputWebster}{{5.2}{98}{A pulse train with a frequency of $213$ Hz. This is used to excite the implementation of Webster's equation in Section \ref {sec:outputWebster}. \relax }{figure.caption.128}{}}
+\newlabel{eq:matrixFormWebsters}{{5.25}{98}{Output and Matrix Form}{equation.5.2.25}{}}
 \mph@setcol{ii:98}{\mph@nr}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Parameters for the implementation of Webster's equation. The length is slightly below $3$ m to yield $\lambda = 1$ in Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:CFLwebster}\unskip \@@italiccorr )}}.\relax }}{99}{table.caption.129}}
+\newlabel{tab:websterParams}{{5.1}{99}{Parameters for the implementation of Webster's equation. The length is slightly below $3$ m to yield $\lambda = 1$ in Eq. \eqref {eq:CFLwebster}.\relax }{table.caption.129}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces The geometry used for the implementation. See paper [\ref  {paper:H}] for more details. \relax }}{99}{figure.caption.130}}
+\newlabel{fig:geometryWebster}{{5.3}{99}{The geometry used for the implementation. See paper \citeP [H] for more details. \relax }{figure.caption.130}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.5}Energy Analysis}{99}{subsection.5.2.5}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak  {h}$}{99}{subsubsection*.132}}
+\newlabel{eq:powerBalanceWebster}{{5.27}{99}{Step 1: Obtain $\dtp \h $}{equation.5.2.27}{}}
+\mph@setcol{ii:99}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces The output of Webster's equation at $\Psi _N^n$ using the parameters in Table \ref  {tab:websterParams}. \relax }}{100}{figure.caption.131}}
+\newlabel{fig:outputWebster}{{5.4}{100}{The output of Webster's equation at $\Psi _N^n$ using the parameters in Table \ref {tab:websterParams}. \relax }{figure.caption.131}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{100}{subsubsection*.133}}
+\newlabel{eq:radiatingEnergyForm}{{5.28}{100}{Step 2: Identify energy types and isolate $\dtp $}{equation.5.2.28}{}}
+\newlabel{eq:switchSignsWebster}{{5.29}{100}{Step 2: Identify energy types and isolate $\dtp $}{equation.5.2.29}{}}
+\mph@setcol{ii:100}{\mph@nr}
+\citation{theBible}
+\newlabel{eq:centStrictDissip}{{5.32}{101}{Step 2: Identify energy types and isolate $\dtp $}{equation.5.2.32}{}}
+\newlabel{eq:centStrictDissipRight}{{5.32a}{101}{Step 2: Identify energy types and isolate $\dtp $}{equation.5.2.32a}{}}
+\newlabel{eq:centStrictDissipLeft}{{5.32b}{101}{Step 2: Identify energy types and isolate $\dtp $}{equation.5.2.32b}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 3: Check units}{101}{subsubsection*.134}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 4: Implementation}{101}{subsubsection*.135}}
+\mph@setcol{ii:101}{\mph@nr}
 \citation{theBible}
 \citation{Harrison2018}
-\@writefile{toc}{\contentsline {subsubsection}{Step 4: Implementation}{99}{subsubsection*.130}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces The kinetic (blue), potential (red), and total (black) energy as well as the energy stored by the radiation condition (green) of an implementation of Webster's equation are plotted in the left panel. Notice that the energy decreases around $n=65$ as the excitation reached the boundary where damping is included. The right panel shows the normalised energy (according to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:normalisedEnergyDamping}\unskip \@@italiccorr )}}) and shows that the deviation of the energy is within machine precision. \relax }}{99}{figure.caption.131}}
-\newlabel{fig:energyWebsters}{{5.2}{99}{The kinetic (blue), potential (red), and total (black) energy as well as the energy stored by the radiation condition (green) of an implementation of Webster's equation are plotted in the left panel. Notice that the energy decreases around $n=65$ as the excitation reached the boundary where damping is included. The right panel shows the normalised energy (according to Eq. \eqref {eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \relax }{figure.caption.131}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.5}Stability through Energy Analysis}{99}{subsection.5.2.5}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}First-order system}{99}{section.5.3}}
-\newlabel{sec:firstOrderSystem}{{5.3}{99}{First-order system}{section.5.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Adding Radiation}{99}{subsection.5.3.1}}
-\mph@setcol{ii:99}{\mph@nr}
-\newlabel{eq:barVPSystem}{{5.29}{100}{Adding Radiation}{equation.5.3.29}{}}
-\newlabel{eq:barV}{{5.29a}{100}{Adding Radiation}{equation.5.3.29a}{}}
-\newlabel{eq:barP1}{{5.29b}{100}{Adding Radiation}{equation.5.3.29b}{}}
-\newlabel{eq:barP2}{{5.29c}{100}{Adding Radiation}{equation.5.3.29c}{}}
-\newlabel{eq:barVars}{{5.30}{100}{Adding Radiation}{equation.5.3.30}{}}
-\newlabel{eq:preSolutP}{{5.32}{100}{Adding Radiation}{equation.5.3.32}{}}
-\newlabel{eq:vBarExpanded}{{5.33}{100}{Adding Radiation}{equation.5.3.33}{}}
-\mph@setcol{ii:100}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Energy}{101}{subsection.5.3.2}}
-\mph@setcol{ii:101}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces The kinetic (blue), potential (red), and total (black) energy as well as the energy stored by the radiation condition (green) of an implementation of Webster's equation are plotted in the left panel. Notice that the energy decreases around $n=65$ as the excitation reached the boundary where damping is included. The right panel shows the normalised energy (according to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:normalisedEnergyDamping}\unskip \@@italiccorr )}}) and shows that the deviation of the energy is within machine precision. \relax }}{102}{figure.caption.136}}
+\newlabel{fig:energyWebsters}{{5.5}{102}{The kinetic (blue), potential (red), and total (black) energy as well as the energy stored by the radiation condition (green) of an implementation of Webster's equation are plotted in the left panel. Notice that the energy decreases around $n=65$ as the excitation reached the boundary where damping is included. The right panel shows the normalised energy (according to Eq. \eqref {eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \relax }{figure.caption.136}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.6}Stability through Energy Analysis}{102}{subsection.5.2.6}}
+\newlabel{sec:stabilityEnergyWebster}{{5.2.6}{102}{Stability through Energy Analysis}{subsection.5.2.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2.7}Modal Analysis}{102}{subsection.5.2.7}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}First-order system}{102}{section.5.3}}
+\newlabel{sec:firstOrderSystem}{{5.3}{102}{First-order system}{section.5.3}{}}
 \mph@setcol{ii:102}{\mph@nr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.1}Adding Radiation}{103}{subsection.5.3.1}}
+\newlabel{eq:barVPSystem}{{5.36}{103}{Adding Radiation}{equation.5.3.36}{}}
+\newlabel{eq:barV}{{5.36a}{103}{Adding Radiation}{equation.5.3.36a}{}}
+\newlabel{eq:barP1}{{5.36b}{103}{Adding Radiation}{equation.5.3.36b}{}}
+\newlabel{eq:barP2}{{5.36c}{103}{Adding Radiation}{equation.5.3.36c}{}}
+\newlabel{eq:barVars}{{5.37}{103}{Adding Radiation}{equation.5.3.37}{}}
+\newlabel{eq:preSolutP}{{5.39}{103}{Adding Radiation}{equation.5.3.39}{}}
+\newlabel{eq:vBarExpanded}{{5.40}{103}{Adding Radiation}{equation.5.3.40}{}}
+\mph@setcol{ii:103}{\mph@nr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Energy}{104}{subsection.5.3.2}}
+\mph@setcol{ii:104}{\mph@nr}
 \citation{theBible}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}2D Systems}{103}{chapter.6}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}2D Systems}{105}{chapter.6}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{ch:2Dsyst}{{6}{103}{2D Systems}{chapter.6}{}}
-\mph@setcol{ii:103}{\mph@nr}
-\citation{theBible}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}PDEs and FD schemes in 2D}{104}{section.6.1}}
-\@writefile{toc}{\contentsline {subsubsection}{Additional operators}{104}{subsubsection*.132}}
-\newlabel{eq:laplacian}{{6.1}{104}{Additional operators}{equation.6.1.1}{}}
-\newlabel{eq:biharmonic}{{6.2}{104}{Additional operators}{equation.6.1.2}{}}
-\newlabel{eq:discreteLaplacian}{{6.4}{104}{Additional operators}{equation.6.1.4}{}}
-\newlabel{eq:laplacianExpansion}{{6.5}{104}{Additional operators}{equation.6.1.5}{}}
-\mph@setcol{ii:104}{\mph@nr}
-\citation{Duyne1993}
-\newlabel{eq:discreteBiharmonic}{{6.6}{105}{Additional operators}{equation.6.1.6}{}}
-\newlabel{fig:laplacian}{{6.1a}{105}{Subfigure 6 6.1a}{subfigure.6.1.1}{}}
-\newlabel{sub@fig:laplacian}{{(a)}{a}{Subfigure 6 6.1a\relax }{subfigure.6.1.1}{}}
-\newlabel{fig:biharmonic}{{6.1b}{105}{Subfigure 6 6.1b}{subfigure.6.1.2}{}}
-\newlabel{sub@fig:biharmonic}{{(b)}{b}{Subfigure 6 6.1b\relax }{subfigure.6.1.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces The stencils of the 2D spatial FD operators in Eqs. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:discreteLaplacian}\unskip \@@italiccorr )}} and \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:discreteBiharmonic}\unskip \@@italiccorr )}} respectively. The red square denotes what grid point the operator is applied to. The stencils follow the same layout as Figure \ref  {fig:operators}, but the vertical axis denotes a second spatial dimension rather than time. \relax }}{105}{figure.caption.133}}
-\newlabel{fig:2Doperators}{{6.1}{105}{The stencils of the 2D spatial FD operators in Eqs. \eqref {eq:discreteLaplacian} and \eqref {eq:discreteBiharmonic} respectively. The red square denotes what grid point the operator is applied to. The stencils follow the same layout as Figure \ref {fig:operators}, but the vertical axis denotes a second spatial dimension rather than time. \relax }{figure.caption.133}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {The $\delta _{\Delta }$ operator in Eq. \textup {\hbox {\mathsurround \z@ \normalfont (\ignorespaces \ref {eq:discreteLaplacian}\unskip \@@italiccorr )}}.}}}{105}{subfigure.1.1}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {The $\delta _{\Delta }\delta _{\Delta }$ operator in Eq. \textup {\hbox {\mathsurround \z@ \normalfont (\ignorespaces \ref {eq:discreteBiharmonic}\unskip \@@italiccorr )}}.}}}{105}{subfigure.1.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.2}2D Wave Equation}{105}{section.6.2}}
-\newlabel{sec:2Dwave}{{6.2}{105}{2D Wave Equation}{section.6.2}{}}
+\newlabel{ch:2Dsyst}{{6}{105}{2D Systems}{chapter.6}{}}
 \mph@setcol{ii:105}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Continuous time}{106}{subsection.6.2.1}}
-\newlabel{eq:2DwavePDE}{{6.7}{106}{Continuous time}{equation.6.2.7}{}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check whether this wording is right..}{106}{section*.134}}
-\pgfsyspdfmark {pgfid187}{7898567}{23689538}
-\def\mph@nr{37}
-\pgfsyspdfmark {pgfid188}{2321883}{23696747}
-\pgfsyspdfmark {pgfid189}{4170178}{23468846}
-\@writefile{toc}{\contentsline {subsubsection}{Boundary conditions}{106}{subsubsection*.135}}
-\newlabel{eq:boundaryCond2DWave}{{6.8}{106}{Boundary conditions}{equation.6.2.8}{}}
-\newlabel{eq:contDirichlet2D}{{6.8a}{106}{Boundary conditions}{equation.6.2.8a}{}}
-\newlabel{eq:contNeumann2D}{{6.8b}{106}{Boundary conditions}{equation.6.2.8b}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Discrete time}{106}{subsection.6.2.2}}
-\newlabel{eq:2DwaveFDS}{{6.9}{106}{Discrete time}{equation.6.2.9}{}}
-\mph@setcol{ii:106}{\mph@nr}
-\newlabel{eq:update2Dwave}{{6.10}{107}{Discrete time}{equation.6.2.10}{}}
-\newlabel{eq:courant2D}{{6.11}{107}{Discrete time}{equation.6.2.11}{}}
-\newlabel{eq:CFL2D}{{6.12}{107}{Discrete time}{equation.6.2.12}{}}
-\newlabel{eq:stabilityCondition2Dwave}{{6.13}{107}{Discrete time}{equation.6.2.13}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Discrete boundary conditions}{107}{subsubsection*.136}}
-\newlabel{eq:boundaryCond2DWaveDisc}{{6.14}{107}{Discrete boundary conditions}{equation.6.2.14}{}}
-\newlabel{eq:discDirichlet2D}{{6.14a}{107}{Discrete boundary conditions}{equation.6.2.14a}{}}
-\newlabel{eq:discNeumann2D}{{6.14b}{107}{Discrete boundary conditions}{equation.6.2.14b}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Stencil}{107}{subsubsection*.137}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Implementation and Matrix Form}{107}{subsection.6.2.3}}
-\newlabel{sec:2DwaveImplementation}{{6.2.3}{107}{Implementation and Matrix Form}{subsection.6.2.3}{}}
-\newlabel{eq:orderOfCalc2D}{{6.15}{107}{Implementation and Matrix Form}{equation.6.2.15}{}}
-\mph@setcol{ii:107}{\mph@nr}
-\citation{Horn1991}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces The stencil for the 2D wave equation FD scheme in Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:2DwaveFDS}\unskip \@@italiccorr )}}. The grid points use the same colour-coding as previous stencils (see e.g. Figure \ref  {fig:stencil1DWave}).\relax }}{108}{figure.caption.138}}
-\newlabel{fig:stencil2Dwave}{{6.2}{108}{The stencil for the 2D wave equation FD scheme in Eq. \eqref {eq:2DwaveFDS}. The grid points use the same colour-coding as previous stencils (see e.g. Figure \ref {fig:stencil1DWave}).\relax }{figure.caption.138}{}}
-\newlabel{eq:stackedState}{{6.17}{108}{Implementation and Matrix Form}{equation.6.2.17}{}}
-\mph@setcol{ii:108}{\mph@nr}
-\citation{Hamilton2016}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Stacking, or `flattening' a $4\times 4$ matrix to a $16$-element vector. \relax }}{109}{figure.caption.139}}
-\newlabel{fig:stackingMatrix}{{6.3}{109}{Stacking, or `flattening' a $4\times 4$ matrix to a $16$-element vector. \relax }{figure.caption.139}{}}
-\newlabel{eq:DxxyyDef}{{6.20}{109}{Implementation and Matrix Form}{equation.6.2.20}{}}
-\mph@setcol{ii:109}{\mph@nr}
 \citation{theBible}
-\newlabel{eq:DDeltaMatrix}{{6.21}{110}{Implementation and Matrix Form}{equation.6.2.21}{}}
-\newlabel{eq:matrixUpdate2Dwave}{{6.22}{110}{Implementation and Matrix Form}{equation.6.2.22}{}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check if this is still true}{110}{section*.140}}
-\pgfsyspdfmark {pgfid192}{24434552}{18547348}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}PDEs and FD schemes in 2D}{106}{section.6.1}}
+\@writefile{toc}{\contentsline {subsubsection}{Additional operators}{106}{subsubsection*.137}}
+\newlabel{eq:laplacian}{{6.1}{106}{Additional operators}{equation.6.1.1}{}}
+\newlabel{eq:biharmonic}{{6.2}{106}{Additional operators}{equation.6.1.2}{}}
+\newlabel{eq:discreteLaplacian}{{6.4}{106}{Additional operators}{equation.6.1.4}{}}
+\newlabel{eq:laplacianExpansion}{{6.5}{106}{Additional operators}{equation.6.1.5}{}}
+\mph@setcol{ii:106}{\mph@nr}
+\citation{Duyne1993}
+\newlabel{eq:discreteBiharmonic}{{6.6}{107}{Additional operators}{equation.6.1.6}{}}
+\newlabel{fig:laplacian}{{6.1a}{107}{Subfigure 6 6.1a}{subfigure.6.1.1}{}}
+\newlabel{sub@fig:laplacian}{{(a)}{a}{Subfigure 6 6.1a\relax }{subfigure.6.1.1}{}}
+\newlabel{fig:biharmonic}{{6.1b}{107}{Subfigure 6 6.1b}{subfigure.6.1.2}{}}
+\newlabel{sub@fig:biharmonic}{{(b)}{b}{Subfigure 6 6.1b\relax }{subfigure.6.1.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.1}{\ignorespaces The stencils of the 2D spatial FD operators in Eqs. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:discreteLaplacian}\unskip \@@italiccorr )}} and \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:discreteBiharmonic}\unskip \@@italiccorr )}} respectively. The red square denotes what grid point the operator is applied to. The stencils follow the same layout as Figure \ref  {fig:operators}, but the vertical axis denotes a second spatial dimension rather than time. \relax }}{107}{figure.caption.138}}
+\newlabel{fig:2Doperators}{{6.1}{107}{The stencils of the 2D spatial FD operators in Eqs. \eqref {eq:discreteLaplacian} and \eqref {eq:discreteBiharmonic} respectively. The red square denotes what grid point the operator is applied to. The stencils follow the same layout as Figure \ref {fig:operators}, but the vertical axis denotes a second spatial dimension rather than time. \relax }{figure.caption.138}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {The $\delta _{\Delta }$ operator in Eq. \textup {\hbox {\mathsurround \z@ \normalfont (\ignorespaces \ref {eq:discreteLaplacian}\unskip \@@italiccorr )}}.}}}{107}{subfigure.1.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {The $\delta _{\Delta }\delta _{\Delta }$ operator in Eq. \textup {\hbox {\mathsurround \z@ \normalfont (\ignorespaces \ref {eq:discreteBiharmonic}\unskip \@@italiccorr )}}.}}}{107}{subfigure.1.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.2}2D Wave Equation}{107}{section.6.2}}
+\newlabel{sec:2Dwave}{{6.2}{107}{2D Wave Equation}{section.6.2}{}}
+\mph@setcol{ii:107}{\mph@nr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.1}Continuous time}{108}{subsection.6.2.1}}
+\newlabel{eq:2DwavePDE}{{6.7}{108}{Continuous time}{equation.6.2.7}{}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check whether this wording is right..}{108}{section*.139}}
+\pgfsyspdfmark {pgfid192}{7898567}{23689538}
 \def\mph@nr{38}
-\pgfsyspdfmark {pgfid193}{2321883}{18554557}
-\pgfsyspdfmark {pgfid194}{4170178}{18326656}
-\@writefile{toc}{\contentsline {subsubsection}{Output}{110}{subsubsection*.141}}
-\mph@setcol{ii:110}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Wave propagation of an implementation of the 2D wave equation with $L_x = 1.5$ m, $L_y = 1$ m and $c= 360$ m/s. The system is excited with a 2D raised cosine at $(0.25L_x, 0.5L_y)$.\relax }}{111}{figure.caption.142}}
-\newlabel{fig:2Dpropagation}{{6.4}{111}{Wave propagation of an implementation of the 2D wave equation with $L_x = 1.5$ m, $L_y = 1$ m and $c= 360$ m/s. The system is excited with a 2D raised cosine at $(0.25L_x, 0.5L_y)$.\relax }{figure.caption.142}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces The output of the 2D wave equation at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref  {fig:2Dpropagation}. The partials are extremely close together (notice that only frequency up to 5000 Hz are shown) and is related to the aperiodic nature of the system behaviour. \relax }}{111}{figure.caption.143}}
-\newlabel{fig:output2DWave}{{6.5}{111}{The output of the 2D wave equation at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref {fig:2Dpropagation}. The partials are extremely close together (notice that only frequency up to 5000 Hz are shown) and is related to the aperiodic nature of the system behaviour. \relax }{figure.caption.143}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.4}Frequency Domain Analysis in 2D}{111}{subsection.6.2.4}}
-\newlabel{sec:stability2Dwave}{{6.2.4}{111}{Frequency Domain Analysis in 2D}{subsection.6.2.4}{}}
-\newlabel{eq:pxpy}{{6.24}{111}{Frequency Domain Analysis in 2D}{equation.6.2.24}{}}
-\mph@setcol{ii:111}{\mph@nr}
-\newlabel{eq:laplacianAnsatz}{{6.26}{112}{Frequency Domain Analysis in 2D}{equation.6.2.26}{}}
-\newlabel{eq:biharmonicAnsatz}{{6.27}{112}{Frequency Domain Analysis in 2D}{equation.6.2.27}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.5}Energy Analysis in 2D}{112}{subsection.6.2.5}}
-\newlabel{sec:energyAnalysis2DWave}{{6.2.5}{112}{Energy Analysis in 2D}{subsection.6.2.5}{}}
-\mph@setcol{ii:112}{\mph@nr}
-\newlabel{eq:2DInnerProd}{{6.31}{113}{Energy Analysis in 2D}{equation.6.2.31}{}}
-\newlabel{eq:reduced2Ddoms}{{6.32}{113}{Energy Analysis in 2D}{equation.6.2.32}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak  {h}$}{113}{subsubsection*.144}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ FULL DOC SWEEP: check what equations have numbers when performing energy analysis (and stability for that matter)}{113}{section*.145}}
-\pgfsyspdfmark {pgfid197}{4661699}{11335627}
+\pgfsyspdfmark {pgfid193}{2321883}{23696747}
+\pgfsyspdfmark {pgfid194}{4170178}{23468846}
+\@writefile{toc}{\contentsline {subsubsection}{Boundary conditions}{108}{subsubsection*.140}}
+\newlabel{eq:boundaryCond2DWave}{{6.8}{108}{Boundary conditions}{equation.6.2.8}{}}
+\newlabel{eq:contDirichlet2D}{{6.8a}{108}{Boundary conditions}{equation.6.2.8a}{}}
+\newlabel{eq:contNeumann2D}{{6.8b}{108}{Boundary conditions}{equation.6.2.8b}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.2}Discrete time}{108}{subsection.6.2.2}}
+\newlabel{eq:2DwaveFDS}{{6.9}{108}{Discrete time}{equation.6.2.9}{}}
+\mph@setcol{ii:108}{\mph@nr}
+\newlabel{eq:update2Dwave}{{6.10}{109}{Discrete time}{equation.6.2.10}{}}
+\newlabel{eq:courant2D}{{6.11}{109}{Discrete time}{equation.6.2.11}{}}
+\newlabel{eq:CFL2D}{{6.12}{109}{Discrete time}{equation.6.2.12}{}}
+\newlabel{eq:stabilityCondition2Dwave}{{6.13}{109}{Discrete time}{equation.6.2.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Discrete boundary conditions}{109}{subsubsection*.141}}
+\newlabel{eq:boundaryCond2DWaveDisc}{{6.14}{109}{Discrete boundary conditions}{equation.6.2.14}{}}
+\newlabel{eq:discDirichlet2D}{{6.14a}{109}{Discrete boundary conditions}{equation.6.2.14a}{}}
+\newlabel{eq:discNeumann2D}{{6.14b}{109}{Discrete boundary conditions}{equation.6.2.14b}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Stencil}{109}{subsubsection*.142}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.3}Implementation and Matrix Form}{109}{subsection.6.2.3}}
+\newlabel{sec:2DwaveImplementation}{{6.2.3}{109}{Implementation and Matrix Form}{subsection.6.2.3}{}}
+\newlabel{eq:orderOfCalc2D}{{6.15}{109}{Implementation and Matrix Form}{equation.6.2.15}{}}
+\mph@setcol{ii:109}{\mph@nr}
+\citation{Horn1991}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.2}{\ignorespaces The stencil for the 2D wave equation FD scheme in Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:2DwaveFDS}\unskip \@@italiccorr )}}. The grid points use the same colour-coding as previous stencils (see e.g. Figure \ref  {fig:stencil1DWave}).\relax }}{110}{figure.caption.143}}
+\newlabel{fig:stencil2Dwave}{{6.2}{110}{The stencil for the 2D wave equation FD scheme in Eq. \eqref {eq:2DwaveFDS}. The grid points use the same colour-coding as previous stencils (see e.g. Figure \ref {fig:stencil1DWave}).\relax }{figure.caption.143}{}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ matrix vector notation (capitalisation) does not hold here..}{110}{section*.144}}
+\pgfsyspdfmark {pgfid197}{14113449}{20034164}
 \def\mph@nr{39}
-\pgfsyspdfmark {pgfid200}{29344904}{11342836}
-\pgfsyspdfmark {pgfid201}{31193199}{11114935}
-\@writefile{toc}{\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{113}{subsubsection*.146}}
+\pgfsyspdfmark {pgfid198}{2321883}{20041373}
+\pgfsyspdfmark {pgfid199}{4170178}{19813472}
+\newlabel{eq:stackedState}{{6.17}{110}{Implementation and Matrix Form}{equation.6.2.17}{}}
+\mph@setcol{ii:110}{\mph@nr}
+\citation{Hamilton2016}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.3}{\ignorespaces Stacking, or `flattening' a $4\times 4$ matrix to a $16$-element vector. \relax }}{111}{figure.caption.145}}
+\newlabel{fig:stackingMatrix}{{6.3}{111}{Stacking, or `flattening' a $4\times 4$ matrix to a $16$-element vector. \relax }{figure.caption.145}{}}
+\newlabel{eq:DxxyyDef}{{6.20}{111}{Implementation and Matrix Form}{equation.6.2.20}{}}
+\mph@setcol{ii:111}{\mph@nr}
+\citation{theBible}
+\newlabel{eq:DDeltaMatrix}{{6.21}{112}{Implementation and Matrix Form}{equation.6.2.21}{}}
+\newlabel{eq:matrixUpdate2Dwave}{{6.22}{112}{Implementation and Matrix Form}{equation.6.2.22}{}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check if this is still true}{112}{section*.146}}
+\pgfsyspdfmark {pgfid202}{24434552}{18547348}
+\def\mph@nr{40}
+\pgfsyspdfmark {pgfid203}{2321883}{18554557}
+\pgfsyspdfmark {pgfid204}{4170178}{18326656}
+\@writefile{toc}{\contentsline {subsubsection}{Output}{112}{subsubsection*.147}}
+\mph@setcol{ii:112}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.4}{\ignorespaces Wave propagation of an implementation of the 2D wave equation with $L_x = 1.5$ m, $L_y = 1$ m and $c= 360$ m/s. The system is excited with a 2D raised cosine at $(0.25L_x, 0.5L_y)$.\relax }}{113}{figure.caption.148}}
+\newlabel{fig:2Dpropagation}{{6.4}{113}{Wave propagation of an implementation of the 2D wave equation with $L_x = 1.5$ m, $L_y = 1$ m and $c= 360$ m/s. The system is excited with a 2D raised cosine at $(0.25L_x, 0.5L_y)$.\relax }{figure.caption.148}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.5}{\ignorespaces The output of the 2D wave equation at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref  {fig:2Dpropagation}. The partials are extremely close together (notice that only frequency up to 5000 Hz are shown) and is related to the aperiodic nature of the system behaviour. \relax }}{113}{figure.caption.149}}
+\newlabel{fig:output2DWave}{{6.5}{113}{The output of the 2D wave equation at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref {fig:2Dpropagation}. The partials are extremely close together (notice that only frequency up to 5000 Hz are shown) and is related to the aperiodic nature of the system behaviour. \relax }{figure.caption.149}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.4}Frequency Domain Analysis in 2D}{113}{subsection.6.2.4}}
+\newlabel{sec:stability2Dwave}{{6.2.4}{113}{Frequency Domain Analysis in 2D}{subsection.6.2.4}{}}
+\newlabel{eq:pxpy}{{6.24}{113}{Frequency Domain Analysis in 2D}{equation.6.2.24}{}}
 \mph@setcol{ii:113}{\mph@nr}
-\newlabel{eq:energyBalance2DWave}{{6.33}{114}{Step 2: Identify energy types and isolate $\dtp $}{equation.6.2.33}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 3: Check units}{114}{subsubsection*.147}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 4: Implementation}{114}{subsubsection*.148}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.6}Modal Analysis in 2D}{114}{subsection.6.2.6}}
+\newlabel{eq:laplacianAnsatz}{{6.26}{114}{Frequency Domain Analysis in 2D}{equation.6.2.26}{}}
+\newlabel{eq:biharmonicAnsatz}{{6.27}{114}{Frequency Domain Analysis in 2D}{equation.6.2.27}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.5}Energy Analysis in 2D}{114}{subsection.6.2.5}}
+\newlabel{sec:energyAnalysis2DWave}{{6.2.5}{114}{Energy Analysis in 2D}{subsection.6.2.5}{}}
 \mph@setcol{ii:114}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces The kinetic (blue), potential (red), and total (black) energy of an implementation of the 2D wave equation are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:normalisedEnergy}\unskip \@@italiccorr )}}) and shows that the deviation of the energy is within machine precision. \relax }}{115}{figure.caption.149}}
-\newlabel{fig:energy2Dwave}{{6.6}{115}{The kinetic (blue), potential (red), and total (black) energy of an implementation of the 2D wave equation are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \eqref {eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \relax }{figure.caption.149}{}}
-\newlabel{eq:2DWaveModes}{{6.36}{115}{Modal Analysis in 2D}{equation.6.2.36}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Modal shapes}{115}{subsubsection*.151}}
+\newlabel{eq:2DInnerProd}{{6.31}{115}{Energy Analysis in 2D}{equation.6.2.31}{}}
+\newlabel{eq:reduced2Ddoms}{{6.32}{115}{Energy Analysis in 2D}{equation.6.2.32}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak  {h}$}{115}{subsubsection*.150}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ FULL DOC SWEEP: check what equations have numbers when performing energy analysis (and stability for that matter)}{115}{section*.151}}
+\pgfsyspdfmark {pgfid207}{4661699}{11335627}
+\def\mph@nr{41}
+\pgfsyspdfmark {pgfid210}{29344904}{11342836}
+\pgfsyspdfmark {pgfid211}{31193199}{11114935}
+\@writefile{toc}{\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{115}{subsubsection*.152}}
 \mph@setcol{ii:115}{\mph@nr}
+\newlabel{eq:energyBalance2DWave}{{6.33}{116}{Step 2: Identify energy types and isolate $\dtp $}{equation.6.2.33}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 3: Check units}{116}{subsubsection*.153}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 4: Implementation}{116}{subsubsection*.154}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2.6}Modal Analysis in 2D}{116}{subsection.6.2.6}}
+\mph@setcol{ii:116}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.6}{\ignorespaces The kinetic (blue), potential (red), and total (black) energy of an implementation of the 2D wave equation are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:normalisedEnergy}\unskip \@@italiccorr )}}) and shows that the deviation of the energy is within machine precision. \relax }}{117}{figure.caption.155}}
+\newlabel{fig:energy2Dwave}{{6.6}{117}{The kinetic (blue), potential (red), and total (black) energy of an implementation of the 2D wave equation are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \eqref {eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \relax }{figure.caption.155}{}}
+\newlabel{eq:2DWaveModes}{{6.36}{117}{Modal Analysis in 2D}{equation.6.2.36}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Modal shapes}{117}{subsubsection*.157}}
+\mph@setcol{ii:117}{\mph@nr}
 \citation{DAFxChapter}
 \citation{Kirchhoff1968}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Modal frequencies of the 2D wave equation with $L_x = 1.5$ m, $L_y = 1$ m and $c\approx 3118$ m/s, such that $\lambda = 1/\sqrt  {2}$ according to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:CFL2D}\unskip \@@italiccorr )}}. \relax }}{116}{figure.caption.150}}
-\newlabel{fig:modalFreqs2Dwave}{{6.7}{116}{Modal frequencies of the 2D wave equation with $L_x = 1.5$ m, $L_y = 1$ m and $c\approx 3118$ m/s, such that $\lambda = 1/\sqrt {2}$ according to Eq. \eqref {eq:CFL2D}. \relax }{figure.caption.150}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces The first (lowest-frequency) six modal shapes of 2D wave equation with $L_x = 1.5$ m and $L_y = 1$ m.\relax }}{116}{figure.caption.152}}
-\newlabel{fig:modalShapes2D}{{6.8}{116}{The first (lowest-frequency) six modal shapes of 2D wave equation with $L_x = 1.5$ m and $L_y = 1$ m.\relax }{figure.caption.152}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.3}Thin plate}{116}{section.6.3}}
-\newlabel{sec:thinPlate}{{6.3}{116}{Thin plate}{section.6.3}{}}
-\mph@setcol{ii:116}{\mph@nr}
-\citation{theBible}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}Continuous time}{117}{subsection.6.3.1}}
-\newlabel{eq:platePDENoLosses}{{6.37}{117}{Continuous time}{equation.6.3.37}{}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ look up what this actually is}{117}{section*.153}}
-\pgfsyspdfmark {pgfid203}{8125170}{30686340}
-\def\mph@nr{40}
-\pgfsyspdfmark {pgfid206}{29344904}{30693549}
-\pgfsyspdfmark {pgfid207}{31193199}{30465648}
-\newlabel{eq:platePDE}{{6.38}{117}{Continuous time}{equation.6.3.38}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Boundary conditions}{117}{subsubsection*.154}}
-\newlabel{eq:boundaryCondThinPlate}{{6.39}{117}{Boundary conditions}{equation.6.3.39}{}}
-\newlabel{eq:contClamped2D}{{6.39a}{117}{Boundary conditions}{equation.6.3.39a}{}}
-\newlabel{eq:contSimplySupported2D}{{6.39b}{117}{Boundary conditions}{equation.6.3.39b}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Discrete time}{117}{subsection.6.3.2}}
-\newlabel{eq:thinPlateFDS}{{6.40}{117}{Discrete time}{equation.6.3.40}{}}
-\mph@setcol{ii:117}{\mph@nr}
-\newlabel{eq:thinPlateFDSCompact}{{6.41}{118}{Discrete time}{equation.6.3.41}{}}
-\newlabel{eq:kappaDef}{{6.42}{118}{Discrete time}{equation.6.3.42}{}}
-\newlabel{eq:plateUpdate}{{6.43}{118}{Discrete time}{equation.6.3.43}{}}
-\newlabel{eq:stabilityPlate}{{6.45}{118}{Discrete time}{equation.6.3.45}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Discrete boundary conditions}{118}{subsubsection*.156}}
-\newlabel{eq:boundaryCondThinPlateDisc}{{6.46}{118}{Discrete boundary conditions}{equation.6.3.46}{}}
-\newlabel{eq:discClamped2D}{{6.46a}{118}{Discrete boundary conditions}{equation.6.3.46a}{}}
-\newlabel{eq:discSimplySupported2D}{{6.46b}{118}{Discrete boundary conditions}{equation.6.3.46b}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.7}{\ignorespaces Modal frequencies of the 2D wave equation with $L_x = 1.5$ m, $L_y = 1$ m and $c\approx 3118$ m/s, such that $\lambda = 1/\sqrt  {2}$ according to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:CFL2D}\unskip \@@italiccorr )}}. \relax }}{118}{figure.caption.156}}
+\newlabel{fig:modalFreqs2Dwave}{{6.7}{118}{Modal frequencies of the 2D wave equation with $L_x = 1.5$ m, $L_y = 1$ m and $c\approx 3118$ m/s, such that $\lambda = 1/\sqrt {2}$ according to Eq. \eqref {eq:CFL2D}. \relax }{figure.caption.156}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.8}{\ignorespaces The first (lowest-frequency) six modal shapes of 2D wave equation with $L_x = 1.5$ m and $L_y = 1$ m.\relax }}{118}{figure.caption.158}}
+\newlabel{fig:modalShapes2D}{{6.8}{118}{The first (lowest-frequency) six modal shapes of 2D wave equation with $L_x = 1.5$ m and $L_y = 1$ m.\relax }{figure.caption.158}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.3}Thin plate}{118}{section.6.3}}
+\newlabel{sec:thinPlate}{{6.3}{118}{Thin plate}{section.6.3}{}}
 \mph@setcol{ii:118}{\mph@nr}
-\newlabel{fig:fullStencilPlate}{{6.9a}{119}{Subfigure 6 6.9a}{subfigure.6.9.1}{}}
-\newlabel{sub@fig:fullStencilPlate}{{(a)}{a}{Subfigure 6 6.9a\relax }{subfigure.6.9.1}{}}
-\newlabel{fig:curStencilPlate}{{6.9b}{119}{Subfigure 6 6.9b}{subfigure.6.9.2}{}}
-\newlabel{sub@fig:curStencilPlate}{{(b)}{b}{Subfigure 6 6.9b\relax }{subfigure.6.9.2}{}}
-\newlabel{fig:prevStencilPlate}{{6.9c}{119}{Subfigure 6 6.9c}{subfigure.6.9.3}{}}
-\newlabel{sub@fig:prevStencilPlate}{{(c)}{c}{Subfigure 6 6.9c\relax }{subfigure.6.9.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.9}{\ignorespaces The stencil of the plate with coefficients corresponding to those in update equation \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:plateUpdate}\unskip \@@italiccorr )}}. (a) A full overview of the stencil. (b) The current time-step $n$ highlighted. (c) The previous time-step $n-1$ highlighted. \relax }}{119}{figure.caption.155}}
-\newlabel{fig:plateStencil}{{6.9}{119}{The stencil of the plate with coefficients corresponding to those in update equation \eqref {eq:plateUpdate}. (a) A full overview of the stencil. (b) The current time-step $n$ highlighted. (c) The previous time-step $n-1$ highlighted. \relax }{figure.caption.155}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Full stencil.}}}{119}{subfigure.9.1}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Stencil of $u_{l,m}^n$. }}}{119}{subfigure.9.2}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Stencil of $u_{l,m}^{n-1}$.}}}{119}{subfigure.9.3}}
+\citation{theBible}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.1}Continuous time}{119}{subsection.6.3.1}}
+\newlabel{eq:platePDENoLosses}{{6.37}{119}{Continuous time}{equation.6.3.37}{}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ look up what this actually is}{119}{section*.159}}
+\pgfsyspdfmark {pgfid213}{8125170}{30686340}
+\def\mph@nr{42}
+\pgfsyspdfmark {pgfid216}{29344904}{30693549}
+\pgfsyspdfmark {pgfid217}{31193199}{30465648}
+\newlabel{eq:platePDE}{{6.38}{119}{Continuous time}{equation.6.3.38}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Boundary conditions}{119}{subsubsection*.160}}
+\newlabel{eq:boundaryCondThinPlate}{{6.39}{119}{Boundary conditions}{equation.6.3.39}{}}
+\newlabel{eq:contClamped2D}{{6.39a}{119}{Boundary conditions}{equation.6.3.39a}{}}
+\newlabel{eq:contSimplySupported2D}{{6.39b}{119}{Boundary conditions}{equation.6.3.39b}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.2}Discrete time}{119}{subsection.6.3.2}}
+\newlabel{eq:thinPlateFDS}{{6.40}{119}{Discrete time}{equation.6.3.40}{}}
 \mph@setcol{ii:119}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}Implementation and Output}{120}{subsection.6.3.3}}
-\newlabel{eq:matrixFormThinPlate}{{6.47}{120}{Implementation and Output}{equation.6.3.47}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Parameters for the thin plate and possible values to use as a starting point for the simulation.\relax }}{120}{table.caption.157}}
-\newlabel{tab:thinPlateParams}{{6.1}{120}{Parameters for the thin plate and possible values to use as a starting point for the simulation.\relax }{table.caption.157}{}}
+\newlabel{eq:thinPlateFDSCompact}{{6.41}{120}{Discrete time}{equation.6.3.41}{}}
+\newlabel{eq:kappaDef}{{6.42}{120}{Discrete time}{equation.6.3.42}{}}
+\newlabel{eq:plateUpdate}{{6.43}{120}{Discrete time}{equation.6.3.43}{}}
+\newlabel{eq:stabilityPlate}{{6.45}{120}{Discrete time}{equation.6.3.45}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Discrete boundary conditions}{120}{subsubsection*.162}}
+\newlabel{eq:boundaryCondThinPlateDisc}{{6.46}{120}{Discrete boundary conditions}{equation.6.3.46}{}}
+\newlabel{eq:discClamped2D}{{6.46a}{120}{Discrete boundary conditions}{equation.6.3.46a}{}}
+\newlabel{eq:discSimplySupported2D}{{6.46b}{120}{Discrete boundary conditions}{equation.6.3.46b}{}}
 \mph@setcol{ii:120}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.10}{\ignorespaces Wave propagation of a thin plate with simply supported boundary conditions and parameters as shown in Table \ref  {tab:thinPlateParams}. The system is excited with a 2D raised cosine at $(x,y) = (0.25L_x, 0.5L_y)$ and dispersive effects are apparent.\relax }}{121}{figure.caption.158}}
-\newlabel{fig:thinPlatePropagation}{{6.10}{121}{Wave propagation of a thin plate with simply supported boundary conditions and parameters as shown in Table \ref {tab:thinPlateParams}. The system is excited with a 2D raised cosine at $(x,y) = (0.25L_x, 0.5L_y)$ and dispersive effects are apparent.\relax }{figure.caption.158}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.11}{\ignorespaces The output of the thin plate at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref  {fig:thinPlatePropagation}. \relax }}{121}{figure.caption.159}}
-\newlabel{fig:outputThinPlate}{{6.11}{121}{The output of the thin plate at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref {fig:thinPlatePropagation}. \relax }{figure.caption.159}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.4}Frequency Domain Analysis}{121}{subsection.6.3.4}}
-\newlabel{sec:stabilityThinPlate}{{6.3.4}{121}{Frequency Domain Analysis}{subsection.6.3.4}{}}
+\newlabel{fig:fullStencilPlate}{{6.9a}{121}{Subfigure 6 6.9a}{subfigure.6.9.1}{}}
+\newlabel{sub@fig:fullStencilPlate}{{(a)}{a}{Subfigure 6 6.9a\relax }{subfigure.6.9.1}{}}
+\newlabel{fig:curStencilPlate}{{6.9b}{121}{Subfigure 6 6.9b}{subfigure.6.9.2}{}}
+\newlabel{sub@fig:curStencilPlate}{{(b)}{b}{Subfigure 6 6.9b\relax }{subfigure.6.9.2}{}}
+\newlabel{fig:prevStencilPlate}{{6.9c}{121}{Subfigure 6 6.9c}{subfigure.6.9.3}{}}
+\newlabel{sub@fig:prevStencilPlate}{{(c)}{c}{Subfigure 6 6.9c\relax }{subfigure.6.9.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.9}{\ignorespaces The stencil of the plate with coefficients corresponding to those in update equation \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:plateUpdate}\unskip \@@italiccorr )}}. (a) A full overview of the stencil. (b) The current time-step $n$ highlighted. (c) The previous time-step $n-1$ highlighted. \relax }}{121}{figure.caption.161}}
+\newlabel{fig:plateStencil}{{6.9}{121}{The stencil of the plate with coefficients corresponding to those in update equation \eqref {eq:plateUpdate}. (a) A full overview of the stencil. (b) The current time-step $n$ highlighted. (c) The previous time-step $n-1$ highlighted. \relax }{figure.caption.161}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Full stencil.}}}{121}{subfigure.9.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Stencil of $u_{l,m}^n$. }}}{121}{subfigure.9.2}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(c)}{\ignorespaces {Stencil of $u_{l,m}^{n-1}$.}}}{121}{subfigure.9.3}}
 \mph@setcol{ii:121}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.5}Energy Analysis}{122}{subsection.6.3.5}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak  {h}$}{122}{subsubsection*.160}}
-\newlabel{eq:rOCthinPlate}{{6.50}{122}{Step 1: Obtain $\dtp \h $}{equation.6.3.50}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{122}{subsubsection*.161}}
-\newlabel{eq:dampingTermThinPlate}{{6.51}{122}{Step 2: Identify energy types and isolate $\dtp $}{equation.6.3.51}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.3}Implementation and Output}{122}{subsection.6.3.3}}
+\newlabel{eq:matrixFormThinPlate}{{6.47}{122}{Implementation and Output}{equation.6.3.47}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6.1}{\ignorespaces Parameters for the thin plate and possible values to use as a starting point for the simulation.\relax }}{122}{table.caption.163}}
+\newlabel{tab:thinPlateParams}{{6.1}{122}{Parameters for the thin plate and possible values to use as a starting point for the simulation.\relax }{table.caption.163}{}}
 \mph@setcol{ii:122}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.10}{\ignorespaces Wave propagation of a thin plate with simply supported boundary conditions and parameters as shown in Table \ref  {tab:thinPlateParams}. The system is excited with a 2D raised cosine at $(x,y) = (0.25L_x, 0.5L_y)$ and dispersive effects are apparent.\relax }}{123}{figure.caption.164}}
+\newlabel{fig:thinPlatePropagation}{{6.10}{123}{Wave propagation of a thin plate with simply supported boundary conditions and parameters as shown in Table \ref {tab:thinPlateParams}. The system is excited with a 2D raised cosine at $(x,y) = (0.25L_x, 0.5L_y)$ and dispersive effects are apparent.\relax }{figure.caption.164}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.11}{\ignorespaces The output of the thin plate at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref  {fig:thinPlatePropagation}. \relax }}{123}{figure.caption.165}}
+\newlabel{fig:outputThinPlate}{{6.11}{123}{The output of the thin plate at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref {fig:thinPlatePropagation}. \relax }{figure.caption.165}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.4}Frequency Domain Analysis}{123}{subsection.6.3.4}}
+\newlabel{sec:stabilityThinPlate}{{6.3.4}{123}{Frequency Domain Analysis}{subsection.6.3.4}{}}
+\mph@setcol{ii:123}{\mph@nr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.5}Energy Analysis}{124}{subsection.6.3.5}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak  {h}$}{124}{subsubsection*.166}}
+\newlabel{eq:rOCthinPlate}{{6.50}{124}{Step 1: Obtain $\dtp \h $}{equation.6.3.50}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{124}{subsubsection*.167}}
+\newlabel{eq:dampingTermThinPlate}{{6.51}{124}{Step 2: Identify energy types and isolate $\dtp $}{equation.6.3.51}{}}
+\mph@setcol{ii:124}{\mph@nr}
 \citation{theBible}
 \citation{Fletcher1998}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ FULL DOC SWEEP: check for SWcomments}{123}{section*.162}}
-\pgfsyspdfmark {pgfid208}{7884100}{33967822}
-\def\mph@nr{41}
-\pgfsyspdfmark {pgfid211}{29344904}{33975031}
-\pgfsyspdfmark {pgfid212}{31193199}{33747130}
-\newlabel{eq:energyBalanceThinPlate}{{6.52}{123}{Step 2: Identify energy types and isolate $\dtp $}{equation.6.3.52}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 3: Check units}{123}{subsubsection*.163}}
-\@writefile{toc}{\contentsline {subsubsection}{Step 4: Implementation}{123}{subsubsection*.164}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.6}Modal Analysis}{123}{subsection.6.3.6}}
-\mph@setcol{ii:123}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.12}{\ignorespaces The kinetic (blue), potential (red), and total (black) energy of an implementation of the thin plate are plotted in the left panel. Notice that the damping present in the system causes $\mathfrak  {h}$ to decrease. The right panel shows the normalised energy (according to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:normalisedEnergyDamping}\unskip \@@italiccorr )}}) and shows that the deviation of the energy is within machine precision. \relax }}{124}{figure.caption.165}}
-\newlabel{fig:energyThinPlate}{{6.12}{124}{The kinetic (blue), potential (red), and total (black) energy of an implementation of the thin plate are plotted in the left panel. Notice that the damping present in the system causes $\h $ to decrease. The right panel shows the normalised energy (according to Eq. \eqref {eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \relax }{figure.caption.165}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6.13}{\ignorespaces The result of a modal analysis of the thin plate using the parameters in Table \ref  {tab:thinPlateParams}. Notice that the damping is plotted against modal frequency rather than mode number. \relax }}{124}{figure.caption.166}}
-\newlabel{fig:thinPlateModes}{{6.13}{124}{The result of a modal analysis of the thin plate using the parameters in Table \ref {tab:thinPlateParams}. Notice that the damping is plotted against modal frequency rather than mode number. \relax }{figure.caption.166}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.4}Stiff membrane}{124}{section.6.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}Continuous time}{124}{subsection.6.4.1}}
-\newlabel{eq:stiffMembranePDE}{{6.53}{124}{Continuous time}{equation.6.4.53}{}}
-\mph@setcol{ii:124}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Discrete time}{125}{subsection.6.4.2}}
-\newlabel{eq:stiffMembraneFDS}{{6.54}{125}{Discrete time}{equation.6.4.54}{}}
-\newlabel{eq:stiffMembraneFDScompact}{{6.55}{125}{Discrete time}{equation.6.4.55}{}}
-\newlabel{eq:stiffMembraneUpdate}{{6.56}{125}{Discrete time}{equation.6.4.56}{}}
-\newlabel{eq:lambdaMuStiffMembrane}{{6.57}{125}{Discrete time}{equation.6.4.57}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.3}Implementation}{125}{subsection.6.4.3}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ FULL DOC SWEEP: check for SWcomments}{125}{section*.168}}
+\pgfsyspdfmark {pgfid218}{7884100}{33967822}
+\def\mph@nr{43}
+\pgfsyspdfmark {pgfid221}{29344904}{33975031}
+\pgfsyspdfmark {pgfid222}{31193199}{33747130}
+\newlabel{eq:energyBalanceThinPlate}{{6.52}{125}{Step 2: Identify energy types and isolate $\dtp $}{equation.6.3.52}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 3: Check units}{125}{subsubsection*.169}}
+\@writefile{toc}{\contentsline {subsubsection}{Step 4: Implementation}{125}{subsubsection*.170}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3.6}Modal Analysis}{125}{subsection.6.3.6}}
 \mph@setcol{ii:125}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.12}{\ignorespaces The kinetic (blue), potential (red), and total (black) energy of an implementation of the thin plate are plotted in the left panel. Notice that the damping present in the system causes $\mathfrak  {h}$ to decrease. The right panel shows the normalised energy (according to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:normalisedEnergyDamping}\unskip \@@italiccorr )}}) and shows that the deviation of the energy is within machine precision. \relax }}{126}{figure.caption.171}}
+\newlabel{fig:energyThinPlate}{{6.12}{126}{The kinetic (blue), potential (red), and total (black) energy of an implementation of the thin plate are plotted in the left panel. Notice that the damping present in the system causes $\h $ to decrease. The right panel shows the normalised energy (according to Eq. \eqref {eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \relax }{figure.caption.171}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6.13}{\ignorespaces The result of a modal analysis of the thin plate using the parameters in Table \ref  {tab:thinPlateParams}. Notice that the damping is plotted against modal frequency rather than mode number. \relax }}{126}{figure.caption.172}}
+\newlabel{fig:thinPlateModes}{{6.13}{126}{The result of a modal analysis of the thin plate using the parameters in Table \ref {tab:thinPlateParams}. Notice that the damping is plotted against modal frequency rather than mode number. \relax }{figure.caption.172}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.4}Stiff membrane}{126}{section.6.4}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.1}Continuous time}{126}{subsection.6.4.1}}
+\newlabel{eq:stiffMembranePDE}{{6.53}{126}{Continuous time}{equation.6.4.53}{}}
+\mph@setcol{ii:126}{\mph@nr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.2}Discrete time}{127}{subsection.6.4.2}}
+\newlabel{eq:stiffMembraneFDS}{{6.54}{127}{Discrete time}{equation.6.4.54}{}}
+\newlabel{eq:stiffMembraneFDScompact}{{6.55}{127}{Discrete time}{equation.6.4.55}{}}
+\newlabel{eq:stiffMembraneUpdate}{{6.56}{127}{Discrete time}{equation.6.4.56}{}}
+\newlabel{eq:lambdaMuStiffMembrane}{{6.57}{127}{Discrete time}{equation.6.4.57}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.3}Implementation}{127}{subsection.6.4.3}}
+\mph@setcol{ii:127}{\mph@nr}
 \citation{theBible}
 \citation{theBible}
 \citation{Hamilton2016}
 \citation{Harrison2018}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.4}Frequency Domain Analysis}{126}{subsection.6.4.4}}
-\newlabel{sec:stabilityStiffMembrane}{{6.4.4}{126}{Frequency Domain Analysis}{subsection.6.4.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6.5}Radial Coordinates}{126}{section.6.5}}
-\newlabel{sec:radialCoordinates}{{6.5}{126}{Radial Coordinates}{section.6.5}{}}
-\mph@setcol{ii:126}{\mph@nr}
-\mph@setcol{ii:127}{\mph@nr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4.4}Frequency Domain Analysis}{128}{subsection.6.4.4}}
+\newlabel{sec:stabilityStiffMembrane}{{6.4.4}{128}{Frequency Domain Analysis}{subsection.6.4.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6.5}Radial Coordinates}{128}{section.6.5}}
+\newlabel{sec:radialCoordinates}{{6.5}{128}{Radial Coordinates}{section.6.5}{}}
 \mph@setcol{ii:128}{\mph@nr}
-\@writefile{toc}{\contentsline {part}{III\hspace  {1em}Contributions}{129}{part.3}}
 \mph@setcol{ii:129}{\mph@nr}
-\mph@setcol{ii:130}{\mph@nr}
-\newlabel{part:contributions}{{III}{131}{Contributions}{part.3}{}}
-\mph@setcol{ii:131}{\mph@nr}
-\mph@setcol{ii:132}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {7}Dynamic Grid}{133}{chapter.7}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{ch:dynamicGrid}{{7}{133}{Dynamic Grid}{chapter.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.1}Background and motivation}{133}{section.7.1}}
-\mph@setcol{ii:133}{\mph@nr}
-\citation{Gomm2011}
-\citation{Mayer2008}
-\citation{Glenn2014}
-\citation{Mayer2008}
-\citation{Gomm2011}
-\citation{Glenn2014}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1.1}Examples}{134}{subsection.7.1.1}}
-\mph@setcol{ii:134}{\mph@nr}
-\citation{theBible}
-\@writefile{toc}{\contentsline {section}{\numberline {7.2}Iterations}{135}{section.7.2}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ These sections are taken from the JASA appendix}{135}{section*.167}}
-\pgfsyspdfmark {pgfid214}{5644739}{29268670}
-\def\mph@nr{42}
-\pgfsyspdfmark {pgfid217}{29344904}{29275879}
-\pgfsyspdfmark {pgfid218}{31193199}{29047978}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.1}Full-Grid Interpolation}{135}{subsection.7.2.1}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.1}{\ignorespaces {Upsampling $u$ (with an arbitrary state) using (linear) full-grid interpolation with $N^{n-1} = 30$ and $N^n = 31$. The horizontal axis is normalised with respect to $N^n$.}\relax }}{135}{figure.caption.168}}
-\newlabel{fig:fullGrid}{{7.1}{135}{{Upsampling $u$ (with an arbitrary state) using (linear) full-grid interpolation with $N^{n-1} = 30$ and $N^n = 31$. The horizontal axis is normalised with respect to $N^n$.}\relax }{figure.caption.168}{}}
-\mph@setcol{ii:135}{\mph@nr}
-\citation{theBible}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.2}Adding and removing Points at the Boundary}{136}{subsection.7.2.2}}
-\newlabel{sec:addAtBoundary}{{7.2.2}{136}{Adding and removing Points at the Boundary}{subsection.7.2.2}{}}
-\newlabel{eq:simplySupportedDiscrete}{{7.2}{136}{Adding and removing Points at the Boundary}{equation.7.2.2}{}}
-\mph@setcol{ii:136}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.2}{\ignorespaces {The simply supported boundary condition: both the state and the curvature at the boundary -- at $l=0$ -- should be $0$.}\relax }}{137}{figure.caption.169}}
-\newlabel{fig:simplySupportedBound}{{7.2}{137}{{The simply supported boundary condition: both the state and the curvature at the boundary -- at $l=0$ -- should be $0$.}\relax }{figure.caption.169}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.3}Cubic interpolation}{137}{subsection.7.2.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2.4}Sinc interpolation}{137}{subsection.7.2.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.3}Displacement Correction Implementation}{137}{section.7.3}}
-\newlabel{eq:dispCorrSyst}{{7.4}{137}{Displacement Correction Implementation}{equation.7.3.4}{}}
-\mph@setcol{ii:137}{\mph@nr}
-\citation{Bilbao2009Modular}
-\@writefile{lof}{\contentsline {figure}{\numberline {7.3}{\ignorespaces {The grid changing over time}\relax }}{138}{figure.caption.170}}
-\newlabel{fig:changingBoundary}{{7.3}{138}{{The grid changing over time}\relax }{figure.caption.170}{}}
-\newlabel{eq:corrForceNoDamp}{{7.5}{138}{Displacement Correction Implementation}{equation.7.3.5}{}}
-\newlabel{eq:etaCorrDef}{{7.6}{138}{Displacement Correction Implementation}{equation.7.3.6}{}}
-\newlabel{eq:betaDef}{{7.7}{138}{Displacement Correction Implementation}{equation.7.3.7}{}}
-\newlabel{eq:corrForce}{{7.8}{138}{Displacement Correction Implementation}{equation.7.3.8}{}}
-\mph@setcol{ii:138}{\mph@nr}
-\newlabel{eq:etaSolut1}{{7.9}{139}{Displacement Correction Implementation}{equation.7.3.9}{}}
-\newlabel{eq:etaNext}{{7.10}{139}{Displacement Correction Implementation}{equation.7.3.10}{}}
-\newlabel{eq:finalForce}{{7.11}{139}{Displacement Correction Implementation}{equation.7.3.11}{}}
-\mph@setcol{ii:139}{\mph@nr}
-\@writefile{toc}{\contentsline {subsubsection}{Modal Analysis}{140}{subsubsection*.171}}
-\newlabel{eq:formForOneStep}{{7.12}{140}{Modal Analysis}{equation.7.3.12}{}}
-\newlabel{eq:oneStepForm}{{7.13}{140}{Modal Analysis}{equation.7.3.13}{}}
-\mph@setcol{ii:140}{\mph@nr}
-\@writefile{toc}{\contentsline {section}{\numberline {7.4}Analysis and Experiments}{141}{section.7.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.1}Interpolation technique}{141}{subsection.7.4.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.2}Interpolation range}{141}{subsection.7.4.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4.3}Location}{141}{subsection.7.4.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {7.5}Discussion and Conclusion}{141}{section.7.5}}
-\newlabel{sec:conclusion}{{7.5}{141}{Discussion and Conclusion}{section.7.5}{}}
-\mph@setcol{ii:141}{\mph@nr}
-\mph@setcol{ii:142}{\mph@nr}
-\citation{Wessel2002}
-\citation{Webb2015}
-\@writefile{toc}{\contentsline {chapter}{\numberline {8}Real-Time Implementation}{143}{chapter.8}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{ch:realtime}{{8}{143}{Real-Time Implementation}{chapter.8}{}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ Figure with programming languages sorted by speed}{143}{section*.172}}
-\pgfsyspdfmark {pgfid219}{14245019}{10134933}
-\def\mph@nr{43}
-\pgfsyspdfmark {pgfid222}{29344904}{10142142}
-\pgfsyspdfmark {pgfid223}{31193199}{9914241}
-\@writefile{toc}{\contentsline {section}{\numberline {8.1}MATLAB vs. C++}{143}{section.8.1}}
-\mph@setcol{ii:143}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1.1}Speed}{144}{subsection.8.1.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.1.2}Syntax}{144}{subsection.8.1.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.2}Do's and don'ts in Real-Time FD schemes}{144}{section.8.2}}
-\@writefile{toc}{\contentsline {subsubsection}{Create a limiter}{144}{subsubsection*.173}}
-\mph@setcol{ii:144}{\mph@nr}
-\@writefile{toc}{\contentsline {subsubsection}{Use pointer switches}{145}{subsubsection*.174}}
-\newlabel{lst:cppPointer}{{8.1}{145}{Implementation of a pointer switch also shown in Figure \ref {fig:pointerSwitch}. A temporary pointer is assigned to where the $\u ^{n-1}$ pointer is currently pointing at to be able to assign that location in memory to the $\u ^{n+1}$ pointer in the end}{lstlisting.8.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {8.1}Implementation of a pointer switch also shown in Figure \ref  {fig:pointerSwitch}. A temporary pointer is assigned to where the $\mathbf  {u}^{n-1}$ pointer is currently pointing at to be able to assign that location in memory to the $\mathbf  {u}^{n+1}$ pointer in the end.}{145}{lstlisting.8.1}}
-\mph@setcol{ii:145}{\mph@nr}
-\mph@setcol{ii:146}{\mph@nr}
-\@writefile{toc}{\contentsline {subsubsection}{Grouping terms and Precalculating coefficients}{147}{subsubsection*.176}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {8.2}Precalculation}{147}{lstlisting.8.2}}
-\mph@setcol{ii:147}{\mph@nr}
-\citation{CPPdenormalised}
-\@writefile{toc}{\contentsline {subsubsection}{Denormalised numbers}{148}{subsubsection*.177}}
-\@writefile{toc}{\contentsline {section}{\numberline {8.3}Graphics}{148}{section.8.3}}
-\mph@setcol{ii:148}{\mph@nr}
-\mph@setcol{ii:149}{\mph@nr}
-\citation{Eigen}
-\@writefile{toc}{\contentsline {section}{\numberline {8.4}Matrices}{150}{section.8.4}}
-\newlabel{sec:realTimeMatrices}{{8.4}{150}{Matrices}{section.8.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {8.4.1}Matrix Inversions in Real-Time}{150}{subsection.8.4.1}}
-\newlabel{sec:RTmatrixInversion}{{8.4.1}{150}{Matrix Inversions in Real-Time}{subsection.8.4.1}{}}
-\mph@setcol{ii:150}{\mph@nr}
-\mph@setcol{ii:151}{\mph@nr}
-\newlabel{fig:vectorCopy}{{8.1a}{152}{Subfigure 8 8.1a}{subfigure.8.1.1}{}}
-\newlabel{sub@fig:vectorCopy}{{(a)}{a}{Subfigure 8 8.1a\relax }{subfigure.8.1.1}{}}
-\newlabel{fig:pointerSwitch}{{8.1b}{152}{Subfigure 8 8.1b}{subfigure.8.1.2}{}}
-\newlabel{sub@fig:pointerSwitch}{{(b)}{b}{Subfigure 8 8.1b\relax }{subfigure.8.1.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8.1}{\ignorespaces Updating the state vectors by (a) copying all values individually, or (b) performing a pointer switch. Non-zero values are highlighted in green for clarity. The values of the red vector will be overwritten by the update of the scheme in the next iteration so these values will no longer be used.\relax }}{152}{figure.caption.175}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Copying values: $2(N+1)$ operations per iteration. }}}{152}{subfigure.1.1}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Pointer switch: 4 operations per iteration. }}}{152}{subfigure.1.2}}
-\mph@setcol{ii:152}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {9}Large Scale Modular Physical Models}{153}{chapter.9}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{ch:largeScale}{{9}{153}{Large Scale Modular Physical Models}{chapter.9}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.1}Models}{153}{section.9.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.2}Esraj: Bowed Sitar}{153}{section.9.2}}
-\mph@setcol{ii:153}{\mph@nr}
-\@writefile{toc}{\contentsline {section}{\numberline {9.3}Hammered Dulcimer}{154}{section.9.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {9.4}Hurdy Gurdy}{154}{section.9.4}}
-\mph@setcol{ii:154}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {10}Tromba Marina}{155}{chapter.10}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{ch:tromba}{{10}{155}{Tromba Marina}{chapter.10}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10.1}Introduction}{155}{section.10.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {10.2}Physical Model}{155}{section.10.2}}
-\mph@setcol{ii:155}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {10.1}{\ignorespaces The tromba marina from the Danish Music Museum in Copenhagen. (As shown in paper [\ref  {paper:D}].)\relax }}{156}{figure.caption.178}}
-\newlabel{fig:tromba}{{10.1}{156}{The tromba marina from the Danish Music Museum in Copenhagen. (As shown in paper \citeP [D].)\relax }{figure.caption.178}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10.2}{\ignorespaces The bridge of the tromba marina from the Danish Music Museum in Copenhagen. The right side of the bridge is pressed against the body by the string while the left side is free and can rattle against the body. (As shown in paper [\ref  {paper:D}].)\relax }}{156}{figure.caption.179}}
-\newlabel{fig:bridge}{{10.2}{156}{The bridge of the tromba marina from the Danish Music Museum in Copenhagen. The right side of the bridge is pressed against the body by the string while the left side is free and can rattle against the body. (As shown in paper \citeP [D].)\relax }{figure.caption.179}{}}
-\mph@setcol{ii:156}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2.1}Continuous Time}{157}{subsection.10.2.1}}
-\newlabel{eq:trombaPDEForm}{{10.1}{157}{Continuous Time}{equation.10.2.1}{}}
-\@writefile{toc}{\contentsline {subsubsection}{String}{157}{subsubsection*.180}}
-\newlabel{eq:trombaStiffString}{{10.2}{157}{String}{equation.10.2.2}{}}
-\mph@setcol{ii:157}{\mph@nr}
-\@writefile{toc}{\contentsline {subsubsection}{Bridge}{158}{subsubsection*.181}}
-\@writefile{toc}{\contentsline {subsubsection}{Body}{158}{subsubsection*.182}}
-\@writefile{toc}{\contentsline {subsubsection}{Interactions}{158}{subsubsection*.183}}
-\mph@setcol{ii:158}{\mph@nr}
-\newlabel{eq:stringMassPotential}{{10.7}{159}{Interactions}{equation.10.2.7}{}}
-\newlabel{eq:quadraticPotentialTromba}{{10.8}{159}{Interactions}{equation.10.2.8}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Complete system}{159}{subsubsection*.184}}
-\newlabel{eq:trombaSystemPDE}{{10.9}{159}{Complete system}{equation.10.2.9}{}}
-\newlabel{eq:trombaPDEPsiSM}{{10.9d}{159}{Complete system}{equation.10.2.9d}{}}
-\newlabel{eq:trombaPDEPsiMP}{{10.9e}{159}{Complete system}{equation.10.2.9e}{}}
-\mph@setcol{ii:159}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2.2}Discrete Time}{160}{subsection.10.2.2}}
-\newlabel{eq:trombaSystemFDS}{{10.11}{160}{Discrete Time}{equation.10.2.11}{}}
-\newlabel{eq:trombaSystemFDSString}{{10.11a}{160}{Discrete Time}{equation.10.2.11a}{}}
-\newlabel{eq:trombaSystemFDSMass}{{10.11b}{160}{Discrete Time}{equation.10.2.11b}{}}
-\newlabel{eq:trombaSystemFDSPlate}{{10.11c}{160}{Discrete Time}{equation.10.2.11c}{}}
-\newlabel{eq:psiSM}{{10.11d}{160}{Discrete Time}{equation.10.2.11d}{}}
-\newlabel{eq:psiMP}{{10.11e}{160}{Discrete Time}{equation.10.2.11e}{}}
-\newlabel{eq:etaSM}{{10.11f}{160}{Discrete Time}{equation.10.2.11f}{}}
-\newlabel{eq:etaMP}{{10.11g}{160}{Discrete Time}{equation.10.2.11g}{}}
-\newlabel{eq:fdsOperators}{{10.12}{160}{Discrete Time}{equation.10.2.12}{}}
-\mph@setcol{ii:160}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2.3}Solving the system}{161}{subsection.10.2.3}}
-\newlabel{eq:expandedEtas}{{10.13}{161}{Solving the system}{equation.10.2.13}{}}
-\newlabel{eq:statesBridgeNext}{{10.14}{161}{Solving the system}{equation.10.2.14}{}}
-\mph@setcol{ii:161}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.2.4}Energy analysis}{162}{subsection.10.2.4}}
-\mph@setcol{ii:162}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {10.3}{\ignorespaces The string of the tromba marina (blue) excited using a raised cosine. The string-mass interaction forces the mass (red) downwards which collides with the plate (green). \relax }}{163}{figure.caption.185}}
-\newlabel{fig:trombaExcite}{{10.3}{163}{The string of the tromba marina (blue) excited using a raised cosine. The string-mass interaction forces the mass (red) downwards which collides with the plate (green). \relax }{figure.caption.185}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {10.3}Real-Time Implementation}{163}{section.10.3}}
-\mph@setcol{ii:163}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {10.4}{\ignorespaces The energy of the tromba marina excited with a raised cosine (see Figure \ref  {fig:trombaExcite}). The left panel shows the total energy (black) present in the system as well as the energy of the string (blue), mass (red) and plate (green) respectively. The second panel shows the energy of the mass-plate (magenta) and string-mass (orange) interactions and the right panel shows the normalised energy (according to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:normalisedEnergy}\unskip \@@italiccorr )}}) and shows that the deviation of the energy is within machine precision. \relax }}{164}{figure.caption.186}}
-\newlabel{fig:trombaEnergy}{{10.4}{164}{The energy of the tromba marina excited with a raised cosine (see Figure \ref {fig:trombaExcite}). The left panel shows the total energy (black) present in the system as well as the energy of the string (blue), mass (red) and plate (green) respectively. The second panel shows the energy of the mass-plate (magenta) and string-mass (orange) interactions and the right panel shows the normalised energy (according to Eq. \eqref {eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \relax }{figure.caption.186}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.3.1}Considerations}{164}{subsection.10.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.3.2}Control using Sensel Morph}{164}{subsection.10.3.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {10.3.3}VR Application}{164}{subsection.10.3.3}}
-\mph@setcol{ii:164}{\mph@nr}
-\citation{Bilbao2016}
-\citation{Harrison2018}
-\citation{Harrison2018}
-\citation{Bilbao2016}
-\citation{Webster19}
-\citation{Bilbao2016}
-\@writefile{toc}{\contentsline {chapter}{\numberline {11}Trombone}{165}{chapter.11}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{ch:trombone}{{11}{165}{Trombone}{chapter.11}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {11.1}Introduction}{165}{section.11.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {11.2}Physical Model}{165}{section.11.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.2.1}Tube}{165}{subsection.11.2.1}}
-\newlabel{eq:firstOrderSystem}{{11.1}{165}{Tube}{equation.11.2.1}{}}
-\newlabel{eq:contPressure}{{11.1a}{165}{Tube}{equation.11.2.1a}{}}
-\newlabel{eq:contVelocity}{{11.1b}{165}{Tube}{equation.11.2.1b}{}}
-\mph@setcol{ii:165}{\mph@nr}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.2.2}Discrete}{166}{subsection.11.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.2.3}Lip-reed with collision}{166}{subsection.11.2.3}}
-\newlabel{eq:gnph}{{11.4}{166}{Lip-reed with collision}{equation.11.2.4}{}}
-\newlabel{eq:etaBarrier}{{11.5}{166}{Lip-reed with collision}{equation.11.2.5}{}}
-\newlabel{eq:rewrittenPsi}{{11.6}{166}{Lip-reed with collision}{equation.11.2.6}{}}
-\mph@setcol{ii:166}{\mph@nr}
-\newlabel{eq:gAnalytic}{{11.9}{167}{Lip-reed with collision}{equation.11.2.9}{}}
-\newlabel{eq:etaNegY}{{11.10}{167}{Lip-reed with collision}{equation.11.2.10}{}}
-\newlabel{eq:lipUpdateWithCollision}{{11.11}{167}{Lip-reed with collision}{equation.11.2.11}{}}
-\newlabel{eq:preAEquation}{{11.12}{167}{Lip-reed with collision}{equation.11.2.12}{}}
-\newlabel{eq:aColCoeffs}{{11.13}{167}{Lip-reed with collision}{equation.11.2.13}{}}
-\mph@setcol{ii:167}{\mph@nr}
-\newlabel{eq:psiUpdate}{{11.14}{168}{Lip-reed with collision}{equation.11.2.14}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Energy}{168}{subsubsection*.187}}
-\@writefile{toc}{\contentsline {section}{\numberline {11.3}Real-Time Implementation}{168}{section.11.3}}
-\@writefile{toc}{\contentsline {subsubsection}{Unity??}{168}{subsubsection*.188}}
-\@writefile{toc}{\contentsline {section}{\numberline {11.4}Discussion}{168}{section.11.4}}
-\mph@setcol{ii:168}{\mph@nr}
-\mph@setcol{ii:169}{\mph@nr}
 \bibstyle{IEEEtran}
 \bibdata{bib/mybib}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check whether all references are used}{170}{section*.189}}
-\pgfsyspdfmark {pgfid225}{5644739}{39655948}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check whether all references are used}{130}{section*.173}}
+\pgfsyspdfmark {pgfid224}{5644739}{39655948}
 \def\mph@nr{44}
-\pgfsyspdfmark {pgfid226}{2321883}{39627902}
-\pgfsyspdfmark {pgfid227}{4170178}{39400001}
-\mph@setcol{ii:170}{\mph@nr}
+\pgfsyspdfmark {pgfid225}{2321883}{39627902}
+\pgfsyspdfmark {pgfid226}{4170178}{39400001}
+\mph@setcol{ii:130}{\mph@nr}
 \bibcite{Roads1996}{1}
 \bibcite{Chowning1973}{2}
 \bibcite{DX7}{3}
@@ -1397,7 +1209,7 @@
 \bibcite{McIntyre1983}{10}
 \bibcite{Karplus1983}{11}
 \bibcite{Smith1987}{12}
-\mph@setcol{ii:171}{\mph@nr}
+\mph@setcol{ii:131}{\mph@nr}
 \bibcite{Smith1992}{13}
 \bibcite{Smith2010b}{14}
 \bibcite{Adrien1991}{15}
@@ -1412,7 +1224,7 @@
 \bibcite{Chaigne1992}{24}
 \bibcite{Chaigne1994}{25}
 \bibcite{Erkut2002}{26}
-\mph@setcol{ii:172}{\mph@nr}
+\mph@setcol{ii:132}{\mph@nr}
 \bibcite{Maestre2014}{27}
 \bibcite{Cadoz1979}{28}
 \bibcite{Cadoz1993}{29}
@@ -1426,7 +1238,7 @@
 \bibcite{Pfeifle2015}{37}
 \bibcite{Pfeifle2017}{38}
 \bibcite{Bybee2019}{39}
-\mph@setcol{ii:173}{\mph@nr}
+\mph@setcol{ii:133}{\mph@nr}
 \bibcite{Bilbao2019CMJa}{40}
 \bibcite{Bilbao2019CMJb}{41}
 \bibcite{sensel}{42}
@@ -1439,7 +1251,7 @@
 \bibcite{Courant1928}{49}
 \bibcite{Sauveur1701}{50}
 \bibcite{Park2010}{51}
-\mph@setcol{ii:174}{\mph@nr}
+\mph@setcol{ii:134}{\mph@nr}
 \bibcite{vonNeumann}{52}
 \bibcite{Strikwerda1989}{53}
 \bibcite{Abramowitz1972}{54}
@@ -1452,155 +1264,158 @@
 \bibcite{Horn1991}{61}
 \bibcite{DAFxChapter}{62}
 \bibcite{Kirchhoff1968}{63}
-\bibcite{Gomm2011}{64}
-\mph@setcol{ii:175}{\mph@nr}
-\bibcite{Mayer2008}{65}
-\bibcite{Glenn2014}{66}
-\bibcite{Wessel2002}{67}
-\bibcite{Webb2015}{68}
-\bibcite{CPPdenormalised}{69}
-\bibcite{Eigen}{70}
-\bibcite{Bilbao2016}{71}
-\@writefile{toc}{\contentsline {chapter}{References}{176}{chapter*.190}}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check whether to sort references or not}{176}{section*.191}}
-\pgfsyspdfmark {pgfid230}{5644739}{20466964}
+\@writefile{toc}{\contentsline {chapter}{References}{135}{chapter*.174}}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ check whether to sort references or not}{135}{section*.175}}
+\pgfsyspdfmark {pgfid229}{5644739}{4882391}
 \def\mph@nr{45}
-\pgfsyspdfmark {pgfid231}{2321883}{20474173}
-\pgfsyspdfmark {pgfid232}{4170178}{20246272}
-\mph@setcol{ii:176}{\mph@nr}
-\@writefile{toc}{\contentsline {part}{IV\hspace  {1em}Papers}{177}{part.4}}
-\mph@setcol{ii:177}{\mph@nr}
-\mph@setcol{ii:178}{\mph@nr}
-\newlabel{part:papers}{{IV}{179}{Papers}{part.4}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{179}{Paper.b.A}}
+\pgfsyspdfmark {pgfid232}{29344904}{4889600}
+\pgfsyspdfmark {pgfid233}{31193199}{4661699}
+\mph@setcol{ii:135}{\mph@nr}
+\mph@setcol{ii:136}{\mph@nr}
+\@writefile{toc}{\contentsline {part}{III\hspace  {1em}Papers}{137}{part.3}}
+\mph@setcol{ii:137}{\mph@nr}
+\mph@setcol{ii:138}{\mph@nr}
+\newlabel{part:papers}{{III}{139}{Papers}{part.3}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{139}{Paper.b.A}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{paper:A}{{A}{179}{Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{Paper.b.A}{}}
-\mph@setcol{ii:179}{\mph@nr}
-\mph@setcol{ii:180}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}Physical Models and Real-Time Control with the Sensel Morph}{181}{Paper.b.B}}
+\newlabel{paper:A}{{A}{139}{Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{Paper.b.A}{}}
+\mph@setcol{ii:139}{\mph@nr}
+\mph@setcol{ii:140}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}Physical Models and Real-Time Control with the Sensel Morph}{141}{Paper.b.B}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{paper:B}{{B}{181}{Physical Models and Real-Time Control with the Sensel Morph}{Paper.b.B}{}}
-\mph@setcol{ii:181}{\mph@nr}
-\mph@setcol{ii:182}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {C}Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite-Difference Schemes}{183}{Paper.b.C}}
+\newlabel{paper:B}{{B}{141}{Physical Models and Real-Time Control with the Sensel Morph}{Paper.b.B}{}}
+\mph@setcol{ii:141}{\mph@nr}
+\mph@setcol{ii:142}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {C}Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite-Difference Schemes}{143}{Paper.b.C}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{paper:C}{{C}{183}{Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite-Difference Schemes}{Paper.b.C}{}}
-\mph@setcol{ii:183}{\mph@nr}
-\mph@setcol{ii:184}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {D}Real-time Implementation of a Physical Model of the Tromba Marina}{185}{Paper.b.D}}
+\newlabel{paper:C}{{C}{143}{Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite-Difference Schemes}{Paper.b.C}{}}
+\mph@setcol{ii:143}{\mph@nr}
+\mph@setcol{ii:144}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {D}Real-time Implementation of a Physical Model of the Tromba Marina}{145}{Paper.b.D}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{paper:D}{{D}{185}{Real-time Implementation of a Physical Model of the Tromba Marina}{Paper.b.D}{}}
-\mph@setcol{ii:185}{\mph@nr}
-\mph@setcol{ii:186}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {E}Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{187}{Paper.b.E}}
+\newlabel{paper:D}{{D}{145}{Real-time Implementation of a Physical Model of the Tromba Marina}{Paper.b.D}{}}
+\mph@setcol{ii:145}{\mph@nr}
+\mph@setcol{ii:146}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {E}Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{147}{Paper.b.E}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{paper:E}{{E}{187}{Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{Paper.b.E}{}}
-\mph@setcol{ii:187}{\mph@nr}
-\mph@setcol{ii:188}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {F}DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{189}{Paper.b.F}}
+\newlabel{paper:E}{{E}{147}{Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{Paper.b.E}{}}
+\mph@setcol{ii:147}{\mph@nr}
+\mph@setcol{ii:148}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {F}DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{149}{Paper.b.F}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{paper:F}{{F}{189}{DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{Paper.b.F}{}}
-\mph@setcol{ii:189}{\mph@nr}
-\mph@setcol{ii:190}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {G}Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{191}{Paper.b.G}}
+\newlabel{paper:F}{{F}{149}{DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{Paper.b.F}{}}
+\mph@setcol{ii:149}{\mph@nr}
+\mph@setcol{ii:150}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {G}Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{151}{Paper.b.G}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{paper:G}{{G}{191}{Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{Paper.b.G}{}}
-\mph@setcol{ii:191}{\mph@nr}
-\mph@setcol{ii:192}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {H}A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{193}{Paper.b.H}}
+\newlabel{paper:G}{{G}{151}{Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{Paper.b.G}{}}
+\mph@setcol{ii:151}{\mph@nr}
+\mph@setcol{ii:152}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {H}A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{153}{Paper.b.H}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{paper:H}{{H}{193}{A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{Paper.b.H}{}}
-\mph@setcol{ii:193}{\mph@nr}
-\mph@setcol{ii:194}{\mph@nr}
-\@writefile{toc}{\contentsline {part}{V\hspace  {1em}Appendix}{195}{part.5}}
-\mph@setcol{ii:195}{\mph@nr}
-\mph@setcol{ii:196}{\mph@nr}
-\newlabel{part:appendix}{{V}{197}{Appendix}{part.5}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Paper Errata}{197}{Appendix.c.A}}
+\newlabel{paper:H}{{H}{153}{A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{Paper.b.H}{}}
+\mph@setcol{ii:153}{\mph@nr}
+\mph@setcol{ii:154}{\mph@nr}
+\@writefile{toc}{\contentsline {part}{IV\hspace  {1em}Appendix}{155}{part.4}}
+\mph@setcol{ii:155}{\mph@nr}
+\mph@setcol{ii:156}{\mph@nr}
+\newlabel{part:appendix}{{IV}{157}{Appendix}{part.4}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Paper Errata}{157}{Appendix.c.A}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {subsubsection}{Elasto-plastic [\ref  {paper:C}]}{197}{subsubsection*.192}}
-\@writefile{toc}{\contentsline {subsubsection}{Real-Time Tromba [\ref  {paper:D}]}{197}{subsubsection*.193}}
-\@writefile{toc}{\contentsline {subsubsection}{DigiDrum [\ref  {paper:F}]}{197}{subsubsection*.194}}
-\mph@setcol{ii:197}{\mph@nr}
-\mph@setcol{ii:198}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {B}Matrices}{199}{Appendix.c.B}}
+\@writefile{toc}{\contentsline {subsubsection}{Elasto-plastic [\ref  {paper:C}]}{157}{subsubsection*.176}}
+\@writefile{toc}{\contentsline {subsubsection}{Real-Time Tromba [\ref  {paper:D}]}{157}{subsubsection*.177}}
+\@writefile{toc}{\contentsline {subsubsection}{DigiDrum [\ref  {paper:F}]}{157}{subsubsection*.178}}
+\mph@setcol{ii:157}{\mph@nr}
+\mph@setcol{ii:158}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {B}Matrices}{159}{Appendix.c.B}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\newlabel{app:matrices}{{B}{199}{Matrices}{Appendix.c.B}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.1}Operations}{199}{section.c.A}}
-\mph@setcol{ii:199}{\mph@nr}
-\@writefile{toc}{\contentsline {subsubsection}{Matrix transpose}{200}{subsubsection*.195}}
-\newlabel{eq:matrixTransposition}{{B.1}{200}{Matrix transpose}{equation.c.A.1}{}}
-\newlabel{fig:matrixA}{{B.1a}{200}{Subfigure B B.1a}{subfigure.B.1.1}{}}
+\newlabel{app:matrices}{{B}{159}{Matrices}{Appendix.c.B}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.1}Operations}{159}{section.c.A}}
+\mph@setcol{ii:159}{\mph@nr}
+\@writefile{toc}{\contentsline {subsubsection}{Matrix transpose}{160}{subsubsection*.179}}
+\newlabel{eq:matrixTransposition}{{B.1}{160}{Matrix transpose}{equation.c.A.1}{}}
+\newlabel{fig:matrixA}{{B.1a}{160}{Subfigure B B.1a}{subfigure.B.1.1}{}}
 \newlabel{sub@fig:matrixA}{{(a)}{a}{Subfigure B B.1a\relax }{subfigure.B.1.1}{}}
-\newlabel{fig:matrixAT}{{B.1b}{200}{Subfigure B B.1b}{subfigure.B.1.2}{}}
+\newlabel{fig:matrixAT}{{B.1b}{160}{Subfigure B B.1b}{subfigure.B.1.2}{}}
 \newlabel{sub@fig:matrixAT}{{(b)}{b}{Subfigure B B.1b\relax }{subfigure.B.1.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.1}{\ignorespaces A matrix $\mathbf  {A}$ and its transpose $\mathbf  {A}^T$. The elements get flipped along the main diagonal of the matrix according to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:matrixTransposition}\unskip \@@italiccorr )}}. \relax }}{200}{figure.caption.196}}
-\newlabel{fig:matrixTransp}{{B.1}{200}{A matrix $\A $ and its transpose $\A ^T$. The elements get flipped along the main diagonal of the matrix according to Eq. \eqref {eq:matrixTransposition}. \relax }{figure.caption.196}{}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {A $3\times 5$ matrix $\mathbf {A}$.}}}{200}{subfigure.1.1}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {A transposed matrix $\mathbf {A}^T$ of size $5\times 3$.}}}{200}{subfigure.1.2}}
-\@writefile{toc}{\contentsline {subsubsection}{Matrix Multiplication}{200}{subsubsection*.197}}
-\newlabel{eq:matrixMult}{{B.2}{200}{Matrix Multiplication}{equation.c.A.2}{}}
-\mph@setcol{ii:200}{\mph@nr}
-\@writefile{lof}{\contentsline {figure}{\numberline {B.2}{\ignorespaces Visualisation of valid matrix multiplications (see Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:matrixMult}\unskip \@@italiccorr )}}). The ``inner'' dimensions (columns of the left matrix and rows of the right) must match and result in a matrix with a size of ``outer'' dimensions (rows of the left matrix and columns of the right). \relax }}{201}{figure.caption.198}}
-\newlabel{fig:matrixVector}{{B.2}{201}{Visualisation of valid matrix multiplications (see Eq. \eqref {eq:matrixMult}). The ``inner'' dimensions (columns of the left matrix and rows of the right) must match and result in a matrix with a size of ``outer'' dimensions (rows of the left matrix and columns of the right). \relax }{figure.caption.198}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B.2}Matrix Inverse}{201}{section.c.B}}
-\newlabel{sec:inverse}{{B.2}{201}{Matrix Inverse}{section.c.B}{}}
-\mph@setcol{ii:201}{\mph@nr}
-\@writefile{toc}{\contentsline {section}{\numberline {B.3}Systems of Linear Equations}{202}{section.c.C}}
-\newlabel{sec:linearEquations}{{B.3}{202}{Systems of Linear Equations}{section.c.C}{}}
-\mph@setcol{ii:202}{\mph@nr}
-\@writefile{toc}{\contentsline {section}{\numberline {B.4}Eigenvalue Problems}{203}{section.c.D}}
-\newlabel{sec:eigenValueProblems}{{B.4}{203}{Eigenvalue Problems}{section.c.D}{}}
-\mph@setcol{ii:203}{\mph@nr}
-\mph@setcol{ii:204}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {C}Code Snippets}{205}{Appendix.c.C}}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.1}{\ignorespaces A matrix $\mathbf  {A}$ and its transpose $\mathbf  {A}^T$. The elements get flipped along the main diagonal of the matrix according to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:matrixTransposition}\unskip \@@italiccorr )}}. \relax }}{160}{figure.caption.180}}
+\newlabel{fig:matrixTransp}{{B.1}{160}{A matrix $\A $ and its transpose $\A ^T$. The elements get flipped along the main diagonal of the matrix according to Eq. \eqref {eq:matrixTransposition}. \relax }{figure.caption.180}{}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {A $3\times 5$ matrix $\mathbf {A}$.}}}{160}{subfigure.1.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {A transposed matrix $\mathbf {A}^T$ of size $5\times 3$.}}}{160}{subfigure.1.2}}
+\@writefile{toc}{\contentsline {subsubsection}{Matrix Multiplication}{160}{subsubsection*.181}}
+\newlabel{eq:matrixMult}{{B.2}{160}{Matrix Multiplication}{equation.c.A.2}{}}
+\mph@setcol{ii:160}{\mph@nr}
+\@writefile{lof}{\contentsline {figure}{\numberline {B.2}{\ignorespaces Visualisation of valid matrix multiplications (see Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:matrixMult}\unskip \@@italiccorr )}}). The ``inner'' dimensions (columns of the left matrix and rows of the right) must match and result in a matrix with a size of ``outer'' dimensions (rows of the left matrix and columns of the right). \relax }}{161}{figure.caption.182}}
+\newlabel{fig:matrixVector}{{B.2}{161}{Visualisation of valid matrix multiplications (see Eq. \eqref {eq:matrixMult}). The ``inner'' dimensions (columns of the left matrix and rows of the right) must match and result in a matrix with a size of ``outer'' dimensions (rows of the left matrix and columns of the right). \relax }{figure.caption.182}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B.2}Matrix Inverse}{161}{section.c.B}}
+\newlabel{sec:inverse}{{B.2}{161}{Matrix Inverse}{section.c.B}{}}
+\mph@setcol{ii:161}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {B.3}Systems of Linear Equations}{162}{section.c.C}}
+\newlabel{sec:linearEquations}{{B.3}{162}{Systems of Linear Equations}{section.c.C}{}}
+\mph@setcol{ii:162}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {B.4}Eigenvalue Problems}{163}{section.c.D}}
+\newlabel{sec:eigenValueProblems}{{B.4}{163}{Eigenvalue Problems}{section.c.D}{}}
+\mph@setcol{ii:163}{\mph@nr}
+\mph@setcol{ii:164}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {C}Code Snippets}{165}{Appendix.c.C}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {C.1}Mass-Spring System (Section \ref  {sec:massSpringSystem})}{205}{section.c.A}}
-\newlabel{app:massSpringCode}{{C.1}{205}{Mass-Spring System (Section \ref {sec:massSpringSystem})}{section.c.A}{}}
-\mph@setcol{ii:205}{\mph@nr}
-\@writefile{toc}{\contentsline {section}{\numberline {C.2}1D Wave Equation (Section \ref  {sec:1DWave})}{206}{section.c.B}}
-\newlabel{app:1DWave}{{C.2}{206}{1D Wave Equation (Section \ref {sec:1DWave})}{section.c.B}{}}
-\mph@setcol{ii:206}{\mph@nr}
-\@writefile{toc}{\contentsline {section}{\numberline {C.3}2D Wave Equation (Section \ref  {sec:2Dwave})}{207}{section.c.C}}
-\newlabel{app:2DWave}{{C.3}{207}{2D Wave Equation (Section \ref {sec:2Dwave})}{section.c.C}{}}
-\mph@setcol{ii:207}{\mph@nr}
-\mph@setcol{ii:208}{\mph@nr}
-\@writefile{toc}{\contentsline {chapter}{\numberline {D}Intuition for the Damping Terms in the Stiff String PDE}{209}{Appendix.c.D}}
+\@writefile{toc}{\contentsline {section}{\numberline {C.1}Mass-Spring System (Section \ref  {sec:massSpringSystem})}{165}{section.c.A}}
+\newlabel{app:massSpringCode}{{C.1}{165}{Mass-Spring System (Section \ref {sec:massSpringSystem})}{section.c.A}{}}
+\mph@setcol{ii:165}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {C.2}1D Wave Equation (Section \ref  {sec:1DWave})}{166}{section.c.B}}
+\newlabel{app:1DWave}{{C.2}{166}{1D Wave Equation (Section \ref {sec:1DWave})}{section.c.B}{}}
+\mph@setcol{ii:166}{\mph@nr}
+\@writefile{toc}{\contentsline {section}{\numberline {C.3}2D Wave Equation (Section \ref  {sec:2Dwave})}{167}{section.c.C}}
+\newlabel{app:2DWave}{{C.3}{167}{2D Wave Equation (Section \ref {sec:2Dwave})}{section.c.C}{}}
+\mph@setcol{ii:167}{\mph@nr}
+\mph@setcol{ii:168}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {D}Intuition for the Damping Terms in the Stiff String PDE}{169}{Appendix.c.D}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{loa}{\addvspace {10\p@ }}
-\mph@setcol{ii:209}{\mph@nr}
-\mph@setcol{ii:210}{\mph@nr}
-\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ format the blurb}{211}{section*.199}}
-\pgfsyspdfmark {pgfid235}{4661699}{39655948}
+\newlabel{app:intuitionSigma1}{{D}{169}{Intuition for the Damping Terms in the Stiff String PDE}{Appendix.c.D}{}}
+\mph@setcol{ii:169}{\mph@nr}
+\mph@setcol{ii:170}{\mph@nr}
+\@writefile{toc}{\contentsline {chapter}{\numberline {E}Derivations}{171}{Appendix.c.E}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{loa}{\addvspace {10\p@ }}
+\newlabel{app:derivations}{{E}{171}{Derivations}{Appendix.c.E}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {E.1}Boundary Terms Webster's Equation}{171}{section.c.A}}
+\mph@setcol{ii:171}{\mph@nr}
+\citation{theBible}
+\citation{Bilbao2009}
+\mph@setcol{ii:172}{\mph@nr}
+\@writefile{tdo}{\contentsline {todo}{\color@fb@x {}{black}{}{orange}{\leavevmode {\color  {orange}o}}\ format the blurb}{173}{section*.183}}
+\pgfsyspdfmark {pgfid234}{4661699}{39655948}
 \def\mph@nr{46}
-\pgfsyspdfmark {pgfid238}{29344904}{39627902}
-\pgfsyspdfmark {pgfid239}{31193199}{39400001}
-\mph@setcol{ii:211}{\mph@nr}
-\gdef\mph@lastpage{212}
+\pgfsyspdfmark {pgfid237}{29344904}{39627902}
+\pgfsyspdfmark {pgfid238}{31193199}{39400001}
+\mph@setcol{ii:173}{\mph@nr}
+\gdef\mph@lastpage{174}
 \csname mph@do@warn\endcsname
-\newlabel{LastPage}{{}{211}{}{page.211}{}}
-\xdef\lastpage@lastpage{211}
-\xdef\lastpage@lastpageHy{211}
+\newlabel{LastPage}{{}{173}{}{page.173}{}}
+\xdef\lastpage@lastpage{173}
+\xdef\lastpage@lastpageHy{173}

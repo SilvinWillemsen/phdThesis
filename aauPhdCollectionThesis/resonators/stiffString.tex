@@ -43,13 +43,13 @@ Before moving on to the discretisation of the PDE in Eq. \eqref{eq:stiffStringPD
 \begin{equation}\label{eq:stiffStringPDE}
     \rho A \ptt u = T \pxx u - EI \pxxxx u - 2 \sz \rho A \pt u + 2 \so \rho A\pt \pxx u,
 \end{equation}
-where the non-negative loss coefficients $\sz$ (in s$^{-1}$) and $\so$ (in m$^2$/s) determine the frequency-independent and frequency-dependent losses respectively. 
+where the non-negative loss coefficients $\sz$ (in s$^{-1}$) and $\so$ (in m$^2$/s) determine the frequency-independent and frequency-dependent losses respectively. Appendix \ref{app:intuitionSigma1} provides some intuition on the damping terms.
 
 A more compact way to write Eq. \eqref{eq:stiffStringPDE}, and as is also found often in the literature \cite{theBible}\todo{etc.}, is to divide both sides by $\rho A$ to get
 \begin{equation}\label{eq:stiffStringPDECompact}
     \ptt u = c^2 \pxx u - \kappa^2 \pxxxx u - 2 \sz \pt u + 2 \so \pt \pxx u
 \end{equation}
-where $c=\sqrt{T/\rho A}$ is the wave speed \todo{check wavespeed or wave speed (entire document)} (in m/s) as in the 1D wave equation in \eqref{eq:1DwavePDE} and $\kappa = \sqrt{EI / \rho A}$ is referred to as the stiffness coefficient (in m$^2$/s).
+where $c=\sqrt{T/\rho A}$ is the wave speed \todo{check wavespeed or wave speed (entire document)} (in m/s) as in the 1D wave equation in \eqref{eq:1DwavePDE} and $\kappa = \sqrt{EI / \rho A}$ is referred to as the stiffness coefficient (in m$^2$/s). 
 
 % \subsubsection{Intuition}
 % Although Eq. \eqref{eq:stiffStringPDE} might look daunting at first, the principle of Newton's second law remains the same. 

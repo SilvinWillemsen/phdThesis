@@ -150,7 +150,7 @@ Similar to how the number of intervals between grid points are calculated 1D in 
 \end{equation}
 where the `$\text{min}$' operator selects the smallest value of $L_x/N_x$ and $L_y/N_y$ to stay as close to the stability condition as possible. 
 % Notice that the grid spacing is recalculated based the smallest valueof $L_x/N_x$  $L_y/N_y$ $L/N$ for in the $x$ and $y$ direction to stay as close to the stability condition in Eq. \eqref{eq:stabilityCondition2Dwave}.
-To implement the update equation in Eq. \eqref{eq:update2Dwave}, one could save the states of the system in matrices (as opposed to vectors in the 1D case such as in Section \ref{sec:implementationStiffString}) and directly work with these. Using Dirichlet boundary conditions the $(N_x-1) \times (N_y-1)$ state matrix at time index $n$ would be 
+To implement the update equation in Eq. \eqref{eq:update2Dwave}, one could save the states of the system in matrices (as opposed to vectors in the 1D case such as in Section \ref{sec:implementationStiffString}) and directly work with these. Using Dirichlet boundary conditions the $(N_x-1) \times (N_y-1)$ state matrix at time index $n$ would be \todo{matrix vector notation (capitalisation) does not hold here..}
 \begin{equation}
     \u^n = \begin{bmatrix}
         u^n_{1, 1} & \hdots & u^n_{1, N_x-1}\\

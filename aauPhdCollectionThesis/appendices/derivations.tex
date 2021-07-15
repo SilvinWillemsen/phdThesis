@@ -1,0 +1,67 @@
+\chapter{Derivations}\label{app:derivations}
+\section{Boundary Terms Webster's Equation}
+This section derives process of obtaining the values for $\el$ and $\er$ such that the boundary terms in Webster's equation are strictly dissipative. 
+
+Starting at the second term in the energy balance in Eq. \eqref{eq:powerBalanceWebster} rewritten according to Eq. \eqref{eq:switchSignsWebster} which is
+\begin{equation}
+    - c^2\langle\dtd\Psiln, \dxm\big(\Sp(\dxp\Psiln)\big)\rangle_d^{\el,\er}
+\end{equation}
+Using identity \eqref{eq:weightedIdentityMinus}
+\begin{equation*}
+    \begin{aligned}
+    \langle f_l^n, \dxm g_l^n \rangle_d^{\el,\er}  = -&\langle \dxp f_l^n, g_l^n \rangle_{\underline{d}}+ f_N^ng_{N-1}^n - f_0^ng_0^n \\
+    &+ \frac{\epsilon_\text{r}}{2}f_N^n(g_N^n-g_{N-1}^n)+ \frac{\epsilon_\text{l}}{2}f_0^n(g_0^n - g_{-1}^n),
+    \end{aligned}
+\end{equation*}
+this can be rewritten to (with $f=\dtd\Psi$ and $g = S_{l+1/2}(\dxp\Psi)$)
+\begin{equation*}
+        -c^2\langle \dtd\Psiln,\dxm \big(\Sp(\dxp\Psiln)\big) \rangle_{d}^{\epsilon_\text{l},\epsilon_\text{r}} = c^2\langle \dtd\dxp \Psiln, \big(\Sp(\dxp\Psiln)\big)\rangle_{\underline{d}} - \b.
+\end{equation*}
+where
+\begin{equation}
+    \b = \b_\text{r} - \b_\text{l}
+\end{equation}
+with
+\begin{equation*}
+    \mathfrak{b}_\text{r} =  \begin{aligned}[t]
+        &c^2 (\dtd\Psi_N^n)\Big(S_{N-1/2}\overbrace{(\dxp\Psi_{N-1}^n)}^{(\dxm\Psi_{N}^n)}\Big)\\
+        &+ \frac{\epsilon_\text{r}}{2}(\dtd\Psi_{N}^n)\Big(S_{N+1/2}(\dxp\Psi_N^n)- S_{N-1/2}\underbrace{(\dxp \Psi_{N-1}^n)}_{(\dxm\Psi_{N}^n)}\Big)
+    \end{aligned}
+\end{equation*}
+and 
+\begin{equation*}
+    \mathfrak{b}_\text{l} = \begin{aligned}[t]
+        &c^2(\dtd\Psi_0^n)\Big(S_{1/2}(\dxp\Psi_0^n)\Big)\\
+        & -\frac{\epsilon_\text{l}}{2}(\dtd\Psi_0^n)\Big(S_{1/2}(\dxp\Psi_0^n)-S_{-1/2}\underbrace{(\dxp\Psi_{-1}^n)}_{(\dxm\Psi_0^n)}\Big)
+    \end{aligned}
+\end{equation*}
+which can be rewritten to \footnote{Shown in \cite{theBible} in Problem 9.5.}
+\begin{align}
+    \b_\text{r} &= c^2(\dtd\Psi_N^n)\left(\frac{\epsilon_\text{r}}{2}S_{N+1/2}(\dxp \Psi_N^n) + \left(1-\frac{\epsilon_\text{r}}{2}\right)S_{N-1/2}(\dxm\Psi_N^n)\right),\\
+    \b_\text{l} &= c^2(\dtd\Psi_0^n)\left(\frac{\epsilon_\text{l}}{2}S_{-1/2}(\dxm\Psi_0^n)+\left(1-\frac{\epsilon_\text{l}}{2}\right)S_{1/2}(\dxp \Psi_0^n))\right).
+\end{align}
+% \\
+% &= \\
+% &\qquad - c^2(\dtd\Psi_0^n)\left(\frac{\epsilon_\text{l}}{2}S_{-1/2}(\dxm\Psi_0^n)+\left(1-\frac{\epsilon_\text{l}}{2}\right)S_{1/2}(\dxp \Psi_0^n))\right)
+
+
+Then, for the the centered radiating boundary condition shown in Eq. (9.16) in \cite{Bilbao2009}  %($\delta_{x\cdot}\Psi_N^n = -a_1\dtd\Psi_N^n - a_2\mu_{t\cdot}\Psi_N^n$) 
+to be strictly dissipative we need to make the special choice for $\epsilon_\text{r} = S_{N-1/2} / \mu_{xx}S_N$. Only considering the right boundary and continuing with this choice of $\epsilon_\text{r}$ we get
+\begin{equation}
+    \begin{aligned}
+        \mathfrak{b}_\text{r} &= c^2 (\dtd\Psi_N^n)\left(\frac{S_{N-1/2}}{2\mu_{xx}S_N}S_{N+1/2}(\dxp\Psi_N^n)+\left(1-\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)S_{N-1/2}(\dxm\Psi_N^n)\right)\\
+        &= c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(\frac{S_{N+1/2}}{2\mu_{xx}S_N}(\dxp\Psi_N^n)+\left(1-\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)(\dxm\Psi_N^n)\right)\\
+        &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)\left(\frac{\frac{S_{N+1/2}(\dxp\Psi_N^n)}{2\mu_{xx}S_N}}{\left(1-\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)}+\dxm\Psi_N^n\right)\\
+        &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)\left(\frac{\frac{S_{N+1/2}(\dxp\Psi_N^n)}{2\mu_{xx}S_N}}{\left(\frac{2\mu_{xx} - S_{N-1/2}}{2\mu_{xx}S_N}\right)}+\dxm\Psi_N^n\right)\\
+        &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)\left(\frac{S_{N+1/2}(\dxp\Psi_N^n)}{2\mu_{xx}S_N - S_{N-1/2}}+\dxm\Psi_N^n\right)\\
+        &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)\left(\frac{S_{N+1/2}(\dxp\Psi_N^n)}{S_{N+1/2} + S_{N-1/2} - S_{N-1/2}}+\dxm\Psi_N^n\right)\\
+        &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)\left(\dxp\Psi_N^n+\dxm\Psi_N^n\right)\\
+        &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)\left(\frac{1}{h}\left(\Psi_{N+1}^n - \Psi_N^n + \Psi_N^n - \Psi_{N-1}^n\right)\right)\\
+&= c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)2(\delta_{x\cdot}\Psi_N^n)\\
+&= c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(2-\epsilon_\text{r}\right)(\delta_{x\cdot}\Psi_N^n)
+    \end{aligned}
+\end{equation}
+The same can be done for $\mathfrak{b}_\text{l}$ with $\epsilon_\text{l} = S_{1/2}/\mu_{xx}S_0$ to get
+\begin{equation}
+    \mathfrak{b}_\text{l} = c^2(\dtd\Psi_0^n)S_{1/2}\left(2-\epsilon_\text{l}\right)(\delta_{x\cdot}\Psi_0^n)
+\end{equation}
