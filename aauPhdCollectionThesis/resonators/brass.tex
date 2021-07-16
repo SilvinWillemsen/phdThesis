@@ -1,4 +1,4 @@
-\chapter{Brass}\label{ch:brass}
+\chapter{Acoustic Tubes}\label{ch:brass}
 
 \SWcomment[terms I could use: bore, tube, cylinder]
 
@@ -19,6 +19,19 @@ with \textit{acoustic potential} $\Psi = \Psi(x,t)$ (in m$^2$/s), the cross-sect
     p = \rho_0 \pt \Psi, \qaq v = -\px \Psi,
 \end{equation}
 with air density $\rho_0$ (in kg/m$^3$).
+
+The interesting thing about using a variable cross-section, is that it causes the system to exhibit dispersive behaviour, especially at locations of high (spatial) variation of $S$. See Figure \ref{fig:websterPropagation}. Contrary to frequency dispersion as happens in a stiff string (see Chapter \ref{ch:stiffString}), all frequencies travel at the same speed, but some components of the wave get reflected in different ways, depending on the geometry.
+
+\def\figWidth{0.32}
+\begin{figure}[h]
+    \centering
+    \subfloat[$t = 1$ ms.\label{fig:websterPropagation1}]{\includegraphics[width=\figWidth\textwidth]{figures/resonators/brass/websterPropagation1.eps}}\hfill
+    \subfloat[$t = 5$ ms.\label{fig:websterPropagation2}]{\includegraphics[width=\figWidth\textwidth]{figures/resonators/brass/websterPropagation2.eps}}\hfill
+    \subfloat[$t = 8$ ms.\label{fig:websterPropagation3}]{\includegraphics[width=\figWidth\textwidth]{figures/resonators/brass/websterPropagation3.eps}}
+    \caption{Wave propagation and dispersion in an acoustic tube of varying cross section modelled by Webster's equation in Eq. \eqref{eq:webstersPDE}. The acoustic potential $\Psi$ is plotted as well as  red for positive and blue for negative values of $\Psi$.  \label{fig:websterPropagation}}
+\end{figure}
+
+
 \subsection{Boundary Conditions}
 The choices for boundary conditions in an acoustic tube are open and closed, defined as \cite{Bilbao2018}
 \begin{subequations}\label{eq:contBoundariesBrass}
@@ -329,14 +342,14 @@ Finally, $\b = \b_\text{l}$ and can be shown to vanish for both Dirichlet and (c
 \end{equation}
 where $B$ is the bulk modulus of air (in N/m$^2$)]
 \subsubsection{Step 4: Implementation}
-Figure \ref{fig:energyWebsters} shows the energetic output of Webster's equation with a radiating boundary at $x=L$. The system is excited with a raised cosine close to the left boundary, and when the excitation reaches the radiating boundary, the total energy in the system decreases due to the losses.
+Figure \ref{fig:energyWebsters} shows the energetic output of Webster's equation with a radiating boundary at $x=L$. To highlight the effect of the radiation on the energy the parameters are set to $L = 1$ and $S(x) = 0.01$ for $x\in \D$.  The system is excited with a raised cosine close to the left boundary, and when the excitation reaches the radiating boundary, the total energy in the system decreases due to the losses. The energy stored by the boundary is also shown and indeed increases when the wave reaches the boundary.
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[->,node distance=3cm,
         thick,main node/.style={circle,draw}]
     
         \node[] (image) at (0,0) {
-        \includegraphics[width=\textwidth]{figures/resonators/brass/energyWebster.eps}
+        \includegraphics[width=\textwidth]{figures/resonators/brass/energyWebster2.eps}
         };
     
         \node[] (he) at (0.2,0.5) {\small $\mathfrak{h}_\text{e}$};
@@ -346,7 +359,7 @@ Figure \ref{fig:energyWebsters} shows the energetic output of Webster's equation
         \node[] (t) at (-5.75, 0) {\small $\color{blue}\mathfrak{t}$};
         \node[] (hb) at (-5.75, -0.5) {\small $\color[HTML]{00DB00}\mathfrak{h}_\text{b}$};      
     \end{tikzpicture}
-      \caption{The kinetic (blue), potential (red), and total (black) energy as well as the energy stored by the radiation condition (green) of an implementation of Webster's equation are plotted in the left panel. Notice that the energy decreases around $n=65$ as the excitation reached the boundary where damping is included. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyWebsters}}
+      \caption{The kinetic (blue), potential (red), and total (black) energy as well as the energy stored by the radiation condition (green) of an implementation of Webster's equation are plotted in the left panel. Notice that the energy decreases between $n=60$ and $n=70$ as the excitation reached the boundary where damping is included. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyWebsters}}
 \end{figure}
 
 \subsection{Stability through Energy Analysis}\label{sec:stabilityEnergyWebster}
@@ -356,21 +369,21 @@ Following \cite{theBible}, consider the following scheme
 \begin{equation}
     [S]_l \delta_{tt}\Psi^n_l = c^2\dxp(\Sm(\delta_{x-}\Psiln)),
 \end{equation}
-where $[S]_l$ is a second-order approximation to the true geometry of the acoustic tube. As done for the 1D wave equation in Section \ref{sec:stabilityAnalysisEnergy}, the potential energy $\v$ in Eq. \eqref{eq:energyBalanceWebster} can be rewritten using identity \eqref{eq:prodIdentityEnergyStab} as
+where $[S]_l$ is a still undetermined second-order approximation to the true geometry of the acoustic tube. As done for the 1D wave equation in Section \ref{sec:stabilityAnalysisEnergy}, the potential energy $\v$ in Eq. \eqref{eq:energyBalanceWebster} can be rewritten using identity \eqref{eq:prodIdentityEnergyStab} as
 \begin{equation*}
     \v = \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2-\frac{k^2}{4}\lVert\sqrt{S_{l+1/2}}\dtm\dxp \Psiln\rVert_{\underline{d}}^2\right).
 \end{equation*}
-One can then use the following extension of the bound given in Eq. \eqref{eq:spatialBound} to \cite{theBible}
+For spatially varying systems, one can use the following extension of the bound given in Eq. \eqref{eq:spatialBound} \cite{theBible}
 \begin{equation}\label{eq:spatialBoundWebster}
     \lVert \sqrt{\phi_l}\dxp \uln \rVert_{\underline{d}} \leq\frac{2}{h}\lVert \sqrt{\mxm\phi_l} \uln \rVert_d,
 \end{equation}
-where $\psi_l > 0$ is defined over the same domain as $u$, and put a condition on $\v$
+where $\phi_l > 0$ is defined over the same domain as $u$. The following condition can then be put on $\v$
 \begin{align*}
     \v &\geq \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2 - \frac{k^2}{4}\left(\frac{2}{h}\lVert\sqrt{\mxm \Sp}\dtm\Psiln\rVert_{d}\right)^2\right),\\
     &\geq \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\lVert\sqrt{\mxx S_l}\dtm\Psiln\rVert_{d}^2\right),\\
     & \geq \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\left(\lVert\sqrt{\mxx S_l}\dtm\Psiln\rVert_{d}^{\el,\er}\right)^2\right),
 \end{align*}
-where last step is possible because $0\leq \el, \er \leq 2$.
+where last step is possible because $0 < \el, \er \leq 2$.
 % Assuming that $\el, \er \leq 2$, the following is true
 % \begin{equation}
 %     \lVert \uln \rVert^{\el, \er}_d\leq \lVert \uln\rVert_d
@@ -386,12 +399,12 @@ Substituting this into the energy balance in Eq. \eqref{eq:energyBalanceWebster}
 \end{align*}
 This can be written as
 \begin{equation}
-    \h \geq \frac{1}{2} \sum_d ([S]_l - \lambda^2\sqrt{\mxx S_l})(\dtm \Psiln)^2 
+    \h \geq \frac{1}{2} \sum_d \left(\sqrt{[S]_l} - \lambda^2\sqrt{\mxx S_l}\right)(\dtm \Psiln)^2 
 \end{equation}
 which is non-negative if
 \begin{align*}
-    \text{min}\Big([S]_l - \lambda^2\sqrt{\mxx S_l}\Big) \geq 0,\\
-    \lambda \leq \text{min}\left(\frac{[S]_l}{\sqrt{\mxx S_l}}\right).
+    \text{min}\Big(\sqrt{[S]_l} - \lambda^2\sqrt{\mxx S_l}\Big) \geq 0,\\
+    \lambda \leq \text{min}\left(\sqrt{\frac{[S]_l}{\mxx S_l}}\right).
 \end{align*}
 For the special choice of $[S]_l = \mxx S_l$, this condition reduces to
 \begin{equation}
@@ -400,7 +413,7 @@ For the special choice of $[S]_l = \mxx S_l$, this condition reduces to
 also given in \eqref{eq:CFLwebster}.
 
 \subsection{Modal Analysis}
-If the tube is perfectly cylindrical and thus $S(x)$ is constant, Webster's equation 3reduces to the 1D wave equation. If the inertia coefficient of the radiating boundary $a_2$
+If the tube is perfectly cylindrical and thus $S(x)$ is constant, Webster's equation reduces to the 1D wave equation. If the inertia coefficient of the radiating boundary $a_2$
 
 \section{First-order System}\label{sec:firstOrderSystem}
 Until now, the only PDEs presented have been second-order in time, i.e., are dependent on the acceleration of the state variable. This section presents a system of two coupled first-order PDEs which has been used to model the trombone in paper \citeP[H].

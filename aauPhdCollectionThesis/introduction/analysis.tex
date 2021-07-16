@@ -216,7 +216,7 @@ and the more general weighted inner product
 \begin{equation}\label{eq:weightedInnerProd}
     \langle f_l^n, g_l^n \rangle_d^{\el, \er} = \sum_{l=1}^{N-1} h f_l^n g_l^n + \frac{\el}{2}hf_0^ng_0^n + \frac{\er}{2}hf_N^ng_N^n,
 \end{equation}
-where free parameters $\el, \er > 0$ scale the boundary points of the regular inner product. Naturally, if $\el = \er = 1$, Eq. \eqref{eq:weightedInnerProd} reduces to Eq. \eqref{eq:primedInnerProd}, and if $\el = \er = 2$, \eqref{eq:weightedInnerProd} reduces to \eqref{eq:discInnerProd}.
+where free parameters $0 < \el, \er \leq 2$\todo{check with Stefan} scale the boundary points of the regular inner product. Naturally, if $\el = \er = 1$, Eq. \eqref{eq:weightedInnerProd} reduces to Eq. \eqref{eq:primedInnerProd}, and if $\el = \er = 2$, \eqref{eq:weightedInnerProd} reduces to \eqref{eq:discInnerProd}.
 
 \subsection{Summation by Parts}\label{sec:summationByParts}
 Extremely useful when performing energy analysis on distributed systems is \textit{summation by parts}, which is the discrete counterpart of integration by parts. Although its application will be only be apparent when actually performing an energy analysis (see fx. Sections \ref{sec:1DWaveEnergyAnalysis} and \ref{sec:energyAnalysisString}) some definitions will be presented here for future reference.
