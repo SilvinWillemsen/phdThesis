@@ -9,7 +9,6 @@ Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bib/mybib.bib
 Warning--I didn't find a database entry for "Smith2010"
-Warning--I didn't find a database entry for "Bilbao2009"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
@@ -17,7 +16,7 @@ Warning--I didn't find a database entry for "Bilbao2009"
 Done.
 You've used 63 entries,
             4087 wiz_defined-function locations,
-            1219 strings with 17652 characters,
+            1217 strings with 17632 characters,
 and the built_in function-call counts, 39352 in all, are:
 = -- 3275
 > -- 808
@@ -56,4 +55,4 @@ warning$ -- 0
 while$ -- 180
 width$ -- 65
 write$ -- 606
-(There were 2 warnings)
+(There was 1 warning)

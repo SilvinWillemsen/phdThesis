@@ -16,9 +16,9 @@ For an (axially symmetric) acoustic tube where the wavelengths of the frequencie
 \end{equation}
 with \textit{acoustic potential} $\Psi = \Psi(x,t)$ (in m$^2$/s), the cross-sectional area along the tube, or bore profile $S = S(x)$ (in m$^2$) and the speed of sound in air $c$ (in m/s). If $S(x)$ is constant, Eq. \eqref{eq:webstersPDE} reduces to the 1D wave equation in Eq. \eqref{eq:1DwavePDE}. For a tube of length $L$ (in m), $\Psi$ is defined for $x \in \D$ where domain $\D = [0, L]$. The acoustic potential can be related to pressure $p = p(x,t)$ (in Pa) and particle velocity $v = v(x,t)$ (in m/s) according to \cite{Bilbao2018}
 \begin{equation}\label{eq:pressureVelocityWebster}
-    p = \rho \pt \Psi, \qaq v = -\px \Psi.
+    p = \rho_0 \pt \Psi, \qaq v = -\px \Psi,
 \end{equation}
-
+with air density $\rho_0$ (in kg/m$^3$).
 \subsection{Boundary Conditions}
 The choices for boundary conditions in an acoustic tube are open and closed, defined as \cite{Bilbao2018}
 \begin{subequations}\label{eq:contBoundariesBrass}
@@ -57,7 +57,7 @@ Using the product rule, the right-hand side of Eq. \eqref{eq:discWebster} can be
 \begin{equation*}
     \Sbar\dtt\Psiln = c^2\left[(\dxp \Sm)(\mxp (\dxm \Psiln)) + (\mxp \Sm)(\dxp (\dxm \Psiln))\right]
 \end{equation*}
-and solving for $\Psinp$ yields the following update equation:
+and solving for $\Psinp$ yields the following update equation (see Appendix \ref{app:webstersUpdateEq}):
 \begin{equation}
     \Psinp = 2(1-\lambda^2)\Psiln-\Psinm+ \frac{\lambda^2\Sp}{\Sbar_l}\Psilp + \frac{\lambda^2\Sm}{\Sbar_l}\Psilm,\label{eq:webstersUpdateEq}
 \end{equation}
@@ -69,7 +69,7 @@ and similar to the 1D wave equation in Section \ref{sec:1DWaveDisc}
 \begin{equation}\label{eq:CFLwebster}
     \lambda \leq 1,
 \end{equation}
-in order for the scheme to be stable. 
+in order for the scheme to be stable. See Section \ref{sec:stabilityEnergyWebster} for a derivation.
 
 Notice that at the boundaries, Eq. \eqref{eq:webstersUpdateEq} requires values of $S$ (through its definition in Eq. \eqref{eq:Sbar}) outside of the defined domain, i.e., $S_{N+1/2}$ and $S_{-1/2}$. To solve this, one can set $\Sbar_0 = S(0)$ and $\Sbar_N = S(L)$ from which $S_{-1/2}$ and $S_{N+1/2}$ can be calculated according to
 \begin{subequations}
@@ -290,7 +290,7 @@ Then using identity Eq. \eqref{eq:prodIdentity2} and identity \eqref{eq:prodIden
     \dtp \h = \b_\text{r} - \b_\text{l}
 \end{equation*}
 where
-\begin{equation}
+\begin{equation}\label{eq:energyBalanceWebster}
     \begin{gathered}
         \h = \t + \v, \qwiq \t = \frac{1}{2} \left(\lVert\sqrt{\Sbar_l} \dtm \Psiln \rVert_d^{\el, \er}\right)^2 \quad \text{and} \\
         % \v =c^2\langle\dtd \dxp \Psiln, \Sp(\dxp \Psiln)\rangle_{\underline{d}}\ .
@@ -304,14 +304,14 @@ As (centred) Neumann conditions are used, the goal is to find definitions for $\
     \dxd \Psi_0^n &= 0\  \Rightarrow\ \b_\text{l} = 0 \\
     \dxd \Psi_N^n &= 0\  \Rightarrow\ \b_\text{r} = 0
 \end{align*} 
-for the left and right boundary respectively. It can be shown that, for the special cases of $\epsilon_\text{r} = S_{N-1/2}/\mu_{xx}S_N$ and $\epsilon_\text{l} = S_{1/2}/\mu_{xx}S_0$ the boundary terms become strictly dissipative 
+for the left and right boundary respectively. It can be shown that, for the special cases of $\epsilon_\text{r} = S_{N-1/2}/\mu_{xx}S_N$ and $\epsilon_\text{l} = S_{1/2}/\mu_{xx}S_0$ the boundary terms become strictly dissipative
 \begin{subequations}\label{eq:centStrictDissip}
 \begin{align}
     \mathfrak{b}_\text{r} &= c^2 (\dtd\Psi_N^n)S_{N-1/2}(2-\epsilon_\text{r})(\delta_{x\cdot}\Psi_N^n)\label{eq:centStrictDissipRight},\\
     \mathfrak{b}_\text{l} &= c^2 (\dtd\Psi_0^n)S_{1/2}(2-\epsilon_\text{l})(\delta_{x\cdot}\Psi_0^n).\label{eq:centStrictDissipLeft}
 \end{align}
 \end{subequations}
-See Appendix \ref{app:websterDerivations} for a derivation of this. The boundary term $\b_\text{r}$ can be decomposed in $\h_\text{b}$ and $\q_\text{b}$ in used in Eq. \eqref{eq:powerBalanceWebster}. These can be obtained substituting the definition of the radiating boundary Eq. \eqref{eq:centRadBound} into \eqref{eq:centStrictDissipRight} to get
+See Appendix \ref{app:boundaryWebster} for a derivation of this. Also note that $\el, \er \leq 2$ to the boundary terms to be non-negative. The boundary term $\b_\text{r}$ can be decomposed in $\h_\text{b}$ and $\q_\text{b}$ in used in Eq. \eqref{eq:powerBalanceWebster}. These can be obtained substituting the definition of the radiating boundary Eq. \eqref{eq:centRadBound} into \eqref{eq:centStrictDissipRight} to get
 \begin{align*}
     \mathfrak{b}_\text{r} &= c^2 (\dtd\Psi_N^n)S_{N-1/2}(2-\epsilon_\text{r})(-a_1\dtd\Psi_N^n - a_2\mu_{t\cdot}\Psi_N^n),\\
     &= c^2 S_{N-1/2}(2-\epsilon_\text{r})\left(-a_1(\dtd\Psi_N^n)^2 - a_2(\dtd\Psi_N^n)(\mu_{t\cdot}\Psi_N^n)\right),
@@ -354,24 +354,161 @@ Frequency domain analysis as presented in Section \ref{sec:stabilityAnalysis}, o
 
 Following \cite{theBible}, consider the following scheme
 \begin{equation}
-    [S] \delta_{tt}\Psi^n_l = c^2\dxp(\Sm(\delta_{x-}\Psiln)),
+    [S]_l \delta_{tt}\Psi^n_l = c^2\dxp(\Sm(\delta_{x-}\Psiln)),
 \end{equation}
-where $[S]$ is a second-order approximation to the true geometry of the acoustic tube.
+where $[S]_l$ is a second-order approximation to the true geometry of the acoustic tube. As done for the 1D wave equation in Section \ref{sec:stabilityAnalysisEnergy}, the potential energy $\v$ in Eq. \eqref{eq:energyBalanceWebster} can be rewritten using identity \eqref{eq:prodIdentityEnergyStab} as
+\begin{equation*}
+    \v = \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2-\frac{k^2}{4}\lVert\sqrt{S_{l+1/2}}\dtm\dxp \Psiln\rVert_{\underline{d}}^2\right).
+\end{equation*}
+One can then use the following extension of the bound given in Eq. \eqref{eq:spatialBound} to \cite{theBible}
+\begin{equation}\label{eq:spatialBoundWebster}
+    \lVert \sqrt{\phi_l}\dxp \uln \rVert_{\underline{d}} \leq\frac{2}{h}\lVert \sqrt{\mxm\phi_l} \uln \rVert_d,
+\end{equation}
+where $\psi_l > 0$ is defined over the same domain as $u$, and put a condition on $\v$
+\begin{align*}
+    \v &\geq \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2 - \frac{k^2}{4}\left(\frac{2}{h}\lVert\sqrt{\mxm \Sp}\dtm\Psiln\rVert_{d}\right)^2\right),\\
+    &\geq \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\lVert\sqrt{\mxx S_l}\dtm\Psiln\rVert_{d}^2\right),\\
+    & \geq \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\left(\lVert\sqrt{\mxx S_l}\dtm\Psiln\rVert_{d}^{\el,\er}\right)^2\right),
+\end{align*}
+where last step is possible because $0\leq \el, \er \leq 2$.
+% Assuming that $\el, \er \leq 2$, the following is true
+% \begin{equation}
+%     \lVert \uln \rVert^{\el, \er}_d\leq \lVert \uln\rVert_d
+% \end{equation}
+% \begin{equation}
+%     \t \geq 
+% \end{equation}
+Substituting this into the energy balance in Eq. \eqref{eq:energyBalanceWebster} yields
+\begin{align*}
+    \h = \t + \v \geq &\  \frac{1}{2} \left(\lVert\sqrt{[S]_l} \dtm \Psiln \rVert_d^{\el, \er}\right)^2 \\
+    &+ \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\left(\lVert\sqrt{\mxx S_l}\dtm\Psiln\rVert_{d}^{\el,\er}\right)^2\right),\\
+    \geq &\ \frac{1}{2} \left(\lVert\sqrt{[S]_l} \dtm \Psiln \rVert_d^{\el, \er}\right)^2- \frac{\lambda^2}{2}\left(\lVert\sqrt{\mxx S_l}\dtm\Psiln\rVert_{d}^{\el,\er}\right)^2.
+\end{align*}
+This can be written as
+\begin{equation}
+    \h \geq \frac{1}{2} \sum_d ([S]_l - \lambda^2\sqrt{\mxx S_l})(\dtm \Psiln)^2 
+\end{equation}
+which is non-negative if
+\begin{align*}
+    \text{min}\Big([S]_l - \lambda^2\sqrt{\mxx S_l}\Big) \geq 0,\\
+    \lambda \leq \text{min}\left(\frac{[S]_l}{\sqrt{\mxx S_l}}\right).
+\end{align*}
+For the special choice of $[S]_l = \mxx S_l$, this condition reduces to
+\begin{equation}
+    \lambda \leq 1,
+\end{equation}
+also given in \eqref{eq:CFLwebster}.
 
 \subsection{Modal Analysis}
 If the tube is perfectly cylindrical and thus $S(x)$ is constant, Webster's equation 3reduces to the 1D wave equation. If the inertia coefficient of the radiating boundary $a_2$
 
-\section{First-order system}\label{sec:firstOrderSystem}
-Until now, the only PDEs presented have been second-order in time, i.e., are dependent on the acceleration of the state variable. This section presents a system of two coupled first-order PDEs which has been used to model the trombone in paper \citeP[H]. second-order PDE  These equations are dependent on 
+\section{First-order System}\label{sec:firstOrderSystem}
+Until now, the only PDEs presented have been second-order in time, i.e., are dependent on the acceleration of the state variable. This section presents a system of two coupled first-order PDEs which has been used to model the trombone in paper \citeP[H].
 
-This will be the first appearance of a first-order system. 
+\subsection{Continuous Time}
+Using the same variables for cross-sectional area $S=S(x)$ and wave speed $c$, the system of PDEs is defined as follows:
+\begin{subequations}\label{eq:firstOrderSystem}
+\begin{align}
+    \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv)\label{eq:contPressure}\\
+    \rho_0\partial_tv &= -\partial_xp\label{eq:discVelocity}
+\end{align}
+\end{subequations}
+where pressure $p = p(x,t)$ (Pa) and particle velocity $v = v(x,t)$ (m/s) are defined for $x\in \D$ with $\D = [0, L]$ and tube length $L$ (in m). Furthermore, $\rho_0$ is the air density (in kg/m$^3$). Pressure and particle velocity are related to the acoustic potential $\Psi$ as shown in Eq. \eqref{eq:pressureVelocityWebster} as
+\begin{equation*}
+    p = \rho_0\partial_t \Psi, \quad v = -\partial_x\Psi.
+\end{equation*}  
+Indeed it can be shown by substituting these definitions into Eq. \eqref{eq:contPressure}, Webster's equation is obtained again:
+\begin{equation}
+  \nonumber
+        \frac{S}{\rho_0 c^2}\partial_t(\rho_0 \partial_t\Psi) = -\partial_x(S(-\partial_x\Psi))\quad \Longrightarrow \quad S\partial_t^2\Psi = c^2\partial_x(S\partial_x\Psi).
+\end{equation}
 
+\subsection{Discrete Time}
+It is useful to place either $p$ or $v$ on an interleaved grid (see Figure \ref{fig:interleavedGrid}). Following \cite{Harrison2018}, $v$ is placed on this interleaved grid both in space and time. 
+Accordingly, system \eqref{eq:firstOrderSystem} is discretised as
+\begin{subequations}
+    \begin{align}
+        \frac{\bar S_l}{\rho_0 c^2}\delta_{t+}p_l^n &= -\delta_{x-}(S_{l+1/2}v_{l+1/2}^{n+1/2}),\label{eq:discPressure}\\
+        \rho_0 \delta_{t-}v_{l+1/2}^{n+1/2}&=-\delta_{x+}p_l^n,\label{eq:discVelocity}
+    \end{align}
+\end{subequations}
+after which the update schemes become
+\begin{subequations}
+    \begin{align}
+        p_l^{n+1} &= p_l^n - \frac{\rho_0 c \lambda}{\bar{S}_l}(S_{l+1/2}v_{l+1/2}^{n+1/2}-S_{l-1/2}v_{l-1/2}^{n+1/2}),\label{eq:pressureUpdate}\\
+        v_{l+1/2}^{n+1/2} &= v_{l+1/2}^{n-1/2}-\frac{\lambda}{\rho_0 c}(p_{l+1}^n - p_l^n),\label{eq:velocityUpdate}
+    \end{align}
+\end{subequations}
+where (again) $\lambda = ck/h \leq 1$ for stability. The pressure is defined for $l=\{0, \hdots, N\}$ and the velocity for $l=\{0, \hdots, N-1\}$ where $N$ is the number of intervals between the grid points on the pressure grid.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/resonators/brass/interleavedGridFigure.pdf}
+    \caption{Grid points on the regular grid (in black) are used for pressure $p$, while points on the interleaved grid (in white) are used for particle velocity $v$.\label{fig:interleavedGrid}}
+\end{figure}
+
+\subsection{Boundary Conditions}\label{sec:boundariesFirstOrder}
+In the first-order PDE case, the boundary conditions are defined as follows
+\begin{subequations}
+    \begin{align}\label{eq:firstOrderBoundaryConditions}
+        p_0^n &= 0, & p_N^n &= 0, & &\text{(Dirichlet, open),}\\
+        \mu_{x-}(S_{1/2}v_{1/2}^n) &= 0, & \mu_{x+}(S_{N-1/2}v_{N-1/2}^n) &= 0, & &\text{(Neumann, closed)}.
+    \end{align}
+\end{subequations}
+
+\subsection{Energy Analysis}
+This section presents an energy analysis of the first-order system presented above using the techniques presented in Section \ref{sec:energyAnalysis}. For the bulk of the analysis, \cite{Harrison2018} is followed. 
+
+\subsubsection{Step 1: Obtain $\dtp \h$}
+To obtain the correct energy balance, an inner product of Eq. \eqref{eq:discPressure} with $\mu_{t+}p_l^n$ needs to be taken over discrete domain $d = \{0, \hdots, N\}$. Using the primed inner product in Eq. \eqref{eq:primedInnerProd} and after taking all terms to the left-hand side, this yields\footnote{The primed rather than the weighted inner product can be used here as the boundary conditions are defined as found in Section \ref{sec:boundariesFirstOrder}.}
+\begin{equation}\label{eq:firstOrderPrimed}
+    \delta_{t+}\mathfrak{h} = \frac{1}{\rho_0 c^2}\langle \mu_{t+}p_l^n, \Sbar \delta_{t+}p_l^n \rangle_{d}' +\langle \mu_{t+}p_l^n, \dxm(S_{l+1/2}v_{l+1/2}^{n+1/2})\rangle_{d}' = 0.
+\end{equation}
+\subsubsection{Step 2: Identify energy types and isolate $\dtp$}
+For the rest of the analysis, the following superscripts and subscripts will be assumed unless denoted otherwise: $n$ and $l$ for $p$, $l$ for $\bar S$, $l+1/2$ for $S$ and $l+1/2$ and $n+1/2$ for $v$. After performing summation by parts of the last term using identity \eqref{eq:summationByPartsMinusBar}, Eq. \eqref{eq:firstOrderPrimed} becomes
+\begin{equation}\label{eq:discEnergyFirstOrder}
+    \delta_{t+}\mathfrak{h} = \frac{1}{\rho_0 c^2}\langle \mu_{t+}p, \bar S \delta_{t+}p \rangle_{d}' -\langle \mu_{t+}\dxp p, Sv\rangle_{\underline{d}} = -\mathfrak{b} \quad \end{equation}
+where the boundary term is
+\begin{align}
+    \mathfrak{b} &= \mathfrak{b}_\text{r} + \mathfrak{b}_\text{l}, \quad \text{with} \nonumber\\
+    \mathfrak{b}_\text{r} &= (\mu_{t+}p_N)\mu_{x+}(S_{N-1/2}v_{N-1/2})\quad \text{and}\label{eq:firstOrderRightBoundary}\\
+    \mathfrak{b}_\text{l} &= -(\mu_{t+}p_0)\mu_{x-}(S_{1/2}v_{1/2})\label{eq:firstOrderLeftBoundary},
+\end{align}
+and can be shown to vanish under the boundary conditions shown in Eq. \eqref{eq:firstOrderBoundaryConditions}. Then, Eq. \eqref{eq:discVelocity} can be substituted into Eq. \eqref{eq:discEnergyFirstOrder} to get
+\begin{align}
+    \delta_{t+}\mathfrak{h} &= \frac{1}{\rho_0 c^2}\langle \mu_{t+}p, \bar S \delta_{t+}p \rangle_{d}' -\langle \mu_{t+}(-\rho_0\delta_{t-}v), Sv\rangle_{\underline{d}} = 0\\
+    &= \frac{1}{\rho_0 c^2}\langle \mu_{t+}p, \bar S \delta_{t+}p \rangle_{d}' + \rho_0 \langle \delta_{t\cdot}v, Sv\rangle_{\underline{d}} = 0.
+\end{align}
+Finally, one can use identities \eqref{eq:prodIdentity3} and \eqref{eq:prodIdentity2} for the first and second term respectively to get
+\begin{equation}\label{eq:energyBalanceFirstOrder}
+    \begin{gathered}
+        \mathfrak{h} = \mathfrak{t} + \mathfrak{v}\quad \text{where}\\
+       \mathfrak{t} = \frac{\rho_0}{2}\langle Sv, e_{t-}v\rangle_{\underline{d}}\quad \text{and} \quad \mathfrak{v} = \frac{1}{2\rho_0 c^2}\left(\lVert\sqrt{\bar S }p\rVert'_d\right)^2.
+    \end{gathered}
+\end{equation}
+\subsubsection{Step 3: Check units}
+Writing the terms in Eq. \eqref{eq:energyBalanceFirstOrder} in their units yields
+\begin{align*}
+    \frac{\rho_0}{2}\langle Sv, e_{t-}v\rangle_{\underline{d}}\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \ \text{kg}\cdot \text{m}^{-3}\cdot \text{m} \cdot (\text{m}^2 \cdot \text{m}\cdot\text{s}^{-1} \cdot \text{m}\cdot\text{s}^{-1}),\\
+    & = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-2},\\
+    \frac{1}{2\rho_0 c^2}\left(\lVert\sqrt{\bar S }p\rVert'_d\right)^2\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}&\  (\text{kg} \cdot \text{m}^{-3} \cdot \text{m}^2 \cdot \text{s}^{-2})^{-1} \cdot(\text{m} \cdot \text{kg} \cdot \text{m}^{-1}\cdot \text{s}^{-2})^2,\\
+    &= \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-2},
+\end{align*}
+and have the correct units.
+\subsubsection{Step 4: Implementation}
 
 
 \subsection{Adding Radiation}
 \def\r{\text{r}}
 \def\one{{(1)}}
-Following \cite{Harrison2018} we can add a radiation to the schemes using a circuit representation of the Levine and Schwinger radiation model \SWcomment[(See Figure \textbackslash ref\{fig:radiation\})]. The system can be described as
+Following \cite{Harrison2018} radiation  can be added to the schemes using a circuit representation of the Levine and Schwinger radiation model (See Figure \textbackslash ref\{fig:circuit\}). 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/resonators/brass/circuit.pdf}
+    \caption{The circuit representation of the Levine and Schwinger radiation model. \label{fig:circuit}}
+\end{figure}
+
+The system can be described as
 \begin{subequations}\label{eq:barVPSystem}
     \begin{align}
         \bar v &= \mu_{t+}v_\one + \frac{1}{R_2}\mu_{t+}p_\one + C_\r \delta_{t+}p_\one,\label{eq:barV}\\

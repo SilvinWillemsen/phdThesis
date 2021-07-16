@@ -10,50 +10,50 @@
 \contentsline {section}{\numberline {1.1}A Brief History}{4}{section.1.1}
 \contentsline {section}{\numberline {1.2}Exciter-Resonator Approach}{5}{section.1.2}
 \contentsline {section}{\numberline {1.3}Physical Modelling Techniques}{5}{section.1.3}
-\contentsline {subsubsection}{Discussion}{7}{subsubsection*.11}
+\contentsline {subsubsection}{Discussion}{7}{subsubsection*.13}
 \contentsline {section}{\numberline {1.4}Applications of Physical Modelling}{7}{section.1.4}
 \contentsline {subsection}{\numberline {1.4.1}Samples vs. Physical Modelling}{8}{subsection.1.4.1}
 \contentsline {subsection}{\numberline {1.4.2}Resurrect Old or Rare Instruments}{9}{subsection.1.4.2}
 \contentsline {subsection}{\numberline {1.4.3}Go Beyond what is Physically Possible}{9}{subsection.1.4.3}
 \contentsline {section}{\numberline {1.5}Project Objectives and Main Contributions}{9}{section.1.5}
-\contentsline {subsubsection}{How can computationally expensive physical models be made playable in real-time?}{9}{subsubsection*.13}
-\contentsline {subsubsection}{How can (the sound of) traditional instruments be extended upon?}{10}{subsubsection*.14}
-\contentsline {subsubsection}{How can the now-virtual instruments be controlled in a natural way?}{10}{subsubsection*.15}
+\contentsline {subsubsection}{How can computationally expensive physical models be made playable in real-time?}{9}{subsubsection*.15}
+\contentsline {subsubsection}{How can (the sound of) traditional instruments be extended upon?}{10}{subsubsection*.17}
+\contentsline {subsubsection}{How can the now-virtual instruments be controlled in a natural way?}{10}{subsubsection*.18}
 \contentsline {section}{\numberline {1.6}Thesis Outline}{11}{section.1.6}
-\contentsline {subsubsection}{Part \ref {part:introduction}: Introduction}{11}{subsubsection*.16}
-\contentsline {subsubsection}{Part \ref {part:resonators}: Resonators}{12}{subsubsection*.17}
-\contentsline {subsubsection}{Part \ref {part:exciters}: Exciters}{12}{subsubsection*.18}
-\contentsline {subsubsection}{Part \ref {part:interactions}: Interactions}{12}{subsubsection*.19}
-\contentsline {subsubsection}{Part \ref {part:contributions}: Contributions}{13}{subsubsection*.20}
-\contentsline {subsubsection}{Part \ref {part:conclusion}: Conclusions and Perspectives}{13}{subsubsection*.21}
+\contentsline {subsubsection}{Part \ref {part:introduction}: Introduction}{11}{subsubsection*.19}
+\contentsline {subsubsection}{Part \ref {part:resonators}: Resonators}{11}{subsubsection*.20}
+\contentsline {subsubsection}{Part \ref {part:exciters}: Exciters}{12}{subsubsection*.21}
+\contentsline {subsubsection}{Part \ref {part:interactions}: Interactions}{12}{subsubsection*.22}
+\contentsline {subsubsection}{Part \ref {part:contributions}: Contributions}{12}{subsubsection*.23}
+\contentsline {subsubsection}{Part \ref {part:conclusion}: Conclusions and Perspectives}{13}{subsubsection*.24}
 \contentsline {chapter}{\numberline {2}Introduction to Finite-Difference Time-Domain Methods}{15}{chapter.2}
 \contentsline {section}{\numberline {2.1}Differential Equations}{15}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Dimensions and Degrees of Freedom}{17}{subsection.2.1.1}
-\contentsline {subsubsection}{Notation}{18}{subsubsection*.24}
+\contentsline {subsubsection}{Notation}{18}{subsubsection*.27}
 \contentsline {subsection}{\numberline {2.1.2}Ranges of Definition and Domains}{18}{subsection.2.1.2}
 \contentsline {section}{\numberline {2.2}Discretisation using FDTD methods}{18}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Grid Functions \todo {FULL DOC SWEEP: check capitalisation of headings throughout document}}{19}{section*.26}
+\contentsline {subsection}{\numberline {2.2.1}Grid Functions \todo {FULL DOC SWEEP: check capitalisation of headings throughout document}}{19}{section*.29}
 \contentsline {subsection}{\numberline {2.2.2}Finite-Difference Operators}{20}{subsection.2.2.2}
-\contentsline {subsubsection}{Accuracy}{23}{subsubsection*.34}
+\contentsline {subsubsection}{Accuracy}{23}{subsubsection*.37}
 \contentsline {subsection}{\numberline {2.2.3}Identities}{25}{subsection.2.2.3}
 \contentsline {section}{\numberline {2.3}The Mass-Spring System}{26}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Continuous-time}{26}{subsection.2.3.1}
-\contentsline {subsubsection}{Intuition}{27}{subsubsection*.38}
+\contentsline {subsubsection}{Intuition}{27}{subsubsection*.41}
 \contentsline {subsection}{\numberline {2.3.2}Discrete-time}{28}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}Implementation and Output}{28}{subsection.2.3.3}
 \contentsline {section}{\numberline {2.4}The 1D Wave Equation}{29}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Continuous time\todo {FULL DOC SWEEP: check hyphen in titles}}{30}{section*.41}
-\contentsline {subsubsection}{Intuition}{30}{subsubsection*.44}
-\contentsline {subsubsection}{Boundary Conditions}{31}{subsubsection*.47}
-\contentsline {subsubsection}{Scaling}{32}{subsubsection*.50}
+\contentsline {subsection}{\numberline {2.4.1}Continuous time\todo {FULL DOC SWEEP: check hyphen in titles}}{30}{section*.44}
+\contentsline {subsubsection}{Intuition}{30}{subsubsection*.47}
+\contentsline {subsubsection}{Boundary Conditions}{31}{subsubsection*.50}
+\contentsline {subsubsection}{Scaling}{32}{subsubsection*.53}
 \contentsline {subsection}{\numberline {2.4.2}Discrete time}{33}{subsection.2.4.2}
-\contentsline {subsubsection}{Stencil}{34}{subsubsection*.53}
-\contentsline {subsubsection}{Boundary Conditions and Virtual Grid Points}{35}{subsubsection*.55}
+\contentsline {subsubsection}{Stencil}{34}{subsubsection*.56}
+\contentsline {subsubsection}{Boundary Conditions and Virtual Grid Points}{35}{subsubsection*.58}
 \contentsline {subsection}{\numberline {2.4.3}Implementation: Excitation and Output}{35}{subsection.2.4.3}
-\contentsline {subsubsection}{Output and Modes}{36}{subsubsection*.56}
+\contentsline {subsubsection}{Output and Modes}{36}{subsubsection*.59}
 \contentsline {subsection}{\numberline {2.4.4}Stability and Simulation Quality}{37}{subsection.2.4.4}
-\contentsline {subsubsection}{Intuition}{40}{subsubsection*.62}
-\contentsline {subsubsection}{Possible solution}{41}{subsubsection*.64}
+\contentsline {subsubsection}{Intuition}{40}{subsubsection*.65}
+\contentsline {subsubsection}{Possible solution}{41}{subsubsection*.67}
 \contentsline {chapter}{\numberline {3}Analysis Techniques}{43}{chapter.3}
 \contentsline {section}{\numberline {3.1}Matrices in a FDTD context}{43}{section.3.1}
 \contentsline {subsection}{\numberline {3.1.1}FD Operators in Matrix Form}{44}{subsection.3.1.1}
@@ -61,55 +61,55 @@
 \contentsline {section}{\numberline {3.2}Mathematical Tools and Product Identities}{46}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Inner product}{46}{subsection.3.2.1}
 \contentsline {subsection}{\numberline {3.2.2}Summation by Parts}{47}{subsection.3.2.2}
-\contentsline {subsubsection}{Derivations}{49}{subsubsection*.67}
+\contentsline {subsubsection}{Derivations}{49}{subsubsection*.70}
 \contentsline {subsection}{\numberline {3.2.3}Product identities}{50}{subsection.3.2.3}
 \contentsline {section}{\numberline {3.3}Frequency Domain Analysis}{50}{section.3.3}
-\contentsline {subsubsection}{Frequency-domain representation and Ansatz}{50}{subsubsection*.68}
-\contentsline {subsubsection}{Proving stability}{52}{subsubsection*.74}
+\contentsline {subsubsection}{Frequency-domain representation and Ansatz}{50}{subsubsection*.71}
+\contentsline {subsubsection}{Proving stability}{52}{subsubsection*.77}
 \contentsline {subsection}{\numberline {3.3.1}Mass-Spring System}{53}{subsection.3.3.1}
 \contentsline {subsection}{\numberline {3.3.2}1D Wave Equation}{54}{subsection.3.3.2}
 \contentsline {section}{\numberline {3.4}Energy Analysis}{55}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}Energy Analysis: A 4-Step Tutorial}{56}{subsection.3.4.1}
-\contentsline {subsubsection}{Step 1: Obtain the rate of change of the total energy $\delta _{t+}\mathfrak {h}$.}{56}{subsubsection*.76}
-\contentsline {subsubsection}{Step 2: Identify different types of energy and obtain the total energy $\mathfrak {h}$ by isolating $\delta _{t+}$.}{56}{subsubsection*.77}
-\contentsline {subsubsection}{Step 3: Check the units in the expression for $\mathfrak {h}$.}{57}{subsubsection*.78}
-\contentsline {subsubsection}{Step 4: Implement the definitions for energy and debug the FD scheme.}{57}{subsubsection*.79}
+\contentsline {subsubsection}{Step 1: Obtain the rate of change of the total energy $\delta _{t+}\mathfrak {h}$.}{56}{subsubsection*.79}
+\contentsline {subsubsection}{Step 2: Identify different types of energy and obtain the total energy $\mathfrak {h}$ by isolating $\delta _{t+}$.}{56}{subsubsection*.80}
+\contentsline {subsubsection}{Step 3: Check the units in the expression for $\mathfrak {h}$.}{57}{subsubsection*.81}
+\contentsline {subsubsection}{Step 4: Implement the definitions for energy and debug the FD scheme.}{57}{subsubsection*.82}
 \contentsline {subsection}{\numberline {3.4.2}Mass-spring system}{58}{subsection.3.4.2}
-\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{58}{subsubsection*.81}
-\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{58}{subsubsection*.82}
-\contentsline {subsubsection}{Step 3: Check units}{58}{subsubsection*.83}
-\contentsline {subsubsection}{Step 4: Implementation}{59}{subsubsection*.84}
+\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{58}{subsubsection*.84}
+\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{58}{subsubsection*.85}
+\contentsline {subsubsection}{Step 3: Check units}{58}{subsubsection*.86}
+\contentsline {subsubsection}{Step 4: Implementation}{59}{subsubsection*.87}
 \contentsline {subsection}{\numberline {3.4.3}1D Wave Equation}{59}{subsection.3.4.3}
-\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{60}{subsubsection*.86}
-\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{60}{subsubsection*.87}
-\contentsline {subsubsection}{Step 3: Check units}{61}{subsubsection*.88}
-\contentsline {subsubsection}{Step 4: Implementation}{61}{subsubsection*.89}
-\contentsline {subsubsection}{Neumann boundary conditions}{61}{subsubsection*.91}
+\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{60}{subsubsection*.89}
+\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{60}{subsubsection*.90}
+\contentsline {subsubsection}{Step 3: Check units}{61}{subsubsection*.91}
+\contentsline {subsubsection}{Step 4: Implementation}{61}{subsubsection*.92}
+\contentsline {subsubsection}{Neumann boundary conditions}{61}{subsubsection*.94}
 \contentsline {subsection}{\numberline {3.4.4}Stability Analysis using Energy Analysis Techniques}{63}{subsection.3.4.4}
-\contentsline {subsubsection}{Mass-spring system}{63}{subsubsection*.92}
-\contentsline {subsubsection}{1D wave equation}{64}{subsubsection*.93}
+\contentsline {subsubsection}{Mass-spring system}{63}{subsubsection*.95}
+\contentsline {subsubsection}{1D wave equation}{64}{subsubsection*.96}
 \contentsline {section}{\numberline {3.5}Modal Analysis}{65}{section.3.5}
 \contentsline {subsection}{\numberline {3.5.1}One-Step Form}{66}{subsection.3.5.1}
 \contentsline {part}{II\hspace {1em}Resonators}{69}{part.2}
 \contentsline {chapter}{\numberline {4}Stiff string}{73}{chapter.4}
 \contentsline {section}{\numberline {4.1}Continuous time}{73}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}Adding Losses}{74}{subsection.4.1.1}
-\contentsline {subsubsection}{Boundary Conditions}{75}{subsubsection*.104}
+\contentsline {subsubsection}{Boundary Conditions}{75}{subsubsection*.107}
 \contentsline {section}{\numberline {4.2}Discrete Time}{75}{section.4.2}
-\contentsline {subsubsection}{Stencil}{77}{subsubsection*.106}
+\contentsline {subsubsection}{Stencil}{77}{subsubsection*.109}
 \contentsline {subsection}{\numberline {4.2.1}Boundary conditions}{77}{subsection.4.2.1}
-\contentsline {subsubsection}{Clamped}{78}{subsubsection*.109}
-\contentsline {subsubsection}{Simply supported}{78}{subsubsection*.110}
-\contentsline {subsubsection}{Free}{79}{subsubsection*.111}
+\contentsline {subsubsection}{Clamped}{78}{subsubsection*.112}
+\contentsline {subsubsection}{Simply supported}{78}{subsubsection*.113}
+\contentsline {subsubsection}{Free}{79}{subsubsection*.114}
 \contentsline {subsection}{\numberline {4.2.2}Implementation and Matrix Form}{80}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}Parameters and output}{81}{subsection.4.2.3}
-\contentsline {subsubsection}{Output}{81}{subsubsection*.113}
+\contentsline {subsubsection}{Output}{81}{subsubsection*.116}
 \contentsline {section}{\numberline {4.3}von Neumann Analysis and Stability Condition}{82}{section.4.3}
 \contentsline {section}{\numberline {4.4}Energy Analysis}{84}{section.4.4}
-\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{84}{subsubsection*.116}
-\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{84}{subsubsection*.117}
-\contentsline {subsubsection}{Step 3: Check units}{85}{subsubsection*.119}
-\contentsline {subsubsection}{Step 4: Implementation}{86}{subsubsection*.120}
+\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{84}{subsubsection*.119}
+\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{84}{subsubsection*.120}
+\contentsline {subsubsection}{Step 3: Check units}{85}{subsubsection*.122}
+\contentsline {subsubsection}{Step 4: Implementation}{86}{subsubsection*.123}
 \contentsline {section}{\numberline {4.5}Modal Analysis}{86}{section.4.5}
 \contentsline {section}{\numberline {4.6}Implicit Scheme}{88}{section.4.6}
 \contentsline {subsection}{\numberline {4.6.1}von Neumann analysis}{89}{subsection.4.6.1}
@@ -124,79 +124,88 @@
 \contentsline {subsection}{\numberline {5.2.3}Excitation}{97}{subsection.5.2.3}
 \contentsline {subsection}{\numberline {5.2.4}Output and Matrix Form}{97}{subsection.5.2.4}
 \contentsline {subsection}{\numberline {5.2.5}Energy Analysis}{99}{subsection.5.2.5}
-\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{99}{subsubsection*.132}
-\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{100}{subsubsection*.133}
-\contentsline {subsubsection}{Step 3: Check units}{101}{subsubsection*.134}
-\contentsline {subsubsection}{Step 4: Implementation}{101}{subsubsection*.135}
+\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{99}{subsubsection*.135}
+\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{100}{subsubsection*.136}
+\contentsline {subsubsection}{Step 3: Check units}{101}{subsubsection*.137}
+\contentsline {subsubsection}{Step 4: Implementation}{101}{subsubsection*.138}
 \contentsline {subsection}{\numberline {5.2.6}Stability through Energy Analysis}{102}{subsection.5.2.6}
-\contentsline {subsection}{\numberline {5.2.7}Modal Analysis}{102}{subsection.5.2.7}
-\contentsline {section}{\numberline {5.3}First-order system}{102}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Adding Radiation}{103}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Energy}{104}{subsection.5.3.2}
-\contentsline {chapter}{\numberline {6}2D Systems}{105}{chapter.6}
-\contentsline {section}{\numberline {6.1}PDEs and FD schemes in 2D}{106}{section.6.1}
-\contentsline {subsubsection}{Additional operators}{106}{subsubsection*.137}
-\contentsline {section}{\numberline {6.2}2D Wave Equation}{107}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Continuous time}{108}{subsection.6.2.1}
-\contentsline {subsubsection}{Boundary conditions}{108}{subsubsection*.140}
-\contentsline {subsection}{\numberline {6.2.2}Discrete time}{108}{subsection.6.2.2}
-\contentsline {subsubsection}{Discrete boundary conditions}{109}{subsubsection*.141}
-\contentsline {subsubsection}{Stencil}{109}{subsubsection*.142}
-\contentsline {subsection}{\numberline {6.2.3}Implementation and Matrix Form}{109}{subsection.6.2.3}
-\contentsline {subsubsection}{Output}{112}{subsubsection*.147}
-\contentsline {subsection}{\numberline {6.2.4}Frequency Domain Analysis in 2D}{113}{subsection.6.2.4}
-\contentsline {subsection}{\numberline {6.2.5}Energy Analysis in 2D}{114}{subsection.6.2.5}
-\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{115}{subsubsection*.150}
-\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{115}{subsubsection*.152}
-\contentsline {subsubsection}{Step 3: Check units}{116}{subsubsection*.153}
-\contentsline {subsubsection}{Step 4: Implementation}{116}{subsubsection*.154}
-\contentsline {subsection}{\numberline {6.2.6}Modal Analysis in 2D}{116}{subsection.6.2.6}
-\contentsline {subsubsection}{Modal shapes}{117}{subsubsection*.157}
-\contentsline {section}{\numberline {6.3}Thin plate}{118}{section.6.3}
-\contentsline {subsection}{\numberline {6.3.1}Continuous time}{119}{subsection.6.3.1}
-\contentsline {subsubsection}{Boundary conditions}{119}{subsubsection*.160}
-\contentsline {subsection}{\numberline {6.3.2}Discrete time}{119}{subsection.6.3.2}
-\contentsline {subsubsection}{Discrete boundary conditions}{120}{subsubsection*.162}
-\contentsline {subsection}{\numberline {6.3.3}Implementation and Output}{122}{subsection.6.3.3}
-\contentsline {subsection}{\numberline {6.3.4}Frequency Domain Analysis}{123}{subsection.6.3.4}
-\contentsline {subsection}{\numberline {6.3.5}Energy Analysis}{124}{subsection.6.3.5}
-\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{124}{subsubsection*.166}
-\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{124}{subsubsection*.167}
-\contentsline {subsubsection}{Step 3: Check units}{125}{subsubsection*.169}
-\contentsline {subsubsection}{Step 4: Implementation}{125}{subsubsection*.170}
-\contentsline {subsection}{\numberline {6.3.6}Modal Analysis}{125}{subsection.6.3.6}
-\contentsline {section}{\numberline {6.4}Stiff membrane}{126}{section.6.4}
-\contentsline {subsection}{\numberline {6.4.1}Continuous time}{126}{subsection.6.4.1}
-\contentsline {subsection}{\numberline {6.4.2}Discrete time}{127}{subsection.6.4.2}
-\contentsline {subsection}{\numberline {6.4.3}Implementation}{127}{subsection.6.4.3}
-\contentsline {subsection}{\numberline {6.4.4}Frequency Domain Analysis}{128}{subsection.6.4.4}
-\contentsline {section}{\numberline {6.5}Radial Coordinates}{128}{section.6.5}
-\contentsline {chapter}{References}{135}{chapter*.174}
-\contentsline {part}{III\hspace {1em}Papers}{137}{part.3}
-\contentsline {chapter}{\numberline {A}Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{139}{Paper.b.A}
-\contentsline {chapter}{\numberline {B}Physical Models and Real-Time Control with the Sensel Morph}{141}{Paper.b.B}
-\contentsline {chapter}{\numberline {C}Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite-Difference Schemes}{143}{Paper.b.C}
-\contentsline {chapter}{\numberline {D}Real-time Implementation of a Physical Model of the Tromba Marina}{145}{Paper.b.D}
-\contentsline {chapter}{\numberline {E}Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{147}{Paper.b.E}
-\contentsline {chapter}{\numberline {F}DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{149}{Paper.b.F}
-\contentsline {chapter}{\numberline {G}Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{151}{Paper.b.G}
-\contentsline {chapter}{\numberline {H}A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{153}{Paper.b.H}
-\contentsline {part}{IV\hspace {1em}Appendix}{155}{part.4}
-\contentsline {chapter}{\numberline {A}Paper Errata}{157}{Appendix.c.A}
-\contentsline {subsubsection}{Elasto-plastic [\ref {paper:C}]}{157}{subsubsection*.176}
-\contentsline {subsubsection}{Real-Time Tromba [\ref {paper:D}]}{157}{subsubsection*.177}
-\contentsline {subsubsection}{DigiDrum [\ref {paper:F}]}{157}{subsubsection*.178}
-\contentsline {chapter}{\numberline {B}Matrices}{159}{Appendix.c.B}
-\contentsline {section}{\numberline {B.1}Operations}{159}{section.c.A}
-\contentsline {subsubsection}{Matrix transpose}{160}{subsubsection*.179}
-\contentsline {subsubsection}{Matrix Multiplication}{160}{subsubsection*.181}
-\contentsline {section}{\numberline {B.2}Matrix Inverse}{161}{section.c.B}
-\contentsline {section}{\numberline {B.3}Systems of Linear Equations}{162}{section.c.C}
-\contentsline {section}{\numberline {B.4}Eigenvalue Problems}{163}{section.c.D}
-\contentsline {chapter}{\numberline {C}Code Snippets}{165}{Appendix.c.C}
-\contentsline {section}{\numberline {C.1}Mass-Spring System (Section \ref {sec:massSpringSystem})}{165}{section.c.A}
-\contentsline {section}{\numberline {C.2}1D Wave Equation (Section \ref {sec:1DWave})}{166}{section.c.B}
-\contentsline {section}{\numberline {C.3}2D Wave Equation (Section \ref {sec:2Dwave})}{167}{section.c.C}
-\contentsline {chapter}{\numberline {D}Intuition for the Damping Terms in the Stiff String PDE}{169}{Appendix.c.D}
-\contentsline {chapter}{\numberline {E}Derivations}{171}{Appendix.c.E}
-\contentsline {section}{\numberline {E.1}Boundary Terms Webster's Equation}{171}{section.c.A}
+\contentsline {subsection}{\numberline {5.2.7}Modal Analysis}{103}{subsection.5.2.7}
+\contentsline {section}{\numberline {5.3}First-order System}{103}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Continuous Time}{104}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Discrete Time}{104}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Boundary Conditions}{104}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}Energy Analysis}{105}{subsection.5.3.4}
+\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{105}{subsubsection*.141}
+\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{105}{subsubsection*.142}
+\contentsline {subsubsection}{Step 3: Check units}{106}{subsubsection*.143}
+\contentsline {subsubsection}{Step 4: Implementation}{106}{subsubsection*.144}
+\contentsline {subsection}{\numberline {5.3.5}Adding Radiation}{106}{subsection.5.3.5}
+\contentsline {subsection}{\numberline {5.3.6}Energy}{108}{subsection.5.3.6}
+\contentsline {chapter}{\numberline {6}2D Systems}{109}{chapter.6}
+\contentsline {section}{\numberline {6.1}PDEs and FD schemes in 2D}{110}{section.6.1}
+\contentsline {subsubsection}{Additional operators}{110}{subsubsection*.146}
+\contentsline {section}{\numberline {6.2}2D Wave Equation}{111}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Continuous time}{112}{subsection.6.2.1}
+\contentsline {subsubsection}{Boundary conditions}{112}{subsubsection*.149}
+\contentsline {subsection}{\numberline {6.2.2}Discrete time}{112}{subsection.6.2.2}
+\contentsline {subsubsection}{Discrete boundary conditions}{113}{subsubsection*.150}
+\contentsline {subsubsection}{Stencil}{113}{subsubsection*.151}
+\contentsline {subsection}{\numberline {6.2.3}Implementation and Matrix Form}{113}{subsection.6.2.3}
+\contentsline {subsubsection}{Output}{116}{subsubsection*.156}
+\contentsline {subsection}{\numberline {6.2.4}Frequency Domain Analysis in 2D}{117}{subsection.6.2.4}
+\contentsline {subsection}{\numberline {6.2.5}Energy Analysis in 2D}{118}{subsection.6.2.5}
+\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{119}{subsubsection*.159}
+\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{119}{subsubsection*.161}
+\contentsline {subsubsection}{Step 3: Check units}{120}{subsubsection*.162}
+\contentsline {subsubsection}{Step 4: Implementation}{120}{subsubsection*.163}
+\contentsline {subsection}{\numberline {6.2.6}Modal Analysis in 2D}{120}{subsection.6.2.6}
+\contentsline {subsubsection}{Modal shapes}{121}{subsubsection*.166}
+\contentsline {section}{\numberline {6.3}Thin plate}{122}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Continuous time}{123}{subsection.6.3.1}
+\contentsline {subsubsection}{Boundary conditions}{123}{subsubsection*.169}
+\contentsline {subsection}{\numberline {6.3.2}Discrete time}{123}{subsection.6.3.2}
+\contentsline {subsubsection}{Discrete boundary conditions}{124}{subsubsection*.171}
+\contentsline {subsection}{\numberline {6.3.3}Implementation and Output}{126}{subsection.6.3.3}
+\contentsline {subsection}{\numberline {6.3.4}Frequency Domain Analysis}{127}{subsection.6.3.4}
+\contentsline {subsection}{\numberline {6.3.5}Energy Analysis}{128}{subsection.6.3.5}
+\contentsline {subsubsection}{Step 1: Obtain $\delta _{t+}\mathfrak {h}$}{128}{subsubsection*.175}
+\contentsline {subsubsection}{Step 2: Identify energy types and isolate $\delta _{t+}$}{128}{subsubsection*.176}
+\contentsline {subsubsection}{Step 3: Check units}{129}{subsubsection*.178}
+\contentsline {subsubsection}{Step 4: Implementation}{129}{subsubsection*.179}
+\contentsline {subsection}{\numberline {6.3.6}Modal Analysis}{129}{subsection.6.3.6}
+\contentsline {section}{\numberline {6.4}Stiff membrane}{130}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Continuous time}{130}{subsection.6.4.1}
+\contentsline {subsection}{\numberline {6.4.2}Discrete time}{131}{subsection.6.4.2}
+\contentsline {subsection}{\numberline {6.4.3}Implementation}{131}{subsection.6.4.3}
+\contentsline {subsection}{\numberline {6.4.4}Frequency Domain Analysis}{132}{subsection.6.4.4}
+\contentsline {section}{\numberline {6.5}Radial Coordinates}{132}{section.6.5}
+\contentsline {chapter}{References}{139}{chapter*.183}
+\contentsline {part}{III\hspace {1em}Papers}{141}{part.3}
+\contentsline {chapter}{\numberline {A}Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{143}{Paper.b.A}
+\contentsline {chapter}{\numberline {B}Physical Models and Real-Time Control with the Sensel Morph}{145}{Paper.b.B}
+\contentsline {chapter}{\numberline {C}Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite-Difference Schemes}{147}{Paper.b.C}
+\contentsline {chapter}{\numberline {D}Real-time Implementation of a Physical Model of the Tromba Marina}{149}{Paper.b.D}
+\contentsline {chapter}{\numberline {E}Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{151}{Paper.b.E}
+\contentsline {chapter}{\numberline {F}DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{153}{Paper.b.F}
+\contentsline {chapter}{\numberline {G}Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{155}{Paper.b.G}
+\contentsline {chapter}{\numberline {H}A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{157}{Paper.b.H}
+\contentsline {part}{IV\hspace {1em}Appendix}{159}{part.4}
+\contentsline {chapter}{\numberline {A}Paper Errata}{161}{Appendix.c.A}
+\contentsline {subsubsection}{Elasto-plastic [\ref {paper:C}]}{161}{subsubsection*.185}
+\contentsline {subsubsection}{Real-Time Tromba [\ref {paper:D}]}{161}{subsubsection*.186}
+\contentsline {subsubsection}{DigiDrum [\ref {paper:F}]}{161}{subsubsection*.187}
+\contentsline {chapter}{\numberline {B}Matrices}{163}{Appendix.c.B}
+\contentsline {section}{\numberline {B.1}Operations}{163}{section.c.A}
+\contentsline {subsubsection}{Matrix transpose}{164}{subsubsection*.188}
+\contentsline {subsubsection}{Matrix Multiplication}{164}{subsubsection*.190}
+\contentsline {section}{\numberline {B.2}Matrix Inverse}{165}{section.c.B}
+\contentsline {section}{\numberline {B.3}Systems of Linear Equations}{166}{section.c.C}
+\contentsline {section}{\numberline {B.4}Eigenvalue Problems}{167}{section.c.D}
+\contentsline {chapter}{\numberline {C}Code Snippets}{169}{Appendix.c.C}
+\contentsline {section}{\numberline {C.1}Mass-Spring System (Section \ref {sec:massSpringSystem})}{169}{section.c.A}
+\contentsline {section}{\numberline {C.2}1D Wave Equation (Section \ref {sec:1DWave})}{170}{section.c.B}
+\contentsline {section}{\numberline {C.3}2D Wave Equation (Section \ref {sec:2Dwave})}{171}{section.c.C}
+\contentsline {chapter}{\numberline {D}Intuition for the Damping Terms in the Stiff String PDE}{173}{Appendix.c.D}
+\contentsline {chapter}{\numberline {E}Derivations}{175}{Appendix.c.E}
+\contentsline {section}{\numberline {E.1}Webster's Update Equation \textup {\hbox {\mathsurround \z@ \normalfont (\ignorespaces \ref {eq:webstersUpdateEq}\unskip \@@italiccorr )}}}{175}{section.c.A}
+\contentsline {section}{\numberline {E.2}Boundary Terms Webster's Equation}{176}{section.c.B}
