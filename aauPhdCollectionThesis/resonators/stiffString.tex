@@ -558,7 +558,7 @@ Using the centred operator in the mixed-spatial-temporal operator renders the sy
 
 Luckily, as the scheme is linear, it can be treated as a system of linear equations and solved following the technique described in Section \ref{sec:linearEquations}. The drawback is that this requires one matrix inversion per iteration which can be extremely costly (see Section \ref{sec:RTmatrixInversion}). However, both von Neumann and modal analysis (below) show that using the centred instead of the backwards operator has a positive effect on the stability and the modal behaviour of the scheme. 
 
-Taking simply supported boundary conditions such that $l \in \{1, \hdots, N-1\}$, the sytem will have $N-1$ unknowns ($u_l^{n+1}$ for $l \in \{1, \hdots, N-1\}$) that can be calculated using $N-1$ (updat) equations. Writing this in matrix form using column vector $\u^n = [u_1^n, u_2^n, \hdots, u_{N-1}^n]$ yields 
+Taking simply supported boundary conditions such that $l \in \{1, \hdots, N-1\}$, the system will have $N-1$ unknowns ($u_l^{n+1}$ for $l \in \{1, \hdots, N-1\}$) that can be calculated using $N-1$ (update) equations. Writing this in matrix form using column vector $\u^n = [u_1^n, u_2^n, \hdots, u_{N-1}^n]$ yields 
 
 \begin{equation}\label{eq:matrixFormStiffStringImplicit}
     \A\u^{n+1} = \B\u^n + \C \u^{n-1}

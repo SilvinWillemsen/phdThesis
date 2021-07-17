@@ -2,9 +2,9 @@
 
 \textit{Often in math, you should view the definition not as a starting point, but as a target. Contrary to the structure of textbooks, mathematicians do not start by making definitions and then listing a lot of theorems, and proving them, and showing some examples. The process of discovering math typically goes the other way around. They start by chewing on specific problems, and then generalising those problems, then coming up with constructs that might be helpful in those general cases,and only then you write down a new definition (or extend an old one). - Grant Sanderson (AKA 3Blue1Brown) https://youtu.be/O85OWBJ2ayo?t=359}
 
-This chapter provides an extended summary to the paper ``Dynamic grids for Finite-Difference Schemes in Musical Instrument Simulations'' \citeP[G]. The paper presents a novel method to smoothly add and remove grid points from a FD scheme which allows for dynamic parameter variations without compromising stability or quality of the simulation (see Section \ref{sec:quality1DWave}). The variations are assumed to be at sub-audio rate (i.e., human gestural control) so that analysis techniques are still valid to some degree.
+This chapter provides an extended summary to the paper ``Dynamic grids for Finite-Difference Schemes in Musical Instrument Simulations'' \citeP[G]. The paper presents a novel method to smoothly add and remove grid points from a FD scheme which allows for dynamic parameter variations without compromising stability or quality of the simulation (see Section \ref{sec:quality1DWave}). 
 
-This chapter will extend on paper \citeP[G] by providing some design consideration as a result of iterations done.  details on the implementation and the modal analysis shown in the paper. 
+After a brief introduction  and summary of the method, the chapter will extend on paper \citeP[G] by providing some design considerations as a result of iterations done as well as providing details on the implementation of the displacement correction and the modal analysis shown in the paper. 
 
 \section{Background and motivation}
 Simulating musical instruments using physical modelling -- as mentioned in Chapter \ref{ch:physMod} -- allows for manipulations of the instrument that are impossible in the physical world. Examples of this are changes in material density or stiffness, cross-sectional area (1D), thickness (2D) and size of the system in general. 
@@ -58,6 +58,25 @@ Time-varying propagation speed in waveguides: https://quod.lib.umich.edu/cgi/p/p
 
 Special boundary conditions (look at!):
 Modeling of Complex Geometries and Boundary Conditions in Finite Difference/Finite Volume Time Domain Room Acoustics Simulation (\url{https://www.researchgate.net/publication/260701231_Modeling_of_Complex_Geometries_and_Boundary_Conditions_in_Finite_DifferenceFinite_Volume_Time_Domain_Room_Acoustics_Simulation})
+
+
+
+\section{Summary}
+The variations are assumed to be at sub-audio rate (i.e., human gestural control) so that analysis techniques are still valid to some degree.
+
+
+Consider the 1D wave equation  as presented in Section \ref{sec:1DWave}, describing the motion of a system of length $L$, its state described by $q = q(x,t)$ defined for $t\geq 0$ and $x\in\D$ with domain $\D = [0, L]$. This state variable can be discretised to a grid function $\qln$ with $n\in \mathbb{N}^0$ and $l \in \{0, \hdots, N\}$ with $N$ being tthe number of intervals between the grid points. The PDE in \eqref{eq:1DwavePDE} can then be discretised to the following FD scheme
+\begin{equation}
+    \dtt \qln = c^2\dxx \qln.
+\end{equation}
+
+Rather than working with this scheme directly, paper \citeP[G] proposes to split it into two to get the following system 
+\begin{subequations}
+    \begin{equation}
+        \dtt \ulun = c^2\dxx \ulun,
+        \dtt \wlwn = c^2\dxx \wlwn.
+    \end{equation}
+\end{subequations}
 
 \section{Iterations}
 Iterations have been:

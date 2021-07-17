@@ -189,7 +189,7 @@ The definitions in Eqs. \eqref{eq:statesBridgeNext} can then be inserted into Eq
         \delta_{t\cdot}\eta_\mp^n
     \end{bmatrix}
     = 
-    \mathbf{A}^{-1}\mathbf{v}
+    \mathbf{A}^{-1}\mathbf{v},
 \end{equation}
 where
 \begin{equation}
@@ -199,12 +199,12 @@ where
         1 + \frac{(g_\sm^n)^2k^2}{2M(2+\sigma_\text{m}k)} + \frac{(g_\sm^n)^2k^2}{4\rho_\text{s}Ah_\text{s}(1+\sigma_{0,\text{s}}k)} & -\frac{(g_\mp^n)^2k^2}{2M(2+\sigma_\text{m}k)} \\
         -\frac{(g_\sm^n)^2k^2}{2M(2+\sigma_\text{m}k)} & 1+\frac{(g_\mp^n)^2k^2}{2M(2+\sigma_\text{m}k)}+\frac{(g_\mp^n)^2k^2}{4h_\text{p}^2\rho_\text{p}H(1+\sigma_{0,\text{p}}k)}
     \end{bmatrix}
-    \quad \text{and}\\
+    ,\\
     \mathbf{v} = 
     \begin{bmatrix}
         \frac{w^\star-w^{n-1}-\ubr^\star+\ubr^{n-1}}{2k} - \frac{k(\psi_\sm^{n-1/2}g_\sm^n-\psi_\mp^{n-1/2}g_\mp^n)}{M(2+\sigma_\text{m}k)}-\frac{\psi_\sm^{n-1/2}g_\sm^nk}{2\rho_\text{s}Ah_\text{s}(1+\sigma_{0,\text{s}}k)}\\
-        \frac{\zbr^\star-\zbr^{n-1}-w^\star+w^{n-1}}{2k}+\frac{k(\psi_\sm^{n-1/2}g_\sm^n-\psi_\mp^{n-1/2}g_\mp^n)}{M(2+\sigma_\text{m}k)}-\frac{\psi_\mp^{n-1/2}g_\mp^nk}{2h_\text{p}^2\rho_\text{p}H(1+\sigma_{0,\text{p}}k)}.
-    \end{bmatrix}
+        \frac{\zbr^\star-\zbr^{n-1}-w^\star+w^{n-1}}{2k}+\frac{k(\psi_\sm^{n-1/2}g_\sm^n-\psi_\mp^{n-1/2}g_\mp^n)}{M(2+\sigma_\text{m}k)}-\frac{\psi_\mp^{n-1/2}g_\mp^nk}{2h_\text{p}^2\rho_\text{p}H(1+\sigma_{0,\text{p}}k)}
+    \end{bmatrix}.
     \nonumber
 \end{gathered}
 \end{equation}
@@ -269,7 +269,7 @@ Figure \ref{fig:trombaEnergy} shows the plots of the energy for an implementatio
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[->,node distance=3cm,
-        thick,main node/.style={circle,draw}]
+        thick,main node/.style={circle,draw}, scale=0.95, every node/.style={scale=0.95}]
     
         \node[] (image) at (0,0) {
         \includegraphics[width=\textwidth]{figures/contributions/tromba/trombaEnergy.eps}

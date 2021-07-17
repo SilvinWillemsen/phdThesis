@@ -1,7 +1,7 @@
 \chapter{Trombone}\label{ch:trombone}
 Published in \citeP[H]
 
-The air propagation in the trombone has been modelled usinga system of two first-order PDEs, presented in Section \ref{sec:firstOrderSystem}. Although Webster's equation (see Section \ref{sec:webstersEq}) could have been used, the state-of-the-art models for brass instruments using FDTD methods use first-order PDEs \cite{Bilbao2016, Harrison2018}. Some extensions, such as the state-of-the-art radiation model used in \cite{Harrison2018} and viscothermal losses in \cite{Bilbao2016}, could then easily be added, although the latter has been left for future work.  
+The air propagation in the trombone has been modelled using a system of two first-order PDEs, presented in Section \ref{sec:firstOrderSystem}. Although Webster's equation (see Section \ref{sec:webstersEq}) could have been used, the state-of-the-art models for brass instruments using FDTD methods use first-order PDEs \cite{Bilbao2016, Harrison2018}. Some extensions, such as the state-of-the-art radiation model used in \cite{Harrison2018} and viscothermal losses in \cite{Bilbao2016}, could then easily be added, although the latter has been left for future work.  
 
 % with the idea that viscothermal losses could be added as done in \cite{Bilbao2016} where the authors also use a first-order system
 
@@ -14,13 +14,13 @@ Most has been described in Chapter \ref{ch:brass}
 Just to save the conversation with Stefan about Webster's equation:
 
 Using operators $\partial_t$ and $\partial_x$ denoting partial derivatives with respect to time $t$ and spatial coordinate $x$, respectively, a system of first-order PDEs describing the wave propagation in an acoustic tube can then be written as \citeP[A]
-\begin{subequations}\label{eq:firstOrderSystem}
+\begin{subequations}\label{eq:firstOrderSystemTrombone}
     \begin{align}
-        \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv)\label{eq:contPressure}\\
-        \rho_0\partial_tv &= -\partial_xp\label{eq:contVelocity}
+        \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv)\label{eq:contPressureTrombone}\\
+        \rho_0\partial_tv &= -\partial_xp\label{eq:contVelocityTrombone}
     \end{align}
 \end{subequations}
-with acoustic pressure $p = p(x,t)$ (in N/m$^2$), particle velocity $v = v(x,t)$ (in m/s) and (circular) cross-sectional area $S(x)$ (in m$^2$). Furthermore, $\rho_0$ is the density of air (in kg/m$^3$) and $c$ is the speed of sound in air (in m/s). System \eqref{eq:firstOrderSystem} can be condensed into a second-order equation in $p$ alone, often referred to as Webster's equation \cite{Webster19}. \SWcomment[Interesting! In NSS it is the acoustic potential right? Can you go from that to a second-order PDE in $p$? There is a time-derivative hidden there somewhere right? (Just wondering :))]\SBcomment[Yes, the form in $p$ alone is the one you usually see. You get it by differentiating the first equation, giving you a $\dot{v}$ on the RHS, and then you can substitute the second equation in...I used the velocity potential one because it has direct energy balance properties. ] \SWcomment[Right. So Webster's eq. in $p$ and $\Psi$ are identical (will exhibit identical behaviour), except for the unit of the state variable..?]\SBcomment[yes that's right...using the velocity potential allows you to do all the energy analysis easily, in terms of physical impedances. But the scheme you get to in the end is the same, just one derivative down.] \SWcomment[Alright cool! Thanks for the explanation :)] For simplicity, effects of viscothermal losses have been neglected in \eqref{eq:firstOrderSystem}. For a full time domain model of such effects in an acoustic tube, see, e.g. \cite{Bilbao2016}. 
+with acoustic pressure $p = p(x,t)$ (in N/m$^2$), particle velocity $v = v(x,t)$ (in m/s) and (circular) cross-sectional area $S(x)$ (in m$^2$). Furthermore, $\rho_0$ is the density of air (in kg/m$^3$) and $c$ is the speed of sound in air (in m/s). System \eqref{eq:firstOrderSystemTrombone} can be condensed into a second-order equation in $p$ alone, often referred to as Webster's equation \cite{Webster19}. \SWcomment[Interesting! In NSS it is the acoustic potential right? Can you go from that to a second-order PDE in $p$? There is a time-derivative hidden there somewhere right? (Just wondering :))]\SBcomment[Yes, the form in $p$ alone is the one you usually see. You get it by differentiating the first equation, giving you a $\dot{v}$ on the RHS, and then you can substitute the second equation in...I used the velocity potential one because it has direct energy balance properties. ] \SWcomment[Right. So Webster's eq. in $p$ and $\Psi$ are identical (will exhibit identical behaviour), except for the unit of the state variable..?]\SBcomment[yes that's right...using the velocity potential allows you to do all the energy analysis easily, in terms of physical impedances. But the scheme you get to in the end is the same, just one derivative down.] \SWcomment[Alright cool! Thanks for the explanation :)] For simplicity, effects of viscothermal losses have been neglected in \eqref{eq:firstOrderSystemTrombone}. For a full time domain model of such effects in an acoustic tube, see, e.g. \cite{Bilbao2016}. 
 \subsection{Discrete}
 
 \subsection{Lip-reed with collision}

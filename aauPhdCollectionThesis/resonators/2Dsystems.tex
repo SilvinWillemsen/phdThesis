@@ -149,7 +149,7 @@ Similar to how the number of intervals between grid points are calculated 1D in 
     h := \sqrt{2} ck, \ \ N_x := \floor[\frac{L_x}{h}], \ \  N_y := \floor[\frac{L_y}{h}], \ \  h := \text{min}\left(\frac{L_x}{N_x}, \frac{L_y}{N_y}\right), \ \  \lambda := \frac{ck}{h},
 \end{equation}
 where the `$\text{min}$' operator selects the smallest value of $L_x/N_x$ and $L_y/N_y$ to stay as close to the stability condition as possible. 
-% Notice that the grid spacing is recalculated based the smallest valueof $L_x/N_x$  $L_y/N_y$ $L/N$ for in the $x$ and $y$ direction to stay as close to the stability condition in Eq. \eqref{eq:stabilityCondition2Dwave}.
+% Notice that the grid spacing is recalculated based the smallest value of $L_x/N_x$  $L_y/N_y$ $L/N$ for in the $x$ and $y$ direction to stay as close to the stability condition in Eq. \eqref{eq:stabilityCondition2Dwave}.
 To implement the update equation in Eq. \eqref{eq:update2Dwave}, one could save the states of the system in matrices (as opposed to vectors in the 1D case such as in Section \ref{sec:implementationStiffString}) and directly work with these. Using Dirichlet boundary conditions the $(N_x-1) \times (N_y-1)$ state matrix at time index $n$ would be \todo{matrix vector notation (capitalisation) does not hold here..}
 \begin{equation}
     \u^n = \begin{bmatrix}
@@ -232,7 +232,7 @@ Following \cite{Hamilton2016}, the matrix form of the $\dDelta$ operator can the
 \end{equation}
 where the identity matrix $\I = \I_{N_x-1}$. The $\DDeltamat$ matrix is square and of size $(N_x-1)\cdot (N_y-1)\times (N_x-1)\cdot (N_y-1)$.
 
-Using the above, the FD scheme in Eq. \eqref{eq:eq:2DwaveFDS} can then be compactly written in matrix form as
+Using the above, the FD scheme in Eq. \eqref{eq:2DwaveFDS} can then be compactly written in matrix form as
 \begin{equation}\label{eq:matrixUpdate2Dwave}
     \U^{n+1} = \left(2 \I + c^2k^2 \DDeltamat\right) \U^n - \U^{n-1},
 \end{equation}
@@ -711,7 +711,7 @@ Figure \ref{fig:thinPlateModes} shows the results of the analysis with parameter
 \end{figure}
 
 \section{Stiff membrane}
-The term stiff membrane appears in \cite{Fletcher1998} and is essentially a 2D version of the stiff string. It can be used to model membranes with dispersive effects or provide tension control for thin platex. In this work, the stiff membrane has only been used in paper \citeP[F] to model a drum membrane. 
+The term stiff membrane appears in \cite{Fletcher1998} and is essentially a 2D version of the stiff string. It can be used to model membranes with dispersive effects or provide tension control for thin plates. In this work, the stiff membrane has only been used in paper \citeP[F] to model a drum membrane. 
 
 Similar to previous sections, this section will provide the continuous-time and discrete-time equations of the model. Only a frequency domain analysis will be given, as energy and modal analyses too similar to those previously presented.
 

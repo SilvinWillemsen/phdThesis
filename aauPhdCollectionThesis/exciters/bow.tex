@@ -6,7 +6,7 @@ The string `sticks' to the bow after which it `slips' when the restoring force o
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[->,node distance=3cm,
-        thick,main node/.style={circle,draw}]
+        thick,main node/.style={circle,draw}, scale=0.96, every node/.style={scale=0.96}]
     
         \node[] (image) at (0,0) {\includegraphics[width=1\columnwidth]{figures/exciters/helmholtz.eps}};
     
@@ -338,7 +338,7 @@ Limit of iterations is set to $100$
 \end{equation}
 
 \subsection{Energy Analysis}
-Following the energy analysis of the stiff string presented in Section \eqref{sec:energyAnalysisString}, taking an inner product of Eq. \eqref{eq:bowedStiffStringFDS} (after muliplication by $\rho A$) with $(\dtd \uln)$ over discrete domain $d$ one arrives at the following 
+Following the energy analysis of the stiff string presented in Section \eqref{sec:energyAnalysisString}, taking an inner product of Eq. \eqref{eq:bowedStiffStringFDS} (after multiplication by $\rho A$) with $(\dtd \uln)$ over discrete domain $d$ one arrives at the following 
 \begin{align*}
     \dtp \h + \q &=  - \langle (\dtd \uln), J_l(x_\Btxt^n)f_\Btxt^n\Phi(\vrel^n) \rangle_d\\[-5pt]
     \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:identityIJ}}\ }\qquad &= -I_l(x_\Btxt^n)(\dtd \uln) f_\Btxt^n \Phi(\vrel^n) \\[-5pt]

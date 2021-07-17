@@ -5,19 +5,20 @@
 \def\Psinm{\Psi_l^{n-1}}
 
 \section{Webster's Update Equation \eqref{eq:webstersUpdateEq}}\label{app:webstersUpdateEq}
-This section derives the update equation for Webster's equation in \eqref{eq:webstersUpdateEq}:
+This section derives the update equation for Webster's equation in Eq. \eqref{eq:webstersUpdateEq}:
 \begin{align*}
     &\begin{aligned}
-    \frac{\Sbar}{k^2}(\Psi_l^{n+1} - 2\Psiln+\Psi_l^{n-1}) &= c^2\bigg((\dxp \Sm)(\mxp \dxm \Psiln)\\
-    & + (\mxp \Sm)(\dxp \dxm \Psiln)\bigg)\\
+    \frac{\Sbar}{k^2}(\Psi_l^{n+1} - 2\Psiln+\Psi_l^{n-1}) &= c^2\bigg((\dxm \Sp)(\mxm \dxp \Psiln)\\
+    & + (\mxm \Sp)(\dxm \dxp \Psiln)\bigg),\\
     \Psinp - 2\Psiln+\Psinm &= \frac{c^2k^2}{\Sbar}\bigg(\frac{1}{h}(\Sp - \Sm)\frac{1}{2h}\overbrace{(\Psilp -\Psilm)}^{\mxp\dxm\Psiln = \delta_{x\cdot}\Psiln}\nonumber\\
-    &\qquad\qquad+\frac{1}{2}(\Sp + \Sm)\frac{1}{h^2}(\Psilp-2\Psiln+\Psilm)\bigg)
-    \end{aligned}\\
+    &+\frac{1}{2}(\Sp + \Sm)\frac{1}{h^2}(\Psilp-2\Psiln+\Psilm)\bigg),
+    \end{aligned}\\[-0.5em]
     &\begin{aligned}
-        \Psinp &= 2\Psiln-\Psinm + \overbrace{\frac{\lambda^2}{2\Sbar}}^{\lambda = \frac{ck}{h}}\Big(\Sp\Psilp\! -\! \Sp\Psilm\! -\! \Sm\Psilp\! +\! \Sm\Psilm \nonumber\\
-        &+\! \Sp\Psilp\! +\! \Sp\Psilm\! +\! \Sm\Psilp\! +\! \Sm\Psilm \!-\! 2 (\Sp\! +\! \Sm)\Psiln\Big)\nonumber\\
-        \Psinp &= 2\Psiln-\Psinm+ \frac{\lambda^2}{2\Sbar}\Big(2\Sp\Psilp + 2\Sm\Psilm - 4\Sbar\Psiln\Big)\nonumber\\
-        \Psinp &= 2\Psiln-\Psinm+ \frac{\lambda^2\Sp}{\Sbar}\Psilp + \frac{\lambda^2\Sm}{\Sbar}\Psilm - 2\lambda^2\Psiln\nonumber\\
+        \Psinp &= 2\Psiln -\Psinm +\overbrace{\frac{\lambda^2}{2\Sbar}}^{\lambda = \frac{ck}{h}}\Big(\Sp\Psilp - \Sp\Psilm\\
+        &\qquad\qquad - \Sm\Psilp + \Sm\Psilm+ \Sp\Psilp + \Sp\Psilm \\
+        &\qquad\qquad + \Sm\Psilp + \Sm\Psilm - 2 (\Sp + \Sm)\Psiln\Big)\nonumber,\\
+        \Psinp &= 2\Psiln-\Psinm+ \frac{\lambda^2}{2\Sbar}\Big(2\Sp\Psilp + 2\Sm\Psilm - 4\Sbar\Psiln\Big)\nonumber,\\
+        \Psinp &= 2\Psiln-\Psinm+ \frac{\lambda^2\Sp}{\Sbar}\Psilp + \frac{\lambda^2\Sm}{\Sbar}\Psilm - 2\lambda^2\Psiln\nonumber,\\
         \Psinp &= 2(1-\lambda^2)\Psiln-\Psinm+ \frac{\lambda^2\Sp}{\Sbar}\Psilp + \frac{\lambda^2\Sm}{\Sbar}\Psilm.
     \end{aligned}
 \end{align*}
@@ -25,9 +26,9 @@ This section derives the update equation for Webster's equation in \eqref{eq:web
 \section{Boundary Terms Webster's Equation}\label{app:boundaryWebster}
 This section derives process of obtaining the values for $\el$ and $\er$ such that the boundary terms in Webster's equation are strictly dissipative. 
 
-Starting at the second term in the energy balance in Eq. \eqref{eq:powerBalanceWebster} rewritten according to Eq. \eqref{eq:switchSignsWebster} which is
+Starting with the second term in the energy balance in Eq. \eqref{eq:powerBalanceWebster}:
 \begin{equation}
-    - c^2\langle\dtd\Psiln, \dxm\big(\Sp(\dxp\Psiln)\big)\rangle_d^{\el,\er}
+    - c^2\langle\dtd\Psiln, \dxm\big(\Sp(\dxp\Psiln)\big)\rangle_d^{\el,\er}.
 \end{equation}
 Using identity \eqref{eq:weightedIdentityMinus}
 \begin{equation*}
@@ -70,7 +71,7 @@ which can be rewritten to
 Then, for the centred radiating boundary condition in Eq. \eqref{eq:centRadBound} to be strictly dissipative, i.e., $\dxd \Psiln = 0 \ \Rightarrow \ \b_\text{r} = 0$ the special choice for $\epsilon_\text{r} = S_{N-1/2} / \mu_{xx}S_N$ needs to be made:
 \begin{equation}
     \begin{aligned}
-        \mathfrak{b}_\text{r} &= c^2 (\dtd\Psi_N^n)\left(\frac{S_{N-1/2}}{2\mu_{xx}S_N}S_{N+1/2}(\dxp\Psi_N^n)+\left(1-\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)S_{N-1/2}(\dxm\Psi_N^n)\right),\\
+        \mathfrak{b}_\text{r} &= c^2 (\dtd\Psi_N^n)\!\left(\frac{S_{N-1/2}}{2\mu_{xx}S_N}S_{N+1/2}(\dxp\Psi_N^n)+\left(1\!-\!\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)\!S_{N-1/2}(\dxm\Psi_N^n)\!\right),\\
         &= c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(\frac{S_{N+1/2}}{2\mu_{xx}S_N}(\dxp\Psi_N^n)+\left(1-\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)(\dxm\Psi_N^n)\right),\\
         &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)\left(\frac{\frac{S_{N+1/2}(\dxp\Psi_N^n)}{2\mu_{xx}S_N}}{\left(1-\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)}+\dxm\Psi_N^n\right),\\
         &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)\left(\frac{\frac{S_{N+1/2}(\dxp\Psi_N^n)}{2\mu_{xx}S_N}}{\left(\frac{2\mu_{xx}S_N - S_{N-1/2}}{2\mu_{xx}S_N}\right)}+\dxm\Psi_N^n\right),\\
