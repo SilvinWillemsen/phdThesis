@@ -127,7 +127,6 @@ double updateStates()
 }
 \end{lstlisting}
 
-\pagebreak
 \subsubsection{Grouping terms and Precalculating coefficients}
 Generally in implementations of FD schemes the most computationally expensive part of the algorithm is the calculation of the scheme itself. This is due to the rate at which it needs to be updated which usually is 44100 Hz. Graphics can be updated at rates orders of magnitude lower than the audio (say 10-20 Hz) and still be considered smooth enough.
 
@@ -232,7 +231,6 @@ Path Simple1DWave::visualiseState (Graphics& g, double visualScaling)
     return stringPath;
 }
 \end{lstlisting}
-\pagebreak
 \begin{lstlisting}
 void Simple1DWave::excite()
 {
@@ -291,3 +289,20 @@ u1 = (-w0 * a10 + w1 * a00) / det;
 The computational complexity of th inversion of an $n\times n$ matrix is (at worst) $\OO(n^3)$. For real-time applications, the size of matrices one wants to invert thus need to be kept to a minimum...
 
 The difference between inverting a $2\times 2$ matrix and a $3\times 3$ 
+
+\section{Control}
+Throughout this project, two hardware devices to expressively control the simulated instruments have been investigated. These are the Sensel Morph and the PHANTOM Omni, both of which will be briefly described here.
+
+\subsection{Sensel Morph}\label{sec:sensel}
+The \textit{Sensel Morph,} or Sensel for short, is a high-accuracy pressure sensitive touch controller (see Figure \ref{fig:sensel})
+
+The controller has been used to control the physical models in  paper
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/contributions/realtime/senselHands.jpg}
+    \caption{The Sensel Morph. \label{fig:sensel}}
+\end{figure}
+
+\subsection{PHANTOM Omni}\label{sec:phantomOmni}
+The PHANTOM Omni, or Omni for short, is a six-degrees-of-freedom device that provides force and vibrotactile feedback (see Figure \ref{fig:phantomOmni})

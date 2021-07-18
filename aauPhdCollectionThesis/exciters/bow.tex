@@ -27,8 +27,13 @@ The first appearance of FDTD methods in bowed string simulations was in a public
 Before introducing various friction models, a brief introduction on interpolation and spreading operators will be given, which will be necessary to work with this type of excitation.
 
 \section{Interpolation and Spreading operators}\label{sec:interpolationSpreading}
-As FD schemes are an approximation to continuous space (and time) using a finite number of points, working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function \cite{theBible}.  This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. Here, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$.
+As FD schemes are an approximation to continuous space (and time) using a finite number of points, working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function \cite{theBible}. This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. Here, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$.
 
+An interpolation operator can be applied to a grid function $\uln$ and when expanded performs the following operation:
+\begin{equation}
+    I_{l,o}(x_i)u_l^n = \sum_{l\in d} I_{l,o}(x_i)\cdot u_l^n,
+\end{equation} 
+where $o$ is the order of the operator, and discrete domain $d$ needs to be the same for $I_{l,o}(x_\text{i})$ and $\uln$.
 The simplest interpolation operator is of '0\textsuperscript{th}'-order and is defined as
 \begin{equation}\label{eq:zerothOrderI}
     I_{l,0}(x_\itxt) = \begin{cases}
@@ -54,7 +59,7 @@ First-order or linear interpolation also uses the fractional part of the floorin
         0 & \text{otherwise.}
     \end{cases}
 \end{equation}
-See Figure \ref{fig:firstOrderInterpol}. When applied to a grid function, its values will be multiplied multiplications get added to obtain the interpolated value. 
+See Figure \ref{fig:firstOrderInterpol}. 
 % Using the same example as before, $\alpha = 1.25 - \floor[1.25] = 0.25$ and
 % \begin{equation*}
 %     u(0.25, t)\approxeq I_{l,1}(0.25)\uln = 0.75u_1^n + 0.25 u_2^n,
@@ -88,7 +93,7 @@ Notice that the sum of all values of $I(x_\itxt)$, regardless of the order of in
 
 One could potentially create higher-order interpolation operators, but as one is restricted to a finite domain, the flexibility of the implementation will become less. Notice that if $\alpha_\itxt = 0$, the higher-order interpolators reduce to the $0$\thOrder one in Eq. \eqref{eq:zerothOrderI}.
 
-Apart form interpolation operators, one may define \textit{spreading operators} which can be interpreted as an inverse interpolation operation. A spreading operator $J(x_\itxt)$ is used to interact with a distributed FD scheme in the form of an excitation or other interactions such as connections or collisions between multiple schemes (also see Part \ref{part:interactions}).
+Apart from interpolation operators, one may define \textit{spreading operators} which can be interpreted as an inverse interpolation operation. A spreading operator $J(x_\itxt)$ is used to interact with a distributed FD scheme in the form of an excitation or other interactions such as connections or collisions between multiple schemes (also see Part \ref{part:interactions}).
 
 The spreading operators can be defined in the same way as the interpolation operators described above, yielding a $0$\thOrder spreading operator
 \begin{equation}\label{eq:zerothOrderJ}
@@ -137,16 +142,16 @@ for any (grid) function $f$ and discrete domain $d$. From this, it follows that 
 See Section \ref{sec:innerProduct} for more details on the inner product and the norm.
 
 \subsubsection{Other distributions}
-This section presented interpolation and spreading operators that interact with the state of a FD scheme at a single point $x_\itxt$ and either interpolates or distributes over a range of points. Although multiple grid points might be used for these operations, the interpolation or spreading is not \textit{distributed}. One could make an arbitrary distribution function $E$ with elements $e_l$ (in 1D) where $l\in d$ for discrete domain $d$ of the system at hand. The \textit{distribution} and spreading operators become
+This section presented interpolation and spreading operators that interact with the state of a FD scheme at a single location $x_\itxt$ and either interpolates or distributes over a range of points. Although multiple grid points might be used for these operations, the interpolation or spreading is not \textit{distributed}. Physical exciters such as mallets or bows have a non-zero width and thus interact with a larger part of the system. One could make an arbitrary distribution function $E$ with elements $e_l$ (in 1D) where $l\in d$ for discrete domain $d$ of the system at hand. The \textit{distribution} and spreading operators become
 \begin{equation}
     I_l = \frac{e_l}{\sum_d e_l} \qaq J_l = \frac{1}{h}I_l.
 \end{equation}
 Although any values for $E$ would work, to retain correct scaling, the sum of $E$ needs to be normalised to $1$ as shown above.
 
 \section{The Newton-Raphson Method}\label{sec:newtonRaphson}
-Before moving on to more complex excitation mechanisms, it is useful to go over the process of how to solve some of these using en iterative root-finding method called the \textit{Newton-Raphson} method (or Newton-Raphson for short). 
+Before moving on to more complex nonlinear excitation mechanisms, it is useful to go over the process of how to solve some of these mechanisms using an iterative root-finding method called the \textit{Newton-Raphson} method (or Newton-Raphson for short). 
 
-If the root of function can not be solved explicitly, due to the presence of a nonlinear dependence on a variable \todo{different wording here} for example, Newton-Raphson can be used. For a continuous and differentiable function $f(x) = 0$ its root can be approached using the following iteration
+If a FD scheme not be solved explicitly, due to a nonlinear dependence on a variable for example, Newton-Raphson can be used. For a continuous and differentiable function $f(x) = 0$ its root can be approached using the following iteration
 \begin{equation}\label{eq:newtonRaphson}
     x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}\ ,
 \end{equation}
@@ -159,8 +164,8 @@ where $\epsilon$ is small, but its exact value depends on the situation at hand.
 
 Preferably, the starting point of the iteration, $x_0$, should be close to the value of where the root is expected to be. This is especially the case for a higher-ordered function with multiple roots (non-uniqueness) or many local variations. 
 
-Algorithm \ref{alg:NR} shows an example of an implementation of Newton-Raphson using $f(x) = e^x -1\ \Rightarrow\ f'(x) = e^x $.
-
+Algorithm \ref{alg:NR} shows an example of an implementation of Newton-Raphson using $f(x) = e^x -1\ \Rightarrow\ f'(x) = e^x $ and Figure \ref{fig:NR} visualises the iterative algorithm.
+\\
 \setlstMAT
 \begin{lstlisting}[caption={Example of an implementation of the Newton-Raphson method using $f(x) = e^{x} - 1$.}, label=alg:NR]
 % An example of the Newton Raphson method using f(x) = exp(x) - 1
@@ -168,7 +173,8 @@ Algorithm \ref{alg:NR} shows an example of an implementation of Newton-Raphson u
 x = 1;          % starting point
 eps = 1e-4;     % threshold
 
-% if the threshold has not been crossed before this number of iterations, do not iterate more
+% if the threshold has not been crossed before this number of 
+% iterations, do not iterate more
 maxIterations = 100;    
     
 % loop until a maximum number of iterations
@@ -187,6 +193,17 @@ for i = 1:maxIterations
 end
 disp("The root of f(x) is at x = " + xNext)
 \end{lstlisting}
+
+\captionsetup[subfigure]{labelformat=empty}
+\def\figWidth{0.30}
+\begin{figure}[h]
+    \centering
+    \subfloat[]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/NR1.eps}}\hfill
+    \subfloat[]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/NR2.eps}}\hfill
+    \subfloat[]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/NR3.eps}}
+    \vspace{-2em}\caption{The Newton-Raphson method.\label{fig:NR}}
+\end{figure}
+\captionsetup[subfigure]{labelformat=empty}
 
 \subsection{Multivariate Newton-Raphson}\label{sec:multivariateNR}
 For $M$ functions $f_m$ dependent on $M$ independent variables $x_m$ with $m = \{1, \hdots, M\}$,  Newton-Raphson can be extended to the following \SWcomment[citation?]:
@@ -381,7 +398,7 @@ Here, $z_\text{ss}$ is the steady-state function
 \begin{equation}\label{eq:zss}
     z_\text{ss}(v) = \frac{\sgn(v)}{s_0}\left[f_\text{C}+(f_\text{S}-f_\text{C})e^{-(v/v_\text{S})^2}\right],
 \end{equation}
-where the $v_\text{S}$ is the Stribeck velocity (in m/s). Furthermore, $f_\text{C} = f_\text{N}\mu_\text{C}$ and $f_\text{S} = f_\text{N}\mu_\text{S}$ are the Coulomb force and stiction force respectively (both in N). In these definitions $\mu_\text{C}$ and $\mu_\text{S}$ are the dimensionless dynamic and static friction coefficients respectively and $f_\text{N} = f_\text{N}(t)$ is the normal force (in N). A plot of the steady state function can be found in Figure \ref{fig:zss}.
+where the $v_\text{S}$ is the Stribeck velocity (in m/s). Furthermore, using the normal force $f_\text{N} = f_\text{N}(t)$ (in N), the Coulomb force and stiction force can be calculated according to $f_\text{C} = f_\text{N}\mu_\text{C}$ and $f_\text{S} = f_\text{N}\mu_\text{S}$ respectively (both in N). In these definitions $\mu_\text{C}$ and $\mu_\text{S}$ are the dimensionless dynamic and static friction coefficients respectively. A plot of the steady state function can be found in Figure \ref{fig:zss}.
 
 \begin{figure}[ht]
     \centering
@@ -409,7 +426,7 @@ where the transition between the elastic and plastic behaviour is defined as
 \begin{equation}\label{eq:alphaM}
     \alpha_\text{m} = \frac{1}{2}\bigg[1+\sgn(z)\sin\bigg(\pi\frac{z-\sgn(z)\frac{1}{2}(|z_\text{ss}(v)|+z_\text{ba})}{|z_\text{ss}(v)|-z_\text{ba}}\bigg)\bigg],
 \end{equation}
-with break-away displacement $z_\text{ba} = 0.7 f_\text{C}/s_0$ \todo{so is $z_\text{ba} = z_\text{ba}(t)$} determines the value of $z$ before bristles start to break. The adhesion map is visualised in Figure \ref{fig:alphaPlot} and relates to Figure \ref{fig:elastoPlastic} as described in its caption.
+with break-away displacement $z_\text{ba} = z_\text{ba}(t) = 0.7 f_\text{C}/s_0$ \todo{so is $z_\text{ba} = z_\text{ba}(t)$} determines the value of $z$ before bristles start to break. The adhesion map is visualised in Figure \ref{fig:alphaPlot} and relates to Figure \ref{fig:elastoPlastic} as described in its caption.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/exciters/drawAlpha3.eps}
@@ -433,6 +450,7 @@ is the discrete counterpart of \eqref{eq:zdot}. The discrete adhesion map is ide
 
 \subsection{Applied to a FDTD stiff string}
 \SWcomment[The first appearance contribution of the PhD project in this dissertation]
+The first appearance of a contribution of this work is the elasto-plastic friction model applied to a stiff string implemented using FDTD methods. This has been presented in paper \citeP[C] and will be extended on by providing more details on the implementation.\todo{will it though? And should I state the stability stuff here?}
 
 In the same way as done with the static friction model in Section \ref{sec:staticFricMod}, one can add the friction force to the stiff string PDE in Eq. \eqref{eq:stiffStringPDE} and discretise the system as follows:
 %

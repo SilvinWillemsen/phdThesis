@@ -20,7 +20,7 @@ Expanding and solving for $u^{n+1}$ yields the following update equation (before
 \begin{equation}\label{eq:massSpringDampingUpdate}
     \left(1+\frac{Rk}{2M}\right)u^{n+1} = 2 \un - u^{n-1} - \frac{Kk^2}{M}\un + \frac{Rk}{2M}u^{n-1}.
 \end{equation}
-\subsubsection{Energy Analysis}
+\subsection{Energy Analysis}
 Following Section \ref{sec:energyAnalysis}, one can obtain the energy of Eq. \eqref{eq:massSpringDampingFDS} through a multiplication of the scheme by $(\dtd \un)$ to get
 \begin{equation}\label{eq:massSpringDampingPreEnergyBalance}
     M(\dtt \un)(\dtd \un) = -K(\dtd \un)\un - R(\dtd \un)^2.
@@ -40,7 +40,7 @@ and
 \end{equation}
 
 \section{Continuous Time}
-Following A more physical approach, that is bidirectional, is to model a lip as a mass-spring system that interacts with the left boundary of the tube (see Figure \ref{fig:lipSystem}). Following \cite{Harrison2018} we get
+Section \ref{eq:webstersExcitation} already covered  A more physical approach, that is bidirectional, is to model a lip as a mass-spring system that interacts with the left boundary of the tube (see Figure \ref{fig:lipSystem}). Following \cite{Harrison2018} we get
 \begin{equation}
     M_\text{r}\frac{d^2y}{dt^2} = -M_\text{r} \omega_0^2 y - M_\text{r} \sigma_\text{r} \frac{dy}{dt} + S_\text{r}\Delta p,
 \end{equation}

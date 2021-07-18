@@ -43,7 +43,7 @@
 \BOOKMARK [1][-]{section.6.5}{6.5 Radial Coordinates}{chapter.6}% 43
 \BOOKMARK [-1][-]{part.3}{III Exciters}{}% 44
 \BOOKMARK [0][-]{chapter.7}{7 Physically-Inspired Excitations}{part.3}% 45
-\BOOKMARK [1][-]{section.7.1}{7.1 Impulse}{chapter.7}% 46
+\BOOKMARK [1][-]{section.7.1}{7.1 Initial Conditions}{chapter.7}% 46
 \BOOKMARK [1][-]{section.7.2}{7.2 Signals}{chapter.7}% 47
 \BOOKMARK [0][-]{chapter.8}{8 The Bow}{part.3}% 48
 \BOOKMARK [1][-]{section.8.1}{8.1 Interpolation and Spreading operators}{chapter.8}% 49
@@ -56,14 +56,14 @@
 \BOOKMARK [1][-]{section.9.3}{9.3 Discrete Time}{chapter.9}% 56
 \BOOKMARK [1][-]{section.9.4}{9.4 Energy analysis}{chapter.9}% 57
 \BOOKMARK [-1][-]{part.4}{IV Interactions}{}% 58
-\BOOKMARK [0][-]{chapter.10}{10 Collisions}{part.4}% 59
-\BOOKMARK [1][-]{section.10.1}{10.1 The Mass \205 Rigid Barrier Collision}{chapter.10}% 60
-\BOOKMARK [1][-]{section.10.2}{10.2 Mass-spring \205 String collision}{chapter.10}% 61
-\BOOKMARK [1][-]{section.10.3}{10.3 Two-sided collision: Connection}{chapter.10}% 62
-\BOOKMARK [0][-]{chapter.11}{11 Connections}{part.4}% 63
-\BOOKMARK [1][-]{section.11.1}{11.1 Rigid connection}{chapter.11}% 64
-\BOOKMARK [1][-]{section.11.2}{11.2 Spring-like connections}{chapter.11}% 65
-\BOOKMARK [1][-]{section.11.3}{11.3 String-plate connection}{chapter.11}% 66
+\BOOKMARK [0][-]{chapter.10}{10 Connections}{part.4}% 59
+\BOOKMARK [1][-]{section.10.1}{10.1 Rigid connection}{chapter.10}% 60
+\BOOKMARK [1][-]{section.10.2}{10.2 Spring-like connections}{chapter.10}% 61
+\BOOKMARK [1][-]{section.10.3}{10.3 String-plate connection}{chapter.10}% 62
+\BOOKMARK [0][-]{chapter.11}{11 Collisions}{part.4}% 63
+\BOOKMARK [1][-]{section.11.1}{11.1 The Mass \205 Rigid Barrier Collision}{chapter.11}% 64
+\BOOKMARK [1][-]{section.11.2}{11.2 Mass-spring \205 String collision}{chapter.11}% 65
+\BOOKMARK [1][-]{section.11.3}{11.3 Two-Sided Collision: A Connection}{chapter.11}% 66
 \BOOKMARK [-1][-]{part.5}{V Contributions}{}% 67
 \BOOKMARK [0][-]{chapter.12}{12 Dynamic Grid}{part.5}% 68
 \BOOKMARK [1][-]{section.12.1}{12.1 Background and motivation}{chapter.12}% 69
@@ -77,47 +77,48 @@
 \BOOKMARK [1][-]{section.13.2}{13.2 Do's and don'ts in Real-Time FD schemes}{chapter.13}% 77
 \BOOKMARK [1][-]{section.13.3}{13.3 Graphics}{chapter.13}% 78
 \BOOKMARK [1][-]{section.13.4}{13.4 Matrices}{chapter.13}% 79
-\BOOKMARK [0][-]{chapter.14}{14 Large Scale Modular Physical Models}{part.5}% 80
-\BOOKMARK [1][-]{section.14.1}{14.1 Models}{chapter.14}% 81
-\BOOKMARK [1][-]{section.14.2}{14.2 Esraj: Bowed Sitar}{chapter.14}% 82
-\BOOKMARK [1][-]{section.14.3}{14.3 Hammered Dulcimer}{chapter.14}% 83
-\BOOKMARK [1][-]{section.14.4}{14.4 Hurdy Gurdy}{chapter.14}% 84
-\BOOKMARK [0][-]{chapter.15}{15 Tromba Marina}{part.5}% 85
-\BOOKMARK [1][-]{section.15.1}{15.1 Introduction}{chapter.15}% 86
-\BOOKMARK [1][-]{section.15.2}{15.2 Physical Model}{chapter.15}% 87
-\BOOKMARK [1][-]{section.15.3}{15.3 Real-Time Implementation}{chapter.15}% 88
-\BOOKMARK [0][-]{chapter.16}{16 Trombone}{part.5}% 89
-\BOOKMARK [1][-]{section.16.1}{16.1 Introduction}{chapter.16}% 90
-\BOOKMARK [1][-]{section.16.2}{16.2 Physical Model}{chapter.16}% 91
-\BOOKMARK [1][-]{section.16.3}{16.3 Real-Time Implementation}{chapter.16}% 92
-\BOOKMARK [1][-]{section.16.4}{16.4 Discussion}{chapter.16}% 93
-\BOOKMARK [-1][-]{part.6}{VI Conclusions and Perspectives}{}% 94
-\BOOKMARK [0][-]{chapter.17}{17 Conclusions and Perspectives}{part.6}% 95
-\BOOKMARK [1][-]{section.17.1}{17.1 Applications}{chapter.17}% 96
-\BOOKMARK [1][-]{section.17.2}{17.2 Realism}{chapter.17}% 97
-\BOOKMARK [1][-]{section.17.3}{17.3 Dynamic grid}{chapter.17}% 98
-\BOOKMARK [0][-]{chapter*.247}{References}{part.6}% 99
-\BOOKMARK [-1][-]{part.7}{VII Papers}{}% 100
-\BOOKMARK [0][-]{Paper.b.A}{A Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{part.7}% 101
-\BOOKMARK [0][-]{Paper.b.B}{B Physical Models and Real-Time Control with the Sensel Morph}{part.7}% 102
-\BOOKMARK [0][-]{Paper.b.C}{C Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite-Difference Schemes}{part.7}% 103
-\BOOKMARK [0][-]{Paper.b.D}{D Real-time Implementation of a Physical Model of the Tromba Marina}{part.7}% 104
-\BOOKMARK [0][-]{Paper.b.E}{E Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{part.7}% 105
-\BOOKMARK [0][-]{Paper.b.F}{F DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{part.7}% 106
-\BOOKMARK [0][-]{Paper.b.G}{G Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{part.7}% 107
-\BOOKMARK [0][-]{Paper.b.H}{H A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{part.7}% 108
-\BOOKMARK [-1][-]{part.8}{VIII Appendix}{}% 109
-\BOOKMARK [0][-]{Appendix.c.A}{A Paper Errata}{part.8}% 110
-\BOOKMARK [0][-]{Appendix.c.B}{B Matrices}{part.8}% 111
-\BOOKMARK [1][-]{section.c.A}{B.1 Operations}{Appendix.c.B}% 112
-\BOOKMARK [1][-]{section.c.B}{B.2 Matrix Inverse}{Appendix.c.B}% 113
-\BOOKMARK [1][-]{section.c.C}{B.3 Systems of Linear Equations}{Appendix.c.B}% 114
-\BOOKMARK [1][-]{section.c.D}{B.4 Eigenvalue Problems}{Appendix.c.B}% 115
-\BOOKMARK [0][-]{Appendix.c.C}{C Code Snippets}{part.8}% 116
-\BOOKMARK [1][-]{section.c.A}{C.1 Mass-Spring System \(Section 2.3\)}{Appendix.c.C}% 117
-\BOOKMARK [1][-]{section.c.B}{C.2 1D Wave Equation \(Section 2.4\)}{Appendix.c.C}% 118
-\BOOKMARK [1][-]{section.c.C}{C.3 2D Wave Equation \(Section 6.2\)}{Appendix.c.C}% 119
-\BOOKMARK [0][-]{Appendix.c.D}{D Intuition for the Damping Terms in the Stiff String PDE}{part.8}% 120
-\BOOKMARK [0][-]{Appendix.c.E}{E Derivations}{part.8}% 121
-\BOOKMARK [1][-]{section.c.A}{E.1 Webster's Update Equation \(5.9\)}{Appendix.c.E}% 122
-\BOOKMARK [1][-]{section.c.B}{E.2 Boundary Terms Webster's Equation}{Appendix.c.E}% 123
+\BOOKMARK [1][-]{section.13.5}{13.5 Control}{chapter.13}% 80
+\BOOKMARK [0][-]{chapter.14}{14 Large Scale Modular Physical Models}{part.5}% 81
+\BOOKMARK [1][-]{section.14.1}{14.1 Models}{chapter.14}% 82
+\BOOKMARK [1][-]{section.14.2}{14.2 Esraj: Bowed Sitar}{chapter.14}% 83
+\BOOKMARK [1][-]{section.14.3}{14.3 Hammered Dulcimer}{chapter.14}% 84
+\BOOKMARK [1][-]{section.14.4}{14.4 Hurdy Gurdy}{chapter.14}% 85
+\BOOKMARK [0][-]{chapter.15}{15 Tromba Marina}{part.5}% 86
+\BOOKMARK [1][-]{section.15.1}{15.1 Summary}{chapter.15}% 87
+\BOOKMARK [1][-]{section.15.2}{15.2 Physical Model}{chapter.15}% 88
+\BOOKMARK [1][-]{section.15.3}{15.3 Implementation Details}{chapter.15}% 89
+\BOOKMARK [0][-]{chapter.16}{16 Trombone}{part.5}% 90
+\BOOKMARK [1][-]{section.16.1}{16.1 Introduction}{chapter.16}% 91
+\BOOKMARK [1][-]{section.16.2}{16.2 Physical Model}{chapter.16}% 92
+\BOOKMARK [1][-]{section.16.3}{16.3 Real-Time Implementation}{chapter.16}% 93
+\BOOKMARK [1][-]{section.16.4}{16.4 Discussion}{chapter.16}% 94
+\BOOKMARK [-1][-]{part.6}{VI Conclusions and Perspectives}{}% 95
+\BOOKMARK [0][-]{chapter.17}{17 Conclusions and Perspectives}{part.6}% 96
+\BOOKMARK [1][-]{section.17.1}{17.1 Applications}{chapter.17}% 97
+\BOOKMARK [1][-]{section.17.2}{17.2 Realism}{chapter.17}% 98
+\BOOKMARK [1][-]{section.17.3}{17.3 Dynamic grid}{chapter.17}% 99
+\BOOKMARK [0][-]{chapter*.256}{References}{part.6}% 100
+\BOOKMARK [-1][-]{part.7}{VII Papers}{}% 101
+\BOOKMARK [0][-]{Paper.b.A}{A Real-Time Control of Large-Scale Modular Physical Models using the Sensel Morph}{part.7}% 102
+\BOOKMARK [0][-]{Paper.b.B}{B Physical Models and Real-Time Control with the Sensel Morph}{part.7}% 103
+\BOOKMARK [0][-]{Paper.b.C}{C Real-Time Implementation of an Elasto-Plastic Friction Model applied to Stiff Strings using Finite-Difference Schemes}{part.7}% 104
+\BOOKMARK [0][-]{Paper.b.D}{D Real-time Implementation of a Physical Model of the Tromba Marina}{part.7}% 105
+\BOOKMARK [0][-]{Paper.b.E}{E Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling}{part.7}% 106
+\BOOKMARK [0][-]{Paper.b.F}{F DigiDrum: A Haptic-based Virtual Reality Musical Instrument and a Case Study}{part.7}% 107
+\BOOKMARK [0][-]{Paper.b.G}{G Dynamic Grids for Finite-Difference Schemes in Musical Instrument Simulations}{part.7}% 108
+\BOOKMARK [0][-]{Paper.b.H}{H A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes}{part.7}% 109
+\BOOKMARK [-1][-]{part.8}{VIII Appendix}{}% 110
+\BOOKMARK [0][-]{Appendix.c.A}{A Paper Errata}{part.8}% 111
+\BOOKMARK [0][-]{Appendix.c.B}{B Matrices}{part.8}% 112
+\BOOKMARK [1][-]{section.c.A}{B.1 Operations}{Appendix.c.B}% 113
+\BOOKMARK [1][-]{section.c.B}{B.2 Matrix Inverse}{Appendix.c.B}% 114
+\BOOKMARK [1][-]{section.c.C}{B.3 Systems of Linear Equations}{Appendix.c.B}% 115
+\BOOKMARK [1][-]{section.c.D}{B.4 Eigenvalue Problems}{Appendix.c.B}% 116
+\BOOKMARK [0][-]{Appendix.c.C}{C Code Snippets}{part.8}% 117
+\BOOKMARK [1][-]{section.c.A}{C.1 Mass-Spring System \(Section 2.3\)}{Appendix.c.C}% 118
+\BOOKMARK [1][-]{section.c.B}{C.2 1D Wave Equation \(Section 2.4\)}{Appendix.c.C}% 119
+\BOOKMARK [1][-]{section.c.C}{C.3 2D Wave Equation \(Section 6.2\)}{Appendix.c.C}% 120
+\BOOKMARK [0][-]{Appendix.c.D}{D Intuition for the Damping Terms in the Stiff String PDE}{part.8}% 121
+\BOOKMARK [0][-]{Appendix.c.E}{E Derivations}{part.8}% 122
+\BOOKMARK [1][-]{section.c.A}{E.1 Webster's Update Equation \(5.9\)}{Appendix.c.E}% 123
+\BOOKMARK [1][-]{section.c.B}{E.2 Boundary Terms Webster's Equation}{Appendix.c.E}% 124

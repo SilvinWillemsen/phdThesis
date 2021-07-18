@@ -6,7 +6,7 @@ In this work, the collision models used rely on penalising methods. For perfectl
 The discretisations proposed in \cite{Chatziioannou2013, Bilbao2014} rely on implicit nonlinear schemes which require an iterative method, such as Newton-Raphson presented in Section \ref{sec:newtonRaphson}, to obtain their solution. 
 The exact number of iterations required per time step, especially in interactive applications, is usually unknown. This could be detrimental to real-time applications, as the number of iterations and consequently the extra number of computations needed could be very large in a particular situation. Furthermore, and perhaps more importantly, existence and uniqueness of the solution might not be available. 
 
-In \cite{Ducceschi2021} (co-authored by the PhD student [\hyperref[ch:listOfPublications]{O3}]), Ducceschi et al. propose a method based on quadratisation of the collision potential energy, that circumvents the need of an iterative method to solve nonlinear collisions. Energy quadratisation for explicit schemes first appeared in the context of Port-Hamiltonian systems and was due to to Lopes et al. in \cite{Lopes2015}. The introduction of an additional state variable, which is what Ducceschis work is based on, was introduced in \cite{Yang2017, Jiang2019}. Publications \citeP[D] and \citeP[E] follow an earlier iteration of the non-iterative collision algorithm from \cite{Ducceschi2019, Bilbao2019} which exhibited spurious oscillations that Ducceschi et al. resolve in \cite{Ducceschi2021}. The latter will be used this work and presented in this chapter. 
+In \cite{Ducceschi2021} (co-authored by the PhD student [\hyperref[ch:listOfPublications]{O3}]), Ducceschi et al. propose a method based on quadratisation of the collision potential energy, that circumvents the need of an iterative method to solve nonlinear collisions. Energy quadratisation for explicit schemes first appeared in the context of Port-Hamiltonian systems and was due to Lopes et al. in \cite{Lopes2015}. The introduction of an additional state variable, which is what Ducceschi's work is based on, was introduced in \cite{Yang2017, Jiang2019}. Publications \citeP[D] and \citeP[E] follow an earlier iteration of the non-iterative collision algorithm from \cite{Ducceschi2019, Bilbao2019} which exhibited spurious oscillations that Ducceschi et al. resolve in \cite{Ducceschi2021}. The latter will be used this work and presented in this chapter. 
 
 This chapter will first provide a definition for the collision potential as well as its quadratisation, used as the basis for the explicit method. Then, the method will be applied to a simple mass-barrier collision and finally, a mass-spring -- string collision which can be used to model a finger-fretted string.
 
@@ -99,7 +99,7 @@ With the above approximations in place, system \eqref{eq:massBarrier} can be dis
 
 
 \subsubsection{An explicit definition for $g^n$}
-To be able to calculate $\psi^{n+1/2}$ and $u^{n+1}$ in system \eqref{eq:massBarrierSystem} explicitly, an definition for $g^n$ only based on known values must be found. As $g^n \approxeq \psi'$ as per Eq. \eqref{eq:approxPsi}, the derivative can be computed analytically according to 
+To be able to calculate $\psi^{n+1/2}$ and $u^{n+1}$ in system \eqref{eq:massBarrierSystem} explicitly, a definition for $g^n$ only based on known values must be found. As $g^n \approxeq \psi'$ as per Eq. \eqref{eq:approxPsi}, the derivative can be computed analytically according to 
 \begin{equation}
     g^n = \psi'\bigg\rvert_{\eta=\eta^n} \quad \overset{\text{Eq. \eqref{eq:quadraticPotential}}}{=}\quad  \frac{\phi'}{\sqrt{2\phi}}\bigg\rvert_{\eta=\eta^n}.
 \end{equation}
@@ -194,9 +194,6 @@ with collision energy
     \h_\ctxt = \frac{(\psi^{n-1/2})^2}{2}.
 \end{equation}
 Recall that in order for a scheme to be passive, its energy must be non-negative. The fact that $\psi$ is squared proves passivity for the system in \eqref{eq:massBarrierSystem}.
-
-\subsubsection{Check units}
-
 
 \section{Mass-spring -- String collision}\label{sec:massString}
 The mass-spring -- string collision is slightly trickier than the mass -- rigid barrier collision, as there are two moving components rather than one. This system is chosen as an example as it has the interesting use-case of fretting a string to change the pitch, modelling the fretting finger as a mass.
@@ -331,9 +328,13 @@ with collision energy
 \begin{equation*}
     \h_\text{c} = \frac{(\psi^{n-1/2})^2}{2}.
 \end{equation*}
-The fact that $\psi$ is squared here, means that $\h_\text{c}$ is non-negative, and proves passivity of the system. 
+Again, the fact that $\psi$ is squared here, means that $\h_\text{c}$ is non-negative, and proves passivity of the system. 
 
-\section{Two-sided collision: Connection}\label{sec:twoSidedCollision}
+\section{Two-Sided Collision: A Connection}\label{sec:twoSidedCollision}
+
+% As an alternative to the method connections shown in Chapter \ref{ch:connections} showed ways to connect various resonators using techniques presented in \cite{theBible}. An alternative method to establish these connections can be devised using the methods presented in this chapter.
+% 
+
 Using the methods presented in this chapter, one could devise a two-sided collision and alter the collision potential in Eq. \eqref{eq:potential} to \cite{Bilbao2019}
 \begin{equation}\label{eq:twoSidedPotential}
     \phi(\eta) = \frac{K}{\alpha_\ctxt+1}|\eta|^{\alpha_\ctxt+1},
@@ -342,6 +343,4 @@ and taking its derivative with respect to $\eta$ yields
 \begin{equation}
     \phi'(\eta) = \sgn(\eta)K|\eta|^{\alpha_\ctxt}.
 \end{equation}
-One can observe that, as opposed to the (one-sided) potential presented in Eq. \eqref{eq:potential}, the collision force will be non-zero, for both a positive and negative $\eta$. This two-sided collision can be used as a connection and has been used in papers \citeP[D] and \citeP[E] in combination with Eq. \eqref{eq:potential} to model the mechanics of the tromba marina. See Chapter \ref{ch:tromba} for more details.
-
-A different method for connecting various systems will be detailed in Chapter \ref{ch:connections}.
+One can observe that, as opposed to the (one-sided) potential presented in Eq. \eqref{eq:potential}, the collision force will be non-zero, for both a positive and negative $\eta$. This two-sided collision can be used as a connection -- as an alternative to the connections presented in Chapter \ref{ch:connections} -- and has been used in papers \citeP[D] and \citeP[E] in combination with Eq. \eqref{eq:potential} to model the mechanics of the tromba marina. See Chapter \ref{ch:tromba} for more details.

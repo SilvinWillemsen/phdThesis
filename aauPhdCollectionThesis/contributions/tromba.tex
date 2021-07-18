@@ -1,8 +1,19 @@
 \chapter{Tromba Marina}\label{ch:tromba}
-This chapter provides an extended summary for the physical model presented in the paper ``Real-time Implementation of a Physical Model of the Tromba Marina'' \citeP[D] and used in the paper ``Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling'' \citeP[E]. After a brief introduction of the tromba marina, and summarising the physical model -- with reference to the theory explained in the previous parts of this thesis -- this chapter elaborates on the contents of paper \citeP[D] by providing more details on the implementation. As much as possible, this chapter follows the notation of paper \citeP[D], as long as it is coherent with what has already been presented in this thesis. Discrepancies between this chapter and the paper will be clearly highlighted. 
+This chapter provides an extended summary for the physical model presented in the paper ``Real-time Implementation of a Physical Model of the Tromba Marina'' \citeP[D] and used in the paper ``Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling'' \citeP[E]. After a general summary of these papers, the physical model will be summarised, with reference to the theory explained in the previous parts of this thesis. Finally, this chapter extends on the contents of paper \citeP[D] by providing more details on the implementation and an energy analysis.
 
-\section{Introduction}
+\section{Summary}
 The tromba marina is a bowed monochord instrument from medieval Europe (see Figure \ref{fig:tromba}). It has a long quasi-trapezoidal body and is unique due to its oddly-shaped bridge that the string rests on. The bridge is often called a `shoe' due to its shape and is free to rattle against the body in sympathy with the movement of the vibrating string (see Figure \ref{fig:bridge}). This rattling causes a sound with brass or trumpet-like qualities, hence the name \textit{tromba} which stems from the Italian word trumpet. The rarity of the instrument as well as its interesting physics makes it an ideal case for a physical modelling implementation.
+
+\subsubsection{Real-time Implementation and Control}
+Paper \citeP[D] presents physical model of the tromba marina and its the real time implementation. The paper uses the Sensel morph for control of the algorithm. See Section \ref{sec:sensel} for more information on this controller. To approach the interaction paradigm of the real-life instrument, a virtual reality (VR) application was made from where the algorithm could be controlled. For this end, the PHANTOM Omni haptic device was used to control the implementation and presented in paper \citeP[E]. See Section \ref{sec:phantomOmni} for more details on this device. The latter has been evaluated and the results will be summarised below.
+
+\subsubsection{Evaluation and Results}
+The VR implementation of the tromba marina was evaluated on 14 participants. The goals of the evaluation was to determine the general experience of bowing in a VR environment, and to evaluate the playability of a VR monochord instrument.
+The data was collected as a combination of qualitative and quantitative methods as detailed in paper \citeP[E]. 
+
+The th were divided into haptics, visuals, audio, and overall experience of the application 
+
+The results show that the various modalities (visuals, audio and haptics) seemed to reinforce each other and that the haptic feedback provided by the PHANTOM Omni was deemed ``realistic'' and ``natural''. The overall playability of the instrument was thus concluded to be satisfactory, though improvements could be made.
 
 \begin{figure}
     \centering
@@ -19,9 +30,11 @@ The tromba marina is a bowed monochord instrument from medieval Europe (see Figu
 \end{figure}
 
 \section{Physical Model}
-The full musical instrument has been divided into three parts: the string, the bridge and the body each of which will briefly be presented here on. 
+This section presents the physical model of the tromba marina with reference to the theory presented in Parts \ref{part:resonators}, \ref{part:exciters} and \ref{part:interactions}.
+As much as possible, this chapter follows the notation of paper \citeP[D], as long as it is coherent with what has already been presented in this thesis. Discrepancies between this chapter and the paper will be clearly highlighted. 
+
 \subsection{Continuous Time}
-Each component in isolation is of the form 
+The full musical instrument has been divided into three parts: the string, the bridge and the body each of which will briefly be presented here on. Each resonator in isolation is of the form 
 \begin{equation}\label{eq:trombaPDEForm}
     \L q = 0
 \end{equation}
@@ -37,9 +50,9 @@ where (see Eq. \eqref{eq:stiffStringPDE})
     \L_\stxt = \rho_\stxt A \ptt - T\partial_\chi^2 + E_\text{s}I\partial_\chi^4+2\rho_\stxt A\szX[\stxt]\pt-2\rho_\stxt A\soX[\stxt]\pt\partial_\chi^2\ .
 \end{equation*}
 The parameters are as defined for Eq. \eqref{eq:stiffStringPDE} with the possible addition of the `s' subscript.
-Compared to the schemes presented in previous chapters, using a partial differential operator to combine all operators like this, is purely different from a notational point of view, and does not change the behaviour of the system. If Eq. \eqref{eq:trombaStiffString} is expanded and all terms except for $\rho_\stxt A \ptt$ are moved to the right-hand side, one arrives again at the damped stiff string PDE in Eq. \eqref{eq:stiffStringPDE}.
+Compared to the schemes presented in previous chapters, using a partial differential operator to combine all operators like this, is solely different from a notational point of view, and does not change the behaviour of the system. If Eq. \eqref{eq:trombaStiffString} is expanded and all terms except for $\rho_\stxt A \ptt$ are moved to the right-hand side, one arrives again at the damped stiff string PDE in Eq. \eqref{eq:stiffStringPDE}.
 
-As the string is bowed, one can extend the PDE in \eqref{eq:trombaStiffString} can be extended to 
+As the string is bowed, one can extend the PDE in \eqref{eq:trombaStiffString} to 
 \begin{equation}
     \L_\stxt u =  - \delta(\chi-\chi_\text{B})F_\text{B}\Phi(\vrel),
 \end{equation}
@@ -140,8 +153,8 @@ As $0$\thOrder spreading operators are used for the collision terms in the strin
 
 There are a few components presented in paper \citeP[D] that the system does not include here. These are the offset $w_\text{off}$ between the mass and the plate as well as the damping finger that interacts with the string to play different pitches. As the focus of this chapter is on the process of solving the system at the bridge for which these two components are not important, these will be ignored to avoid additional complexity. Further details on these components are provided in the paper.
 
-\subsection{Solving the system}
-This section presents details on the solution of the string-bridge-body interaction which did not appear in paper \citeP[D].
+\section{Implementation Details}
+This section extends on paper \citeP[D] by providing more details on the solution of the string-bridge-body interaction.
 
 Following Section \ref{sec:massString} one could expand Eqs. \eqref{eq:trombaSystemFDSString}, \eqref{eq:trombaSystemFDSMass} and \eqref{eq:trombaSystemFDSPlate} and treat these as a system of linear equations (see Section \ref{sec:linearEquations}). This would require an inversion of a $3\times 3$ matrix each iteration.
 To simplify things slightly, and looking towards real-time implementation, one could instead solve for $\delta_{t\cdot}\eta_\sm^n$ and $\delta_{t\cdot}\eta_\mp^n$ directly, which would require a $2\times 2$ matrix inversion each iteration and requires much fewer operations (see Section \ref{sec:realTimeMatrices}).
@@ -251,10 +264,12 @@ for the mass as (Eq. \eqref{eq:massDampingEnergy})
 \begin{equation*}
     \q_\mtxt = R\left(\dtd w^n \right)^2
 \end{equation*}
-and the plate as
-\SWcomment[need to write still...]
+and the plate as (Eq. \eqref{eq:dampingTermThinPlate})
+\begin{equation*}
+    \mathfrak{q}_\ptxt = 2\sz \rho_\ptxt H \lVert\dtd\zlmn\rVert_d^2 - 2 \so \rho_\ptxt H \langle \dtd \zlmn, \dtm \dDelta\zlmn \rangle_d.
+\end{equation*}
 
-Finally, the power dissipated and the supplied by the bow are defined as (Eq. \eqref{eq:energyBalanceBow})
+Finally, the power dissipated and supplied by the bow are defined as (Eq. \eqref{eq:energyBalanceBow})
 \begin{equation*}
     \q_\Btxt =  f_\Btxt^n \Phi(\vrel^n) \vrel^n \qaq \p_\Btxt = f_\Btxt^n \Phi(\vrel^n)v_\Btxt^n,
 \end{equation*}
@@ -288,13 +303,13 @@ Figure \ref{fig:trombaEnergy} shows the plots of the energy for an implementatio
       \end{tikzpicture}
       \caption{The energy of the tromba marina excited with a raised cosine (see Figure \ref{fig:trombaExcite}). The left panel shows the total energy (black) present in the system as well as the energy of the string (blue), mass (red) and plate (green) respectively. The second panel shows the energy of the mass-plate (magenta) and string-mass (orange) interactions and the right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \label{fig:trombaEnergy}}
 \end{figure}
-\section{Real-Time Implementation}
-\SWcomment[not so sure if I should include more. Chapter might be done..]
-\subsection{Considerations}
-No bowing at the bridge.
+% \section{Real-Time Implementation}
+% \SWcomment[not so sure if I should include more. Chapter might be done..]
+% \subsection{Considerations}
+% No bowing at the bridge.
 
-To prevent the system from getting more complex, it is assumed that the bow will not interact with the bridge location. 
+% To prevent the system from getting more complex, it is assumed that the bow will not interact with the bridge location. 
 
-\subsection{Control using Sensel Morph}
+% \subsection{Control using Sensel Morph}
 
-\subsection{VR Application}
+% \subsection{VR Application}
