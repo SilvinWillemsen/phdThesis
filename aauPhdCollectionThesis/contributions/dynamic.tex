@@ -87,7 +87,7 @@ Iterations have been:
 
 \todo{These sections are taken from the JASA appendix} In this appendix, some iterations done over the course of this project will be shown in more detail. In the following, the 1D wave equation with a wave speed of $c = 1470$ m/s, a length of $L = 1$ m, Dirichlet boundary conditions and a sample rate of $f_\text{s} = 44100$ Hz is considered, and -- through Eq. \eqref{eq:compactLambda} -- satisfies the CFL condition with equality. These values result in $N = 30$, or a grid of 31 points including the boundaries. Then, the wave speed is decreased to $c \approx 1422.6$ m/s, i.e., the wave speed that results in $N=31$ and satisfies the stability condition with equality again. 
 
-\subsection{Full-Grid Interpolation}
+\subsection{Full-grid interpolation}
 One way to go from one grid to another is performing a full-grid interpolation \cite[Chap. 5]{theBible}. If the number of points changes according to Eq. \eqref{eq:orderOfCalcGrid}, i.e., if $N^n \neq N^{n-1}$ the full state of the system ($u_l^n, u_l^{n-1}\ \forall l$)  can be interpolated to the new state. See Figure \ref{fig:fullGrid}. 
 
 \begin{figure}[ht]
@@ -110,7 +110,7 @@ Furthermore, this state-interpolation causes artefacts or `clicks' in the output
 
 All the aforementioned issues could be solved by using a (much) higher sample rate and thus more grid points, but this would render this method impossible to work in real time.
 
-\subsection{Adding and removing Points at the Boundary}\label{sec:addAtBoundary}
+\subsection{Adding and removing points at the boundary}\label{sec:addAtBoundary}
 To solve the issues exhibited by a full-grid interpolation, points can be added and removed at a single location and leave most points unaffected by the parameter changes. A good candidate for a location to do this is at a fixed (Dirichlet) boundary. The state $u$ at this location is always $0$ so points can be added smoothly. 
 
 As $c$ decreases, $h$ can be calculated according to Eq. \eqref{eq:orderOfCalcGrid} and decreases as well.
@@ -159,7 +159,7 @@ their interactions change through a change in the grid spacing and wave speed. T
 \subsection{Sinc interpolation}
 
 
-\section{Displacement Correction Implementation} 
+\section{Displacement correction implementation} 
 One detail that was not provided in paper \citeP[G], is the impelmentation of the displacement correction.
 When the wave speed is increased and points are removed, it is not necessarily true that $u_M = w_0$ at the time of removal and the rigid connection in \eqref{eq:rigid} is violated. On top of the virtual grid point ``generation'' from the interpolation described above, one could add a connection force that is dependent on how close the inner boundaries $u_M$ and $w_0$ are.
 
@@ -232,12 +232,12 @@ This can then be filled into \eqref{eq:dispCorrSyst} and used to get $u_M^{n+1}$
 \end{align*}
 showing that when $\alpha = 0$, the $\eta^n$ should be 0 and thus boils down to a rigid connection.]
 
-\subsubsection{Modal Analysis}
-Due to the damping that is present in the system, it needs to be written in one-step form. Recalling \eqref{eq:uVecDef} we can write write \eqref{eq:dispCorrSyst} in vector-matrix form
+\subsubsection{Modal analysis}
+Due to the damping that is present in the system, it needs to be written in one-step form. Recalling \eqref{eq:uVecDef} we can write \eqref{eq:dispCorrSyst} in vector-matrix form
 \begin{equation}\label{eq:formForOneStep}
     \A \U^{n+1} = \B \U^n + \C\U^{n-1}
 \end{equation}
-and rewrite to one-step form as
+and rewrite to one-step form as \SWcomment[decapitalise u!]
 \begin{equation}\label{eq:oneStepForm}
     \underbrace{\begin{bmatrix}
         \U^{n+1}\\
@@ -286,7 +286,7 @@ Then refactoring to the form in \eqref{eq:formForOneStep} and using identity mat
 Although substituting these definitions into \eqref{eq:oneStepForm} gives an identical result to the matrix definitions above (comparisons show a difference between the $\Q$ matrices around machine precision), $\beta$ can still go to infinity. In this case, $\epsilon \neq 0$ in \eqref{eq:betaDef}. 
 
 \section{%Modal 
-Analysis and Experiments}
+Analysis and experiments}
 \subsection{Interpolation technique}
 \subsection{Interpolation range}
 \subsection{Location}
@@ -294,4 +294,4 @@ Analysis and Experiments}
 
 Using the whole range, we can still add/remove points at the sides. 
 
-\section{Discussion and Conclusion}\label{sec:conclusion}
+\section{Discussion and conclusion}\label{sec:conclusion}

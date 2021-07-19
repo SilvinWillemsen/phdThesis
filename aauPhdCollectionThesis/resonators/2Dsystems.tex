@@ -68,7 +68,7 @@ See Figure \ref{fig:biharmonic} for the stencil of the discrete biharmonic opera
     \caption{The stencils of the 2D spatial FD operators in Eqs. \eqref{eq:discreteLaplacian} and \eqref{eq:discreteBiharmonic} respectively. The red square denotes what grid point the operator is applied to. The stencils follow the same layout as Figure \ref{fig:operators}, but the vertical axis denotes a second spatial dimension rather than time. \label{fig:2Doperators}}
 \end{figure}
 
-\section{2D Wave Equation}\label{sec:2Dwave}
+\section{2D wave equation}\label{sec:2Dwave}
 The 2D wave equation is the simplest 2D model in the context of musical acoustics and using the operators presented above it is a fairly straightforward extension to the 1D wave equation. Similar to how the 1D wave equation is used to model an ideal string, the 2D wave equation can be used to model an ideal membrane. 
 
 The first appearance of an implementation of the 2D wave equation in a musical context was due to van Duyne and Smith who used digital waveguides, or more specifically a waveguide mesh, to discretise it \cite{Duyne1993}. The implementation is identical to the FD scheme that will be presented here.\SWcomment[though it is more general here due to $\lambda^2$ instead of hard-coded $0.5$]
@@ -143,7 +143,7 @@ Figure \ref{fig:stencil2Dwave} shows the stencil of the 2D wave equation FD sche
     \includegraphics[width=0.7\textwidth]{figures/resonators/2d/stencil2Dwave.eps}
     \caption{The stencil for the 2D wave equation FD scheme in Eq. \eqref{eq:2DwaveFDS}. The grid points use the same colour-coding as previous stencils (see e.g. Figure \ref{fig:stencil1DWave}).\label{fig:stencil2Dwave}}
 \end{figure}
-\subsection{Implementation and Matrix Form}\label{sec:2DwaveImplementation}
+\subsection{Implementation and matrix form}\label{sec:2DwaveImplementation}
 Similar to how the number of intervals between grid points are calculated 1D in Eq. \eqref{eq:orderOfCalc}, these can be calculated using the following operations:
 \begin{equation}\label{eq:orderOfCalc2D}
     h := \sqrt{2} ck, \ \ N_x := \floor[\frac{L_x}{h}], \ \  N_y := \floor[\frac{L_y}{h}], \ \  h := \text{min}\left(\frac{L_x}{N_x}, \frac{L_y}{N_y}\right), \ \  \lambda := \frac{ck}{h},
@@ -152,7 +152,7 @@ where the `$\text{min}$' operator selects the smallest value of $L_x/N_x$ and $L
 % Notice that the grid spacing is recalculated based the smallest value of $L_x/N_x$  $L_y/N_y$ $L/N$ for in the $x$ and $y$ direction to stay as close to the stability condition in Eq. \eqref{eq:stabilityCondition2Dwave}.
 To implement the update equation in Eq. \eqref{eq:update2Dwave}, one could save the states of the system in matrices (as opposed to vectors in the 1D case such as in Section \ref{sec:implementationStiffString}) and directly work with these. Using Dirichlet boundary conditions the $(N_x-1) \times (N_y-1)$ state matrix at time index $n$ would be \todo{matrix vector notation (capitalisation) does not hold here..}
 \begin{equation}
-    \u^n = \begin{bmatrix}
+    \U^n = \begin{bmatrix}
         u^n_{1, 1} & \hdots & u^n_{1, N_x-1}\\
         \vdots & \ddots & \vdots\\
         u^n_{N_y-1, 1} & \hdots & u^n_{N_y-1, N_x-1}
@@ -160,7 +160,7 @@ To implement the update equation in Eq. \eqref{eq:update2Dwave}, one could save 
 \end{equation}
 and could  be used to make a`for-loop implementation' of the update equation. This would indeed be the strategy if one would implement the scheme in e.g. C++ (see Chapter \ref{ch:realtime}). For a more compact and faster implementation in \texttt{MATLAB}, however, one could `stack' or `flatten' the state matrices to vectors and update the scheme using matrix-vector multiplication as done for, e.g., the stiff string in Section \ref{sec:implementationStiffString}. Again using Dirichlet boundary conditions, the stacked state vector of size will be structured as
 \begin{equation}\label{eq:stackedState}
-    \U^n = [(\u_{1}^n)^T, \hdots, (\u_{N_x-1}^n)^T]^T, \qwiq \u^n_l = [u^n_{l, 1}, \hdots, u^n_{l, N_y-1}]^T,
+    \uStack^n = [(\u_{1}^n)^T, \hdots, (\u_{N_x-1}^n)^T]^T, \qwiq \u^n_l = [u^n_{l, 1}, \hdots, u^n_{l, N_y-1}]^T,
 \end{equation}
 and has a size of $(N_x-1)\cdot (N_y-1) \times 1$. See Figure \ref{fig:stackingMatrix} for a visualisation of the matrix-stacking process.
 \begin{figure}[t]
@@ -234,7 +234,7 @@ where the identity matrix $\I = \I_{N_x-1}$. The $\DDeltamat$ matrix is square a
 
 Using the above, the FD scheme in Eq. \eqref{eq:2DwaveFDS} can then be compactly written in matrix form as
 \begin{equation}\label{eq:matrixUpdate2Dwave}
-    \U^{n+1} = \left(2 \I + c^2k^2 \DDeltamat\right) \U^n - \U^{n-1},
+    \uStack^{n+1} = \left(2 \I + c^2k^2 \DDeltamat\right) \uStack^n - \uStack^{n-1},
 \end{equation}
 where the identity matrix is of the same size as $\DDeltamat$. See Appendix \ref{app:2DWave} for a \texttt{MATLAB} implementation of the 2D wave equation. As the matrices are extremely sparse (many $0$-entries), it is useful to utilise \texttt{MATLAB}s optimisation for sparse matrices and use the \texttt{sparse()} function. One can use \texttt{speye()} for sparse identity matrices.
 
@@ -259,18 +259,18 @@ Figure \ref{fig:2Dpropagation} shows the wave propagation of an implementation o
     \caption{The output of the 2D wave equation at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref{fig:2Dpropagation}. The partials are extremely close together (notice that only frequency up to 5000 Hz are shown) and is related to the aperiodic nature of the system behaviour. \label{fig:output2DWave}}
 \end{figure}
 
-\subsection{Frequency Domain Analysis in 2D}\label{sec:stability2Dwave}
+\subsection{Frequency domain analysis in 2D}\label{sec:stability2Dwave}
 Section \ref{sec:stabilityAnalysis} showed how to perform frequency domain analysis to obtain stability conditions for an FD scheme. This section shows extensions to this in 2D and follows \cite[Ch. 10]{theBible}.
 
 In 2D, the ansatz in Eq. \eqref{eq:ansatz} can be extended to 
 \begin{equation}
     \ulmn \ansatz z^n e^{jh(l\beta_x + m\beta_y)}
 \end{equation}
-where $\beta_x$ and $\beta_y$ are components of a 2D wavenumber $\boldsymbol{\beta}$ in the $x$ and $y$ directions respectively. Frequency-domain representations of temporal operators shown in Eq. \eqref{eq:temporalAnsatz} do not change in the 2D case. Using 
+where $\beta_x$ and $\beta_y$ are components of a 2D wavenumber $\boldsymbol{\beta}$ in the $x$ and $y$ directions respectively. Frequency domain representations of temporal operators shown in Eq. \eqref{eq:temporalAnsatz} do not change in the 2D case. Using 
 \begin{equation}\label{eq:pxpy}
     p_x = \sin^2(\beta_x h/2) \qaq p_y = \sin^2(\beta_y h/2)
 \end{equation}
-for brevity, the following frequency-domain representation of spatial operators can be obtained
+for brevity, the following frequency domain representation of spatial operators can be obtained
 \begin{equation}
     \dxx \ulmn \ansatz -\frac{4}{h^2}p_x 
     \ulmn \qaq \dyy \ulmn \ansatz -\frac{4}{h^2}p_y 
@@ -282,7 +282,7 @@ from which it follows that
     \dDelta\dDelta\ulmn \ansatz \frac{16}{h^4}(p_x + p_y)^2\ulmn.\label{eq:biharmonicAnsatz}
 \end{gather}
 
-Using these definitions, a frequency-domain interpretation of the 2D wave FD scheme in Eq. \eqref{eq:2DwaveFDS} can be obtained
+Using these definitions, a frequency domain interpretation of the 2D wave FD scheme in Eq. \eqref{eq:2DwaveFDS} can be obtained
 \begin{equation*}
     \frac{1}{k^2}\left(z - 2 +z^{-1}\right) = -\frac{4c^2}{h^2} (p_x + p_y).
 \end{equation*}
@@ -310,7 +310,7 @@ Finally, as $p_x$ and $p_y$ are bounded by 1 for all wavenumbers $\beta_x$ and $
 \end{align}
 which is the stability condition given in Eq. \eqref{eq:CFL2D}.
 
-\subsection{Energy Analysis in 2D}\label{sec:energyAnalysis2DWave}
+\subsection{Energy analysis in 2D}\label{sec:energyAnalysis2DWave}
 \def\domXred{\underline{d_x}}
 \def\domYred{\underline{d_y}}
 \def\domXredBoth{\underline{\overline{d_x}}}
@@ -377,7 +377,7 @@ Here, the reduced domains $\domXred$ and $\domYred$ are as defined in \eqref{eq:
 and uses 1D inner products at the boundaries. Here, $(l,y) = \{l\}\times\{0, \hdots, N_y\}$ and $(x,m) = \{0, \hdots,  N_x\}\times\{m\}$ are slices of domain $d$. The boundary term can be shown to vanish under Dirichlet boundary conditions in Eq. \eqref{eq:discDirichlet2D}. Neumann conditions will not be considered here.
 
 \subsubsection{Step 3: Check units}
-As the addition of the two inner products in the definition for $\v$ in Eq. \eqref{eq:energyBalance2DWave} does not affect the units, only one term is used to check the units. Recalling that, as opposed to the 1D case, the symbol $T$ is tension per unit length and thus in in N/m, one can write the terms in Eq. \eqref{eq:energyBalance2DWave} in their units:
+As the addition of the two inner products in the definition for $\v$ in Eq. \eqref{eq:energyBalance2DWave} does not affect the units, only one term is used to check the units. Recalling that, as opposed to the 1D case, the symbol $T$ is tension per unit length and thus in N/m, one can write the terms in Eq. \eqref{eq:energyBalance2DWave} in their units:
 \begin{align*}
     \frac{\rho H}{2}\lVert \dtm \ulmn\rVert^2_d \
     \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}    \quad&\text{kg}\cdot\text{m}^{-3}\cdot\text{m}\cdot\text{m}^2\cdot(\text{s}^{-1}\cdot\text{m})^2 \\
@@ -409,7 +409,7 @@ Figure \ref{fig:energy2Dwave} shows the energetic output of an implementation of
       \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the 2D wave equation are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \label{fig:energy2Dwave}}
 \end{figure}
 
-\subsection{Modal Analysis in 2D}
+\subsection{Modal analysis in 2D}
 Given that the state vector is stacked as described Section \ref{sec:2DwaveImplementation} and the update equation is written in matrix form as in Eq. \eqref{eq:matrixUpdate2Dwave}, performing a modal analysis on a 2D system does not differ from a 1D system and follows the same process presented in Section \ref{sec:modalAnalysis}.
 
 Inserting a test solution of $\U^n = z^n\boldPhi$ into the matrix form of the 2D wave equation in Eq. \eqref{eq:matrixUpdate2Dwave} yields the following characteristic equation
@@ -445,7 +445,7 @@ Using the line of code in Appendix \ref{sec:eigenValueProblems} and the \texttt{
 \section{Thin plate}\label{sec:thinPlate}
 The thin plate differs from the 2D wave equation in that its restoring force is solely due to stiffness rather than tension. Like for the stiffness term in the stiff string (see Chapter \ref{ch:stiffString}), this causes frequency dispersion, and yields extremely interesting sounds. 
 
-The plate model is versatile and can be used to model a plate reverb \cite{DAFxChapter} as well as simplified instrument bodies, as done in \citeP[A], \citeP[B], \citeP[D] and \citeP[E]. This section presents the thin plate PDE and FD scheme, after which it will be subjected to the the various analysis techniques extended to 2D in the previous section.
+The plate model is versatile and can be used to model a plate reverb \cite{DAFxChapter} as well as simplified instrument bodies, as done in \citeP[A], \citeP[B], \citeP[D] and \citeP[E]. This section presents the thin plate PDE and FD scheme, after which it will be subjected to the various analysis techniques extended to 2D in the previous section.
 
 \subsection{Continuous time}
 Consider a rectangular thin plate with side lengths $L_x$ and $L_y$ (both in m) and its transverse displacement described by $u=u(x,y,t)$. The system is defined for $(x,y)\in \D$ where 2D domain $\D = [0, L_x]\times [0, L_y]$. Using the biharmonic operator introduced in Eq. \eqref{eq:biharmonic}, the PDE for the thin plate, also known as the Kirchhoff model, can be defined as \cite{Kirchhoff1968}
@@ -550,12 +550,12 @@ The clamped condition can be implemented by simply reducing the discrete range o
     u_{l, -1}^n = -u_{l, -1}^n &\qaq u_{l, N_y+1}^n = -u_{l, N_y-1}^n\qquad \forall l.
 \end{align*}
 
-\subsection{Implementation and Output}
+\subsection{Implementation and output}
 Similar to the implementation of the 2D wave equation in Section \ref{sec:2DwaveImplementation}, one can use a stacked state vector. If simply supported boundary conditions are used, one can easily obtain a matrix form of the $\dDelta\dDelta$ operator by multiplying two $\DDeltamat$ matrices presented in Eq. \eqref{eq:DDeltaMatrix} to get $\DDeltaDelta = \DDeltamat\DDeltamat$.
 
 Using a stacked form of the state as described in Eq. \eqref{eq:stackedState} the scheme in Eq. \eqref{eq:thinPlateFDSCompact} in matrix form is     
 \begin{equation}\label{eq:matrixFormThinPlate}
-    A\U^{n+1} = \B\U^n + \C\U^{n-1},
+    A\uStack^{n+1} = \B\uStack^n + \C\uStack^{n-1},
 \end{equation}
 where
 \begin{gather*}
@@ -598,10 +598,10 @@ Compared to the output of the 2D wave equation in Figure \ref{fig:output2DWave},
     \caption{The output of the thin plate at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref{fig:thinPlatePropagation}. \label{fig:outputThinPlate}}
 \end{figure}
 
-\subsection{Frequency Domain Analysis}\label{sec:stabilityThinPlate}
+\subsection{Frequency domain analysis}\label{sec:stabilityThinPlate}
 This section follows the process presented in Section \ref{sec:stabilityAnalysis} with the extensions to 2D shown in \ref{sec:stability2Dwave}.
 
-Using Eqs. \eqref{eq:laplacianAnsatz} and \eqref{eq:biharmonicAnsatz} one can obtain a frequency-domain representation of the FD scheme in Eq. \eqref{eq:thinPlateFDSCompact}
+Using Eqs. \eqref{eq:laplacianAnsatz} and \eqref{eq:biharmonicAnsatz} one can obtain a frequency domain representation of the FD scheme in Eq. \eqref{eq:thinPlateFDSCompact}
 and obtain the following characteristic equation
 \begin{equation}
     \begin{aligned}
@@ -628,7 +628,7 @@ Finally, recalling the definition for $\kappa$ in Eq. \eqref{eq:kappaDef} solvin
 \end{align}
 which is the stability condition given in Eq. \eqref{eq:stabilityPlate}.
 
-\subsection{Energy Analysis}
+\subsection{Energy analysis}
 Using the steps described in Section \ref{sec:energyAnalysis} with the extensions to 2D presented in Section \ref{sec:energyAnalysis2DWave} one can obtain the total energy of the FD scheme in Eq. \eqref{eq:thinPlateFDSCompact}.
 \subsubsection{Step 1: Obtain $\dtp \h$}
 To obtain the rate of change of energy, one can take an inner product of the scheme in Eq. \eqref{eq:thinPlateFDSCompact} with $(\dtd \ulmn)$ over discrete (2D) domain $d$ to get
@@ -699,7 +699,7 @@ Figure \ref{fig:energyThinPlate} shows the energetic output of an implementation
       \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the thin plate are plotted in the left panel. Notice that the damping present in the system causes $\h$ to decrease. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyThinPlate}}
 \end{figure}
 
-\subsection{Modal Analysis}
+\subsection{Modal analysis}
 Using the matrix form in Eq. \eqref{eq:matrixFormThinPlate}, a modal analysis of the system can be performed using a one-step form described in Section \ref{eq:oneStepForm}.
 
 Figure \ref{fig:thinPlateModes} shows the results of the analysis with parameter values as listed in Table \ref{tab:thinPlateParams}. Although the modal frequencies follow a similar pattern to those of the 2D wave equation in Figure \ref{eq:2DWaveModes}, the pattern is slightly more exponential like the stiff string in Figure \ref{fig:modesStiffString}.\SWcomment[not really sure what to say here honestly] 
@@ -755,7 +755,7 @@ and again, $S = 2\so k / h^2$ for compactness. The stability condition for this 
 \subsection{Implementation}
 Writing  Eq. \eqref{eq:stiffMembraneFDScompact} in matrix form yields 
 \begin{equation}
-    A\U^{n+1} = \B\U^n + \C\U^{n-1},
+    A\uStack^{n+1} = \B\uStack^n + \C\uStack^{n-1},
 \end{equation}
 with
 \begin{gather*}
@@ -764,7 +764,7 @@ with
 \end{gather*}
 where the only difference with Eq. \eqref{eq:matrixFormThinPlate} is the addition of the wave speed term in the definition of the $\B$ matrix. 
 
-\subsection{Frequency Domain Analysis}\label{sec:stabilityStiffMembrane}
+\subsection{Frequency domain analysis}\label{sec:stabilityStiffMembrane}
 Following familiar techniques from Sections \ref{sec:oneStepForm} and \ref{sec:stability2Dwave}, the characteristic equation of the FD scheme in Eq. \eqref{eq:stiffMembraneFDScompact} can be obtained:
 \begin{equation}
     \begin{aligned}
@@ -790,5 +790,5 @@ Recalling the definitions for $\lambda$ and $\mu$ from \ref{eq:lambdaMuStiffMemb
     h\geq \sqrt{c^2k^2 + 4\sigma_1k+\sqrt{(c^2k^2 + 4\sigma_1k)^2 + 16\kappa^2k^2}},
 \end{gather}
 and is the stability condition for the stiff membrane. 
-\section{Radial Coordinates}\label{sec:radialCoordinates}
+\section{Radial coordinates}\label{sec:radialCoordinates}
 This chapter presented various models using a Cartesian coordinate system. Circular or elliptical systems, such as membranes or gongs, could be modelled using a radial coordinate system \cite[Ch. 10]{theBible}. However, using explicit methods to discretise the systems cause the schemes to exhibit high amount much numerical dispersion and reduction of bandwidth \cite[Ch. 11]{theBible}. For better behaviour, one could resort to an implicit scheme, but comes with the drawbacks mentioned in Section \ref{sec:implicitStiffString}. A better alternative is to retain the cartesian coordinate system and set the boundary according to a staircase approximation as done in [\hyperref[ch:listOfPublications]{S4}] (see fx. \cite{Hamilton2016, Harrison2018}).

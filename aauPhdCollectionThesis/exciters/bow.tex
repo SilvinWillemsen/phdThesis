@@ -26,8 +26,8 @@ The first appearance of FDTD methods in bowed string simulations was in a public
 
 Before introducing various friction models, a brief introduction on interpolation and spreading operators will be given, which will be necessary to work with this type of excitation.
 
-\section{Interpolation and Spreading operators}\label{sec:interpolationSpreading}
-As FD schemes are an approximation to continuous space (and time) using a finite number of points, working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function \cite{theBible}. This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. Here, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$.
+\section{Interpolation and spreading operators}\label{sec:interpolationSpreading}
+As should be clear by now, FD schemes are an approximation to continuous space (and time) using a finite number of points. Working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function \cite{theBible}. This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. Here, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$.
 
 An interpolation operator can be applied to a grid function $\uln$ and when expanded performs the following operation:
 \begin{equation}
@@ -148,7 +148,7 @@ This section presented interpolation and spreading operators that interact with 
 \end{equation}
 Although any values for $E$ would work, to retain correct scaling, the sum of $E$ needs to be normalised to $1$ as shown above.
 
-\section{The Newton-Raphson Method}\label{sec:newtonRaphson}
+\section{The Newton-Raphson method}\label{sec:newtonRaphson}
 Before moving on to more complex nonlinear excitation mechanisms, it is useful to go over the process of how to solve some of these mechanisms using an iterative root-finding method called the \textit{Newton-Raphson} method (or Newton-Raphson for short). 
 
 If a FD scheme not be solved explicitly, due to a nonlinear dependence on a variable for example, Newton-Raphson can be used. For a continuous and differentiable function $f(x) = 0$ its root can be approached using the following iteration
@@ -201,12 +201,12 @@ disp("The root of f(x) is at x = " + xNext)
     \subfloat[]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/NR1.eps}}\hfill
     \subfloat[]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/NR2.eps}}\hfill
     \subfloat[]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/NR3.eps}}
-    \vspace{-2em}\caption{The Newton-Raphson method.\label{fig:NR}}
+    \vspace{-2em}\caption{The Newton-Raphson method. The $x$-value of the root of the tangent line at $f(x_i)$ is used to evaluate the next iteration.\label{fig:NR}}
 \end{figure}
-\captionsetup[subfigure]{labelformat=empty}
+\captionsetup[subfigure]{labelformat=parens}
 
 \subsection{Multivariate Newton-Raphson}\label{sec:multivariateNR}
-For $M$ functions $f_m$ dependent on $M$ independent variables $x_m$ with $m = \{1, \hdots, M\}$,  Newton-Raphson can be extended to the following \SWcomment[citation?]:
+For $M$ functions $f_m$ dependent on the same number of independent variables $x_m$ with $m = \{1, \hdots, M\}$,  Newton-Raphson can be extended to the following \SWcomment[citation?]:
 \begin{equation}\label{eq:multivariateNR}
     \mathbf{x}_{i+1} = 
     \mathbf{x}_i - 
@@ -250,7 +250,7 @@ The Jacobian matrix will be
 \end{equation*}
 and its roots can be found by iteratively calculating Eq. \eqref{eq:multivariateNR}.
 
-\section{Static Friction Models}\label{sec:staticFricMod}
+\section{Static friction models}\label{sec:staticFricMod}
 A friction model is a nonlinear function that is (at least) dependent on the relative velocity $\vrel$ between the bow and the string. This function scales how much the bow force affects the bowed object. 
 In static friction models, the friction force is defined as a function of this relative velocity only.
 The first mathematical description of friction was proposed by Coulomb in 1773 \cite{Coulomb1773}\todo{check references here} to which static friction, or \textit{stiction}, was added by Morin in 1833 \cite{Morin1833} and viscous friction, or velocity-dependent friction, by Reynolds in 1886 \cite{Reynolds1886}. In 1902, Stribeck found a smooth transition between the static and the coulomb part of the friction curve now referred to as the Stribeck effect \cite{Stribeck1902}. The latter is still the standard for static friction models today.
@@ -354,7 +354,7 @@ Limit of iterations is set to $100$
     I_l(x_\Btxt^n) \dxx \uln = (1-\alpha)\dxx u_{l_\Btxt}^n + \alpha \dxx u_{l_\Btxt+1}^n
 \end{equation}
 
-\subsection{Energy Analysis}
+\subsection{Energy analysis}
 Following the energy analysis of the stiff string presented in Section \eqref{sec:energyAnalysisString}, taking an inner product of Eq. \eqref{eq:bowedStiffStringFDS} (after multiplication by $\rho A$) with $(\dtd \uln)$ over discrete domain $d$ one arrives at the following 
 \begin{align*}
     \dtp \h + \q &=  - \langle (\dtd \uln), J_l(x_\Btxt^n)f_\Btxt^n\Phi(\vrel^n) \rangle_d\\[-5pt]
@@ -372,12 +372,12 @@ where
     \q_\text{B} = f_\Btxt^n \Phi(\vrel^n) \vrel^n \qaq \p = f_\Btxt^n \Phi(\vrel^n)v_\Btxt^n.
 \end{equation*}
 
-\section{Dynamic Friction Models}
+\section{Dynamic friction models}
 As opposed to less complex static friction models, dynamic friction models relate the relative velocity to the friction force using a differential equation. Dynamic friction models exhibit a phenomenon called \textit{hysteresis}, which is the dependence of a system on its history. 
 
 The first dynamic friction model was due to Dahl \cite{Dahl1968} and captured hysteresis effects. The Stribeck effect was, however, not taken into account. The LuGre model (named after the collaboration between Lund and Grenoble) was then proposed by Canudas de Wit et al. in \cite{Canudas1993, Canudas1995} and extended the Dahl model to take the Stribeck effect into account. The model assumes a large ensemble of bristles between the two sliding surfaces, each of which contributes a tiny amount to the total friction force. The drawback of this model is that it exhibits drift for extremely small external forces. In \cite{Dupont2002}, Dupont et al. extended the LuGre model by allowing for a purely elastic regime that solves the drift issue. This model is referred to as the \textit{elasto-plastic} friction model and is used in this project.
 
-\subsection{The Elasto-Plastic friction model}
+\subsection{The elasto-plastic friction model}
 In a musical context, the elasto-plastic friction has been investigated in-depth by Serafin et al. in \cite{Serafin2003, Serafin2004, Avanzini2005}. Like the LuGre model, the elasto-plastic friction model assumes that the friction between the bow and the string is caused by a large quantity of bristles, all contributing a fraction of the total amount of friction. See Figure \ref{fig:elastoPlastic}.
 
 \input{exciters/elastoPlasticFig.tex}
@@ -450,7 +450,7 @@ is the discrete counterpart of \eqref{eq:zdot}. The discrete adhesion map is ide
 
 \subsection{Applied to a FDTD stiff string}
 \SWcomment[The first appearance contribution of the PhD project in this dissertation]
-The first appearance of a contribution of this work is the elasto-plastic friction model applied to a stiff string implemented using FDTD methods. This has been presented in paper \citeP[C] and will be extended on by providing more details on the implementation.\todo{will it though? And should I state the stability stuff here?}
+The first appearance of a contribution of this work is the elasto-plastic friction model applied to a stiff string implemented using FDTD methods. This has been presented in paper \citeP[C] and will be extended in this section by providing more details on the implementation.\todo{will it though? And should I state the stability stuff here?}
 
 In the same way as done with the static friction model in Section \ref{sec:staticFricMod}, one can add the friction force to the stiff string PDE in Eq. \eqref{eq:stiffStringPDE} and discretise the system as follows:
 %
@@ -507,7 +507,7 @@ The derivatives can be shown to be... \SWcomment[should I give those here..? Cou
 
 \todo{Plots of output and hysteresis loops}
 
-\subsection{Stability through Energy Analysis}
+\subsection{Stability through energy analysis}
 As the elasto-plastic bow model is a differential equation in itself, its approximation will need to abide a stability condition as well.
 As the system at hand is nonlinear, frequency domain analysis as described in Section \ref{sec:stabilityAnalysis} can not be performed. Energy analysis, on the other hand, can be used here to determine the necessary stability condition for this model. This section follows the concepts introduced in Section \ref{sec:stabilityAnalysisEnergy} to obtain a stability conditions for the elasto-plastic friction model. A similar process for finding stability for the LuGre model has been done by Olsson in \cite[p. 55]{Olsson1996} and the derivation below is inspired by his. 
 

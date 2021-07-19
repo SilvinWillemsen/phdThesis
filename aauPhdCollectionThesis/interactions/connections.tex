@@ -6,12 +6,16 @@ Although briefly mentioned in the previous chapter in Section \ref{sec:twoSidedC
 One can use connections to simulate a point-like damping finger on a string to create different pitches.
 
 Pointlike $\delta(x-x_\ctxt)$ or distributed $E_\ctxt$
+
+When connecting systems, notation becomes extremely important. Subscripts will be extensively used throughout this chapter to denote what variables belong to what system. Although this results in something of a notational jungle, it is better to be explicit and avoid confusion. 
+
+\cite{Bilbao2009Modular} presents a way to explicitly solve an arbitrary system of connections by writing everything in an extremely compact matrix form... 
+
 \subsubsection{Alternative interpretation of grid points}
 Section \ref{sec:gridFunctions} gives an introduction to how a continuous 1D system is subdivided into grid points in space (see Figure \ref{fig:gridExp}) in a process called discretisation. An alternative way to see grid points after discretisation is shown in Figure \ref{fig:gridExp2}. Rather than grid `points' with a spacing $h$ between them, a continuous system is divided into grid `sections' of width $h$. This interpretation allows the `weight' of a grid point to be calculated from its material properties and geometry. Notice that boundaries have a width of $h/2$ such that the total length $L = Nh$ m.
 
 As an example, the weight of one grid point (or now rather grid section) of a string can be calculated as $\rho A h$. The weight of one grid point of a 2D plane can be calculated as $\rho H h^2$. As these grid points interact with each other, the forces resulting from this interaction will scaled by their respective weight per grid point as will be shown in Section \ref{sec:stringPlateConnection}.
-
-This provides a better intuition for the interactions between components shown in this part. 
+This interpretation hopefully provides a better intuition for the interactions between components shown in this chapter. 
 
 \begin{figure}[h]
     \centering
@@ -21,14 +25,87 @@ This provides a better intuition for the interactions between components shown i
     \caption{Alternative interpretation of the discretisation of $u(x,t)$. The continuous system is divided into $N-1$ sections of width $h$ plus $2$ sections of width $h/2$ at the boundaries. Through this interpretation, the `weight' of a grid point can be calculated from its physical parameters. \label{fig:gridExp2}}
 \end{figure}
 
-\section{Rigid connection}
-The simplest connection-type is the rigid connection. 
+\section{Connected ideal strings}
+As an example, consider two ideal strings of length $L_u$ and $L_w$ (both in m) their transverse displacement denoted as $u=u(x,t)$ and $w = w(\chi,t)$ (both in m) (see Section \ref{sec:1DWave}).\footnote{Recall that the ideal string is the 1D wave equation with $c=\sqrt{T/\rho A}$.}  The systems are defined for $x\in \D_u$ with domain $\D_u=[0,L_u]$ and $\chi \in \D_w$ with domain $\D_w=[0,L_w]$ respectively. Notice that $\chi$ is used as the spatial coordinate for $w$ to denote that the two systems are defined over different spatial coordinates. Connecting these systems at $x_\ctxt\in \D_u$ and $\chi_\ctxt\in\D_w$ yields the following system of PDEs:
+\begin{subequations}\label{eq:conn1DwavePDE}
+    \begin{align}
+        \rho_u A_u \ptt u &= T_u \pxx u -\delta(x-x_\ctxt)f, \label{eq:conn1DwavePDEu} \\
+        \rho_w A_w \ptt w &= T_w \partial_\chi^2 w + \delta(\chi-\chi_\ctxt)f,\label{eq:conn1DwavePDEw}
+    \end{align}
+\end{subequations}
+where subscripts $u$ and $w$ denote whether a variable belongs to system $u$ or $w$ respectively. Notice that the partial derivative operator in Eq. \eqref{eq:conn1DwavePDEw} denotes a partial derivative with respect to $\chi$. Furthermore, $f = f(t)$ is the connection force (in N) which should be equal and opposite for the connected systems (hence the inverse signs). The definition for $f$ depends on the connection type, and two alternatives will be given shortly. Finally, the spatial Dirac delta function $\delta$ is defined as in Eq. \eqref{eq:spatialDirac}, and localises the connection force along the systems.
+
+
+\subsubsection{Relative location of objects}\todo{look at this compared to when I talk about it in chapter \ref{ch:collisions}}
+Notice that it is important to keep in mind the relative location of the connected objects i.e., whether one object is `above' or `below' an other. 
+If component $a$ is located above component $b$, and their relative displacement is defined as $\eta = a-b$, then a positive $\eta$ is going to have a negative effect on $a$ and a positive effect on $b$ and vice-versa. This is important for the signs when adding the force terms to the schemes.
+
 
 Forces should be equal and opposite. 
 
-As explained in Chapter \ref{ch:collisions}, it is important to consider whether an object is located `above' or `below' the other. If component $a$ is located above component $b$, and their relative displacement is defined as $\eta = a-b$, then a positive $\eta$ is going to have a negative effect on $a$ and a positive effect on $b$ and vice-versa. This is important for the signs when adding the force terms to the schemes. 
+\subsection{Discrete time}
+One can then discretise the states $u$ and $w$ to grid functions $\uln$ and $\wmn$ where $l\in \{0, \hdots, N_u\}$ and $m\in \{0, \hdots, N_w\}$.\footnote{Here, $m$ is used for the spatial index of $\wmn$ to avoid double subscripts $l_u$ and $l_w$.} Dividing  Eqs. \eqref{eq:conn1DwavePDEu} and \eqref{eq:conn1DwavePDEw} by $\rho_u A_u$ and $\rho_w A_w$ respectively yields
+\begin{subequations}\label{eq:conn1DwaveFDS}
+    \begin{align}
+        \dtt \uln &= c_u^2 \dxx \uln -J_{l, u}(x_\ctxt)\frac{f^n}{\rho_u A_u}, \label{eq:conn1DwaveFDSu} \\
+        \dtt \wmn &= c_w^2 \delta_{\chi\chi} \wmn + J_{m, w}(\chi_\ctxt)\frac{f^n}{\rho_w A_w},\label{eq:conn1DwaveFDSw}
+    \end{align}
+\end{subequations}
+where $c_u = \sqrt{T_u / \rho_uA_u}$ and $c_w = \sqrt{T_w / \rho_wA_w}$. The spreading operators $J_{l, u}(x_\ctxt) = J_{l, o_u, u}(x_\ctxt)$ and $J_{l, w}(\chi_\ctxt) = J_{l, o_w, w}(\chi_\ctxt)$ are as defined in Section \ref{sec:interpolationSpreading}, and their orders $o_u$ and $o_w$ are left unspecified. 
+
+\subsection{Implementation}
+
+The next step is to solve for the force $f^n$.
+
+\subsection{Rigid connection}
+The simplest connection-type is the \textit{rigid connection}. This connection type states that the displacement of two connected points should always be equal, and thus the distance between them should be 0 at all times. 
+
+
+For the rigid connection, the following is true
+\begin{equation}\label{eq:contRigid}
+    u(x_\ctxt, t) = w(\chi_\ctxt, t)
+\end{equation}
+
+In discrete time, the rigid connection in Eq. \eqref{eq:contRigid} becomes
+\begin{equation}\label{eq:discRigid}
+    I_{l, u}(x_\ctxt)\uln = I_{m, w}(\chi_\ctxt)\wmn,
+\end{equation}
+where interpolation operators $I_{l, u}(x_\ctxt) = I_{l, o_u, u}(x_\ctxt)$ and $I_{l, w}(\chi_\ctxt) = I_{l, o_w, w}(\chi_\ctxt)$ are as defined in Section \ref{sec:interpolationSpreading}. Notice that the order of these operators need to match their `dual' spreading operator, but the orders $o_u$ and $o_w$ may differ.
+
+
+Figure \ref{fig:connectedWaveEqs} shows two an implementation of system \ref{eq:conn1DwaveFDS} with $x_\ctxt = 0.25$ and $\chi_\ctxt = 0.75$. The wave equations have the same mass per unit length, i.e., $\rho_uA_u = \rho_wA_w$ but 
+\begin{figure}
+    \includegraphics[width=\textwidth]{figures/interactions/connectedWaveEqs.eps}
+    \caption{The wave propagation of two connected 1D wave equations with the same mass per unit length. \label{fig:connectedWaveEqs}}
+\end{figure}
+
+
+\subsection{Energy analysis}
+Figure \ref{fig:energyConn1DWave} shows the energy of an implementation of the 1D wave system in \eqref{eq:conn1DwaveFDS}.  The 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[->,node distance=3cm,
+        thick,main node/.style={circle,draw}]
+    
+        \node[] (image) at (0,0) {
+        \includegraphics[width=\textwidth]{figures/interactions/connected1DEnergy.eps}
+        };
+    
+        \node[] (he) at (0.2,0.5) {\small $\mathfrak{h}_\text{e}$};
+
+        \node[] (h) at (-5.8, 1) {\small $\mathfrak{h}$};
+        \node[] (v) at (-5.8, 0.5) {\small $\color{red}\mathfrak{h}_u$};
+        \node[] (t) at (-5.8, 0) {\small $\color{blue}\mathfrak{h}_w$};
+      \end{tikzpicture}
+      \caption{The energy of $u$ (blue), the energy of $w$ (red), and the total (black) energy of the system of connected 1D wave equations in \eqref{eq:conn1DwaveFDS}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy} shows that the deviation of the energy is within machine precision. \label{fig:energyConn1DWave}}
+\end{figure}
+
+\subsection{Modal analysis}
+
 
 \section{Spring-like connections}
+
+Forces are still equal and opposite as the springs are not distributed...
 
 \subsection{Connection with rigid barrier (scaled)}
 Consider the (scaled) 1D wave equation with an additional force term $F^n$
@@ -68,7 +145,7 @@ In this example, let's consider a string connected to a plate using a nonlinear 
 
 Extend section \ref{sec:interpolationSpreading} to 2D 
 
-\subsection{Interpolation and Spreading in 2D}\label{sec:interpolationSpreading2D}
+\subsection{Interpolation and spreading in 2D}\label{sec:interpolationSpreading2D}
 One can extend the interpolation and spreading operators presented in Section \ref{sec:interpolationSpreading} to 2D by adding an additional argument to the operators \cite{theBible}. Using $l_\itxt = \floor[x_\itxt / h]$ and $m_\itxt = \floor[y_\itxt / h]$, a $0$\thOrder interpolation operator $I_0(x_\itxt, y_\itxt) = I_{(l, m), 0}(x_\itxt, y_\itxt)$ is defined as
 \begin{equation}
     I_0(x_\itxt, y_\itxt) = \begin{cases}

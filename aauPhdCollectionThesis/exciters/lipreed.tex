@@ -5,7 +5,7 @@ Lip reed model
 
 Coupling to Tube
 
-\section{Mass-Spring Systems Revisited: Damping}\label{sec:massSpringDamping}
+\section{Mass-spring systems revisited: Damping}\label{sec:massSpringDamping}
 Before moving on to the lip reed system, a small extension to the mass-spring system given in Section \ref{sec:massSpringSystem} will be given here. 
 
 Damping can be easily be added to Eq. \eqref{eq:massSpringPDE} according to 
@@ -20,7 +20,7 @@ Expanding and solving for $u^{n+1}$ yields the following update equation (before
 \begin{equation}\label{eq:massSpringDampingUpdate}
     \left(1+\frac{Rk}{2M}\right)u^{n+1} = 2 \un - u^{n-1} - \frac{Kk^2}{M}\un + \frac{Rk}{2M}u^{n-1}.
 \end{equation}
-\subsection{Energy Analysis}
+\subsection{Energy analysis}
 Following Section \ref{sec:energyAnalysis}, one can obtain the energy of Eq. \eqref{eq:massSpringDampingFDS} through a multiplication of the scheme by $(\dtd \un)$ to get
 \begin{equation}\label{eq:massSpringDampingPreEnergyBalance}
     M(\dtt \un)(\dtd \un) = -K(\dtd \un)\un - R(\dtd \un)^2.
@@ -39,7 +39,7 @@ and
     \q = R(\dtd \un)^2.
 \end{equation}
 
-\section{Continuous Time}
+\section{Continuous time}
 Section \ref{eq:webstersExcitation} already covered  A more physical approach, that is bidirectional, is to model a lip as a mass-spring system that interacts with the left boundary of the tube (see Figure \ref{fig:lipSystem}). Following \cite{Harrison2018} we get
 \begin{equation}
     M_\text{r}\frac{d^2y}{dt^2} = -M_\text{r} \omega_0^2 y - M_\text{r} \sigma_\text{r} \frac{dy}{dt} + S_\text{r}\Delta p,
@@ -217,7 +217,7 @@ Assuming that the volume flow velocity is conserved we define the total air volu
     S(0)v(0,t) = U_\text{B}(t) + U_\text{r}(t).
 \end{equation}
 
-\section{Discrete Time}
+\section{Discrete time}
 \def\nph{}
 \def\nphSys{n+1/2}
 

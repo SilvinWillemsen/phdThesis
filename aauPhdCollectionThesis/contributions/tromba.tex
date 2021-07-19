@@ -4,10 +4,10 @@ This chapter provides an extended summary for the physical model presented in th
 \section{Summary}
 The tromba marina is a bowed monochord instrument from medieval Europe (see Figure \ref{fig:tromba}). It has a long quasi-trapezoidal body and is unique due to its oddly-shaped bridge that the string rests on. The bridge is often called a `shoe' due to its shape and is free to rattle against the body in sympathy with the movement of the vibrating string (see Figure \ref{fig:bridge}). This rattling causes a sound with brass or trumpet-like qualities, hence the name \textit{tromba} which stems from the Italian word trumpet. The rarity of the instrument as well as its interesting physics makes it an ideal case for a physical modelling implementation.
 
-\subsubsection{Real-time Implementation and Control}
+\subsubsection{Real-time implementation and control}
 Paper \citeP[D] presents physical model of the tromba marina and its the real time implementation. The paper uses the Sensel morph for control of the algorithm. See Section \ref{sec:sensel} for more information on this controller. To approach the interaction paradigm of the real-life instrument, a virtual reality (VR) application was made from where the algorithm could be controlled. For this end, the PHANTOM Omni haptic device was used to control the implementation and presented in paper \citeP[E]. See Section \ref{sec:phantomOmni} for more details on this device. The latter has been evaluated and the results will be summarised below.
 
-\subsubsection{Evaluation and Results}
+\subsubsection{Evaluation and results}
 The VR implementation of the tromba marina was evaluated on 14 participants. The goals of the evaluation was to determine the general experience of bowing in a VR environment, and to evaluate the playability of a VR monochord instrument.
 The data was collected as a combination of qualitative and quantitative methods as detailed in paper \citeP[E]. 
 
@@ -29,11 +29,11 @@ The results show that the various modalities (visuals, audio and haptics) seemed
 \label{fig:bridge}
 \end{figure}
 
-\section{Physical Model}
+\section{Physical model}
 This section presents the physical model of the tromba marina with reference to the theory presented in Parts \ref{part:resonators}, \ref{part:exciters} and \ref{part:interactions}.
 As much as possible, this chapter follows the notation of paper \citeP[D], as long as it is coherent with what has already been presented in this thesis. Discrepancies between this chapter and the paper will be clearly highlighted. 
 
-\subsection{Continuous Time}
+\subsection{Continuous time}
 The full musical instrument has been divided into three parts: the string, the bridge and the body each of which will briefly be presented here on. Each resonator in isolation is of the form 
 \begin{equation}\label{eq:trombaPDEForm}
     \L q = 0
@@ -121,7 +121,7 @@ Notice that when compared to the system presented in paper \citeP[D], Eqs. \eqre
 
 \SWcomment[Insert figure 4 of the SMC paper here]
 
-\subsection{Discrete Time}
+\subsection{Discrete time}
 Using the process explained in Section \ref{sec:solvingMassBarrier} for discretising the collision terms and introducing\footnote{The definition for $\xi^n$ was wrong in paper \citeP[D], where $\psi^{n-1/2}$ was subtracted rather than added. It has been corrected here.} 
 \begin{equation}
     \xi^n = \frac{k}{2}g^n\delta_{t\cdot}\eta^n + \psi^{n-1/2},
@@ -149,11 +149,11 @@ where the discrete linear (partial) differential operators $\ell$ are the discre
 \end{subequations}
 Furthermore, the definitions for $g_\sm^n$ and $g_\mp^n$ can be found in Eq. \eqref{eq:gDef}\footnote{Paper \citeP[D] still uses the old definition of $g^n$ in Eq. \eqref{eq:gDefOld}.} and $J_{l,0}(\chi_\sm)$ and $J_{l,3}(\chi_\text{B})$ are the $0$\thOrder and cubic spreading operators respectively as defined in Section \ref{sec:interpolationSpreading} and $J_{(l,m),0}(x_\mp, y_\mp)$ is a $0$\thOrder 2D spreading operator as defined in Section \ref{sec:interpolationSpreading2D}.
 
-As $0$\thOrder spreading operators are used for the collision terms in the string and body FD schemes, the definitions of Eqs. \eqref{eq:etaSM} and \eqref{eq:etaMP} do not use interpolation operators to obtain the the string and plate values. Instead, for brevity, $\ubr^n = u_{l_\sm}^n$ with $l_\sm = \floor[\chi_\sm / h_\stxt]$ and $\zbr^n = z_{(l_\mp, m_\mp)}^n$ with $(l_\mp, m_\mp) = (\floor[x_\mp / h_\ptxt], \floor[y_\mp / h_\ptxt])$ are introduced for the string and the plate respectively. Here $h_\stxt$ is the grid spacing for the string and $h_\ptxt$ that for the plate. 
+As $0$\thOrder spreading operators are used for the collision terms in the string and body FD schemes, the definitions of Eqs. \eqref{eq:etaSM} and \eqref{eq:etaMP} do not use interpolation operators to obtain the string and plate values. Instead, for brevity, $\ubr^n = u_{l_\sm}^n$ with $l_\sm = \floor[\chi_\sm / h_\stxt]$ and $\zbr^n = z_{(l_\mp, m_\mp)}^n$ with $(l_\mp, m_\mp) = (\floor[x_\mp / h_\ptxt], \floor[y_\mp / h_\ptxt])$ are introduced for the string and the plate respectively. Here $h_\stxt$ is the grid spacing for the string and $h_\ptxt$ that for the plate. 
 
 There are a few components presented in paper \citeP[D] that the system does not include here. These are the offset $w_\text{off}$ between the mass and the plate as well as the damping finger that interacts with the string to play different pitches. As the focus of this chapter is on the process of solving the system at the bridge for which these two components are not important, these will be ignored to avoid additional complexity. Further details on these components are provided in the paper.
 
-\section{Implementation Details}
+\section{Implementation details}
 This section extends on paper \citeP[D] by providing more details on the solution of the string-bridge-body interaction.
 
 Following Section \ref{sec:massString} one could expand Eqs. \eqref{eq:trombaSystemFDSString}, \eqref{eq:trombaSystemFDSMass} and \eqref{eq:trombaSystemFDSPlate} and treat these as a system of linear equations (see Section \ref{sec:linearEquations}). This would require an inversion of a $3\times 3$ matrix each iteration.

@@ -43,7 +43,7 @@ where a dot denotes a single derivative with respect to time.
 
 This form of the potential can be discretised to a FD scheme that can be solved explicitly. This process will be shown below, using an example of the simple mass-barrier collision. 
 
-\section{The Mass -- Rigid Barrier Collision}\label{sec:massRigidBarrier}
+\section{The mass -- rigid barrier collision}\label{sec:massRigidBarrier}
 As a test case, the simplest collision case -- a mass colliding with a rigid barrier -- is presented here. Consider a mass at location $u = u(t)$ (in m) colliding with a barrier at location $b$ (in m).
 
 If the barrier is placed above the mass, the force it exerts on the mass will be negative and its system would be described as
@@ -63,11 +63,15 @@ Looking towards the discretisation the mass-barrier collision, one could rewrite
 where $g = \psi'$.
 
 \subsubsection{Location of objects}
-Notice that it is important to keep in mind the relative location of the colliding objects, i.e., whether one object is `above' or `below' an other. In other words, which has a more positive or negative displacement than the other object. A mass with a displacement of $0.01$ m will thus be `above' a barrier with a displacement of $-0.05$ m. Along these lines, a positive force acting on an element will accelerate it upwards and a negative force will accelerate it downwards.
+As explained in Chapter \ref{ch:connections}, it is important to consider whether an object is located `above' or `below' the other, 
+
+% Notice that 
+% it is important to keep in mind the relative location of the colliding objects, i.e., whether one object is `above' or `below' an other. 
+or, which has a more positive or negative displacement than the other object. A mass with a displacement of $0.01$ m will thus be `above' a barrier with a displacement of $-0.05$ m. Along these lines, a positive force acting on an element will accelerate it upwards and a negative force will accelerate it downwards.
 
 The relative location of the two colliding objects will affect two things in \eqref{eq:massBarrier}.
 Firstly, the location of the object determines the direction of the collision force, i.e., the sign of the right-hand side in system \eqref{eq:massBarrierPDE1}. In this case, the barrier is placed above the mass, and will exert a downwards (negative) force on the mass. If the barrier was placed below the mass, the opposite would have applied.
-Secondly, the definition of $\eta$ in \eqref{eq:massBarrierPDE3} is affected by the relative location of the objects. The collision potential in Eq \eqref{eq:potential} is only non-zero when $\eta$ is positive. If the barrier is placed above the mass, $u(t)-b$ will be positive on collision. It is thus important to remember that $\eta$ should be defined as the element above subtracted from the element below.
+Secondly, the definition of $\eta$ in \eqref{eq:massBarrierPDE3} is affected by the relative location of the objects. The collision potential in Eq \eqref{eq:potential} is only non-zero when $\eta$ is positive. If the barrier is placed above the mass, $u(t)-b$ will be positive on collision. It is thus important to remember that $\eta$ should be defined as the element above subtracted from the element below.\todo{This might need to be moved to the previous chapter. At least highlight the difference between a ``pushing'' collision and a ``pulling'' connection}
 
 \subsection{Discrete time}
 Before discretising system \eqref{eq:massBarrier} in full, the discrete approximation to the collision potential will be elaborated on.
@@ -171,8 +175,10 @@ which is used to calculate $\psi^{n+1/2}$ by expanding and rewriting \eqref{eq:m
     \psi^{n+1/2} = \psi^{n-1/2} + \frac{\eta^{n+1} - \eta^{n-1}}{2}\ .
 \end{equation}
 
-\subsection{Energy Analysis}
-To prove that the collision term does not add any additional energy into the system (retaining passivity) and that it does not add additional constraints on the stability of the system, the energy analysis techniques presented in Section \ref{sec:energyAnalysis} can be used. Multiplying Eq. \eqref{eq:massBarrierSystem1} by $(\dtd \un)$ yields 
+\subsection{Energy analysis}
+To prove that the collision term does not add any additional energy into the system (retaining passivity) and that it does not add additional constraints on the stability of the system, the energy analysis techniques presented in Section \ref{sec:energyAnalysis} can be used. Notice that for brevity, the steps presented Section \ref{sec:energyAnalysis} will not explicitly be followed.
+
+Multiplying Eq. \eqref{eq:massBarrierSystem1} by $(\dtd \un)$ yields 
 \begin{equation*}
     \dtp \h  = -\left(\mtp\psi^{n-1/2}\right)g^n (\dtd \un)
 \end{equation*}
@@ -195,7 +201,7 @@ with collision energy
 \end{equation}
 Recall that in order for a scheme to be passive, its energy must be non-negative. The fact that $\psi$ is squared proves passivity for the system in \eqref{eq:massBarrierSystem}.
 
-\section{Mass-spring -- String collision}\label{sec:massString}
+\section{Mass-spring -- string collision}\label{sec:massString}
 The mass-spring -- string collision is slightly trickier than the mass -- rigid barrier collision, as there are two moving components rather than one. This system is chosen as an example as it has the interesting use-case of fretting a string to change the pitch, modelling the fretting finger as a mass.
 
 Consider a lossless stiff string of length $L$, its transverse displacement described by $u = u(x,t)$ (in m) and defined over $x\in \D$ with domain $\D = [0, L]$. The mass with displacement $w = w(t)$ (in m) will model the fretting finger. The PDE for the stiff string and its parameter definitions can be found in Eq. \eqref{eq:stiffStringPDENoLosses} and for the mass-spring system in Eq. \eqref{eq:massSpringPDE}. Placing the string above the mass, the following system emerges:
@@ -290,7 +296,9 @@ Equations \eqref{eq:expandedMassString1} and \eqref{eq:expandedMassString2} can 
 \end{equation}
 From this, $\eta^{n+1}$ can be calculated, and can consequently be applied to the string and mass in system \eqref{eq:massStringComb}.
 
-\subsection{Energy Analysis}
+\subsection{Energy analysis}
+This section follows Section \ref{sec:energyAnalysis} without explicitly following the steps for brevity. 
+
 One can obtain the energy of the stiff string FD scheme in Eq. \eqref{eq:massString1} by taking the inner product of scheme by $\dtd \uln$ over domain $\D$ to obtain 
 \begin{equation}\label{eq:rOCEnergyString}
     \dtp \h_\text{s} = \left\langle (\dtd \uln), J_l(x_\text{m})\left(\mtp \psi^{n-1/2}\right)g^n\right\rangle_\D
@@ -330,7 +338,7 @@ with collision energy
 \end{equation*}
 Again, the fact that $\psi$ is squared here, means that $\h_\text{c}$ is non-negative, and proves passivity of the system. 
 
-\section{Two-Sided Collision: A Connection}\label{sec:twoSidedCollision}
+\section{Two-sided collision: A connection}\label{sec:twoSidedCollision}
 
 % As an alternative to the method connections shown in Chapter \ref{ch:connections} showed ways to connect various resonators using techniques presented in \cite{theBible}. An alternative method to establish these connections can be devised using the methods presented in this chapter.
 % 

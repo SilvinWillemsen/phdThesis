@@ -6,7 +6,7 @@ In this work, planar wave propagation is assumed (rather than spherical), such t
 
 This chapter first presents Webster's equation, which extends the 1D wave equation presented in Section \ref{sec:1DWave} by introducing a spatially varying cross-section. Although not used for the contributions in Part \ref{part:contributions}, Webster's equation forms a good basis for the second part of this chapter, which decomposes Webster's equation into a system of two coupled first-order PDEs. This has been used to model the trombone in paper \citeP[H].
 
-\section{Webster's Equation}\label{sec:webstersEq}
+\section{Webster's equation}\label{sec:webstersEq}
 For an (axially symmetric) acoustic tube where the wavelengths of the frequencies at interest are much larger than the radius of the tube, one can simplify the system to be one-dimensional \cite{Bilbao2018}. For low-amplitude vibrations, the air propagation in this tube can be described using \textit{Webster}'s equation \cite{Webster1919}
 \begin{equation}\label{eq:webstersPDE}
     S\partial_t^2\Psi = c^2\partial_x(S\partial_x\Psi),
@@ -44,7 +44,7 @@ Here, the following boundaries are chosen
 \end{equation}
 i.e. closed at the left end and open at the right end.
 
-\subsection{Discrete Time}
+\subsection{Discrete time}
 The state variable is discretised to the grid function $\Psi_l^n$ and is defined for $n\in \mathbb{N}^0$ and $l = \{0, \hdots, N\}$, where $N$ is the number of intervals between the grid points.
 As the cross-section is distributed in space, $S(x)$ needs to be discretised to a grid function as well, albeit only in space (as it is not time-varying). Following \cite{Bilbao2018}, it is useful to introduce \textit{interleaved grid points} at $l-1/2$ and $l+1/2$ for $S$ and are defined as 
 \begin{equation}\label{eq:sHalf}
@@ -97,7 +97,7 @@ Although these values will not be needed when discretising the boundary conditio
 \end{figure}
 
 
-\subsubsection{Boundary Conditions}
+\subsubsection{Boundary conditions}
 One can discretise the continuous boundary conditions in Eq. \eqref{eq:openClosed} (closed at $x=0$, open at $x=L$) using centred difference operators for higher accuracy
 \begin{subequations}\label{eq:discBoundariesBrass}
     \begin{align}
@@ -192,7 +192,7 @@ The input signal is arbitrary, but looking towards lip excitation, and following
 % \end{equation}
 % which is normally $0$. A more realistic open end is a radiating one, which can be found below.
 
-\subsection{Matrix Form and Output}\label{sec:outputWebster}
+\subsection{Matrix form and output}\label{sec:outputWebster}
 One can write scheme \eqref{eq:discWebster} in matrix form by saving the state in a vector $\boldPsi^n = [\Psi_0^n, \hdots, \Psi_N^n]^T$ and creating a $\Dxx$ matrix that includes the effect of $S$. Assuming Neumann boundary conditions yields
 \begin{equation}
     \Dxx = \frac{1}{h^2}\begin{bmatrix}
@@ -206,7 +206,7 @@ One can write scheme \eqref{eq:discWebster} in matrix form by saving the state i
     \end{bmatrix}.
 \end{equation}
 Notice that there are no appearances of $S$ at the boundaries as these vanish due to the boundary conditions as in Eq. \eqref{eq:leftBoundaryWebster}.
-Using $I_N$ as the $N\times N$ identity matrix, one can write scheme \eqref{eq:discWebster} in matrix form as
+Using $\I_N$ as the $N\times N$ identity matrix, one can write scheme \eqref{eq:discWebster} in matrix form as
 \begin{equation}\label{eq:matrixFormWebsters}
     \A\boldPsi^{n+1} = \B\boldPsi^n + \C \boldPsi^{n-1} + \mathbf{v}^n
 \end{equation}
@@ -214,10 +214,10 @@ where
 \begin{equation*}
     \begin{gathered}
     \A = \begin{bmatrix}
-        \I_{N}& \mathbf{0}\\
+        \I_{N}& \mathbf{0}\\\
         \mathbf{0} & 1 + \alpha_+\
     \end{bmatrix}, \quad \B = 2\I + c^2 k^2 \Dxx, \quad \text{and} \quad \C = \begin{bmatrix}
-        -\I_N & \mathbf{0}\\
+        -\I_N & \mathbf{0}\\\
         \mathbf{0}& -1 + \alpha_-
     \end{bmatrix},
     \end{gathered}
@@ -261,7 +261,7 @@ The output of an implementation of Webster's equation is shown in Figure \ref{fi
 \end{figure}
 
 
-\subsection{Energy Analysis}
+\subsection{Energy analysis}
 Energy analysis of Webster's equation with a radiating end might seem straightforward. However, due to the varying cross-sectional area, the energy balance deserves a more detailed treatment, especially at the boundaries. For this analysis, (centred) Neumann boundary conditions are used for both boundaries and the input is ignored. This section follows the steps presented in Section \ref{sec:energyAnalysis}.% to retain generality. %These can then easily be adapted to Dirichlet if needed.
 
 \subsubsection{Step 1: Obtain $\dtp \h$}
@@ -310,7 +310,7 @@ where
 \end{equation}
 Notice that $\Sbar_l$ is included in the norm by using its square-root.
 
-The next step is to find definitions for $\el$ and $\er$ such that the boundaries are strictly dissipative. In other words, the boundary terms need to be be rewritten such that 
+The next step is to find definitions for $\el$ and $\er$ such that the boundaries are strictly dissipative. In other words, the boundary terms need to be rewritten such that 
 \begin{align*}
     \dxd \Psi_0^n &= 0\  \Rightarrow\ \b_\text{l} = 0 \\
     \dxd \Psi_N^n &= 0\  \Rightarrow\ \b_\text{r} = 0
@@ -361,7 +361,7 @@ Figure \ref{fig:energyWebsters} shows the energetic output of Webster's equation
       \caption{The kinetic (blue), potential (red), and total (black) energy as well as the energy stored by the radiation condition (green) of an implementation of Webster's equation are plotted in the left panel. Notice that the energy decreases between $n=60$ and $n=70$ as the excitation reached the boundary where damping is included. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyWebsters}}
 \end{figure}
 
-\subsection{Stability through Energy Analysis}\label{sec:stabilityEnergyWebster}
+\subsection{Stability through energy analysis}\label{sec:stabilityEnergyWebster}
 Frequency domain analysis as presented in Section \ref{sec:stabilityAnalysis}, or more specifically, von Neumann analysis, can not be performed on Webster's equation due to the varying cross-section of the system \cite{theBible}. Instead, stability conditions can be obtained through energy analysis explained in Section \ref{sec:stabilityAnalysisEnergy}.
 
 Consider the following scheme
@@ -411,8 +411,8 @@ For the special choice of $[S]_l = \mxx S_l$, this condition reduces to
 \end{equation}
 also given in \eqref{eq:CFLwebster}.
 
-\subsection{Modal Analysis}
-The variable cross-section causes the modes of the system to vary in interesting ways. If the tube is perfectly cylindrical and $S(x)$ is thus constant, Webster's equation reduces to the 1D wave equation and the modal frequencies are are integer multiples of the fundamental frequency. 
+\subsection{Modal analysis}
+The variable cross-section causes the modes of the system to vary in interesting ways. If the tube is perfectly cylindrical and $S(x)$ is thus constant, Webster's equation reduces to the 1D wave equation and the modal frequencies are integer multiples of the fundamental frequency. 
 
 For low cross-sectional variations, the modes generally follow a linear pattern. See Figure \ref{fig:webstersModes}. The damping per mode, however, follows a different pattern, where higher damping occurs around $\fs/4$, and is due to the comb-filtering effect that the radiation has on the system. \SWcomment[is this true?]
 
@@ -422,10 +422,10 @@ For low cross-sectional variations, the modes generally follow a linear pattern.
     \caption{The result of a modal analysis of Webster's equation with parameters and geometry given in \ref{sec:outputWebster}. Notice the higher damping for modes around $\fs/4$. \label{fig:webstersModes}}
 \end{figure}
 
-\section{First-order System}\label{sec:firstOrderSystem}
+\section{First-order system}\label{sec:firstOrderSystem}
 Until now, the only PDEs presented have been second-order in time, i.e., are dependent on the acceleration of the state variable. This section presents a system of two coupled first-order PDEs which has been used to model the trombone in paper \citeP[H].
 
-\subsection{Continuous Time}
+\subsection{Continuous time}
 Using the same variables as before for cross-sectional area $S=S(x)$, wave speed $c$, and air density $\rho_0$, the system of PDEs is defined as follows:
 \begin{subequations}\label{eq:firstOrderSystem}
 \begin{align}
@@ -454,7 +454,7 @@ For the first-order PDE system in Eq. \eqref{eq:firstOrderSystem}, the boundary 
 \end{subequations}
 which, through Eq. \eqref{eq:pressureVelocityFirstOrder}, relate to the boundary conditions of Webster's equation in Eq. \eqref{eq:contBoundariesBrass}.
 
-\subsection{Discrete Time}
+\subsection{Discrete time}
 It is useful to place either $p$ or $v$ on an interleaved grid (see Figure \ref{fig:interleavedGrid}). Following \cite{Harrison2018}, $v$ is placed on this interleaved grid both in space and time. 
 Accordingly, system \eqref{eq:firstOrderSystem} is discretised as
 \begin{subequations}\label{eq:firstOrderFDS}
@@ -480,7 +480,7 @@ An advantage of using an interleaved grid like this, is that the forward and bac
     \caption{Grid points on the regular grid (in black) are used for pressure $p$, while points on the interleaved grid (in white) are used for particle velocity $v$.\label{fig:interleavedGrid}}
 \end{figure}
 
-\subsubsection{Boundary Conditions}\label{sec:boundariesFirstOrder}
+\subsubsection{Boundary conditions}\label{sec:boundariesFirstOrder}
 The boundary conditions in Eq. \eqref{eq:firstOrderBoundaryConditionsCont} can be discretised as follows
 \begin{subequations}
     \begin{align}\label{eq:firstOrderBoundaryConditions}
@@ -489,7 +489,7 @@ The boundary conditions in Eq. \eqref{eq:firstOrderBoundaryConditionsCont} can b
     \end{align}
 \end{subequations}
 
-\subsection{Matrix Form}
+\subsection{Matrix form}
 One way to write system in \eqref{eq:firstOrderFDS} in matrix form, is to save both $p$ and $v$ in vectors as 
 \begin{subequations}
     \begin{align}
@@ -537,8 +537,8 @@ Alternatively, one can write the scheme in one-step form by concatenating the st
 where
 \begin{equation}
     \B = \begin{bmatrix}
-        I_{N+1}+\B_v\B_p & \B_v  \\
-        \B_p & I_{N}
+        \I_{N+1}+\B_v\B_p & \B_v  \\
+        \B_p & \I_{N}
     \end{bmatrix},
 \end{equation}
 is of size $(2N + 1) \times (2N + 1)$ and may be directly used as matrix $\Q$ for the modal analysis using a one-step form described in Section \ref{sec:oneStepForm}.
@@ -549,7 +549,7 @@ Finally,
 \end{equation}
 and will be of size $(2N + 1) \times 1$. The matrix $B$ may then 
 
-\subsection{Energy Analysis}
+\subsection{Energy analysis}
 This section presents an energy analysis of the first-order system presented above using the techniques presented in Section \ref{sec:energyAnalysis}. For the bulk of the analysis, \cite{Harrison2018} is followed. 
 
 \subsubsection{Step 1: Obtain $\dtp \h$}
@@ -609,7 +609,7 @@ Figure \ref{fig:energyFirstOrder} shows the energetic output of an implementatio
       \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the first-order system in Eq. \eqref{eq:firstOrderFDS} are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \label{fig:energyFirstOrder}}
 \end{figure}
 
-\subsection{Adding Radiation}
+\subsection{Adding radiation}
 \def\r{\text{r}}
 \def\one{{(1)}}
 Following, \cite{Harrison2018} radiation  can be added to the schemes using a circuit representation of the Levine and Schwinger radiation model (See Figure \ref{fig:circuit}). 
@@ -645,7 +645,7 @@ A definition for $\bar v$ can then be found by first expanding Eq. \eqref{eq:bar
 \begin{equation}\label{eq:vBarExpanded}
     \bar v = \frac{1}{2}\left(v_\one^{n+1} + v_\one^n\right) + \left(\frac{1}{2R_2} + \frac{C_\r}{k}\right) p_\one^{n+1} +\left(\frac{1}{2R_2} - \frac{C_\r}{k}\right)p_\one^n,
 \end{equation}
-and making making this solely dependent on the known values $v_\one^n$, $p_\one^n$ and $p_N^n$ and the unknown $p_N^{n+1}$ (as this can be obtained using \eqref{eq:preSolutP}).
+and making this solely dependent on the known values $v_\one^n$, $p_\one^n$ and $p_N^n$ and the unknown $p_N^{n+1}$ (as this can be obtained using \eqref{eq:preSolutP}).
 
 Equation \eqref{eq:barP1} can be expanded to 
 \begin{equation}\label{eq:voneNext}

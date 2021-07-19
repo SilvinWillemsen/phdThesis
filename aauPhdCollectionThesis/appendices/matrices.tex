@@ -1,5 +1,5 @@
 \chapter{Matrices}\label{app:matrices}
-This appendix aims to provide some fundamental knowledge on matrices and linear algebra used throughout this dissertation. 
+This appendix aims to provide some fundamental knowledge on matrices and linear algebra used throughout this thesis. 
 
 A matrix is a rectangular array with numerical elements and its dimensions are denoted using ``$row \times column$''. A $3\times 5$ matrix, for example, thus has $3$ rows and $5$ columns (see Figure \ref{fig:matrixA}). Along those lines, a \textit{row vector} is a matrix with $1$ row and more than $1$ column and a \textit{column vector} is a matrix with $1$ column and more than $1$ row.
 
@@ -33,7 +33,7 @@ Also see Figure \ref{fig:matrixTransp}. For a row vector, the transpose operatio
     \caption{A matrix $\A$ and its transpose $\A^T$. The elements get flipped along the main diagonal of the matrix according to Eq. \eqref{eq:matrixTransposition}. \label{fig:matrixTransp}}
 \end{figure}
 
-\subsubsection{Matrix Multiplication}
+\subsubsection{Matrix multiplication}
 Matrix multiplication (this includes matrix-vector multiplication) is different from regular multiplication in that it needs to abide several extra rules. The multiplication of two matrices $\A$ and $\B$ to a resulting matrix $\C$ is defined as
 \begin{equation}\label{eq:matrixMult}
     c_{ij} = \sum_{k=1}^K a_{ik} b_{kj},
@@ -52,7 +52,7 @@ As an example, consider the $L\times M$ matrix $
     \caption{Visualisation of valid matrix multiplications (see Eq. \eqref{eq:matrixMult}). The ``inner'' dimensions (columns of the left matrix and rows of the right) must match and result in a matrix with a size of ``outer'' dimensions (rows of the left matrix and columns of the right). \label{fig:matrixVector}}
 \end{figure}
 
-\section{Matrix Inverse}\label{sec:inverse}
+\section{Matrix inverse}\label{sec:inverse}
 If a matrix has the same number of rows as columns, it is called a \textit{square matrix}. Square matrices have special properties, one of which is that it (usually) can be \textit{inverted}. A square matrix $\A$ is invertable if there exists a matrix $\B$ such that
 \begin{equation}
     \A \B = \B \A = \I. 
@@ -76,7 +76,7 @@ The inverse of a \textit{diagonal matrix} (a matrix with non-zero elements on it
     }.
 \end{equation*}
 
-\section{Systems of Linear Equations}\label{sec:linearEquations}
+\section{Systems of linear equations}\label{sec:linearEquations}
 Matrices can be conveniently used to solve \textit{systems of linear equations}, a set of linear equations containing the same set of variables. 
 
 For example, take the system of linear equations
@@ -120,7 +120,7 @@ or more compactly, by using the `\texttt{\textbackslash}' operator:
     \texttt{u = A\textbackslash w;}
 \end{center}
 
-\section{Eigenvalue Problems}\label{sec:eigenValueProblems}
+\section{Eigenvalue problems}\label{sec:eigenValueProblems}
 A square matrix $\A$ is characterised by its \textit{eigenvalues} and corresponding \textit{eigenvectors}. In a FDTD context, these are usually associated with the modes of a system, where the eigenvalues relate to the modal frequencies and the eigenvectors to the modal shapes. Section \ref{sec:modalAnalysis} provides more information on this.
 
 To find these characteristic values for a $p\times p$ matrix $\A$, an equation of the following form must be solved 

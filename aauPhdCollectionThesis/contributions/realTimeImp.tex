@@ -48,7 +48,7 @@ Here is where the power of C++
 Indexing in
 Matlab is 1-based, meaning that the index of a vector starts at 1. If \texttt{u} is a vector with 10 elements, the first element is retrieved as \texttt{u(1)} and the last as \texttt{u(10)}. C++, on the other hand, is 0-based and retrieving the first and last element of a size-10 vector happens through \texttt{u[0]} and \texttt{u[9]}respectively. 
 
-\section{Do's and don'ts in Real-Time FD schemes}
+\section{Do's and don'ts in real-time FD schemes}
 
 “The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming.” [Knuth 1974]
 
@@ -127,7 +127,7 @@ double updateStates()
 }
 \end{lstlisting}
 
-\subsubsection{Grouping terms and Precalculating coefficients}
+\subsubsection{Grouping terms and precalculating coefficients}
 Generally in implementations of FD schemes the most computationally expensive part of the algorithm is the calculation of the scheme itself. This is due to the rate at which it needs to be updated which usually is 44100 Hz. Graphics can be updated at rates orders of magnitude lower than the audio (say 10-20 Hz) and still be considered smooth enough.
 
 Recall the update equation for the 1D wave update equation in Eq. \eqref{eq:1DwaveUpdate}
@@ -263,7 +263,7 @@ void Simple1DWave::excite()
 
 Library called \textit{Eigen} \cite{Eigen}
 
-\subsection{Matrix Inversions in Real-Time}\label{sec:RTmatrixInversion}
+\subsection{Matrix inversions in real-time}\label{sec:RTmatrixInversion}
 For small ($2\times 2$ and $3\times 3$) matrices it is doable to do the inversion `by hand'. This requires finding the \textit{determinant} of a matrix
 
 \begin{equation*}

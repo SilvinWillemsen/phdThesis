@@ -1,7 +1,7 @@
 \chapter{Physically-Inspired Excitations}\label{ch:physInspExcitations}
 This short chapter introduces several simple ways to excite the different resonators presented in Part \ref{part:resonators}.
 
-\section{Initial Conditions}
+\section{Initial conditions}
 The easiest way to excite a system is to set its initial conditions to non-zero values. This has been done several times before using a raised cosine 
 
 To not give the system an initial velocity, both $u^0$ and $u^1$ will have to be initialised with the same value
@@ -20,7 +20,7 @@ spatial Nyquist
     \caption{The 1D wave equation initialised with an impulse at $l=0.5N$.\label{fig:impulse}}
 \end{figure}
 
-\subsection{Raised Cosine}\label{sec:raisedCosine}
+\subsection{Raised cosine}\label{sec:raisedCosine}
 As the impulse triggers very high-frequency behaviour 
 
 Also referred to as a pluck -- due to the displacing and letting go -- but a more physically reasonable pluck is presented in Section \ref{sec:pluck}
@@ -62,7 +62,7 @@ Noise input
 
 Stress-testing
 
-\section{Signals}
+\section{Time-varying excitations}
 If one would like to excite the system, not at the start, but later on in the simulation, 
 
 \begin{equation}
@@ -72,7 +72,7 @@ where $F$ is a scaled force with units of m/s
 if $c=\sqrt{T/\rho A}$, then $F = f/\rho A$, $f$ being a force in Newtons.
 
 
-\subsection{Alternative Pluck}
+\subsection{Alternative pluck}
 SMC figure
 
 \subsection{Hammer}
