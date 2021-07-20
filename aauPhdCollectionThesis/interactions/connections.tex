@@ -26,7 +26,7 @@ This interpretation hopefully provides a better intuition for the interactions b
 \end{figure}
 
 \section{Connected ideal strings}
-As an example, consider two ideal strings of length $L_u$ and $L_w$ (both in m) their transverse displacement denoted as $u=u(x,t)$ and $w = w(\chi,t)$ (both in m) (see Section \ref{sec:1DWave}).\footnote{Recall that the ideal string is the 1D wave equation with $c=\sqrt{T/\rho A}$.}  The systems are defined for $x\in \D_u$ with domain $\D_u=[0,L_u]$ and $\chi \in \D_w$ with domain $\D_w=[0,L_w]$ respectively. Notice that $\chi$ is used as the spatial coordinate for $w$ to denote that the two systems use different coordinate systems. Connecting these systems at $x_\ctxt\in \D_u$ and $\chi_\ctxt\in\D_w$ yields the following system of PDEs:
+As an example for the following sections, consider two ideal strings of length $L_u$ and $L_w$ (both in m) their transverse displacement denoted as $u=u(x,t)$ and $w = w(\chi,t)$ (both in m) (see Section \ref{sec:1DWave}).\footnote{Recall that the ideal string is the 1D wave equation with $c=\sqrt{T/\rho A}$.}  The systems are defined for $x\in \D_u$ with domain $\D_u=[0,L_u]$ and $\chi \in \D_w$ with domain $\D_w=[0,L_w]$ respectively. Notice that $\chi$ is used as the spatial coordinate for $w$ to denote that the two systems use different coordinate systems. Connecting these systems at $x_\ctxt\in \D_u$ and $\chi_\ctxt\in\D_w$ yields the following system of PDEs:
 \begin{subequations}\label{eq:conn1DwavePDE}
     \begin{align}
         \rho_u A_u \ptt u &= T_u \pxx u -\delta(x-x_\ctxt)f, \label{eq:conn1DwavePDEu} \\
@@ -39,67 +39,112 @@ where subscripts $u$ and $w$ denote whether a variable belongs to system $u$ or 
 One can then discretise the state variables $u$ and $w$ to grid functions $\uln$ and $\wmn$ using $x = lh_u$ and $\chi = mh_w$ where $l\in \{0, \hdots, N_u\}$ and $m\in \{0, \hdots, N_w\}$.\footnote{Here, $m$ is used for the spatial index of $\wmn$ to avoid double subscripts $l_u$ and $l_w$.} Also see Section \ref{sec:gridFunctions}. Furthermore, $h_u$ and $h_w$ are the values of the grid spacing (both in m) and $N_u+1$ and $N_w+1$ are the number of grid points for $\uln$ and $\wmn$ respectively. Dividing Eqs. \eqref{eq:conn1DwavePDEu} and \eqref{eq:conn1DwavePDEw} by $\rho_u A_u$ and $\rho_w A_w$ respectively yields
 \begin{subequations}\label{eq:conn1DwaveFDS}
     \begin{align}
-        \dtt \uln &= c_u^2 \dxx \uln -J_{l, u}(x_\ctxt)\frac{f^n}{\rho_u A_u}, \label{eq:conn1DwaveFDSu} \\
-        \dtt \wmn &= c_w^2 \delta_{\chi\chi} \wmn + J_{m, w}(\chi_\ctxt)\frac{f^n}{\rho_w A_w},\label{eq:conn1DwaveFDSw}
+        \dtt \uln &= c_u^2 \dxx \uln -\Ju\frac{f^n}{\rho_u A_u}, \label{eq:conn1DwaveFDSu} \\
+        \dtt \wmn &= c_w^2 \delta_{\chi\chi} \wmn + \Jw\frac{f^n}{\rho_w A_w},\label{eq:conn1DwaveFDSw}
     \end{align}
 \end{subequations}
-where $c_u = \sqrt{T_u / \rho_uA_u}$ and $c_w = \sqrt{T_w / \rho_wA_w}$. The spreading operators $J_{l, u}(x_\ctxt) = J_{l, o_u, u}(x_\ctxt)$ and $J_{l, w}(\chi_\ctxt) = J_{l, o_w, w}(\chi_\ctxt)$ are as defined in Section \ref{sec:interpolationSpreading}, and their orders $o_u$ and $o_w$ are left unspecified. 
+where $c_u = \sqrt{T_u / \rho_uA_u}$ and $c_w = \sqrt{T_w / \rho_wA_w}$. The spreading operators $\Ju = J_{l, o_u, u}(x_\ctxt)$ and $J_{l, w}(\chi_\ctxt) = J_{l, o_w, w}(\chi_\ctxt)$ are as defined in Section \ref{sec:interpolationSpreading}, and their orders $o_u$ and $o_w$ are left unspecified. 
 
-\subsection{Solving for the connection force}
-The next step is to solve for connection force $f^n$. First, one needs to isolate the schemes in system \eqref{eq:conn1DwaveFDS} at their respective connection locations $x_\ctxt$ and $\chi_\ctxt$. This is done by taking an inner product of each scheme in system \eqref{eq:conn1DwaveFDS} with their respective spreading operator $J_{l, u}$ and $J_{l, w}$ over discrete domains $d_u = \{0, \hdots, N_u\}$ and $d_w = \{0, \hdots, N_w\}$ respectively. Using identity \eqref{eq:identityIJ} one can write
+The next step would be to solve for connection force $f^n$. First, one needs to isolate the schemes in system \eqref{eq:conn1DwaveFDS} at their respective connection locations $x_\ctxt$ and $\chi_\ctxt$. This is done by taking an inner product of each scheme in system \eqref{eq:conn1DwaveFDS} with their respective spreading operator $J_{l, u}$ and $J_{l, w}$ over discrete domains $d_u = \{0, \hdots, N_u\}$ and $d_w = \{0, \hdots, N_w\}$ respectively. Using identity \eqref{eq:identityIJ} one can write
 \begin{subequations}\label{eq:conn1DwaveFDSXc}
     \begin{align}
-        I_{l, u}(x_\ctxt)\dtt \uln &= c_u^2 I_{l, u}(x_\ctxt)\dxx \uln -\lVert J_{l, u}(x_\ctxt)\rVert_{d_u}^2\frac{f^n}{\rho_u A_u}, \label{eq:conn1DwaveuXc} \\
-        I_{m, w}(\chi_\ctxt)\dtt \wmn &= c_w^2 I_{m, w}(\chi_\ctxt)\delta_{\chi\chi} \wmn + \lVert J_{m, w}(\chi_\ctxt)\rVert_{d_w}^2\frac{f^n}{\rho_w A_w},\label{eq:conn1DwavewXc}
+        \Iu\dtt \uln &= c_u^2 \Iu\dxx \uln -\lVert \Ju\rVert_{d_u}^2\frac{f^n}{\rho_u A_u}, \label{eq:conn1DwaveuXc} \\
+        \Iw\dtt \wmn &= c_w^2 \Iw\delta_{\chi\chi} \wmn + \lVert \Jw\rVert_{d_w}^2\frac{f^n}{\rho_w A_w},\label{eq:conn1DwavewXc}
     \end{align}
 \end{subequations}
-Here, interpolation operators $I_{l, u}(x_\ctxt) = I_{l, o_u, u}(x_\ctxt)$ and $I_{l, w}(\chi_\ctxt) = I_{l, o_w, w}(\chi_\ctxt)$ are as defined in Section \ref{sec:interpolationSpreading}. Notice that the order of these operators need 
+Here, interpolation operators $\Iu = I_{l, o_u, u}(x_\ctxt)$ and $\Iw = I_{l, o_w, w}(\chi_\ctxt)$ are as defined in Section \ref{sec:interpolationSpreading}. Notice that the order of these operators need 
 to match their `dual' spreading operator, but the orders $o_u$ and $o_w$ may differ.
 
-The definition of the force depends on the connection type. Below, two alternatives will be presented: the rigid connection and the spring-like connection. 
+The definition of the force depends on the connection type. Below, two alternatives will be presented: the rigid connection and the spring connection. 
 
-\subsubsection{Rigid connection}
-The simplest connection-type is the \textit{rigid connection}. This connection type states that the displacement of two connected points should always be equal, and thus the distance between them should be 0 at all times.
+\section{Rigid connection}\label{sec:rigidConn}
+The simplest connection-type is the \textit{rigid connection}. This connection type states that the displacement of two connected points should always be equal, and thus the distance between them should be 0 at all times. 
 For the rigid connection, the following is true
 \begin{equation}\label{eq:contRigid}
     u(x_\ctxt, t) = w(\chi_\ctxt, t),
 \end{equation}
 which in discrete time becomes
 \begin{equation}\label{eq:discRigid}
-    I_{l, u}(x_\ctxt)\uln = I_{m, w}(\chi_\ctxt)\wmn.
+    \Iu\uln = \Iw\wmn.
 \end{equation}
 If Eq. \eqref{eq:discRigid} is true, the following must also hold:
 \begin{equation}\label{eq:discAccelRigid}
-    I_{l, u}(x_\ctxt)\dtt\uln = I_{m, w}(\chi_\ctxt)\dtt\wmn.
+    \Iu\dtt\uln = \Iw\dtt\wmn.
 \end{equation}
 In other words, if the displacement of two objects is equal, their acceleration must also be. This definition can then immediately be used to solve for $f^n$ and the right-hand sides in system \eqref{eq:conn1DwaveFDSXc} can be substituted in Eq. \eqref{eq:discAccelRigid} to get
 \begin{equation*}
-    c_u^2 I_{l, u}(x_\ctxt)\dxx \uln -\lVert J_{l, u}(x_\ctxt)\rVert_{d_u}^2\frac{f^n}{\rho_u A_u}
-    \!=\! c_w^2 I_{m, w}(\chi_\ctxt)\delta_{\chi\chi} \wmn + \lVert J_{m, w}(\chi_\ctxt)\rVert_{d_w}^2\frac{f^n}{\rho_w A_w},
+    c_u^2 \Iu\dxx \uln -\lVert \Ju\rVert_{d_u}^2\frac{f^n}{\rho_u A_u}
+    \!=\! c_w^2 \Iw\delta_{\chi\chi} \wmn + \lVert \Jw\rVert_{d_w}^2\frac{f^n}{\rho_w A_w},
 \end{equation*}
-which can be solved for $f^n$ 
-\begin{equation}
-    f^n = \frac{c_u^2 I_{l, u}(x_\ctxt)\dxx \uln - c_w^2 I_{m, w}(\chi_\ctxt)\delta_{\chi\chi} \wmn}{\frac{\lVert J_{l, u}(x_\ctxt)\rVert_{d_u}^2}{\rho_u A_u} + \frac{\lVert J_{m, w}(\chi_\ctxt)\rVert_{d_w}^2}{\rho_w A_w}}.
+which can be explicitly solved for $f^n$ according to
+\begin{equation}\label{eq:rigidForce}
+    f^n = \frac{c_u^2 \Iu\dxx \uln - c_w^2 \Iw\delta_{\chi\chi} \wmn}{\frac{\lVert \Ju\rVert_{d_u}^2}{\rho_u A_u} + \frac{\lVert \Jw\rVert_{d_w}^2}{\rho_w A_w}}.
 \end{equation}
 This value can then be used in the update equation obtained after expanding system \eqref{eq:conn1DwaveFDS} as
 \begin{subequations}
     \begin{align}
-        \!\!\!u_l^{n+1} &= \left(2-2\lambda_u^2\right) \uln  + \lambda_u^2\left(u_{l+1}^n + u_{l-1}^n\right) - u_l^{n-1} -J_{l, u}(x_\ctxt)\frac{k^2 f^n}{\rho_u A_u}\\
-        \!\!\!w_m^{n+1} &= \left(2-2\lambda_w^2\right) \wmn\! +\! \lambda_w^2\left(w_{m+1}^n + w_{m-1}^n\right) - w_m^{n-1} +J_{m,w}(\chi_\ctxt)\frac{k^2 f^n}{\rho_w A_w}
+        \!\!\!u_l^{n+1} &= \left(2-2\lambda_u^2\right) \uln  + \lambda_u^2\left(u_{l+1}^n + u_{l-1}^n\right) - u_l^{n-1} -\Ju\frac{k^2 f^n}{\rho_u A_u}\\
+        \!\!\!w_m^{n+1} &= \left(2-2\lambda_w^2\right) \wmn\! +\! \lambda_w^2\left(w_{m+1}^n + w_{m-1}^n\right) - w_m^{n-1} +\Jw\frac{k^2 f^n}{\rho_w A_w}
     \end{align}
 \end{subequations}
 where $\lambda_u = c_uk/h_u \leq 1$ and  $\lambda_u = c_uk/h_u \leq 1$ are the Courant numbers for each individual scheme (see Section \ref{sec:1DWave}).
 
-Figure \ref{fig:connectedWaveEqs} shows an implementation of system \eqref{eq:conn1DwaveFDS} with $x_\ctxt = 0.25$ and $\chi_\ctxt = 0.75$. The wave equations have the same mass per unit length, i.e., $\rho_uA_u = \rho_wA_w$, and the same length $L_u=L_w = 1$, but operate at different wave speeds $c_u=300$ and $c_w=400$.
+Figure \ref{fig:connectedWaveEqs} shows an implementation of system \eqref{eq:conn1DwaveFDS} with $x_\ctxt = 0.25$ m and $\chi_\ctxt = 0.75$ m. The wave equations have the same mass per unit length, i.e., $\rho_uA_u = \rho_wA_w$, and the same length $L_u=L_w = 1$ m, but operate at different wave speeds $c_u=300$ m/s and $c_w=400$ m/s.
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{figures/interactions/connectedWaveEqs.eps}
     \caption{The wave propagation of two connected 1D wave equations with the same mass per unit length. The systems are offset for clarity, but the relative displacement at the connection location is 0. \label{fig:connectedWaveEqs}}
 \end{figure}
 
+\subsubsection{Notation simplification}
+In the above equations, the orders of the spreading and interpolation operators have been left unspecified to retain generality. If one would like to connect two systems at specified grid points without needing to worry about interpolation, the notation can greatly simplified.%\footnote{The same can be achieved if the orders of the interpolation and spreading operators are chosen to be 0, or if $\alpha_\itxt = 0$ for arbitrary orders.}
 
-\subsection{Energy analysis}
-Figure \ref{fig:energyConn1DWave} shows the energy of an implementation of the 1D wave system in \eqref{eq:conn1DwaveFDS}.  The 
+Recalling that $\Iu = I_{l, o_u, u}(x_\ctxt)$ and $\Iw = I_{l, o_w, w}(\chi_\ctxt)$, one can set the interpolation orders to 0, i.e., $o_u = o_w = 0$, to yield the following short-hand notations
+\begin{equation}\label{eq:shorthandI}
+    I_{l,0,u}(x_\text{c})\uln = \ulcn, \qaq I_{m,0,w}(\chi_\text{c})\wmn = \wmcn,
+\end{equation}
+where $l_\ctxt = \floor[x_\ctxt/h_u]$ and $m_\ctxt = \floor[\chi_\ctxt/h_w]$, and
+\begin{equation}\label{eq:shorthandJ}
+    \lVert J_{l, 0, u}(x_\text{c})\rVert_{d_u}^2 = \frac{1}{h_u}, \qaq \lVert J_{m, 0, w}(\chi_\text{c})\rVert_{d_w}^2 = \frac{1}{h_w}.
+\end{equation}
+This simplifies Eqs. \eqref{eq:conn1DwaveFDSXc} to
+\begin{subequations}\label{eq:conn1DwaveFDSXcSimple}
+    \begin{align}
+        \dtt \ulcn &= c_u^2 \dxx \ulcn -\frac{f^n}{\rho_u A_u h_u}, \label{eq:conn1DwaveuXcSimple} \\
+        \dtt \wmcn &= c_w^2 \delta_{\chi\chi} \wmcn + \frac{f^n}{\rho_w A_w h_w},\label{eq:conn1DwavewXcSimple}
+    \end{align}
+\end{subequations}
+which, after rewriting Eq. \eqref{eq:discAccelRigid} to
+\begin{equation}
+    \dtt\ulcn = \dtt\wmcn,
+\end{equation}
+one can solve for $f^n$, yielding the following  simplified form of Eq. \eqref{eq:rigidForce}
+\begin{equation}
+    f^n = \frac{c_u^2 \dxx \ulcn - c_w^2 \delta_{\chi\chi} \wmcn}{\frac{1}{\rho_u A_u h_u} + \frac{1}{\rho_w A_w h_w}}.
+\end{equation}
+
+\subsection{Energy Analysis}
+This section follows the energy analysis techniques shown in Section \ref{sec:energyAnalysis}. As the analysis has previously been performed on the 1D wave equation, this part of the analysis will not be detailed here. 
+
+Starting with scheme \eqref{eq:conn1DwaveFDSu}, one can take an inner product of the scheme (after a multiplication with $\rho_u A_u$) with $(\dtd\uln)$ over discrete domain $d_u$ to get
+\begin{equation}\label{eq:powerBalanceConn1DwaveU}
+    \dtp \h_u = \langle \dtd\uln, \Ju f^n\rangle_{d_u},
+\end{equation}
+where $\h_u$ is the total energy in system $u$ and is as defined in Eq. \eqref{eq:energyBalance1DWave}. The same can be done for Eq. \eqref{eq:conn1DwaveFDSw} (after a multiplication with $\rho_w A_w$) by taking an inner product with $(\dtd\wmn)$ over discrete domain $d_w$ ti get 
+\begin{equation}\label{eq:powerBalanceConn1DwaveW}
+    \dtp \h_w = \langle \dtd\wln, - \Jw f^n\rangle_{d_u}.
+\end{equation}
+As the total energy in the system is an addition of $\h_u$ and $\h_w$, and using identity \eqref{eq:identityIJ} for the the right hand sides of Eqs. \eqref{eq:powerBalanceConn1DwaveU} and \eqref{eq:powerBalanceConn1DwaveW}, one can write 
+\begin{equation*}
+    \dtp (\h_u + \h_w) = \Iu \dtd \uln f^n - \Iw \dtd \wmn f^n.
+\end{equation*}
+Finally, due to the rigid connection in Eq. \eqref{eq:discRigid}, $\Iu \dtd \uln = \Iw \dtd \wmn$ and the right hand side vanishes:
+\begin{equation*}
+    \dtp (\h_u + \h_w) = 0.
+\end{equation*}
+This shows that the rigid connection does not affect the total energy in the system and thus does not affect the stability of the scheme.
+
+Figure \ref{fig:energyConn1DWave} shows the energy of an implementation of the 1D wave system in \eqref{eq:conn1DwaveFDS}. The 
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[->,node distance=3cm,
@@ -117,6 +162,143 @@ Figure \ref{fig:energyConn1DWave} shows the energy of an implementation of the 1
       \end{tikzpicture}
       \caption{The energy of $u$ (blue), the energy of $w$ (red), and the total (black) energy of the system of connected 1D wave equations in \eqref{eq:conn1DwaveFDS}. The energy corresponds to the system in Figure \ref{fig:connectedWaveEqs}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy} shows that the deviation of the energy is within machine precision. \label{fig:energyConn1DWave}}
 \end{figure}
+
+\subsection{Modal analysis and matrix form}
+In order to perform a modal analysis on the system, one can must write system \eqref{eq:conn1DwaveFDS} in matrix form. \SWcomment[by substituting the definition of the force in Eq. \eqref{eq:rigidForce}]
+
+Using Dirichlet boundary conditions the values of $\uln$ and $\wmn$ can be stored in 
+\begin{equation}
+    \u^n =[u_1^n, \hdots, u_{N_u-1}^n], \qaq \w^n =[w_1^n, \hdots, w_{N_u-1}^n]
+\end{equation}
+\begin{equation}
+    \begin{bmatrix}
+        \u^{n+1}\\
+        \w^{n+1}
+    \end{bmatrix} = \B \begin{bmatrix}
+        \u^n\\
+        \w^n
+    \end{bmatrix} - \begin{bmatrix}
+        \u^{n-1}\\
+        \w^{n-1}
+    \end{bmatrix}
+\end{equation}
+where 
+\begin{equation}
+    \B = \begin{bmatrix}
+        \B_u & \mathbf{0}\\
+        \mathbf{0} & \B_w 
+    \end{bmatrix} + \begin{bmatrix}
+        \j_u\\
+        \j_w
+    \end{bmatrix}\mathbf{f}.
+\end{equation}
+Here,
+\begin{equation}    
+    \B_u = 2\I_{N_u-1} +c_u^2k^2 (\Dxx)_u \qaq \B_w = 2\I_{N_w-1} +c_w^2k^2 (\Dxx)_w
+\end{equation}
+and force matrix
+\begin{equation}
+    \mathbf{f} = \begin{bmatrix}\mathbf{f}_1& \mathbf{F}_2\end{bmatrix}
+\end{equation}
+consists of 
+\begin{align*}
+    \mathbf{f}_1 = \frac{k^2}{\rho_uA_u} c_u^2k^2\i_u(\Dxx)_u,& \quad \mathbf{f}_2 =  \frac{k^2}{\rho_uA_u} c_u^2k^2 \i_w(\Dxx)_w.
+\end{align*}
+Here, $\j_u$ and $\j_w$ are column vectors of size $(N_u-1)\times 1$ and $(N_w-1)\times 1$ containing the values of the spreading operators $\Ju$ and $\Jw$ respectively. Furthermore, $\i_u$ and $\i_w$ are row vectors of size $1\times (N_u-1)$ and $1\times (N_w-1)$ containing the values of the interpolation operators $\Iu$ and $\Iw$ respectively.\footnote{The $\I$ symbol has not been chosen here to avoid confusion with the identity matrix.}
+In order to perform a modal analysis on the system, it must be written in matrix form. 
+
+
+
+\section{Spring connection}
+An alternative connection type is the \textit{spring connection}. As opposed to rigid connections, connections using springs allow the relative displacement between the two connected elements to be non-zero and use this relative displacement to determine the connection force. An interesting fact, is that nonlinearities can be added in a fairly straightforward manner, where the system can still be solved explicitly. 
+
+The most complex springs used in this project have a linear and a nonlinear component, as well as damping. For ease of explanation, this section will only use a linear spring. A damped nonlinear spring will appear in Section \ref{sec:stringPlateConnection}.
+
+The force between two components connected by a linear spring can be defined as
+\begin{equation}\label{eq:linearSpringForceCont}
+    f = f(t) = K\eta,
+\end{equation}
+where $K$ is the spring constant (in N/m) and
+\begin{equation}
+    \eta = \eta(t) = u(x_\ctxt, t) - w(\chi_\ctxt, t)
+\end{equation}
+is the relative displacement between the two systems at their respective connection locations (in m). %$\eta$ is thus also, effectively, the length of the spring.
+
+In discrete time, the above Eq. \eqref{eq:linearSpringForceCont} becomes
+\begin{equation}\label{eq:linearSpringForceDisc}
+    f^n = K\mtd\eta^n,
+\end{equation}
+where
+\begin{equation}\label{eq:discEtaConn1Dwave}
+    \eta^n = \Iu\uln - \Iw\wmn.
+\end{equation}
+Here the centred averaging operator is used for stability (\cite[pp. 190--192]{theBible}), but when substituted in system \eqref{eq:conn1DwaveFDSXc} seems to make it implicit. However, as will be shown below, there is a way find an explicit solution, even for an arbitrary amount of connections \cite{Bilbao2009Modular}.
+
+\subsubsection{Explicit solution}
+When compared to the rigid connection in Section \ref{sec:rigidConn}, solving for $f^n$ requires an extra step. After isolating the schemes at their respective connection locations -- resulting in Eqs. \eqref{eq:conn1DwaveFDSXc} -- one needs to expand the scheme and solve for the states at $n+1$:
+\begin{subequations}\label{eq:intermediateConn1Dwave}
+    \begin{align}
+        \Iu u_l^{n+1} &= u^\star - \lVert\Ju\rVert_{d_u}^2 \frac{k^2f^n}{\rho_u A_u},\\
+        \Iw w_m^{n+1} &= w^\star + \lVert\Jw\rVert_{d_w}^2 \frac{k^2f^n}{\rho_w A_w},
+    \end{align}
+\end{subequations}
+where
+\begin{equation*}
+    u^\star = \Iu(2\uln - u_l^{n-1}) + c_u^2k^2\Iu\dxx\uln,
+\end{equation*}
+and
+\begin{equation*}
+    w^\star = \Iw(2\wmn - w_m^{n-1}) + c_w^2k^2\Iw\dxx\wmn,
+\end{equation*}
+are the update equations of the system without the term containing the connection force. Evaluating Eq. \eqref{eq:discEtaConn1Dwave} at $n+1$ yields
+\begin{equation}
+    \eta^{n+1} = \Iu u_l^{n+1} - \Iw w_m^{n+1}.
+\end{equation}
+into which Eqs. \eqref{eq:intermediateConn1Dwave} can be substituted:
+\begin{equation}\label{eq:etaNp1Schemes}
+    \eta^{n+1} = u^\star - \lVert\Ju\rVert_{d_u}^2 \frac{k^2f^n}{\rho_u A_u} - \left(w^\star + \lVert\Jw\rVert_{d_w}^2 \frac{k^2f^n}{\rho_w A_w}\right).
+\end{equation}
+A second definition for $\eta^{n+1}$ can be obtained by expanding Eq. \eqref{eq:linearSpringForceDisc}:
+\begin{equation}\label{eq:etaExpanded}
+    \eta^{n+1} = \frac{2 f^n}{K} - \eta^{n-1}
+\end{equation}
+and can be substituted into Eq. \eqref{eq:etaNp1Schemes} to get
+\begin{equation}
+    \frac{2 f^n}{K} - \eta^{n-1} = u^\star - \lVert\Ju\rVert_{d_u}^2 \frac{k^2f^n}{\rho_u A_u} - \left(w^\star + \lVert\Jw\rVert_{d_w}^2 \frac{k^2f^n}{\rho_w A_w}\right).
+\end{equation}
+Finally, one can group the terms for $f^n$ 
+\begin{equation*}
+    \left(\frac{2}{K} + \frac{\lVert\Ju\rVert_{d_u}^2k^2}{\rho_u A_u} +  \frac{\lVert\Jw\rVert_{d_w}^2k^2}{\rho_w A_w}\right)f^n = u^\star - w^\star + \eta^{n-1}
+\end{equation*}
+and solve for the force, solely based on known values of the system
+\begin{equation}
+    f^n = \frac{u^\star - w^\star + \eta^{n-1}}{\frac{2}{K} + \frac{\lVert\Ju\rVert_{d_u}^2k^2}{\rho_u A_u} +  \frac{\lVert\Jw\rVert_{d_w}^2k^2}{\rho_w A_w}}\ .
+\end{equation}
+
+\subsection{Energy analysis}\label{sec:conn1DwaveEnergy}
+
+where the total energy in $\uln$ is (see Eq. \eqref{eq:energyBalance1DWave})
+\begin{equation}
+    \h_u = \t_u + \v_u, \qwhq
+\end{equation}
+
+The energy balance of system \eqref{eq:conn1DwaveFDS} will be of the form 
+
+Taking an inner product of each individual scheme in \eqref{eq:conn1DwaveFDS} with their respective 
+
+
+
+
+
+If springs are used to connect components, these store energy themselves. 
+
+The energy balance will thus be of the form 
+
+\begin{equation}
+    \dtp (\h_u + \h_w + \h_\ctxt) = \b
+\end{equation}
+
+if an averaging operator would not have been used in \eqref{eq:linearSpringForceDisc}...
 
 \subsection{Modal analysis}
 
