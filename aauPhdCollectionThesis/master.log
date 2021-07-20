@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.7.20)  20 JUL 2021 11:30
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.7.20)  20 JUL 2021 13:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -3440,7 +3440,7 @@ File: figures/fdtd/gridFigure2.pdf Graphic file (type pdf)
 <use figures/fdtd/gridFigure2.pdf>
 Package pdftex.def Info: figures/fdtd/gridFigure2.pdf  used on input line 24.
 (pdftex.def)             Requested size: 256.0748pt x 49.24467pt.
- [174 <./figures/fdtd/gridFigure2.pdf>]
+ [174 <./figures/fdtd/gridFigure2.pdf>] [175]
 Package epstopdf Info: Source file: <figures/interactions/connectedWaveEqs.eps>
 (epstopdf)                    date: 2021-07-20 09:15:30
 (epstopdf)                    size: 68178 bytes
@@ -3448,14 +3448,17 @@ Package epstopdf Info: Source file: <figures/interactions/connectedWaveEqs.eps>
 (epstopdf)                    date: 2021-07-20 09:15:30
 (epstopdf)                    size: 24494 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/connectedWaveEqs-eps-converted-to.pdf figures/interactions/connectedWaveEqs.eps>
-(epstopdf)             \includegraphics on input line 81.
+(epstopdf)             \includegraphics on input line 96.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/connectedWaveEqs-eps-converted-to.pdf, id=4908, 823.075pt x 345.29pt>
+<figures/interactions/connectedWaveEqs-eps-converted-to.pdf, id=4927, 823.075pt x 345.29pt>
 File: figures/interactions/connectedWaveEqs-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/connectedWaveEqs-eps-converted-to.pdf>
-Package pdftex.def Info: figures/interactions/connectedWaveEqs-eps-converted-to.pdf  used on input line 81.
+Package pdftex.def Info: figures/interactions/connectedWaveEqs-eps-converted-to.pdf  used on input line 96.
 (pdftex.def)             Requested size: 341.43307pt x 143.23471pt.
- [175]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 Package epstopdf Info: Source file: <figures/interactions/connected1DEnergy.eps>
 (epstopdf)                    date: 2021-07-20 09:15:30
 (epstopdf)                    size: 51893 bytes
@@ -3463,19 +3466,22 @@ Package epstopdf Info: Source file: <figures/interactions/connected1DEnergy.eps>
 (epstopdf)                    date: 2021-07-20 09:15:30
 (epstopdf)                    size: 30533 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/connected1DEnergy-eps-converted-to.pdf figures/interactions/connected1DEnergy.eps>
-(epstopdf)             \includegraphics on input line 94.
+(epstopdf)             \includegraphics on input line 109.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/connected1DEnergy-eps-converted-to.pdf, id=4925, 830.10126pt x 220.825pt>
+<figures/interactions/connected1DEnergy-eps-converted-to.pdf, id=4930, 830.10126pt x 220.825pt>
 File: figures/interactions/connected1DEnergy-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/connected1DEnergy-eps-converted-to.pdf>
-Package pdftex.def Info: figures/interactions/connected1DEnergy-eps-converted-to.pdf  used on input line 94.
+Package pdftex.def Info: figures/interactions/connected1DEnergy-eps-converted-to.pdf  used on input line 109.
 (pdftex.def)             Requested size: 341.43307pt x 90.8286pt.
 
-Overfull \hbox (6.66595pt too wide) in paragraph at lines 102--103
+Overfull \hbox (6.66595pt too wide) in paragraph at lines 117--118
  [][] 
  []
 
-[176 <./figures/interactions/connectedWaveEqs-eps-converted-to.pdf> <./figures/interactions/connected1DEnergy-eps-converted-to.pdf>] [177] [178]) (./interactions/collisions.tex [179] [180]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[176] [177 <./figures/interactions/connectedWaveEqs-eps-converted-to.pdf> <./figures/interactions/connected1DEnergy-eps-converted-to.pdf>] [178] [179]) (./interactions/collisions.tex [180]
 Chapter 11.
 [181
 
@@ -3489,7 +3495,7 @@ Package epstopdf Info: Source file: <figures/interactions/eta.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/eta-eps-converted-to.pdf figures/interactions/eta.eps>
 (epstopdf)             \includegraphics on input line 25.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/eta-eps-converted-to.pdf, id=5038, 702.625pt x 401.5pt>
+<figures/interactions/eta-eps-converted-to.pdf, id=5049, 702.625pt x 401.5pt>
 File: figures/interactions/eta-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/eta-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/eta-eps-converted-to.pdf  used on input line 25.
@@ -3561,7 +3567,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/fullGrid.
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/fullGrid-eps-converted-to.pdf figures/contributions/dynamicgrid/fullGrid.eps>
 (epstopdf)             \includegraphics on input line 98.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/fullGrid-eps-converted-to.pdf, id=5328, 501.875pt x 301.125pt>
+<figures/contributions/dynamicgrid/fullGrid-eps-converted-to.pdf, id=5338, 501.875pt x 301.125pt>
 File: figures/contributions/dynamicgrid/fullGrid-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/fullGrid-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/fullGrid-eps-converted-to.pdf  used on input line 98.
@@ -3586,7 +3592,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/simplySup
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/simplySupportedBoundary-eps-converted-to.pdf figures/contributions/dynamicgrid/simplySupportedBoundary.eps>
 (epstopdf)             \includegraphics on input line 136.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/simplySupportedBoundary-eps-converted-to.pdf, id=5354, 562.1pt x 421.575pt>
+<figures/contributions/dynamicgrid/simplySupportedBoundary-eps-converted-to.pdf, id=5364, 562.1pt x 421.575pt>
 File: figures/contributions/dynamicgrid/simplySupportedBoundary-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/simplySupportedBoundary-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/simplySupportedBoundary-eps-converted-to.pdf  used on input line 136.
@@ -3604,7 +3610,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/boundaryG
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/boundaryGrid-eps-converted-to.pdf figures/contributions/dynamicgrid/boundaryGrid.eps>
 (epstopdf)             \includegraphics on input line 153.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/boundaryGrid-eps-converted-to.pdf, id=5356, 562.1pt x 421.575pt>
+<figures/contributions/dynamicgrid/boundaryGrid-eps-converted-to.pdf, id=5366, 562.1pt x 421.575pt>
 File: figures/contributions/dynamicgrid/boundaryGrid-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/boundaryGrid-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/boundaryGrid-eps-converted-to.pdf  used on input line 153.
@@ -3658,12 +3664,12 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (c:/texlive/2021/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 ) [208]
-<figures/realtime/vectorCopy.pdf, id=5481, 459.63718pt x 211.7511pt>
+<figures/realtime/vectorCopy.pdf, id=5491, 459.63718pt x 211.7511pt>
 File: figures/realtime/vectorCopy.pdf Graphic file (type pdf)
 <use figures/realtime/vectorCopy.pdf>
 Package pdftex.def Info: figures/realtime/vectorCopy.pdf  used on input line 101.
 (pdftex.def)             Requested size: 341.43307pt x 157.29755pt.
-<figures/realtime/pointerSwitch.pdf, id=5482, 472.64577pt x 225.7233pt>
+<figures/realtime/pointerSwitch.pdf, id=5492, 472.64577pt x 225.7233pt>
 File: figures/realtime/pointerSwitch.pdf Graphic file (type pdf)
 <use figures/realtime/pointerSwitch.pdf>
 Package pdftex.def Info: figures/realtime/pointerSwitch.pdf  used on input line 102.
@@ -3678,7 +3684,7 @@ Overfull \hbox (16.55943pt too wide) detected at line 156
  []
 
 [210] [211] [212] [213]
-<figures/contributions/realtime/senselHands.jpg, id=5648, 2360.82pt x 1405.25pt>
+<figures/contributions/realtime/senselHands.jpg, id=5658, 2360.82pt x 1405.25pt>
 File: figures/contributions/realtime/senselHands.jpg Graphic file (type jpg)
 <use figures/contributions/realtime/senselHands.jpg>
 Package pdftex.def Info: figures/contributions/realtime/senselHands.jpg  used on input line 303.
@@ -3699,12 +3705,12 @@ Chapter 15.
 [219
 
 ]
-<figures/contributions/tromba/IMG_7980.pdf, id=5719, 597.23125pt x 845.1575pt>
+<figures/contributions/tromba/IMG_7980.pdf, id=5729, 597.23125pt x 845.1575pt>
 File: figures/contributions/tromba/IMG_7980.pdf Graphic file (type pdf)
 <use figures/contributions/tromba/IMG_7980.pdf>
 Package pdftex.def Info: figures/contributions/tromba/IMG_7980.pdf  used on input line 20.
 (pdftex.def)             Requested size: 170.71654pt x 241.58167pt.
-<figures/contributions/tromba/IMG_7982.JPG, id=5722, 5203.44pt x 3468.96pt>
+<figures/contributions/tromba/IMG_7982.JPG, id=5732, 5203.44pt x 3468.96pt>
 File: figures/contributions/tromba/IMG_7982.JPG Graphic file (type jpg)
 <use figures/contributions/tromba/IMG_7982.JPG>
 Package pdftex.def Info: figures/contributions/tromba/IMG_7982.JPG  used on input line 27.
@@ -3719,7 +3725,7 @@ Package epstopdf Info: Source file: <figures/contributions/tromba/trombaExcite.e
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/tromba/trombaExcite-eps-converted-to.pdf figures/contributions/tromba/trombaExcite.eps>
 (epstopdf)             \includegraphics on input line 230.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/tromba/trombaExcite-eps-converted-to.pdf, id=5886, 830.10126pt x 220.825pt>
+<figures/contributions/tromba/trombaExcite-eps-converted-to.pdf, id=5896, 830.10126pt x 220.825pt>
 File: figures/contributions/tromba/trombaExcite-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/tromba/trombaExcite-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/tromba/trombaExcite-eps-converted-to.pdf  used on input line 230.
@@ -3742,7 +3748,7 @@ Package epstopdf Info: Source file: <figures/contributions/tromba/trombaEnergy.e
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/tromba/trombaEnergy-eps-converted-to.pdf figures/contributions/tromba/trombaEnergy.eps>
 (epstopdf)             \includegraphics on input line 290.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/tromba/trombaEnergy-eps-converted-to.pdf, id=5907, 830.10126pt x 220.825pt>
+<figures/contributions/tromba/trombaEnergy-eps-converted-to.pdf, id=5917, 830.10126pt x 220.825pt>
 File: figures/contributions/tromba/trombaEnergy-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/tromba/trombaEnergy-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/tromba/trombaEnergy-eps-converted-to.pdf  used on input line 290.
@@ -3847,18 +3853,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--4
 ]
 Appendix B.
 [275]
-<figures/analysis/matrixA1.pdf, id=6214, 175.61609pt x 91.3011pt>
+<figures/analysis/matrixA1.pdf, id=6224, 175.61609pt x 91.3011pt>
 File: figures/analysis/matrixA1.pdf Graphic file (type pdf)
 <use figures/analysis/matrixA1.pdf>
 Package pdftex.def Info: figures/analysis/matrixA1.pdf  used on input line 31.
 (pdftex.def)             Requested size: 153.64383pt x 79.8799pt.
-<figures/analysis/matrixAT1.pdf, id=6215, 175.61609pt x 111.29579pt>
+<figures/analysis/matrixAT1.pdf, id=6225, 175.61609pt x 111.29579pt>
 File: figures/analysis/matrixAT1.pdf Graphic file (type pdf)
 <use figures/analysis/matrixAT1.pdf>
 Package pdftex.def Info: figures/analysis/matrixAT1.pdf  used on input line 32.
 (pdftex.def)             Requested size: 153.64383pt x 97.37337pt.
  [276 <./figures/analysis/matrixA1.pdf> <./figures/analysis/matrixAT1.pdf>]
-<figures/analysis/matrixVector.pdf, id=6238, 780.99776pt x 349.305pt>
+<figures/analysis/matrixVector.pdf, id=6248, 780.99776pt x 349.305pt>
 File: figures/analysis/matrixVector.pdf Graphic file (type pdf)
 <use figures/analysis/matrixVector.pdf>
 Package pdftex.def Info: figures/analysis/matrixVector.pdf  used on input line 51.
@@ -3954,7 +3960,7 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `master.out' has not changed.
-(rerunfilecheck)             Checksum: DEC544CF24CA1FB3654B7075539E9913;24768.
+(rerunfilecheck)             Checksum: EDEF6ECD84AB1CB5B1FF1134A60D3215;24768.
  )
 (\end occurred inside a group at level 5)
 
@@ -3965,18 +3971,18 @@ Package rerunfilecheck Info: File `master.out' has not changed.
 ### simple group (level 1) entered at line 369 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 53227 strings out of 478542
- 1167985 string characters out of 5854402
- 2218439 words of memory out of 5000000
- 67967 multiletter control sequences out of 15000+600000
+ 53233 strings out of 478542
+ 1168086 string characters out of 5854402
+ 2216621 words of memory out of 5000000
+ 67968 multiletter control sequences out of 15000+600000
  491222 words of font info for 124 fonts, out of 8000000 for 9000
  1146 hyphenation exceptions out of 8191
- 89i,23n,120p,1752b,4533s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 89i,23n,120p,1752b,4537s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/newpx/npxsups_t1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/newpx/npxsups-Regular.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/newpx/zplb.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/newpx/zplr.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
-Output written on master.pdf (316 pages, 21208630 bytes).
+Output written on master.pdf (316 pages, 21212074 bytes).
 PDF statistics:
- 7087 PDF objects out of 7423 (max. 8388607)
- 6108 compressed objects within 62 object streams
- 2016 named destinations out of 2073 (max. 500000)
+ 7099 PDF objects out of 7423 (max. 8388607)
+ 6120 compressed objects within 62 object streams
+ 2021 named destinations out of 2073 (max. 500000)
  1667 words of extra memory for PDF output out of 10000 (max. 10000000)
 
