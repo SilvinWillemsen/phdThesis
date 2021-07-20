@@ -227,7 +227,7 @@ Here, the same functions as in the previous section, $f(x,t)$ and $g(x,t)$ and d
 \end{equation}
 where $fg|_0^L$ describes the boundary terms that appeared in the process. One can observe that the spatial derivative switched function and is now applied to $f$ rather than $g$.
 
-In discrete time, we use the same two (1D) functions as before $f_l^n$ and $g_l$ and are defined for $l\in d$ with discrete domain $d=\{0, \hdots, N\}$. Then, using the discrete inner product in Eq. \eqref{eq:discInnerProd}, two variants of summation by parts are defined as
+In discrete time, using the same two (1D) functions as before, $f_l^n$ and $g_l$ and are defined for $l\in d$ with discrete domain $d=\{0, \hdots, N\}$. Then, using the discrete inner product in Eq. \eqref{eq:discInnerProd}, two variants of summation by parts are defined as
 \begin{subequations}\label{eq:summationByParts}
     \begin{align}
         \langle f_l^n, \dxm g_l^n \rangle_d  &= -\langle \dxp f_l^n, g_l^n\rangle_d + f_{N+1}^ng_N^n - f_0^ng_{-1}^n,\label{eq:summationByPartsMinus}\\
@@ -279,9 +279,9 @@ Finally, recalling that $\dxx = \dxp\dxm$, one can apply summation by parts twic
 \end{subequations}
 
 \subsubsection{Derivations}
-To see why the above identities hold true, it is useful to briefly go through a derivation. As an example, we go through Eqs. \eqref{eq:summationByPartsMinus} and \eqref{eq:summationByPartsMinusBar} as they have the same inner product as a starting point, but yield different results. In the following, $d=\{0, \hdots, N\}$ and $N = 2$ are used. 
+To see why the above identities hold true, it is useful to briefly go through a derivation. As an example, Eqs. \eqref{eq:summationByPartsMinus} and \eqref{eq:summationByPartsMinusBar} are derived as they have the same inner product as a starting point, but yield different results. In the following, $d=\{0, \hdots, N\}$ and $N = 2$ are used. 
 
-Starting with Eq. \eqref{eq:summationByPartsMinus}, suppressing the $n$ superscript for brevity, and using the definition for the discrete inner product in Eq. \eqref{eq:discInnerProd}, we get 
+Starting with Eq. \eqref{eq:summationByPartsMinus}, suppressing the $n$ superscript for brevity, and using the definition for the discrete inner product in Eq. \eqref{eq:discInnerProd}, yields
 \begin{align*}
     \langle f_l, \dxm g_l \rangle_d &= \sum_{l = 0}^2 h f_l\frac{1}{h}\left(g_l - g_{l-1}\right),\\
     &= f_0g_0 - f_0g_{-1} + f_1g_1 - f_1g_0 + f_2g_2-f_2g_1,\\
@@ -458,7 +458,7 @@ Gathering the terms and moving all to the left-hand side, the characteristic equ
 \begin{equation}\label{eq:massSpringCharacteristic}
     z - \left(2-\frac{Kk^2}{M} \right) + z^{-1} = 0. 
 \end{equation}
-To begin to prove stability, this equation needs to be written in the form found in \eqref{eq:polynomialForm}. Multiplying all the terms by $z$, and noticing that $a^{(2)} = 1$, we could continue with condition \eqref{eq:simplerCondition215}. However, the scheme used here is a special case where the roots of the characteristic equation can not be identical \cite{theBible}. When this happens, the output of the system will grow linearly and is called ``marginally unstable''. This means that $|a^{(1)}|\neq 1$ and the condition in \eqref{eq:simplerCondition215} becomes $|a^{(1)}|<2$. Continuing with this conditions yields
+To begin to prove stability, this equation needs to be written in the form found in \eqref{eq:polynomialForm}. Multiplying all the terms by $z$, and noticing that $a^{(2)} = 1$, one could continue with condition \eqref{eq:simplerCondition215}. However, the scheme used here is a special case where the roots of the characteristic equation can not be identical \cite{theBible}. When this happens, the output of the system will grow linearly and is called ``marginally unstable''. This means that $|a^{(1)}|\neq 1$ and the condition in \eqref{eq:simplerCondition215} becomes $|a^{(1)}|<2$. Continuing with this conditions yields
 \begin{align*}
     \left|-2+\frac{Kk^2}{M}\right| &< 2,\\
     -2 < -2+\frac{Kk^2}{M} &< 2,\\
@@ -492,11 +492,11 @@ the characteristic equation of the 1D wave equation is
 \begin{equation}\label{eq:1dWaveCharacteristic}
     z + \left(4\lambda^2\sin^2(\beta h / 2) -2\right) + z^{-1} = 0.
 \end{equation}
-% we can now perform von Neumann analysis. Moving all terms to the left-hand side and performing a z-transform and spatial Fourier transform we get:
+% one can now perform von Neumann analysis. Moving all terms to the left-hand side and performing a z-transform and spatial Fourier transform one get:
 % \begin{equation}\label{eq:zFDS}
 %     z - 2(1-\lambda^2)1 - \lambda^2(e^{j\beta h}+e^{-j\beta h}) + z^{-1} = 0.
 % \end{equation}
-% Using the identity found in Eq. \eqref{eq:sinIdentity} with $\beta h = 2x \Rightarrow x = \beta h / 2$ we can rewrite \eqref{eq:zFDS} to:
+% Using the identity found in Eq. \eqref{eq:sinIdentity} with $\beta h = 2x \Rightarrow x = \beta h / 2$ one can rewrite \eqref{eq:zFDS} to:
 % \begin{equation}
 %      z - 2 + 2\lambda^2 +4\lambda^2(\sin^2({\beta h / 2}) - 1/2) - z^{-1} = 0,
 % \end{equation}
@@ -531,7 +531,7 @@ The scheme is then stable if the roots satisfy condition \eqref{eq:boundByUnity}
         0\leq \lambda^2\sin^2(\beta h/2) &\leq 1.
     \end{aligned}
 \end{equation}
-Observing that all terms in $\lambda^2\sin^2(\beta h/2)$ are squared, this term will always be non-negative and therefore always satisfy the first condition. Continuing with the second condition, and knowing that the $\sin^2(\beta h / 2)$-term is bounded by $1$ for all $\beta$, we arrive at the following stability condition:
+Observing that all terms in $\lambda^2\sin^2(\beta h/2)$ are squared, this term will always be non-negative and therefore always satisfy the first condition. Continuing with the second condition, and knowing that the $\sin^2(\beta h / 2)$-term is bounded by $1$ for all $\beta$, yields the following stability condition:
 \begin{equation*}
     \lambda \leq 1.
 \end{equation*}
@@ -585,7 +585,7 @@ The Hamiltonian itself can usually be further subdivided into kinetic energy and
 As a rule of thumb, the definition for kinetic energy contains `velocity squared' (as in the classical-mechanics definition $E_\text{kin}=\tfrac{1}{2}M\dot u$) and the potential energy includes the restoring forces of the system. 
 
 \subsubsection{Step 3: Check the units in the expression for $\h$}
-To know that the previous steps have been carried out correctly, it is good to check whether the units of the resulting expression for $\h$ is indeed in Joules, or kg $\cdot$ m$^2 \cdot $ s$^{-2}$. The other quantities such as energy losses $\mathfrak{q}$ and inputs $\mathfrak{p}$, should be in Joules per second or in SI units: kg $\cdot$ m$^2 \cdot $ s$^{-3}$. Some information about operators and grid functions and how they `add' units to the equation will be given below.
+To know that the previous steps have been carried out correctly, it is good to check whether the units of the resulting expression for $\h$ is indeed in Joules, or kg $\cdot$ m$^2 \cdot $ s$^{-2}$. The other quantities such as energy losses $\mathfrak{q}$ and inputs $\mathfrak{p}$, should be in Joules per second or in SI units: kg $\cdot$ m$^2 \cdot $ s$^{-3}$. As mentioned in Step 1, it is therefore useful to have all physical parameters written out so that the units will be correct in this step. Some information about operators and grid functions and how they `add' units to the equation will be given below.
 
 An (1D) inner product (or norm) will `add' one `m' unit due to the $h$ in its definition in \eqref{eq:contInnerProd}. A first-order temporal difference operator will `add' one `s$^{-1}$'-unit (because of the $1/k$) and a first-order spatial difference operator will `add' one `m$^{-1}$'-unit ($1/h$). Along these lines, a second-order time or difference operator will `add' a `s$^{-2}$' ($1/k^2$) or `m$^{-2}$'-unit ($1/h^2$) respectively. It is important to note that the time shift operator ($e_{t-}$) does not influence the units. Finally, the appearance of a grid function $\uln$ `adds' whatever it describes. Usually, as $\uln$ describes a displacement in m, it will `add' this to the equation. If it describes anything else, it will `add' that.
 
@@ -610,7 +610,7 @@ Recalling the FD scheme for the simple mass-spring system in Eq. \eqref{eq:massS
 \begin{equation*}
     M\dtt \un = -K\un
 \end{equation*}
-we can start to perform an energy analysis using the five steps described above. 
+an energy analysis can be performed using the four steps described above. 
 
 \subsubsection{Step 1: Obtain $\dtp \h$}
 The energy balance of the simple mass-spring system presented in Section \ref{sec:massSpringSystem} can be obtained by first taking the product of scheme \eqref{eq:massSpringFDS} with $(\dtd \un)$:
@@ -890,11 +890,11 @@ This is the same (CFL) condition obtained through von Neumann analysis in Sectio
 \label{sec:modalAnalysis}
 Modes are the resonant frequencies of a system. The number of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. Modal analysis \todo{some citation here} can be used to obtain objective data on what modes a FD scheme should contain. This can then be used to determine whether this matches one's expectations or whether the output of the system matches what the analysis predicted. This section will show how to numerically obtain the modal frequencies of a FD implementation using the 1D wave equation as a test case.
 
-We start by using the matrix form of the 1D wave equation from Eq. \eqref{eq:1DwaveMatrix}
+Recall the matrix form of the 1D wave equation from Eq. \eqref{eq:1DwaveMatrix}
 \begin{equation*}
     \frac{1}{k^2}\left(\u^{n+1}-2\u^n+\u^{n-1}\right) = c^2 \Dxx\u^n.
 \end{equation*}
-Following \cite{theBible} we can assume a test solution of the form $\u^n = z^n\boldPhi$ \todo{more explanation, perhaps refer to von neumann analysis in \ref{sec:stabilityAnalysis}}. Substituting this into the above equation yields the characteristic equation
+Following \cite{theBible}, a test solution of the form $\u^n = z^n\boldPhi$ can be assumed \todo{more explanation, perhaps refer to von neumann analysis in \ref{sec:stabilityAnalysis}}. Substituting this into the above equation yields the characteristic equation
 \begin{equation}
     (z - 2 + z^{-1})\boldPhi = c^2k^2\Dxx \boldPhi.
 \end{equation}
@@ -904,12 +904,12 @@ This is an eigenvalue problem (see Section \ref{sec:eigenValueProblems}) where t
     z_p+\Big(-2-c^2k^2\text{eig}_p(\Dxx)\Big)+z_p^{-1}=0.
 \end{gather}
 %\SWcomment[If the CFL condition for the scheme is satisfied, the roots will lie on the unit circle.] 
-Furthermore, we can substitute a test solution $z_p = e^{s_pk}$ with complex frequency $s_p = j\omega_p + \sigma_p$ which contains the (angular) frequency $\omega_p$ and damping $\sigma_p \leq 0$ \todo{check with Stefan} of the $p$\th mode.\footnote{Notice that regardless of the possible damping coefficient per mode, the eventual amplitude of each will mostly be determined by the locations of the excitation and output as discussed in Section \ref{sec:output1DWave}.} As there is no damping present in the system, the test solution reduces to $z_p = e^{j\omega_p k}$ which can be substituted into Eq \eqref{eq:1DWaveModalIntermediate} to get
+Furthermore, one can substitute a test solution $z_p = e^{s_pk}$ with complex frequency $s_p = j\omega_p + \sigma_p$ which contains the (angular) frequency $\omega_p$ and damping $\sigma_p \leq 0$ \todo{check with Stefan} of the $p$\th mode.\footnote{Notice that regardless of the possible damping coefficient per mode, the eventual amplitude of each will mostly be determined by the locations of the excitation and output as discussed in Section \ref{sec:output1DWave}.} As there is no damping present in the system, the test solution reduces to $z_p = e^{j\omega_p k}$ which can be substituted into Eq \eqref{eq:1DWaveModalIntermediate} to get
 \begin{align*}
     e^{j\omega_pk}+e^{-j\omega_pk}-2-c^2k^2\text{eig}_p(\Dxx)&=0,\\
     \frac{e^{j\omega_pk}+e^{-j\omega_pk}}{-4}+\frac{1}{2}+\frac{c^2k^2}{4}\text{eig}_p(\Dxx)&=0.
 \end{align*}
-Finally, using the trigonometric identity in Eq. \eqref{eq:sinIdentity} we get
+Finally, using the trigonometric identity in Eq. \eqref{eq:sinIdentity} yields
 \begin{align}
     \sin^2(\omega_pk/2)&+\frac{c^2k^2}{4}\text{eig}_p(\Dxx)=0,\nonumber\\
     \sin(\omega_pk/2)&=\frac{ck}{2}\sqrt{-\text{eig}_p(\Dxx)},\nonumber\\

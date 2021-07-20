@@ -1,23 +1,23 @@
 \chapter{2D Systems}\label{ch:2Dsyst}
-The previous chapters considered systems distributed over (maximally) one spatial dimension. As not all musical instruments or instrument-components can be simplified to this, higher dimensional systems need to be taken into consideration. 2D PDEs can be used to model drum membranes, plate reverbs or simplified instrument bodies, which is what it is mainly used for in this work. 
+The previous chapters considered systems distributed over one spatial dimension. As not all musical instruments or instrument-components can be simplified to this, higher dimensional systems need to be taken into consideration, such as 2D systems. 2D PDEs can be used to model drum membranes, plate reverbs or simplified instrument bodies. 
 
 Apart from being slightly more complex than 1D models, the main issue with 2D systems is that their implementations are orders of magnitude heavier to compute than 1D schemes. This chapter will therefore also provide details on how to best implement these schemes in \texttt{MATLAB}. Implementation in C++ will be detailed in Chapter \ref{ch:realtime}.
 
-This chapter starts by providing some additional information about 2D grid functions and operators. Then, the 2D wave equation is presented, and can be interpreted as the 2D-equivalent of the 1D wave equation presented in Section \ref{sec:1DWave}. Using this model, the analysis techniques presented in Chapter \ref{ch:analysis} will be extended to 2D and the differences between this and the 1D case will be highlighted.\footnote{The abbreviation 2D will also be used for `two dimensions'.} Afterwards, two 2D models used in this work, the thin plate model and the stiff membrane will be described in a similar fashion.
+This chapter starts by providing some additional information about 2D grid functions and operators. Then, the 2D wave equation is presented, which is used to extend the analysis techniques presented in Chapter \ref{ch:analysis} to 2D.\footnote{The abbreviation 2D will also be used for `two dimensions'.} Afterwards, two 2D models used in this work, the thin plate and the stiff membrane will be described in a similar fashion.
 The systems modelled in this work are simplified to be rectangular and are defined on a Cartesian coordinate system. Section \ref{sec:radialCoordinates} briefly elaborates on radial coordinate systems and their shortcomings. 
-As in previous chapters, unless denoted otherwise, the theory follows \cite{theBible}.
+Unless denoted otherwise, the theory in this chapter follows \cite{theBible}.
 
 \section{PDEs and FD schemes in 2D}
 Consider a rectangular 2D system with side lengths $L_x$ and $L_y$ (both in m) and its state described by $u = u(x,y,t)$. The system is defined for $t\geq 0$ and $(x,y) \in \D$ where domain $\D \in [0, L_x]\times [0, L_y]$ is two-dimensional. 
 
-Similar to the 1D case explained in Section \ref{sec:gridFunctions}, the state variable can be discretised to a 2D grid function according to $u(x, y, t) \approxeq \ulmn$ with space $x = lh$ and $y = mh$ and time $t = nk$ with $k=1/\fs$. The temporal index $n\in\mathbb{N}^0$ and spatial indices $l\in \{0, \hdots, N_x\}$ and $m\in \{0, \hdots, N_y\}$ index the grid function in space in the $x$ and $y$ directions respectively. Here, $N_x$ is the number of intervals between grid points in the $x$ direction and $N_y$ in the $y$ direction. For simplicity, the grid spacing $h$ is set to be the same in both the $x$ and $y$ directions in this work.
+Similar to the 1D case explained in Section \ref{sec:gridFunctions}, the state variable can be discretised to a 2D grid function according to $u(x, y, t) \approxeq \ulmn$ with space $x = lh$ and $y = mh$ and time $t = nk$ with $k=1/\fs$. The temporal index $n\in\mathbb{N}^0$  and the spatial indices $l\in \{0, \hdots, N_x\}$ and $m\in \{0, \hdots, N_y\}$ index the grid function in space in the $x$ and $y$ directions respectively. Here, $N_x$ is the number of intervals between grid points in the $x$ direction and $N_y$ in the $y$ direction. For simplicity, the grid spacing $h$ is set to be the same in both the $x$ and $y$ directions in this work.
 
 \subsubsection{Additional operators}
-In continuous time, an additional operator, referred to as the \textit{Laplacian} can be defined as
+In continuous time, an additional operator referred to as the \textit{Laplacian}, can be defined as
 \begin{equation}\label{eq:laplacian}
     \Delta = \pxx + \pyy,
 \end{equation}
-which describes a second-order spatial derivative in 2D. A fourth-order spatial derivative in 2D, used to model stiffness like in the stiff string in Chapter \ref{ch:stiffString} is called the \textit{biharmonic} operator and is the Laplacian applied to itself:
+which describes a second-order spatial derivative in 2D. A 4\thOrder spatial derivative in 2D, used to model stiffness like in the stiff string in Chapter \ref{ch:stiffString} is called the \textit{biharmonic} operator, and is defined as the Laplacian applied to itself:
 \begin{equation}\label{eq:biharmonic}
     \Delta\Delta = \pxxxx + 2\pxx\pyy +  \partial_y^4.
 \end{equation}
@@ -68,15 +68,15 @@ See Figure \ref{fig:biharmonic} for the stencil of the discrete biharmonic opera
     \caption{The stencils of the 2D spatial FD operators in Eqs. \eqref{eq:discreteLaplacian} and \eqref{eq:discreteBiharmonic} respectively. The red square denotes what grid point the operator is applied to. The stencils follow the same layout as Figure \ref{fig:operators}, but the vertical axis denotes a second spatial dimension rather than time. \label{fig:2Doperators}}
 \end{figure}
 
-\section{2D wave equation}\label{sec:2Dwave}
+\section{The 2D wave equation}\label{sec:2Dwave}
 The 2D wave equation is the simplest 2D model in the context of musical acoustics and using the operators presented above it is a fairly straightforward extension to the 1D wave equation. Similar to how the 1D wave equation is used to model an ideal string, the 2D wave equation can be used to model an ideal membrane. 
 
 The first appearance of an implementation of the 2D wave equation in a musical context was due to van Duyne and Smith who used digital waveguides, or more specifically a waveguide mesh, to discretise it \cite{Duyne1993}. The implementation is identical to the FD scheme that will be presented here.\SWcomment[though it is more general here due to $\lambda^2$ instead of hard-coded $0.5$]
 
-This section will present the 2D wave equation in continuous time and its discretisation afterwards. Then it will be used as a test-case to extend the various analysis techniques presented in Chapter \ref{ch:analysis} to 2D.
+This section will present the 2D wave equation in continuous time and its discretisation afterwards. The resulting FD scheme is then used as a test-case to extend the various analysis techniques presented in Chapter \ref{ch:analysis} to 2D.
 
 \subsection{Continuous time}
-Consider a system modelling the 2D wave equation with side lengths $L_x$ and $L_y$ (both in m) and its state described by $u = u(x,y,t)$. The system is defined over $(x,y) \in \D$ with domain $\D = [0, L_x] \times[0, L_y]$ and its motion is described by the following PDE
+Consider a system modelling the 2D wave equation with side lengths $L_x$ and $L_y$ (both in m) and its state described by $u = u(x,y,t)$. The system is defined over $(x,y) \in \D$ with domain $\D = [0, L_x] \times[0, L_y]$ and its motion is described by the following PDE:
 \begin{equation}\label{eq:2DwavePDE}
     \ptt u = c^2\Delta u,
 \end{equation}
@@ -96,7 +96,7 @@ Similar to the 1D wave equation, two alternatives for boundary conditions are
     \end{rightcases}\quad &\text{(Neumann, free)},\label{eq:contNeumann2D}
     \end{align}
 \end{subequations}
-where $\forall x$ means 'for all values of $x$'.
+where $\forall$ means 'for all values of'.
 \subsection{Discrete time}
 Using the definition for the approximation of the Laplacian in Eq. \eqref{eq:discreteLaplacian}, the 2D wave equation PDE in Eq. \eqref{eq:2DwavePDE} can be discretised to
 \begin{equation}\label{eq:2DwaveFDS}
@@ -114,13 +114,13 @@ and needs to abide
 \begin{equation}\label{eq:CFL2D}
     \lambda \leq \frac{1}{\sqrt{2}}
 \end{equation}
-for the scheme to be stable (see Section \ref{sec:stability2Dwave}). Writing this condition in terms of the grid spacing places the following limit on $h$
+for the scheme to be stable. See Section \ref{sec:stability2Dwave} for a derivation of this. Writing this condition in terms of the grid spacing places the following limit on $h$:
 \begin{equation}\label{eq:stabilityCondition2Dwave}
-    h \geq \sqrt{2}ck\ .
+    h \geq \sqrt{2}ck\,.
 \end{equation}
 
 \subsubsection{Discrete boundary conditions}
-The continuous-time boundary conditions in Eqs. \eqref{eq:boundaryCond2DWave} can be discretised to 
+The boundary conditions in Eqs. \eqref{eq:boundaryCond2DWave} can be discretised to 
 \begin{subequations}\label{eq:boundaryCond2DWaveDisc}
     \begin{align}
     \begin{rightcases}
@@ -136,21 +136,21 @@ The continuous-time boundary conditions in Eqs. \eqref{eq:boundaryCond2DWave} ca
 If the Dirichlet boundary conditions are used (for all sides), the domain of calculation can simply be reduced to $l\in\{1, \hdots N_x-1\}$ and $m\in\{1, \hdots N_y-1\}$. 
 
 \subsubsection{Stencil}
-Figure \ref{fig:stencil2Dwave} shows the stencil of the 2D wave equation FD scheme in Eq. \eqref{eq:2DwaveFDS}. Due to the extra dimension, layout of the stencil is made to account for this. The colour-coding for grid points at the various time steps is unchanged.
+Figure \ref{fig:stencil2Dwave} shows the stencil of the 2D wave equation FD scheme in Eq. \eqref{eq:2DwaveFDS}. The grid points use the same colour-coding as previous stencils (see e.g. Figure \ref{fig:stencil1DWave}).
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/resonators/2d/stencil2Dwave.eps}
-    \caption{The stencil for the 2D wave equation FD scheme in Eq. \eqref{eq:2DwaveFDS}. The grid points use the same colour-coding as previous stencils (see e.g. Figure \ref{fig:stencil1DWave}).\label{fig:stencil2Dwave}}
+    \caption{The stencil for the 2D wave equation FD scheme in Eq. \eqref{eq:2DwaveFDS}. \label{fig:stencil2Dwave}}
 \end{figure}
-\subsection{Implementation and matrix form}\label{sec:2DwaveImplementation}
+\subsection{Matrix form and output}\label{sec:2DwaveImplementation}
 Similar to how the number of intervals between grid points are calculated 1D in Eq. \eqref{eq:orderOfCalc}, these can be calculated using the following operations:
 \begin{equation}\label{eq:orderOfCalc2D}
     h := \sqrt{2} ck, \ \ N_x := \floor[\frac{L_x}{h}], \ \  N_y := \floor[\frac{L_y}{h}], \ \  h := \text{min}\left(\frac{L_x}{N_x}, \frac{L_y}{N_y}\right), \ \  \lambda := \frac{ck}{h},
 \end{equation}
 where the `$\text{min}$' operator selects the smallest value of $L_x/N_x$ and $L_y/N_y$ to stay as close to the stability condition as possible. 
 % Notice that the grid spacing is recalculated based the smallest value of $L_x/N_x$  $L_y/N_y$ $L/N$ for in the $x$ and $y$ direction to stay as close to the stability condition in Eq. \eqref{eq:stabilityCondition2Dwave}.
-To implement the update equation in Eq. \eqref{eq:update2Dwave}, one could save the states of the system in matrices (as opposed to vectors in the 1D case such as in Section \ref{sec:implementationStiffString}) and directly work with these. Using Dirichlet boundary conditions the $(N_x-1) \times (N_y-1)$ state matrix at time index $n$ would be \todo{matrix vector notation (capitalisation) does not hold here..}
+To implement the update equation in Eq. \eqref{eq:update2Dwave}, one could save the states of the system in matrices (as opposed to vectors in the 1D case such as done in Section \ref{sec:implementationStiffString}) and directly work with these. Using Dirichlet boundary conditions the $(N_x-1) \times (N_y-1)$ state matrix at time index $n$ would be
 \begin{equation}
     \U^n = \begin{bmatrix}
         u^n_{1, 1} & \hdots & u^n_{1, N_x-1}\\
@@ -158,7 +158,7 @@ To implement the update equation in Eq. \eqref{eq:update2Dwave}, one could save 
         u^n_{N_y-1, 1} & \hdots & u^n_{N_y-1, N_x-1}
     \end{bmatrix},
 \end{equation}
-and could  be used to make a`for-loop implementation' of the update equation. This would indeed be the strategy if one would implement the scheme in e.g. C++ (see Chapter \ref{ch:realtime}). For a more compact and faster implementation in \texttt{MATLAB}, however, one could `stack' or `flatten' the state matrices to vectors and update the scheme using matrix-vector multiplication as done for, e.g., the stiff string in Section \ref{sec:implementationStiffString}. Again using Dirichlet boundary conditions, the stacked state vector of size will be structured as
+and could be used to make a `for-loop implementation' of the update equation. This would indeed be the strategy if one would implement the scheme in e.g. C++ (see Chapter \ref{ch:realtime}). For a more compact and faster implementation in \texttt{MATLAB}, however, one could `stack' or `flatten' the state matrices to vectors and update the scheme using matrix-vector multiplication as done for, e.g., the stiff string in Section \ref{sec:implementationStiffString}. Again using Dirichlet boundary conditions, the stacked state vector will be structured as
 \begin{equation}\label{eq:stackedState}
     \uStack^n = [(\u_{1}^n)^T, \hdots, (\u_{N_x-1}^n)^T]^T, \qwiq \u^n_l = [u^n_{l, 1}, \hdots, u^n_{l, N_y-1}]^T,
 \end{equation}
@@ -169,7 +169,7 @@ and has a size of $(N_x-1)\cdot (N_y-1) \times 1$. See Figure \ref{fig:stackingM
     \caption{Stacking, or `flattening' a $4\times 4$ matrix to a $16$-element vector. \label{fig:stackingMatrix}}
 \end{figure}
 
-To obtain a matrix form of the $\dDelta$ operator, the \textit{kronecker product} and \textit{kronecker sum} must be introduced \cite{Horn1991}. The kronecker product between two arbitrarily-sized matrices (using their dimensions as a subscript) is
+To obtain a matrix form of the $\dDelta$ operator that can be applied to this stacked state vector, the \textit{kronecker product} and \textit{kronecker sum} must be introduced \cite{Horn1991}. The kronecker product between two arbitrarily-sized matrices (using their dimensions as a subscript) is
 \begin{equation}
     \A_{M\times N} \otimes \B_{K\times L} = \begin{bmatrix}
         a_{11}\B & \hdots & a_{1N}\B\\
@@ -236,7 +236,7 @@ Using the above, the FD scheme in Eq. \eqref{eq:2DwaveFDS} can then be compactly
 \begin{equation}\label{eq:matrixUpdate2Dwave}
     \uStack^{n+1} = \left(2 \I + c^2k^2 \DDeltamat\right) \uStack^n - \uStack^{n-1},
 \end{equation}
-where the identity matrix is of the same size as $\DDeltamat$. See Appendix \ref{app:2DWave} for a \texttt{MATLAB} implementation of the 2D wave equation. As the matrices are extremely sparse (many $0$-entries), it is useful to utilise \texttt{MATLAB}s optimisation for sparse matrices and use the \texttt{sparse()} function. One can use \texttt{speye()} for sparse identity matrices.
+where the identity matrix is of the same size as $\DDeltamat$. See Appendix \ref{app:2DWave} for a \texttt{MATLAB} implementation of the 2D wave equation.\footnote{As the matrices are extremely sparse (many $0$-entries), it is useful to utilise \texttt{MATLAB}s optimisation for sparse matrices using the \texttt{sparse()} function. One can use \texttt{speye()} for sparse identity matrices.}
 
 If one would like to visualise the system state as a 2D grid, one can revert the stacked vector back to a matrix by using the \texttt{reshape} function in \texttt{MATLAB}:
 \begin{center}
@@ -245,7 +245,7 @@ If one would like to visualise the system state as a 2D grid, one can revert the
 A 2D raised-cosine excitation can be implemented in the same way by reshaping an excitation matrix to a vector (see lines 40--52 in Appendix \ref{app:2DWave})\todo{check if this is still true}.
 
 \subsubsection{Output}
-Figure \ref{fig:2Dpropagation} shows the wave propagation of an implementation of the 2D wave equation with Dirichlet boundary conditions. Parameter values are $L_x = 1.5$ m, $L_y = 1$ m and $c= 360$ m/s. Waves reflect at the boundaries at an increasing frequency. This is also shown in Figure \ref{fig:output2DWave}, where the output -- taken at $(x,y) = (0.15, 0.85)$ -- in time domain shows an increase in oscillations over time due to the reflections. The right panel shows that the output contains many close-together partials. As opposed to the output of the 1D wave equation shown in Figure \ref{fig:1DWaveOutput}, where the partials are integer multiples of the fundamental frequency, the 2D wave equation exhibits aperiodic behaviour due to these reflections and is thus highly inharmonic.
+Figure \ref{fig:2Dpropagation} shows the wave propagation of an implementation of the 2D wave equation with Dirichlet boundary conditions. Parameter values are $L_x = 1.5$ m, $L_y = 1$ m and $c= 360$ m/s. Waves reflect at the boundaries at an increasing rate. This is also shown in Figure \ref{fig:output2DWave}, where the output -- taken at $(x,y) = (0.15, 0.85)$ -- in time domain shows an increase in oscillations over time due to these reflections. The right panel shows that the output contains many partials that are close together, i.e., the output is highly inharmonic. As opposed to the output of the 1D wave equation shown in Figure \ref{fig:1DWaveOutput}, where the partials are integer multiples of the fundamental frequency, the 2D wave equation exhibits aperiodic behaviour due to the aforementioned reflections causing this inharmonicity.
 
 \begin{figure}[h]
     \centering
@@ -263,14 +263,14 @@ Figure \ref{fig:2Dpropagation} shows the wave propagation of an implementation o
 Section \ref{sec:stabilityAnalysis} showed how to perform frequency domain analysis to obtain stability conditions for an FD scheme. This section shows extensions to this in 2D and follows \cite[Ch. 10]{theBible}.
 
 In 2D, the ansatz in Eq. \eqref{eq:ansatz} can be extended to 
-\begin{equation}
+\begin{equation}\label{eq:2Dansatz}
     \ulmn \ansatz z^n e^{jh(l\beta_x + m\beta_y)}
 \end{equation}
 where $\beta_x$ and $\beta_y$ are components of a 2D wavenumber $\boldsymbol{\beta}$ in the $x$ and $y$ directions respectively. Frequency domain representations of temporal operators shown in Eq. \eqref{eq:temporalAnsatz} do not change in the 2D case. Using 
 \begin{equation}\label{eq:pxpy}
     p_x = \sin^2(\beta_x h/2) \qaq p_y = \sin^2(\beta_y h/2)
 \end{equation}
-for brevity, the following frequency domain representation of spatial operators can be obtained
+for brevity, the following frequency domain representation of spatial operators can be obtained through the ansatz in Eq. \eqref{eq:2Dansatz}
 \begin{equation}
     \dxx \ulmn \ansatz -\frac{4}{h^2}p_x 
     \ulmn \qaq \dyy \ulmn \ansatz -\frac{4}{h^2}p_y 
@@ -281,8 +281,8 @@ from which it follows that
     \dDelta\ulmn \ansatz -\frac{4}{h^2}(p_x + p_y)\ulmn,\label{eq:laplacianAnsatz}\\
     \dDelta\dDelta\ulmn \ansatz \frac{16}{h^4}(p_x + p_y)^2\ulmn.\label{eq:biharmonicAnsatz}
 \end{gather}
-
-Using these definitions, a frequency domain interpretation of the 2D wave FD scheme in Eq. \eqref{eq:2DwaveFDS} can be obtained
+%
+Using these definitions, a frequency domain interpretation of the 2D wave equation FD scheme in Eq. \eqref{eq:2DwaveFDS} can be obtained
 \begin{equation*}
     \frac{1}{k^2}\left(z - 2 +z^{-1}\right) = -\frac{4c^2}{h^2} (p_x + p_y).
 \end{equation*}
@@ -323,7 +323,7 @@ Analogous to the 1D inner product presented in Section \ref{sec:innerProduct}, o
 \begin{equation}
     \langle f, g \rangle_\D  = \iint_\D f g dx dy.
 \end{equation}
-Like in the 1D case, these functions do not have to be a function of time, but they are for coherence. 
+Like in the 1D case, these functions do not have to be a function of time, but they are here, for coherence. 
 
 For two (grid) functions $f_{l,m}^n$ and $g_{l,m}^n$ defined over a discrete domain $d\in \{0, \hdots, N_x\} \times \{0, \hdots, N_y\}$ their discrete inner product is defined as
 \begin{equation}\label{eq:2DInnerProd}
@@ -367,14 +367,14 @@ where
         \v = \frac{T}{2} \left(\langle \dxp \ulmn, e_{t-}\dxp \ulmn\rangle_{\domXred} + \langle \dyp \ulmn, e_{t-}\dyp \ulmn\rangle_{\domYred} \right).
     \end{gathered}
 \end{equation}
-Here, the reduced domains $\domXred$ and $\domYred$ are as defined in \eqref{eq:reduced2Ddoms}. The boundary term is 
+Here, the reduced domains $\domXred$ and $\domYred$ are as defined in Eqs. \eqref{eq:reduced2Ddoms}. The boundary term is 
 \begin{equation*}
     \begin{aligned}
     \b =\frac{T}{2}\Bigg[&\langle \dtd u_{N_x,m}^n, \dxp u_{N_x,m}^n \rangle_{(N_x, y)} -\langle \dtd u_{0,m}^n, \dxm u_{0,m}^n \rangle_{(0, y)}\\
     &+ \langle \dtd u_{l,N_y}^n, \dyp u_{l,N_y}^n \rangle_{(x, N_y)} - \langle \dtd u_{l,0}^n, \dym u_{l,0}^n \rangle_{(x, 0)}\Bigg]\ ,
     \end{aligned}
 \end{equation*}
-and uses 1D inner products at the boundaries. Here, $(l,y) = \{l\}\times\{0, \hdots, N_y\}$ and $(x,m) = \{0, \hdots,  N_x\}\times\{m\}$ are slices of domain $d$. The boundary term can be shown to vanish under Dirichlet boundary conditions in Eq. \eqref{eq:discDirichlet2D}. Neumann conditions will not be considered here.
+where $(l,y) = \{l\}\times\{0, \hdots, N_y\}$ and $(x,m) = \{0, \hdots,  N_x\}\times\{m\}$ are slices of domain $d$. The boundary term can be shown to vanish under Dirichlet boundary conditions in Eq. \eqref{eq:discDirichlet2D}. Neumann conditions will not be considered here.
 
 \subsubsection{Step 3: Check units}
 As the addition of the two inner products in the definition for $\v$ in Eq. \eqref{eq:energyBalance2DWave} does not affect the units, only one term is used to check the units. Recalling that, as opposed to the 1D case, the symbol $T$ is tension per unit length and thus in N/m, one can write the terms in Eq. \eqref{eq:energyBalance2DWave} in their units:
@@ -412,7 +412,7 @@ Figure \ref{fig:energy2Dwave} shows the energetic output of an implementation of
 \subsection{Modal analysis in 2D}
 Given that the state vector is stacked as described Section \ref{sec:2DwaveImplementation} and the update equation is written in matrix form as in Eq. \eqref{eq:matrixUpdate2Dwave}, performing a modal analysis on a 2D system does not differ from a 1D system and follows the same process presented in Section \ref{sec:modalAnalysis}.
 
-Inserting a test solution of $\U^n = z^n\boldPhi$ into the matrix form of the 2D wave equation in Eq. \eqref{eq:matrixUpdate2Dwave} yields the following characteristic equation
+Inserting a test solution of $\uStack^n = z^n\boldPhi$ into the matrix form of the 2D wave equation in Eq. \eqref{eq:matrixUpdate2Dwave} yields the following characteristic equation
 \begin{equation}
    \left(z - 2 + z^{-1}\right)\boldPhi = c^2k^2\DDeltamat\boldPhi.
 \end{equation}
@@ -424,9 +424,9 @@ which, using test solution $z_p = e^{j\omega_p k}$ for (angular) frequency $\ome
 \begin{equation}\label{eq:2DWaveModes}
     f_p = \frac{1}{\pi k}\sin^{-1}\left(\frac{ck}{2}\sqrt{-\text{eig}_p(\DDeltamat)}\right).
 \end{equation}
-Notice the similarity to the equation calculating the modal frequencies of the 1D wave equation in Eq. \eqref{eq:1DWaveModes}. Again, the number of modes is equal to the number of moving grid points in the system. 
+Notice the similarity to the equation for the modal frequencies of the 1D wave equation in Eq. \eqref{eq:1DWaveModes}. Again, the number of modes is equal to the number of moving grid points in the system. 
 
-See Figure \ref{fig:modalFreqs2Dwave} for the result of a modal analysis of the 2D wave equation. One can observe that the modes do not follow a linear pattern as opposed to those of the 1D wave equation shown in Figure \ref{fig:modalFreqs1Dwave}. This confirms the inharmonic behaviour of the 2D wave equation. 
+See Figure \ref{fig:modalFreqs2Dwave} for the result of a modal analysis of the 2D wave equation. One can observe that the modes do not follow a linear pattern as opposed to those of the 1D wave equation shown in Figure \ref{fig:modalFreqs1Dwave}. This confirms the inharmonic behaviour of the 2D wave equation discussed \ref{sec:2DwaveImplementation}. 
 \begin{figure}[h]
     \centering
     \includegraphics[width = 0.6\textwidth]{figures/resonators/2d/modes2Dwave.eps}
@@ -442,37 +442,37 @@ Using the line of code in Appendix \ref{sec:eigenValueProblems} and the \texttt{
     \label{fig:modalShapes2D}}
 \end{figure}
 
-\section{Thin plate}\label{sec:thinPlate}
-The thin plate differs from the 2D wave equation in that its restoring force is solely due to stiffness rather than tension. Like for the stiffness term in the stiff string (see Chapter \ref{ch:stiffString}), this causes frequency dispersion, and yields extremely interesting sounds. 
+\section{The thin plate}\label{sec:thinPlate}
+The thin plate, also known as the Kirchhoff model \cite{Kirchhoff1968}, differs from the 2D wave equation in that its restoring force is solely due to stiffness rather than tension. Like for the stiffness term in the stiff string (see Chapter \ref{ch:stiffString}), this causes frequency dispersion, and exhibits interesting timbres. 
 
-The plate model is versatile and can be used to model a plate reverb \cite{DAFxChapter} as well as simplified instrument bodies, as done in \citeP[A], \citeP[B], \citeP[D] and \citeP[E]. This section presents the thin plate PDE and FD scheme, after which it will be subjected to the various analysis techniques extended to 2D in the previous section.
+The plate model is quite versatile and can be used to model a plate reverb \cite{DAFxChapter} as well as simplified instrument bodies, as done in \citeP[A], \citeP[B], \citeP[D] and \citeP[E]. This section presents the thin plate PDE and FD scheme, after which it will be subjected to the various analysis techniques extended to 2D in the previous section.
 
 \subsection{Continuous time}
-Consider a rectangular thin plate with side lengths $L_x$ and $L_y$ (both in m) and its transverse displacement described by $u=u(x,y,t)$. The system is defined for $(x,y)\in \D$ where 2D domain $\D = [0, L_x]\times [0, L_y]$. Using the biharmonic operator introduced in Eq. \eqref{eq:biharmonic}, the PDE for the thin plate, also known as the Kirchhoff model, can be defined as \cite{Kirchhoff1968}
+Consider a rectangular thin plate with side lengths $L_x$ and $L_y$ (both in m) and its transverse displacement described by $u=u(x,y,t)$ (in m). The system is defined for $(x,y)\in \D$ where 2D domain $\D = [0, L_x]\times [0, L_y]$. Using the biharmonic operator introduced in Eq. \eqref{eq:biharmonic}, the PDE for the thin plate, can be defined as \cite{Kirchhoff1968}
 \begin{equation}\label{eq:platePDENoLosses}
     \rho H \ptt u = -D\Delta\Delta u,
 \end{equation}
-where $D = EH^3/12(1-\nu^2)$ is a stiffness coefficient (in kg $\cdot$ m$^2\cdot$s$^{-2}$) parametrised by Young's Modulus $E$ (in Pa), thickness $H$ (in m) and the dimensionless Poisson's ratio $\nu$\todo{look up what this actually is}. Although Eq. \eqref{eq:platePDENoLosses} only holds for thin plates and only accounts for low-amplitude vibration (as it is linear), these properties can be assumed in musical instrument simulations making this model sufficient in this work. 
+where $D = EH^3/12(1-\nu^2)$ is a stiffness coefficient (in kg $\cdot$ m$^2\cdot$s$^{-2}$) parametrised by Young's Modulus $E$ (in Pa), thickness $H$ (in m) and the dimensionless Poisson's ratio $\nu$. Although Eq. \eqref{eq:platePDENoLosses} does not hold for thick plates and only accounts for low-amplitude vibration (as it is linear), these properties can be assumed in musical instrument simulations making this model sufficient in this work. 
 
 Adding losses to Eq. \eqref{eq:platePDENoLosses} yields
 %
 \begin{equation}\label{eq:platePDE}
     \rho H \ptt u = -D\Delta\Delta u - 2\sz \rho H \pt u + 2 \so\rho H  \pt \Delta u
 \end{equation}
-where, as in the case of the stiff string in Eq. \eqref{eq:stiffStringPDE}, $\sz$ and $\so$ are the frequency independent (in s$^{-1}$) and frequency dependent damping coefficient (in m$^2$/s) respectively.
+where, as in the case of the stiff string in Eq. \eqref{eq:stiffStringPDE}, $\sz$ and $\so$ are the frequency independent (in s$^{-1}$) and frequency dependent damping coefficient (in m$^2$/s) respectively.\todo{check hyphens after `frequency'}
 
 \subsubsection{Boundary conditions}
-Similar to the stiff string, clamped and simply supported boundary conditions exist where
+Similar to the stiff string, clamped and simply supported boundary conditions can be defined as
 \begin{subequations}\label{eq:boundaryCondThinPlate}
     \begin{align}
         \begin{rightcases}
-            u = \px u = 0\quad \text{if } y=\{0 , L_y\} \quad \forall x\\
-            u = \py u = 0\quad \text{if } x=\{0 , L_x\}\quad \forall y
+            u = \px u = 0,\quad \text{if } y=\{0 , L_y\}, \quad \forall x\\
+            u = \py u = 0,\quad \text{if } x=\{0 , L_x\},\quad \forall y
         \end{rightcases}
      \quad &\text{(Clamped)},\label{eq:contClamped2D}\\
      \begin{rightcases}
-        u = \pxx u = 0\quad \text{if } y=\{0 , L_y\} \quad \forall x\\
-        u = \pyy u = 0\quad \text{if } x=\{0 , L_x\}\quad \forall y
+        u = \pxx u = 0,\quad \text{if } y=\{0 , L_y\}, \quad \forall x\\
+        u = \pyy u = 0,\quad \text{if } x=\{0 , L_x\},\quad \forall y
     \end{rightcases}\quad &\text{(Simply supported)}.\label{eq:contSimplySupported2D}
     \end{align}
 \end{subequations}
@@ -550,7 +550,7 @@ The clamped condition can be implemented by simply reducing the discrete range o
     u_{l, -1}^n = -u_{l, -1}^n &\qaq u_{l, N_y+1}^n = -u_{l, N_y-1}^n\qquad \forall l.
 \end{align*}
 
-\subsection{Implementation and output}
+\subsection{Matrix form and output}
 Similar to the implementation of the 2D wave equation in Section \ref{sec:2DwaveImplementation}, one can use a stacked state vector. If simply supported boundary conditions are used, one can easily obtain a matrix form of the $\dDelta\dDelta$ operator by multiplying two $\DDeltamat$ matrices presented in Eq. \eqref{eq:DDeltaMatrix} to get $\DDeltaDelta = \DDeltamat\DDeltamat$.
 
 Using a stacked form of the state as described in Eq. \eqref{eq:stackedState} the scheme in Eq. \eqref{eq:thinPlateFDSCompact} in matrix form is     
@@ -564,7 +564,8 @@ where
 \end{gather*}
 and the identity matrix $\I$ is of the same size as $\DDeltaDelta$ and $\DDeltamat$.
 
-As a starting point for implementation, possible parameters are given in Table \ref{tab:thinPlateParams}.
+As a starting point for implementation, possible parameters are given in Table \ref{tab:thinPlateParams}. Figure \ref{fig:thinPlatePropagation} shows the wave propagation of a thin plate excited with a 2D raised cosine at $(x,y) = (0.25L_x, 0.5L_y)$ and uses these parameters.
+
 \begin{table}[h]
     \begin{center}
     \begin{tabular}{|l|c|c|}
@@ -584,8 +585,8 @@ As a starting point for implementation, possible parameters are given in Table \
 \end{table}
 {\renewcommand{\arraystretch}{1}
 
-Figure \ref{fig:thinPlatePropagation} shows the wave propagation of a thin plate excited with a 2D raised cosine at $(x,y) = (0.25L_x, 0.5L_y)$ and uses the parameters given in Table \ref{tab:thinPlateParams}. When compared to Figure \ref{fig:2Dpropagation}, dispersive effects -- where higher-frequency components travel faster than lower-frequency ones -- due to stiffness are apparent. Figure \ref{fig:outputThinPlate} shows the time-domain and frequency domain output of the thin plate at $(x,y) = (0.15L_x, 0.85 L_y)$.
-Compared to the output of the 2D wave equation in Figure \ref{fig:output2DWave}, there are several interesting differences due to dispersion. The amplitude is much lower, waves are closer together and the first wave arrives .
+When compared to Figure \ref{fig:2Dpropagation}, dispersive effects -- where higher-frequency components travel faster than lower-frequency ones -- due to stiffness are apparent. Figure \ref{fig:outputThinPlate} shows the time domain and frequency domain output of the thin plate at $(x,y) = (0.15L_x, 0.85 L_y)$.
+Compared to the output of the 2D wave equation in Figure \ref{fig:output2DWave}, there are several interesting differences. The amplitude is much lower, waves are closer together and the first wave arrives much earlier, all due to dispersive effects.
 \begin{figure}[h]
     \centering
     \includegraphics[width = \textwidth]{figures/resonators/2d/thinPlatePropagation.eps}
@@ -618,7 +619,7 @@ Recalling the definitions $p_x$ and $p_y$ in Eq. \eqref{eq:pxpy}, and given the 
     4\mu^2(1+1)^2 + \frac{4\sigma_1k}{h^2}(1+1) \leq 1\\
     16\mu^2 + \frac{8\sigma_1k}{h^2} \leq 1.
 \end{gather*}
-Finally, recalling the definition for $\kappa$ in Eq. \eqref{eq:kappaDef} solving for $h$ then yields
+Finally, recalling the definition for $\kappa$ in Eq. \eqref{eq:kappaDef} solving for $h$ yields
 \begin{align}
     &1 \geq \frac{16\kappa^2k^2}{h^4} + \frac{8\sigma_1k}{h^2}\nonumber,\\
     &h^4 - 8\sigma_1kh^2 - 16\kappa^2k^2 \geq 0\nonumber,\\
@@ -629,9 +630,9 @@ Finally, recalling the definition for $\kappa$ in Eq. \eqref{eq:kappaDef} solvin
 which is the stability condition given in Eq. \eqref{eq:stabilityPlate}.
 
 \subsection{Energy analysis}
-Using the steps described in Section \ref{sec:energyAnalysis} with the extensions to 2D presented in Section \ref{sec:energyAnalysis2DWave} one can obtain the total energy of the FD scheme in Eq. \eqref{eq:thinPlateFDSCompact}.
+Using the steps described in Section \ref{sec:energyAnalysis} with the extensions to 2D presented in Section \ref{sec:energyAnalysis2DWave}, one can obtain the total energy of the FD scheme in Eq. \eqref{eq:thinPlateFDSCompact}.
 \subsubsection{Step 1: Obtain $\dtp \h$}
-To obtain the rate of change of energy, one can take an inner product of the scheme in Eq. \eqref{eq:thinPlateFDSCompact} with $(\dtd \ulmn)$ over discrete (2D) domain $d$ to get
+To obtain the rate of change of the total energy, one can take an inner product of the scheme in Eq. \eqref{eq:thinPlateFDSCompact} with $(\dtd \ulmn)$ over discrete (2D) domain $d = \{0, \hdots, N_x\}\times \{0, \hdots, N_y\}$ to get
 \begin{equation}\label{eq:rOCthinPlate}
     \begin{aligned}
         \dtp \h =&\ \rho H \langle \dtd \ulmn, \dtt \ulmn \rangle_d + D \langle \dtd \ulmn, \dDelta\dDelta \ulmn \rangle_d\\
@@ -644,7 +645,7 @@ Due to the damping present in the system and because the system is distributed i
 \begin{equation*}
     \dtp \h = \b-\q, 
 \end{equation*}
-with damping term
+with boundary term $\b$ and damping term
 \begin{equation}\label{eq:dampingTermThinPlate}
     \mathfrak{q} = 2\sz \rho H \lVert\dtd\ulmn\rVert_d^2 - 2 \so \rho H \langle \dtd \ulmn, \dtm \dDelta\ulmn \rangle_d.
 \end{equation}
@@ -700,7 +701,7 @@ Figure \ref{fig:energyThinPlate} shows the energetic output of an implementation
 \end{figure}
 
 \subsection{Modal analysis}
-Using the matrix form in Eq. \eqref{eq:matrixFormThinPlate}, a modal analysis of the system can be performed using a one-step form described in Section \ref{eq:oneStepForm}.
+Using the matrix form in Eq. \eqref{eq:matrixFormThinPlate}, a modal analysis of the system can be performed using a one-step form described in Section \ref{sec:oneStepForm}.
 
 Figure \ref{fig:thinPlateModes} shows the results of the analysis with parameter values as listed in Table \ref{tab:thinPlateParams}. Although the modal frequencies follow a similar pattern to those of the 2D wave equation in Figure \ref{eq:2DWaveModes}, the pattern is slightly more exponential like the stiff string in Figure \ref{fig:modesStiffString}.\SWcomment[not really sure what to say here honestly] 
 
@@ -710,22 +711,21 @@ Figure \ref{fig:thinPlateModes} shows the results of the analysis with parameter
     \caption{The result of a modal analysis of the thin plate using the parameters in Table \ref{tab:thinPlateParams}. Notice that the damping is plotted against modal frequency rather than mode number. \label{fig:thinPlateModes}}
 \end{figure}
 
-\section{Stiff membrane}
-The term stiff membrane appears in \cite{Fletcher1998} and is essentially a 2D version of the stiff string. It can be used to model membranes with dispersive effects or provide tension control for thin plates. In this work, the stiff membrane has only been used in paper \citeP[F] to model a drum membrane. 
+\section{The stiff membrane}
+The term \textit{stiff membrane} first appeared in \cite{Fletcher1998}\todo{true?} and is essentially a 2D version of the stiff string. It can be used to model membranes with dispersive effects or provide tension control for thin plates. In this work, the stiff membrane has only been used in paper \citeP[F] to model a drum membrane. 
 
 Similar to previous sections, this section will provide the continuous-time and discrete-time equations of the model. Only a frequency domain analysis will be given, as energy and modal analyses too similar to those previously presented.
 
 \subsection{Continuous time}
-The PDE for a stiff membrane can be obtained as a combination of the 2D wave equation in Eq. \eqref{eq:2DwavePDE} and the thin plate in Eq. \eqref{eq:platePDENoLosses}. Adding losses as in Eq. \eqref{eq:platePDE} yields the following equation of motion
+The PDE for a stiff membrane can be obtained as a combination of the 2D wave equation in Eq. \eqref{eq:2DwavePDE} and the thin plate in Eq. \eqref{eq:platePDENoLosses}. Adding losses as in Eq. \eqref{eq:platePDE} yields the following PDE
 \begin{equation}\label{eq:stiffMembranePDE}
     \rho H \ptt u = T\Delta u - D
     \Delta\Delta u- 2\sz \rho H \pt u + 2 \so\rho H  \pt \Delta u,
 \end{equation}
 where the parameters are identical to those in Eqs. \eqref{eq:2DwavePDE} and \eqref{eq:platePDE}.
 
-
 \subsection{Discrete time}
-Using familiar operators, the \eqref{eq:stiffMembranePDE} can be discretised to 
+Using familiar operators, Eq. \eqref{eq:stiffMembranePDE} can be discretised to 
 \begin{equation}\label{eq:stiffMembraneFDS}
     \rho H \dtt \ulmn = T\dDelta\ulmn- D \dDelta\dDelta\ulmn - 2\sz \rho H \dtd \ulmn + 2 \so \rho H \dtm \dDelta\ulmn,
 \end{equation}
@@ -760,9 +760,9 @@ Writing  Eq. \eqref{eq:stiffMembraneFDScompact} in matrix form yields
 with
 \begin{gather*}
     A = (1+\sz k),\quad \B = 2\I + c^2k^2 \DDeltamat - \kappa^2 k^2 \DDeltaDelta + 2 \so k\DDeltamat, \\
-    \text{and}\quad \C = -(1-\sz k)\I - 2\so k \DDeltamat,
+    \text{and}\quad \C = -(1-\sz k)\I - 2\so k \DDeltamat.
 \end{gather*}
-where the only difference with Eq. \eqref{eq:matrixFormThinPlate} is the addition of the wave speed term in the definition of the $\B$ matrix. 
+Notice that the only difference with Eq. \eqref{eq:matrixFormThinPlate} is the addition of the wave speed term in the definition of the $\B$ matrix. 
 
 \subsection{Frequency domain analysis}\label{sec:stabilityStiffMembrane}
 Following familiar techniques from Sections \ref{sec:oneStepForm} and \ref{sec:stability2Dwave}, the characteristic equation of the FD scheme in Eq. \eqref{eq:stiffMembraneFDScompact} can be obtained:
@@ -791,4 +791,4 @@ Recalling the definitions for $\lambda$ and $\mu$ from \ref{eq:lambdaMuStiffMemb
 \end{gather}
 and is the stability condition for the stiff membrane. 
 \section{Radial coordinates}\label{sec:radialCoordinates}
-This chapter presented various models using a Cartesian coordinate system. Circular or elliptical systems, such as membranes or gongs, could be modelled using a radial coordinate system \cite[Ch. 10]{theBible}. However, using explicit methods to discretise the systems cause the schemes to exhibit high amount much numerical dispersion and reduction of bandwidth \cite[Ch. 11]{theBible}. For better behaviour, one could resort to an implicit scheme, but comes with the drawbacks mentioned in Section \ref{sec:implicitStiffString}. A better alternative is to retain the cartesian coordinate system and set the boundary according to a staircase approximation as done in [\hyperref[ch:listOfPublications]{S4}] (see fx. \cite{Hamilton2016, Harrison2018}).
+This chapter presented various models using a Cartesian coordinate system. Circular or elliptical systems, such as membranes or gongs, could be modelled using a radial coordinate system \cite[Ch. 10]{theBible}. However, using explicit schemes causes these systems to exhibit high amounts much numerical dispersion and reduction of bandwidth \cite[Ch. 11]{theBible}. For better behaviour, one could resort to an implicit scheme, but comes with the drawbacks mentioned in Section \ref{sec:implicitStiffString}. A better alternative is to retain the cartesian coordinate system and set quasi-circular boundary conditions according to a staircase approximation as done in [\hyperref[ch:listOfPublications]{S4}] (see fx. \cite{Hamilton2016, Harrison2018}).

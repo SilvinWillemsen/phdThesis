@@ -1,4 +1,4 @@
-\chapter{Stiff String}\label{ch:stiffString}
+\chapter{The Stiff String}\label{ch:stiffString}
 In earlier chapters, the case of the ideal string was presented, modelled using the 1D wave equation. This system, if the CFL condition is satisfied with equality, generates an output with harmonic partials that are integer multiples of the fundamental frequency. In the real world, however, strings exhibit a phenomenon called \textit{frequency dispersion} due to stiffness in the material, hence the name \textit{stiff string}. This phenomenon causes another effect known as \textit{inharmonicity}: the ``harmonic'' partials get exponentially further apart the higher their frequency is. The stiffness in a string is dependent on its material properties and geometry and will be elaborated on in this chapter. The stiff string played a prominent part in the following papers: \citeP[A], \citeP[B], \citeP[C], \citeP[D] and \citeP[E].
 
 This chapter presents the PDE of the stiff string in continuous time, and goes through the discretisation process. The analysis techniques presented in Chapter \ref{ch:analysis} will then be applied to the resulting (explicit) FD scheme and derived in detail. Finally, an example of an implicit scheme will be given and comparison to the earlier FD scheme will be made. Unless denoted otherwise, this chapter follows \cite{theBible}.
@@ -391,7 +391,7 @@ As $16\mu^2\S^2+4\lambda^2\S$ is non-negative, the first condition is always sat
     16\mu^2\S^2+\left(4\lambda^2+ \frac{16\so k}{h^2}\right)\S &\leq 4,\\
     4\mu^2\S^2+\left(\lambda^2+ \frac{4\so k}{h^2}\right)\S&\leq 1.
 \end{align*}
-As $\S$ is bounded by $1$, this can be substituted. Continuing with the substituted definitions for $\lambda$ and $\mu$ from Eq. \eqref{eq:stiffStringCourant} yields
+As $\S$ is bounded by $1$ for all values of $\beta$, one can set $\S = 1$ \SWcomment[check with Stefan]. Continuing with the substituted definitions for $\lambda$ and $\mu$ from Eq. \eqref{eq:stiffStringCourant} yields
 \begin{align*}
     \frac{4\kappa^2k^2}{h^4}+\frac{c^2k^2 + 4\so k}{h^2}&\leq 1, \\
     4\kappa^2k^2+(c^2k^2+ 4\so k)h^2&\leq h^4,\\
@@ -404,7 +404,7 @@ which is a quadratic equation in $h^2$. Using the quadratic formula, the grid sp
 which is the stability condition for the damped stiff string also shown in Eq. \eqref{eq:stiffStringStability}.
 
 \section{Energy analysis}\label{sec:energyAnalysisString}
-As mentioned in Section \ref{sec:energyAnalysis}, it is useful to perform the energy analysis on the scheme with all physical parameters written out. Discretising the PDE in \eqref{eq:stiffStringPDE} yields
+As mentioned in Section \ref{sec:energyAnalysis}, it is useful to perform the energy analysis on the scheme with all physical parameters written out. Discretising the PDE in Eq. \eqref{eq:stiffStringPDE} yields
 \begin{equation}
     \rho A \dtt \uln = T \dxx \uln - EI \dxxxx \uln - 2\sz \rho A \dtd \uln + 2 \so \rho A \dtm \dxx \uln,
 \end{equation}
@@ -421,15 +421,15 @@ The first step is to take the inner product (see Eq. \eqref{eq:discInnerProd}) o
 % If the free boundary conditions in \eqref{eq:BCfreeDisc} are used, the primed inner product in Eq. \eqref{eq:primedInnerProd} needs to be used. Here we continue with clamped / simply supported boundaries.
 
 \subsubsection{Step 2: Identify energy types and isolate $\dtp$}
-As there is damping present in the system, and the system is distributed, the damping term $\mathfrak{q}$ and boundary term $\mathfrak{b}$ appear and the energy balance will be of the form 
+As there is damping present in the system, and the system is distributed, the energy balance will be of the form 
 \begin{equation}
     \dtp \h = \mathfrak{b}-\mathfrak{q}.
 \end{equation}
-The damping term is defined as \todo{virtual grid points needed for freq-dep damping term..}
+with boundary term $\b$ and damping term $\q$. The latter is defined as \todo{virtual grid points needed for freq-dep damping term..}
 \begin{equation}\label{eq:dampingTermStiffString}
     \mathfrak{q} = 2\sz \rho A \lVert\dtd\uln\rVert_d^2 - 2 \so \rho A \langle \dtd \uln, \dtm \dxx \uln \rangle_d,
 \end{equation}
-and the boundary term $\mathfrak{b}$ appears after rewriting Equation \eqref{eq:rOCStiffString} using summation by parts (see Section \ref{sec:summationByParts}). Specifically, using Eq. \eqref{eq:summationByPartsMinusBar} for the second term and Eq. \eqref{eq:summationByPartsTwiceReduced} for the third, we get
+and $\mathfrak{b}$ appears after rewriting Eq. \eqref{eq:rOCStiffString} using summation by parts (see Section \ref{sec:summationByParts}). Specifically, using Eq. \eqref{eq:summationByPartsMinusBar} for the second term and Eq. \eqref{eq:summationByPartsTwiceReduced} for the third, yields
 \begin{align*}
     \dtp \h &= \rho A \langle \dtd \uln, \dtt \uln \rangle_d + T \langle \dtd \dxp \uln, \dxp \uln\rangle_{\underline{d}} + EI \langle \dtd \dxx \uln, \dxx \uln \rangle_{\overline{\underline{d}}} \\
     &= \mathfrak{b} - \mathfrak{q}
@@ -438,9 +438,9 @@ where the boundary term becomes
 \begin{align*}
     \mathfrak{b} =&\ T\Big((\dtd u_N^n)(\dxp u_N^n) - (\dtd u_0^n) (\dxp u_{-1}^n)\Big) \\
     &+ EI \Big((\dtd u_N^n)(\dxp \dxx u_N^n) - (\dxx u_N^n)(\dxm \dtd u_N^n) \Big)\\
-    &+ EI \Big(- (\dtd u_0^n)(\dxm \dxx u_0^n) + (\dxx u_0^n)(\dxp \dtd u_0^n)\Big).
+    &- EI \Big((\dtd u_0^n)(\dxm \dxx u_0^n) - (\dxx u_0^n)(\dxp \dtd u_0^n)\Big).
 \end{align*}
-For the clamped and simply supported boundary conditions in \eqref{eq:BCclampedDisc} and \eqref{eq:BCsimplySupportedDisc} it can easily be shown that $\mathfrak{b} = 0$. If free conditions as in Eq. \eqref{eq:BCfreeDisc} are used, the boundary conditions will vanish when the primed inner product in Eq. \eqref{eq:primedInnerProd} is used in Step 1 and identity \eqref{eq:summationByPartsTwicePrimed} is used when performing summation by parts. Here, we continue with the clamped / simply supported case. 
+For the clamped and simply supported boundary conditions in \eqref{eq:BCclampedDisc} and \eqref{eq:BCsimplySupportedDisc} it can easily be shown that $\mathfrak{b} = 0$. If free conditions as in Eq. \eqref{eq:BCfreeDisc} are used, the boundary conditions will vanish when the primed inner product in Eq. \eqref{eq:primedInnerProd} is used in Step 1 and identity \eqref{eq:summationByPartsTwicePrimed} is used when performing summation by parts. Here, only the clamped / simply supported case will be considered. 
 
 Isolating $\dtp$ to obtain the total energy $\h$ in the definition for $\dtp \h$ above, requires identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2} and yields
 \begin{equation*}
@@ -466,7 +466,7 @@ Writing this term out in units, and recalling that Pa (the unit for $E$) in SI u
 \end{align*}
 and indeed has the correct units. 
 
-The damping terms in $\mathfrak{q}$ need to be in Joules per second, or kg $\cdot$ m$^2 \cdot$ s$^{-3}$. Writing the terms in Eq. \eqref{eq:dampingTermStiffString} out in their units yields
+The damping terms in $\mathfrak{q}$ need to have units of Joules per second, or kg $\cdot$ m$^2 \cdot$ s$^{-3}$. Writing the terms in Eq. \eqref{eq:dampingTermStiffString} out in their units yields
 \begin{align*}
     2\sz \rho A \lVert\dtd\uln\rVert_d^2\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}&\ \text{s}^{-1}\cdot\text{kg}\cdot\text{m}^{-3}\cdot\text{m}^2\cdot \text{m}\cdot(\text{s}^{-1}\cdot\text{m})^2 \\
     &= \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-3},\\
@@ -476,7 +476,7 @@ The damping terms in $\mathfrak{q}$ need to be in Joules per second, or kg $\cdo
 \end{align*}
 and also have the correct units.
 \subsubsection{Step 4: Implementation}
-An implementation of the energy calculation for the simply supported boundary condition is given in Algorithm \ref{alg:stiffStringEnergy}. The damping is ignored but can be found in Appendix \ref{app:stiffstring}. \todo{Add to appendix or refer to a gist} Figure \ref{fig:energyStiffString} shows that the deviation of the total energy calculated using Eq. \eqref{eq:normalisedEnergyDamping} is within machine precision.
+An implementation of the energy calculation for the simply supported boundary condition is given in Algorithm \ref{alg:stiffStringEnergy}. The damping is ignored but can be found in Appendix \ref{app:stiffstring}. \todo{Add to appendix or refer to a gist} Figure \ref{fig:energyStiffString} shows that the damping present in the system causes $\h$ to decrease in the left panel. The right panel shows that the deviation of the total energy calculated using Eq. \eqref{eq:normalisedEnergyDamping} is within machine precision.
 
 \setlstMAT
 \begin{lstlisting}[caption=Calculating $\h$ for the simply supported boundary condition., label=alg:stiffStringEnergy]
@@ -509,7 +509,7 @@ potEnergy(n) = T / 2 * h * sum((Dxp * [0; u]) .* (Dxp * [0; uPrev])) ... + E * I
         \node[] (v) at (-5.75, 0.5) {\small $\color{red}\mathfrak{v}$};
         \node[] (t) at (-5.75, 0) {\small $\color{blue}\mathfrak{t}$};
       \end{tikzpicture}
-      \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the stiff string are plotted in the left panel. Notice that the damping present in the system causes $\h$ to decrease. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyStiffString}}
+      \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the stiff string are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyStiffString}}
 \end{figure}
 
 \section{Modal analysis}
@@ -518,7 +518,7 @@ potEnergy(n) = T / 2 * h * sum((Dxp * [0; u]) .* (Dxp * [0; uPrev])) ... + E * I
 %     f_p = \frac{1}{\pi k}\sin^{-1}\left(\frac{1}{2}\sqrt{-\eig_p(c^2k^2\Dxx - \kappa^2k^2\Dxxxx)}\right).
 % \end{equation}
 
-To be able to perform a modal analysis on the FD scheme in \eqref{eq:stiffStringFDS}, it must be written in one-step form -- introduced in Section \ref{sec:oneStepForm} -- due to the damping. Using the matrix form of the damped stiff string in Eq. \eqref{eq:matrixFormStiffString}, the one-step form can be written as
+To be able to perform a modal analysis on the FD scheme in \eqref{eq:stiffStringFDS}, it must be written in one-step form -- introduced in Section \ref{sec:oneStepForm} -- due to the damping present in the system. Using the matrix form of the damped stiff string in Eq. \eqref{eq:matrixFormStiffString}, the one-step form can be written as
 %needs be used. As there are damping terms present in the system, it is useful to write the update in one-step form as explained in Section \ref{sec:oneStepForm}.
 \begin{equation}\label{eq:oneStepFormStiffSTring}
     \underbrace{\begin{bmatrix}
@@ -532,24 +532,25 @@ To be able to perform a modal analysis on the FD scheme in \eqref{eq:stiffString
     \underbrace{\begin{bmatrix}
         \u^n\\
         \u^{n-1}
-    \end{bmatrix}}_{\w^n}
+    \end{bmatrix}}_{\w^n},
 \end{equation}
-where the definitions for $\B$, $\C$ and $A$ can be found in Section \ref{sec:implementationStiffString}. The definitions for $\Dxx$ and $\Dxxxx$ those for simply supported boundary conditions as these are used most often in the case of strings.
+where the definitions for $\B$, $\C$ and $A$ can be found in Section \ref{sec:implementationStiffString}. In this analysis, the definitions for $\Dxx$ and $\Dxxxx$ for simply supported boundary conditions will be used.
 
-Assuming test solutions of the form $\w^n = z^n\boldPhi$, and recalling that $z=e^{sk}$ and complex frequency $s = j\omega + \sigma$, we get the following eigenvalue problem (see Section \ref{sec:eigenValueProblems})
+Assuming test solutions of the form $\w^n = z^n\boldPhi$, and recalling that $z=e^{sk}$ and complex frequency $s = j\omega + \sigma$, yields the following eigenvalue problem (see Section \ref{sec:eigenValueProblems})
 \begin{equation}
     z\boldPhi = \Q \boldPhi,
 \end{equation}
-which has the following solutions
+which can be solved for the $p$\th complex modal frequency
 \begin{equation}
     s_p = \frac{1}{k}\ln \left(\eig_p(\Q)\right).
 \end{equation}
-The (angular) frequency of the $p$\th mode can then be obtained using $\mathfrak{I}(s_p)$ and the damping per mode as $\mathfrak{R}(s_p)$. Only selecting the non-negative frequencies obtained from $\mathfrak{I}(s_p)$, these can be plotted and are shown in Figure \ref{fig:modesStiffString}. The parameters used are the ones found in Table \ref{tab:stiffStringParams} with $T = 1885$ N, and $E = 2\cdot 10^{14}$ to highlight inharmonic behaviour. The left panel shows that the system is indeed inharmonic, i.e., modal frequencies increase more as the modal number increases. The right panel shows that higher modes exhibit a higher amount of damping. This is due to the frequency-dependent damping term. If $\sigma_1 = 0$ in \eqref{eq:stiffStringFDS}, it can be shown that $\sigma_p = \sigma_0$ for every mode $p$ (in this case $-1$).
+The (angular) frequency of the $p$\th mode can then be obtained using $\mathfrak{I}(s_p)$ and the damping per mode as $\mathfrak{R}(s_p)$. Only selecting the non-negative frequencies obtained from $\mathfrak{I}(s_p)$, these can be plotted and are shown in Figure \ref{fig:modesStiffString}. The parameters used are the ones found in Table \ref{tab:stiffStringParams} with $T = 1885$ N, and $E = 2\cdot 10^{14}$ Pa to highlight inharmonic behaviour. The left panel shows that the system is indeed inharmonic, i.e., modal frequencies increase more as the modal number increases. The right panel shows that higher modes exhibit a higher amount of damping. This is due to the frequency-dependent damping term. If $\sigma_1 = 0$ in \eqref{eq:stiffStringFDS}, it can be shown that $\sigma_p = \sigma_0$ for every mode $p$ (in this case $\sigma_0 = -1$).
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/modesStiffString.eps}
-    \caption{The modal frequencies and damping per mode for the stiff string using the values in Table \ref{tab:stiffStringParams} and $T = 1885$ and $E = 2\cdot 10^{14}$ to highlight effects of stiffness.  Notice form the left panel that the frequency increases exponentially with the mode number. The right panel shows that higher modes exhibit a greater amount of damping due to the frequency-dependent damping term.\label{fig:modesStiffString}}
+    \caption{The modal frequencies and damping per mode for the stiff string using the values in Table \ref{tab:stiffStringParams} and $T = 1885$ N and $E = 2\cdot 10^{14}$ Pa to highlight effects of stiffness. % Notice form the left panel that the frequency increases exponentially with the mode number. The right panel shows that higher modes exhibit a greater amount of damping due to the frequency-dependent damping term.
+    \label{fig:modesStiffString}}
 \end{figure}
 
 \section{Implicit scheme}\label{sec:implicitStiffString}
@@ -557,11 +558,11 @@ Although not used in the published work of this project, it is useful to touch u
 \begin{equation}\label{eq:stiffStringFDSImplicit}
     \dtt \uln = c^2 \dxx \uln - \kappa^2 \dxxxx \uln - 2 \sz \dtd \uln + 2 \so\dtd\dxx \uln.
 \end{equation}
-Using the centred operator in the mixed-spatial-temporal operator renders the system \textit{implicit}, meaning that a definition for $u_l^{n+1}$ can not explicitly be found from known values. The stencil in Figure \ref{fig:stencilStiffStringImplicit} also shows this: in order to calculate $u_l^{n+1}$, neighbouring points at the next time step $u_{l+1}^{n+1}$ and $u_{l-1}^{n+1}$ are needed. The issue is that these values are unknown at the time of calculation.
+Using the centred operator in the mixed-spatio-temporal operator renders the system \textit{implicit}, meaning that a definition for $u_l^{n+1}$ can not explicitly be found from known values. The stencil in Figure \ref{fig:stencilStiffStringImplicit} also shows this: in order to calculate $u_l^{n+1}$, neighbouring points at the next time step $u_{l+1}^{n+1}$ and $u_{l-1}^{n+1}$ are needed. The issue is that these values are unknown at the time of calculation.
 
 Luckily, as the scheme is linear, it can be treated as a system of linear equations and solved following the technique described in Section \ref{sec:linearEquations}. The drawback is that this requires one matrix inversion per iteration which can be extremely costly (see Section \ref{sec:RTmatrixInversion}). However, both von Neumann and modal analysis (below) show that using the centred instead of the backwards operator has a positive effect on the stability and the modal behaviour of the scheme. 
 
-Taking simply supported boundary conditions such that $l \in \{1, \hdots, N-1\}$, the system will have $N-1$ unknowns ($u_l^{n+1}$ for $l \in \{1, \hdots, N-1\}$) that can be calculated using $N-1$ (update) equations. Writing this in matrix form using column vector $\u^n = [u_1^n, u_2^n, \hdots, u_{N-1}^n]$ yields 
+Considering simply supported boundary conditions such that $l \in \{1, \hdots, N-1\}$, the system will have $N-1$ unknowns ($u_l^{n+1}$ for $l \in \{1, \hdots, N-1\}$) that can be calculated using $N-1$ (update) equations. Writing this in matrix form using column vector $\u^n = [u_1^n, u_2^n, \hdots, u_{N-1}^n]$ yields 
 
 \begin{equation}\label{eq:matrixFormStiffStringImplicit}
     \A\u^{n+1} = \B\u^n + \C \u^{n-1}
@@ -573,6 +574,10 @@ where
     \text{and} \quad \C = -(1-\sz k)\I - \so k \Dxx.
     \end{gathered}
 \end{equation*}
+Equation \eqref{eq:matrixFormStiffStringImplicit} can be considered a system of linear equations (see Section \ref{sec:linearEquations}) and the state at the next time step $\u^{n+1}$ can then be retrieved using a matrix inversion (see \ref{sec:inverse})
+\begin{equation}
+    \u^{n+1} = \A^{-1}\left(\B\u^n + \C \u^{n-1}\right).
+\end{equation}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/resonators/stencilImplicitStiffString.eps}
@@ -580,7 +585,7 @@ where
 \end{figure}
 
 \subsection{von Neumann analysis}
-Using the same process as in Section \ref{sec:stiffStringStability}, the definitions in Section \ref{sec:stabilityAnalysis} can be used to obtain a frequency domain representation of the FD scheme in Eq. \eqref{eq:stiffStringFDSImplicit} can be obtained:
+Using the same process as in Section \ref{sec:stiffStringStability}, the definitions in Section \ref{sec:stabilityAnalysis} can be used to obtain a frequency domain representation of the FD scheme in Eq. \eqref{eq:stiffStringFDSImplicit}:
 \begin{align}
     \!\!\!\!\frac{1}{k^2}\left(z - 2 + z^{-1}\right) =&-\frac{4c^2}{h^2}\sin^2(\beta h/2) - \frac{16\kappa^2}{h^4}\sin^4(\beta h/2) - \frac{\sz}{k}z + \frac{\sz}{k} z^{-1}\nonumber\\
     & - \frac{4 \so}{kh^2}\sin^2(\beta h/2)z + \frac{4 \so}{kh^2} \sin^2(\beta h/2)z^{-1},
@@ -598,7 +603,7 @@ Stability of the system can then be proven using condition \eqref{eq:condition21
 \begin{align*}
 \left|\frac{16\mu^2\S^2+4\lambda^2\S - 2}{1+\sz k + \frac{4\so k}{h^2}\S} \right|-1 &\leq \frac{1-\sz k - \frac{4\so k}{h^2}\S}{1+\sz k + \frac{4\so k}{h^2}\S}\leq 1,\\[1em]
 \left|16\mu^2\S^2+4\lambda^2\S - 2 \right| - \left(1+\sz k + \frac{4\so k}{h^2}\S\right) &\leq 1-\sz k - \frac{4\so k}{h^2}\S\\
-&\quad\leq 1+\sz k + \frac{4\so k}{h^2}\S,\\[1em]
+&\qquad\leq 1+\sz k + \frac{4\so k}{h^2}\S,\\[1em]
 \left|16\mu^2\S^2+4\lambda^2\S - 2 \right|&\leq 2 \leq 2+2\sz k + \frac{8\so k}{h^2}\S.
 \end{align*} 
 Because $\sz, \so, k, \S$ and $h$ are all non-negative, the last condition is always satisfied. Continuing with the first condition:
@@ -606,7 +611,7 @@ Because $\sz, \so, k, \S$ and $h$ are all non-negative, the last condition is al
     -2\leq 16\mu^2\S^2+4\lambda^2\S - 2 &\leq 2,\\
     0\leq 16\mu^2\S^2+4\lambda^2\S &\leq 4.
 \end{align*}
-Again, the first condition is always satisfied due to the non-negativity of all coefficients. Continuing with the second condition
+Again, the first condition is always satisfied due to the non-negativity of all coefficients. Continuing with the second condition yields
 \begin{equation*}
     4\mu^2\S^2+\lambda^2\S \leq 1,
 \end{equation*} 
@@ -620,23 +625,24 @@ and yields the following stability condition:
 \begin{equation}\label{eq:implicitStability}
     h \geq \sqrt{\frac{c^2k^2 + \sqrt{c^4k^4 + 16\kappa^2k^2}}{2}}.
 \end{equation}
-Comparing this to the stability condition for the explicit scheme in Eq. \eqref{eq:stiffStringStability}, one can observe that the terms containing $\so$ have vanished. It can thus be concluded that if the centred (rather than the backwards) difference is used to discretise the temporal derivative in the frequency-dependent damping term, $\so$ no longer influences the stability of the scheme. What this means in terms of behaviour of the scheme will be elaborated on in the following section.
+Comparing this to the stability condition for the explicit scheme in Eq. \eqref{eq:stiffStringStability}, one can observe that the terms containing $\so$ have vanished. It can thus be concluded that if the centred (rather than the backwards) difference is used to discretise the temporal derivative in the frequency-dependent damping term, $\so$ no longer influences the stability of the scheme and the condition is more relaxed. What this means in terms of behaviour of the scheme will be elaborated on in the following section.
 
 \subsection{Modal analysis}
 As the matrix form of the implicit FD scheme in Eq. \eqref{eq:matrixFormStiffStringImplicit} matches the form in Eq. \eqref{eq:modalForm}, one can perform a modal analysis by writing the scheme in one-step form as explained in Section \ref{sec:oneStepForm}. The results of the analysis are shown in Figure \ref{fig:implicitModes}. To highlight the difference between using the backwards and centred difference for the frequency-dependent damping term, $\so $ has been set to $1$, which is much higher than one would normally use.
 
 One can observe from Figure \ref{fig:implicitModes} that especially higher-frequency modes in the explicit scheme are affected by $\so$.  
-In the continuous case, the modal frequencies should only be affected by values for $c$ and $\kappa$ as per Eq. \eqref{eq:inharmonicityEquation} and the damping should not influence the frequencies of the partials, as one could expect. However, as $\so$ increases, $h$ increases due to Eq. \eqref{eq:stiffStringStability}, causing $\lambda$ and $\mu$ to decrease. This introduces numerical dispersion as explained in Section \ref{sec:quality1DWave}, and the higher the value of $\so$, the more numerical dispersion it introduces in the scheme.
+In the continuous case, the modal frequencies should only be affected by values for $c$ and $\kappa$ as per Eq. \eqref{eq:inharmonicityEquation} and the damping should not influence the frequencies of the partials, as one could expect. However, as $\so$ increases, $h$ increases due to Eq. \eqref{eq:stiffStringStability}, causing $\lambda$ and $\mu$ to decrease. This introduces numerical dispersion as explained in Section \ref{sec:quality1DWave}, and the higher the value of $\so$, the more numerical dispersion is introduced.
 
 As the stability condition for the implicit scheme in Eq. \eqref{eq:implicitStability} does not contain $\so$, this value will not affect $\lambda$ and $\mu$ and will thus not affect the modal frequencies. As can be observed from the figure, it even allows for one more grid point to be included in the simulation. It can be concluded that because the frequency-dependent damping term no longer affects the stability condition for the implicit scheme, a more accurate simulation can be obtained with fewer numerically dispersive effects.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/implicitModes.eps}
-    \caption{A comparison between the modal frequencies and damping per mode of the explicit (blue) and implicit (red) scheme. Here, $T = 1885$, $E = 2\cdot10^{14}$ and $\so = 1$ to highlight differences between the two schemes. One can observe that the modes of the implicit scheme follow the expected exponential pattern for the stiff string, where the explicit scheme shows numerically dispersive effects. Furthermore, due to the absence of $\so$ in the stability condition in Eq. \eqref{eq:implicitStability} and allows for one more grid point  \label{fig:implicitModes}}
+    \caption{A comparison between the modal frequencies and damping per mode of the explicit (blue) and implicit (red) scheme. Here, $T = 1885$ N, $E = 2\cdot10^{14}$ Pa and $\so = 1$ m$^2$/s to highlight differences between the two schemes. %One can observe that the modes of the implicit scheme follow the expected exponential pattern for the stiff string, where the explicit scheme shows numerically dispersive effects. Furthermore, due to the absence of $\so$ in the stability condition in Eq. \eqref{eq:implicitStability} and allows for one more grid point  
+    \label{fig:implicitModes}}
 \end{figure}
 
 \subsection{Conclusion}
-This section presented an implicit discretisation of the stiff string where the centred operator has been used to discretise the temporal derivative in the frequency-dependent damping term. By means of stability analysis and modal analysis some advantages that the implicit scheme has over its explicit counterpart (presented in Section \ref{sec:stiffStringDiscrete}) have been shown.
+This section presented an implicit discretisation of the stiff string where the centred operator has been used to discretise the temporal derivative in the frequency-dependent damping term. By means of stability analysis and modal analysis several advantages that the implicit scheme has over its explicit counterpart (presented in Section \ref{sec:stiffStringDiscrete}) have been shown.
 
 As these advantages only show for higher values of $\so$, much higher than the ones used in this project, it has been chosen to use the explicit scheme for all further implementation. The decrease in accuracy is negligible for lower values of $\so$ and the calculation of the scheme becomes orders of magnitude more computationally expensive if the implicit scheme is used. 

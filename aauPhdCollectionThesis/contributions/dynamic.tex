@@ -163,7 +163,7 @@ their interactions change through a change in the grid spacing and wave speed. T
 One detail that was not provided in paper \citeP[G], is the impelmentation of the displacement correction.
 When the wave speed is increased and points are removed, it is not necessarily true that $u_M = w_0$ at the time of removal and the rigid connection in \eqref{eq:rigid} is violated. On top of the virtual grid point ``generation'' from the interpolation described above, one could add a connection force that is dependent on how close the inner boundaries $u_M$ and $w_0$ are.
 
-We can extend \eqref{eq:systemHalfStrings} to have a spring force between $u_M$ and $w_0$ as
+Equation \eqref{eq:systemHalfStrings} can be extended to include a spring force between $u_M$ and $w_0$ as
 \begin{equation}\label{eq:dispCorrSyst}
     \begin{cases}
         \delta_{tt}u^n &= c^2\delta_{xx}u^n + J(x_{u_M})F\\
@@ -238,7 +238,7 @@ Due to the damping that is present in the system, it needs to be written in one-
     \A \U^{n+1} = \B \U^n + \C\U^{n-1}
 \end{equation}
 and rewrite to one-step form as \SWcomment[decapitalise u!]
-\begin{equation}\label{eq:oneStepForm}
+\begin{equation}\label{eq:oneStepFormDynamicGrid}
     \underbrace{\begin{bmatrix}
         \U^{n+1}\\
         \U^n
@@ -283,7 +283,7 @@ Then refactoring to the form in \eqref{eq:formForOneStep} and using identity mat
 \begin{equation}
     \A = \I - \frac{\beta k^2 (1+\sigma_0/k)}{2}\J\boldsymbol{\eta}, \qquad \B = \mathbf{B}_2, \qquad \text{and} \qquad \C = -\left(\I - \frac{\beta k^2 (1-\sigma_0/k)}{2}\J\boldsymbol{\eta}\right)
 \end{equation}
-Although substituting these definitions into \eqref{eq:oneStepForm} gives an identical result to the matrix definitions above (comparisons show a difference between the $\Q$ matrices around machine precision), $\beta$ can still go to infinity. In this case, $\epsilon \neq 0$ in \eqref{eq:betaDef}. 
+Although substituting these definitions into \eqref{eq:oneStepFormDynamicGrid} gives an identical result to the matrix definitions above (comparisons show a difference between the $\Q$ matrices around machine precision), $\beta$ can still go to infinity. In this case, $\epsilon \neq 0$ in \eqref{eq:betaDef}. 
 
 \section{%Modal 
 Analysis and experiments}
