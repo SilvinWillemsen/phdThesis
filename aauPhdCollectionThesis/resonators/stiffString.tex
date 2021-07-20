@@ -45,7 +45,7 @@ Before moving on to the discretisation of the PDE in Eq. \eqref{eq:stiffStringPD
 \end{equation}
 where the non-negative loss coefficients $\sz$ (in s$^{-1}$) and $\so$ (in m$^2$/s) determine the frequency-independent and frequency-dependent losses respectively. Appendix \ref{app:intuitionSigma1} attempts to provide some intuition on workings of these damping terms.
 
-A more compact way to write Eq. \eqref{eq:stiffStringPDE}, and as is also found often in the literature \cite{theBible}\todo{etc.}, is to divide all terms by $\rho A$ to get
+A more compact way to write Eq. \eqref{eq:stiffStringPDE}, and is also found often in the literature \cite{theBible}\todo{etc.}, is to divide all terms by $\rho A$ to get
 \begin{equation}\label{eq:stiffStringPDECompact}
     \ptt u = c^2 \pxx u - \kappa^2 \pxxxx u - 2 \sz \pt u + 2 \so \pt \pxx u,
 \end{equation}
@@ -98,7 +98,7 @@ Recalling the definitions for $\dtm$ in Eq. \eqref{eq:backwardTimeOperator} and 
     \dtm\dxx &= \frac{1}{k}\left(1-e_{t-}\right)\frac{1}{h^2}\left(e_{x+}-2+e_{x-}\right),\nonumber \\
     &= \frac{1}{kh^2}\left(e_{x+}-2+e_{x-} - e_{t-}(e_{x+}-2+e_{x-})\right).
 \end{align}
-Two different shift operators multiplied together still simply means to apply each of them to the grid function individually. The $\dtm\dxx$ operator applied to $\uln$ thus yields
+To have two different shift operators multiplied together still simply means to apply each of them to the grid function individually. The $\dtm\dxx$ operator applied to $\uln$ thus yields
 \begin{equation}
     \dtm \dxx \uln = \frac{1}{hk^2}\left(u_{l+1}^n - 2 \uln + u_{l-1}^n - u_{l+1}^{n-1} + 2 u_l^{n-1} - u_{l-1}^{n-1}\right).
 \end{equation}
@@ -340,7 +340,7 @@ The values of the parameters naturally determine the properties of the output so
 \end{table}
 {\renewcommand{\arraystretch}{1}
 
-There exists a formula to calculate the loss coefficients $\sz$ and $\so$ from $T_{60}$ values at different frequencies (see \cite[Eq (7.29)]{theBible}). During this project, however, these values have been tuned by ear and are usually set to be approximately those found in Table \ref{tab:stiffStringParams}. 
+A formula exists to calculate the loss coefficients $\sz$ and $\so$ from $T_{60}$ values at different frequencies (see \cite[Eq (7.29)]{theBible}). During this project, however, these values have been tuned by ear and are usually set to be approximately those found in Table \ref{tab:stiffStringParams}. 
 
 
 \subsubsection{Output}
@@ -373,7 +373,7 @@ Rewriting this to the form in Eq. \eqref{eq:polynomialForm}, and using $\S = \si
 \begin{equation*}
     z^2 + \left(\frac{16\mu^2\S^2+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\S - 2}{1 + \sz k}\right)z+\frac{1-\sz k-\frac{8\so k}{h^2}\S}{1 + \sz k}=0.
 \end{equation*}
-Stability of the system can then be proven using condition \eqref{eq:condition214} and substituting the coefficients into this condition yields
+Stability of the system can then be proven using condition \eqref{eq:condition214}, and substituting the coefficients into this condition yields
 \begin{equation}\nonumber
     \begin{aligned}
         \left|\frac{16\mu^2\S^2+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\S - 2}{1+\sz k}\right|-1 &\leq \frac{1-\sz k-\frac{8\so k}{h^2}\S}{1+\sz k}\leq 1,\\
@@ -466,7 +466,7 @@ Writing this term out in units, and recalling that Pa (the unit for $E$) in SI u
 \end{align*}
 and indeed has the correct units. 
 
-The damping terms in $\mathfrak{q}$ need to have units of Joules per second, or kg $\cdot$ m$^2 \cdot$ s$^{-3}$. Writing the terms in Eq. \eqref{eq:dampingTermStiffString} out in their units yields
+As described in Section \ref{sec:energyAnalysis}, the damping terms in $\mathfrak{q}$ need to have units of Joules per second, or kg $\cdot$ m$^2 \cdot$ s$^{-3}$. Writing the terms in Eq. \eqref{eq:dampingTermStiffString} out in their units yields
 \begin{align*}
     2\sz \rho A \lVert\dtd\uln\rVert_d^2\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}&\ \text{s}^{-1}\cdot\text{kg}\cdot\text{m}^{-3}\cdot\text{m}^2\cdot \text{m}\cdot(\text{s}^{-1}\cdot\text{m})^2 \\
     &= \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-3},\\
