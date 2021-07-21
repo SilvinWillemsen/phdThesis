@@ -8,51 +8,49 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bib/mybib.bib
-Warning--I didn't find a database entry for "Webster19"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 102 entries,
+You've used 95 entries,
             4087 wiz_defined-function locations,
-            1443 strings with 23782 characters,
-and the built_in function-call counts, 65217 in all, are:
-= -- 5437
-> -- 1314
-< -- 518
-+ -- 717
-- -- 215
-* -- 2922
-:= -- 10261
-add.period$ -- 206
-call.type$ -- 102
-change.case$ -- 103
+            1407 strings with 22978 characters,
+and the built_in function-call counts, 62373 in all, are:
+= -- 5212
+> -- 1268
+< -- 516
++ -- 695
+- -- 204
+* -- 2808
+:= -- 9739
+add.period$ -- 192
+call.type$ -- 95
+change.case$ -- 96
 chr.to.int$ -- 1194
-cite$ -- 102
-duplicate$ -- 4778
-empty$ -- 5370
-format.name$ -- 272
-if$ -- 15132
+cite$ -- 95
+duplicate$ -- 4540
+empty$ -- 5091
+format.name$ -- 258
+if$ -- 14502
 int.to.chr$ -- 0
-int.to.str$ -- 102
-missing$ -- 809
-newline$ -- 351
-num.names$ -- 106
-pop$ -- 1885
+int.to.str$ -- 95
+missing$ -- 756
+newline$ -- 320
+num.names$ -- 99
+pop$ -- 1731
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 5170
+skip$ -- 4949
 stack$ -- 0
-substring$ -- 2844
-swap$ -- 3690
-text.length$ -- 120
+substring$ -- 2837
+swap$ -- 3556
+text.length$ -- 118
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 102
+type$ -- 95
 warning$ -- 0
-while$ -- 302
-width$ -- 105
-write$ -- 980
-(There was 1 warning)
+while$ -- 295
+width$ -- 97
+write$ -- 912

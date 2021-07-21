@@ -7,7 +7,7 @@ This chapter starts by providing some additional information about 2D grid funct
 The systems modelled in this work are simplified to be rectangular and are defined on a Cartesian coordinate system. Section \ref{sec:radialCoordinates} briefly elaborates on radial coordinate systems and their shortcomings. 
 Unless denoted otherwise, the theory in this chapter follows \cite{theBible}.
 
-\section{PDEs and FD schemes in 2D}
+\section{PDEs and FD schemes in 2D}\label{sec:2Dintro}
 Consider a rectangular 2D system with side lengths $L_x$ and $L_y$ (both in m) and its state described by $u = u(x,y,t)$. The system is defined for $t\geq 0$ and $(x,y) \in \D$ where domain $\D \in [0, L_x]\times [0, L_y]$ is two-dimensional. 
 
 Similar to the 1D case explained in Section \ref{sec:gridFunctions}, the state variable can be discretised to a 2D grid function according to $u(x, y, t) \approxeq \ulmn$ with space $x = lh$ and $y = mh$ and time $t = nk$ with $k=1/\fs$. The temporal index $n\in\mathbb{N}^0$  and the spatial indices $l\in \{0, \hdots, N_x\}$ and $m\in \{0, \hdots, N_y\}$ index the grid function in space in the $x$ and $y$ directions respectively. Here, $N_x$ is the number of intervals between grid points in the $x$ direction and $N_y$ in the $y$ direction. For simplicity, the grid spacing $h$ is set to be the same in both the $x$ and $y$ directions in this work.
@@ -519,7 +519,7 @@ and $S = 2\so k / h^2$ for compactness. See Figure \ref{fig:plateStencil} for th
 %
 The stability condition of the scheme can be shown to be
 \begin{equation}\label{eq:stabilityPlate}
-    h \geq 2\sqrt{k\bigg(\sigma_1^2 + \sqrt{\kappa^2+ \sigma_1^2}\bigg)},
+    h \geq 2\sqrt{k\bigg(\sigma_1 + \sqrt{\kappa^2+ \sigma_1^2}\bigg)},
 \end{equation}
 and will be derived in Section \ref{sec:stabilityThinPlate}.
 
@@ -703,7 +703,7 @@ Figure \ref{fig:energyThinPlate} shows the energetic output of an implementation
 \subsection{Modal analysis}
 Using the matrix form in Eq. \eqref{eq:matrixFormThinPlate}, a modal analysis of the system can be performed using a one-step form described in Section \ref{sec:oneStepForm}.
 
-Figure \ref{fig:thinPlateModes} shows the results of the analysis with parameter values as listed in Table \ref{tab:thinPlateParams}. Although the modal frequencies follow a similar pattern to those of the 2D wave equation in Figure \ref{eq:2DWaveModes}, the pattern is slightly more exponential like the stiff string in Figure \ref{fig:modesStiffString}.\SWcomment[not really sure what to say here honestly] 
+Figure \ref{fig:thinPlateModes} shows the results of the analysis with parameter values as listed in Table \ref{tab:thinPlateParams}. Although the modal frequencies follow a similar pattern to those of the 2D wave equation in Figure \ref{fig:modalShapes2D}, the pattern is slightly more exponential like the stiff string in Figure \ref{fig:modesStiffString}.\SWcomment[not really sure what to say here honestly] 
 
 \begin{figure}[h]
     \centering

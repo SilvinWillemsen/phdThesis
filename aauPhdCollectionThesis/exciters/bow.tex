@@ -122,21 +122,21 @@ and a Lagrange cubic spreading operator
 \end{equation}
 Notice the scaling by $1/h$ which will be more elaborated on in Chapter \ref{ch:connections}. As is the case with the interpolation operators, higher-order spreading operators reduce to Eq. \eqref{eq:zerothOrderJ} if $\alpha_\itxt = 0$.
 
-The spreading operators, $J(x_\itxt)$ approximate the spatial Dirac delta function $\delta(x-x_\itxt)$, a test function defined as
+Spreading operators approximate the spatial Dirac delta function $\delta(x-x_\itxt)$ (in m$^{-1}$), a test function defined as
 \begin{equation}\label{eq:spatialDirac}
     \delta(x)= \begin{cases}
         \infty, & x = 0,\\
         0, & \text{otherwise},
     \end{cases} \qaq \int_{-\infty}^{\infty} \delta(x)dx = 1,
 \end{equation}
-used in continuous time to locate an external force to a location $x_\itxt$ along a system distributed over space $x$. Note that the definition in \eqref{eq:spatialDirac} will not be used in practice. Instead, it can be approximated using the spreading operators presented in this section. 
+used in continuous time to locate an external force to a location $x_\itxt$ along a system distributed over space $x$. Note that the definition in \eqref{eq:spatialDirac} will not be used directly. Instead, it can be approximated using the spreading operators presented in this section. 
 
 The following identity is extremely useful when solving systems including interpolation and spreading operators of the same order $o$
 \begin{equation}\label{eq:identityIJ}
     \langle f, J_o(x_\itxt) \rangle_d = I_o(x_\itxt) f,
 \end{equation}
 for any (grid) function $f$ and discrete domain $d$. From this, it follows that taking the norm of a spreading operator $J_o(x_\itxt)$ over a given domain is identical to applying to its `dual' interpolation operator (of the same order $o$ and same input $x_\itxt$):
-\begin{equation}
+\begin{equation}\label{eq:JnormIJ}
     \langle  J_o(x_\itxt), J_o(x_\itxt)\rangle_d = \lVert J_o(x_\itxt)\rVert^2_d = I_o(x_\itxt)J_o(x_\itxt).
 \end{equation}
 See Section \ref{sec:innerProduct} for more details on the inner product and the norm.
@@ -355,7 +355,7 @@ Limit of iterations is set to $100$
 \end{equation}
 
 \subsection{Energy analysis}
-Following the energy analysis of the stiff string presented in Section \eqref{sec:energyAnalysisString}, taking an inner product of Eq. \eqref{eq:bowedStiffStringFDS} (after multiplication by $\rho A$) with $(\dtd \uln)$ over discrete domain $d$ one arrives at the following 
+Following the energy analysis of the stiff string presented in Section \ref{sec:energyAnalysisString}, taking an inner product of Eq. \eqref{eq:bowedStiffStringFDS} (after multiplication by $\rho A$) with $(\dtd \uln)$ over discrete domain $d$ one arrives at the following 
 \begin{align*}
     \dtp \h + \q &=  - \langle (\dtd \uln), J_l(x_\Btxt^n)f_\Btxt^n\Phi(\vrel^n) \rangle_d\\[-5pt]
     \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:identityIJ}}\ }\qquad &= -I_l(x_\Btxt^n)(\dtd \uln) f_\Btxt^n \Phi(\vrel^n) \\[-5pt]
