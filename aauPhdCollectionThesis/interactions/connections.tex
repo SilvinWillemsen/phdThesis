@@ -418,7 +418,7 @@ Figure \ref{fig:energyConn1DWaveSpring} shows the energy of an implementation of
         \node[] (c) at (-5.8, -0.5) {\small $\color[HTML]{00DB00}\mathfrak{h}_\ctxt$};
 
       \end{tikzpicture}
-      \caption{The energy of $u$ (blue), the energy of $w$ (red), the energy of the spring (green) and the total (black) energy of the system of connected 1D wave equations in \eqref{eq:conn1DwaveFDS}. The energy corresponds to the system in Figure \ref{fig:connectedWaveEqsSpring}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy} shows that the deviation of the energy is within machine precision. \label{fig:energyConn1DWaveSpring}}
+      \caption{The energy of $u$ (blue), the energy of $w$ (red), the energy of the spring (green) and the total energy (black) of the system of connected 1D wave equations in \eqref{eq:conn1DwaveFDS}. The energy corresponds to the system in Figure \ref{fig:connectedWaveEqsSpring}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) shows that the deviation of the energy is within machine precision. \label{fig:energyConn1DWaveSpring}}
 \end{figure}
 
 \subsubsection{Unstable discretisation}
@@ -573,9 +573,29 @@ Substituting this into Eq. \eqref{eq:etaNextStringPlate1}, one can find a defini
     f^n = \frac{u^\star - w^\star + \frac{K_1}{2r_+^n}\eta^n + \frac{r_-^n}{r_+^n}\eta^{n-1}}{\frac{1}{r_+^n} + \frac{\lVert J_q(\chi_\ctxt)\rVert_{d_u}^2}{\rho_\stxt A(1+\szX[\stxt]k)} + \frac{\lVert J_{l, m}(x_\ctxt, y_\ctxt)\rVert_{d_w}^2}{\rho_\ptxt H(1+\szX[\ptxt]k)}}.
 \end{equation*}
 
-\SWcomment[FIGURE]
+\subsection{Implementation}\label{sec:implementationStringPlate}
+This section shows an example of an implementation of the string-plate system. The \texttt{MATLAB} code of the implementation can be found online\footnote{\url{https://gist.github.com/SilvinWillemsen/91d10f6279af7fd0da7fb65fbd7647da}} The parameters for the stiff string can be found in Table \ref{tab:stiffStringParams} (with $L = 1.5$ m and $T = 555$ N) and for the thin plate in Table \ref{tab:thinPlateParams} (with $H=5\cdot10^{-4}$). Both systems have simply supported boundary conditions. Additional parameters used for the connection are
+\begin{equation*}
+    K_1 = 10^4\ \,\text{N/m}, \quad K_3 = 10^7\ \,\text{N/m}^3, \qaq R = 10\ \,\text{kg/s}.
+\end{equation*}
+Figure \ref{fig:stringPlate} shows an visualisation of the string plate system excited with a raised cosine. 
+\begin{figure}[h]
+    \includegraphics[width=\textwidth]{figures/interactions/stringPlate.eps}
+    \caption{A visualisation of string-plate system. The string is shown in red, the plate in gray and the connection in green. \label{fig:stringPlate}}
+\end{figure}
+
+When implementing connections (or any other interactions for that matter), one mostly does the following:
+\begin{enumerate}
+    \item Calculate intermediate scheme, i.e., without force terms: $\u^\text{I}$ and $\w^\text{I}$
+    \item Calculate $u^\star$ and $w^\star$: $\i_u \u^\text{I}$ and $\i_w \w^\text{I}$
+    \item Calculate force $f^n$
+    \item Add force term to intermediate scheme $\u^{n+1} = \u^{\text{I}} - \j_u f^n$ and $\w^{n+1} = \w^{\text{I}} + \j_w f^n$
+\end{enumerate}
+\SWcomment[not done]
+
 
 \subsection{Energy analysis}
+\SWcomment[still needs stuff]
 \begin{equation}
     \dtp(\h_\stxt + \h_\ptxt) + \q_\stxt + \q_\ptxt = -\Iq (\dtd \uqn)f^n +\Ilm(\dtd \wlmn)f^n
 \end{equation}
@@ -589,11 +609,11 @@ which, when substituting the definitions for $f^n$ and $\eta^n$ from Eqs. \eqref
 \end{equation*}
 Due to the nonlinear dependency on $\eta^n$ one must isolate $\dtp$ from the nonlinear term manually, according to
 \begin{align*}
-    &\ K_3(\eta^n)^2(\dtd \eta^n)(\mtd \eta^n),\\
-    = &\ \frac{K_3(\eta^2)}{2k}(\eta^{n+1} - \eta^{n-1})\frac{1}{2}(\eta^{n+1} + \eta^{n-1}),\\
-    = &\ \frac{K_3(\eta^n)^2}{4k}\left((\eta^{n+1})^2 - (\eta^{n-1})^2\right),\\
-    = &\ \frac{K_3}{4k}\left((\eta^{n+1}\eta^n)^2 - (\eta^n\eta^{n-1})^2\right),\\
-    = &\ \dtp\left(\frac{K_3}{4}(\eta^n\eta^{n-1})^2\right).
+    &\ \ K_3(\eta^n)^2(\dtd \eta^n)(\mtd \eta^n),\\
+    = &\ \ \frac{K_3(\eta^2)}{2k}(\eta^{n+1} - \eta^{n-1})\frac{1}{2}(\eta^{n+1} + \eta^{n-1}),\\
+    = &\ \ \frac{K_3(\eta^n)^2}{4k}\left((\eta^{n+1})^2 - (\eta^{n-1})^2\right),\\
+    = &\ \ \frac{K_3}{4k}\left((\eta^{n+1}\eta^n)^2 - (\eta^n\eta^{n-1})^2\right),\\
+    = &\ \ \dtp\left(\frac{K_3}{4}(\eta^n\eta^{n-1})^2\right).
 \end{align*}
 % \begin{equation*}
 %     (\dtd \eta^n)K_1\mtt\eta^n \quad \xRightarrow{\text{Eq. \eqref{eq:prodIdentity5}}} \quad \frac{K_1}{8}(\eta^n+\eta^{n-1})^2 
@@ -608,29 +628,50 @@ where the energy stored by the spring connection is
 \end{equation*}
 and the damping term of the connection is
 \begin{equation*}
-    \q_\ctxt = R(\dtd\eta^n)^2
+    \q_\ctxt = R(\dtd\eta^n)^2.
 \end{equation*}
 
-\subsection{Non-dimensional}
-The scaled system can be written as:
-\begin{align}
-    \ptt u &= \gamma^2 \pxx u - \kappa_\stxt^2 \pxxxx u - 2\szX[\stxt]\pt u + 2\soX[\stxt] \pt\pxx u - \delta(x-x_\ctxt)F\\
-   \pt w &= -\kappa_\ptxt^2\Delta\Delta w - 2\szX[\ptxt]\pt w + 2\soX[\ptxt] \pt\pxx w + \delta(x-x_\ctxt, y-y_\ctxt)F
-\end{align}
-where
-\begin{equation}
-    F = F(t) = \omega_1^2\eta+\omega_3^4\eta^3+\sigma_\ctxt \dot\eta
-\end{equation}
-and
-\begin{equation}
-    \eta = \eta(t) = u(x_\ctxt, t) - w(x_\ctxt, y_\ctxt, t)
-\end{equation}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[->,node distance=3cm,
+        thick,main node/.style={circle,draw}]
+    
+        \node[] (image) at (0,0) {
+        \includegraphics[width=\textwidth]{figures/interactions/stringPlateEnergy.eps}
+        };
+    
+        \node[] (he) at (0.2,0.5) {\small $\mathfrak{h}_\text{e}$};
+
+        \node[] (h) at (-5.8, 1) {\small $\mathfrak{h}$};
+        \node[] (v) at (-5.8, 0.5) {\small $\color{red}\mathfrak{h}_u$};
+        \node[] (t) at (-5.8, 0) {\small $\color{blue}\mathfrak{h}_w$};
+        \node[] (c) at (-5.8, -0.5) {\small $\color[HTML]{00DB00}\mathfrak{h}_\ctxt$};
+
+      \end{tikzpicture}
+      \caption{The energy of the string (red), the plate (blue), the spring (green) and the total energy (black) of the connected string-plate system \eqref{eq:connStringPlateFDSs}. The energy corresponds to the system in Figure \ref{fig:stringPlate}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) shows that the deviation of the energy is within machine precision. \label{fig:energyStringPlate}}
+\end{figure}
+
+% \subsection{Non-dimensional}
+% The scaled system can be written as:
+% \begin{align}
+%     \ptt u &= \gamma^2 \pxx u - \kappa_\stxt^2 \pxxxx u - 2\szX[\stxt]\pt u + 2\soX[\stxt] \pt\pxx u - \delta(x-x_\ctxt)F\\
+%    \pt w &= -\kappa_\ptxt^2\Delta\Delta w - 2\szX[\ptxt]\pt w + 2\soX[\ptxt] \pt\pxx w + \delta(x-x_\ctxt, y-y_\ctxt)F
+% \end{align}
+% where
+% \begin{equation}
+%     F = F(t) = \omega_1^2\eta+\omega_3^4\eta^3+\sigma_\ctxt \dot\eta
+% \end{equation}
+% and
+% \begin{equation}
+%     \eta = \eta(t) = u(x_\ctxt, t) - w(x_\ctxt, y_\ctxt, t)
+% \end{equation}
 
 
-\begin{equation}
-    I(x_\ctxt)\delta_{tt}\uqn = c^2
-    \left(I(x_\ctxt)\dxx\uqn\right) + I(x_\ctxt)J(x_\ctxt)F
-\end{equation}
+% \begin{equation}
+%     I(x_\ctxt)\delta_{tt}\uqn = c^2
+%     \left(I(x_\ctxt)\dxx\uqn\right) + I(x_\ctxt)J(x_\ctxt)F
+% \end{equation}
 
 
 \subsubsection{Relative location of objects}\todo{look at this compared to when I talk about it in chapter \ref{ch:collisions}}

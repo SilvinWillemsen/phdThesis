@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.20)  21 JUL 2021 18:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.20)  21 JUL 2021 21:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -3594,11 +3594,54 @@ Overfull \hbox (10.87354pt too wide) detected at line 562
 [][]\OML/cmm/m/it/10 ^^Q[] \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 u[] \OMS/cmsy/m/n/10 ^^@ k\OML/cmm/m/it/10 J[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^_[]\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 k[][] ^^@ [] \OML/cmm/m/it/10 :
  []
 
-[187] [188]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/collisions.tex [189] [190
+
+Overfull \hbox (18.56717pt too wide) in paragraph at lines 577--577
+[][][][][]$\T1/pcr/m/n/8 https : / / gist . github . com / SilvinWillemsen / 91d10f6279af7fd0da7fb65fbd7647da$[][]| 
+ []
+
+[187]
+Package epstopdf Info: Source file: <figures/interactions/stringPlate.eps>
+(epstopdf)                    date: 2021-07-21 20:36:51
+(epstopdf)                    size: 160667 bytes
+(epstopdf)             Output file: <figures/interactions/stringPlate-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-07-21 20:42:26
+(epstopdf)                    size: 229583 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/interactions/stringPlate-eps-converted-to.pdf figures/interactions/stringPlate.eps>
+(epstopdf)             \includegraphics on input line 583.
+Package epstopdf Info: Output file is already uptodate.
+<figures/interactions/stringPlate-eps-converted-to.pdf, id=4965, 823.075pt x 345.29pt>
+File: figures/interactions/stringPlate-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/interactions/stringPlate-eps-converted-to.pdf>
+Package pdftex.def Info: figures/interactions/stringPlate-eps-converted-to.pdf  used on input line 583.
+(pdftex.def)             Requested size: 341.43307pt x 143.23471pt.
+ [188 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/interactions/stringPlate-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/interactions/stringPlateEnergy.eps>
+(epstopdf)                    date: 2021-07-21 20:51:24
+(epstopdf)                    size: 49785 bytes
+(epstopdf)             Output file: <figures/interactions/stringPlateEnergy-eps-converted-to.pdf>
+(epstopdf)                    date: 2021-07-21 20:51:31
+(epstopdf)                    size: 31950 bytes
+(epstopdf)             Command: <repstopdf --outfile=figures/interactions/stringPlateEnergy-eps-converted-to.pdf figures/interactions/stringPlateEnergy.eps>
+(epstopdf)             \includegraphics on input line 641.
+Package epstopdf Info: Output file is already uptodate.
+<figures/interactions/stringPlateEnergy-eps-converted-to.pdf, id=4986, 830.10126pt x 220.825pt>
+File: figures/interactions/stringPlateEnergy-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/interactions/stringPlateEnergy-eps-converted-to.pdf>
+Package pdftex.def Info: figures/interactions/stringPlateEnergy-eps-converted-to.pdf  used on input line 641.
+(pdftex.def)             Requested size: 341.43307pt x 90.8286pt.
+
+Overfull \hbox (6.66595pt too wide) in paragraph at lines 651--652
+ [][] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/collisions.tex [189] [190 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/interactions/stringPlateEnergy-eps-converted-to.pdf>]
+Chapter 11.
+[191
 
 ]
-Chapter 11.
-[191]
 Package epstopdf Info: Source file: <figures/interactions/eta.eps>
 (epstopdf)                    date: 2021-07-06 18:22:08
 (epstopdf)                    size: 54169 bytes
@@ -3608,7 +3651,7 @@ Package epstopdf Info: Source file: <figures/interactions/eta.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/eta-eps-converted-to.pdf figures/interactions/eta.eps>
 (epstopdf)             \includegraphics on input line 25.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/eta-eps-converted-to.pdf, id=5017, 702.625pt x 401.5pt>
+<figures/interactions/eta-eps-converted-to.pdf, id=5038, 702.625pt x 401.5pt>
 File: figures/interactions/eta-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/eta-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/eta-eps-converted-to.pdf  used on input line 25.
@@ -3694,18 +3737,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 2--4
 ]
 Appendix B.
 [233]
-<figures/analysis/matrixA1.pdf, id=5408, 175.61609pt x 91.3011pt>
+<figures/analysis/matrixA1.pdf, id=5429, 175.61609pt x 91.3011pt>
 File: figures/analysis/matrixA1.pdf Graphic file (type pdf)
 <use figures/analysis/matrixA1.pdf>
 Package pdftex.def Info: figures/analysis/matrixA1.pdf  used on input line 31.
 (pdftex.def)             Requested size: 153.64383pt x 79.8799pt.
-<figures/analysis/matrixAT1.pdf, id=5409, 175.61609pt x 111.29579pt>
+<figures/analysis/matrixAT1.pdf, id=5430, 175.61609pt x 111.29579pt>
 File: figures/analysis/matrixAT1.pdf Graphic file (type pdf)
 <use figures/analysis/matrixAT1.pdf>
 Package pdftex.def Info: figures/analysis/matrixAT1.pdf  used on input line 32.
 (pdftex.def)             Requested size: 153.64383pt x 97.37337pt.
  [234 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixA1.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixAT1.pdf>]
-<figures/analysis/matrixVector.pdf, id=5433, 780.99776pt x 349.305pt>
+<figures/analysis/matrixVector.pdf, id=5454, 780.99776pt x 349.305pt>
 File: figures/analysis/matrixVector.pdf Graphic file (type pdf)
 <use figures/analysis/matrixVector.pdf>
 Package pdftex.def Info: figures/analysis/matrixVector.pdf  used on input line 51.
@@ -3801,7 +3844,7 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `master.out' has not changed.
-(rerunfilecheck)             Checksum: 3EE8E02D896991FE635DC149F13C63EC;19600.
+(rerunfilecheck)             Checksum: 3265E5ADDADDA0DBAC178FE60B406F15;19600.
  )
 (\end occurred inside a group at level 5)
 
@@ -3812,18 +3855,18 @@ Package rerunfilecheck Info: File `master.out' has not changed.
 ### simple group (level 1) entered at line 370 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 51839 strings out of 478994
- 1150917 string characters out of 5858184
- 2154250 words of memory out of 5000000
- 66435 multiletter control sequences out of 15000+600000
+ 51856 strings out of 478994
+ 1151628 string characters out of 5858184
+ 2154884 words of memory out of 5000000
+ 66448 multiletter control sequences out of 15000+600000
  489957 words of font info for 120 fonts, out of 8000000 for 9000
  1146 hyphenation exceptions out of 8191
  92i,23n,120p,1764b,4112s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/newpx/npxsups_t1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/newpx/npxsups-Regular.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/newpx/zplb.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/newpx/zplr.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
-Output written on /Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.pdf (272 pages, 4551292 bytes).
+Output written on /Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.pdf (272 pages, 4810282 bytes).
 PDF statistics:
- 6186 PDF objects out of 6186 (max. 8388607)
- 5359 compressed objects within 54 object streams
- 1727 named destinations out of 1728 (max. 500000)
- 1379 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6210 PDF objects out of 7423 (max. 8388607)
+ 5374 compressed objects within 54 object streams
+ 1729 named destinations out of 2073 (max. 500000)
+ 1389 words of extra memory for PDF output out of 10000 (max. 10000000)
 
