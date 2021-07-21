@@ -388,7 +388,7 @@ One can then substitute the definitions for $f^n$ and $\eta^n$ from Eqs. \eqref{
 \begin{equation}\label{eq:energyAfterForceSubstitution}
     \dtp (\h_u + \h_w) = -K(\dtd \eta^n) (\mtd \eta^n),
 \end{equation}
-which, using identities \eqref{eq:prodIdentity4} and \eqref{eq:identity2}, can be rewritten to
+which, using identity \eqref{eq:prodIdentity4}, can be rewritten to
 \begin{equation}
     \dtp (\h_u + \h_w + \h_\ctxt) = 0,
 \end{equation}
@@ -586,6 +586,29 @@ and can be rewritten to
 which, when substituting the definitions for $f^n$ and $\eta^n$ from Eqs. \eqref{eq:discForceStringPlate} and \eqref{eq:discEtaStringPlate} respectively, yields
 \begin{equation*}
     \dtp(\h_\stxt + \h_\ptxt) + \q_\stxt + \q_\ptxt = -(\dtd\eta^n)(K_1\mtt\eta^n+K_3(\eta^n)^2\mtd\eta^n+R\dtd\eta^n).
+\end{equation*}
+Due to the nonlinear dependency on $\eta^n$ one must isolate $\dtp$ from the nonlinear term manually, according to
+\begin{align*}
+    &\ K_3(\eta^n)^2(\dtd \eta^n)(\mtd \eta^n),\\
+    = &\ \frac{K_3(\eta^2)}{2k}(\eta^{n+1} - \eta^{n-1})\frac{1}{2}(\eta^{n+1} + \eta^{n-1}),\\
+    = &\ \frac{K_3(\eta^n)^2}{4k}\left((\eta^{n+1})^2 - (\eta^{n-1})^2\right),\\
+    = &\ \frac{K_3}{4k}\left((\eta^{n+1}\eta^n)^2 - (\eta^n\eta^{n-1})^2\right),\\
+    = &\ \dtp\left(\frac{K_3}{4}(\eta^n\eta^{n-1})^2\right).
+\end{align*}
+% \begin{equation*}
+%     (\dtd \eta^n)K_1\mtt\eta^n \quad \xRightarrow{\text{Eq. \eqref{eq:prodIdentity5}}} \quad \frac{K_1}{8}(\eta^n+\eta^{n-1})^2 
+% \end{equation*}
+Finally, using identity \eqref{eq:prodIdentity5} for the linear term, the following balance follows
+\begin{equation}
+    \dtp(\h_\stxt + \h_\ptxt + \h_\ctxt) = - \q_\stxt - \q_\ptxt - \q_\ctxt,
+\end{equation}
+where the energy stored by the spring connection is
+\begin{equation*}
+    \h_\ctxt = \frac{K_1}{8}(\eta^n+\eta^{n-1})^2 + \frac{K_3}{4}(\eta^n\eta^{n-1})^2
+\end{equation*}
+and the damping term of the connection is
+\begin{equation*}
+    \q_\ctxt = R(\dtd\eta^n)^2
 \end{equation*}
 
 \subsection{Non-dimensional}
