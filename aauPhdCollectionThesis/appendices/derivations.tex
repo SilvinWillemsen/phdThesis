@@ -4,7 +4,7 @@
 \def\Psinp{\Psi_l^{n+1}}
 \def\Psinm{\Psi_l^{n-1}}
 
-\section{Webster's update equation \eqref{eq:webstersUpdateEq}}\label{app:webstersUpdateEq}
+\section{Webster's update equation (Eq. \eqref{eq:webstersUpdateEq})}\label{app:webstersUpdateEq}
 This section derives the update equation for Webster's equation in Eq. \eqref{eq:webstersUpdateEq}:
 \begin{align*}
     &\begin{aligned}
@@ -23,7 +23,7 @@ This section derives the update equation for Webster's equation in Eq. \eqref{eq
     \end{aligned}
 \end{align*}
 
-\section{Boundary terms webster's equation}\label{app:boundaryWebster}
+\section{Boundary terms Webster's equation (Eq. \eqref{eq:centStrictDissip})}\label{app:boundaryWebster}
 This section derives process of obtaining the values for $\el$ and $\er$ such that the boundary terms in Webster's equation are strictly dissipative. 
 
 Starting with the second term in the energy balance in Eq. \eqref{eq:powerBalanceWebster}:
@@ -87,3 +87,57 @@ The same can be done for $\mathfrak{b}_\text{l}$ with $\epsilon_\text{l} = S_{1/
 \begin{equation}
     \mathfrak{b}_\text{l} = c^2(\dtd\Psi_0^n)S_{1/2}\left(2-\epsilon_\text{l}\right)(\delta_{x\cdot}\Psi_0^n).
 \end{equation}
+
+\section{Derivatives for Newton-Raphson for the elasto-plastic friction model (Eq. \eqref{eq:NRit})}\label{app:elastoDeriv}
+Recalling the functions needed for to compute the Newton-Raphson iteration for the elasto-plastic bow model in Section \ref{sec:elastoPlastic}, being Eq. \eqref{eq:elastog1}
+\begin{equation*}
+    g_1(v^n,z^n) = \left(\frac{2}{k} + 2\sz\right)v^n + \lVert J_l(x_\Btxt^n)\rVert_d^2\frac{f(v^n,z^n)}{\rho A}+ b^n= 0,
+\end{equation*}
+and Eq. \eqref{eq:elastog2}:
+\begin{equation*}
+    g_2(v^n, z^n) = r^n - a^n = 0,
+\end{equation*}
+the derivatives needed to solve the Newton-Raphson iteration in Eq. \eqref{eq:NRit} 
+\begin{equation*}
+    \begin{bmatrix}
+        v^n\\
+        z^n
+        \end{bmatrix}_{i+1}
+        =
+        \begin{bmatrix}
+        v^n\\
+        z^n
+        \end{bmatrix}_i
+        -
+        \begin{bmatrix}
+        \frac{\partial g_1}{\partial v} & \frac{\partial g_1}{\partial z}\\
+        \frac{\partial g_2}{\partial v} & \frac{\partial g_2}{\partial z}\\
+        \end{bmatrix}^{-1}
+        \begin{bmatrix}
+        g_1\\
+        g_2
+        \end{bmatrix}\,
+        .
+\end{equation*}
+can be shown to be
+\begin{align*}
+    \frac{\partial g_1}{\partial v} &= \frac{2}{k} + 2\sigma_0 + \frac{s_1\lVert J_l(x_\Btxt^n)\rVert_d^2}{\rho A}\frac{\partial r}{\partial v}+\frac{s_2\lVert J_l(x_\Btxt^n)\rVert_d^2}{\rho A},\\
+    \frac{\partial g_1}{\partial z} &= \frac{s_0\lVert J_l(x_\Btxt^n)\rVert_d^2}{\rho A} + \frac{s_1\lVert J_l(x_\Btxt^n)\rVert_d^2}{\rho A}\frac{\partial r}{\partial z},\\
+    \frac{\partial g_2}{\partial v} &= \frac{\partial r}{\partial v}
+    \\\frac{\partial g_2}{\partial z}&= \frac{\partial r}{\partial z} -\frac{2}{k}.
+\end{align*}
+Recalling from Eq. \eqref{eq:r} that
+\begin{equation*}
+    r^n = r(v^n,z^n) = v^n\bigg[1-\alpha(v^n,z^n)\frac{z^n}{z_\text{ss}(v^n)}\bigg]
+\end{equation*}
+its derivatives can be computed as
+\begin{align*}
+    \frac{\partial r}{\partial v} &= 1-z^n\Bigg(\frac{(\alpha^n+\frac{\partial \alpha^n}{\partial v}v^n)z_\text{ss}^n - \frac{\partial z_\text{ss}^n}{\partial v}\alpha^n v^n}{(z_\text{ss}^n)^2}\Bigg),\\
+    \frac{\partial r}{\partial z} &= -\frac{v^n}{z_\text{ss}^n}\bigg(\frac{\partial \alpha^n}{\partial z}z^n + \alpha^n\bigg),
+    \end{align*}
+with
+\begin{align*}
+    \frac{\partial\alpha^n}{\partial v} &=\sgn(z_\text{ss}^n)\frac{\partial z_\text{ss}^n}{\partial v}\frac{z_\text{ba} - |z^n|}{(|z_\text{ss}^n| - z_\text{ba})^2}\frac{\pi}{2}\cos\big(\sgn(z^n)\Phi\big),\\
+    \frac{\partial\alpha^n}{\partial z}&=\frac{\sgn(z^n)\pi\cos\big(\sgn(z^n)\Phi\big)}{2(|z_\text{ss}^n|-z_\text{ba})},\\
+    \frac{\partial z_\text{ss}^n}{\partial v} &= -\frac{2|v^n|}{v_\text{S}^2 s_0}(f_\text{S}-f_\text{C})e^{-(v^n/v_\text{S})^2}.
+\end{align*}

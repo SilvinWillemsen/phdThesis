@@ -1,7 +1,7 @@
 \chapter{The Bow}\label{ch:bow}
-The bow is a very interesting excitation mechanism from a simulation perspective.
-The bow excites the resonator at hand with a force due to friction, which introduces a nonlinear element that is dependent on the relative velocity between the bow and the string. 
-The string `sticks' to the bow after which it `slips' when the restoring force of the string is too great and overcomes the friction force. This `stick-slip' behaviour, first coined by Bowden and Leben in 1939 \cite{Bowden1939} causes the string to move in a characteristic triangular motion where the corner of the triangle moves back and forth along the string (see Figure \ref{fig:helmholtz}). Herman Helmholtz was the first to discover this behaviour, which later got named \textit{Helmholtz motion} in his honour \cite{Helmholtz1860}.\footnote{Also see \url{https://www.youtube.com/watch?v=6JeyiM0YNo4}}
+The bow is an extremely interesting excitation mechanism from a simulation perspective.
+A bow excites a string with a force due to friction, which introduces a nonlinear element into the system.
+The string `sticks' to the bow and `slips' again when the restoring force of the string is too great and overcomes the friction force. This `stick-slip' behaviour, first coined by Bowden and Leben in 1939 \cite{Bowden1939} causes the string to move in a characteristic triangular motion where the corner of the triangle moves back and forth along the string (see Figure \ref{fig:helmholtz}). Herman Helmholtz was the first to discover this behaviour in the 19\th century, and later got named \textit{Helmholtz motion} in his honour \cite{Helmholtz1860}.\footnote{Also see \url{https://www.youtube.com/watch?v=6JeyiM0YNo4}}
 
 \begin{figure}[h]
     \centering
@@ -16,15 +16,20 @@ The string `sticks' to the bow after which it `slips' when the restoring force o
     \caption{Helmholtz motion. If the bow moves up on the left side of the string, the `Helmholtz corner' travels anti-clockwise. \label{fig:helmholtz}}
 \end{figure}
 
-The Helmholtz motion gives bowed string instruments, such as the violin and cello, their characteristic sound. \SWcomment[helmholtz output figure]
+The Helmholtz motion gives bowed string instruments, such as the violin and cello, their characteristic sound. An ideal case is shown in Figure \ref{fig:helmholtzTimedomain}, where, for a string described by $u(x,t)$, the location of a point $x_\text{out}$ along the string follows a sawtooth-like motion due to the `stick-slip' behaviour. 
+% Figure \ref{fig:helmholtzImplementation} for a time domain output of one point along a bowed stiff string. The string is bowed upwards, and the `stick-slip' behaviour is visible (stick for upwards, slip for downwards motion), creating a sawtooth pattern. 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/exciters/helmholtzTimedomain.eps}
+    \caption{The ideal Helmholtz motion of a location $x_\text{out}$ along a bowed string. \label{fig:helmholtzTimedomain}}
+\end{figure}
 
-\subsubsection{Brief history of bowed-string simulation}
+The rest of this chapter first presents a brief history of bowed-string simulations. Then, before introducing various friction models, an introduction to interpolation and spreading operators, as well as the Newton-Raphson method will be given, as these are both necessary when working with this type of excitation.
+
+\section{Brief history of bowed-string simulation}
 The first nonlinear systems in the context of musical instrument simulations, including the bowed string, were presented by McIntyre, et al. in 1983 \cite{McIntyre1983}. The first real-time implementation of the bowed string was due to Smith in 1986 and used digital waveguides for the string and a look-up table for the friction model \cite{Smith1986}. Simultaneously, Florens et al. presented a real-time implementation of the bowed string, but instead, the string was modelled using mass-spring systems and the friction model used a static friction model \cite{Florens1986} (see Section \ref{sec:staticFricMod}). One of the most complex friction models applied in a musical context to-date is the elasto-plastic friction model due to Dupont \cite{Dupont2002}, which Serafin et al. \cite{Serafin2003, Serafin2004} applied to a digital waveguide implementation of the string. 
 
-The first appearance of FDTD methods in bowed string simulations was in a publication by Pitteroff and Woodhouse in \cite{Pitteroff1998}. Later, Maestre et al. in \cite{Maestre2014} used FDTD methods to implement a thermal friction model proposed by Woodhouse in \cite{Woodhouse2003}. In both cases, the string was implemented using digital waveguides. Desvages implemented a bowed string model using a static friction model and a two-polarisation FDTD model for the string in \cite{Desvages2016, Desvages2018}, but did not implement this in real-time. This chapter presents the first contribution of this dissertation published in papers \citeP[A] and \citeP[C]. Firstly, paper \citeP[A] shows the first real-time implementation of a bowed stiff string fully modelled using FDTD methods. Secondly, \citeP[C] presents the first (real-time) implementation of the elasto-plastic friction model applied to a FD scheme in a musical context.
-\\
-
-Before introducing various friction models, a brief introduction on interpolation and spreading operators will be given, which will be necessary to work with this type of excitation.
+The first appearance of FDTD methods in bowed string simulations was in a publication by Pitteroff and Woodhouse in \cite{Pitteroff1998}. Later, Maestre et al. in \cite{Maestre2014} used FDTD methods to implement a thermal friction model proposed by Woodhouse in \cite{Woodhouse2003}. In both cases, the string was implemented using digital waveguides. Desvages implemented a bowed string model using a static friction model and a two-polarisation FDTD model for the string in \cite{Desvages2016, Desvages2018}, but did not implement this in real-time. Paper \citeP[A] presented the first the first real-time implementation of a bowed stiff string fully modelled using FDTD methods. Finally, paper \citeP[C] presented the first (real-time) implementation of the elasto-plastic friction model applied to a FD scheme in a musical context.
 
 \section{Interpolation and spreading operators}\label{sec:interpolationSpreading}
 As should be clear by now, FD schemes are an approximation to continuous space (and time) using a finite number of points. Working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function \cite{theBible}. This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. Here, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$.
@@ -288,6 +293,8 @@ where spatial Dirac delta function $\delta(x-x_\Btxt)$ (in m$^{-1}$) (see Sectio
 From Eq. \eqref{eq:bowedStiffStringPDE} it can be seen that the bow force gets scaled by the friction model $\Phi(\vrel)$ shown in Figure \ref{fig:frictionCharacteristic}. 
 The figure shows that if $\vrel$ is too large (either positively or negatively) the bow term in \eqref{eq:bowedStiffStringPDE} becomes $0$. If, on the other hand, $\vrel$ is closer to $0$, the bow will have an effect on the string. This can be interpreted in terms of static and dynamic friction\footnote{`Static' and `dynamic' friction are unrelated to `static' and `dynamic' friction models.}. A stationary object requires more force to be moved than a moving object, i.e., the static friction coefficient is always higher than the dynamic friction coefficient. This is essentially what the friction model tries to simulate.
 
+Furthermore, the fact that the bow term is subtracted from the scheme is due to the definition of the relative velocity in Eq. \eqref{eq:vrel}. For a negative bow velocity $v_\Btxt$, $\vrel$ becomes positive. As $\sgn\left(\Phi(\vrel)\right) = \sgn(\vrel)$ through Eq. \eqref{eq:staticFriction} and $f_\Btxt\geq 0$, the term $\delta(x-x_\Btxt)f_\Btxt\Phi(\vrel)$ will be positive for a positive $\vrel$. As a negative $v_\Btxt$ needs to have a downwards, or negative, effect on the string, the sign of the bow term also needs to be negative to achieve this.  
+
 \subsubsection{Discrete time}
 Dividing all terms in Eq. \eqref{eq:bowedStiffStringFDS} by $\rho A$ and discretising the system yields
 %
@@ -319,13 +326,16 @@ and using identity \eqref{eq:identity1}, Eq. \eqref{eq:bowLocFDS} can be rewritt
     g(\vrel^n) = \left(\frac{2}{k} + 2\sz\right)\vrel^n + \lVert J_l(x_\Btxt^n)\rVert^2_d F_\Btxt^n\Phi(\vrel^n) + b^n = 0,
 \end{equation}
 % Here, $b$ contains all terms not dependent on $\vrel$. As the operators can be interchanged, i.e., the order of application does not matter, could write $b$ according to
-where the terms not dependent on $\vrel$ are collected in
-\begin{align*}
-    b^n =\ &-\frac{2}{k}I_l(x_\Btxt^n)\dtm \uln-c^2 I_l(x_\Btxt^n)\dxx \uln + \kappa^2 I_l(x_\Btxt^n)\dxxxx \uln \\
-    &+ \left( \frac{2}{k} + 2 \sz \right)v_\Btxt^n - 2 \so I_l(x_\Btxt^n)\dtm\dxx \uln.
+where the terms not dependent on $\vrel$ are collected in\footnote{An interpolation operator applied to a spatial derivative can be expanded in a similar fashion to when it is applied to a grid function. A first-order interpolator applied to $\dxx \uln$ thus yields $I_{l,1}(x_\itxt) \dxx \uln = (1-\alpha_\itxt)\dxx u_{l_\itxt}^n + \alpha \dxx u_{l_\itxt+1}^n$.}
+\begin{equation}\label{eq:staticbDef}
+    \begin{aligned}
+        b^n =\ &-\frac{2}{k}I_l(x_\Btxt^n)\dtm \uln-c^2 I_l(x_\Btxt^n)\dxx \uln + \kappa^2 I_l(x_\Btxt^n)\dxxxx \uln \\
+        &+ \left( \frac{2}{k} + 2 \sz \right)v_\Btxt^n - 2 \so I_l(x_\Btxt^n)\dtm\dxx \uln.
+    \end{aligned}
     % b =&\ \left(-\frac{2}{k}\dtm -c^2 \dxx+ \kappa^2\dxxxx - 2 \so \dtm\dxx\right) I(x_\Btxt^n)\uln + \left( \frac{2}{k} + 2 \sz \right)v_\Btxt^n.
-\end{align*}
+\end{equation}
 %
+
 One can then perform the Newton-Raphson method detailed in Section \ref{sec:newtonRaphson} to iteratively solve for $\vrel$ 
 %
 \begin{equation}
@@ -343,17 +353,28 @@ and
         = \sqrt{2a}\left(1 - 2a(\vrel^n)^2\right)e^{-a(\vrel^n)^2+1/2}.
     \end{aligned}
 \end{equation*}
-\subsubsection{Implementation}
-\SWcomment[still need to write this bit]
-The Newton-Raphson iteration needs to be performed for every sample\\
+\subsection{Implementation and output}\label{sec:staticImplementation}
+To implement the bowed stiff string, one must perform the Newton-Raphson iteration every sample. For this implementation, the threshold in Eq. \eqref{eq:NRthreshold} has been set to $\epsilon = 10^{-7}$ and the maximum number of iterations to $100$. In the following, the parameters used for the string are listed in Table \ref{tab:stiffStringParams} with $T = 1000$ N and those for the bow are
+\begin{equation*}
+    x_\Btxt = \floor[0.125/h],\quad f_\Btxt = 1\ \text{N},\quad v_\Btxt = 0.1\  \text{m/s},\qaq a = 100.
+\end{equation*}
+Figure \ref{fig:staticBowImplementation} shows the wave propagation of a bowed stiff string at the beginning of the simulation and shows the characteristic stick-slip behaviour of a bowed string. Figure \ref{fig:helmholtzState} shows the state of the same simulation 3 seconds later. One can observe the Helmholtz corner move in an anti-clockwise direction as presented in Figure \ref{fig:helmholtz}. Finally, the time domain output of the string at the bowing location is shown in Figure \ref{fig:helmholtzImplementation} generally follows the Helmholtz motion shown in Figure \ref{fig:helmholtzTimedomain}. 
 
-$\epsilon = 10^{-4}$\\
-Limit of iterations is set to $100$
-
-\begin{equation}
-    I_l(x_\Btxt^n) \dxx \uln = (1-\alpha)\dxx u_{l_\Btxt}^n + \alpha \dxx u_{l_\Btxt+1}^n
-\end{equation}
-
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/exciters/bowImplementation.eps}
+    \caption{Wave propagation of a bowed stiff string at the beginning of the simulation. \label{fig:staticBowImplementation}}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/exciters/helmholtzState.eps}
+    \caption{Wave propagation of a bowed stiff string simulation after 3 seconds. The string exhibits a Helmholtz motion as presented in Figure \ref{fig:helmholtz}. \label{fig:helmholtzState}}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/exciters/helmholtzImplementation.eps}
+    \caption{Time domain output of a bowed stiff string using the static friction model in Eq. \eqref{eq:staticFriction}. \label{fig:helmholtzImplementation}}
+\end{figure}
 \subsection{Energy analysis}
 Following the energy analysis of the stiff string presented in Section \ref{sec:energyAnalysisString}, taking an inner product of Eq. \eqref{eq:bowedStiffStringFDS} (after multiplication by $\rho A$) with $(\dtd \uln)$ over discrete domain $d$ one arrives at the following 
 \begin{align*}
@@ -371,13 +392,32 @@ where
 \begin{equation*}
     \q_\text{B} = f_\Btxt^n \Phi(\vrel^n) \vrel^n \qaq \p = f_\Btxt^n \Phi(\vrel^n)v_\Btxt^n.
 \end{equation*}
+Figure \ref{fig:energyStaticBow} shows the energy of the bowed stiff string corresponding to the wave propagation in Figure \ref{fig:staticBowImplementation}. The bow only injects energy into the system when it sticks to the string. Although the normalised energy shows `jumpy` behaviour, correlated to the behaviour of the system, this decreases for a lower value of $\epsilon$. 
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[->,node distance=3cm,
+        thick,main node/.style={circle,draw}]
+    
+        \node[] (image) at (0,0) {
+        \includegraphics[width=\textwidth]{figures/exciters/energyBow.eps}
+        };
+    
+        \node[] (he) at (0.2,0.5) {\small $\mathfrak{h}_\text{e}$};
+
+        \node[] (h) at (-5.75, 1) {\small $\mathfrak{h}$};
+        \node[] (v) at (-5.75, 0.5) {\small $\color{red}\mathfrak{v}$};
+        \node[] (t) at (-5.75, 0) {\small $\color{blue}\mathfrak{t}$};
+      \end{tikzpicture}
+      \caption{The kinetic (blue), potential (red), and total (black) energy of the bowed stiff string. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyStaticBow}}
+\end{figure}
 
 \section{Dynamic friction models}
-As opposed to less complex static friction models, dynamic friction models relate the relative velocity to the friction force using a differential equation. Dynamic friction models exhibit a phenomenon called \textit{hysteresis}, which is the dependence of a system on its history. 
+As opposed to less complex static friction models, dynamic friction models relate the relative velocity to the friction force using a differential equation. Dynamic friction models exhibit a phenomenon called \textit{hysteresis}, which is the dependence of a system on its history. This hysteresis loop is in the force versus velocity plane and has been confirmed by measurements using a bowing machine in \cite{Woodhouse2003}.
 
 The first dynamic friction model was due to Dahl \cite{Dahl1968} and captured hysteresis effects. The Stribeck effect was, however, not taken into account. The LuGre model (named after the collaboration between Lund and Grenoble) was then proposed by Canudas de Wit et al. in \cite{Canudas1993, Canudas1995} and extended the Dahl model to take the Stribeck effect into account. The model assumes a large ensemble of bristles between the two sliding surfaces, each of which contributes a tiny amount to the total friction force. The drawback of this model is that it exhibits drift for extremely small external forces. In \cite{Dupont2002}, Dupont et al. extended the LuGre model by allowing for a purely elastic regime that solves the drift issue. This model is referred to as the \textit{elasto-plastic} friction model and is used in this project.
 
-\subsection{The elasto-plastic friction model}
+\subsection{The elasto-plastic friction model}\label{sec:elastoPlastic}
 In a musical context, the elasto-plastic friction has been investigated in-depth by Serafin et al. in \cite{Serafin2003, Serafin2004, Avanzini2005}. Like the LuGre model, the elasto-plastic friction model assumes that the friction between the bow and the string is caused by a large quantity of bristles, all contributing a fraction of the total amount of friction. See Figure \ref{fig:elastoPlastic}.
 
 \input{exciters/elastoPlasticFig.tex}
@@ -449,7 +489,6 @@ and
 is the discrete counterpart of \eqref{eq:zdot}. The discrete adhesion map is identical to the continuous definition given in Eqs. \eqref{eq:adhesionMap} and \eqref{eq:alphaM}, but with superscripts $n$ added for appearances of $v$ and $z$.
 
 \subsection{Applied to a FDTD stiff string}
-\SWcomment[The first appearance contribution of the PhD project in this dissertation]
 The first appearance of a contribution of this work is the elasto-plastic friction model applied to a stiff string implemented using FDTD methods. This has been presented in paper \citeP[C] and will be extended in this section by providing more details on the implementation.\todo{will it though? And should I state the stability stuff here?}
 
 In the same way as done with the static friction model in Section \ref{sec:staticFricMod}, one can add the friction force to the stiff string PDE in Eq. \eqref{eq:stiffStringPDE} and discretise the system as follows:
@@ -459,7 +498,7 @@ In the same way as done with the static friction model in Section \ref{sec:stati
 \end{equation}
 Following the same procedure as for the static friction model in Section \ref{sec:staticFricMod}, one takes an inner product with $J_l(x_\Btxt^n)$ over discrete string domain $d$ and using identities \eqref{eq:identityIJ} and \eqref{eq:identity1}, one can rewrite this similar to the static friction model in Eq. \eqref{eq:staticFrictionNRfunc} as
 %
-\begin{equation}
+\begin{equation}\label{eq:elastog1}
     g_1(v^n,z^n) = \left(\frac{2}{k} + 2\sz\right)v^n + \lVert J_l(x_\Btxt^n)\rVert_d^2\frac{f(v^n,z^n)}{\rho A}+ b^n= 0,
 \end{equation}
 where
@@ -474,11 +513,10 @@ As $r$ describes $\dot z$ in Eq. \eqref{eq:zdot}, one can take another approach 
     a^n = (\mtm)^{-1}\dtm z^n \quad \Longrightarrow\quad a^n = \frac{2}{k}(z^n - z^{n-1}) + a^{n-1}.
 \end{equation}
 As both $a^n$ and $r^n$ approximate $\dot z$ these can be used to create the second function necessary to solve the full system
-\begin{equation}
+\begin{equation}\label{eq:elastog2}
     g_2(v^n, z^n) = r^n - a^n = 0.
 \end{equation}
-
-Performing the multivariate Newton-Raphson method described in yields
+Finally, one can use the multivariate Newton-Raphson method described in Section \ref{sec:multivariateNR}, which results in
 \begin{equation}\label{eq:NRit}
     \begin{bmatrix}
     v^n\\
@@ -498,13 +536,57 @@ Performing the multivariate Newton-Raphson method described in yields
     g_1\\
     g_2
     \end{bmatrix}\,
-    .
+    ,
 \end{equation}
-The derivatives can be shown to be... \SWcomment[should I give those here..? Could have an appendix with derivations haha]
+where derivatives in the Jacobian matrix are given in Appendix \ref{app:elastoDeriv}.
 
-\subsection{Implementation and output}
-\SWcomment[still need to write]
+\subsection{Output}
+In the following, the same parameters as presented for the static friction model in Section \ref{sec:staticImplementation} have been used for the string and the bow (where $f_N = f_\Btxt$).
+Additional parameters used for the elasto-plastic friction model are given in paper \citeP[C].
 
+Figure \ref{fig:hysteresis} shows that the implementation of the elasto-plastic friction model exhibits a hysteresis loop in the force versus velocity plane as desired with a dynamic friction model.
+The output of the implementation is plotted in Figure \ref{fig:elastoWaveform} and follows the characteristic Helmholtz motion shown in Figure 
+\ref{fig:helmholtzTimedomain}. Although the same parameters are used as for the static friction model in Section \ref{sec:staticImplementation}, the elasto-plastic friction model causes the string to vibrate in a higher mode of vibration when compared to Figure \ref{fig:helmholtzImplementation}. Also, the elasto-plastic model seems to `smooth' the \SWcomment[left off here!!]
+
+
+Comparing the output
+
+parameter tuning...
+
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[->,node distance=3cm,
+      thick,main node/.style={circle,draw}, scale=0.9, every node/.style={scale=0.9}]
+  
+      \node[anchor=south west,inner sep=0] (image) at (0,0) {\includegraphics[width=\textwidth]{figures/exciters/hysteresis.eps}};
+      % \filldraw[black] (arr2B) (2,2) circle (1pt) node[anchor=center](topZ){};
+      % \filldraw[black] (arr2E) (3,1.5) circle (1pt) node[anchor=center](topZ){};
+      % (arr2B) edge[bend right] node [arrow] {} (arr2E);
+      
+    \node (arr1B) at (5.8, 4.35) {};
+    \node (arr1E) at (7.7, 4.35) {};
+    \node (arr2B) at (8.8, 1.2) {};
+    \node (arr2E) at (6.5, 1.1) {};
+    \node (arr3B) at (2.1, 2.4) {};
+    \node (arr3E) at (2.2, 3.2) {};
+    \path[every node/.style={font=\sffamily\small}]
+  
+      (arr1B) edge[bend left = 20] node [left] {} (arr1E)
+      (arr2B) edge[bend left = 20] node [left] {} (arr2E)
+      (arr3B) edge[bend left = 60] node [left] {} (arr3E);
+      % \begin{scope}[x={(image.south east)},y={(image.north west)}]
+      %     \draw[red,ultra thick,rounded corners] (0.62,0.65) rectangle (0.78,0.75);
+      % \end{scope}
+    \end{tikzpicture}
+    \caption{Hysteresis loop showing 500 values up to $n=3\fs$. The values around $v=0$ are due to sticking behaviour and the loop on the left is due to slipping behaviour. (Adapted from paper \citeP[C].) \label{fig:hysteresis}}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/exciters/elastoplasticWaveForm.eps}
+    \caption{Time domain output of a bowed stiff string bowed using an elasto-plastic friction model. \label{fig:elastoWaveform}}
+\end{figure}
 \todo{Plots of output and hysteresis loops}
 
 \subsection{Stability through energy analysis}
@@ -573,3 +655,21 @@ where both terms are non-negative. Finally, as $\alpha$ is bounded by $1$ the fo
     s_1 \leq \frac{4s_0z_\text{ss}(v)}{v}\ .
 \end{equation}
 This is the same stability condition as Olsson presents in \cite{Olsson1996}. \SWcomment[So as long as one knows the limit of the velocity of the system, the coefficient $s_1$ can be set accordingly.]
+
+\section{Discussion and conclusion}
+This chapter presented the bow as a way to excite stiff strings. Two friction models have been presented, a static model where the friction force is only a function of the relative velocity between the string and the bow, and the dynamic elasto-plastic friction model, which relates the relative velocity to the friction using a differential equation. The latter has been presented in paper \citeP[C] where it was first applied in the context of FDTD methods. 
+
+Although an attempt at using the elasto-plastic friction model with a fully modelled instrument -- such as the tromba marina in papers \citeP[D] and \citeP[E] -- has been carried out, the static friction model has been used. 
+
+Already yields a 
+
+a static and a dynamic friction model. The latter, the elasto-plastic friction has been applied to model has been used 
+
+
+
+
+A comparison between the two friction models has been left for future work. A preliminary comparison has been carried out by Onofrei in \cite{Onofrei2021}, where the author noted that \textit{"the
+elasto-plastic model seems to behave more smoothly"} than the static friction model.
+
+It must be noted that the applications of the friction models are not limited to strings, and can very well be extended to other resonators. In \cite{paper:Onofrei2021DAFx}, for example, the authors apply the elasto-plastic friction model to a 2D drum membrane to simulate a friction drum inspired instrument. 
+

@@ -214,11 +214,11 @@ Figure \ref{fig:energyConn1DWave} shows the energy of an implementation of the 1
       \caption{The energy of $u$ (blue), the energy of $w$ (red), and the total (black) energy of the system of connected 1D wave equations in \eqref{eq:conn1DwaveFDS}. The energy corresponds to Figure \ref{fig:connectedWaveEqs}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy} shows that the deviation of the energy is within machine precision. \label{fig:energyConn1DWave}}
 \end{figure}
 
-\subsection{Modal analysis and matrix form}
-\SWcomment[might want to remove this entire section.. ]
-In order to perform a modal analysis on the system, one must use the matrix form of the system in Eq. \eqref{eq:conn1DwaveMatrix}. 
+\subsection{Matrix form}\label{sec:matrixFormRigid}
+% In order to perform a modal analysis on the system, one must use the matrix form of the system in Eq. \eqref{eq:conn1DwaveMatrix}. 
 
-As the schemes are connected, the matrix form is slightly more involved.
+One can write the system in Eq. \eqref{eq:conn1DwaveFDS} with a rigid connection in matrix form, albeit slightly more involved due to the interconnection of the schemes.
+
 To start, the definition of the force in Eq. \eqref{eq:rigidForce} must be substituted into the system, which, after expansion of the left hand side of the system, becomes
 \begin{subequations}\label{eq:forceExpanded1Dwaves}
     \begin{align}
@@ -276,31 +276,32 @@ where matrices $(\Dxx)_u$ and $(\Dxx)_w$ are as defined in Eq. \eqref{eq:DxxDef}
 %are row vectors of size $1\times (N_u-1)$ and $1\times (N_w-1)$, 
 where $\i_u$ and $\i_w$ are row vectors of size $1\times (N_u-1)$ and $1\times (N_w-1)$ containing the values of the interpolation operators $\Iu$ and $\Iw$ respectively. Finally, $\i_u\j_u$ and $\i_w\j_w$ are matrix-vector forms of $\lVert \Ju\rVert_d^2$ and $\lVert \Jw\rVert_d^2$ respectively (see Eq. \eqref{eq:JnormIJ}) and reduce to a scalar. \SWcomment[check with stefan if this is a correct notation for this]
 
-Equation \eqref{eq:conn1DwaveMatrix} can then easily be rewritten in one-step form and used for modal analysis.\footnote{Note that due to the lack of damping in the system, the system can be analysed without using a one-step form. To retain generality, the latter is used here.} Following Section \ref{sec:oneStepForm}, one can rewrite Eq. \eqref{eq:conn1DwaveMatrix} to
+Equation \eqref{eq:conn1DwaveMatrix} can then easily be rewritten in one-step form as described in Section \ref{sec:oneStepForm} and used for modal analysis.\footnote{Note that due to the lack of damping in the system, the system could be analysed without using a one-step form.}
+% Following Section \ref{sec:oneStepForm}, one can rewrite Eq. \eqref{eq:conn1DwaveMatrix} to
 
-\begin{equation}
-    \underbrace{\begin{bmatrix}
-        \u^{n+1}\\
-        \w^{n+1}\\
-        \u^{n}\\
-        \w^{n}
-    \end{bmatrix}}_{\mathbf{v}^{n+1}} = \underbrace{\begin{bmatrix}
-        \B & -\I\\
-        \I,& \mathbf{0}
-    \end{bmatrix}}_{\Q}\underbrace{\begin{bmatrix}
-        \u^{n}\\
-        \w^{n}\\
-        \u^{n-1}\\
-        \w^{n-1}
-    \end{bmatrix}}_{\mathbf{v}^n},
-\end{equation}
-one can insert a test solution $\mathbf{v}^n=z^n\boldPhi$ to get
-\begin{equation*}
-    z\boldPhi = \Q\boldPhi,
-\end{equation*}
-and solved for the $p$\th eigenvalue by following the process in Section \ref{sec:oneStepForm}.
+% \begin{equation}
+%     \underbrace{\begin{bmatrix}
+%         \u^{n+1}\\
+%         \w^{n+1}\\
+%         \u^{n}\\
+%         \w^{n}
+%     \end{bmatrix}}_{\mathbf{v}^{n+1}} = \underbrace{\begin{bmatrix}
+%         \B & -\I\\
+%         \I,& \mathbf{0}
+%     \end{bmatrix}}_{\Q}\underbrace{\begin{bmatrix}
+%         \u^{n}\\
+%         \w^{n}\\
+%         \u^{n-1}\\
+%         \w^{n-1}
+%     \end{bmatrix}}_{\mathbf{v}^n},
+% \end{equation}
+% one can insert a test solution $\mathbf{v}^n=z^n\boldPhi$ to get
+% \begin{equation*}
+%     z\boldPhi = \Q\boldPhi,
+% \end{equation*}
+% and solved for the $p$\th eigenvalue by following the process in Section \ref{sec:oneStepForm}.
 
-\todo{figure?}
+% \todo{figure?}
 
 \section{Spring connection}\label{sec:springConnection}
 An alternative connection type is the \textit{spring connection}. As in the rigid case, forces are still equal and opposite, but spring connections allow the relative displacement between the two connected elements to be non-zero. This relative displacement is used to determine the connection force. Interestingly, nonlinearities can be added in a fairly straightforward manner, after which the system can still be solved explicitly.\todo{wording} The most complex springs used in this project have a linear and a nonlinear component, as well as a damping term. For ease of explanation, this section will only use a linear spring. A damped nonlinear spring will appear in Section \ref{sec:stringPlateConnection}.
@@ -540,11 +541,13 @@ Here, $I_q(\chi_\ctxt) = I_{q, o_\stxt} (\chi_\ctxt)$ and $I_{l, m}(x_\ctxt, y_\
 
 
 \subsection{Solving for $f$}
-Following the same process as in Section \ref{sec:explicitSolutionSpringConn}, system \eqref{eq:connStringPlateFDSs} needs be isolated at the connection locations. This is done by taking an inner product of the schemes in \eqref{eq:connStringPlateFDSs} with their respective spreading operators over discrete domains $d_u = \{0, \hdots, N\}$ and $d_w = \{0, \hdots, N_x\}\times \{0, \hdots, N_y\}$ respectively. Taking these inner products, expanding the $\dtt$ and $\dtd$ operators and solving for the states at $n+1$ yields
-\begin{align}\label{eq:connStringPlateFDSsAtConn}
-    \Iq u_q^{n+1} &= u^\star- \lVert J_q(\chi_\ctxt)\rVert_{d_u}^2\frac{f^n}{\rho_\stxt A(1+\szX[\stxt])}\ ,\\
-    \Ilm w_{l,m}^n &= w^\star+ \lVert J_{l, m}(x_\ctxt, y_\ctxt)\rVert_{d_w}^2\frac{f^n}{\rho_\ptxt H(1+\szX[\ptxt]k)}\ ,
-\end{align}
+Following the same process as in Section \ref{sec:explicitSolutionSpringConn}, system \eqref{eq:connStringPlateFDSs} needs be isolated at the connection locations. This is done by taking an inner product of the schemes in \eqref{eq:connStringPlateFDSs} with their respective spreading operators over discrete domains $d_u = \{0, \hdots, N\}$ and $d_w = \{0, \hdots, N_x\}\times \{0, \hdots, N_y\}$ respectively. Taking these inner products, expanding the $\dtt$ and $\dtd$ operators (as these contain $u_q^{n+1}$) and solving for the states at $n+1$ yields
+\begin{subequations}\label{eq:connStringPlateFDSsAtConn}
+    \begin{align}
+        \Iq u_q^{n+1} &= u^\star- \lVert J_q(\chi_\ctxt)\rVert_{d_u}^2\frac{k^2f^n}{\rho_\stxt A(1+\szX[\stxt])}\ ,\\
+        \Ilm w_{l,m}^n &= w^\star+ \lVert J_{l, m}(x_\ctxt, y_\ctxt)\rVert_{d_w}^2\frac{k^2f^n}{\rho_\ptxt H(1+\szX[\ptxt]k)}\ ,
+    \end{align}
+\end{subequations}
 where
 \begin{align*}
     u^{\star} =&\ \Big(\Iq (2\uqn - u_q^{n-1}) + c^2k^2 \Iq\dcc \uqn - \kappa_\stxt^2k^2 \Iq\dcccc \uqn\\
@@ -558,7 +561,10 @@ are the update equations of the schemes at their respective connection locations
 
 Evaluating Eq. \eqref{eq:discEtaStringPlate} at $n+1$ and substituting Eqs. \eqref{eq:connStringPlateFDSsAtConn} yields
 \begin{equation}\label{eq:etaNextStringPlate1}
-    \eta^{n+1} = u^\star- \lVert J_q(\chi_\ctxt)\rVert_{d_u}^2\frac{f^n}{\rho_\stxt A(1+\szX[\stxt]k)} - \left(w^\star + \lVert J_{l, m}(x_\ctxt, y_\ctxt)\rVert_{d_w}^2\frac{f^n}{\rho_\ptxt H(1+\szX[\ptxt]k)}\right).
+    \begin{aligned}
+    \eta^{n+1} =&\ u^\star- \lVert J_q(\chi_\ctxt)\rVert_{d_u}^2\frac{k^2f^n}{\rho_\stxt A(1+\szX[\stxt]k)} \\
+    &- \left(w^\star + \lVert J_{l, m}(x_\ctxt, y_\ctxt)\rVert_{d_w}^2\frac{k^2f^n}{\rho_\ptxt H(1+\szX[\ptxt]k)}\right).
+    \end{aligned}
 \end{equation}
 Then expanding Eq. \eqref{eq:discForceStringPlate} to
 \begin{equation*}
@@ -569,41 +575,48 @@ and solving for $\eta^{n+1}$ yields
     \eta^{n+1} = \frac{f^n}{r_+^n} - \frac{K_1}{2r_+^n}\eta^n - \frac{r_-^n}{r_+^n}\eta^{n-1}.
 \end{equation}
 Substituting this into Eq. \eqref{eq:etaNextStringPlate1}, one can find a definition for the connecting force
-\begin{equation*}
-    f^n = \frac{u^\star - w^\star + \frac{K_1}{2r_+^n}\eta^n + \frac{r_-^n}{r_+^n}\eta^{n-1}}{\frac{1}{r_+^n} + \frac{\lVert J_q(\chi_\ctxt)\rVert_{d_u}^2}{\rho_\stxt A(1+\szX[\stxt]k)} + \frac{\lVert J_{l, m}(x_\ctxt, y_\ctxt)\rVert_{d_w}^2}{\rho_\ptxt H(1+\szX[\ptxt]k)}}.
-\end{equation*}
+\begin{equation}\label{eq:stringPlateForce}
+    f^n = \frac{u^\star - w^\star + \frac{K_1}{2r_+^n}\eta^n + \frac{r_-^n}{r_+^n}\eta^{n-1}}{\frac{1}{r_+^n} + \frac{\lVert J_q(\chi_\ctxt)\rVert_{d_u}^2k^2}{\rho_\stxt A(1+\szX[\stxt]k)} + \frac{\lVert J_{l, m}(x_\ctxt, y_\ctxt)\rVert_{d_w}^2k^2}{\rho_\ptxt H(1+\szX[\ptxt]k)}}.
+\end{equation}
 
 \subsection{Implementation}\label{sec:implementationStringPlate}
-This section shows an example of an implementation of the string-plate system. The \texttt{MATLAB} code of the implementation can be found online\footnote{\url{https://gist.github.com/SilvinWillemsen/91d10f6279af7fd0da7fb65fbd7647da}} The parameters for the stiff string can be found in Table \ref{tab:stiffStringParams} (with $L = 1.5$ m and $T = 555$ N) and for the thin plate in Table \ref{tab:thinPlateParams} (with $H=5\cdot10^{-4}$). Both systems have simply supported boundary conditions. Additional parameters used for the connection are
+This section shows an example of an implementation of the string-plate system. The parameters for the stiff string can be found in Table \ref{tab:stiffStringParams} (with $L = 1.5$ m and $T = 555$ N) and for the thin plate in Table \ref{tab:thinPlateParams} (with $H=5\cdot10^{-4}$) and both systems use simply supported boundary conditions. Additional parameters used for the connection are
 \begin{equation*}
     K_1 = 10^4\ \,\text{N/m}, \quad K_3 = 10^7\ \,\text{N/m}^3, \qaq R = 10\ \,\text{kg/s}.
 \end{equation*}
-Figure \ref{fig:stringPlate} shows an visualisation of the string plate system excited with a raised cosine. 
+The \texttt{MATLAB} code of the implementation can be found online \cite{stringPlateGist}.\footnote{Note that $L$, $L_x$ and $L_y$ have been halved to reduce computations and avoid crashes on some machines.}  Figure \ref{fig:stringPlate} shows an visualisation of the string plate system excited with a raised cosine. 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{figures/interactions/stringPlate.eps}
     \caption{A visualisation of string-plate system. The string is shown in red, the plate in gray and the connection in green. \label{fig:stringPlate}}
 \end{figure}
 
-When implementing connections (or any other interactions for that matter), one mostly does the following:
+In the following, the $\i$ and $\j$ vectors are used as in Section \ref{sec:matrixFormRigid} and are of the appropriate sizes. The matrices for the string can be found in Eq. \eqref{eq:matrixFormStiffString} and those for the plate in Eq. \eqref{eq:matrixFormThinPlate}. When implementing connections (or any other interactions for that matter), one mostly performs the following steps in the main loop:
 \begin{enumerate}
-    \item Calculate intermediate scheme, i.e., without force terms: $\u^\text{I}$ and $\w^\text{I}$
-    \item Calculate $u^\star$ and $w^\star$: $\i_u \u^\text{I}$ and $\i_w \w^\text{I}$
-    \item Calculate force $f^n$
-    \item Add force term to intermediate scheme $\u^{n+1} = \u^{\text{I}} - \j_u f^n$ and $\w^{n+1} = \w^{\text{I}} + \j_w f^n$
+    \item Calculate entire scheme without force terms:\\
+    \vspace{-0.5em}\begin{equation*}
+        \u^\star = (\B_\stxt\u^n + \C_\stxt\u^{n-1}) / A_\stxt, \qaq \w^\star = (\B_\ptxt\w^n + \C_\ptxt\w^{n-1})/A_\ptxt
+    \end{equation*}
+    \item Obtain $u^\star$ and $w^\star$:\\
+    \vspace{-1em}\begin{equation*}
+       u^\star = \i_u \u^\star, \qaq w^\star = \i_w \w^\star
+    \end{equation*}
+    \item Calculate the connection force $f^n$ (Eq. \eqref{eq:stringPlateForce}).
+    \item Add force terms to the schemes without connection forces:\\
+    \begin{equation*}
+        \u^{n+1} = \u^{\star} - \j_u \frac{f^n k^2}{\rho_\stxt A (1+\szX[\stxt])},\qaq \w^{n+1} = \w^{\star} + \j_w \frac{f^n k^2}{\rho_\ptxt H (1+\szX[\ptxt])}
+    \end{equation*} 
 \end{enumerate}
-\SWcomment[not done]
-
 
 \subsection{Energy analysis}
-\SWcomment[still needs stuff]
+Recalling the total energy and damping terms for the string and plate in Sections \ref{sec:energyAnalysisString} and \ref{sec:energyAnalysisThinPlate} respectively, one can --  similar to Eq. \eqref{eq:rOCconnSystem} -- arrive at the following:
 \begin{equation}
     \dtp(\h_\stxt + \h_\ptxt) + \q_\stxt + \q_\ptxt = -\Iq (\dtd \uqn)f^n +\Ilm(\dtd \wlmn)f^n
 \end{equation}
-and can be rewritten to
+which can be rewritten to
 \begin{equation*}
-    \dtp(\h_\stxt + \h_\ptxt) + \q_\stxt + \q_\ptxt = -\dtd \left(\Iq \uqn - \Ilm\wlmn\right)f^n
+    \dtp(\h_\stxt + \h_\ptxt) + \q_\stxt + \q_\ptxt = -\dtd \left(\Iq \uqn - \Ilm\wlmn\right)f^n.
 \end{equation*}
-which, when substituting the definitions for $f^n$ and $\eta^n$ from Eqs. \eqref{eq:discForceStringPlate} and \eqref{eq:discEtaStringPlate} respectively, yields
+Substituting the definitions for $f^n$ and $\eta^n$ from Eqs. \eqref{eq:discForceStringPlate} and \eqref{eq:discEtaStringPlate} respectively, yields
 \begin{equation*}
     \dtp(\h_\stxt + \h_\ptxt) + \q_\stxt + \q_\ptxt = -(\dtd\eta^n)(K_1\mtt\eta^n+K_3(\eta^n)^2\mtd\eta^n+R\dtd\eta^n).
 \end{equation*}
@@ -630,7 +643,7 @@ and the damping term of the connection is
 \begin{equation*}
     \q_\ctxt = R(\dtd\eta^n)^2.
 \end{equation*}
-
+Figure \ref{fig:energyStringPlate} shows the energetic output of the string-plate system corresponding to Figure \ref{fig:stringPlate}. One can observe that, due to the high value for spring-damping $R$, the total energy decreases substantially as the excitation reaches the connection location along the string. 
 
 \begin{figure}[h]
     \centering
@@ -644,8 +657,8 @@ and the damping term of the connection is
         \node[] (he) at (0.2,0.5) {\small $\mathfrak{h}_\text{e}$};
 
         \node[] (h) at (-5.8, 1) {\small $\mathfrak{h}$};
-        \node[] (v) at (-5.8, 0.5) {\small $\color{red}\mathfrak{h}_u$};
-        \node[] (t) at (-5.8, 0) {\small $\color{blue}\mathfrak{h}_w$};
+        \node[] (v) at (-5.8, 0.5) {\small $\color{red}\mathfrak{h}_\stxt$};
+        \node[] (t) at (-5.8, 0) {\small $\color{blue}\mathfrak{h}_\ptxt$};
         \node[] (c) at (-5.8, -0.5) {\small $\color[HTML]{00DB00}\mathfrak{h}_\ctxt$};
 
       \end{tikzpicture}
