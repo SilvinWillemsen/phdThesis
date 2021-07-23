@@ -18,13 +18,13 @@ The string `sticks' to the bow and `slips' again when the restoring force of the
 
 The Helmholtz motion gives bowed string instruments, such as the violin and cello, their characteristic sound. An ideal case is shown in Figure \ref{fig:helmholtzTimedomain}, where, for a string described by $u(x,t)$, the location of a point $x_\text{out}$ along the string follows a sawtooth-like motion due to the `stick-slip' behaviour. 
 % Figure \ref{fig:helmholtzImplementation} for a time domain output of one point along a bowed stiff string. The string is bowed upwards, and the `stick-slip' behaviour is visible (stick for upwards, slip for downwards motion), creating a sawtooth pattern. 
-\begin{figure}[h]
+\begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{figures/exciters/helmholtzTimedomain.eps}
     \caption{The ideal Helmholtz motion of a location $x_\text{out}$ along a bowed string. \label{fig:helmholtzTimedomain}}
 \end{figure}
 
-The rest of this chapter first presents a brief history of bowed-string simulations. Then, before introducing various friction models, an introduction to interpolation and spreading operators, as well as the Newton-Raphson method will be given, as these are both necessary when working with this type of excitation.
+The rest of this chapter is structured as follows: First, a brief history of bowed-string simulations is presented. Then, an introduction to interpolation and spreading operators, as well as an introduction to the Newton-Raphson method will be given, as these are both necessary to work with bow-string interaction. Finally, two friction models are presented, where the dynamic elasto-plastic friction model applied to a FD scheme of the stiff string is one of the contributions of this project, published in paper \citeP[C].
 
 \section{Brief history of bowed-string simulation}
 The first nonlinear systems in the context of musical instrument simulations, including the bowed string, were presented by McIntyre, et al. in 1983 \cite{McIntyre1983}. The first real-time implementation of the bowed string was due to Smith in 1986 and used digital waveguides for the string and a look-up table for the friction model \cite{Smith1986}. Simultaneously, Florens et al. presented a real-time implementation of the bowed string, but instead, the string was modelled using mass-spring systems and the friction model used a static friction model \cite{Florens1986} (see Section \ref{sec:staticFricMod}). One of the most complex friction models applied in a musical context to-date is the elasto-plastic friction model due to Dupont \cite{Dupont2002}, which Serafin et al. \cite{Serafin2003, Serafin2004} applied to a digital waveguide implementation of the string. 
@@ -659,17 +659,15 @@ This is the same stability condition as Olsson presents in \cite{Olsson1996}. \S
 \section{Discussion and conclusion}
 This chapter presented the bow as a way to excite stiff strings. Two friction models have been presented, a static model where the friction force is only a function of the relative velocity between the string and the bow, and the dynamic elasto-plastic friction model, which relates the relative velocity to the friction using a differential equation. The latter has been presented in paper \citeP[C] where it was first applied in the context of FDTD methods. 
 
-Although an attempt at using the elasto-plastic friction model with a fully modelled instrument -- such as the tromba marina in papers \citeP[D] and \citeP[E] -- has been carried out, the static friction model has been used. 
+Although an attempt at using the elasto-plastic friction model with a fully modelled instrument -- the tromba marina presented in Chapter \ref{ch:tromba} -- has been carried out, the static friction model has been used in the end. 
 
 Already yields a 
 
 a static and a dynamic friction model. The latter, the elasto-plastic friction has been applied to model has been used 
 
 
-
-
 A comparison between the two friction models has been left for future work. A preliminary comparison has been carried out by Onofrei in \cite{Onofrei2021}, where the author noted that \textit{"the
-elasto-plastic model seems to behave more smoothly"} than the static friction model.
+elasto-plastic model seems to behave more smoothly"} than the static friction model. This is also what is observed when comparing the output of the friction models in Figures \ref{fig:helmholtzImplementation} and \ref{fig:elastoWaveform}.
 
 It must be noted that the applications of the friction models are not limited to strings, and can very well be extended to other resonators. In \cite{paper:Onofrei2021DAFx}, for example, the authors apply the elasto-plastic friction model to a 2D drum membrane to simulate a friction drum inspired instrument. 
 

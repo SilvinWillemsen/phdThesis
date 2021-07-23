@@ -20,7 +20,7 @@ Multiplying and dividing a matrix by a scalar (a single number) is valid and hap
 Notice that although a matrix can be divided by a scalar, a scalar can not necessarily be divided by a matrix. See Section \ref{sec:inverse} for more information.
 
 \subsubsection{Matrix transpose}
-A matrix or vector can be \textit{transposed}, and is indicated with the $T$ operator. Transposing a matrix $\A$ is denoted by $\A^T$. This means that the elements in the $i$\th row and the $j$\th column of the original matrix become the elements in the $j$\th row and the $i$\th column of the transposed matrix. Essentially the row and column indices of the elements inside the matrix get switched according to
+A matrix or vector can be \textit{transposed}, which is indicated by the $T$ operator. Transposing a matrix $\A$ is denoted by $\A^T$. This means that the elements in the $i$\th row and the $j$\th column of the original matrix become the elements in the $j$\th row and the $i$\th column of the transposed matrix. Essentially the row and column indices of the elements inside the matrix get switched according to
 \begin{equation}\label{eq:matrixTransposition}
     a_{ij} = a_{ji}.
 \end{equation} 
@@ -38,7 +38,7 @@ Matrix multiplication (this includes matrix-vector multiplication) is different 
 \begin{equation}\label{eq:matrixMult}
     c_{ij} = \sum_{k=1}^K a_{ik} b_{kj},
 \end{equation}
-where $K$ is both the number columns of matrix $\A$ and the number of rows in matrix $\B$. It thus follows that, order for matrix multiplication to be valid, the number of columns of the first matrix needs to be equal to the number of rows in the second matrix. The result will then be a matrix with a number of rows equal to that of the first matrix and a number of columns equal to that of the second matrix. See Figure \ref{fig:matrixVector} for reference.
+where $K$ is both the number columns of matrix $\A$ and the number of rows in matrix $\B$. It thus follows that, in order for a matrix multiplication to be valid, the number of columns of the first matrix needs to be equal to the number of rows in the second matrix. The result will then be a matrix with a number of rows equal to that of the first matrix and a number of columns equal to that of the second matrix. See Figure \ref{fig:matrixVector} for reference.
 
 As an example, consider the $L\times M$ matrix $
 \A$ and a $M\times N$ matrix $\B$ with $L\neq N$. The multiplication $\A\B$ is defined as the number of columns of matrix $\A$ ($M$) is equal to the number of rows of matrix $\B$ (also $M$). The result, $\C$, is a $L \times N$ matrix. The multiplication $\B\A$ is undefined as the number of columns of the first matrix does not match the number of rows in the second matrix. A valid multiplication of two matrices written in their dimensions is
@@ -109,7 +109,7 @@ This can be solved for $\u$ by taking the inverse of $\A$ (see Section \ref{sec:
 \begin{equation}
     \u = \A^{-1}\w.
 \end{equation}
-Generally, if X unknowns are described by X equations, the unknowns can be solved for using this method.
+Generally, if X unknowns are described by X equations, the unknowns can be solved for, by using this method.
 
 Solving a system of linear equations can be implemented in \texttt{MATLAB} by using the code given in Section \ref{sec:inverse} and multiplying this onto a vector \texttt{w}
 \begin{center}
@@ -131,7 +131,7 @@ This is called is an \textit{eigenvalue problem} and has $p$ solutions (correspo
 \begin{equation}
     \lambda_p = \eig_p(\A),
 \end{equation}
-where $\eig_p(\cdot)$ denotes the $p$\th eigenvalue of. Instead of delving too deep into eigenvalue problems and the process of how to solve them, an easy way to obtain the solutions using \texttt{MATLAB} is provided here:
+where $\eig_p(\cdot)$ denotes the `$p$\th eigenvalue of'. Instead of delving too deep into eigenvalue problems and the process of how to solve them, an easy way to obtain the solutions using \texttt{MATLAB} is provided here:
 
 \begin{center}
     \texttt{[phi, lambda] = eig(A, {\color[HTML]{A100F4}'vector'});}

@@ -104,7 +104,7 @@ FD operators approximating spatial derivatives and averages introduced in Sectio
 %     \end{bmatrix}\\
 % \end{gather*}
 %
-where the diagonal dots denote that the values on the respective diagonals continue until the top-left and bottom-right corners of the matrix.\todo{is this how you explain it?} The $\boldsymbol{0}$s indicate that the rest of the values in the matrix are zeros.
+where the diagonal dots denote that the values on the respective diagonals continue until the top-left and bottom-right corners of the matrix.\todo{is this how you explain it?} A $\boldsymbol{0}$ indicates that the rest of the values in the matrix are zeros.
 
 Averaging operators $\mxp$, $\mxm$ and $\mxd$ are defined in a similar way:
 
@@ -566,7 +566,7 @@ In this section, four steps are presented and can be followed to perform a full 
 % \subsubsection{Step 4: Implementation}
 
 \subsubsection{Step 1: Obtain the rate of change of the total energy $\dtp \h$}
-The first step to energy analysis is to take the appropriate \textit{norm} of the scheme (see Eq. \eqref{eq:contInnerProd}), which yields an expression for the rate of change of the energy of the system: $\dtp\h$. Usually, this means to take the inner product of the scheme with $(\dtd \uln)$. See Section \ref{sec:innerProduct} for more details on the inner product. Note that the forward time difference $\dtp$ is used (and not the backwards or centred) because of convention and preference [Bilbao, verbally].
+The first step to energy analysis is to take the appropriate \textit{norm} of the scheme (see Eq. \eqref{eq:contInnerProd}), which yields an expression for the rate of change of the energy of the system: $\dtp\h$. Usually, this means to take the inner product of the scheme with $(\dtd \uln)$. See Section \ref{sec:innerProduct} for more details on the inner product. Note that the forward time difference $\dtp$ is used (and not the backwards or centred) because of convention and preference.\footnote{[Bilbao, verbally]}
 
 For the units of the resulting energy balance to add up (also see Step 3), it is useful to perform the analysis on a scheme with all physical parameters written out (so the discretised version of Eq. \eqref{eq:massSpringPDE} rather than Eq. \eqref{eq:massSpringCompact}).
 
@@ -589,9 +589,30 @@ The Hamiltonian itself can usually be further subdivided into kinetic energy and
 As a rule of thumb, the definition for kinetic energy contains `velocity squared' (as in the classical-mechanics definition $E_\text{kin}=\tfrac{1}{2}M\dot u$) and the potential energy includes the restoring forces of the system. 
 
 \subsubsection{Step 3: Check the units in the expression for $\h$}
-To know that the previous steps have been carried out correctly, it is good to check whether the units of the resulting expression for $\h$ is indeed in Joules, or kg $\cdot$ m$^2 \cdot $ s$^{-2}$. The other quantities such as energy losses $\mathfrak{q}$ and inputs $\mathfrak{p}$, should be in Joules per second or in SI units: kg $\cdot$ m$^2 \cdot $ s$^{-3}$. As mentioned in Step 1, it is therefore useful to have all physical parameters written out so that the units will be correct in this step. Some information about operators and grid functions and how they `add' units to the equation will be given below.
+To know that the previous steps have been carried out correctly, it is good to check whether the units of the resulting expression for $\h$ is indeed in Joules, or kg $\cdot$ m$^2 \cdot $ s$^{-2}$. The other quantities such as energy losses $\mathfrak{q}$ and inputs $\mathfrak{p}$, should be in Joules per second or in SI units: kg $\cdot$ m$^2 \cdot $ s$^{-3}$. As mentioned in Step 1, it is therefore useful to have all physical parameters written out so that the units will be correct in this step. Some information about operators and grid functions and how they `add' units are given in Table \ref{tab:units}. It is important to note that the time shift operator ($e_{t-}$) does not influence the units. Finally, the appearance of a grid function $\uln$ `adds' whatever it describes. Usually, as $\uln$ describes a displacement in m, it will `add' this to the equation. If it describes anything else, it will `add' that.
 
-An (1D) inner product (or norm) will `add' one `m' unit due to the $h$ in its definition in \eqref{eq:contInnerProd}. A first-order temporal difference operator will `add' one `s$^{-1}$'-unit (because of the $1/k$) and a first-order spatial difference operator will `add' one `m$^{-1}$'-unit ($1/h$). Along these lines, a second-order time or difference operator will `add' a `s$^{-2}$' ($1/k^2$) or `m$^{-2}$'-unit ($1/h^2$) respectively. It is important to note that the time shift operator ($e_{t-}$) does not influence the units. Finally, the appearance of a grid function $\uln$ `adds' whatever it describes. Usually, as $\uln$ describes a displacement in m, it will `add' this to the equation. If it describes anything else, it will `add' that.
+{\renewcommand{\arraystretch}{1.2}
+
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        Name & Operator & Unit\\ \hline
+        Inner product (1D) & $\langle \cdot, \cdot\rangle_d$ & m\\
+        Norm (1D) & $\lVert \cdot, \cdot\rVert_d^2$ & m\\
+        First order ops. in time & $\dtp, \dtm, \dtd$ & s$^{-1}$\\
+        Second order op. in time & $\dtt$ & s$^{-2}$\\
+        First order ops. in space & $\dxp, \dxm, \dxd$ & m$^{-1}$\\
+        Second order op. in space & $\dxx$ & m$^{-2}$\\
+        Shift operators & $e_{t-}, e_{x+}, \hdots$ & -\\
+        Averaging operators & $\mtp, \mtt, \mxd, \hdots$ & -\\\hline
+    \end{tabular}
+    \caption{Units of operators.\label{tab:units}}
+    \end{center}
+\end{table}
+{\renewcommand{\arraystretch}{1}
+
+% An (1D) inner product (or norm) will `add' one `m' unit due to the $h$ in its definition in \eqref{eq:contInnerProd}. A first-order temporal difference operator will `add' one `s$^{-1}$'-unit (because of the $1/k$) and a first-order spatial difference operator will `add' one `m$^{-1}$'-unit ($1/h$). Along these lines, a second-order time or difference operator will `add' a `s$^{-2}$' ($1/k^2$) or `m$^{-2}$'-unit ($1/h^2$) respectively.
 
 \subsubsection{Step 4: Implement the definitions for energy and debug the FD scheme}
 In the end, the definition for the energy can be implemented and used as a check for whether the FD scheme has been implemented correctly. Usually, the energy of the system is calculated for every iteration in the for loop and plotted after the simulation.
@@ -756,7 +777,7 @@ potEnergy(n) = T/(2*h) * sum(([u; 0] - [0; u]) ...
 % Total energy (Hamiltonian)
 totEnergy(n) = kinEnergy(n) + potEnergy(n);
 \end{lstlisting}
-Here, \texttt{u} is the vector $\u = [u_1^n, \hdots, u_{N-1}^n]^T$ (as Dirichlet boundary conditions are used) and need to be concatenated with $0$ in the calculation of the potential energy as the boundaries needs to be included in the calculation, despite them being 0!\footnote{As can be seen from the definition of $\v$ in Eq. \eqref{eq:energyBalance1DWave}, the domain used for the inner product is $\underline{d} = \{0,\hdots, N-1\}$ and $\v$ contains a forward difference in its definition requiring $u_N^n$ as well.}
+Here, \texttt{u} is the vector $\u = [u_1^n, \hdots, u_{N-1}^n]^T$ (as Dirichlet boundary conditions are used) and need to be concatenated with $0$ in the calculation of the potential energy as the boundaries needs to be included in the calculation, despite them being 0.\footnote{As can be seen from the definition of $\v$ in Eq. \eqref{eq:energyBalance1DWave}, the domain used for the inner product is $\underline{d} = \{0,\hdots, N-1\}$ and $\v$ contains a forward difference in its definition requiring $u_N^n$ as well.}
 Figure \ref{fig:energy1DWave} shows the plot of the normalised energy according to Eq. \eqref{eq:normalisedEnergy} and shows that the deviation of $\h^n$ is within machine precision.
 \begin{figure}[h]
     \centering
@@ -902,7 +923,7 @@ Following \cite{theBible}, a test solution of the form $\u^n = z^n\boldPhi$ can 
 \begin{equation}
     (z - 2 + z^{-1})\boldPhi = c^2k^2\Dxx \boldPhi.
 \end{equation}
-This is an eigenvalue problem (see Section \ref{sec:eigenValueProblems}) where the $p$\th solution $\boldPhi_p$ may be interpreted as the modal shape of mode $p$. The corresponding modal frequencies are the solutions to the following equations:
+This is an eigenvalue problem (see Section \ref{sec:eigenValueProblems}) where the $p$\th solution $\boldPhi_p$ may be interpreted as the modal shape of mode $p$. The corresponding modal frequencies (or eigenfrequencies) are the solutions to the following equations:
 \begin{gather}\label{eq:1DWaveModalIntermediate}
     z_p-2+z_p^{-1} = c^2k^2\text{eig}_p(\Dxx),\nonumber\\
     z_p+\Big(-2-c^2k^2\text{eig}_p(\Dxx)\Big)+z_p^{-1}=0.
@@ -935,7 +956,7 @@ The figure shows one great advantage of performing modal analysis on a FD scheme
 \end{figure}
 
 \subsection{One-step form}\label{sec:oneStepForm}
-For more complicated systems, specifically those containing damping terms, it is useful to rewrite the update in \textit{one-step form} (also referred to as a state-space representation). The damping terms cause the coefficients of $z$ and $z^{-1}$ in the characteristic equation to not be identical and the trigonometric identities in \eqref{eq:trigIdentities} can not be used directly. Although the eigenfrequency calculation needs to be done on a larger matrix, it allows for a more general and direct way to calculate the modal frequencies and damping coefficients per mode. 
+For more complicated systems, specifically those containing damping terms, it is useful to rewrite the update in \textit{one-step form} (also referred to as a state-space representation). The damping terms cause the coefficients of $z$ and $z^{-1}$ in the characteristic equation to not be identical and the trigonometric identities in \eqref{eq:trigIdentities} can not be used directly. Although the eigenvalue calculation needs to be done on a larger matrix, it allows for a more general and direct way to calculate the modal frequencies and damping coefficients per mode. 
 
 If matrix $\A$ has an inverse, any scheme of the form
 \begin{equation}\label{eq:modalForm}

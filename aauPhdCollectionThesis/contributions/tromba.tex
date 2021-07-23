@@ -5,13 +5,11 @@ This chapter provides an extended summary for the physical model presented in th
 The tromba marina is a bowed monochord instrument from medieval Europe (see Figure \ref{fig:tromba}). It has a long quasi-trapezoidal body and is unique due to its oddly-shaped bridge that the string rests on. The bridge is often called a `shoe' due to its shape and is free to rattle against the body in sympathy with the movement of the vibrating string (see Figure \ref{fig:bridge}). This rattling causes a sound with brass or trumpet-like qualities, hence the name \textit{tromba} which stems from the Italian word trumpet. The rarity of the instrument as well as its interesting physics makes it an ideal case for a physical modelling implementation.
 
 \subsubsection{Real-time implementation and control}
-Paper \citeP[D] presents physical model of the tromba marina and its the real time implementation. The paper uses the Sensel morph for control of the algorithm. See Section \ref{sec:sensel} for more information on this controller. To approach the interaction paradigm of the real-life instrument, a virtual reality (VR) application was made from where the algorithm could be controlled. For this end, the PHANTOM Omni haptic device was used to control the implementation and presented in paper \citeP[E]. See Section \ref{sec:phantomOmni} for more details on this device. The latter has been evaluated and the results will be summarised below.
+Paper \citeP[D] presents a physical model of the tromba marina and its real-time implementation. The paper uses the Sensel morph for control of the algorithm. See Section \ref{sec:sensel} for more information on this controller. To approach the interaction paradigm of the real-life instrument, a virtual reality (VR) application was made from where the algorithm could be controlled. For this end, the PHANTOM Omni haptic device was used to control the implementation and presented in paper \citeP[E]. See Section \ref{sec:phantomOmni} for more details on this device. The VR implementation has been evaluated and the results will be summarised below.
 
 \subsubsection{Evaluation and results}
 The VR implementation of the tromba marina was evaluated on 14 participants. The goals of the evaluation was to determine the general experience of bowing in a VR environment, and to evaluate the playability of a VR monochord instrument.
-The data was collected as a combination of qualitative and quantitative methods as detailed in paper \citeP[E]. 
-
-The th were divided into haptics, visuals, audio, and overall experience of the application 
+The data was collected using a combination of qualitative and quantitative methods as detailed in paper \citeP[E]. The questions asked in the quantitative part of the evaluation were divided into haptics, visuals, audio, and overall experience of the application.
 
 The results show that the various modalities (visuals, audio and haptics) seemed to reinforce each other and that the haptic feedback provided by the PHANTOM Omni was deemed ``realistic'' and ``natural''. The overall playability of the instrument was thus concluded to be satisfactory, though improvements could be made.
 
@@ -31,17 +29,17 @@ The results show that the various modalities (visuals, audio and haptics) seemed
 
 \section{Physical model}
 This section presents the physical model of the tromba marina with reference to the theory presented in Parts \ref{part:resonators}, \ref{part:exciters} and \ref{part:interactions}.
-As much as possible, this chapter follows the notation of paper \citeP[D], as long as it is coherent with what has already been presented in this thesis. Discrepancies between this chapter and the paper will be clearly highlighted. 
+As much as possible, this chapter follows the notation of paper \citeP[D], as long as it is coherent with what has already been presented in this thesis. Any discrepancies between this chapter and the paper will be clearly highlighted. 
 
 \subsection{Continuous time}
-The full musical instrument has been divided into three parts: the string, the bridge and the body each of which will briefly be presented here on. Each resonator in isolation is of the form 
+The full musical instrument has been divided into three parts: the string, the bridge and the body, each of which will briefly be presented here. Each resonator in isolation is of the form 
 \begin{equation}\label{eq:trombaPDEForm}
     \L q = 0
 \end{equation}
 where $\L$ is a linear (partial) differential operator and $q(\boldsymbol{x}, t)$ describes the state of the component in isolation. $q$ is defined for time $t\geq 0$ and spatial coordinate $\boldsymbol{x}\in \D$ where the dimensions of domain $\D$ depend on the dimensions of the system at hand. Using the form in Eq. \eqref{eq:trombaPDEForm} allows for a much more compact notation later on. In the following, subscripts `s', `m' and `p' will be used to denote the `string', `bridge' (mass), and `body' (plate) respectively.
 
 \subsubsection{String}
-The string of the tromba marina is modelled as a damped stiff string of length $L$ (in m) (see Chapter \ref{ch:stiffString}). With reference to the form in \eqref{eq:trombaPDEForm}, its transverse displacement is described by $q = u(\chi, t)$ (in m) and is defined for $\chi \in \D_\stxt$ where domain $\D_\stxt = [0, L]$.\footnote{Notice that $\chi$ rather than $x$ is used here. As $x$ will be used as a spatial coordinate for the body later on, a different symbol is used for the string to differentiate between different coordinate-systems.} Using partial differential operator $\L = \L_\text{s}$, the PDE describing its motion is defined as
+The string of the tromba marina is modelled as a damped stiff string of length $L$ (in m) (see Chapter \ref{ch:stiffString}). With reference to the form in \eqref{eq:trombaPDEForm}, its transverse displacement is described by $q = u(\chi, t)$ (in m) and is defined for $\chi \in \D_\stxt$ where domain $\D_\stxt = [0, L]$.\footnote{Notice that $\chi$ rather than $x$ is used here. As $x$ will be used as a spatial coordinate for the body later on, a different symbol is used for the string to differentiate between two coordinate-systems.} Using partial differential operator $\L = \L_\text{s}$, the PDE describing its motion is defined as
 \begin{equation}\label{eq:trombaStiffString}
     \L_\stxt u =  0,
 \end{equation}
@@ -50,7 +48,7 @@ where (see Eq. \eqref{eq:stiffStringPDE})
     \L_\stxt = \rho_\stxt A \ptt - T\partial_\chi^2 + E_\text{s}I\partial_\chi^4+2\rho_\stxt A\szX[\stxt]\pt-2\rho_\stxt A\soX[\stxt]\pt\partial_\chi^2\ .
 \end{equation*}
 The parameters are as defined for Eq. \eqref{eq:stiffStringPDE} with the possible addition of the `s' subscript.
-Compared to the schemes presented in previous chapters, using a partial differential operator to combine all operators like this, is solely different from a notational point of view, and does not change the behaviour of the system. If Eq. \eqref{eq:trombaStiffString} is expanded and all terms except for $\rho_\stxt A \ptt$ are moved to the right-hand side, one arrives again at the damped stiff string PDE in Eq. \eqref{eq:stiffStringPDE}.
+Compared to the schemes presented in previous chapters, using a partial differential operator to combine all operators like this, is solely different from a notational point of view, and does not change the behaviour of the system. If Eq. \eqref{eq:trombaStiffString} is expanded and all terms except for $\rho_\stxt A \ptt$ are moved to the right-hand side, one arrives at the damped stiff string PDE in Eq. \eqref{eq:stiffStringPDE} again.
 
 As the string is bowed, one can extend the PDE in \eqref{eq:trombaStiffString} to 
 \begin{equation}
@@ -59,9 +57,9 @@ As the string is bowed, one can extend the PDE in \eqref{eq:trombaStiffString} t
 with bow position $\chi_\text{B} = \chi_\text{B}(t) \in \D_\stxt$ (in m), bow force $F_\text{B} = F_\text{B}(t)$ and relative velocity between the bow and the string $\vrel=\vrel(t)$. The static friction model in Eq. \eqref{eq:staticFriction} has been chosen for simplicity. For more details on this bow model, see Section \ref{sec:staticFricMod}.
 
 \subsubsection{Bridge}
-The bridge is modelled using a mass-spring-damper system (see Section \ref{sec:massSpringDamping}). With reference to Eq. \eqref{eq:trombaPDEForm}, the transverse displacement of the mass is described by $q = w(t)$ (in m) and using differential operator $\L = \L_\text{m}$ its PDE is 
+The bridge is modelled using a mass-spring-damper system (see Section \ref{sec:massSpringDamping}). With reference to Eq. \eqref{eq:trombaPDEForm}, the transverse displacement of the mass is described by $q = w(t)$ (in m) and using differential operator $\L = \L_\text{m}$, its PDE is 
 \begin{equation}
-    \L_\text{m} w = 0
+    \L_\text{m} w = 0,
 \end{equation}
 where (see Eq. \eqref{eq:massSpringDampingPDE})
 \begin{equation*}
@@ -79,12 +77,12 @@ The body of the instrument is simplified to a damped rectangular thin plate of s
 \end{equation}
 where (see Eq. \eqref{eq:platePDE})
 \begin{equation*}
-    \mathcal{L}_\text{p} = \rho_\text{p}H\partial_t^2 + D\Delta\Delta +2\rho_\text{p}H\sigma_{0,\text{p}}\partial_t-2\rho_\text{p}H\sigma_{1,\text{p}}\partial_t\Delta.
+    \mathcal{L}_\text{p} = \rho_\text{p}H\partial_t^2 + D\Delta\Delta +2\rho_\text{p}H\sigma_{0,\text{p}}\partial_t-2\rho_\text{p}H\sigma_{1,\text{p}}\partial_t\Delta,
 \end{equation*}
 with $D = E_\ptxt H^3/12(1-\nu^2)$. Again, parameters are as defined in Eq. \eqref{eq:platePDE}.
 
 \subsubsection{Interactions}
-The three components interact using the non-iterative collision methods presented in Chapter \ref{ch:collisions}. Recalling the importance of the relative location of the various objects (see Section \ref{sec:massRigidBarrier}), the string is placed above the bridge which is placed above the body. This arrangement will determine the definitions of $\eta$ and the directions of the forces in the eventual system. In the following, subscripts `sm' and `mp' are used to denote a `string-mass' and `mass-plate' interaction respectively.
+The three components interact using the non-iterative collision methods presented in Chapter \ref{ch:collisions}. Recalling the importance of the relative location of the various objects (see Section \ref{sec:massRigidBarrier})\todo{klopt dit?}, the string is placed above the bridge, which is placed above the body. This arrangement will, in turn, determine the definitions of $\eta$ and the directions of the forces in the eventual system. In the following, subscripts `sm' and `mp' are used to denote a `string-mass' and `mass-plate' interaction respectively.
 
 The bridge-body interaction is modelled using the collision-potential in Eq. \eqref{eq:potential}:
 \begin{equation}
@@ -122,11 +120,11 @@ Notice that when compared to the system presented in paper \citeP[D], Eqs. \eqre
 \SWcomment[Insert figure 4 of the SMC paper here]
 
 \subsection{Discrete time}
-Using the process explained in Section \ref{sec:solvingMassBarrier} for discretising the collision terms and introducing\footnote{The definition for $\xi^n$ was wrong in paper \citeP[D], where $\psi^{n-1/2}$ was subtracted rather than added. It has been corrected here.} 
+Using the process explained in Section \ref{sec:solvingMassBarrier} for discretising the collision terms and introducing\footnote{The definition for $\xi^n$ was wrong in paper \citeP[D], where $\psi^{n-1/2}$ was subtracted rather than added. It has been corrected here and included in Appendix \ref{app:paperErrata}.} 
 \begin{equation}
     \xi^n = \frac{k}{2}g^n\delta_{t\cdot}\eta^n + \psi^{n-1/2},
 \end{equation}
-for brevity, system \eqref{eq:trombaSystemPDE} can be discretised as follows:
+for brevity, system \eqref{eq:trombaSystemPDE} can be discretised as follows:\footnote{Notice that subscript $l$ is used as a spatial index for both the string and the plate for coherency with the paper, but are used as an index for different coordinate systems.}
 
 \begin{subequations}\label{eq:trombaSystemFDS}
     \begin{align}
@@ -147,7 +145,7 @@ where the discrete linear (partial) differential operators $\ell$ are the discre
     \ell_\text{p} &= \rho_\text{p} H \delta_{tt} + D\dDelta\dDelta + 2\rho_\text{p}H\sigma_{0, \text{p}}\delta_{t\cdot} - 2\rho_\text{p}H\sigma_{1, \text{p}}\delta_{t-}\dDelta.
     \end{align}
 \end{subequations}
-Notice that subscript $l$ is used as a spatial index for both the string and the plate for coherency with the paper, but index different coordinate systems. Furthermore, the definitions for $g_\sm^n$ and $g_\mp^n$ can be found in Eq. \eqref{eq:gDef}\footnote{Paper \citeP[D] still uses the old definition of $g^n$ in Eq. \eqref{eq:gDefOld}.} and $J_{l,0}(\chi_\sm)$ and $J_{l,3}(\chi_\text{B})$ are the $0$\thOrder and cubic spreading operators respectively as defined in Section \ref{sec:interpolationSpreading} and $J_{(l,m),0}(x_\mp, y_\mp)$ is a $0$\thOrder 2D spreading operator as defined in Section \ref{sec:interpolationSpreading2D}.
+Furthermore, the definitions for $g_\sm^n$ and $g_\mp^n$ can be found in Eq. \eqref{eq:gDef}\footnote{Paper \citeP[D] still uses the old definition of $g^n$ in Eq. \eqref{eq:gDefOld}.} and $J_{l,0}(\chi_\sm)$ and $J_{l,3}(\chi_\text{B})$ are the $0$\thOrder and cubic spreading operators respectively, as defined in Section \ref{sec:interpolationSpreading} and $J_{(l,m),0}(x_\mp, y_\mp)$ is a $0$\thOrder 2D spreading operator as defined in Section \ref{sec:interpolationSpreading2D}.
 
 As $0$\thOrder spreading operators are used for the collision terms in the string and body FD schemes, the definitions of Eqs. \eqref{eq:etaSM} and \eqref{eq:etaMP} do not use interpolation operators to obtain the string and plate values. Instead, for brevity, $\ubr^n = u_{l_\sm}^n$ with $l_\sm = \floor[\chi_\sm / h_\stxt]$ and $\zbr^n = z_{(l_\mp, m_\mp)}^n$ with $(l_\mp, m_\mp) = (\floor[x_\mp / h_\ptxt], \floor[y_\mp / h_\ptxt])$ are introduced for the string and the plate respectively. Here $h_\stxt$ is the grid spacing for the string and $h_\ptxt$ that for the plate. 
 
@@ -162,7 +160,7 @@ To simplify things slightly, and looking towards real-time implementation, one c
 % In the following, a short-hand notation is used for the grid points along the string and the plate that the bridge interacts with. These are . \todo{shorthand of shorthand?} Furthermore, a
 As it is assumed that one will not bow the bridge, i.e. $\chi_\text{B} \neq \chi_\sm$, the bowing term will be disregarded when calculating the interaction between the components. 
 
-Recalling \eqref{eq:etaSM} and \eqref{eq:etaMP}, one can write the following
+Recalling \eqref{eq:etaSM} and \eqref{eq:etaMP}, one can write the following:
 \begin{equation*}
     \delta_{t\cdot}\eta_\sm^n = \delta_{t\cdot}(w^n - \ubr^n) \qaq\delta_{t\cdot}\eta_\mp^n = \delta_{t\cdot}(\zbr^n - w^n),
 \end{equation*}
@@ -172,7 +170,7 @@ and expanding the right-hand sides yields
     \delta_{t\cdot}\eta_\sm^n &= \frac{w^{n+1}-w^{n-1}-\ubr^{n+1}+\ubr^{n-1}}{2k} \quad \text{and}\\ \delta_{t\cdot}\eta_\mp^n &= \frac{\zbr^{n+1}-\zbr^{n-1}-w^{n+1}+w^{n-1}}{2k}\ .
     \end{aligned}
 \end{equation}
-To solve the system, inner product of Eqs. \eqref{eq:trombaSystemFDSString} and \eqref{eq:trombaSystemFDSPlate} is taken with $J_{l,0}(\chi_\sm)$ and $J_{(l,m),0}(x_\mp, y_\mp)$ respectively. As $0$\thOrder spreading operators are used, their norms over discrete string domain $d_\stxt$ and discrete plate domain $d_\ptxt$, respectively, reduce as follows (also see Eq. \eqref{eq:shorthandJ}): $\lVert J_{l,0}(\chi_\sm) \rVert_{d_\stxt}^2 = 1/h_\stxt$ and $\lVert J_{(l,m),0}(x_\mp, y_\mp)\rVert_{d_\ptxt}^2 = 1/h_\ptxt^2$. This yields the following updates for Eqs. \eqref{eq:trombaSystemFDSString}, \eqref{eq:trombaSystemFDSMass} and \eqref{eq:trombaSystemFDSPlate} at the locations of interaction
+To solve the system, inner product of Eqs. \eqref{eq:trombaSystemFDSString} and \eqref{eq:trombaSystemFDSPlate} are taken with $J_{l,0}(\chi_\sm)$ and $J_{(l,m),0}(x_\mp, y_\mp)$ respectively. As $0$\thOrder spreading operators are used, their norms over discrete string domain $d_\stxt$ and discrete plate domain $d_\ptxt$, respectively, reduce as follows (also see Eq. \eqref{eq:shorthandJ}): $\lVert J_{l,0}(\chi_\sm) \rVert_{d_\stxt}^2 = 1/h_\stxt$ and $\lVert J_{(l,m),0}(x_\mp, y_\mp)\rVert_{d_\ptxt}^2 = 1/h_\ptxt^2$. This yields the following updates for Eqs. \eqref{eq:trombaSystemFDSString}, \eqref{eq:trombaSystemFDSMass} and \eqref{eq:trombaSystemFDSPlate} at the locations of interaction
 \begin{subequations}\label{eq:statesBridgeNext}
     \begin{align}
         % \left(\frac{\rho_\text{s}A}{k^2}+\frac{\rho_\text{s}A\sigma_{0,\text{s}}}{k}\right) \ubr^{n+1} =
@@ -221,14 +219,14 @@ where
     \nonumber
 \end{gathered}
 \end{equation}
-The solutions obtained for $\dtd \eta_\sm^n$ and $\dtd \eta_\mp^n$, can then used directly in $\xi_\sm^n$ and $\xi_\mp^n$ in Eqs. \eqref{eq:trombaSystemFDSString}, \eqref{eq:trombaSystemFDSMass} and \eqref{eq:trombaSystemFDSPlate} to calculate $u_l^{n+1}$, $w^{n+1}$ and $z_{(l,m)}^{n+1}$ respectively. They can also be used directly to calculate $\psi^{n+1/2}_\sm$ and $\psi^{n+1/2}_\mp$ in Eqs. \eqref{eq:psiSM} and \eqref{eq:psiMP} respectively.
+The solutions obtained for $\dtd \eta_\sm^n$ and $\dtd \eta_\mp^n$, can then be used directly in $\xi_\sm^n$ and $\xi_\mp^n$ in Eqs. \eqref{eq:trombaSystemFDSString}, \eqref{eq:trombaSystemFDSMass} and \eqref{eq:trombaSystemFDSPlate} to calculate $u_l^{n+1}$, $w^{n+1}$ and $z_{(l,m)}^{n+1}$ respectively. They can also be used directly to calculate $\psi^{n+1/2}_\sm$ and $\psi^{n+1/2}_\mp$ in Eqs. \eqref{eq:psiSM} and \eqref{eq:psiMP} respectively.
 
 Figure \ref{fig:trombaExcite} shows three consecutive plots of the system excited with a raised cosine. The bow is not used here, to highlight the collision.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/contributions/tromba/trombaExcite.eps}
-    \caption{The string of the tromba marina (blue) excited using a raised cosine. The string-mass interaction forces the mass (red) downwards which collides with the plate (green). \label{fig:trombaExcite}}
+    \caption{The string of the tromba marina (blue) excited using a raised cosine. The string-mass interaction forces the mass (red) downwards, which collides with the plate (green). \label{fig:trombaExcite}}
 \end{figure}
 
 \subsection{Energy analysis}
@@ -264,9 +262,9 @@ for the mass as (Eq. \eqref{eq:massDampingEnergy})
 \begin{equation*}
     \q_\mtxt = R\left(\dtd w^n \right)^2
 \end{equation*}
-and the plate as (Eq. \eqref{eq:dampingTermThinPlate})
+and for the plate as (Eq. \eqref{eq:dampingTermThinPlate})
 \begin{equation*}
-    \mathfrak{q}_\ptxt = 2\sz \rho_\ptxt H \lVert\dtd\zlmn\rVert_d^2 - 2 \so \rho_\ptxt H \langle \dtd \zlmn, \dtm \dDelta\zlmn \rangle_d.
+    \mathfrak{q}_\ptxt = 2\sz \rho_\ptxt H \lVert\dtd\zlmn\rVert_{d_\ptxt}^2 - 2 \so \rho_\ptxt H \langle \dtd \zlmn, \dtm \dDelta\zlmn \rangle_{d_\ptxt}.
 \end{equation*}
 
 Finally, the power dissipated and supplied by the bow are defined as (Eq. \eqref{eq:energyBalanceBow})

@@ -640,15 +640,15 @@ This section provides information on the excitation and output of the system. Se
 \subsubsection{Excitation}
 A simple way to excite the system is to initialise the state using a raised cosine, or Hann window. More information on excitations will be given in Part \ref{part:exciters}, but for completeness, the formula for a discrete raised cosine will be given here. 
 
-The discrete raised cosine can be parametrised by its center location $l_\text{c}$ and width $w$ from which the start index $l_\text{s}$ and end index $l_\text{e}$ can be calculated, according to 
+The discrete raised cosine can be parametrised by its center location $l_0$ and width $w$ from which the start index $l_\text{s}$ and end index $l_\text{e}$ can be calculated, according to 
 \begin{equation}
-    l_\text{s} = l_\text{c} - \floor[w/2]\qaq l_\text{e} = l_\text{c} + \floor[w/2],
+    l_\text{s} = l_0 - \floor[w/2]\qaq l_\text{e} = l_0 + \floor[w/2],
 \end{equation}
 where $\floor[\cdot]$ denotes the flooring operation and needs to be used as all the above variables are integers. Furthermore, both $l_\text{s}$ and $l_\text{e}$ must fall into the defined spatial range of calculation. Then, a raised cosine with an amplitude of $1$ can be calculated and used as an initial condition for the system according to
 \begin{equation}\label{eq:raisedCos}
     u_l^1 = u_l^0 =
     \begin{cases}
-        0.5 - 0.5\cos\left(\frac{2\pi (l - l_\text{s})}{w - 1}\right), & l_\text{s} \leq l < l_\text{e},\\
+        0.5 - 0.5\cos\left(\frac{2\pi (l - l_\text{s})}{w-1}\right), & l_\text{s} \leq l < l_\text{e},\\
         0, & \text{otherwise}.
     \end{cases}
 \end{equation}
@@ -675,7 +675,7 @@ After the system is excited, one can retrieve the output of the system by select
         Grid spacing & $h$ (m)& $\approx 0.033$ \\
         Courant number & $\lambda$ (-)& $1$ \\\hline
         \multicolumn{3}{|l|}{\bf Excitation and output}\\ \hline
-        Center location& $l_\text{c}$ (-)& $0.2N$\\
+        Center location& $l_0$ (-)& $0.2N$\\
         Width& $w$ (-)& 4\\
         Output location & $l_\text{out}$ & 3 \\\hline
     \end{tabular}
@@ -687,7 +687,7 @@ As can be seen from Figure \ref{fig:1DWaveOutput}, the output of the 1D wave equ
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{figures/fdtd/oneDWaveOutput.eps}
-    \caption{The time-domain and frequency domain output of the 1D wave equation with $f_0 = 735$ Hz and $\fs = 44100$ Hz ($N = 30$ and $\lambda = 1$) and Dirichlet boundary conditions. The system is initialised with a raised cosine described in Eq. \eqref{eq:raisedCos} with $l_\text{c} = 0.2N)$ and $w=4$ and the output is retrieved at $l_\text{out} = 3$. \label{fig:1DWaveOutput}}
+    \caption{The time-domain and frequency domain output of the 1D wave equation with $f_0 = 735$ Hz and $\fs = 44100$ Hz ($N = 30$ and $\lambda = 1$) and Dirichlet boundary conditions. The system is initialised with a raised cosine described in Eq. \eqref{eq:raisedCos} with $l_0 = 0.2N)$ and $w=4$ and the output is retrieved at $l_\text{out} = 3$. \label{fig:1DWaveOutput}}
 \end{figure}
 
 \begin{figure}[h]
