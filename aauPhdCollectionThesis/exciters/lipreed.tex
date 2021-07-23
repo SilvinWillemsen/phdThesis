@@ -8,11 +8,22 @@ Coupling to Tube
 \section{Mass-spring systems revisited: Damping}\label{sec:massSpringDamping}
 Before moving on to the lip reed system, a small extension to the mass-spring system given in Section \ref{sec:massSpringSystem} will be given here. 
 
-Damping can be easily be added to Eq. \eqref{eq:massSpringPDE} according to 
+Recalling that $u=u(t)$ is the displacement of the mass from its equilibrium position, damping can be easily be added to Eq. \eqref{eq:massSpringPDE} to yield a mass-spring-damper system: 
 \begin{equation}\label{eq:massSpringDampingPDE}
-    M\ddot u = -Ku - R\dot u
+    M\ddot u = -Ku - R\dot u,
 \end{equation}
-with damping coefficient $R$ (in kg/s). The damping term is analogous to the frequency-independent damping in the damped stiff string in Eq. \eqref{eq:stiffStringPDE}. Equation \eqref{eq:massSpringDampingPDE} can then be discretised to the following FD scheme:
+with mass $M$ (in kg), spring constant $K$ (N/m) and damping coefficient $R$ (in kg/s). Figure \ref{fig:massSpringDamper} shows the behaviour of the system for different values of $R$. 
+
+\def\figWidth{0.32}
+\begin{figure}[h]
+    \centering
+    \subfloat[$R=0$.\label{fig:massSpringDamper1}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/lipreed/massSpringDamper1.eps}}\hfill
+    \subfloat[$R=50$.\label{fig:massSpringDamper2}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/lipreed/massSpringDamper2.eps}}\hfill
+    \subfloat[$R=200$.\label{fig:massSpringDamper3}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/lipreed/massSpringDamper3.eps}}
+    \caption{The mass-spring-damper system in Eq. \eqref{eq:massSpringDampingPDE} for different values of $R$. \label{fig:massSpringDamper}}
+\end{figure}
+
+Equation \eqref{eq:massSpringDampingPDE} can then be discretised to the following FD scheme:
 \begin{equation}\label{eq:massSpringDampingFDS}
     M\dtt \un = -K\un - R\dtd \un.
 \end{equation}

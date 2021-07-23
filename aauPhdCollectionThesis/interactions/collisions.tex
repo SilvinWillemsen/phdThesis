@@ -295,7 +295,15 @@ Equations \eqref{eq:expandedMassString1} and \eqref{eq:expandedMassString2} can 
     \end{gathered}
 \end{equation}
 From this, $\eta^{n+1}$ can be calculated, and can consequently be applied to the string and mass in system \eqref{eq:massStringComb}.
-\todo{figure of implementation?}
+
+Figure \ref{fig:massStringCollision} shows an implementation of the mass spring collision. The mass is initialised with an upwards initial velocity ($w^0 = -0.2, w^1 = -0.1$) and collides with the string almost instantly after the start of the simulation. As the first panel shows, the collision model allows for interpenetration of the objects. Immediately after, the collision force pushes the string upwards and slows down the mass.\todo{wording}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/interactions/stringMassCollision.eps}
+    \caption{The collision of the mass (blue) and the string (red). The collision model allows for interpenetration of the objects as shown in the left panel. \label{fig:massStringCollision}}
+\end{figure}
+
 \subsection{Energy analysis}
 This section follows Section \ref{sec:energyAnalysis} without explicitly following the steps for brevity. 
 
@@ -338,6 +346,28 @@ with collision energy
 \end{equation*}
 Again, the fact that $\psi$ is squared here, means that $\h_\text{c}$ is non-negative, and proves passivity of the system. 
 \todo{figure of energy}
+
+Figure \ref{fig:massStringCollisionEnergy} shows the energy of the mass-spring collision corresponding to the behaviour shown in Figure \ref{fig:massStringCollision}. One can observe that energy of the mass is transferred to the string almost immediately after the start of the simulation. Furthermore, the figure shows that the mass and the string collide again at $n\approx 110$.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[->,node distance=3cm,
+        thick,main node/.style={circle,draw}]
+    
+        \node[] (image) at (0,0) {
+        \includegraphics[width=\textwidth]{figures/interactions/stringMassCollisionEnergy.eps}
+        };
+    
+        \node[] (he) at (0.2,0.5) {\small $\mathfrak{h}_\text{e}$};
+
+        \node[] (h) at (-5.8, 1) {\small $\mathfrak{h}$};
+        \node[] (t) at (-5.8, 0.5) {\small $\color{blue}\mathfrak{h}_\text{m}$};
+        \node[] (v) at (-5.8, 0) {\small $\color{red}\mathfrak{h}_\stxt$};
+        \node[] (c) at (-5.8, -0.5) {\small $\color[HTML]{00DB00}\mathfrak{h}_\ctxt$};
+
+      \end{tikzpicture}
+      \caption{The energy of the mass (blue), the string (red), the collision (green) and the total energy (black) of the mass-string collision. The energy corresponds to the system in Figure \ref{fig:massStringCollision}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) shows that the deviation of the energy is within machine precision. \label{fig:massStringCollisionEnergy}}
+\end{figure}
 \section{Two-sided collision: A connection}\label{sec:twoSidedCollision}
 
 % As an alternative to the method connections shown in Chapter \ref{ch:connections} showed ways to connect various resonators using techniques presented in \cite{theBible}. An alternative method to establish these connections can be devised using the methods presented in this chapter.
