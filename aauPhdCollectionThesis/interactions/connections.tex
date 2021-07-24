@@ -91,7 +91,7 @@ where subscripts $u$ and $w$ denote whether a variable belongs to system $u$ or 
 % \end{equation}
 % and will be used later on. 
 
-\subsubsection{Relative location of objects}
+\subsubsection{Relative location of objects}\todo{COLLISION CONNECTION}
 When working with multiple interacting objects, it is important to keep in mind relative location of the connected objects, i.e., whether one object is `above' or `below' an other. This relative location will affect sign of the force term. As a connection should `pull' the systems towards each other, the connection force should have a negative effect on the object `above' and a positive effect on the object `below'. From the signs of the force terms in system \eqref{eq:conn1DwaveFDS}, one can observe that $u$ has been placed above $w$.  
 
 \subsection{Discrete time}
@@ -353,7 +353,7 @@ and
 \begin{equation*}
     w^\star = \Iw(2\wmn - w_m^{n-1}) + c_w^2k^2\Iw\dxx\wmn,
 \end{equation*}
-are the update equations of the system at their respective connection locations without the term containing the connection force. Evaluating Eq. \eqref{eq:discEtaConn1Dwave} at $n+1$ yields
+are the update equations of the system at their respective connection locations without the term containing the connection force\todo{COLLISION CONNECTION (refer to Collision chapter if this is chapter 11 now}. Evaluating Eq. \eqref{eq:discEtaConn1Dwave} at $n+1$ yields
 \begin{equation*}
     \eta^{n+1} = \Iu u_l^{n+1} - \Iw w_m^{n+1},
 \end{equation*}

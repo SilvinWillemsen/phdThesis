@@ -564,14 +564,14 @@ To obtain the correct energy balance, an inner product of Eq. \eqref{eq:discPres
 \end{equation}
 
 \subsubsection{Step 2: Identify energy types and isolate $\dtp$}
-For the rest of the analysis, the following superscripts and subscripts will be assumed unless denoted otherwise: $n$ and $l$ for $p$, $l$ for $\bar S$, $l+1/2$ for $S$ and $l+1/2$ and $n+1/2$ for $v$. After performing summation by parts of the last term using identity \eqref{eq:summationByPartsMinusBar}, Eq. \eqref{eq:firstOrderPrimed} becomes
+For the rest of the analysis, the following superscripts and subscripts will be assumed unless denoted otherwise: $n$ and $l$ for $p$, $l$ for $\bar S$, $l+1/2$ for $S$ and $l+1/2$ and $n+1/2$ for $v$. After performing summation by parts of the last term using identity \eqref{eq:primedIdentityMinus}, Eq. \eqref{eq:firstOrderPrimed} becomes
 \begin{equation}\label{eq:discEnergyFirstOrder}
     \delta_{t+}\mathfrak{h} = \frac{1}{\rho_0 c^2}\langle \mu_{t+}p, \bar S \delta_{t+}p \rangle_{d}' -\langle \mu_{t+}\dxp p, Sv\rangle_{\underline{d}} = -\mathfrak{b} \quad \end{equation}
 where the boundary term is
 \begin{align}
-    \mathfrak{b} &= \mathfrak{b}_\text{r} + \mathfrak{b}_\text{l}, \quad \text{with} \nonumber\\
+    \mathfrak{b} &= \mathfrak{b}_\text{r} - \mathfrak{b}_\text{l}, \quad \text{with} \nonumber\\
     \mathfrak{b}_\text{r} &= (\mu_{t+}p_N)\mu_{x+}(S_{N-1/2}v_{N-1/2})\quad \text{and}\label{eq:firstOrderRightBoundary}\\
-    \mathfrak{b}_\text{l} &= -(\mu_{t+}p_0)\mu_{x-}(S_{1/2}v_{1/2})\label{eq:firstOrderLeftBoundary},
+    \mathfrak{b}_\text{l} &= (\mu_{t+}p_0)\mu_{x-}(S_{1/2}v_{1/2})\label{eq:firstOrderLeftBoundary},
 \end{align}
 and can be shown to vanish under the boundary conditions shown in Eq. \eqref{eq:firstOrderBoundaryConditions}. Then, Eq. \eqref{eq:discVelocity} can be substituted into Eq. \eqref{eq:discEnergyFirstOrder} to get
 \begin{align}
@@ -588,9 +588,9 @@ Finally, one can use identities \eqref{eq:prodIdentity3} and \eqref{eq:prodIdent
 \subsubsection{Step 3: Check units}
 Writing the terms in Eq. \eqref{eq:energyBalanceFirstOrder} in their units yields
 \begin{align*}
-    \frac{\rho_0}{2}\langle Sv, e_{t-}v\rangle_{\underline{d}}\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \ \text{kg}\cdot \text{m}^{-3}\cdot \text{m} \cdot (\text{m}^2 \cdot \text{m}\cdot\text{s}^{-1} \cdot \text{m}\cdot\text{s}^{-1}),\\
+    \t = \frac{\rho_0}{2}\langle Sv, e_{t-}v\rangle_{\underline{d}}\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \ \text{kg}\cdot \text{m}^{-3}\cdot \text{m} \cdot (\text{m}^2 \cdot \text{m}\cdot\text{s}^{-1} \cdot \text{m}\cdot\text{s}^{-1}),\\
     & = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-2},\\
-    \frac{1}{2\rho_0 c^2}\left(\lVert\sqrt{\bar S }p\rVert'_d\right)^2\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}&\  (\text{kg} \cdot \text{m}^{-3} \cdot \text{m}^2 \cdot \text{s}^{-2})^{-1} \cdot(\text{m} \cdot \text{kg} \cdot \text{m}^{-1}\cdot \text{s}^{-2})^2,\\
+    \v = \frac{1}{2\rho_0 c^2}\left(\lVert\sqrt{\bar S }p\rVert'_d\right)^2\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}&\  (\text{kg} \cdot \text{m}^{-3} \cdot \text{m}^2 \cdot \text{s}^{-2})^{-1} \cdot(\text{m} \cdot \text{kg} \cdot \text{m}^{-1}\cdot \text{s}^{-2})^2,\\
     &= \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-2},
 \end{align*}
 and indeed have the correct units.

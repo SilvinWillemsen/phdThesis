@@ -63,7 +63,7 @@ Looking towards the discretisation the mass-barrier collision, one could rewrite
 where $g = \psi'$.
 
 \subsubsection{Relative location of objects}
-As explained in Chapter \ref{ch:connections}, it is important to consider whether an object is located `above' or `below' the other, 
+As explained in Chapter \ref{ch:connections}\todo{COLLISION CONNECTION}, it is important to consider whether an object is located `above' or `below' the other, 
 %
 % Notice that 
 % it is important to keep in mind the relative location of the colliding objects, i.e., whether one object is `above' or `below' an other. 
@@ -127,7 +127,7 @@ If there is, however, no collision at $n+1/2$, $\psi^{n+1/2} = 0$ and Eq. \eqref
 \begin{equation*}
     g_\text{imp}^n = -2\frac{\psi^{n-1/2}}{\eta^{n+1} - \eta^{n-1}}.
 \end{equation*}
-Furthermore, due to the fact that there is no collision, $\eta^{n+1}$ can be calculated according to $\eta^{n+1} = \eta^\star = u^\star - b$, where $u^\star$ is the value of $u^{n+1}$ calculated using the scheme in Eq. \eqref{eq:massBarrierSystem1} without the collision force (as done in Chapter \ref{ch:connections}). Expanding Eq. \eqref{eq:massBarrierSystem1} without the collision force yields  
+Furthermore, due to the fact that there is no collision, $\eta^{n+1}$ can be calculated according to $\eta^{n+1} = \eta^\star = u^\star - b$, where $u^\star$ is the value of $u^{n+1}$ calculated using the scheme in Eq. \eqref{eq:massBarrierSystem1} without the collision force (as done in Chapter \ref{ch:connections})\todo{COLLISION CONNECTION}. Expanding Eq. \eqref{eq:massBarrierSystem1} without the collision force yields  
 \begin{equation*}
     \frac{M}{k^2}\left(u^\star - 2\un + u^{n-1}\right) = 0 \quad \Longrightarrow \quad u^\star = 2u^n - u^{n-1}.
 \end{equation*}
@@ -381,4 +381,4 @@ and taking its derivative with respect to $\eta$ yields
 \begin{equation}
     \phi'(\eta) = \sgn(\eta)K|\eta|^{\alpha_\ctxt}.
 \end{equation}
-One can observe that, as opposed to the (one-sided) potential presented in Eq. \eqref{eq:potential}, the collision force will be non-zero, for both a positive and negative $\eta$. This two-sided collision can be used as a connection -- as an alternative to the connections presented in Chapter \ref{ch:connections} -- and has been used in papers \citeP[D] and \citeP[E] in combination with Eq. \eqref{eq:potential} to model the mechanics of the tromba marina. See Chapter \ref{ch:tromba} for more details.
+One can observe that, as opposed to the (one-sided) potential presented in Eq. \eqref{eq:potential}, the collision force will be non-zero, for both a positive and negative $\eta$. This two-sided collision can be used as a connection -- as an alternative to the connections presented in Chapter \ref{ch:connections}\todo{COLLISION CONNECTION} -- and has been used in papers \citeP[D] and \citeP[E] in combination with Eq. \eqref{eq:potential} to model the mechanics of the tromba marina. See Chapter \ref{ch:tromba} for more details.

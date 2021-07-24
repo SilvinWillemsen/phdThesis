@@ -379,11 +379,11 @@ where $(l,y) = \{l\}\times\{0, \hdots, N_y\}$ and $(x,m) = \{0, \hdots,  N_x\}\t
 \subsubsection{Step 3: Check units}
 As the addition of the two inner products in the definition for $\v$ in Eq. \eqref{eq:energyBalance2DWave} does not affect the units, only one term is used to check the units. Recalling that, as opposed to the 1D case, the symbol $T$ is tension per unit length and thus in N/m, one can write the terms in Eq. \eqref{eq:energyBalance2DWave} in their units:
 \begin{align*}
-    \frac{\rho H}{2}\lVert \dtm \ulmn\rVert^2_d \
+    \t = \frac{\rho H}{2}\lVert \dtm \ulmn\rVert^2_d \
     \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}    \quad&\text{kg}\cdot\text{m}^{-3}\cdot\text{m}\cdot\text{m}^2\cdot(\text{s}^{-1}\cdot\text{m})^2 \\
     = \ & \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2}\\
-    \frac{T}{2} \langle \dxp \ulmn, e_{t-}\dxp \ulmn\rangle_{\domXred} \
-    \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}    \quad& \text{N} \cdot \text{m}^{-1}\cdot\text{m}^2\cdot(\text{m}^{-1}\cdot\text{m})\cdot(\text{m}^{-1}\cdot\text{m})\nonumber \\
+    \v =\frac{T}{2} \langle \dxp \ulmn, e_{t-}\dxp \ulmn\rangle_{\domXred} \
+     \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad& \text{N} \cdot \text{m}^{-1}\cdot\text{m}^2\cdot(\text{m}^{-1}\cdot\text{m})\cdot(\text{m}^{-1}\cdot\text{m})\nonumber \\
     = \ &\text{kg}\cdot\text{m}^2\cdot\text{s}^{-2}
 \end{align*}
 which have the correct units. 
@@ -674,8 +674,8 @@ The definition of the boundary term $\b$ will not be given here, but can be show
 \subsubsection{Step 3: Check units}
 As $\t$ is identical to its definition in Eq. \eqref{eq:energyBalance2DWave}, only the units for $\v$ will be checked here. Recalling that $D = EH^3 / 12(1-\nu^2)$, which in units is kg$\cdot$ m$^2\cdot$s$^{-2}$, yields
 \begin{align*}
-    \frac{D}{2}\langle\dDelta \ulmn, e_{t-}\dDelta \ulmn\rangle_{\overline{\underline{d}}} \
-    \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad& \text{kg} \cdot \text{m}^2\cdot\text{s}^{-2}\cdot\text{m}^2\cdot(\text{m}^{-2}\cdot\text{m})\cdot(\text{m}^{-2}\cdot\text{m})\nonumber \\
+    \v = \frac{D}{2}\langle\dDelta \ulmn, e_{t-}\dDelta \ulmn\rangle_{\overline{\underline{d}}} \
+    \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \ & \text{kg} \cdot \text{m}^2\cdot\text{s}^{-2}\cdot\text{m}^2\cdot(\text{m}^{-2}\cdot\text{m})\cdot(\text{m}^{-2}\cdot\text{m})\nonumber \\
     = \ &\text{kg}\cdot\text{m}^2\cdot\text{s}^{-2}
 \end{align*}
 and shows that $\v$ indeed has the correct units. 

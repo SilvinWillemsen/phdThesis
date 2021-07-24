@@ -21,7 +21,7 @@ The Helmholtz motion gives bowed string instruments, such as the violin and cell
 \begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{figures/exciters/helmholtzTimedomain.eps}
-    \caption{The ideal Helmholtz motion of a location $x_\text{out}$ along a bowed string. \label{fig:helmholtzTimedomain}}
+    \caption{An example of the (ideal) Helmholtz motion of a location $x_\text{out}$ along a bowed string. \label{fig:helmholtzTimedomain}}
 \end{figure}
 
 The rest of this chapter is structured as follows: First, a brief history of bowed-string simulations is presented. Then, an introduction to interpolation and spreading operators, as well as an introduction to the Newton-Raphson method will be given, as these are both necessary to work with bow-string interaction. Finally, two friction models are presented, where the dynamic elasto-plastic friction model applied to a FD scheme of the stiff string is one of the contributions of this project, published in paper \citeP[C].
@@ -660,6 +660,8 @@ This is the same stability condition as Olsson presents in \cite{Olsson1996}. \S
 This chapter presented the bow as a way to excite stiff strings. Two friction models have been presented, a static model where the friction force is only a function of the relative velocity between the string and the bow, and the dynamic elasto-plastic friction model, which relates the relative velocity to the friction using a differential equation. The latter has been presented in paper \citeP[C] where it was first applied in the context of FDTD methods. 
 
 Although an attempt at using the elasto-plastic friction model with a fully modelled instrument -- the tromba marina presented in Chapter \ref{ch:tromba} -- has been carried out, the static friction model has been used in the end. 
+
+A lot of work should go into tuning the parameters of the elasto-plastic model, which is left for future work. 
 
 Already yields a 
 

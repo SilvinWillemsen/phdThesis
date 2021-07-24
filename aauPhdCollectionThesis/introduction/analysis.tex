@@ -566,7 +566,7 @@ In this section, four steps are presented and can be followed to perform a full 
 % \subsubsection{Step 4: Implementation}
 
 \subsubsection{Step 1: Obtain the rate of change of the total energy $\dtp \h$}
-The first step to energy analysis is to take the appropriate \textit{norm} of the scheme (see Eq. \eqref{eq:contInnerProd}), which yields an expression for the rate of change of the energy of the system: $\dtp\h$. Usually, this means to take the inner product of the scheme with $(\dtd \uln)$. See Section \ref{sec:innerProduct} for more details on the inner product. Note that the forward time difference $\dtp$ is used (and not the backwards or centred) because of convention and preference.\footnote{[Bilbao, verbally]}
+The first step to energy analysis is to take the appropriate \textit{norm} of the scheme (see Eq. \eqref{eq:contInnerProd}), which yields an expression for the rate of change of the energy of the system: $\dtp\h$. Usually, this means to take the inner product of the scheme with $(\dtd \uln)$ over a discrete domain $d$. See Section \ref{sec:innerProduct} for more details on the inner product. Note that the forward time difference $\dtp$ is used (and not the backwards or centred) because of convention and preference.\footnote{[Bilbao, verbally]}
 
 For the units of the resulting energy balance to add up (also see Step 3), it is useful to perform the analysis on a scheme with all physical parameters written out (so the discretised version of Eq. \eqref{eq:massSpringPDE} rather than Eq. \eqref{eq:massSpringCompact}).
 
@@ -623,7 +623,7 @@ For a system without losses or energy inputs, the energy should be unchanged acc
 \end{equation}
 % 
 where $\h^n_\text{e}$ can be seen as the normalised energy and shows the error variation. 
-Although this equation should always return $0$ (as $\h^n = \h^0$), in a finite precision simulation, ultra slight fluctuations of the energy should be visible due to rounding errors. Plotting the Hamiltonian should show fluctuations within \textit{machine precision}, which is usually in the range of $10^{-15}$. Over time, the fluctuations can add up, and possibly end up out of this range, but generally, any fluctuations less than in the $10^{-10}$ range indicate that there is no programming error. See fx. Figures \ref{fig:energyMassSpring} and \ref{fig:energy1DWave}.
+Although this equation should always return $0$ (as $\h^n = \h^0$), in a finite precision simulation, minute fluctuations of the energy should be visible due to rounding errors. Plotting the Hamiltonian should show fluctuations within \textit{machine precision}, which is usually in the range of $10^{-15}$. Over time, the fluctuations can add up, and possibly end up out of this range, but generally, any fluctuations less than in the $10^{-10}$ range indicate that there is no programming error. See fx. Figures \ref{fig:energyMassSpring} and \ref{fig:energy1DWave}.
 
 For a system with losses or energy inputs, a discrete integration, or summed form can be used (as done in fx. \cite{Harrison2018}):
 \begin{equation}\label{eq:normalisedEnergyDamping}
@@ -662,8 +662,8 @@ This can be rewritten in terms of the kinetic energy $\t$ and potential energy $
 \subsubsection{Step 3: Check units}
 As mentioned above, the energy $\h$ needs to be in Joules, or kg $\cdot$ m$^2 \cdot$ s$^{-2}$. Taking the terms in Eq. \eqref{eq:energyBalanceMassSpring} one-by-one and writing them in their units results in 
 \begin{align*}
-    \t = \frac{M}{2}(\dtm\un)^2 &\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad\text{kg}\cdot(\text{s}^{-1}\cdot \text{m})^{2}= \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
-    \v = \frac{K}{2}\un e_{t-}\un&\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad \text{N} \cdot \text{m}^{-1} \cdot \text{m}\cdot \text{m} = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},
+    \t = \frac{M}{2}(\dtm\un)^2 &\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad\text{kg}\cdot(\text{s}^{-1}\cdot \text{m})^{2}= \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
+    \v = \frac{K}{2}\un e_{t-}\un&\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad \text{N} \cdot \text{m}^{-1} \cdot \text{m}\cdot \text{m} = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},
 \end{align*}
 and indeed have the correct units. 
 
@@ -753,9 +753,9 @@ and the definition for the Hamiltonian and the kinetic and potential energy can 
 \subsubsection{Step 3: Check units}
 Writing out the definitions for kinetic and potential energy in Eq. \eqref{eq:energyBalance1DWave} respectively, yields
 \begin{align*}
-    \t = \frac{\rho A}{2}\lVert\dtm \uln\rVert^2_d \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \ \text{kg}\cdot \text{m}^{-3} \cdot \text{m}^2\cdot \text{m} \cdot(\text{s}^{-1}\cdot \text{m})^{2}\\
+    \t = \frac{\rho A}{2}\lVert\dtm \uln\rVert^2_d \ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \quad \text{kg}\cdot \text{m}^{-3} \cdot \text{m}^2\cdot \text{m} \cdot(\text{s}^{-1}\cdot \text{m})^{2}\\
     & = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
-    \v = \frac{T}{2}\langle\dxp\uln, e_{t-}\dxp\uln\rangle_{\underline{d}}\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \ \text{N} \cdot \text{m}\cdot (\text{m}^{-1}\cdot\text{m}\cdot \text{m}^{-1}\cdot\text{m}^{-1}\text{m}) \\
+    \v = \frac{T}{2}\langle\dxp\uln, e_{t-}\dxp\uln\rangle_{\underline{d}}\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \quad \text{N} \cdot \text{m}\cdot (\text{m}^{-1}\cdot\text{m}\cdot \text{m}^{-1}\cdot\text{m}^{-1}\text{m}) \\
     & = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-2},
 \end{align*}
 and are indeed in Joules. Notice that an extra `m' unit appears due to the norm and inner product.
