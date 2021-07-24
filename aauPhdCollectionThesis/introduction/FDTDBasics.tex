@@ -180,30 +180,30 @@ Similarly, forward and backward shifts in space are
 %
 \todo{these spacings are different in overleaf...}
 \begin{subnumcases}{\pt \approxeq\label{eq:discFirstTime}}
-        \dtp &$\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{k}\left(e_{t+} - 1\right),$\label{eq:forwardTimeOperator}\\
-        \dtm &$\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{k}\left(1 - e_{t-}\right),$\label{eq:backwardTimeOperator}\\
-        \dtd &$\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2k}\left(e_{t+} - e_{t-}\right),$\label{eq:centredTimeOperator}
+        \dtp &$\!\!\!\!\triangleq \frac{1}{k}\left(e_{t+} - 1\right),$\label{eq:forwardTimeOperator}\\
+        \dtm &$\!\!\!\!\triangleq \frac{1}{k}\left(1 - e_{t-}\right),$\label{eq:backwardTimeOperator}\\
+        \dtd &$\!\!\!\!\triangleq \frac{1}{2k}\left(e_{t+} - e_{t-}\right),$\label{eq:centredTimeOperator}
 \end{subnumcases}
 where ``$\triangleq$'' means ``equal to by definition''. These operators can then be applied to grid function $\uln$ to get
 \begin{subnumcases}{\pt u \approxeq\label{eq:discFirstTimeU}}
-    \dtp \uln &$\!\!\!\!\!\!\!\!\!\! = \frac{1}{k}\left(u_l^{n+1} - \uln\right),$\label{eq:forwardTimeOperatorU}\\
-    \dtm \uln &$\!\!\!\!\!\!\!\!\!\! = \frac{1}{k}\left(\uln - u_l^{n-1}\right),$\label{eq:backwardTimeOperatorU}\\
-    \dtd \uln &$\!\!\!\!\!\!\!\!\!\! = \frac{1}{2k}\left(u_l^{n+1} - u_l^{n-1}\right),$\label{eq:centredTimeOperatorU}
+    \dtp \uln &$\!\!\!\! = \frac{1}{k}\left(u_l^{n+1} - \uln\right),$\label{eq:forwardTimeOperatorU}\\
+    \dtm \uln &$\!\!\!\! = \frac{1}{k}\left(\uln - u_l^{n-1}\right),$\label{eq:backwardTimeOperatorU}\\
+    \dtd \uln &$\!\!\!\! = \frac{1}{2k}\left(u_l^{n+1} - u_l^{n-1}\right),$\label{eq:centredTimeOperatorU}
 \end{subnumcases}
 and all approximate the first-order time derivative of $u$. Note that the centred difference has a division by $2k$ as the time difference between $n+1$ and $n-1$ is, indeed, twice the time step. 
 
 \todo{figure here visualising operators (with reference to grid figure)}
 Similar operators exist for a first-order derivative in space, where the forward, backward and centred difference are
 \begin{subnumcases}{\px \approxeq\label{eq:discFirstSpace}}
-    \dxp &$\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{h}\left(e_{x+} - 1\right),$\label{eq:forwardSpaceOperator}\\
-    \dxm &$\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{h}\left(1 - e_{x-}\right),$\label{eq:backwardSpaceOperator}\\
-    \dxd &$\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2h}\left(e_{x+} - e_{x-}\right),$\label{eq:centredSpaceOperator}
+    \dxp &$\!\!\!\!\triangleq \frac{1}{h}\left(e_{x+} - 1\right),$\label{eq:forwardSpaceOperator}\\
+    \dxm &$\!\!\!\!\triangleq \frac{1}{h}\left(1 - e_{x-}\right),$\label{eq:backwardSpaceOperator}\\
+    \dxd &$\!\!\!\!\triangleq \frac{1}{2h}\left(e_{x+} - e_{x-}\right),$\label{eq:centredSpaceOperator}
 \end{subnumcases}
 and when applied to $\uln$ are
 \begin{subnumcases}{\px u \approxeq\label{eq:discFirstSpace}}
-    \dxp \uln&$\!\!\!\!\!\!\!\!\!\!= \frac{1}{h}\left(u_{l+1}^n- \uln\right),$\\
-    \dxm \uln&$\!\!\!\!\!\!\!\!\!\!= \frac{1}{h}\left(\uln - u_{l-1}^n\right),$\\
-    \dxd \uln&$\!\!\!\!\!\!\!\!\!\!= \frac{1}{2h}\left(u_{l+1}^n - u_{l-1}^n\right).$\label{eq:centredSpaceOperatorU}
+    \dxp \uln&$\!\!\!\!= \frac{1}{h}\left(u_{l+1}^n- \uln\right),$\\
+    \dxm \uln&$\!\!\!\!= \frac{1}{h}\left(\uln - u_{l-1}^n\right),$\\
+    \dxd \uln&$\!\!\!\!= \frac{1}{2h}\left(u_{l+1}^n - u_{l-1}^n\right).$\label{eq:centredSpaceOperatorU}
 \end{subnumcases}
 Higher-order differences can be approximated through a composition of first-order difference operators where their definitions are multiplied.\footnote{Alternatively, one could first apply one operator to a grid function, expand it, and apply the other operator to all individual grid functions in the result of the first expansion thereafter.} The second-order difference in time may be approximated using
 \begin{equation}\label{eq:discSecondTime}
@@ -225,29 +225,29 @@ both of which can be applied to a grid function $\uln$ in a similar fashion. Fig
 
 Also useful \todo{in energy analysis, interleaved grids, etc.} are averaging operators, all of which approximate the identity operation. The temporal forward, backward and centred averaging operators are
 \begin{subnumcases}{1 \approxeq \label{eq:averagingTime}}
-    \mtp & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(e_{t+} + 1\right),$\label{eq:forwardAvgTime}\\
-    \mtm & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(1 + e_{t-}\right),$\label{eq:backwardAvgTime}\\
-    \mtd & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(e_{t+} + e_{t-}\right).$\label{eq:centredAvgTime}
+    \mtp & $\!\!\!\!\triangleq \frac{1}{2}\left(e_{t+} + 1\right),$\label{eq:forwardAvgTime}\\
+    \mtm & $\!\!\!\!\triangleq \frac{1}{2}\left(1 + e_{t-}\right),$\label{eq:backwardAvgTime}\\
+    \mtd & $\!\!\!\!\triangleq \frac{1}{2}\left(e_{t+} + e_{t-}\right).$\label{eq:centredAvgTime}
 \end{subnumcases}
 Notice how these definitions are different than the difference operators in \eqref{eq:discFirstTime}: the terms in the parentheses are added rather than subtracted, and rather than a division by the time step $k$ there is a division by $2$. Finally, the centred averaging operator does not have an extra division by $2$ as in \eqref{eq:centredTimeOperator}.
 Applied to $\uln$, Eqs. \eqref{eq:averagingTime} become
 \begin{subnumcases}{\uln \approxeq \label{eq:averagingTimeU}}
-    \mtp \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(u_l^{n+1}+ \uln\right),$\label{eq:forwardAvggTimeU}\\
-    \mtm \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(\uln + u_l^{n-1}\right),$\label{eq:backwardAvggTimeU}\\
-    \mtd \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(u_l^{n+1} + u_l^{n-1}\right).$\label{eq:centredAvggTimeU}
+    \mtp \uln & $\!\!\!\!= \frac{1}{2}\left(u_l^{n+1}+ \uln\right),$\label{eq:forwardAvggTimeU}\\
+    \mtm \uln & $\!\!\!\!= \frac{1}{2}\left(\uln + u_l^{n-1}\right),$\label{eq:backwardAvggTimeU}\\
+    \mtd \uln & $\!\!\!\!= \frac{1}{2}\left(u_l^{n+1} + u_l^{n-1}\right).$\label{eq:centredAvggTimeU}
 \end{subnumcases}
 %
 Similarly, spatial averaging operators are
 \begin{subnumcases}{1 \approxeq \label{eq:averagingSpace}}
-    \mxp & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(e_{x+} + 1\right),$\label{eq:forwardAvgSpace}\\
-    \mxm & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(1 + e_{x-}\right),$\label{eq:backwardAvgSpace}\\
-    \mxd & $\!\!\!\!\!\!\!\!\!\!\triangleq \frac{1}{2}\left(e_{x+} + e_{x-}\right),$\label{eq:centredAvgSpace}
+    \mxp & $\!\!\!\!\triangleq \frac{1}{2}\left(e_{x+} + 1\right),$\label{eq:forwardAvgSpace}\\
+    \mxm & $\!\!\!\!\triangleq \frac{1}{2}\left(1 + e_{x-}\right),$\label{eq:backwardAvgSpace}\\
+    \mxd & $\!\!\!\!\triangleq \frac{1}{2}\left(e_{x+} + e_{x-}\right),$\label{eq:centredAvgSpace}
 \end{subnumcases}
 and when applied to $\uln$
 \begin{subnumcases}{\uln \approxeq \label{eq:averagingSpaceU}}
-    \mxp \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(u_{l+1}^n+ \uln\right),$\label{eq:forwardAvgSpaceU}\\
-    \mxm \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(\uln + u_{l-1}^n\right),$\label{eq:backwardAvgSpaceU}\\
-    \mxd \uln & $\!\!\!\!\!\!\!\!\!\!= \frac{1}{2}\left(u_{l+1}^n + u_{l-1}^n\right).$\label{eq:centredAvgSpaceU}
+    \mxp \uln & $\!\!\!\!= \frac{1}{2}\left(u_{l+1}^n+ \uln\right),$\label{eq:forwardAvgSpaceU}\\
+    \mxm \uln & $\!\!\!\!= \frac{1}{2}\left(\uln + u_{l-1}^n\right),$\label{eq:backwardAvgSpaceU}\\
+    \mxd \uln & $\!\!\!\!= \frac{1}{2}\left(u_{l+1}^n + u_{l-1}^n\right).$\label{eq:centredAvgSpaceU}
 \end{subnumcases}
 Finally, using forward and backward averaging operators, second-order temporal and spatial averaging operators can be created according to
 \begin{equation}
@@ -345,7 +345,8 @@ For working with FD schemes, either for implementation or analysis, it can be ex
     \begin{align}
         \dtt &= \frac{2}{k}\left(\dtd- \dtm\right),\label{eq:identity1}\\
         \dtd &= \dtp\mtm = \dtm\mtp\label{eq:identity2},\\
-        \mtp &= \frac{k}{2}\dtp + 1\label{eq:identity3}.
+        \mtp &= \frac{k}{2}\dtp + 1\label{eq:identity3},\\
+        \mtd &= k\dtd + e_{t-}.\label{eq:identity4}
     \end{align}
 \end{subequations}
 \todo{see whether the negative version of identity \eqref{eq:identity3} is also used later on}

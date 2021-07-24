@@ -1,7 +1,5 @@
 \chapter{Physically-Inspired Excitations}\label{ch:physInspExcitations}
-This short chapter introduces several simple ways to excite the different resonators presented in Part \ref{part:resonators}.
-
-This chapter considers excitations of distributed systems
+This short chapter introduces several simple ways to excite the different resonators presented in Part \ref{part:resonators}. First, various ways to excite resonators using initial conditions will be given, after which examples of time-varying excitations will be given such that the systems can be excited later during the simulation.
 
 \section{Initial conditions}\label{sec:initConditionsPhysInsp}
 The easiest way to excite a system is to set its initial conditions to non-zero values. This has been done several times before using a raised cosine. See e.g. Section \ref{sec:output1DWave}. Usually, one wants to give the system an initial displacement, not an initial velocity. This is done by initialising both $u^0_l$ and $u^1_l$ with the same values. In the following, the 1D wave equation will be used as an example (Eq. \eqref{eq:1DwavePDE}):
@@ -207,5 +205,19 @@ In discrete time, the force function in Eq. \eqref{eq:raisedCosTemp} becomes
     \caption{The time-varying raised cosine showing a (a) pluck and a (b) strike. The location of excitation $x_0$ is shown in green, the width $x_\text{w}$ in red and the excitation start $t_0$ and duration $t_\text{d}$ in blue.\label{fig:timeVaryingRaisedCos}}
 \end{figure}
 
-\subsection{Pulse train}
-As already briefly introduced in Section \ref{sec:webstersExcitation}, one can 
+\subsection{Pulse train}\label{sec:pulseTrain}
+As already briefly introduced in Section \ref{sec:webstersExcitation}, one can create a pulse train to excite an acoustic tube. This is inspired by \cite{theBible} where the signal represents the opening and closing of the glottis. As the characteristics of the lip reed are similar to the vocal folds \cite{Richards2003}, the pulse train has been used as a test signal here. A more complete model of the lip reed can be found in Chapter \ref{ch:lipreed}.
+
+The pulse train can be created using a clipped sinusoid which can be used as the input velocity to an acoustic tube. For a pulse train with a maximum amplitude of 1 and a frequency $f$ (in Hz), the following is proposed
+\def\depth{c_\text{d}}
+\begin{equation}\label{eq:pulseTrain}
+    v_\text{in} = \left[\frac{\sin(2\pi f t) - (1-2\depth)}{2\depth}\right]_+,
+\end{equation}
+where $0< \depth \leq 0.5$ is the clipping depth, and determines the duty cycle, i.e. the distance between the pulses. Finally, the $[\cdot]_+$ operator specifies `the positive part of' and is used for clipping (see Chapter \ref{ch:collisions}). See Figure \ref{fig:pulseTrain} for an example. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/exciters/physInsp/pulseTrain.eps}
+    \caption{Example of a pulse train using Eq. \eqref{eq:pulseTrain} with $f=100$ Hz and $\depth = 0.25$.
+    \label{fig:pulseTrain}}
+\end{figure}

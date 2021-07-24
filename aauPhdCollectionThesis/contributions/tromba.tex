@@ -221,12 +221,12 @@ where
 \end{equation}
 The solutions obtained for $\dtd \eta_\sm^n$ and $\dtd \eta_\mp^n$, can then be used directly in $\xi_\sm^n$ and $\xi_\mp^n$ in Eqs. \eqref{eq:trombaSystemFDSString}, \eqref{eq:trombaSystemFDSMass} and \eqref{eq:trombaSystemFDSPlate} to calculate $u_l^{n+1}$, $w^{n+1}$ and $z_{(l,m)}^{n+1}$ respectively. They can also be used directly to calculate $\psi^{n+1/2}_\sm$ and $\psi^{n+1/2}_\mp$ in Eqs. \eqref{eq:psiSM} and \eqref{eq:psiMP} respectively.
 
-Figure \ref{fig:trombaExcite} shows three consecutive plots of the system excited with a raised cosine. The bow is not used here, to highlight the collision.
+Figure \ref{fig:trombaExcite} shows three consecutive plots of the system excited with a raised cosine. The bow is not used here, to highlight the collision. One can observe that the string forces the mass downwards through their connection, causing the latter to collide with the plate.
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/contributions/tromba/trombaExcite.eps}
-    \caption{The string of the tromba marina (blue) excited using a raised cosine. The string-mass interaction forces the mass (red) downwards, which collides with the plate (green). \label{fig:trombaExcite}}
+    \caption{The string of the tromba marina (red) excited using a raised cosine. The string-mass interaction forces the mass (blue) downwards, which collides with the plate (green). \label{fig:trombaExcite}}
 \end{figure}
 
 \subsection{Energy analysis}
@@ -290,16 +290,16 @@ Figure \ref{fig:trombaEnergy} shows the plots of the energy for an implementatio
     
         \def\xLoc{-6}
         \node[] (h) at (\xLoc, 1) {\small $\mathfrak{h}_\text{tot}$};
-        \node[] (s) at (\xLoc, 0.5) {\small $\color{blue}\mathfrak{h}_\stxt$};
-        \node[] (m) at (\xLoc, 0) {\small $\color{red}\mathfrak{h}_\mtxt$};
+        \node[] (s) at (\xLoc, 0.5) {\small $\color{red}\mathfrak{h}_\stxt$};
+        \node[] (m) at (\xLoc, 0) {\small $\color{blue}\mathfrak{h}_\mtxt$};
         \node[] (p) at (\xLoc, -0.5) {\small $\color[HTML]{00DB00}\mathfrak{h}_\ptxt$};
         
         \node[] (c1) at (-0.7, 1.1) {\small $\color[HTML]{FF00FF}\mathfrak{h}_\mp$};
-        \node[] (c2) at (1, 0.5) {\small $\color[HTML]{FFA400}\mathfrak{h}_\sm$};
+        \node[] (c2) at (1, 0.4) {\small $\color[HTML]{FFA400}\mathfrak{h}_\sm$};
 
-        \node[] (he) at (2, 0.5) {\small $\mathfrak{h}_\text{e}$};
+        \node[] (he) at (2, 1) {\small $\mathfrak{h}_\text{e}$};
       \end{tikzpicture}
-      \caption{The energy of the tromba marina excited with a raised cosine (see Figure \ref{fig:trombaExcite}). The left panel shows the total energy (black) present in the system as well as the energy of the string (blue), mass (red) and plate (green) respectively. The second panel shows the energy of the mass-plate (magenta) and string-mass (orange) interactions and the right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \label{fig:trombaEnergy}}
+      \caption{The energy of the tromba marina excited with a raised cosine (see Figure \ref{fig:trombaExcite}). The left panel shows the total energy (black) present in the system as well as the energy of the string (red), mass (blue) and plate (green) respectively. The second panel shows the energy of the mass-plate (magenta) and string-mass (orange) interactions and the right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \label{fig:trombaEnergy}}
 \end{figure}
 % \section{Real-Time Implementation}
 % \SWcomment[not so sure if I should include more. Chapter might be done..]
