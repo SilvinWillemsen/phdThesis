@@ -17,7 +17,7 @@ Collisions can be modelled using a nonlinear \textit{collision potential}, which
 \end{equation}
 with collision stiffness $K \geq 0$ (in N/m$^{\alpha_\ctxt}$) and dimensionless nonlinear collision coefficient $\alpha_\ctxt \geq 1$. Here $\eta = \eta(t)$ describes the relative displacement between the two colliding bodies (in m). The $[\cdot ]_+$ operator, defined as 
 \begin{equation}\label{eq:etaPlus}
-    [\cdot]_+ = \frac{\cdot + |\cdot|}{2}
+    [\cdot]_+ = \frac{\cdot + |\cdot|}{2},
 \end{equation}
 describes the `positive part of' and when applied to $\eta$ in Eq. \eqref{eq:potential} causes the potential $\phi$ to only be non-zero when the two colliding bodies are in contact. See Figure \ref{fig:eta}.
 %
@@ -345,7 +345,6 @@ with collision energy
     \h_\text{c} = \frac{(\psi^{n-1/2})^2}{2}.
 \end{equation*}
 Again, the fact that $\psi$ is squared here, means that $\h_\text{c}$ is non-negative, and proves passivity of the system. 
-\todo{figure of energy}
 
 Figure \ref{fig:massStringCollisionEnergy} shows the energy of the mass-spring collision corresponding to the behaviour shown in Figure \ref{fig:massStringCollision}. One can observe that energy of the mass is transferred to the string almost immediately after the start of the simulation. Furthermore, the figure shows that the mass and the string collide again at $n\approx 110$. The interpenetration of the two colliding objects can be observed from the small peaks in the value for $\h_\ctxt$ at these locations. 
 
