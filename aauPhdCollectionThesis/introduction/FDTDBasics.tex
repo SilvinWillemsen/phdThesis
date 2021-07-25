@@ -333,14 +333,14 @@ and can be proven to be second-order accurate by adding Eqs. \eqref{eq:taylorSta
 
 The accuracy of averaging operators can be found in the same way and follow a similar pattern. 
 \begin{equation}
-    \begin{gathered}
-    \mtp u(t) = u(t) + \OO(k),\quad \mtm u(t)= u(t) + \OO(k),\\
-    \mtd u(t)= u(t) + \OO(k), \quad \mtt u(t)= u(t) + \OO(k^2).
-    \end{gathered}
+    \begin{aligned}
+    \mtp u(t) = u(t) + \OO(k),\quad &\mtm u(t)= u(t) + \OO(k),\\
+    \mtd u(t)= u(t) + \OO(k^2), \quad &\mtt u(t)= u(t) + \OO(k^2).
+    \end{aligned}
 \end{equation}
 
 \subsection{Identities}
-For working with FD schemes, either for implementation or analysis, it can be extremely useful to rewrite the operators presented above to equivalent versions of themselves. These are called \textit{identities} and for future reference, some useful ones are listed below:
+For working with FD schemes, either for implementation or analysis, it can be extremely useful to rewrite the operators presented above to equivalent versions of themselves. These are called \textit{identities} and for future reference, some useful ones are listed below:\footnote{The $\pm$ operators in a single equation are either all `$+$' or all `$-$' and are used for a more compact notation.}
 \begin{subequations}
     \begin{align}
         \dtt &= \frac{2}{k}\left(\dtd- \dtm\right),\label{eq:identity1}\\
@@ -350,7 +350,6 @@ For working with FD schemes, either for implementation or analysis, it can be ex
         \mtd &= k\dtd + e_{t-}.\label{eq:identity4}
     \end{align}
 \end{subequations}
-\todo{see whether the negative version of identity \eqref{eq:identity3} is also used later on}
 That these equalities hold, can easily be proven by expanding the operators defined in Section \ref{sec:FDoperators}. Naturally, these identities also hold for spatial operators by simply substituting the `$t$' subscripts for `$x$'. 
 
 \section{%Intro to ODEs: 
@@ -642,7 +641,7 @@ This section provides information on the excitation and output of the system. Se
 \subsubsection{Excitation}
 A simple way to excite the system is to initialise the state using a raised cosine, or Hann window. More information on excitations will be given in Part \ref{part:exciters}, but for completeness, the formula for a discrete raised cosine will be given here. 
 
-The discrete raised cosine can be parametrised by its center location $l_0$ and width $w$ from which the start index $l_\text{s}$ and end index $l_\text{e}$ can be calculated, according to 
+The discrete raised cosine can be parametrised by its center location $l_0$ and width $w$ (in` grid spacings') \todo{look at this} from which the start index $l_\text{s}$ and end index $l_\text{e}$ can be calculated, according to 
 \begin{equation}
     l_\text{s} = l_0 - \floor[w/2]\qaq l_\text{e} = l_0 + \floor[w/2],
 \end{equation}
@@ -650,13 +649,13 @@ where $\floor[\cdot]$ denotes the flooring operation and needs to be used as all
 \begin{equation}\label{eq:raisedCos}
     u_l^1 = u_l^0 =
     \begin{cases}
-        0.5 - 0.5\cos\left(\frac{2\pi (l - l_\text{s})}{w-1}\right), & l_\text{s} \leq l < l_\text{e},\\
+        0.5 - 0.5\cos\left(\frac{2\pi (l - l_\text{s})}{w}\right), & l_\text{s} \leq l \leq l_\text{e},\\
         0, & \text{otherwise}.
     \end{cases}
 \end{equation}
 As done for the implementation of the mass-spring system in Section \ref{sec:massSpringImplementation}, both $u_l^0$ and $u^1_l$ are initialised with the same state, as to only have an initial displacement, and not an initial velocity. 
 
-In \texttt{MATLAB}, an easier way to obtain a raised cosine is to use the \texttt{hann(w)} function which returns a raised cosine (or Hann window) of width \texttt{w}.
+In \texttt{MATLAB}, an easier way to obtain a raised cosine is to use the \texttt{hann(w)} function which returns a raised cosine (or Hann window) of width \texttt{w} (in grid points).
 
 \subsubsection{Output and modes}
 After the system is excited, one can retrieve the output of the system by selecting a grid point $l_\text{out}$ and listening to that at the given sample rate $\fs$. An example using the parameters in Table \ref{tab:1DWaveParams} and Dirichlet boundary conditions is shown in Figure \ref{fig:1DWaveOutput}.

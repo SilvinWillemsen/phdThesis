@@ -789,6 +789,6 @@ Recalling the definitions for $\lambda$ and $\mu$ from \ref{eq:lambdaMuStiffMemb
     h\geq \sqrt{c^2k^2 + 4\sigma_1k+\frac{1}{2}\sqrt{4(c^2k^2 + 4\sigma_1k)^2 + 64\kappa^2k^2}},\nonumber\\
     h\geq \sqrt{c^2k^2 + 4\sigma_1k+\sqrt{(c^2k^2 + 4\sigma_1k)^2 + 16\kappa^2k^2}},
 \end{gather}
-and can be used as the stability condition for the stiff membrane. 
+and can be used as the stability condition for the stiff membrane.\footnote{This stability condition was wrong in paper \citeP[F]. It has been corrected here and included in Appendix \ref{app:paperErrata}.} 
 \section{Radial coordinates}\label{sec:radialCoordinates}
 This chapter presented various models using a Cartesian coordinate system. Circular or elliptical systems, such as membranes or gongs, could be modelled using a radial coordinate system \cite[Ch. 10]{theBible}. However, using explicit schemes causes these systems to exhibit high amounts of numerical dispersion and reduction of bandwidth \cite[Ch. 11]{theBible}. For better behaviour, one could resort to an implicit scheme, but this comes with the drawbacks mentioned in Section \ref{sec:implicitStiffString}. A better alternative is to retain the cartesian coordinate system and set quasi-circular boundary conditions according to a staircase approximation as done in [\hyperref[ch:listOfPublications]{S4}] (see fx. \cite{Hamilton2016, Harrison2018}).

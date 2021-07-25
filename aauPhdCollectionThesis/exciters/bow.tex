@@ -24,21 +24,24 @@ The Helmholtz motion gives bowed string instruments, such as the violin and cell
     \caption{An example of the (ideal) Helmholtz motion of a location $x_\text{out}$ along a bowed string. \label{fig:helmholtzTimedomain}}
 \end{figure}
 
-The rest of this chapter is structured as follows: First, a brief history of bowed-string simulations is presented. Then, an introduction to interpolation and spreading operators, as well as an introduction to the Newton-Raphson method will be given, as these are both necessary to work with bow-string interaction. Finally, two friction models are presented, where the dynamic elasto-plastic friction model applied to a FD scheme of the stiff string is one of the contributions of this project, published in paper \citeP[C].
+The rest of this chapter is structured as follows: first, a brief history of bowed-string simulations is presented. Then, an introduction to interpolation and spreading operators, as well as an introduction to the Newton-Raphson method will be given, both of which are necessary to work with bow-string interaction. Finally, a static and a dynamic friction model are presented. The latter, the elasto-plastic friction model, was applied to a FD scheme of the stiff string during this project and is one of the contributions, published in paper \citeP[C].
 
 \section{Brief history of bowed-string simulation}
 The first nonlinear systems in the context of musical instrument simulations, including the bowed string, were presented by McIntyre, et al. in 1983 \cite{McIntyre1983}. The first real-time implementation of the bowed string was due to Smith in 1986 and used digital waveguides for the string and a look-up table for the friction model \cite{Smith1986}. Simultaneously, Florens et al. presented a real-time implementation of the bowed string, but instead, the string was modelled using mass-spring systems and the friction model used a static friction model \cite{Florens1986} (see Section \ref{sec:staticFricMod}). One of the most complex friction models applied in a musical context to-date is the elasto-plastic friction model due to Dupont \cite{Dupont2002}, which Serafin et al. \cite{Serafin2003, Serafin2004} applied to a digital waveguide implementation of the string. 
 
-The first appearance of FDTD methods in bowed string simulations was in a publication by Pitteroff and Woodhouse in \cite{Pitteroff1998}. Later, Maestre et al. in \cite{Maestre2014} used FDTD methods to implement a thermal friction model proposed by Woodhouse in \cite{Woodhouse2003}. In both cases, the string was implemented using digital waveguides. Desvages implemented a bowed string model using a static friction model and a two-polarisation FDTD model for the string in \cite{Desvages2016, Desvages2018}, but did not implement this in real-time. Paper \citeP[A] presented the first the first real-time implementation of a bowed stiff string fully modelled using FDTD methods. Finally, paper \citeP[C] presented the first (real-time) implementation of the elasto-plastic friction model applied to a FD scheme in a musical context.
+The first appearance of FDTD methods in bowed string simulations was in a publication by Pitteroff and Woodhouse in \cite{Pitteroff1998}. Later, Maestre et al. in \cite{Maestre2014} used FDTD methods to implement a thermal friction model proposed by Woodhouse in \cite{Woodhouse2003}. In both cases, the string was implemented using digital waveguides. Desvages implemented a bowed string model using a static friction model and a two-polarisation FDTD model for the string in \cite{Desvages2016, Desvages2018}, but did not implement this in real-time. The first real-time implementation of a bowed stiff string fully modelled using FDTD methods was presented in paper \citeP[A]. Finally, paper \citeP[C] presented the first (real-time) implementation of the elasto-plastic friction model applied to a FD scheme in a musical context.
 
 \section{Interpolation and spreading operators}\label{sec:interpolationSpreading}
-As should be clear by now, FD schemes are an approximation to continuous space (and time) using a finite number of points. Working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function \cite{theBible}. This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. Here, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$.
+To listen to, or interact with a FD scheme between grid points, it is necessary to use some form of interpolation. 
+% As should be clear by now, FD schemes are an approximation to continuous space (and time) using a finite number of points. Working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. 
+For this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function \cite{theBible}. This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. In this section, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$. The theory presented in this section will be extended to 2D in Section \ref{sec:interpolationSpreading2D}.
 
-An interpolation operator can be applied to a grid function $\uln$ and when expanded performs the following operation:
+An interpolation operator can be applied to a grid function $\uln$, which performs the following operation:
 \begin{equation}
-    I_{l,o}(x_i)u_l^n = \sum_{l\in d} I_{l,o}(x_i)\cdot u_l^n,
+    I_{l,o}(x_\itxt)u_l^n = \sum_{l\in d} I_{l,o}(x_\itxt)\cdot u_l^n.
 \end{equation} 
-where $o$ is the order of the operator, and discrete domain $d$ needs to be the same for $I_{l,o}(x_\text{i})$ and $\uln$.
+Here, $o$ is the order of the operator, and $l\in d$ with discrete domain $d$, which needs to be the same for both $I_{l,o}(x_\text{i})$ and $\uln$.
+
 The simplest interpolation operator is of '0\textsuperscript{th}'-order and is defined as
 \begin{equation}\label{eq:zerothOrderI}
     I_{l,0}(x_\itxt) = \begin{cases}
@@ -54,9 +57,9 @@ where the grid location of interest is defined as $l_\itxt = \floor[x_\itxt / h]
 %
 % \input{exciters/interpolation.tex}
 %
-A slightly more accurate way to perform 0\thOrder interpolation is to \textit{round} $x_\itxt/h$ to the nearest neighbour, rather than using the flooring operation. 
+A slightly more accurate way to perform 0\thOrder interpolation is to round $x_\itxt/h$ to the nearest neighbour, rather than using the flooring operation. 
 
-First-order or linear interpolation also uses the fractional part of the flooring operation according to $\alpha_\itxt = x_\itxt / h - l_\itxt$ and is defined as
+First-order or linear interpolation uses the fractional part of the flooring operation as well, according to $\alpha_\itxt = x_\itxt / h - l_\itxt$ and is defined as
 \begin{equation}\label{eq:firstOrderI}
     I_{l,1}(x_\itxt) = \begin{cases}
         (1-\alpha_\itxt), & \text{if}\ l = l_\itxt,\\
@@ -85,18 +88,18 @@ See Figure \ref{fig:cubicInterpol}.
 % \begin{equation*}
 %     u(0.25, t)\approxeq I_{l,3}(0.25)\uln = -0.0547u_0^n + 0.8203u_1^n + 0.2734u_2^n -0.0391 u_3^n.
 % \end{equation*}
-Notice that the sum of all values of $I(x_\itxt)$, regardless of the order of interpolation or the value of $\alpha_\itxt$, add up to $1$.
+Notice that the sum of all values of $I_{l, o}(x_\itxt)$, regardless of the order or the value of $\alpha_\itxt$, add up to $1$.
 
+
+One could potentially create higher-order interpolation operators, but as one is restricted to a finite domain, the flexibility of the implementation reduces. Notice that if $\alpha_\itxt = 0$, the higher-order interpolators reduce to the $0$\thOrder interpolator in Eq. \eqref{eq:zerothOrderI}.
 \def\figWidth{0.32}
-\begin{figure}[b]
+\begin{figure}[h]
     \centering
     \subfloat[$0$\thOrder interpolation.\label{fig:zerothOrderInterpol}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/noInterpol2.pdf}}\hfill
     \subfloat[Linear interpolation.\label{fig:firstOrderInterpol}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/linearInterpol2.pdf}}\hfill
     \subfloat[Cubic interpolation.\label{fig:cubicInterpol}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/cubicInterpol2.pdf}}
     \caption{Interpolation with varying orders of accuracy.\label{fig:interpolation}}
 \end{figure}
-
-One could potentially create higher-order interpolation operators, but as one is restricted to a finite domain, the flexibility of the implementation will become less. Notice that if $\alpha_\itxt = 0$, the higher-order interpolators reduce to the $0$\thOrder one in Eq. \eqref{eq:zerothOrderI}.
 
 Apart from interpolation operators, one may define \textit{spreading operators} which can be interpreted as an inverse interpolation operation. A spreading operator $J(x_\itxt)$ is used to interact with a distributed FD scheme in the form of an excitation or other interactions such as connections or collisions between multiple schemes (also see Part \ref{part:interactions}).
 
@@ -127,7 +130,7 @@ and a Lagrange cubic spreading operator
 \end{equation}
 Notice the scaling by $1/h$ which will be more elaborated on in Chapter \ref{ch:connections}. As is the case with the interpolation operators, higher-order spreading operators reduce to Eq. \eqref{eq:zerothOrderJ} if $\alpha_\itxt = 0$.
 
-Spreading operators approximate the spatial Dirac delta function $\delta(x-x_\itxt)$ (in m$^{-1}$), a test function defined as
+Spreading operators approximate the spatial Dirac delta function $\delta(x-x_\itxt)$ (in m$^{-1}$), which is a test function defined as
 \begin{equation}\label{eq:spatialDirac}
     \delta(x)= \begin{cases}
         \infty, & x = 0,\\
@@ -136,27 +139,28 @@ Spreading operators approximate the spatial Dirac delta function $\delta(x-x_\it
 \end{equation}
 used in continuous time to locate an external force to a location $x_\itxt$ along a system distributed over space $x$. Note that the definition in \eqref{eq:spatialDirac} will not be used directly. Instead, it can be approximated using the spreading operators presented in this section. 
 
-The following identity is extremely useful when solving systems including interpolation and spreading operators of the same order $o$
+\subsubsection{Identities}
+The following identity is extremely useful when solving systems including interpolation and spreading operators of the same order $o$ for any (grid) function $f$ and discrete domain $d$:
 \begin{equation}\label{eq:identityIJ}
-    \langle f, J_o(x_\itxt) \rangle_d = I_o(x_\itxt) f,
+    \langle f_l, J_{l,o}(x_\itxt) \rangle_d = I_{l,o}(x_\itxt) f_l,
 \end{equation}
-for any (grid) function $f$ and discrete domain $d$. From this, it follows that taking the norm of a spreading operator $J_o(x_\itxt)$ over a given domain is identical to applying to its `dual' interpolation operator (of the same order $o$ and same input $x_\itxt$):
+where $l\in d$. From this, it follows that taking the norm of a spreading operator over a given domain is identical to applying to its `dual' interpolation operator (of the same order $o$ and same input $x_\itxt$):
 \begin{equation}\label{eq:JnormIJ}
-    \langle  J_o(x_\itxt), J_o(x_\itxt)\rangle_d = \lVert J_o(x_\itxt)\rVert^2_d = I_o(x_\itxt)J_o(x_\itxt).
+    \langle  J_{l,o}(x_\itxt), J_{l,o}(x_\itxt)\rangle_d = \lVert J_{l,o}(x_\itxt)\rVert^2_d = I_{l,o}(x_\itxt)J_{l,o}(x_\itxt).
 \end{equation}
 See Section \ref{sec:innerProduct} for more details on the inner product and the norm.
 
 \subsubsection{Other distributions}
 This section presented interpolation and spreading operators that interact with the state of a FD scheme at a single location $x_\itxt$ and either interpolates or distributes over a range of points. Although multiple grid points might be used for these operations, the interpolation or spreading is not \textit{distributed}. Physical exciters such as mallets or bows have a non-zero width and thus interact with a larger part of the system. One could make an arbitrary distribution function $E$ with elements $e_l$ (in 1D) where $l\in d$ for discrete domain $d$ of the system at hand. The \textit{distribution} and spreading operators become
-\begin{equation}
+\begin{equation}\label{eq:otherDistribution}
     I_l = \frac{e_l}{\sum_d e_l} \qaq J_l = \frac{1}{h}I_l.
 \end{equation}
-Although any values for $E$ would work, to retain correct scaling, the sum of $E$ needs to be normalised to $1$ as shown above.
+Although any values for $E$ would work, to retain correct scaling, the sum of $E$ needs to be normalised to $1$ as shown in Eq. \eqref{eq:otherDistribution}.
 
 \section{The Newton-Raphson method}\label{sec:newtonRaphson}
 Before moving on to more complex nonlinear excitation mechanisms, it is useful to go over the process of how to solve some of these mechanisms using an iterative root-finding method called the \textit{Newton-Raphson} method (or Newton-Raphson for short). 
 
-If a FD scheme not be solved explicitly, due to a nonlinear dependence on a variable for example, Newton-Raphson can be used. For a continuous and differentiable function $f(x) = 0$ its root can be approached using the following iteration
+If a FD scheme not be solved explicitly, due to an implicit dependence on a variable for example, Newton-Raphson can be used. For a continuous and differentiable function $f(x) = 0$, its root can be approached using the following iteration
 \begin{equation}\label{eq:newtonRaphson}
     x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}\ ,
 \end{equation}
@@ -165,12 +169,13 @@ This iteration will then be carried out until the difference between the values 
 \begin{equation}\label{eq:NRthreshold}
     |x_{i+1} - x_i| < \epsilon,
 \end{equation} 
-where $\epsilon$ is small, but its exact value depends on the situation at hand. To prevent Newton's method from iterating endlessly (which can happen in some cases), one can put a cap on the number of iterations allowed. 
+where $\epsilon$ is small, but its value depends on the situation at hand. To prevent Newton Raphson from iterating endlessly (if the iteration can not converge), one can put a cap on the number of iterations allowed. 
 
 Preferably, the starting point of the iteration, $x_0$, should be close to the value of where the root is expected to be. This is especially the case for a higher-ordered function with multiple roots (non-uniqueness) or many local variations. 
 
 Algorithm \ref{alg:NR} shows an example of an implementation of Newton-Raphson using $f(x) = e^x -1\ \Rightarrow\ f'(x) = e^x $ and Figure \ref{fig:NR} visualises the iterative algorithm.
 \\
+\begin{minipage}{\textwidth}
 \setlstMAT
 \begin{lstlisting}[caption={Example of an implementation of the Newton-Raphson method using $f(x) = e^{x} - 1$.}, label=alg:NR]
 % An example of the Newton Raphson method using f(x) = exp(x) - 1
@@ -198,6 +203,7 @@ for i = 1:maxIterations
 end
 disp("The root of f(x) is at x = " + xNext)
 \end{lstlisting}
+\end{minipage}
 
 \captionsetup[subfigure]{labelformat=empty}
 \def\figWidth{0.30}
@@ -211,7 +217,7 @@ disp("The root of f(x) is at x = " + xNext)
 \captionsetup[subfigure]{labelformat=parens}
 
 \subsection{Multivariate Newton-Raphson}\label{sec:multivariateNR}
-For $M$ functions $f_m$ dependent on the same number of independent variables $x_m$ with $m = \{1, \hdots, M\}$,  Newton-Raphson can be extended to the following \SWcomment[citation?]:
+For $M$ functions $f_m$ dependent on the same number of independent variables $x_m$ with $m = \{1, \hdots, M\}$, Newton-Raphson can be extended to
 \begin{equation}\label{eq:multivariateNR}
     \mathbf{x}_{i+1} = 
     \mathbf{x}_i - 
@@ -219,22 +225,14 @@ For $M$ functions $f_m$ dependent on the same number of independent variables $x
         \frac{\partial f_1(\mathbf{x}_i)}{\partial x_1} & \hdots & \frac{\partial f_1(\mathbf{x}_i)}{\partial x_M}\\
         \vdots & \ddots & \vdots\\
         \frac{\partial f_M(\mathbf{x}_i)}{\partial x_1} & \hdots & \frac{\partial f_M(\mathbf{x}_i)}{\partial x_M}
-    \end{bmatrix}}_{\mathbf{J}(\mathbf{x})}}^{-1}
+    \end{bmatrix}}_{\mathbf{J}(\mathbf{x}_i)}}^{-1}
     \begin{bmatrix}
         f_1(\mathbf{x}_i)\\
         \vdots\\
         f_M(\mathbf{x}_i)
     \end{bmatrix},
 \end{equation}
-where the independent variables are collected in a column vector
-\begin{equation}
-    \mathbf{x} = \begin{bmatrix}
-        x_1\\
-        \vdots\\
-        x_M
-    \end{bmatrix},
-\end{equation}
-and the iteration number is again denoted by $i$.
+where the column vector $ \mathbf{x} = [x_1, \hdots, x_M]^T$ is the collection of independent variables, and the iteration number is (again) denoted by $i$.
 The matrix in Eq. \eqref{eq:multivariateNR} is referred to as the \textit{Jacobian matrix} $\mathbf{J}$ and contains the derivatives of all functions with respect to each individual independent variable. 
 
 As an example, consider the following system of equations\footnote{Taken from \url{http://fourier.eng.hmc.edu/e176/lectures/NM/node21.html}}:
@@ -242,10 +240,10 @@ As an example, consider the following system of equations\footnote{Taken from \u
     \begin{align}
         f_1(\mathbf{x}) &= 3 x_1 - \cos(x_2x_3) - 3/2 = 0,\\
         f_2(\mathbf{x}) &= 4x_1^2 - 625 x_2^2 + 2x_3-1 = 0,\\
-        f_3(\mathbf{x}) &= 20 x_3 + e^{-x_1x_2}+9 = 0.
+        f_3(\mathbf{x}) &= 20 x_3 + e^{-x_1x_2}+9 = 0,
     \end{align} 
 \end{subequations}
-The Jacobian matrix will be 
+where $\mathbf{x} = [x_1, x_2, x_3]^T$. The Jacobian matrix will be 
 \begin{equation*}
     \mathbf{J}(\mathbf{x}) = \begin{bmatrix}
         3 & x_3 \sin (x_2x_3) & x_2 \sin(x_2x_3)\\
@@ -260,25 +258,24 @@ A friction model is a nonlinear function that is (at least) dependent on the rel
 In static friction models, the friction force is defined as a function of this relative velocity only.
 The first mathematical description of friction was proposed by Coulomb in 1773 \cite{Coulomb1773}\todo{check references here} to which static friction, or \textit{stiction}, was added by Morin in 1833 \cite{Morin1833} and viscous friction, or velocity-dependent friction, by Reynolds in 1886 \cite{Reynolds1886}. In 1902, Stribeck found a smooth transition between the static and the coulomb part of the friction curve now referred to as the Stribeck effect \cite{Stribeck1902}. The latter is still the standard for static friction models today.
 
-In this project, only the following static friction model has been used \cite{theBible}
+Many static friction models contain a discontinuity where the relative velocity between the  $\vrel = 0$ due to a multiplication with $\sgn(\vrel)$ in their definition. In this project, only the following static friction model has been used \cite{theBible}
 \begin{equation}\label{eq:staticFriction}
-    \Phi (\vrel) = \sqrt{2a}\vrel e^{-a\vrel^2 + 1/2}.
+    \Phi (\vrel) = \sqrt{2a}\vrel e^{-a\vrel^2 + 1/2},
 \end{equation}
-See Figure \ref{fig:frictionCharacteristic}. Consider a string, its transverse displacement described by $u(x,t)$ defined for $x\in \D$ (see Chapter \ref{ch:stiffString}). The relative velocity between the string at bow position $x_\Btxt = x_\Btxt(t) \in \D$ and the bow is described as
+as it is continuous and differentiable, but still approximating discontinuous bow models. These characteristics make this model easier to work with in implementation. A definition for $\vrel$ will be given below.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/exciters/frictionCharacteristic.eps}
+    \caption{The friction model in Eq. \eqref{eq:staticFriction} with $a = 100$. \label{fig:frictionCharacteristic}}
+\end{figure}\todo{FULL DOC SWEEP: check figure centering}
+\subsection{The bowed stiff string}\label{sec:bowedStiffStringStatic}
+Consider a stiff string, its transverse displacement described by $u(x,t)$ defined for $x\in \D$ (see Chapter \ref{ch:stiffString}). The relative velocity between the string at bow position $x_\Btxt = x_\Btxt(t) \in \D$ and the bow can then be described as
 \begin{equation}\label{eq:vrel}
     \vrel = \pt u(x_\Btxt, t) - v_\Btxt(t)
 \end{equation}
 (in m/s) with bow velocity $v_\Btxt = v_\Btxt(t)$ (in m/s).
 
-\todo{FULL DOC SWEEP: check figure centering}\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/exciters/frictionCharacteristic.eps}
-    \caption{The friction model in \eqref{eq:staticFriction} with $a = 100$. \label{fig:frictionCharacteristic}}
-\end{figure}
-
-Many of the friction models contain a discontinuity where the relative velocity $\vrel = 0$ due to a multiplication with $\sgn(\vrel)$ in their definition. Equation \eqref{eq:staticFriction} approximates discontinuous bow models using a continuous and differentiable function. This makes it easier to work with when trying to implement the system as will be explained next.
-
-\subsection{The bowed stiff string}\label{sec:bowedStiffStringStatic}
 Recalling the PDE of the stiff string in Eq. \eqref{eq:stiffStringPDE}
 \begin{equation}
     \rho A \ptt u = T \pxx u - EI \pxxxx u - 2 \sz \rho A \pt u + 2 \so \rho A\pt \pxx u,
@@ -293,7 +290,7 @@ where spatial Dirac delta function $\delta(x-x_\Btxt)$ (in m$^{-1}$) (see Sectio
 From Eq. \eqref{eq:bowedStiffStringPDE} it can be seen that the bow force gets scaled by the friction model $\Phi(\vrel)$ shown in Figure \ref{fig:frictionCharacteristic}. 
 The figure shows that if $\vrel$ is too large (either positively or negatively) the bow term in \eqref{eq:bowedStiffStringPDE} becomes $0$. If, on the other hand, $\vrel$ is closer to $0$, the bow will have an effect on the string. This can be interpreted in terms of static and dynamic friction\footnote{`Static' and `dynamic' friction are unrelated to `static' and `dynamic' friction models.}. A stationary object requires more force to be moved than a moving object, i.e., the static friction coefficient is always higher than the dynamic friction coefficient. This is essentially what the friction model tries to simulate.
 
-Furthermore, the fact that the bow term is subtracted from the scheme is due to the definition of the relative velocity in Eq. \eqref{eq:vrel}. For a negative bow velocity $v_\Btxt$, $\vrel$ becomes positive. As $\sgn\left(\Phi(\vrel)\right) = \sgn(\vrel)$ through Eq. \eqref{eq:staticFriction} and $f_\Btxt\geq 0$, the term $\delta(x-x_\Btxt)f_\Btxt\Phi(\vrel)$ will be positive for a positive $\vrel$. As a negative $v_\Btxt$ needs to have a downwards, or negative, effect on the string, the sign of the bow term also needs to be negative to achieve this.  
+It might seem counter-intuitive that the bow term is subtracted from the scheme. This is due to the definition of the relative velocity in Eq. \eqref{eq:vrel}. For a negative bow velocity $v_\Btxt$, $\vrel$ becomes positive. As $\sgn\left(\Phi(\vrel)\right) = \sgn(\vrel)$ through Eq. \eqref{eq:staticFriction} and $f_\Btxt\geq 0$, the term $\delta(x-x_\Btxt)f_\Btxt\Phi(\vrel)$ will be positive for a positive $\vrel$. As a negative $v_\Btxt$ needs to have a downwards, or negative, effect on the string, the sign of the bow term also needs to be negative to achieve this.  
 
 \subsubsection{Discrete time}
 Dividing all terms in Eq. \eqref{eq:bowedStiffStringFDS} by $\rho A$ and discretising the system yields
@@ -301,13 +298,13 @@ Dividing all terms in Eq. \eqref{eq:bowedStiffStringFDS} by $\rho A$ and discret
 \begin{equation}\label{eq:bowedStiffStringFDS}
     \dtt \uln = c^2 \dxx \uln - \kappa^2 \dxxxx \uln - 2 \sz \dtd \uln + 2 \so\dtm\dxx \uln - J_l(x_\Btxt^n)F_\Btxt^n\Phi(\vrel^n),
 \end{equation}
-with $F_\Btxt^n = f_\Btxt^n/\rho A$ and spreading operator $J_l(x_\Btxt)$ (in m$^{-1}$) as described in Section \ref{sec:interpolationSpreading}, the order of which remains undetermined for now. Notice that, as the bow position, bow velocity and bow force are time-dependent, these have received a superscript $n$. These parameters are called control parameters and will be supplied by the performer in the eventual implementation.
+with $F_\Btxt^n = f_\Btxt^n/\rho A$ and spreading operator $J_l(x_\Btxt^n) = J_{l,o}(x_\Btxt^n)$ (in m$^{-1}$) as described in Section \ref{sec:interpolationSpreading}, where the order $o$ remains undetermined for now. As the bow position, bow velocity and bow force are time-dependent, these have a superscript $n$ in discrete time. These parameters are called \textit{control parameters} and will be supplied by the performer in an eventual implementation.
 
 The relative velocity in Eq. \eqref{eq:vrel} is discretised using a centred difference operator according to
 \begin{equation}\label{eq:vrelDisc}
-    \vrel^n = I_l(x_\Btxt^n)\dtd \uln - v_\Btxt^n.
+    \vrel^n = I_l(x_\Btxt^n)\dtd \uln - v_\Btxt^n,
 \end{equation}
-The main issue with Eq. \eqref{eq:vrelDisc} is that, due to the centred difference operator, the FD scheme is now nonlinearly dependent on $u_l^{n+1}$. To solve Eq. \eqref{eq:bowedStiffStringFDS}, an iterative solver is required, such as Newton-Raphson described in Section \ref{sec:newtonRaphson}. This process could be circumvented by using a backward  difference operator in Eq. \eqref{eq:vrelDisc}, but this will affect accuracy of the bow model.
+with interpolation operator $I_l(x_\Btxt^n) = I_{l,o}(x_\Btxt^n)$ and is of the same order as $J_l(x_\Btxt^n)$. Equation \eqref{eq:vrelDisc} makes the scheme implicit due to the centred difference operator as the FD scheme in Eq. \eqref{eq:bowedStiffStringFDS} is now nonlinearly dependent on $u_l^{n+1}$. To solve Eq. \eqref{eq:bowedStiffStringFDS} for $u_l^{n+1}$, an iterative root-finding algorithm, such as Newton-Raphson described in Section \ref{sec:newtonRaphson}, is required. This process could be circumvented by using a backward  difference operator in Eq. \eqref{eq:vrelDisc}, but this will affect the accuracy and behaviour of the bow model.
 
 \subsubsection{Solution}
 To find a solution for $u_l^{n+1}$ at the bow location, an inner product of the scheme in Eq. \eqref{eq:bowedStiffStringFDS} with spreading operator $J_l(x_\Btxt^n)$ must be taken over the discrete domain of the string $d$ which isolates the scheme at the bowing location. Performing this operation and using identity \eqref{eq:identityIJ} yields
@@ -321,7 +318,7 @@ One can rewrite Eq. \eqref{eq:vrelDisc} to
 \begin{equation}\label{eq:vrelRewritten}
    I_l(x_\Btxt^n)\dtd \uln =  \vrel^n + v_\Btxt^n,
 \end{equation}
-and using identity \eqref{eq:identity1}, Eq. \eqref{eq:bowLocFDS} can be rewritten and assigned to a function $g(\vrel^n)$ 
+and using identity \eqref{eq:identity1}, Eq. \eqref{eq:bowLocFDS} can be rewritten and assigned to a function $g(\vrel^n)$ according to 
 \begin{equation}\label{eq:staticFrictionNRfunc}
     g(\vrel^n) = \left(\frac{2}{k} + 2\sz\right)\vrel^n + \lVert J_l(x_\Btxt^n)\rVert^2_d F_\Btxt^n\Phi(\vrel^n) + b^n = 0,
 \end{equation}
@@ -342,9 +339,9 @@ One can then perform the Newton-Raphson method detailed in Section \ref{sec:newt
     (\vrel^n)_{i+1} = (\vrel^n)_i - \frac{g\left((\vrel^n)_i\right)}{g'\left((\vrel^n)_i\right)}\ ,
 \end{equation}
 where
-\begin{equation}
+\begin{equation*}
     g'(\vrel^n) = \frac{2}{k} + 2\sz + \lVert J_l(x_\Btxt^n)\rVert^2_\D F_\Btxt^n\Phi'(\vrel^n),
-\end{equation}
+\end{equation*}
 and 
 \begin{equation*}
     \begin{aligned}
@@ -354,26 +351,26 @@ and
     \end{aligned}
 \end{equation*}
 \subsection{Implementation and output}\label{sec:staticImplementation}
-To implement the bowed stiff string, one must perform the Newton-Raphson iteration every sample. For this implementation, the threshold in Eq. \eqref{eq:NRthreshold} has been set to $\epsilon = 10^{-7}$ and the maximum number of iterations to $100$. In the following, the parameters used for the string are listed in Table \ref{tab:stiffStringParams} with $T = 1000$ N and those for the bow are
+To implement the bowed stiff string, one must perform the Newton-Raphson iteration every sample. For the implementation shown in this section, the threshold in Eq. \eqref{eq:NRthreshold} has been set to $\epsilon = 10^{-7}$ and the maximum number of iterations to $100$. In the following, the parameters used for the string are listed in Table \ref{tab:stiffStringParams} with $T = 1000$ N and those for the bow are
 \begin{equation*}
-    x_\Btxt = \floor[0.125/h],\quad f_\Btxt = 1\ \text{N},\quad v_\Btxt = 0.1\  \text{m/s},\qaq a = 100.
+    x_\Btxt = \floor[0.125/h],\quad f_\Btxt = 1\ \text{N},\quad v_\Btxt = 0.2\  \text{m/s},\qaq a = 100.
 \end{equation*}
-Figure \ref{fig:staticBowImplementation} shows the wave propagation of a bowed stiff string at the beginning of the simulation and shows the characteristic stick-slip behaviour of a bowed string. Figure \ref{fig:helmholtzState} shows the state of the same simulation 3 seconds later. One can observe the Helmholtz corner move in an anti-clockwise direction as presented in Figure \ref{fig:helmholtz}. Finally, the time domain output of the string at the bowing location is shown in Figure \ref{fig:helmholtzImplementation} generally follows the Helmholtz motion shown in Figure \ref{fig:helmholtzTimedomain}. 
+Figure \ref{fig:staticBowImplementation} shows the behaviour of a bowed stiff string at the beginning of the simulation and shows the characteristic stick-slip behaviour. Figure \ref{fig:helmholtzState} shows the state of the same simulation 3 seconds later. One can observe the Helmholtz corner move in an anti-clockwise direction as presented in Figure \ref{fig:helmholtz}. Finally, the time domain output of the string at the bowing location is shown in Figure \ref{fig:helmholtzImplementation} generally follows the Helmholtz motion shown in Figure \ref{fig:helmholtzTimedomain}. 
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/exciters/bowImplementation.eps}
-    \caption{Wave propagation of a bowed stiff string at the beginning of the simulation. \label{fig:staticBowImplementation}}
+    \caption{Behaviour of a bowed stiff string at the beginning of the simulation. \label{fig:staticBowImplementation}}
 \end{figure}
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/exciters/helmholtzState.eps}
-    \caption{Wave propagation of a bowed stiff string simulation after 3 seconds. The string exhibits a Helmholtz motion as presented in Figure \ref{fig:helmholtz}. \label{fig:helmholtzState}}
+    \caption{Behaviour of a bowed stiff string simulation after 3 seconds. The string exhibits a Helmholtz motion as presented in Figure \ref{fig:helmholtz}. \label{fig:helmholtzState}}
 \end{figure}
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/exciters/helmholtzImplementation.eps}
-    \caption{Time domain output of a bowed stiff string using the static friction model in Eq. \eqref{eq:staticFriction}. \label{fig:helmholtzImplementation}}
+    \caption{Time domain output at the bowing location of a bowed stiff string using the static friction model in Eq. \eqref{eq:staticFriction}. \label{fig:helmholtzImplementation}}
 \end{figure}
 \subsection{Energy analysis}
 Following the energy analysis of the stiff string presented in Section \ref{sec:energyAnalysisString}, taking an inner product of Eq. \eqref{eq:bowedStiffStringFDS} (after multiplication by $\rho A$) with $(\dtd \uln)$ over discrete domain $d$ one arrives at the following 
@@ -382,7 +379,7 @@ Following the energy analysis of the stiff string presented in Section \ref{sec:
     \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:identityIJ}}\ }\qquad &= -I_l(x_\Btxt^n)(\dtd \uln) f_\Btxt^n \Phi(\vrel^n) \\[-5pt]
     \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:vrelRewritten}}\ } \qquad &= \underbrace{-f_\Btxt^n \Phi(\vrel^n) \vrel^n}_{\text{loss}} - \underbrace{f_\Btxt^n \Phi(\vrel^n)v_\Btxt^n}_{\text{power}},
 \end{align*}
-where $\h$ and $\q$ are as defined in Eqs. \eqref{eq:energyBalanceStiffString} and \eqref{eq:dampingTermStiffString} respectively. As $\sgn\left(\Phi(\vrel^n)\right) = \sgn\left(\vrel^n\right)$ through Eq \eqref{eq:staticFriction}, one can observe that the first term on the right-hand side always has a negative effect on the rate of change of the total energy. This term can therefore be interpreted as the loss of power through the bow (as indicated). The last term is of indeterminate sign and can thus be interpreted as the power supplied by the bow. 
+where $\h$ and $\q$ are as defined in Eqs. \eqref{eq:energyBalanceStiffString} and \eqref{eq:dampingTermStiffString} respectively. As $\sgn\left(\Phi(\vrel^n)\right) = \sgn\left(\vrel^n\right)$ through Eq. \eqref{eq:staticFriction}, one can observe that the first term on the right-hand side always has a negative effect on the rate of change of the total energy. This term can therefore be interpreted as the loss of power through the bow (as indicated). The last term is of indeterminate sign and can thus be interpreted as the power supplied by the bow. 
 
 The final energy balance can thus be written as
 \begin{equation}\label{eq:energyBalanceBow}
@@ -392,7 +389,8 @@ where
 \begin{equation*}
     \q_\text{B} = f_\Btxt^n \Phi(\vrel^n) \vrel^n \qaq \p = f_\Btxt^n \Phi(\vrel^n)v_\Btxt^n.
 \end{equation*}
-Figure \ref{fig:energyStaticBow} shows the energy of the bowed stiff string corresponding to the wave propagation in Figure \ref{fig:staticBowImplementation}. The bow only injects energy into the system when it sticks to the string. Although the normalised energy shows `jumpy` behaviour, correlated to the behaviour of the system, this decreases for a lower value of $\epsilon$. 
+Figure \ref{fig:energyStaticBow} shows the energy of the bowed stiff string corresponding to the wave propagation in Figure \ref{fig:staticBowImplementation}. The bow only injects energy into the system when it sticks to the string. 
+% Although the normalised energy shows `jumpy` behaviour, correlated to the behaviour of the system, this decreases for a lower value of $\epsilon$. 
 
 \begin{figure}[h]
     \centering
@@ -413,7 +411,7 @@ Figure \ref{fig:energyStaticBow} shows the energy of the bowed stiff string corr
 \end{figure}
 
 \section{Dynamic friction models}
-As opposed to less complex static friction models, dynamic friction models relate the relative velocity to the friction force using a differential equation. Dynamic friction models exhibit a phenomenon called \textit{hysteresis}, which is the dependence of a system on its history. This hysteresis loop is in the force versus velocity plane and has been confirmed by measurements using a bowing machine in \cite{Woodhouse2003}.
+As opposed to static friction models, dynamic friction models relate the relative velocity to the friction force using a differential equation. Dynamic friction models exhibit a phenomenon called \textit{hysteresis}, which is the dependence of a system on its history. This hysteresis loop is in the force versus velocity plane and has been confirmed by measurements using a bowing machine in \cite{Woodhouse2003}.
 
 The first dynamic friction model was due to Dahl \cite{Dahl1968} and captured hysteresis effects. The Stribeck effect was, however, not taken into account. The LuGre model (named after the collaboration between Lund and Grenoble) was then proposed by Canudas de Wit et al. in \cite{Canudas1993, Canudas1995} and extended the Dahl model to take the Stribeck effect into account. The model assumes a large ensemble of bristles between the two sliding surfaces, each of which contributes a tiny amount to the total friction force. The drawback of this model is that it exhibits drift for extremely small external forces. In \cite{Dupont2002}, Dupont et al. extended the LuGre model by allowing for a purely elastic regime that solves the drift issue. This model is referred to as the \textit{elasto-plastic} friction model and is used in this project.
 
@@ -422,7 +420,7 @@ In a musical context, the elasto-plastic friction has been investigated in-depth
 
 \input{exciters/elastoPlasticFig.tex}
 
-Unless denoted otherwise, this section follows the original model by Dupont et al. in \cite{Dupont2002}, but with the appropriate corrections added as presented in paper \citeP[C]. As opposed to the static friction model described in the previous section, the friction force $f$ (in N) is now dependent on the average bristle displacement $z = z(t)$ (in m) on top of the relative velocity $v = v(t)$ (in m/s). The force is defined as
+Unless denoted otherwise, this section follows the original model by Dupont et al. in \cite{Dupont2002}, but with the appropriate corrections added as presented in paper \citeP[C]. As opposed to the static friction model described in the previous section, the friction force $f$ (in N) is now dependent on the average bristle displacement $z = z(t)$ (in m) as well as the relative velocity $v = v(t)$ (in m/s). The friction force is defined as
 \begin{equation}\label{eq:elastoPlasticForce}
     f(v, z) = s_0z + s_1\dot z + s_2v + s_3w,
 \end{equation}
@@ -466,7 +464,7 @@ where the transition between the elastic and plastic behaviour is defined as
 \begin{equation}\label{eq:alphaM}
     \alpha_\text{m} = \frac{1}{2}\bigg[1+\sgn(z)\sin\bigg(\pi\frac{z-\sgn(z)\frac{1}{2}(|z_\text{ss}(v)|+z_\text{ba})}{|z_\text{ss}(v)|-z_\text{ba}}\bigg)\bigg],
 \end{equation}
-with break-away displacement $z_\text{ba} = z_\text{ba}(t) = 0.7 f_\text{C}/s_0$ \todo{so is $z_\text{ba} = z_\text{ba}(t)$} determines the value of $z$ before bristles start to break. The adhesion map is visualised in Figure \ref{fig:alphaPlot} and relates to Figure \ref{fig:elastoPlastic} as described in its caption.
+where the break-away displacement $z_\text{ba} = z_\text{ba}(t) = 0.7 f_\text{C}/s_0$ determines the value of $z$ before bristles start to break. The adhesion map is visualised in Figure \ref{fig:alphaPlot} and relates to Figure \ref{fig:elastoPlastic} as described in its caption.
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/exciters/drawAlpha3.eps}
@@ -478,25 +476,25 @@ Equation \eqref{eq:elastoPlasticForce} can be discretised to
 \begin{equation}\label{eq:discForceFunction}
     f(v^n,z^n) = s_0z^n + s_1r^n+s_2v^n+s_3w^n
 \end{equation} 
-where discrete relative velocity in Eq. \eqref{eq:vrelElasto}
+where Eq. \eqref{eq:vrelElasto} can be discretised to
 \begin{equation}\label{eq:vrelElastoDisc}
-    v^n = I(x_\Btxt^n)\dtd\uln - v_\Btxt^n,
+    v^n = I_l(x_\Btxt^n)\dtd\uln - v_\Btxt^n,
 \end{equation}
-and 
+with interpolation operator $I_l(x_\Btxt^n) = I_{l,o}(x_\Btxt^n)$ (of unspecified order $o$) and
 \begin{equation}\label{eq:r}
     r^n = r(v^n,z^n) = v^n\bigg[1-\alpha(v^n,z^n)\frac{z^n}{z_\text{ss}(v^n)}\bigg]
 \end{equation}
-is the discrete counterpart of \eqref{eq:zdot}. The discrete adhesion map is identical to the continuous definition given in Eqs. \eqref{eq:adhesionMap} and \eqref{eq:alphaM}, but with superscripts $n$ added for appearances of $v$ and $z$.
+is the discrete counterpart of Eq. \eqref{eq:zdot}. The discrete adhesion map is identical to the continuous definition given in Eqs. \eqref{eq:adhesionMap} and \eqref{eq:alphaM}, but with superscripts $n$ added for appearances of $v$ and $z$.
 
 \subsection{Applied to a FDTD stiff string}
-The first appearance of a contribution of this work is the elasto-plastic friction model applied to a stiff string implemented using FDTD methods. This has been presented in paper \citeP[C] and will be extended in this section by providing more details on the implementation.\todo{will it though? And should I state the stability stuff here?}
+The first appearance of a contribution in this work is the elasto-plastic friction model applied to a stiff string implemented using FDTD methods. This has been presented in paper \citeP[C] and will be summarised in this section. \todo{state the stability stuff here?}
 
 In the same way as done with the static friction model in Section \ref{sec:staticFricMod}, one can add the friction force to the stiff string PDE in Eq. \eqref{eq:stiffStringPDE} and discretise the system as follows:
 %
 \begin{equation}\label{eq:elastoStiffStringFDS}
-    \dtt \uln = c^2 \dxx \uln - \kappa^2 \dxxxx \uln - 2 \sz \dtd \uln + 2 \so\dtm\dxx \uln - J_l(x_\Btxt^n)\frac{f(v^n,z^n)}{\rho A}.
+    \dtt \uln = c^2 \dxx \uln - \kappa^2 \dxxxx \uln - 2 \sz \dtd \uln + 2 \so\dtm\dxx \uln - J_l(x_\Btxt^n)\frac{f(v^n,z^n)}{\rho A},
 \end{equation}
-Following the same procedure as for the static friction model in Section \ref{sec:staticFricMod}, one takes an inner product with $J_l(x_\Btxt^n)$ over discrete string domain $d$ and using identities \eqref{eq:identityIJ} and \eqref{eq:identity1}, one can rewrite this similar to the static friction model in Eq. \eqref{eq:staticFrictionNRfunc} as
+where spreading operator $J_l(x_\Btxt^n) = J_{l,o}(x_\Btxt^n)$ and is of the same order as $I_l(x_\Btxt^n)$ in Eq. \eqref{eq:vrelElastoDisc}. Following the same procedure as for the static friction model in Section \ref{sec:staticFricMod}, one takes an inner product with $J_l(x_\Btxt^n)$ over discrete string domain $d$ and using identities \eqref{eq:identityIJ} and \eqref{eq:identity1}, one can rewrite this similar to the static friction model in Eq. \eqref{eq:staticFrictionNRfunc} as
 %
 \begin{equation}\label{eq:elastog1}
     g_1(v^n,z^n) = \left(\frac{2}{k} + 2\sz\right)v^n + \lVert J_l(x_\Btxt^n)\rVert_d^2\frac{f(v^n,z^n)}{\rho A}+ b^n= 0,
@@ -512,7 +510,7 @@ As $r$ describes $\dot z$ in Eq. \eqref{eq:zdot}, one can take another approach 
 \begin{equation}
     a^n = (\mtm)^{-1}\dtm z^n \quad \Longrightarrow\quad a^n = \frac{2}{k}(z^n - z^{n-1}) + a^{n-1}.
 \end{equation}
-As both $a^n$ and $r^n$ approximate $\dot z$ these can be used to create the second function necessary to solve the full system
+As both $a^n$ and $r^n$ approximate $\dot z$, these can be used to create the second function necessary to solve the full system
 \begin{equation}\label{eq:elastog2}
     g_2(v^n, z^n) = r^n - a^n = 0.
 \end{equation}
@@ -536,9 +534,9 @@ Finally, one can use the multivariate Newton-Raphson method described in Section
     g_1\\
     g_2
     \end{bmatrix}\,
-    ,
+    .
 \end{equation}
-where derivatives in the Jacobian matrix are given in Appendix \ref{app:elastoDeriv}.
+The derivatives in the Jacobian matrix are given in Appendix \ref{app:elastoDeriv}.
 
 \subsection{Output}
 In the following, the same parameters as presented for the static friction model in Section \ref{sec:staticImplementation} have been used for the string and the bow (where $f_N = f_\Btxt$).
@@ -564,17 +562,17 @@ parameter tuning...
       % \filldraw[black] (arr2E) (3,1.5) circle (1pt) node[anchor=center](topZ){};
       % (arr2B) edge[bend right] node [arrow] {} (arr2E);
       
-    \node (arr1B) at (5.8, 4.35) {};
-    \node (arr1E) at (7.7, 4.35) {};
-    \node (arr2B) at (8.8, 1.2) {};
-    \node (arr2E) at (6.5, 1.1) {};
-    \node (arr3B) at (2.1, 2.4) {};
-    \node (arr3E) at (2.2, 3.2) {};
+    \node (arr1B) at (6.3, 4.35) {};
+    \node (arr1E) at (8.2, 4.25) {};
+    \node (arr2B) at (8.9, 1.2) {};
+    \node (arr2E) at (6.7, 1.2) {};
+    \node (arr3B) at (2.2, 2.05) {};
+    \node (arr3E) at (2.2, 2.95) {};
     \path[every node/.style={font=\sffamily\small}]
   
       (arr1B) edge[bend left = 20] node [left] {} (arr1E)
       (arr2B) edge[bend left = 20] node [left] {} (arr2E)
-      (arr3B) edge[bend left = 60] node [left] {} (arr3E);
+      (arr3B) edge[bend left = 50] node [left] {} (arr3E);
       % \begin{scope}[x={(image.south east)},y={(image.north west)}]
       %     \draw[red,ultra thick,rounded corners] (0.62,0.65) rectangle (0.78,0.75);
       % \end{scope}
@@ -666,6 +664,8 @@ A lot of work should go into tuning the parameters of the elasto-plastic model, 
 Already yields a 
 
 a static and a dynamic friction model. The latter, the elasto-plastic friction has been applied to model has been used 
+
+Small changes in parameters, both control and model parameters already yields a large behavioural change. As the focus of the work was not the friction model, the simpler, static friction was chosen instead. 
 
 
 A comparison between the two friction models has been left for future work. A preliminary comparison has been carried out by Onofrei in \cite{Onofrei2021}, where the author noted that \textit{"the

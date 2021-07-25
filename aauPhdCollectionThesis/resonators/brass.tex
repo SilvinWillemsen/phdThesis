@@ -167,7 +167,7 @@ The input signal is arbitrary, but looking towards lip excitation, and following
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/brass/inputWebster.eps}
-    \caption{A pulse train with a frequency of $213$ Hz and an attack of $22$ ms. This is used to excite the implementation of Webster's equation in Section \ref{sec:outputWebster}. \label{fig:inputWebster}}
+    \caption{A pulse train with a frequency of $213$ Hz a duty cycle of 50\% and an attack of $22$ ms, used to generate the output in Figure \ref{fig:outputWebster}. \label{fig:inputWebster}}
 \end{figure}
 
 % At the left boundary, one can sed $\bar S_N = S_N$ from which $S_{N+1/2}$ can be calculated:
@@ -235,7 +235,7 @@ The output of an implementation of Webster's equation is shown in Figure \ref{fi
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/brass/outputWebster.eps}
-    \caption{The output of Webster's equation at $\Psi_N^n$ using the parameters in Table \ref{tab:websterParams} and geometry in Figure \ref{fig:geometryWebster}. \label{fig:outputWebster}}
+    \caption{The output of Webster's equation at $\Psi_N^n$ using the input in Figure \ref{fig:inputWebster}, the parameters in Table \ref{tab:websterParams}, and the geometry in Figure \ref{fig:geometryWebster}. \label{fig:outputWebster}}
 \end{figure}
 
 \begin{table}[h]
@@ -245,7 +245,7 @@ The output of an implementation of Webster's equation is shown in Figure \ref{fi
         Name & Symbol (unit) & Value\\ \hline
         Length & $L$ (m) & $\approx 3$\\
         Wave speed & $c$ (m/s) & 343\\
-        Cross-sectional area & $S(x)$ & See e.g. paper \citeP[H]\\\hline
+        Cross-sectional area & $S(x)$ & See paper \citeP[H]\\\hline
         \end{tabular}
     \caption{Parameters for the implementation of Webster's equation. The length is slightly below $3$ m to yield $\lambda = 1$ in Eq. \eqref{eq:CFLwebster}.\label{tab:websterParams}}
     \end{center}
@@ -264,7 +264,7 @@ The output of an implementation of Webster's equation is shown in Figure \ref{fi
 The energy analysis of Webster's equation with a radiating boundary might seem straightforward. However, due to the varying cross-sectional area, the energy balance deserves a more detailed treatment, especially at the boundaries. For this analysis, (centred) Neumann boundary conditions are used for both boundaries and the input is ignored. This section follows the steps presented in Section \ref{sec:energyAnalysis}.% to retain generality. %These can then easily be adapted to Dirichlet if needed.
 
 \subsubsection{Step 1: Obtain $\dtp \h$}
-Usually, to ensure vanishing boundary terms when using centred Neumann boundary conditions, the primed inner product in Eq. \eqref{eq:primedInnerProd} is chosen. However, as the system has a spatially varying cross-section, the more general \textit{weighted inner product} in Eq. \eqref{eq:weightedInnerProd} has to be chosen instead.
+Usually, to ensure vanishing boundary terms when using centred Neumann boundary conditions, the primed inner product in Eq. \eqref{eq:primedInnerProd} is chosen. However, as the system has a spatially varying cross-section, the more general weighted inner product in Eq. \eqref{eq:weightedInnerProd} has to be chosen instead.
 
 Taking an inner product weighted by free parameters $0 < \el, \er \leq 2$ at the left and right boundary respectively, of scheme \eqref{eq:discWebster} with $(\dtd \Psiln)$ over discrete domain $d$, yields 
 \begin{equation}\label{eq:powerBalanceWebster}
@@ -459,7 +459,7 @@ For the first-order PDE system in Eq. \eqref{eq:firstOrderSystem}, the boundary 
 \end{subequations}
 which, through Eq. \eqref{eq:pressureVelocityFirstOrder}, relate to the boundary conditions of Webster's equation in Eq. \eqref{eq:contBoundariesBrass}.
 
-\subsection{Discrete time}
+\subsection{Discrete time}\label{sec:firstOrderDiscrete}
 It is useful to place either $p$ or $v$ on an interleaved grid (see Figure \ref{fig:interleavedGrid}). Following \cite{Harrison2018}, $v$ is placed on this interleaved grid both in space and time. 
 Accordingly, system \eqref{eq:firstOrderSystem} is discretised as
 \begin{subequations}\label{eq:firstOrderFDS}
