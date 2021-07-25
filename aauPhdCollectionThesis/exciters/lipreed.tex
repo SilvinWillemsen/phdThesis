@@ -1,23 +1,25 @@
 \chapter{Lip Reed}\label{ch:lipreed}
-Brass instruments are excited by the lips of the player. The opening and closing of the lips causes a vibration
+The dynamics of wind instruments can be modelled by acoustic tubes as presented in Chapter 5. Excitation of these instruments happens either by blowing a jet of air across an opening, such as in a flute, or by the buzzing of a \textit{reed}. In \cite{Fletcher1998}, the authors state that all wind-instrument reeds fall into one of three categories: the single reed, (clarinet, saxophone), the double reed (oboe, bassoon) and the lip reed (trumpet, trombone). The latter will be detailed in this chapter.
+% Brass instruments are excited by the lips of the player. The opening and closing of the lips causes a vibration
+Sections \ref{sec:webstersExcitation} and \ref{sec:pulseTrain} presented a physically inspired pulse train that attempts to model the opening and closing of the lips using a clipped sinusoidal signal. A more physical approach, that is bidirectional, is to model a lip as a mass-spring system that interacts with the left boundary of the tube. Many models exist for modelling the lip reed (see \cite{Fletcher1998,Harrison2018} for an overview). 
 
-Sections \ref{sec:webstersExcitation} and \ref{sec:pulseTrain} presented a physically inspired pulse train that attempts to model this opening and closing of the lips using a clipped sinusoidal signal. A more physical approach, that is bidirectional, is to model a lip as a mass-spring system that interacts with the left boundary of the tube.
+And recent work includes vortex-induced vibration [\hyperref[ch:listOfPublications]{S1}]  Here, as the contribution was mainly on the resonator, the simple lip reed was chosen
+
+
+
 Lip reed model
 
 
 
 Coupling to Tube
 
-The authors of \cite{Fletcher1998} state that all wind-instrument reeds fall into one of three categories: the single reed, (clarinet, saxophone), the double reed (oboe, bassoon) and the lip reed (trumpet, trombone). 
 
-And recent work includes vortex-induced vibration [\hyperref[ch:listOfPublications]{S1}] 
+
 
 The literature describes lip reed models with varying degrees of freedom (DoF)
-In this work, the lip reed will be modelled as a single one-DoF mass-spring-damper system. This model is used to simulate the lip reed in paper \citeP[H] where an additional collision has been added. This chapter presents the lip reed without the collision, but will be elaborated on in Chapter \ref{ch:trombone}. \todo{check} The bulk of this chapter follows \cite{Harrison2018}. 
+In this work, the lip reed will be modelled using the outward striking door model, which is a simple single one-DoF mass-spring-damper system. This model, with an additional collision between the lips, is used in paper \citeP[H] to excite the trombone. This chapter presents the lip reed without the collision, which will be included in Chapter \ref{ch:trombone}.
 
-Lip reed will be coupled to the first-order system of equations presented in \ref{sec:firstOrderSystem} 
-
-
+This chapter starts by introducing the mass-spring-damper system, after which the lip reed model will be given in continuous and discrete time. The lip reed will be coupled to the first-order system of equations presented in \ref{sec:firstOrderSystem}. Unless denoted otherwise, this chapter follows \cite{Harrison2018}. 
 
 \section{Mass-spring systems revisited: Damping}\label{sec:massSpringDamping}
 Before moving on to the lip reed system, a small extension to the mass-spring system given in Section \ref{sec:massSpringSystem} will be given here. 

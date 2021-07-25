@@ -180,6 +180,10 @@ After a long period of time, which depends on the damping coefficients, state va
 
 Although it rarely happens that numbers end up in this range, especially when the application is continuously interacted with, it is good to account for the possibility. For example, due to the very high damping of the body in the Tromba Marina application in Chapter \ref{ch:tromba}, denormalised numbers appear after $\sim 10$ s of not interacting with the instrument, and the CPU usage shoots up. There are specific processor flags that can be activated to truncate denormalised numbers to 0. To retain generality (cross-platform, various processors), one could implement a simple check per buffer to see whether values are smaller than fx. $10^{-250}$ and truncate all values of that system to $0$. 
 
+\section{Optimisation strategies}
+
+AVX GPU etc..\cite{Bilbao2019CMJb}
+
 \section{Graphics}
 \setlstCpp
 \begin{lstlisting}
@@ -306,3 +310,8 @@ The controller has been used to control the physical models in  paper
 
 \subsection{PHANTOM Omni}\label{sec:phantomOmni}
 The PHANTOM Omni, or Omni for short, is a six-degrees-of-freedom device that provides force and vibrotactile feedback (see Figure \ref{fig:phantomOmni})
+
+\section{Discussion and Conclusion}
+No proper comparisons have been done between MATLAB and C++
+
+examples can be found in \cite{Webb2015} and \cite{Bilbao2019CMJb}

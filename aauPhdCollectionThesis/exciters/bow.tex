@@ -542,15 +542,9 @@ The derivatives in the Jacobian matrix are given in Appendix \ref{app:elastoDeri
 In the following, the same parameters as presented for the static friction model in Section \ref{sec:staticImplementation} have been used for the string and the bow (where $f_N = f_\Btxt$).
 Additional parameters used for the elasto-plastic friction model are given in paper \citeP[C].
 
-Figure \ref{fig:hysteresis} shows that the implementation of the elasto-plastic friction model exhibits a hysteresis loop in the force versus velocity plane as desired with a dynamic friction model.
+Figure \ref{fig:hysteresis} shows that the implementation of the elasto-plastic friction model exhibits a hysteresis loop in the force versus velocity plane as desired from a dynamic friction model. The values around $v=0$ are due to sticking behaviour and the loop on the left is due to slipping behaviour.
 Figure \ref{fig:elastoWaveform} shows the output of the implementation and follows the characteristic Helmholtz motion shown in Figure 
-\ref{fig:helmholtzTimedomain}. Although the same parameters are used as for the static friction model in Section \ref{sec:staticImplementation}, the elasto-plastic friction model causes the string to vibrate in a higher mode of vibration when compared to Figure \ref{fig:helmholtzImplementation}. Also, the elasto-plastic model seems to `smooth' the \SWcomment[left off here!!]
-
-
-Comparing the output
-
-parameter tuning...
-
+\ref{fig:helmholtzTimedomain}. When compared to the output of the static friction model in Figure \ref{fig:helmholtzImplementation}, the output of the elasto-plastic implementation seems to be more `smooth' overall, which could be explained by the elasticity of the bristles. 
 
 \begin{figure}[ht]
     \centering
@@ -577,19 +571,18 @@ parameter tuning...
       %     \draw[red,ultra thick,rounded corners] (0.62,0.65) rectangle (0.78,0.75);
       % \end{scope}
     \end{tikzpicture}
-    \caption{Hysteresis loop showing 500 values up to $n=3\fs$. The values around $v=0$ are due to sticking behaviour and the loop on the left is due to slipping behaviour. (Adapted from paper \citeP[C].) \label{fig:hysteresis}}
+    \caption{Hysteresis loop showing 500 values up to $n=3\fs$. (Adapted from paper \citeP[C].) \label{fig:hysteresis}}
 \end{figure}
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/exciters/elastoplasticWaveForm.eps}
-    \caption{Time domain output of a bowed stiff string bowed using an elasto-plastic friction model. \label{fig:elastoWaveform}}
+    \caption{Time domain output at the bow location of a stiff string bowed using an elasto-plastic friction model. \label{fig:elastoWaveform}}
 \end{figure}
-\todo{Plots of output and hysteresis loops}
 
 \subsection{Stability through energy analysis}
 As the elasto-plastic bow model is a differential equation in itself, its approximation will need to abide a stability condition as well.
-As the system at hand is nonlinear, frequency domain analysis as described in Section \ref{sec:stabilityAnalysis} can not be performed. Energy analysis, on the other hand, can be used here to determine the necessary stability condition for this model. This section follows the concepts introduced in Section \ref{sec:stabilityAnalysisEnergy} to obtain a stability conditions for the elasto-plastic friction model. A similar process for finding stability for the LuGre model has been done by Olsson in \cite[p. 55]{Olsson1996} and the derivation below is inspired by his. 
+As the system at hand is nonlinear, frequency domain analysis as described in Section \ref{sec:stabilityAnalysis} can not be performed. Energy analysis, on the other hand, can be used here to determine the necessary stability condition for this model. This section follows the concepts introduced in Section \ref{sec:stabilityAnalysisEnergy} to obtain a stability conditions for the elasto-plastic friction model. A similar process for finding stability for the LuGre model has been done by Olsson in continuous time \cite[p. 55]{Olsson1996}. The derivation below is inspired by his. 
 
 First, all terms of Eq. \eqref{eq:elastoStiffStringFDS} are multiplied by $\rho A$ to get the appropriate units for the analysis. Then, the inner product with $\dtd \uln$ over the string domain $\D$ is taken to get
 \begin{equation}
@@ -607,7 +600,7 @@ Finally, using Eq. \eqref{eq:vrelElastoDisc} yields
 \begin{equation}
     \p_\Btxt = f^nv^n + f^n v_\Btxt^n.
 \end{equation}
-The term $f^nv^n$ is the important one as $f^nv_\Btxt^n$ is a driving term, and is zero when the external bow velocity is zero. This means that this does not affect the internal stability of the system. In the following, the superscript $n$ is suppressed for clarity.
+The term $f^nv^n$ is the important one as $f^nv_\Btxt^n$ is a driving term, and is zero when the external bow velocity is zero. This means that this does not affect the internal stability of the system. In the following, the superscript $n$ is suppressed for brevity.
 
 Substituting Eq. \eqref{eq:discForceFunction} into $fv$ and ignoring the noise term $s_3w^n$ for now, yields
 \begin{equation}\label{eq:fv}
@@ -630,46 +623,51 @@ or
     \p_\Btxt = s_0zr+s_1\left(r+\frac{v\alpha z}{2z_\text{ss}(v)}\right)^2+\frac{v\alpha z^2}{z_\text{ss}(v)}\left(s_0-\frac{s_1v\alpha}{4z_\text{ss}(v)}\right)+s_2v^2.
 \end{equation}
 The power introduced by the bow can then be subdivided into the total energy in the bristles and their damping. As $r$ approximates $\dot z$ the first term, one can rewrite this to 
-
-\SWcomment[NEED TO LOOK AT THE BELOW]
 \begin{equation*}
-    \dtp \h_\text{brist} = s_0 z^n(\dtd z^n) + \q_\text{brist} \geq 0
+    \dtp \h_\text{brist} + \q_\text{brist} \geq 0,
 \end{equation*}
-and needs to be non-negative for passivity. Using identity \eqref{eq:prodIdentity2}
-\begin{align*}
-    \h_\text{B} &= \frac{s_0}{2} z^ne_{t-}z^n,\\
-    & = \frac{s_0}{2}\left((\mtm z^n)^2 - \frac{k^2}{4}(\dtm z^n)^2\right)
-\end{align*}
-and 
+and needs to be non-negative for passivity. 
+
+Starting with the damping term, which is defined as
 \begin{equation}
     \q_\text{brist} = s_1\left(r+\frac{v\alpha z}{2z_\text{ss}(v)}\right)^2+\frac{v\alpha z^2}{z_\text{ss}(v)}\left(s_0-\frac{s_1v\alpha}{4z_\text{ss}(v)}\right)+s_2v^2.
 \end{equation}
-Finally, for the system to be passive, $\q$ must be non-negative. As all coefficients are non-negative and $\sgn(v) = \sgn(z_\text{ss}(v))$ (through a multiplication by $\sgn(v)$ in the definition of in Eq. \eqref{eq:zss}) the following must hold
-\begin{equation*}
-    s_0-\frac{s_1v\alpha}{4z_\text{ss}(v)} \geq 0,\\
-\end{equation*}
-where both terms are non-negative. Finally, as $\alpha$ is bounded by $1$ the following condition must hold for stability
+one can show that, as all coefficients are non-negative and $\sgn(v) = \sgn(z_\text{ss}(v))$ (through a multiplication by $\sgn(v)$ in the definition of in Eq. \eqref{eq:zss}), $\q_\text{brist}$ is non-negative under the following condition:
 \begin{equation}
     s_1 \leq \frac{4s_0z_\text{ss}(v)}{v}\ .
 \end{equation}
-This is the same stability condition as Olsson presents in \cite{Olsson1996}. \SWcomment[So as long as one knows the limit of the velocity of the system, the coefficient $s_1$ can be set accordingly.]
+This means that as long as one knows the limit of the velocity of the system, the coefficient $s_1$ can be set accordingly.
+
+Using identity \eqref{eq:prodIdentity2}, the energy stored in the bristles can be shown to be
+\begin{equation}
+    \h_\text{brist} = \frac{s_0}{2}z^ne_{t-}z^n,
+\end{equation}
+which is not necessarily non-negative. In \cite{Olsson1996}, Olsson performs the analysis in continuous time, where the energy in the bristles is defined as to 
+\begin{equation}
+    \mathfrak{H}_\text{brist} = \frac{s_0}{2} z^2,
+\end{equation}
+which is clearly non-negative. See Notes below for a discussion. 
+
+% A condition can, however, be retrieved from the damping term and is similar to the condition presented by Olsson in continuous time. The damping term is defined as
+
+\subsubsection{\SWcomment[NOTES FOR STEFAN]}
+As far as I see, to find a stability condition for the model, there are two options:
+\begin{enumerate}
+    \item The $s_0z$ term should be discretised using the centred averaging operator, such that the system is inherently stable.
+    \begin{equation}
+        s_0 (\mtd z^n)(\dtd z^n)\quad \overset{\text{Eq. \eqref{eq:prodIdentity4}}}{\Longrightarrow} \quad \frac{s_0}{2}\mtm(z^n)^2
+    \end{equation}
+    This introduces the issue of needing to deal with $z^{n+1}$ issue in the multivariate NR solve.. 
+    \item If the bristles had some sort of mass, one could create a stability condition such as done for the mass-spring system in Section \ref{sec:stabilityAnalysisEnergy}. This requires a change the model.
+    \item Or do you see something I don't...?
+\end{enumerate}
 
 \section{Discussion and conclusion}
-This chapter presented the bow as a way to excite stiff strings. Two friction models have been presented, a static model where the friction force is only a function of the relative velocity between the string and the bow, and the dynamic elasto-plastic friction model, which relates the relative velocity to the friction using a differential equation. The latter has been presented in paper \citeP[C] where it was first applied in the context of FDTD methods. 
+This chapter presented the bow as a mechanism to excite stiff strings. Two friction models have been presented: a static friction model where the friction force is only a function of the relative velocity between the string and the bow, and a dynamic elasto-plastic friction model, which relates this relative velocity to the friction force using a differential equation. The latter has been presented in paper \citeP[C] where it was first applied to stiff strings based on FDTD methods. 
 
-Although an attempt at using the elasto-plastic friction model with a fully modelled instrument -- the tromba marina presented in Chapter \ref{ch:tromba} -- has been carried out, the static friction model has been used in the end. 
+Although a successful implementation of the elasto-plastic friction model has been made, it has not been used in the project beyond paper \citeP[C]. It was found that small changes in parameters, both control and model parameters, already yield large behavioural changes. An attempt was made at using the elasto-plastic friction model with a fully modelled instrument (the tromba marina presented in papers \citeP[D] and \citeP[E]), but did not yield the desired results, and the predictable static friction model was chosen instead. Future work includes tuning the many parameters that the elasto-plastic model relies on and apply an adjusted version to fully modelled instruments.
 
-A lot of work should go into tuning the parameters of the elasto-plastic model, which is left for future work. 
+An in-depth comparison between the static and the elasto-plastic friction model in terms of perceptual differences, is also left for future work. A preliminary comparison has been carried out by Onofrei in \cite{Onofrei2021}, where the author noted that \textit{"the
+elasto-plastic model seems to behave more smoothly"} than the static friction model. This is also what is observed when comparing the output of the friction models in Figures \ref{fig:helmholtzImplementation} and \ref{fig:elastoWaveform}. As said, these observations are preliminary, and further work needs to be done to compare the various friction models.
 
-Already yields a 
-
-a static and a dynamic friction model. The latter, the elasto-plastic friction has been applied to model has been used 
-
-Small changes in parameters, both control and model parameters already yields a large behavioural change. As the focus of the work was not the friction model, the simpler, static friction was chosen instead. 
-
-
-A comparison between the two friction models has been left for future work. A preliminary comparison has been carried out by Onofrei in \cite{Onofrei2021}, where the author noted that \textit{"the
-elasto-plastic model seems to behave more smoothly"} than the static friction model. This is also what is observed when comparing the output of the friction models in Figures \ref{fig:helmholtzImplementation} and \ref{fig:elastoWaveform}.
-
-It must be noted that the applications of the friction models are not limited to strings, and can very well be extended to other resonators. In \cite{paper:Onofrei2021DAFx}, for example, the authors apply the elasto-plastic friction model to a 2D drum membrane to simulate a friction drum inspired instrument. 
-
+Finally, it must be noted that the applications of the bow are not limited to strings, and can very well be extended to other resonators. In [\hyperref[ch:listOfPublications]{S4}], for example, the authors apply the elasto-plastic friction model to a 2D drum membrane to simulate a friction drum inspired instrument.
