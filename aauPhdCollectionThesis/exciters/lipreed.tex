@@ -1,30 +1,17 @@
 \chapter{Lip Reed}\label{ch:lipreed}
-The dynamics of wind instruments can be modelled by acoustic tubes as presented in Chapter 5. Excitation of these instruments happens either by blowing a jet of air across an opening, such as in a flute, or by the buzzing of a \textit{reed}. In \cite{Fletcher1998}, the authors state that all wind-instrument reeds fall into one of three categories: the single reed, (clarinet, saxophone), the double reed (oboe, bassoon) and the lip reed (trumpet, trombone). The latter will be detailed in this chapter.
+The dynamics of wind instruments can be modelled by acoustic tubes as presented in Chapter 5. Excitation of these instruments happens either by blowing a jet of air across an opening, such as in a flute, or by the buzzing of a \textit{reed}. In \cite{Fletcher1998}, the authors state that all wind-instrument reeds fall into one of three categories: the single reed, (clarinet, saxophone), the double reed (oboe, bassoon) and the lip reed (trumpet, trombone). The latter will be the focus of this chapter.
+
 % Brass instruments are excited by the lips of the player. The opening and closing of the lips causes a vibration
-Sections \ref{sec:webstersExcitation} and \ref{sec:pulseTrain} presented a physically inspired pulse train that attempts to model the opening and closing of the lips using a clipped sinusoidal signal. A more physical approach, that is bidirectional, is to model a lip as a mass-spring system that interacts with the left boundary of the tube. Many models exist for modelling the lip reed (see \cite{Fletcher1998,Harrison2018} for an overview). 
+Sections \ref{sec:webstersExcitation} and \ref{sec:pulseTrain} presented a physically inspired pulse train that attempts to model the opening and closing of the lips using a clipped sinusoidal signal. A more physical approach, which is bidirectional, is to model the lips as a mass-spring-damper system that interacts with the left boundary of the tube. The literature describes lip reed models with varying degrees of freedom (DoF) (see \cite{Fletcher1998,Harrison2018} for an overview). Recent work includes vortex-induced vibration into the lip reed model that allows for the buzzing of the lips without the need of an acoustic tube [\hyperref[ch:listOfPublications]{S1}]. 
 
-And recent work includes vortex-induced vibration [\hyperref[ch:listOfPublications]{S1}]  Here, as the contribution was mainly on the resonator, the simple lip reed was chosen
-
-
-
-Lip reed model
-
-
-
-Coupling to Tube
-
-
-
-
-The literature describes lip reed models with varying degrees of freedom (DoF)
-In this work, the lip reed will be modelled using the outward striking door model, which is a simple single one-DoF mass-spring-damper system. This model, with an additional collision between the lips, is used in paper \citeP[H] to excite the trombone. This chapter presents the lip reed without the collision, which will be included in Chapter \ref{ch:trombone}.
+As the contribution of this project to a brass instrument model was mainly focused on the resonator, the simple `outward striking door model' was chosen, which is a simple single one-DoF mass-spring-damper system. The model is as presented in \cite{Bilbao2009Reed} excluding the collision. An alternative collision model was added in paper \citeP[H] and will be elaborated on in Chapter \ref{ch:trombone}.\todo{check}
 
 This chapter starts by introducing the mass-spring-damper system, after which the lip reed model will be given in continuous and discrete time. The lip reed will be coupled to the first-order system of equations presented in \ref{sec:firstOrderSystem}. Unless denoted otherwise, this chapter follows \cite{Harrison2018}. 
 
 \section{Mass-spring systems revisited: Damping}\label{sec:massSpringDamping}
-Before moving on to the lip reed system, a small extension to the mass-spring system given in Section \ref{sec:massSpringSystem} will be given here. 
+Before moving on to the lip reed system, the mass-spring system given in Section \ref{sec:massSpringSystem} will be extended to contain damping. 
 
-Recall the mass spring system presented in Eq. \eqref{eq:massSpringPDE}, where $u=u(t)$ is the displacement of the mass from its equilibrium position.Damping can be easily be added to yield a mass-spring-damper system: 
+Recall the mass spring system presented in Eq. \eqref{eq:massSpringPDE}, where $u=u(t)$ is the displacement of the mass from its equilibrium position (in m). Damping can be easily be added to yield a mass-spring-damper system as follows:
 \begin{equation}\label{eq:massSpringDampingPDE}
     M\ddot u = -Ku - R\dot u,
 \end{equation}
@@ -36,7 +23,7 @@ with mass $M$ (in kg), spring constant $K$ (N/m) and damping coefficient $R$ (in
     \subfloat[$R=0$.\label{fig:massSpringDamper1}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/lipreed/massSpringDamper1.eps}}\hfill
     \subfloat[$R=50$.\label{fig:massSpringDamper2}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/lipreed/massSpringDamper2.eps}}\hfill
     \subfloat[$R=200$.\label{fig:massSpringDamper3}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/lipreed/massSpringDamper3.eps}}
-    \caption{The mass-spring-damper system in Eq. \eqref{eq:massSpringDampingPDE} for different values of $R$. \label{fig:massSpringDamper}}
+    \caption{The mass-spring-damper system in Eq. \eqref{eq:massSpringDampingPDE} with $f_0=440$ Hz for different values of $R$. \label{fig:massSpringDamper}}
 \end{figure}
 
 Equation \eqref{eq:massSpringDampingPDE} can then be discretised to the following FD scheme:
@@ -98,9 +85,9 @@ As mentioned at the beginning of this chapter, the lip reed will be modelled as 
 
 Using dots to denote derivatives with respect to time $t$, the PDE of the lip reed connected to an acoustic tube is defined as
 \begin{equation}\label{eq:lipReedDimensional}
-    M_\text{r}\ddot y = -K y - R \dot y + S_\text{r}\Delta p.
+    M\ddot y = -K y - R \dot y + S_\text{r}\Delta p.
 \end{equation}
-with displacement of the lip reed from equilibrium $y = y(t)$ (in m), mass of the lip reed $M_\text{r} > 0$ (in kg), lip stiffness $K\geq 0$ (in N/m), damping coefficient $R\geq 0$ (in kg/s), effective surface area of the lip $S_\text{r}\geq 0$ (in m$^2$). Furthermore,  
+with displacement of the lip reed from equilibrium $y = y(t)$ (in m), mass of the lip reed $M > 0$ (in kg), lip stiffness $K\geq 0$ (in N/m), damping coefficient $R\geq 0$ (in kg/s), and effective surface area of the lip $S_\text{r}\geq 0$ (in m$^2$). Furthermore,  
 \begin{equation}\label{eq:deltaP}
     \Delta p = \Delta p(t) = P_\text{m} - p(0,t)
 \end{equation}
@@ -111,7 +98,7 @@ The pressure difference in Eq. \eqref{eq:deltaP} causes a volume flow velocity (
 \begin{equation}
     U_\text{B} = U_\text{B}(t) = w[y + H_0]_+\text{sgn}(\Delta p) \sqrt{\frac{2|\Delta p|}{\rho_0}},
 \end{equation}
-with effective lip-reed width $w$ (in m), density of air $\rho_0$ (in kg/m$^3$), static equilibrium separation $H_0$ (in m). Moreover, $[\cdot]_+$ describes the `positive part of' (see Chapter \ref{ch:collisions}). The negative equilibrium separation $-H_0$ can be seen as the location of the lower lip, and when $y + H_0 \leq 0$, the lips are closed and the volume velocity $U_\text{B}$ is 0.  Another volume flow (in m$^3$/s) is generated by the lip reed itself according to
+with effective lip-reed width $w$ (in m), density of air $\rho_0$ (in kg/m$^3$), static equilibrium separation $H_0$ (in m). Moreover, $[\cdot]_+$ describes the `positive part of' (see Chapter \ref{ch:collisions}). The negative equilibrium separation $-H_0$ can be seen as the location of the lower lip, and when $y + H_0 \leq 0$, the lips are closed and $U_\text{B}$ is 0. Another volume flow (in m$^3$/s) is generated by the lip reed itself according to
 \begin{equation}
     U_\text{r} = U_\text{r}(t) = S_\text{r} \dot y,
 \end{equation}
@@ -121,20 +108,20 @@ and assuming that the volume flow velocity is conserved, the total air volume en
 \end{equation} 
 
 \subsubsection{Compact PDE}
-To reduce the number of variables in later derivations in this chapter, one can divide all terms in Eq. \eqref{eq:lipReedDimensional} by $M_\rtxt$ to obtain
+To reduce the number of variables in later derivations in this chapter, one can divide all terms in Eq. \eqref{eq:lipReedDimensional} by $M$ to obtain
 \begin{equation}
-    \ddot y = -\omega_0^2 y - \sigma_\text{r} \dot y + \frac{S_\text{r}}{M_\rtxt}\Delta p,
+    \ddot y = -\omega_0^2 y - \sigma_\text{r} \dot y + \frac{S_\text{r}}{M}\Delta p,
 \end{equation}
-with angular frequency of the lip reed $\omega_0 = \sqrt{K/M_\text{r}}$ (rad/s) and loss parameter $\sigma_\text{r} = R / M_\text{r}$ (s$^{-1}$). 
+with angular frequency of the lip reed $\omega_0 = \sqrt{K/M}$ (rad/s) and loss parameter $\sigma_\text{r} = R / M$ (s$^{-1}$). 
 
 \section{Discrete time}
 \def\nph{}
 \def\nphSys{n+1/2}
 
-Following \cite{Harrison2018}, $y$, $\Delta p$, and thereby $U_\text{B}$ and $U_\text{r}$ are placed on the interleaved temporal grid\footnote{The variables are placed on the regular, non-interleaved, spatial grid, as the lip reed interacts with the boundary of the tube ($x=0$).}, and the equations presented above can be discretised to the following system:
+Following \cite{Harrison2018}, $y$, $\Delta p$, and thereby $U_\text{B}$ and $U_\text{r}$ are placed on the interleaved temporal grid\footnote{The variables are placed on the non-interleaved spatial grid, as the lip reed interacts with the boundary of the tube ($x=0$).}, and the equations presented above can be discretised to the following system:
 \begin{subequations}\label{eq:discreteLipSystem}
     \begin{align}
-        \delta_{tt}y^{\nphSys} &= -\omega_0^2\mu_{t\cdot}y^{\nphSys}-\sigma_\text{r}\delta_{t\cdot}y^{\nphSys} + \frac{S_\text{r}}{M_\rtxt}\Delta p^{\nphSys},\label{eq:discReed}\\
+        \delta_{tt}y^{\nphSys} &= -\omega_0^2\mu_{t\cdot}y^{\nphSys}-\sigma_\text{r}\delta_{t\cdot}y^{\nphSys} + \frac{S_\text{r}}{M}\Delta p^{\nphSys},\label{eq:discReed}\\
         \Delta p^{\nphSys} &= P_\text{m} - \mu_{t+}p_0^n,\label{eq:pDiff}\\
         U_\text{B}^{\nphSys} &= w[y^{\nphSys}+H_0]_+\text{sgn}(\Delta p^{\nphSys})\sqrt{\frac{2|\Delta p^{\nphSys}|}{\rho_0}},\label{eq:bernoulli}\\
         U_\text{r}^{\nphSys} &= S_\text{r}\delta_{t\cdot}y^{\nphSys},\label{eq:Ur}\\
@@ -143,22 +130,22 @@ Following \cite{Harrison2018}, $y$, $\Delta p$, and thereby $U_\text{B}$ and $U_
 \end{subequations}
 Here, $p_0^n$ and $S_{1/2}v_{1/2}^{\nphSys}$ are discrete values at the left boundary of an acoustic tube described by system \eqref{eq:firstOrderFDS}. Expanding the operators in Eq. \eqref{eq:discReed} and solving for $y^{n+3/2}$ yields
 \begin{equation}\label{eq:updateEqLipreed}
-    % \left(1 + \frac{\omega_0^2 k^2}{2} + \frac{\sigma_\text{r} k}{2}\right)y^{n+3/2} &= 2 y^{n+1/2} - \left(1 + \frac{\omega_0^2 k^2}{2} - \frac{\sigma_\text{r} k}{2}\right) y^{n-1/2} + \frac{S_\text{r} k^2}{M_\text{r}} \Delta p^{n+1/2}\nonumber\\
+    % \left(1 + \frac{\omega_0^2 k^2}{2} + \frac{\sigma_\text{r} k}{2}\right)y^{n+3/2} &= 2 y^{n+1/2} - \left(1 + \frac{\omega_0^2 k^2}{2} - \frac{\sigma_\text{r} k}{2}\right) y^{n-1/2} + \frac{S_\text{r} k^2}{M} \Delta p^{n+1/2}\nonumber\\
     \alpha_\text{r}y^{n+3/2} = 4y^{n+1/2} + \beta_\text{r}y^{n-1/2} + \xi_\text{r}\Delta p^{n+1/2}
 \end{equation}
-where
+where (after a multiplication by 2 to reduce fractions)
 \begin{equation}
-    \alpha_\text{r} = 2 + \omega_0^2k^2 + \sigma_\text{r} k\ , \quad \beta_\text{r} =  \sigma_\text{r} k - 2 - \omega_0^2 k^2\ , \quad \text{and} \quad \xi_\text{r} = \frac{2 S_\text{r}k^2}{M_\text{r}}.
+    \alpha_\text{r} = 2 + \omega_0^2k^2 + \sigma_\text{r} k\ , \quad \beta_\text{r} =  \sigma_\text{r} k - 2 - \omega_0^2 k^2\ , \quad \text{and} \quad \xi_\text{r} = \frac{2 S_\text{r}k^2}{M}.
 \end{equation}
 Although Eq. \eqref{eq:updateEqLipreed} seems to be implicitly dependent to the pressure difference $\Delta p^{n+1/2}$ it is possible to explicitly solve it. A derivation is shown below.
 
 \subsection{Obtaining $\Delta p$}\label{sec:obtainingDeltaP}
 In the following, the superscript $n+1/2$ will be suppressed for $y$, $\Delta p$, $U_\text{B}$, $U_\text{r}$, $S_{1/2}$ and $v_{1/2}$ for brevity. 
 
-\subsubsection{Expand Eq. \eqref{eq:discReed}}
+\subsubsection{Rewrite Eq. \eqref{eq:discReed}}
 Using identities \eqref{eq:identity1} and \eqref{eq:identity4}, Eq. \eqref{eq:discReed} can be rewritten to
 \begin{equation*}
-    \frac{2}{k} (\delta_{t\cdot} - \delta_{t-})y^{\nph} = -\omega_0^2(k\delta_{t\cdot} + e_{t-})y^{\nph} - \sigma_\text{r}\delta_{t\cdot} y^{\nph} + \frac{S_\text{r}}{M_\text{r}}\Delta p^{\nph},
+    \frac{2}{k} (\delta_{t\cdot} - \delta_{t-})y^{\nph} = -\omega_0^2(k\delta_{t\cdot} + e_{t-})y^{\nph} - \sigma_\text{r}\delta_{t\cdot} y^{\nph} + \frac{S_\text{r}}{M}\Delta p^{\nph},
 \end{equation*}
 and, after grouping the terms,
 \begin{equation}
@@ -166,14 +153,14 @@ and, after grouping the terms,
 \end{equation}
 where
 \begin{equation}\label{eq:aCoeffs}
-    a_1 = \frac{2}{k} + \omega_0^2k + \sigma_\text{r} \geq 0, \quad a_2 = \frac{S_\text{r}}{M_\text{r}} \geq 0\ , \quad \text{and} \quad a_3^n = \left(\frac{2}{k} \delta_{t-} - \omega_0^2e_{t-}\right)y^{\nph}\ .
+    a_1 = \frac{2}{k} + \omega_0^2k + \sigma_\text{r} \geq 0, \quad a_2 = \frac{S_\text{r}}{M} \geq 0\ , \quad \text{and} \quad a_3^n = \left(\frac{2}{k} \delta_{t-} - \omega_0^2e_{t-}\right)y^{\nph}\ .
 \end{equation}
-Note that these conditions can be applied to $a_1$ and $a_2$ as these are calculated solely from non-negative parameters. %The same will be done for other coefficients below.
+Note that non-negativity property can be applied to $a_1$ and $a_2$ as these are calculated solely from non-negative parameters. %The same will be done for other coefficients below.
 Equation \eqref{eq:Ur} can then be substituted into Eq. \eqref{eq:preAEquation}
 \begin{equation*}
     \frac{a_1}{S_\text{r}}U_\text{r}^{\nph} - a_2 \Delta p^{\nph} - a_3^n = 0,
 \end{equation*}
-and consequently \eqref{eq:UbUr} to get
+and consequently Eq. \eqref{eq:UbUr} to get
 \begin{equation}\label{eq:aEquation}
     \frac{a_1}{S_\text{r}}\left(\mu_{x-}(S_{1/2}v_{1/2}^{\nph}) - U_\text{B}^{\nph}\right) - a_2 \Delta p^{\nph} - a_3^n = 0.
 \end{equation}
@@ -193,7 +180,7 @@ Using identity \eqref{eq:identityLip} for $\dxm$ and $\delta_{t+}$, this can be 
 \end{equation}
 and substituting Eq. \eqref{eq:pDiff} yields
 \begin{align}
-    \frac{\bar S_0h}{\rho_0 c^2k}(P_\text{m} - \Delta p^{\nph}-p_0^n) &= \frac{2}{h} \left(\mu_{x-}(S_{1/2}v_{1/2}^{\nph})-S_{1/2}v_{1/2}^{\nph}\right).\nonumber\\
+    \frac{2\bar S_0}{\rho_0 c^2k}(P_\text{m} - \Delta p^{\nph}-p_0^n) &= \frac{2}{h} \left(\mu_{x-}(S_{1/2}v_{1/2}^{\nph})-S_{1/2}v_{1/2}^{\nph}\right).\nonumber\\
     \mu_{x-}(S_{1/2}v_{1/2}^{\nph}) &= b_1^n - b_2\Delta p^{\nph}\label{eq:bEquation}
 \end{align}
 where
@@ -223,7 +210,7 @@ and one can solve for $\sqrt{|\Delta p^{\nph}|}$:
 \begin{equation}
     \sqrt{|\Delta p^{\nph}|} = \frac{-c_1^n \pm \sqrt{(c^n_1)^2+4c_2|c_3^n|}}{2c_2}\ .
 \end{equation}
-Finally, because $\sqrt{(c_1^n)^2 + 4c_2|c_3^n|} \geq c_1^n$, one can guarantee that the solution is positive if the positive solution the square root is taken. Using Eq. \eqref{eq:sgnEquality} pressure difference is
+Finally, because $\sqrt{(c_1^n)^2 + 4c_2|c_3^n|} \geq c_1^n$, one can only guarantee a positive solution if square root term is added. Using Eq. \eqref{eq:sgnEquality}, the definition for the pressure difference can be found:
 \begin{equation}\label{eq:pressureDiff}
     \Delta p^{\nph} = \text{sgn}(c_3^n)\left(\frac{-c_1^n + \sqrt{(c^n_1)^2+4c_2|c_3^n|}}{2c_2}\right)^2.
 \end{equation}
@@ -238,7 +225,7 @@ Equation \eqref{eq:UbUr} can then be substituted to get
 \begin{equation}\label{eq:pressureCoupled}
     p^{n+1}_0 = p_0^n - \frac{\rho_0c\lambda}{\bar S_0}\left(-2(U_\text{B}^{\nph} + U_\text{r}^{\nph}) + 2 S_{1/2}v_{1/2}^{\nph}\right).
 \end{equation}
-Figure \ref{fig:lipreedTube} shows an implementation of the lip reed connected to an acoustic tube. The frequency of the lips is set to $f_0 = 600$ Hz ($\omega_0 = 1200\pi$ rad/s), the input pressure $P_\mtxt = 2000$ Pa and the other parameters are as listed in paper \citeP[H]. The initial conditions of the lip have been set to $y^{1/2} = y^{3/2} = -H_0$ such that the lips are closed at the start of the simulation and the cylindrical with a circular cross-section of $S(x) = 5\cdot 10^{-5}$. The figure shows that the lips oscillate and that when the lips are closed, i.e. when $y \leq H_0$, no energy enters the acoustic tube.\footnote{This is similar behaviour to what the pulse train in Section \ref{sec:pulseTrain} attempts to model.}
+Figure \ref{fig:lipreedTube} shows an implementation of the lip reed connected to an acoustic tube. The lip reed is shown on the left and the left boundary of the tube is on the right side of the lip reed. The frequency of the lips is set to $f_0 = 600$ Hz ($\omega_0 = 1200\pi$ rad/s), the input pressure $P_\mtxt = 2000$ Pa and the other parameters are as listed in paper \citeP[H]. The initial conditions of the lip have been set to $y^{1/2} = y^{3/2} = -H_0$ such that the lips are closed at the start of the simulation and the tube is cylindrical with a circular cross-section of $S(x) = 5\cdot 10^{-5}$. The figure shows that the lips oscillate, and that when the lips are closed, i.e. when $y \leq H_0$, no energy enters the acoustic tube.\footnote{This is similar behaviour to what the pulse train in Section \ref{sec:pulseTrain} attempts to model.}
 
 % \subsubsection{Discussion}
 % The oscillation shown in Figure \ref{fig:lipreedTube} is similar to the pulse train shown in Section \ref{eq:pulseTrain}, and shows that this type of excitation signal is sufficient as a test case for a lip reed excitation. 
@@ -249,25 +236,25 @@ Figure \ref{fig:lipreedTube} shows an implementation of the lip reed connected t
     \caption{A lip reed (shown at the left side of the plots) exciting a cylindrical acoustic tube. The y-axis refers to the displacement of the lips and the pressure in the tube $p_l^n$ is shown in red and highlighted with a dashed line (not related to the y-axis).\label{fig:lipreedTube}}
 \end{figure}
 \section{Energy analysis}
-This section performs an energy analysis on the lip reed system coupled to an acoustic tube using the steps described Section \ref{sec:energyAnalysis}. As all physical parameters need to be written out to obtain the correct units, Eq. \eqref{eq:lipReedDimensional} is discretised, and yields
+This section performs an energy analysis on the lip reed system coupled to an acoustic tube using the steps described Section \ref{sec:energyAnalysis}. As all physical parameters need to be written out to obtain the correct units, Eq. \eqref{eq:lipReedDimensional} is discretised to get
 \begin{equation}\label{eq:discLipreedDimensional}
-    M_\rtxt\delta_{tt}y^{\nphSys} = -K\mu_{t\cdot}y^{\nphSys}-R\delta_{t\cdot}y^{\nphSys} + S_\text{r}\Delta p^{\nphSys},
+    M\delta_{tt}y^{\nphSys} = -K\mu_{t\cdot}y^{\nphSys}-R\delta_{t\cdot}y^{\nphSys} + S_\text{r}\Delta p^{\nphSys},
 \end{equation} 
 and will be used in this analysis. Again, the superscript $n+1/2$ will be suppressed for $y$, $\Delta p$, $U_\text{B}$, $U_\text{r}$, $S_{1/2}$ and $v_{1/2}$ for brevity.
 
 \subsubsection{Step 1: Obtain $\dtp \h$} 
-Multiplying Eq. \eqref{eq:discLipreedDimensional} by $(\delta_{t\cdot}y)$, and moving all terms to the left-hand side, yields
+Multiplying Eq. \eqref{eq:discLipreedDimensional} by $(\delta_{t\cdot}y)$, and moving all terms to the left-hand side, yields the rate of change of the energy in the lip reed $\h_\rtxt$
 \begin{equation*}
-    \dtp \h_\rtxt = M_\text{r}(\delta_{t\cdot}y^{\nph})(\delta_{tt}y^{\nph}) + K(\delta_{t\cdot}y^{\nph})(\mu_{t\cdot}y^{\nph}) + R(\delta_{t\cdot}y^{\nph})^2 - S_\text{r}(\delta_{t\cdot}y^{\nph})\Delta p^{\nph} = 0.
+    \dtp \h_\rtxt = M(\delta_{t\cdot}y^{\nph})(\delta_{tt}y^{\nph}) + K(\delta_{t\cdot}y^{\nph})(\mu_{t\cdot}y^{\nph}) + R(\delta_{t\cdot}y^{\nph})^2 - S_\text{r}(\delta_{t\cdot}y^{\nph})\Delta p^{\nph} = 0.
 \end{equation*}
 One can substitute Eqs \eqref{eq:Ur}, and \eqref{eq:UbUr} thereafter, to get
 \begin{align*}
-    \dtp \h_\rtxt = M_\text{r}(\delta_{t\cdot}y^{\nph})(\delta_{tt}y^{\nph}) &+ K(\delta_{t\cdot}y^{\nph})(\mu_{t\cdot}y^{\nph}) + R(\delta_{t\cdot}y^{\nph})^2 \\
+    \dtp \h_\rtxt = M(\delta_{t\cdot}y^{\nph})(\delta_{tt}y^{\nph}) &+ K(\delta_{t\cdot}y^{\nph})(\mu_{t\cdot}y^{\nph}) + R(\delta_{t\cdot}y^{\nph})^2 \\
     &\quad- \left(\mu_{x-}(S_{1/2}v_{1/2})-U_\text{B}\right)\Delta p^{\nph} = 0.
 \end{align*}
 Finally, substituting Eq. \eqref{eq:pDiff}, yields
 \begin{align*}
-    \dtp \h_\rtxt = M_\text{r}(\delta_{t\cdot}y^{\nph})(\delta_{tt}y^{\nph}) &+ K(\delta_{t\cdot}y^{\nph})(\mu_{t\cdot}y^{\nph}) + R(\delta_{t\cdot}y^{\nph})^2 \\
+    \dtp \h_\rtxt = M(\delta_{t\cdot}y^{\nph})(\delta_{tt}y^{\nph}) &+ K(\delta_{t\cdot}y^{\nph})(\mu_{t\cdot}y^{\nph}) + R(\delta_{t\cdot}y^{\nph})^2 \\
     &\quad+ U_\text{B}\Delta p^{\nph} - \mu_{x-}(S_{1/2}v_{1/2})(P_\mtxt-\mtp p_0^n) = 0.
 \end{align*}
 One can then include the tube by recalling that $\delta_{t+}\mathfrak{h}_\text{t} = -\mathfrak{b}_\text{r} + \mathfrak{b}_\text{l}$, and that the left boundary term is defined as (Eq. \eqref{eq:firstOrderLeftBoundary})
@@ -276,17 +263,17 @@ One can then include the tube by recalling that $\delta_{t+}\mathfrak{h}_\text{t
 \end{equation*} 
 and substituting this (ignoring the right boundary term, i.e., $\b_\rtxt = 0$) to get
 \begin{align*}
-    \dtp (\h_\rtxt +\h_\ttxt) = M_\text{r}(\delta_{t\cdot}y^{\nph})(\delta_{tt}y^{\nph}) &+ K(\delta_{t\cdot}y^{\nph})(\mu_{t\cdot}y^{\nph}) + R(\delta_{t\cdot}y^{\nph})^2 \\
+    \dtp (\h_\rtxt +\h_\ttxt) = M(\delta_{t\cdot}y^{\nph})(\delta_{tt}y^{\nph}) &+ K(\delta_{t\cdot}y^{\nph})(\mu_{t\cdot}y^{\nph}) + R(\delta_{t\cdot}y^{\nph})^2 \\
     &\quad+ U_\text{B}\Delta p^{\nph} - \mu_{x-}(S_{1/2}v_{1/2})P_\mtxt = 0.
 \end{align*}
 \subsubsection{Step 2: Identify energy types and isolate $\dtp$}
-Using identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity4}, the energy of the lip reed can be shown to be
+Using identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity4}, the energy balance can be shown to be
 \begin{equation}
     \delta_{t+}\left(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r}\right) = - \q_\text{r} - \mathfrak{p}_\text{r},
 \end{equation}
 where the energy of the tube $\h_\ttxt$ is as defined in Eq. \eqref{eq:energyBalanceFirstOrder} and the energy of the mass is
 \begin{equation}
-    \h_\rtxt = \t_\rtxt + \v_\rtxt, \qwiq \t_\rtxt = \frac{M_\text{r}}{2}(\delta_{t-}y)^2, \qaq \v = \frac{K}{2}\mu_{t-}(y^2).
+    \h_\rtxt = \t_\rtxt + \v_\rtxt, \qwiq \t_\rtxt = \frac{M}{2}(\delta_{t-}y)^2, \qaq \v = \frac{K}{2}\mu_{t-}(y^2).
 \end{equation}
 Furthermore, the damping term is defined as
 \begin{equation}
@@ -296,15 +283,15 @@ and the input power as
 \begin{equation}
     \mathfrak{p}_\text{r} = -(U_\text{B} + U_\text{r})P_\text{m}.
 \end{equation}
-It is interesting to note that due to the choice of discretisation of the lip reed, $\t_\rtxt$, $\v_\rtxt$ and $\q_\rtxt$ are non-negative, making the lip reed (without the power term) strictly dissipative and thus inherently stable. 
+It is interesting to note that due to the choice of discretisation of the lip reed, $\t_\rtxt$, $\v_\rtxt$ and $\q_\rtxt$ are non-negative, making the lip reed strictly dissipative and thus inherently stable. 
 
 \subsubsection{Step 3: Check units}
 The kinetic and potential energy of the lip reed can be written in their units as
 \begin{align*}
-    \t_\rtxt = \frac{M_\text{r}}{2}(\delta_{t-}y)^2 &\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad\text{kg}\cdot(\text{s}^{-1}\cdot \text{m})^{2}= \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
+    \t_\rtxt = \frac{M}{2}(\delta_{t-}y)^2 &\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad\text{kg}\cdot(\text{s}^{-1}\cdot \text{m})^{2}= \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
     \v_\rtxt = \frac{K}{2}\mu_{t-}(y^2)&\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad \text{N} \cdot \text{m}^{-1} \cdot \text{m}^2 = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},
 \end{align*}
-and have the correct units. The damping and input power terms need to have units of kg$\cdot$ m$^2 \cdot $s$^{-3}$. Writing the individual components of these terms in their respective units yields
+and have the correct units. Recalling that the damping and input power terms need to have units of kg$\cdot$ m$^2 \cdot $s$^{-3}$, writing the individual components of these terms in their respective units yields
 \begin{align*}
     R(\dtd y)^2 &\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad\text{kg}\cdot\text{s}^{-1}\cdot(\text{s}^{-1}\cdot \text{m})^{2} = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-3} ,\\
     U_\text{B}\Delta p^{\nph}&\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad \text{m}^3 \cdot \text{s}^{-1}\cdot \text{kg}\cdot \text{m}^{-1}\cdot \text{s}^{-2}= \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-3},\\
@@ -312,7 +299,7 @@ and have the correct units. The damping and input power terms need to have units
 \end{align*}
 and shows that the units are indeed correct.
 \subsubsection{Step 4: Implementation}
-Figure \ref{fig:lipReedEnergy} shows the energetic output of the lip reed exciting coupled to an acoustic tube corresponding to the behaviour shown in Figure \ref{fig:lipreedTube}. The total energy of the system increases due to the input pressure and is mainly transferred to the tube. The oscillations of the lip reed can be observed from the oscillations in its kinetic and potential energy. The normalised energy (using Eq. \eqref{eq:normalisedEnergyDamping}) does not include the first time index as the energy at $\h_0$ might be 0. Instead, one starts at $n=1$ and uses $\h^1$ instead of $\h_0$ in Eq. \eqref{eq:normalisedEnergyDamping}.\todo{look at this, also the figure caption}
+Figure \ref{fig:lipReedEnergy} shows the energetic output of the lip reed exciting coupled to an acoustic tube corresponding to the behaviour shown in Figure \ref{fig:lipreedTube}. The total energy of the system increases due to the input pressure and is mainly transferred to the tube. The oscillations of the lip reed can be observed from the oscillations in its kinetic and potential energy. The normalised energy (using Eq. \eqref{eq:normalisedEnergyDamping}) does not include the first time index as one full iteration of the coupling is necessary to yield a correct energy calculation. Instead, one starts at $n=1$ and uses $\h^1$ instead of $\h_0$ in Eq. \eqref{eq:normalisedEnergyDamping}. \SWcomment[Check with stefan]
 
 \begin{figure}[h]
     \centering
