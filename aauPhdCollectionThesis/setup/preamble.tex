@@ -2,60 +2,7 @@
 %  2016-08-01 v. 1.3.1
 %  Copyright 2012-2016 by Jesper Kjær Nielsen <jkn@es.aau.dk>
 %
-%  This is free software: you can redistribute it and/or modify
-%  it under the terms of the GNU General Public License as published by
-%  the Free Software Foundation, either version 3 of the License, or
-%  (at your option) any later version.
-%
-%  This is distributed in the hope that it will be useful,
-%  but WITHOUT ANY WARRANTY; without even the implied warranty of
-%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-%  GNU General Public License for more details.
-%
-%  You can find the GNU General Public License at <http://www.gnu.org/licenses/>.
-%
-\documentclass[10pt,twoside,openright]{book}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Language, Encoding and Fonts
-% http://en.wikibooks.org/wiki/LaTeX/Internationalization
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Select encoding of your inputs. Depends on
-% your operating system and its default input
-% encoding. Typically, you should use
-%   Linux  : utf8 (most modern Linux distributions)
-%            latin1 
-%   Windows: ansinew
-%            latin1 (works in most cases)
-%   Mac    : applemac
-% Notice that you can manually change the input
-% encoding of your files by selecting "save as"
-% an select the desired input encoding. 
-\usepackage[utf8]{inputenc}
-% Make latex understand and use the typographic
-% rules of the language used in the document.
-\usepackage[danish,english]{babel}
-% Use the palatino font
-\usepackage{newpxtext}
-\linespread{1.05}         % Palatino needs more leading (space between lines)
-% Choose the font encoding
-% Choose the font encoding
-\usepackage[T1]{fontenc}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Graphics and Tables
-% http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics
-% http://en.wikibooks.org/wiki/LaTeX/Tables
-% http://en.wikibooks.org/wiki/LaTeX/Colors
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% load a colour package
-\usepackage[dvipsnames]{xcolor}
-% UniPrint prefers that no colours are used in the template by default.
-% However, if you want some colours, then you can easily change the following
-\definecolor{aaublue}{RGB}{0,0,0}% black
-%\definecolor{aaublue}{RGB}{33,26,82}% dark blue
-% The standard graphics inclusion package
-\usepackage{graphicx}
-% Set up how figure and table captions are displayed
-\usepackage{caption}
+%  This is free software: you can redistribute it and/or modrighte{caption}
 \captionsetup{%
   font=footnotesize,% set font size to footnotesize
   labelfont=bf % bold label (e.g., Figure 3.2) font
@@ -132,7 +79,8 @@
 \usepackage{calc}
 % fix the marginpar command so it is always on the correct side
 \usepackage{mparhack}
-\usepackage{ragged2e}
+
+
 \usepackage{longtable}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -147,11 +95,9 @@
 % \addbibresource{bib/mybib.bib}
 
 \newcites{main}{References}
-\newcites{M}{Main Publications}
-\newcites{S}{Publications with a Supervisory Role}
-\newcites{O}{Other Publications}
-\newcites{A}{References}
-
+\newcites{A}{Main Publications}
+\newcites{B}{Publications with a Supervisory Role}
+\newcites{C}{Miscellaneous Publications}
 % \renewcommand*{\bibliographyitemlabel}{[\alph{enumiv}]}
 
 % \makeatletter
@@ -228,8 +174,6 @@
 	pdfstartview=FitH%
 }
 
-\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n} % for paper A
-
 \usepackage{xcolor}
 \def\SBcomment[#1]{\textcolor{Red}{#1}}
 \def\SWcomment[#1]{\textcolor{Cyan}{#1}}
@@ -238,12 +182,10 @@
 
 \usepackage{cases}
 \usepackage[final]{pdfpages}
-\usepackage{textcomp}
-\newcommand{\textapprox}{\raisebox{0.5ex}{\texttildelow}}
 
 \usepackage{dirtytalk}
 \usepackage{subfig}
-\usepackage{algorithm2e}
+
 \usepackage{tikz}
 \tikzset{>=latex}
 \tikzstyle{block} = [draw,minimum size=0.5cm]
@@ -251,17 +193,11 @@
 
 \usepackage{listings}
 \usepackage{courier}
-\usepackage{multirow}
-\usepackage{xfrac}
 
 \usepackage[most]{tcolorbox}
 \usepackage{tabstackengine}
 \stackMath
-\newenvironment{rightcases}
-  {\left.\begin{alignedat}{2}}
-  {\end{alignedat}\right\rbrace}
 
-  \newcommand\norm[1]{\left\lVert#1\right\rVert}
 
 \def\eqrefMatlab[#1]{%
     \hypersetup{linkcolor=[HTML]008400}%
@@ -329,7 +265,8 @@
     tabsize=2,	                   % sets default tabsize to 2 spaces
     title=\lstname,                  % show the filename of files included with \lstinputlisting; also try caption instead of title
     columns=fixed,                   % Using fixed column width (for e.g. nice alignment)
-    deletekeywords={pi, zeros, plot, round, ceil, floor, cos, sin, sum, abs, eps, exp},            % if you want to delete keywords from the given language
+    deletekeywords={pi, zeros, plot, round, ceil, floor, cos, sin},            % if you want to delete keywords from the given language
     morestring=[b]"
   }
 }
+
