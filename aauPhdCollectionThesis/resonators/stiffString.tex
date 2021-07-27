@@ -33,15 +33,13 @@ Frequency dispersion and inharmonicity will be further discussed in Section \ref
     \caption{Frequency dispersion in a stiff string due to stiffness.\label{fig:dispersion}}
 \end{figure}
 
-% \subsubsection{Dispersion Analysis \SWcomment[or: Frequency Dispersion]}
-% The 4\thOrder spatial derivative models \textit{frequency dispersion}, a phenomenon that causes different frequencies to travel at different speeds. As opposed to the undesired numerical dispersion 
-
-% \SWcomment[not done]
+\subsubsection{Dispersion Analysis}
+The 4th-order spatial derivative models \textit{frequency dispersion}, a phenomenon that causes different frequencies to travel at different speeds. As opposed to the undesired numerical dispersion 
 
 \subsection{Adding losses}
 Before moving on to the discretisation of the PDE in Eq. \eqref{eq:stiffStringPDENoLosses}, losses can be added to the system. In the physical world, strings lose energy through fx. air viscosity and thermoelastic effects. All frequencies lose energy and die out (damp) over time, but higher frequencies do so at a much faster rate. This phenomenon is called \textit{frequency-dependent damping} and can be modelled using a mixed derivative $\pt \pxx$. This way of frequency-dependent damping first appeared in \cite{Bensa2003} and has been used extensively in the literature since \cite{Valimaki2006,theBible}. A damped stiff string can be modelled as
 \begin{equation}\label{eq:stiffStringPDE}
-    \rho A \ptt u = T \pxx u - EI \pxxxx u - 2 \sz \rho A \pt u + 2 \so \rho A\pt \pxx u,
+    \rho A \ptt u = T \pxx u - EI \pxxxx u - 2 \sz \rho A \pt u + 2 \so \rho A\pt \pxx u
 \end{equation}
 where the non-negative loss coefficients $\sz$ (in s$^{-1}$) and $\so$ (in m$^2$/s) determine the frequency-independent and frequency-dependent losses respectively. Appendix \ref{app:intuitionSigma1} attempts to provide some intuition on workings of these damping terms.
 
@@ -51,10 +49,10 @@ A more compact way to write Eq. \eqref{eq:stiffStringPDE}, and is also found oft
 \end{equation}
 where $c=\sqrt{T/\rho A}$ is the wave speed \todo{FULL DOC SWEEP: check wavespeed or wave speed (entire document)} (in m/s) as in the 1D wave equation in \eqref{eq:1DwavePDE} and $\kappa = \sqrt{EI / \rho A}$ is referred to as the stiffness coefficient (in m$^2$/s). 
 
-% \subsubsection{Intuition}
-% Although Eq. \eqref{eq:stiffStringPDE} might look daunting at first, the principle of Newton's second law remains the same. 
+\subsubsection{Intuition}
+Although Eq. \eqref{eq:stiffStringPDE} might look daunting at first, the principle of Newton's second law remains the same. 
 
-% \SWcomment[Something about the 4th spatial derivative and the loss terms here...]
+Something about the 4th spatial derivative and the loss terms here...
 
 \subsubsection{Boundary conditions}
 Section \ref{sec:1DWave} presents two types of boundary conditions for the 1D wave equation in Eq. \eqref{eq:boundaryCond1DWave}. In the case of the stiff string, these can be extended to
@@ -82,8 +80,9 @@ Following Section \ref{sec:gridFunctions} and using the FD operators presented i
 \begin{equation}\label{eq:stiffStringFDS}
     \dtt \uln = c^2 \dxx \uln - \kappa^2 \dxxxx \uln - 2 \sz \dtd \uln + 2 \so\dtm\dxx \uln,
 \end{equation}
-and is defined for domain $l\in\{0, \hdots, N\}$ and number of grid points $N+1$. 
-The $\dxxxx$ operator is defined as the second-order spatial difference in Eq. \eqref{eq:discSecondSpace} applied to itself:
+for domain $l\in\{0, \hdots, N\}$ and number of grid points $N+1$. 
+
+The $\dxxxx$ operator is the second-order spatial difference in Eq. \eqref{eq:discSecondSpace} applied to itself
 \begin{equation}\label{eq:dxxxx}
     \dxxxx = \dxx\dxx = \frac{1}{h^4}\left(e_{x+}^2 - 4e_{x+}+6 - 4e_{x-}+e_{x-}^2\right).
 \end{equation} 
@@ -206,7 +205,7 @@ Substituting the first definition into the expanded scheme in Eq. \eqref{eq:expa
 \begin{equation}
     \begin{aligned}
         \!\!\!\!\!(1+\sz k) u_1^{n+1} =&\ \left(2 - 2\lambda^2 - 5\mu^2 - \frac{4\so k}{h^2}\right) u_1^n + \left(\lambda^2 + 4\mu^2 + \frac{2\so k}{h^2}\right) u_{2}^n \\
-        &-\mu^2u_3^n+ \left(-1+\sz k + \frac{4\sz k}{h^2}\right)u_1^{n-1} - \frac{2\so k}{h^2}u_{2}^{n-1}.
+        &+ \left(-1+\sz k + \frac{4\sz k}{h^2}\right)u_1^{n-1} - \frac{2\so k}{h^2}u_{2}^{n-1}.
     \end{aligned}
 \end{equation}
 Doing the same for $l=N-1$ yields
@@ -223,7 +222,7 @@ The third-order spatial FD operator in Eq. \eqref{eq:BCfreeDisc} is defined as:
 \begin{align}
     \dxd\dxx &= \frac{1}{2h^3}\left(e_{x+}-e_{x-}\right)\left(e_{x+}-2+e_{x-}\right),\nonumber\\
     &=\frac{1}{2h^3}\left(e_{x+}^2 - 2e_{x+} + 1 - (1 - 2e_{x-} + e_{x-}^2\right),\nonumber\\
-    &=\frac{1}{2h^3}\left(e_{x+}^2 - 2e_{x+} + 2e_{x-} -e_{x-}^2\right),
+    &=\frac{1}{2h^3}\left(e_{x+}^2 - 2e_{x+} + 2e_{x-} -e_{x-}^2\right).
 \end{align}
 and can be used to solve for $u_{-2}^n$ at $l=0$:
 \begin{align*}
@@ -235,11 +234,10 @@ and can be used to solve for $u_{-2}^n$ at $l=0$:
 \end{align*}
 As $u_0^n$ is not necessarily $0$ at all times, solving the first part of the boundary condition (i.e., $\dxx u_0^n = 0$) yields a different result than in the simply supported case:
 \begin{align*}
-    \frac{1}{h^2} &\left(u_1^n - 2 u_0^n + u_{-1}^n \right) = 0,\\
-    u_{-1}^n &= 2u_0^n - u_1^n.
-    % \\[-1em]
-    % \!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\xLeftrightarrow{\mystrut\ \dxx \uln = 0\ \Rightarrow\ \text{ Eq. \eqref{eq:simplySupportedResult}}\ }
-    % \quad u_{-2}^n &= u_2^n - 4 u_1^n 
+    \frac{1}{2h^3} &\left(u_2^n - 2 u_1^n + u_{-1}^n - u_{-2}^n\right) = 0\\[0.25em]
+    u_{-2}^n &= u_2^n - 2 u_1^n + u_{-1}^n\\[-1em]
+    \!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\xLeftrightarrow{\mystrut\ \dxx \uln = 0\ \Rightarrow\ \text{ Eq. \eqref{eq:simplySupportedResult}}\ }
+    \quad u_{-2}^n &= u_2^n - 3 u_1^n 
 \end{align*}
 The same can be done at $l=N$ to get the following definitions for the virtual grid points
 \begin{equation*}
@@ -271,12 +269,12 @@ When using \texttt{MATLAB}, for a more compact implementation, it is useful to w
     A\u^{n+1} = \B\u^n + \C \u^{n-1}
 \end{equation}
 where 
-\begin{equation*}
+\begin{equation}
     \begin{gathered}
     A = (1+\sz k), \quad \B = 2\I + c^2 k^2 \Dxx - \kappa^2 k^2 \Dxxxx + 2 \so k \Dxx, \\
     \text{and} \quad \C = -(1-\sz k)\I - 2\so k \Dxx.
     \end{gathered}
-\end{equation*}
+\end{equation}
 Notice that $A$ is a scalar rather than a matrix.
 
 The size of the state vectors and the matrix-form operators depend on the boundary conditions. For clamped conditions, the state vectors ($\u^{n+1}$, $\u^n$ and $\u^{n-1}$) and matrices will be of size $(N-3) \times 1$ and $(N-3) \times (N-3)$ respectively. The $\Dxx$ matrix will be of the form given in Eq. \eqref{eq:DxxDef} and the matrix form of the $\dxxxx$ operator is
@@ -292,7 +290,7 @@ The size of the state vectors and the matrix-form operators depend on the bounda
 
 For simply supported conditions, the state vectors and matrices will be of size $(N-1) \times 1$ and $(N-1) \times (N-1)$ respectively. Again, $\Dxx$ is as defined in Eq. \eqref{eq:DxxDef} and $\Dxxxx$ can be obtained by multiplying two $\Dxx$ matrices according to 
 \begin{equation}
-    \mathbf{D}_{xxxx} = \Dxx\Dxx = \frac{1}{h^4}\begin{bmatrix}
+    \Dxx\Dxx = \mathbf{D}_{xxxx} = \frac{1}{h^4}\begin{bmatrix}
         5& -4 & 1 & & & \mathbf{0}& \\
         -4 & 6 &\ddots &\ddots & & & \\
         1& \ddots & \ddots & -4 & 1 & & \\
@@ -362,14 +360,14 @@ In order to obtain the stability condition for the damped stiff string, one can 
 Using the definitions found in Eq. \eqref{eq:temporalAnsatz} for the temporal operators and Eqs. \eqref{eq:dxxAnsatz} and \eqref{eq:dxxxxAnsatz} for the spatial operators, the frequency domain representation of Eq. \eqref{eq:stiffStringFDS} can be obtained:
 \begin{align*}
     \!\!\!\!\frac{1}{k^2}\left(z - 2 + z^{-1}\right) =&-\frac{4c^2}{h^2}\sin^2(\beta h/2) - \frac{16\kappa^2}{h^4}\sin^4(\beta h/2) - \frac{\sz}{k}z + \frac{\sz}{k}z^{-1}\\
-    & - \frac{8 \so}{kh^2}\sin^2(\beta h/2) + \frac{8 \so}{kh^2} \sin^2(\beta h/2)z^{-1},
+    & - \frac{8 \so}{kh^2}\sin^2(\beta h/2) + \frac{8 \so}{kh^2} \sin^2(\beta h/2)z^{-1}
 \end{align*}
 and after collecting the terms, the characteristic equation is as follows
 \begin{gather}
     (1+\sz k)z + \left(16\mu^2\sin^4(\beta h/2)+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\sin^2(\beta h/2) - 2\right)\nonumber\\
     +\left(1-\sz k-\frac{8\so k}{h^2}\sin^2(\beta h/2)\right)z^{-1}=0.\label{eq:charDampedString}
 \end{gather}
-Rewriting this to the form in Eq. \eqref{eq:polynomialForm}, and using $\S = \sin^2(\beta h /2)$ for brevity, yields
+Rewriting this to the form \eqref{eq:polynomialForm}, and using $\S = \sin^2(\beta h /2)$ for brevity, yields
 \begin{equation*}
     z^2 + \left(\frac{16\mu^2\S^2+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\S - 2}{1 + \sz k}\right)z+\frac{1-\sz k-\frac{8\so k}{h^2}\S}{1 + \sz k}=0.
 \end{equation*}
@@ -386,7 +384,7 @@ The second condition is always true due to the fact that $\sigma_0,\sigma_1 \geq
     -2+\frac{8\so k}{h^2}\S&\leq 16\mu^2\S^2+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\S - 2\leq 2-\frac{8\so k}{h^2}\S,\\
     0&\leq 16\mu^2\S^2+4\lambda^2\S\leq 4-\frac{16\so k}{h^2}\S.
 \end{align*}
-As $16\mu^2\S^2+4\lambda^2\S$ is non-negative, the first condition is always satisfied. Continuing with the second condition:
+As $16\mu^2\S^2+4\lambda^2\S$ is positive definite, the first condition is always satisfied. Continuing with the second condition:
 \begin{align*}
     16\mu^2\S^2+\left(4\lambda^2+ \frac{16\so k}{h^2}\right)\S &\leq 4,\\
     4\mu^2\S^2+\left(\lambda^2+ \frac{4\so k}{h^2}\right)\S&\leq 1.
@@ -397,11 +395,11 @@ As $\S$ is bounded by $1$ for all values of $\beta$, one can set $\S = 1$ \SWcom
     4\kappa^2k^2+(c^2k^2+ 4\so k)h^2&\leq h^4,\\
     h^4- (c^2k^2+ 4\so k)h^2 - 4\kappa^2k^2 &\geq 0 ,
 \end{align*}
-which is a quadratic equation in $h^2$. Using the quadratic formula, the grid spacing $h$ can then be shown to be bounded by
+which is a quadratic equation in $h^2$ with $h$ bounded by
 \begin{equation}
-    h \geq \sqrt{\frac{c^2k^2+4\so k + \sqrt{(c^2k^2 + 4\so k)^2+16\kappa^2k^2}}{2}},
+    h \geq \sqrt{\frac{c^2k^2+4\so k + \sqrt{(c^2k^2 + 4\so k)^2+16\kappa^2k^2}}{2}}.
 \end{equation}
-which is the stability condition for the damped stiff string also shown in Eq. \eqref{eq:stiffStringStability}.
+This is the stability condition for the damped stiff string also shown in Eq. \eqref{eq:stiffStringStability}.
 
 \section{Energy analysis}\label{sec:energyAnalysisString}
 As mentioned in Section \ref{sec:energyAnalysis}, it is useful to perform the energy analysis on the scheme with all physical parameters written out. Discretising the PDE in Eq. \eqref{eq:stiffStringPDE} yields
@@ -410,15 +408,7 @@ As mentioned in Section \ref{sec:energyAnalysis}, it is useful to perform the en
 \end{equation}
 defined for $l\in d$ with discrete domain $d = \{0, \hdots, N\}$. This section will follow the 4 steps described in Section \ref{sec:energyAnalysis}.
 
-\subsubsection{Step 1: Obtain $\dtp \h$}
-The first step is to take the inner product (see Eq. \eqref{eq:discInnerProd}) of the scheme with $(\dtd \uln)$ over discrete domain $d$:
-\begin{equation}\label{eq:rOCStiffString}
-    \begin{aligned}
-    \dtp \h =&\ \rho A \langle \dtd \uln, \dtt \uln \rangle_d - T \langle \dtd \uln, \dxx \uln\rangle_d + EI \langle \dtd \uln, \dxxxx \uln \rangle_d\\
-    & + 2\sz\rho A \langle \dtd \uln, \dtd \uln \rangle_d - 2\so \rho A\langle \dtd \uln, \dtm \dxx \uln \rangle_d = 0.
-    \end{aligned}
-\end{equation}  
-% If the free boundary conditions in \eqref{eq:BCfreeDisc} are used, the primed inner product in Eq. \eqref{eq:primedInnerProd} needs to be used. Here we continue with clamped / simply supported boundaries.
+This section will be divided into $5$ steps, as done in Section \ref{sec:energyAnalysis}.
 
 \subsubsection{Step 2: Identify energy types and isolate $\dtp$}
 As there is damping present in the system, and the system is distributed, the energy balance will be of the form 
@@ -442,20 +432,6 @@ where the boundary term becomes
 \end{align*}
 For the clamped and simply supported boundary conditions in \eqref{eq:BCclampedDisc} and \eqref{eq:BCsimplySupportedDisc} it can easily be shown that $\mathfrak{b} = 0$. If free conditions as in Eq. \eqref{eq:BCfreeDisc} are used, the boundary conditions will vanish when the primed inner product in Eq. \eqref{eq:primedInnerProd} is used in Step 1 and identity \eqref{eq:summationByPartsTwicePrimed} is used when performing summation by parts. Here, only the clamped / simply supported case will be considered. 
 
-Isolating $\dtp$ to obtain the total energy $\h$ in the definition for $\dtp \h$ above, requires identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2} and yields
-\begin{equation*}
-    \begin{aligned}
-        \dtp\h &= \dtp\left(\frac{\rho A}{2}\lVert\dtm \uln\rVert_d^2 + \frac{T}{2}\langle\dxp\uln, e_{t-}\dxp\uln\rangle_{\underline{d}} + \frac{EI}{2}\langle\dxx\uln, e_{t-}\dxx\uln\rangle_{\overline{\underline{d}}}\right) \\
-        &=-\mathfrak{q}.
-    \end{aligned}
-\end{equation*}
-From this, the definition for the Hamiltonian $\h$, the kinetic energy $\t$ and potential energy $\v$ can be found:
-\begin{equation}\label{eq:energyBalanceStiffString}
-    \begin{gathered}
-        \h = \t + \v, \qwiq \t = \frac{\rho A}{2}\lVert\dtm \uln\rVert^2_d,\quad \text{and} \\
-        \v = \frac{T}{2}\langle\dxp\uln, e_{t-}\dxp\uln\rangle_{\underline{d}} + \frac{EI}{2}\langle\dxx\uln, e_{t-}\dxx\uln\rangle_{\overline{\underline{d}}}\ .
-    \end{gathered}
-\end{equation}
 
 \subsubsection{Step 3: Check units}
 Comparing the acquired energy balance in Eq. \eqref{eq:energyBalanceStiffString} to the energy balance for the 1D wave equation in Eq. \eqref{eq:energyBalance1DWave}, one can observe that the balances are nearly identical, the only difference being the second term in the definition for $\v$ in Eq. \eqref{eq:energyBalanceStiffString}. 
@@ -494,23 +470,6 @@ kinEnergy(n) = rho * A * h / 2 * sum((1/k * (u - uPrev)).^2);
 potEnergy(n) = T / 2 * h * sum((Dxp * [0; u]) .* (Dxp * [0; uPrev])) ... + E * I * h / 2 * sum((Dxx * u) .* (Dxx * uPrev));
 \end{lstlisting}
 
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}[->,node distance=3cm,
-        thick,main node/.style={circle,draw}]
-    
-        \node[] (image) at (0,0) {
-        \includegraphics[width=\textwidth]{figures/resonators/stiffStringEnergy.eps}
-        };
-    
-        \node[] (he) at (0.2,0.5) {\small $\mathfrak{h}_\text{e}$};
-
-        \node[] (h) at (-5.75, 1) {\small $\mathfrak{h}$};
-        \node[] (v) at (-5.75, 0.5) {\small $\color{red}\mathfrak{v}$};
-        \node[] (t) at (-5.75, 0) {\small $\color{blue}\mathfrak{t}$};
-      \end{tikzpicture}
-      \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the stiff string are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyStiffString}}
-\end{figure}
 
 \section{Modal analysis}
 % To find an expression for the modal frequencies one can ignore the damping terms for now and follow the process in Section \ref{sec:modalAnalysis} to obtain
@@ -587,19 +546,19 @@ Equation \eqref{eq:matrixFormStiffStringImplicit} can be considered a system of 
 \subsection{von Neumann analysis}
 Using the same process as in Section \ref{sec:stiffStringStability}, the definitions in Section \ref{sec:stabilityAnalysis} can be used to obtain a frequency domain representation of the FD scheme in Eq. \eqref{eq:stiffStringFDSImplicit}:
 \begin{align}
-    \!\!\!\!\frac{1}{k^2}\left(z - 2 + z^{-1}\right) =&-\frac{4c^2}{h^2}\sin^2(\beta h/2) - \frac{16\kappa^2}{h^4}\sin^4(\beta h/2) - \frac{\sz}{k}z + \frac{\sz}{k} z^{-1}\nonumber\\
-    & - \frac{4 \so}{kh^2}\sin^2(\beta h/2)z + \frac{4 \so}{kh^2} \sin^2(\beta h/2)z^{-1},
+    \!\!\!\!\frac{1}{k^2}\left(z - 2 + z^{-1}\right) =&-\frac{4c^2}{h^2}\sin^2(\beta h/2) - \frac{16\kappa^2}{h^4}\sin^4(\beta h/2) - \sz kz + \sz k z^{-1}\nonumber\\
+    & - \frac{4 \so  k}{h^2}\sin^2(\beta h/2)z + \frac{4 \so  k}{h^2} \sin^2(\beta h/2)z^{-1}
 \end{align}
-and collecting the terms, yields the following characteristic equation:
+and after collecting the terms, the characteristic equation follows
 \begin{gather}
 \left(1+\sz k + \frac{4\so k}{h^2}\sin^2(\beta h/2)\right)z + \left(16\mu^2\sin^4(\beta h/2)+4\lambda^2\sin^2(\beta h/2) - 2\right)\nonumber\\
 + \left(1-\sz k - \frac{4\so k}{h^2}\sin^2(\beta h/2)\right)z^{-1} = 0.\label{eq:charDampedStiffSTring}
 \end{gather}
-Rewriting this to the form found in Eq. \eqref{eq:polynomialForm} and, again, using $\S = \sin^2(\beta h / 2)$ yields:
+Rewriting this to the form \eqref{eq:polynomialForm} and, again, using $\S = \sin^2(\beta h / 2)$ yields:
 \begin{equation*}
 z^2 + \frac{16\mu^2\S^2+4\lambda^2\S - 2}{1+\sz k + \frac{4\so k}{h^2}\S}z+\frac{1-\sz k - \frac{4\so k}{h^2}\S}{1+\sz k + \frac{4\so k}{h^2}\S} = 0.
 \end{equation*}
-Stability of the system can then be proven using condition \eqref{eq:condition214}, and after substitution of the coefficients yields
+stability of the system can be proven using condition \eqref{eq:condition214}. Continuing with $\S = \sin^2(\beta h/2)$ and substituting the coefficients into this condition yields
 \begin{align*}
 \left|\frac{16\mu^2\S^2+4\lambda^2\S - 2}{1+\sz k + \frac{4\so k}{h^2}\S} \right|-1 &\leq \frac{1-\sz k - \frac{4\so k}{h^2}\S}{1+\sz k + \frac{4\so k}{h^2}\S}\leq 1,\\[1em]
 \left|16\mu^2\S^2+4\lambda^2\S - 2 \right| - \left(1+\sz k + \frac{4\so k}{h^2}\S\right) &\leq 1-\sz k - \frac{4\so k}{h^2}\S\\
