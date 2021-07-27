@@ -252,6 +252,15 @@
 \tikzstyle{block} = [draw,minimum size=0.5cm]
 \usetikzlibrary{math,arrows,positioning,shapes.geometric, decorations.markings}
 
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\def\fullMn{{\mathcal{M}^n}}
+
+
 \usepackage{listings}
 \usepackage{courier}
 \usepackage{multirow}

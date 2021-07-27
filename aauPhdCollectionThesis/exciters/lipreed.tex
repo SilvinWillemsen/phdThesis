@@ -114,7 +114,7 @@ To reduce the number of variables in later derivations in this chapter, one can 
 \end{equation}
 with angular frequency of the lip reed $\omega_0 = \sqrt{K/M}$ (rad/s) and loss parameter $\sigma_\text{r} = R / M$ (s$^{-1}$). 
 
-\section{Discrete time}
+\section{Discrete time}\label{sec:discreteLipReed}
 \def\nph{}
 \def\nphSys{n+1/2}
 
@@ -134,7 +134,7 @@ Here, $p_0^n$ and $S_{1/2}v_{1/2}^{\nphSys}$ are discrete values at the left bou
     \alpha_\text{r}y^{n+3/2} = 4y^{n+1/2} + \beta_\text{r}y^{n-1/2} + \xi_\text{r}\Delta p^{n+1/2}
 \end{equation}
 where (after a multiplication by 2 to reduce fractions)
-\begin{equation}
+\begin{equation}\label{eq:lipreedUpdateTerms}
     \alpha_\text{r} = 2 + \omega_0^2k^2 + \sigma_\text{r} k\ , \quad \beta_\text{r} =  \sigma_\text{r} k - 2 - \omega_0^2 k^2\ , \quad \text{and} \quad \xi_\text{r} = \frac{2 S_\text{r}k^2}{M}.
 \end{equation}
 Although Eq. \eqref{eq:updateEqLipreed} seems to be implicitly dependent to the pressure difference $\Delta p^{n+1/2}$ it is possible to explicitly solve it. A derivation is shown below.

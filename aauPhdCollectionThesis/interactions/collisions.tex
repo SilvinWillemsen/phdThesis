@@ -79,7 +79,7 @@ Secondly, the definition of $\eta$ in \eqref{eq:massBarrierPDE3} is affected by 
 \subsection{Discrete time}
 Before discretising system \eqref{eq:massBarrier} in full, the discrete approximation to the collision potential will be elaborated on.
 Following \cite{Ducceschi2021}, $\psi$ is placed on an interleaved temporal grid (see Section \ref{sec:firstOrderDiscrete}) using
-\begin{equation}
+\begin{equation}\label{eq:psiHalfDef}
     \psi^{n-1/2} = \mu_{t-}\psi^n,
 \end{equation} 
 where the interleaved temporal grid is used here as it results in energy conservation in discrete time (see Section \ref{sec:energyAnalysisMassBarrier}). Approximations to $\psi$ and $g$ in Eq. \eqref{eq:massBarrier} can then be made as 
@@ -116,7 +116,7 @@ Recalling \eqref{eq:derivPotential} and \eqref{eq:potential}, this can convenien
 \end{equation}
 For implementation purposes, one can expand the $[\cdot]_+$ operator as the following (equivalent) condition:
 \begin{subnumcases}{ \label{eq:gDefOld} g^n =}
-    \sqrt{\frac{K_\text{c}(\alpha_\text{c}+1)}{2}}\cdot(\eta^n)^{\frac{\alpha_\text{c}-1}{2}}
+    \sqrt{\frac{K_\text{c}(\alpha_\text{c}+1)}{2}}\cdot(\eta^n)^{\frac{\alpha_\text{c}-1}{2}},
     & if $\eta^n \geq 0$ \label{eq:collCorr1Old}\\
     0, & $\text{if } \eta^n < 0$\label{eq:collCorr2Old}
 \end{subnumcases}
@@ -124,11 +124,11 @@ This implementation is the one presented in \cite{Ducceschi2019}, but exhibited 
 
 In \cite{Ducceschi2021}, the definition for $g^n$ in \eqref{eq:gDefOld} is extended, starting out by using an implicit equation for $g^n$ by directly discretising Eq. \eqref{eq:approxPsi}
 \begin{equation}\label{eq:gImp}
-    g_\text{imp}^n = 2\frac{\psi^{n+1/2} - \psi^{n-1/2}}{\eta^{n+1} - \eta^{n-1}}.
+    g_\text{imp}^n = 2\frac{\psi^{n+1/2} - \psi^{n-1/2}}{\eta^{n+1} - \eta^{n-1}}\ .
 \end{equation}
 If there is, however, no collision at $n+1/2$, $\psi^{n+1/2} = 0$ and Eq. \eqref{eq:gImp} reduces to
 \begin{equation*}
-    g_\text{imp}^n = -2\frac{\psi^{n-1/2}}{\eta^{n+1} - \eta^{n-1}}.
+    g_\text{imp}^n = -2\frac{\psi^{n-1/2}}{\eta^{n+1} - \eta^{n-1}}\ .
 \end{equation*}
 Furthermore, due to the fact that there is no collision, $\eta^{n+1}$ can be calculated according to $\eta^{n+1} = \eta^\star = u^\star - b$, where $u^\star$ is the value of $u^{n+1}$ calculated using the scheme in Eq. \eqref{eq:massBarrierSystem1} without the collision force. Expanding Eq. \eqref{eq:massBarrierSystem1} without the collision force yields  
 \begin{equation*}
@@ -136,9 +136,9 @@ Furthermore, due to the fact that there is no collision, $\eta^{n+1}$ can be cal
 \end{equation*}
 Thus, if there is no collision, $g^n_\text{imp}$ can now be explicitly calculated from known values and be used in the definition for $g^n$ in Eq. \eqref{eq:gDefOld} according to \cite{Ducceschi2021}
 \begin{subnumcases}{ \label{eq:gDef} g^n =}
-    \kappa\sqrt{\frac{K_\text{c}(\alpha_\text{c}+1)}{2}}\cdot(\eta^n)^{\frac{\alpha_\text{c}-1}{2}}
+    \kappa\sqrt{\frac{K_\text{c}(\alpha_\text{c}+1)}{2}}\cdot(\eta^n)^{\frac{\alpha_\text{c}-1}{2}},
     & if $\eta^n \geq 0,$ \label{eq:collCorr1}\\
-    -2 \frac{\psi^{n-1/2}}{\eta^\star-\eta^{n-1}} & if $\eta^n < 0\ \text{ and } \ \eta^{\star} \neq \eta^{n-1},$\label{eq:collCorr2}\\
+    -2 \frac{\psi^{n-1/2}}{\eta^\star-\eta^{n-1}}, & if $\eta^n < 0\ \text{ and } \ \eta^{\star} \neq \eta^{n-1},$\label{eq:collCorr2}\\
     0, & $\text{if } \eta^n < 0\ \text{ and } \ \eta^{\star} = \eta^{n-1}.\qquad$\label{eq:collCorr3}
 \end{subnumcases}
 %

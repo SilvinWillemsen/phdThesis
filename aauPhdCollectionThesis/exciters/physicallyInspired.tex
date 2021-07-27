@@ -65,7 +65,7 @@ Figure \ref{fig:raisedCos} shows the 1D wave equation initialised with a raised 
 \end{figure}
 
 \subsubsection{Strike}\label{sec:strike}
-If one initialises the system with an initial velocity, i.e., only setting a displacement at $n=1$, and leaving $u^0_l = 0$ for $l\in d$, one can use the raised cosine to model a strike. Figure \ref{fig:strike} shows a strike using the same values as for the pluck in Figure \ref{eq:raisedCos} at $n=1$, but leaving $u_l^0 = 0$. One can observe that, for the pluck, the displacement of the system stays high rather than going back to 0 as in the case of the pluck. Furthermore, the amplitude of the displacement is higher than for the pluck (notice the scaling of the y-axis).%\footnote{In the case of the 1D wave equation struck using a raised cosine, the maximum amplitude can be calculated to be half of the summed values of the excitation.}
+If one initialises the system with an initial velocity, i.e., only setting a displacement at $n=1$, and leaving $u^0_l = 0$ for $l\in d$, one can use the raised cosine to model a strike. Figure \ref{fig:strike} shows a strike using the same values as for the pluck in Figure \ref{fig:raisedCos} at $n=1$, but leaving $u_l^0 = 0$. One can observe that, for the pluck, the displacement of the system stays high rather than going back to 0 as in the case of the pluck. Furthermore, the amplitude of the displacement is higher than for the pluck (notice the scaling of the y-axis).%\footnote{In the case of the 1D wave equation struck using a raised cosine, the maximum amplitude can be calculated to be half of the summed values of the excitation.}
 
 \def\figWidth{0.32}
 \begin{figure}[h]
@@ -105,7 +105,7 @@ Due to the spatial discontinuity at the corner, some high-frequency oscillations
     \caption{The 1D wave equation initialised with a triangular pluck with $l_0=\floor[0.2N]$. Note that sample rate has been set to $\fs = 441000$ Hz to show more ideal triangular motion. \label{fig:pluck}}
 \end{figure}
 
-\subsection{2D raised cosine}
+\subsection{2D raised cosine}\label{sec:2DraisedCos}
 Introducing an extra coordinate $y$, one can extend the raised cosine presented in Section \ref{sec:raisedCosine} to 2D according to 
 \begin{equation}\label{eq:raisedCosCont2D}
     e_\text{rc}(x,y)\! =\! 
@@ -177,7 +177,7 @@ For the following, consider the ideal string of length $L$ (in m), its transvers
 \end{equation}
 where $e(x)$ is a spatial distribution function such as those presented in Section \ref{sec:initConditionsPhysInsp} (in m$^{-1}$).
 
-\subsection{Raised cosine}
+\subsection{Raised cosine}\label{sec:timeVaryingRaisedCos}
 To yield a smooth excitation over time, one can, similar to the spatially distributed raised cosine in Eq. \ref{sec:raisedCosine}, define a temporally distributed raised cosine. Using the time of excitation $t_0\geq 0$ and excitation duration $t_\text{d}>0$ (both in s) the temporal raised cosine can be used as a force function, as
 \begin{equation}\label{eq:raisedCosTemp}
     f(t) = 

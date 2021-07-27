@@ -164,7 +164,7 @@ To summarise, for a 1D system
 
 
 \subsection{Finite-difference operators}\label{sec:FDoperators}
-Now that the state variable has a discrete counterpart, this leaves the derivatives to be discretised, or approximated. We start by introducing \textit{shift operators} that can be applied to a grid function and `shift' its indexing, either temporally or spatially. Forward and backward shifts in time, together with the identity operation are
+Now that the state variable has a discrete counterpart, this leaves the derivatives to be discretised, or approximated. We start by introducing \textit{shift operators} that can be applied to a grid function and `shift' its indexing, either temporally or spatially. These are denoted by $e_s$, where subscript $s$ denotes the type and direction of the shift. Forward and backward shifts in time, together with the identity operation are
 % 
 \begin{equation}\label{eq:temporalShifts}
     e_{t+}\uln = u_l^{n+1},\quad e_{t-}\uln = u_l^{n-1}, \quad \text{and} \quad 1\uln = \uln.
@@ -471,7 +471,7 @@ The output of the system can be obtained by `recording' the displacement of the 
 The 1D wave equation}\label{sec:1DWave}
 Arguably the most important PDE in the field of physical modelling for sound synthesis is the 1D wave equation. It can be used to describe transverse vibration in an ideal string, longitudinal vibration in an ideal bar or the pressure in an acoustic tube (see Chapter \ref{ch:brass}). Although the behaviour of this equation alone does not appear in the real world as such -- as no physical system is ideal -- it is extremely useful as a test case and a basis for more complicated models. %Here, it will be used to introduce various concepts and analysis techniques in the field of FDTD methods.
 
-\subsection{Continuous time\todo{FULL DOC SWEEP: check hyphen in titles (DOING)}}
+\subsection{Continuous time\todo{FULL DOC SWEEP: check hyphen in titles (DOING)}}\label{sec:1DwaveContTime}
 The 1D wave equation is a PDE that describes the motion of a system distributed in one dimension of space. Consider the state of a 1D system $u=u(x,t)$ \todo{unit?}of length $L$ (in m) defined for time $t\geq 0$ and $x\in \D$ with $\D = [0, L]$. The PDE describing its motion is
 \begin{equation}\label{eq:1DwavePDE}
     \ptt u = c^2 \pxx u,

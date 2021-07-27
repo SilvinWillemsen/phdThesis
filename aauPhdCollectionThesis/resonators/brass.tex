@@ -30,7 +30,7 @@ The interesting thing about the presence of a variable cross-section, is that it
 %test for git
 
 \subsubsection{Boundary conditions}
-The choices for boundary conditions in an acoustic tube are open and closed, defined as \cite{Bilbao2018}
+The choices for boundary conditions in an acoustic tube are open and closed, defined as \cite{Bilbao2018}\footnote{The Dirichlet condition is identical to the one shown in Eq. \eqref{eq:contDirichlet}, but is derived from $p(0, t) = p(L, t) = 0$ and the time-derivative has thus been kept here.}
 \begin{subequations}\label{eq:contBoundariesBrass}
     \begin{align}
         \partial_t\Psi(0, t) &= 0, & \partial_t\Psi(L, t) &= 0, & &\text{(Dirichlet, open)},\label{eq:contDirichletBrass}\\
@@ -79,9 +79,9 @@ and similar to the 1D wave equation in Section \ref{sec:1DWaveDisc} needs to abi
 \begin{equation}\label{eq:CFLwebster}
     \lambda \leq 1,
 \end{equation}
-in order for the scheme to be stable. See Section \ref{sec:stabilityEnergyWebster} for a derivation. The number of grid points $N$ can then be calculated in the same way as for the 1D wave equation in Eq. \eqref{eq:orderOfCalc}.
+in order for the scheme to be stable. See Section \ref{sec:stabilityEnergyWebster} for a derivation. The number of grid points $N$ can then be calculated in the same way as for the 1D wave equation in Eq. \eqref{eq:orderOfCalc}, and the stencil is similar to Figure \ref{fig:stencil1DWave}.
 
-Notice that at the boundaries, Eq. \eqref{eq:webstersUpdateEq} requires values of $S$ (through its definition in Eq. \eqref{eq:Sbar}) outside of the defined domain, i.e., $S_{N+1/2}$ and $S_{-1/2}$. To solve this, one can set $\Sbar_0 = S(0)$ and $\Sbar_N = S(L)$ from which $S_{-1/2}$ and $S_{N+1/2}$ can be calculated according to
+Notice that at the boundaries, Eq. \eqref{eq:webstersUpdateEq} requires values of $S$ outside of the defined domain through its definition in Eq. \eqref{eq:Sbar} (i.e., $S_{N+1/2}$ and $S_{-1/2}$). To solve this, one can set $\Sbar_0 = S(0)$ and $\Sbar_N = S(L)$ from which $S_{-1/2}$ and $S_{N+1/2}$ can be calculated according to
 \begin{subequations}
     \begin{align}
         \Sbar_0 = \frac{1}{2}(S_{1/2} + S_{-1/2}) \ &\Rightarrow \ S_{-1/2} = 2\Sbar_0 - S_{1/2},\\
@@ -119,7 +119,7 @@ and as $\Sbar_0 = \frac{1}{2}(S_{1/2}+S_{-1/2})$ through Eq. \eqref{eq:Sbar}, th
 One can implement the right boundary condition by simply reducing the range of operation to $l = \{0, \hdots, N-1\}$, as $\Psi_N^n = 0$ according to Eq. \eqref{eq:openRightBrass}. A more realistic boundary condition for the open end is presented in the following.
 
 \subsection{Radiation}\label{sec:radiating}
-One of the ways that an acoustic tube loses energy, is through radiation. The right boundary condition presented in Eq. \eqref{eq:openClosed} can be changed to be radiating according to \cite{theBible}
+One of the ways that an acoustic tube loses energy is through radiation. The right boundary condition presented in Eq. \eqref{eq:openClosed} can be changed to be radiating according to \cite{theBible}
 \begin{equation}\label{eq:radCont}
     \partial_x\Psi(L,t) = -a_1\partial_t\Psi(L,t)-a_2\Psi(L,t),
 \end{equation}
@@ -261,7 +261,7 @@ The output of an implementation of Webster's equation is shown in Figure \ref{fi
 
 
 \subsection{Energy analysis}\label{sec:energyAnalysisWebster}
-The energy analysis of Webster's equation with a radiating boundary might seem straightforward. However, due to the varying cross-sectional area, the energy balance deserves a more detailed treatment, especially at the boundaries. For this analysis, (centred) Neumann boundary conditions are used for both boundaries and the input is ignored. This section follows the steps presented in Section \ref{sec:energyAnalysis}.% to retain generality. %These can then easily be adapted to Dirichlet if needed.
+The energy analysis of Webster's equation with a radiating boundary might seem straightforward. However, due to the varying cross-sectional area, the energy balance deserves a more detailed treatment, especially at the boundaries. For this analysis, (centred) Neumann boundary conditions are used for both boundaries (for generality) and the input is ignored. This section follows the steps presented in Section \ref{sec:energyAnalysis}.% to retain generality. %These can then easily be adapted to Dirichlet if needed.
 
 \subsubsection{Step 1: Obtain $\dtp \h$}
 Usually, to ensure vanishing boundary terms when using centred Neumann boundary conditions, the primed inner product in Eq. \eqref{eq:primedInnerProd} is chosen. However, as the system has a spatially varying cross-section, the more general weighted inner product in Eq. \eqref{eq:weightedInnerProd} has to be chosen instead.
@@ -418,7 +418,7 @@ For the special choice of $[S]_l = \mxx S_l$, this condition reduces to
 also given in \eqref{eq:CFLwebster}. This choice of $[S]_l$ is equal to $\Sbar_l$ through Eq. \eqref{eq:Sbar}, hence its choice in Eq. \eqref{eq:discWebster}.
 
 \subsection{Modal analysis}
-The variable cross-section causes the modes of the system to vary in interesting ways. If the tube is perfectly cylindrical and $S(x)$ is thus constant, Webster's equation reduces to the 1D wave equation and the modal frequencies are integer multiples of the fundamental frequency. 
+Following Section \ref{sec:oneStepForm}one can perform a modal analysis of the system by writing Eq. \eqref{eq:matrixFormWebsters} in one-step  form (ignoring the input vector). The variable cross-section causes the modes of the system to vary in interesting ways. If the tube is perfectly cylindrical and $S(x)$ is thus constant, Webster's equation reduces to the 1D wave equation and the modal frequencies are integer multiples of the fundamental frequency. 
 For low cross-sectional variations, the modes generally follow a linear pattern. See Figure \ref{fig:webstersModes}. The damping per mode, however, follows a different pattern, where higher damping occurs around $\fs/4$, and is due to the comb-filtering effect that the radiation has on the system. \SWcomment[is this true?]
 
 \begin{figure}[h]
@@ -428,7 +428,7 @@ For low cross-sectional variations, the modes generally follow a linear pattern.
 \end{figure}
 
 \section{First-order system}\label{sec:firstOrderSystem}
-Until now, only PDEs have been presented that are second-order in time, i.e., that are dependent on the acceleration of the state variable. This section presents a system of two coupled first-order PDEs which are instead dependent on the velocity. State-of-the-art research on brass instruments in the context of FDTD methods also uses this coupled system (see e.g.\cite{Bilbao2016, Harrison2018}) and has been used in this project to model the trombone in paper \citeP[H].\todo{look at wording}
+Until now, only PDEs that are second-order in time have been presented, i.e., that are dependent on the acceleration of the state variable. This section presents a system of two coupled first-order PDEs which are instead dependent on the velocity. State-of-the-art research on brass instruments in the context of FDTD methods also uses this coupled system (see e.g.\cite{Bilbao2016, Harrison2018}) and has been used in this project to model the trombone in paper \citeP[H].\todo{look at wording}
 
 \subsection{Continuous time}
 Using the same variables as before for cross-sectional area $S=S(x)$, wave speed $c$, and air density $\rho_0$, a system of PDEs that describes air propagation in an acoustic tube can be defined as follows:
@@ -477,7 +477,7 @@ after which the update equations become
 \end{subequations}
 where (again) $\lambda = ck/h \leq 1$ for stability. The pressure is defined for $l=\{0, \hdots, N\}$ and the velocity for $l=\{0, \hdots, N-1\}$ where $N$ is the number of intervals between the grid points on the pressure grid. Notice that the range of calculation for the particle velocity is one fewer grid point than that of the pressure.
 
-An advantage of using an interleaved grid like this, is that the forward and backward first-order are second-order accurate, and can be shown through a Taylor series expansion as done in \ref{sec:FDoperators} (also see \cite{Harrison2018}).
+An advantage of using an interleaved grid like this, is that the forward and backward FD operators are second-order accurate, and can be shown through a Taylor series expansion as done in \ref{sec:FDoperators} (also see \cite{Harrison2018}).
 
 \begin{figure}
     \centering
@@ -493,7 +493,7 @@ The boundary conditions in Eq. \eqref{eq:firstOrderBoundaryConditionsCont} can b
         \mu_{x-}(S_{1/2}v_{1/2}^n) &= 0, & \mu_{x+}(S_{N-1/2}v_{N-1/2}^n) &= 0, & &\text{(Neumann, closed)}.
     \end{align}
 \end{subequations}
-
+\todo{stencil?}
 \subsection{Matrix form}
 System \eqref{eq:firstOrderFDS} can be written in matrix form, by saving the states of $p_l^n$ and $v_{l+1/2}^{n+1}$ in vectors as 
 \begin{equation}

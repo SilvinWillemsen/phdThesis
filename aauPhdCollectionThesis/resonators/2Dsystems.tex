@@ -80,7 +80,7 @@ Consider a system modelling the 2D wave equation with side lengths $L_x$ and $L_
 \begin{equation}\label{eq:2DwavePDE}
     \ptt u = c^2\Delta u,
 \end{equation}
-with wave speed $c$ (in m/s) and the Laplacian operator as defined in Eq. \eqref{eq:laplacian}. If the 2D wave equation is used to model an ideal membrane, the wave speed is defined as $c = \sqrt{T/\rho H}$ (in m/s), with tension per unit length (applied to the boundary) \todo{check whether this wording is right..} $T$ (in N/m), material density $\rho$ (in kg/m$^3$) and thickness $H$ (in m).
+with wave speed $c$ (in m/s) and the Laplacian operator as defined in Eq. \eqref{eq:laplacian}. If the 2D wave equation is used to model an ideal membrane, the wave speed is defined as $c = \sqrt{T/\rho H}$ (in m/s), with tension per unit length $T$ (in N/m), material density $\rho$ (in kg/m$^3$) and thickness $H$ (in m).
 
 \subsubsection{Boundary conditions}
 Similar to the 1D wave equation, two alternatives for boundary conditions are
@@ -242,7 +242,7 @@ If one would like to visualise the system state as a 2D grid, one can revert the
 \begin{center}
     \texttt{uMatrix = reshape(u, Ny-1, Nx-1);}
 \end{center}
-A 2D raised-cosine excitation can be implemented in the same way by reshaping an excitation matrix to a vector (see lines 40--52 in Appendix \ref{app:2DWave})\todo{check if this is still true}.
+A 2D raised-cosine excitation can be implemented in the same way by reshaping an excitation matrix to a vector (see Section \ref{sec:2DraisedCos})\todo{check if this is still true}.
 
 \subsubsection{Output}
 Figure \ref{fig:2Dpropagation} shows the wave propagation of an implementation of the 2D wave equation with Dirichlet boundary conditions. Parameter values are $L_x = 1.5$ m, $L_y = 1$ m and $c= 360$ m/s. Waves reflect at the boundaries at an increasing rate. This is also shown in Figure \ref{fig:output2DWave}, where the output -- taken at $(x,y) = (0.15, 0.85)$ -- in time domain shows an increase in oscillations over time, due to these reflections. The right panel shows that the output contains many partials that are close together, i.e., the output is highly inharmonic. As opposed to the output of the 1D wave equation shown in Figure \ref{fig:1DWaveOutput}, where the partials are integer multiples of the fundamental frequency, the 2D wave equation exhibits aperiodic behaviour due to the aforementioned reflections, causing this inharmonicity.
@@ -564,7 +564,7 @@ where
 \end{gather*}
 and the identity matrix $\I$ is of the same size as $\DDeltaDelta$ and $\DDeltamat$.
 
-As a starting point for implementation, possible parameters are given in Table \ref{tab:thinPlateParams}. Figure \ref{fig:thinPlatePropagation} shows the wave propagation of a thin plate excited with a 2D raised cosine at $(x,y) = (0.25L_x, 0.5L_y)$ and uses these parameters.
+As a starting point for implementation, possible parameters are given in Table \ref{tab:thinPlateParams}. Figure \ref{fig:thinPlatePropagation} shows the wave propagation of a thin plate using these parameters, and excited using the same excitation as used for the 2D wave equation in Section \ref{sec:2DwaveImplementation} (a 2D raised cosine at $(x,y) = (0.25L_x, 0.5L_y)$). When compared to Figure \ref{fig:2Dpropagation}, dispersive effects -- where higher-frequency components travel faster than lower-frequency ones -- are apparent due to stiffness.
 
 \begin{table}[h]
     \begin{center}
@@ -585,7 +585,7 @@ As a starting point for implementation, possible parameters are given in Table \
 \end{table}
 {\renewcommand{\arraystretch}{1}
 
-When compared to Figure \ref{fig:2Dpropagation}, dispersive effects -- where higher-frequency components travel faster than lower-frequency ones -- are apparent due to stiffness. Figure \ref{fig:outputThinPlate} shows the time domain and frequency domain output of the thin plate at $(x,y) = (0.15L_x, 0.85 L_y)$.
+Figure \ref{fig:outputThinPlate} shows the time domain and frequency domain output of the thin plate at $(x,y) = (0.15L_x, 0.85 L_y)$.
 Compared to the output of the 2D wave equation in Figure \ref{fig:output2DWave}, there are several interesting differences. The amplitude is much lower, waves are closer together and the first wave arrives much earlier, all due to dispersive effects.
 \begin{figure}[h]
     \centering
@@ -781,7 +781,7 @@ and recalling that $p_x$ and $p_y$ are bounded by $1$, yields
     \lambda^2(1 + 1) + 4\mu^2(1+1)^2 + \frac{4\sigma_1k}{h^2}(1+1) &\leq 1,\\
     2\lambda^2 + 16\mu^2 + \frac{8\sigma_1k}{h^2} &\leq 1 .
 \end{align*}
-Recalling the definitions for $\lambda$ and $\mu$ from \ref{eq:lambdaMuStiffMembrane}, one can solve for $h$ 
+Recalling the definitions for $\lambda$ and $\mu$ from \eqref{eq:lambdaMuStiffMembrane}, one can solve for $h$ 
 \begin{gather}
     \frac{2c^2k^2}{h^2}+ \frac{16\kappa^2k^2}{h^4} + \frac{8\sigma_1k}{h^2} \leq 1,\nonumber\\
     h^4 - (2c^2k^2 + 8\sigma_1k)h^2 - 16\kappa^2k^2 \geq 0,\nonumber\\
