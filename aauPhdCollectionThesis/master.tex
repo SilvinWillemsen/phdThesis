@@ -15,19 +15,39 @@
 \def\mtxt{\text{m}} %mass subscript (text)
 \def\itxt{\text{i}} %point of 'interest' subscript (text)
 \def\Btxt{\text{B}} %bow subscript (text)
+\def\etxt{\text{e}} %excitation subscript (text)
+\def\rtxt{\text{r}} %lip reed subscript (text)
+\def\ttxt{\text{t}} %tube subscript (text)
+
 \def\sgn{\text{sgn}}
 \def\sm{\text{sm}} %string-mass interaction tromba
 \def\mp{\text{mp}} %mass-plate interaction tromba
 
+\def\Nfrac{\mathcal{N}}
+\def\flip{\leftarrow}
+\def\Ucal{\mathbfcal{U}}
+
 % states
 \def\uln{u_l^n}
 \def\wln{w_l^n}
+\def\wmn{w_m^n}
 \def\un{u^n}
 \def\ulmn{u_{l,m}^n}
+\def\ulm{u_{l,m}}
+\def\uqn{u_q^n}
+
 \def\wlmn{w_{l,m}^n}
 \def\zlmn{z_{l,m}^n}
 \def\ubr{u_\text{br}}
 \def\zbr{z_\text{br}}
+
+\def\qln{q_l^n}
+\def\ulun{u_{l_u}^n}
+\def\ulcn{u_{l_\ctxt}^n}
+\def\wlwn{w_{l_w}^n}
+\def\wmcn{w_{m_\ctxt}^n}
+
+\def\wmn{w_m^n}
 
 \def\Psiln{\Psi_l^n}
 \def\Psinp{\Psi_l^{n+1}}
@@ -45,7 +65,18 @@
 \def\Q{\mathbf{Q}}
 \def\U{\mathbf{U}}
 \def\J{\mathbf{J}}
+\def\i{\mathbf{i}}
+\def\j{\mathbf{j}}
 
+% interpolators
+\def\Iu{I_{l, u}(x_\ctxt)}
+\def\Iw{I_{m, w}(\chi_\ctxt)}
+\def\Ju{J_{l, u}(x_\ctxt)}
+\def\Jw{J_{m, w}(\chi_\ctxt)}
+\def\Iq{I_q(\chi_\ctxt)}
+\def\Ilm{I_{l,m}(x_\ctxt)}
+
+\def\uStack{\boldsymbol{u}}
 % mathfraks
 \def\H{\mathfrak{H}}
 \def\h{\mathfrak{h}}
@@ -71,6 +102,8 @@
 \def\dxx{\delta_{xx}}
 \def\dxxx{\delta_{xxx}}
 \def\dxxxx{\delta_{xxxx}}
+\def\dcc{\delta_{\chi\chi}}
+\def\dcccc{\delta_{\chi\chi\chi\chi}}
 
 \def\dtd{\delta_{t\cdot}} 
 \def\dtp{\delta_{t+}} 
@@ -79,6 +112,9 @@
 \def\dxd{\delta_{x\cdot}} 
 \def\dxp{\delta_{x+}} 
 \def\dxm{\delta_{x-}} 
+\def\dyd{\delta_{y\cdot}} 
+\def\dyp{\delta_{y+}} 
+\def\dym{\delta_{y-}} 
 
 \def\mtt{\mu_{tt}} 
 \def\mtd{\mu_{t\cdot}} 
@@ -90,11 +126,17 @@
 \def\mxp{\mu_{x+}} 
 \def\mxm{\mu_{x-}} 
 
-\def\dTwoD{\delta_{\Delta}}
+\def\dDelta{\delta_{\Delta}}
+% \def\dDbox{\delta_{\Delta\boxplus}}
+\def\dyy{\delta_{yy}}
 
 % matrix operators
 \def\Dxx{\mathbf{D}_{xx}}
 \def\Dxxxx{\mathbf{D}_{xxxx}}
+\def\DDeltamat{\mathbf{D}_\Delta}
+\def\DDeltaDelta{\mathbf{D}_{\Delta\Delta}}
+
+\def\Dyy{\mathbf{D}_{yy}}
 
 % often-used variables
 \def\sz{\sigma_{0}}
@@ -131,6 +173,7 @@
 \def\thOrder{\textsuperscript{th}-order }
 
 \def\boldPhi{\boldsymbol{\phi}}
+\def\boldPsi{\boldsymbol{\Psi}}
 \def\eig{\text{eig}}
 
 %frontmatter
@@ -144,12 +187,16 @@
 \input{frontmatter/abstract}
 \input{frontmatter/preface}
 \input{frontmatter/listOfPublications}
-% \input{frontmatter/listOfSymbols.tex}
-% \input{frontmatter/listOfAbbreviations.tex}
+\input{frontmatter/listOfSymbols.tex}
+\input{frontmatter/listOfAbbreviations.tex}
+
 \cleardoublepage
 \pdfbookmark[0]{Contents}{label:contents}
 \pagestyle{fancy} %enable headers and footers again
 \tableofcontents
+% \listoffigures
+% \listoftables 
+
 \listoftodos
 \cleardoublepage
 
@@ -176,8 +223,13 @@
 % \part{Contributions}\label{part:contributions}
 % \input{contributions/contributions}
 
+<<<<<<< HEAD
 % % \part{Complete Instruments}\label{part:instrument}
 % % \input{instrument/instrument}
+=======
+% % % % \part{Complete Instruments}\label{part:instrument}
+% % % % \input{instrument/instrument}
+>>>>>>> master
 
 % \part{Conclusions and Perspectives}\label{part:conclusion}
 % \input{conclusion/conclusion.tex}
@@ -228,8 +280,7 @@
       \setcounter{chapter}{0} % reset stuff
       \renewcommand\thesection{\arabic{section}}
       \part{Papers}\label{part:papers}
-      \input{papers/paperErrata}
-      \pagestyle{plain}
+      % \pagestyle{plain}
       \titleformat{%command
       \chapter
       }[%shape
@@ -257,7 +308,8 @@
 
       \setcounter{chapter}{0} % reset stuff
       \part{Appendix}
-      \input{appendices/appendices}   
+      \label{part:appendix}  
+      \input{appendices/appendices} 
     \end{appendices}
   \end{subappendices}
 \fi

@@ -82,6 +82,7 @@
 
 
 \usepackage{longtable}
+% \usepackage{pbox}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography
@@ -95,9 +96,19 @@
 % \addbibresource{bib/mybib.bib}
 
 \newcites{main}{References}
+<<<<<<< HEAD
 \newcites{A}{Main Publications}
 \newcites{B}{Publications with a Supervisory Role}
 \newcites{C}{Miscellaneous Publications}
+=======
+\newcites{M}{Main Publications}
+\newcites{S}{Publications with a Supervisory Role}
+\newcites{O}{Other Publications}
+\newcites{A}{References}
+
+
+\setcounter{tocdepth}{1}
+>>>>>>> master
 % \renewcommand*{\bibliographyitemlabel}{[\alph{enumiv}]}
 
 % \makeatletter
@@ -182,14 +193,32 @@
 
 \usepackage{cases}
 \usepackage[final]{pdfpages}
+<<<<<<< HEAD
 
 \usepackage{dirtytalk}
 \usepackage{subfig}
 
+=======
+\usepackage{textcomp}
+\newcommand{\textApprox}{\raisebox{0.5ex}{\texttildelow}}
+
+\usepackage{dirtytalk}
+\usepackage{subfig}
+\usepackage{algorithm2e, setspace}
+>>>>>>> master
 \usepackage{tikz}
 \tikzset{>=latex}
 \tikzstyle{block} = [draw,minimum size=0.5cm]
 \usetikzlibrary{math,arrows,positioning,shapes.geometric, decorations.markings}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\def\fullMn{{\mathcal{M}^n}}
+
 
 \usepackage{listings}
 \usepackage{courier}
@@ -203,6 +232,10 @@
     \hypersetup{linkcolor=[HTML]008400}%
     \color[HTML]{008400}{\texttt{(\ref{#1}})}
 }
+\def\refMatlab[#1]{%
+    \hypersetup{linkcolor=[HTML]008400}%
+    \color[HTML]{008400}{\texttt{\ref{#1}}}}
+
 
 \renewcommand{\lstlistingname}{Algorithm}% 
 \def\setlstCpp
@@ -265,7 +298,11 @@
     tabsize=2,	                   % sets default tabsize to 2 spaces
     title=\lstname,                  % show the filename of files included with \lstinputlisting; also try caption instead of title
     columns=fixed,                   % Using fixed column width (for e.g. nice alignment)
+<<<<<<< HEAD
     deletekeywords={pi, zeros, plot, round, ceil, floor, cos, sin},            % if you want to delete keywords from the given language
+=======
+    deletekeywords={pi, zeros, plot, round, ceil, floor, cos, sin, sum, abs, eps, exp, toeplitz, eye, min, max, reshape, kron, speye, sqrt, sparse, ls, amp},            % if you want to delete keywords from the given language
+>>>>>>> master
     morestring=[b]"
   }
 }

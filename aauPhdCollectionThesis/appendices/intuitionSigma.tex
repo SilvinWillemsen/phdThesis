@@ -1,4 +1,4 @@
-\chapter{Intuition for the Damping Terms in the Stiff String PDE}
+\chapter{Intuition for the Damping Terms in the Stiff String PDE}\label{app:intuitionSigma1}
 This appendix will delve deeper into the damping terms in the PDE of the stiff string presented in Chapter \ref{ch:stiffString}, especially the frequency-dependent damping term $2\sigma_1\pt\pxx u$. Recalling the compact version of the PDE of the stiff string in Eq. \eqref{eq:stiffStringPDECompact}:
 \begin{equation}
     \ptt u = c^2 \pxx u - \kappa^2 \pxxxx u - 2 \sz \pt u + 2 \so \pt \pxx u
@@ -7,7 +7,7 @@ Consider first the frequency-independent damping term $-2\sz\pt u$. The more pos
 
 As for the frequency-dependent damping term, apart from the obvious $\sigma_1$, the effect of the term increases with an increase of $\partial_t\partial_x^2u$ which literally describes the `rate of change of the curvature' of the string.
 
-Let's first talk about positive and negative curvature, i.e., when $\partial_x^2u > 0$ or $\partial_x^2u < 0$. Counterintuitively, in the positive case, the curve points downwards. Think about the function $f(x) = x^2$. It has a positive curvature (at any point), but has a minimum. We can prove this by taking $x=0$ and setting grid spacing $h=1$.
+Let's first talk about positive and negative curvature, i.e., when $\partial_x^2u > 0$ or $\partial_x^2u < 0$. Counterintuitively, in the positive case, the curve points downwards. Think about the function $f(x) = x^2$. It has a positive curvature (at any point), but has a minimum. This can be proven by taking $x=0$ and setting grid spacing $h=1$.
 \begin{equation}
   \begin{aligned}
   \delta_{xx}f(x) &= \frac{1}{h^2} \left(f(-1)-2f(0)+f(1)\right), \\
@@ -17,9 +17,9 @@ Let's first talk about positive and negative curvature, i.e., when $\partial_x^2
 \end{equation}
 In other words, the second derivative of the function $f(x)=x^2$ around $x=0$ is positive.
 
-As our term does not only include a second-order spatial derivative but also a first-order time derivative, we are now talking about a positive or negative \textit{rate of change} of the curvature, i.e., when $\partial_t\partial_x^2u>0$ or $\partial_t\partial_x^2u<0$. A positive rate of change of curvature means that the string either has a positive curvature and is getting more positive, i.e., the string gets more curved over time, or that the string has a negative curvature and is getting less negative, i.e., the string gets less curved or 'loosens up' over time.  In the same way, a negative rate of change of curvature means that the string either has a negative curvature and is getting more negative, or that the string has a positive curvature and is getting less positive. 
+As the term does not only include a second-order spatial derivative but also a first-order time derivative, this is referred to as a a positive or negative \textit{rate of change} of the curvature, i.e., when $\partial_t\partial_x^2u>0$ or $\partial_t\partial_x^2u<0$. A positive rate of change of curvature means that the string either has a positive curvature and is getting more positive, i.e., the string gets more curved over time, or that the string has a negative curvature and is getting less negative, i.e., the string gets less curved or 'loosens up' over time.  In the same way, a negative rate of change of curvature means that the string either has a negative curvature and is getting more negative, or that the string has a positive curvature and is getting less positive. 
 
-Let's see some examples. Take the same function described before, but now $f$ changes over time, fx. $f(x, t)=tx^2$. When $t$ increases over time, the curvature gets bigger. Repeating what we did above with $x=0$ and grid spacing $h = 1$, but now with $t=2$ and step size $k=1$, but now with a backwards time derivative we get:
+Let's see some examples. Take the same function described before, but now $f$ changes over time, fx. $f(x, t)=tx^2$. When $t$ increases over time, the curvature gets bigger. Repeating the above with $x=0$ and grid spacing $h = 1$, but now with $t=2$ and step size $k=1$, but now with a backwards time derivative yields:
   \begin{alignat*}{3}
     \delta_{t-}\delta_{xx}f(x,t) &= \frac{1}{kh^2}\bigg(&&f(-1, 2) - 2f(0, 2) + f(1, 2) \\
     & &&- \Big(f(-1, 1) - 2f(0, 1) + f(1, 1)\Big)\bigg),\\

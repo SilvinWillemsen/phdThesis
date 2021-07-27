@@ -1,4 +1,14 @@
-\chapter{Real-Time Implementation}\label{ch:realtime}
+\chapter{Real-Time Implementation and Control}\label{ch:realtime}
+
+\begin{flushright}{\it
+    ``The real problem is that programmers have spent far too much time worrying \\
+    about efficiency in the wrong places and at the wrong times; premature\\
+    optimization is the root of all evil (or at least most of it) in programming.''\\
+    - Donald E. Knuth}
+\end{flushright}
+%
+\vspace{2em}
+
 JUCE
 Give overall structure of code
 
@@ -15,11 +25,9 @@ Here, an interactive application is considered real-time when
     Control of the application generates or manipulates audio with no noticeable latency.
 \end{center}
 
-For human-computer interaction, the task at hand greatly determines how much latency is acceptable. Wessel and Wright \cite{Wessel2002} place the upper limit of latency when interacting with computers for musical purposes at $10$ ms. Moreover, they place the a limit on the \textit{jitter}, or of variation of the latency, at $1$ ms. \SWcomment[It is thus important to keep the CPU usage at a fixed level, and different ways of controlling and interacting with the application should not influence the amount of computations much...]
+For human-computer interaction, the task at hand greatly determines how much latency is acceptable. Wessel and Wright \cite{Wessel2002} place the upper limit of latency when interacting with computers for musical purposes at $10$ ms. Moreover, they place the a limit on the \textit{jitter}, or of variation of the latency, at $1$ ms. \SWcomment[It is thus important to keep the CPU usage at a fixed level, and different ways of controlling and interacting with the application should not influence the number of computations much...]
 
 Also the application needs to be controlled continuously
-
-Naming conventions: CamelCase...
 
 Finite representation: $1.80\cdot 10^{308}$
 
@@ -28,8 +36,10 @@ Helps to (informally) evaluate the models by interacting with it in a natural wa
 Refer to \cite{Webb2015} somewhere here
 \todo{Figure with programming languages sorted by speed}
 
-\section{MATLAB vs. C++}
-It is usually a good idea to prototype a physical modelling application in MATLAB for several reasons:
+Finally, this chapter will present the Sensel Morph and the PHANTOM Omni, two hardware devices which have been used to control the physical models presented in papers \citeP[A], \citeP[B], \citeP[C], \citeP[D] and \citeP[E].
+
+\section{MATLAB versus C++}
+It is usually a good idea to prototype a physical modelling application in \texttt{MATLAB} for several reasons:
 \begin{itemize}
     \item Easier to debug
     \begin{itemize}
@@ -39,18 +49,19 @@ It is usually a good idea to prototype a physical modelling application in MATLA
     \item Instability due to programming errors 
 \end{itemize}
 
+
 \subsection{Speed}
 Here is where the power of C++ 
 
 
 
-\subsection{Syntax}
+\subsection{Translating MATLAB to C++}
 Indexing in
 Matlab is 1-based, meaning that the index of a vector starts at 1. If \texttt{u} is a vector with 10 elements, the first element is retrieved as \texttt{u(1)} and the last as \texttt{u(10)}. C++, on the other hand, is 0-based and retrieving the first and last element of a size-10 vector happens through \texttt{u[0]} and \texttt{u[9]}respectively. 
 
-\section{Do's and don'ts in Real-Time FD schemes}
+\section{Do's and don'ts in real-time FD schemes}
 
-“The real problem is that programmers have spent far too much time worrying about efficiency in the wrong places and at the wrong times; premature optimization is the root of all evil (or at least most of it) in programming.” [Knuth 1974]
+
 
 (Knuth, Donald E. (Dec. 1974). “Computer Programming As an Art”. In: Commun. ACM 17.12, pp. 667–673. ISSN: 0001-0782. DOI: 10.1145/361604.361612. URL: http://doi.acm.org/10.1145/361604.361612.)
 Some of the things I learned (the hard way)...
@@ -127,15 +138,14 @@ double updateStates()
 }
 \end{lstlisting}
 
-\pagebreak
-\subsubsection{Grouping terms and Precalculating coefficients}
+\subsubsection{Grouping terms and precalculating coefficients}
 Generally in implementations of FD schemes the most computationally expensive part of the algorithm is the calculation of the scheme itself. This is due to the rate at which it needs to be updated which usually is 44100 Hz. Graphics can be updated at rates orders of magnitude lower than the audio (say 10-20 Hz) and still be considered smooth enough.
 
 Recall the update equation for the 1D wave update equation in Eq. \eqref{eq:1DwaveUpdate}
 \begin{equation*}
     u_l^{n+1} = (2 - 2 \lambda^2) \uln - u_l^{n-1} + \lambda^2\left(u_{l+1}^n + u_{l-1}^n\right).
 \end{equation*}
-Grouping the terms like this allows for the coefficients multiplied onto the grid function at different temporal and spatial indices to be precomputed. This can significantly decrease the amount of operations per sample.
+Grouping the terms like this allows for the coefficients multiplied onto the grid function at different temporal and spatial indices to be precomputed. This can significantly decrease the number of operations per sample.
 
 The undamped stiff string FD scheme%in \eqref{eq:stiffStringFDS}
 \begin{equation}
@@ -150,7 +160,7 @@ can be expanded to an update equation as
 \end{equation}
 where $\lambda = ck/h$ and $\mu = \kappa k / h^2$.
 
-For implementation purposes there is a better way to write this scheme that reduces the amount of computations. This is done by collecting the terms based on the grid function and pre-calculating the coefficients multiplied onto these. As the schemes are spatially symmetric, ``neighbouring points'' relative to $\uln$ can also be grouped to get
+For implementation purposes there is a better way to write this scheme that reduces the number of computations. This is done by collecting the terms based on the grid function and pre-calculating the coefficients multiplied onto these. As the schemes are spatially symmetric, ``neighbouring points'' relative to $\uln$ can also be grouped to get
 \def\semilarge{\fontsize{11}{11.6}\selectfont}
 \begin{equation}
     u_l^{n+1} = \underbrace{(2 - 2\lambda^2 - 6\mu^2)}_{\texttt{\semilarge B1}}\uln  + \underbrace{\left(\lambda^2 + 4\mu^2\right)}_{\texttt{\semilarge B2}}\left(u_{l+1}^n+u_{l-1}^n\right)\underbrace{-\mu^2}_{\texttt{\semilarge B3}} \left(u_{l+2}^n+u_{l-2}^n\right) \underbrace{-}_{\texttt{\semilarge C1}} u_l^{n-1}.
@@ -180,6 +190,10 @@ The damping present in FD schemes causes the state of the system to exponentiall
 After a long period of time, which depends on the damping coefficients, state values can get in the range of $\sim 10^{-307}$! Numbers in this range are referred to as \textit{denormalised numbers} and operations with these are ``extremely slow'' \cite{CPPdenormalised}.
 
 Although it rarely happens that numbers end up in this range, especially when the application is continuously interacted with, it is good to account for the possibility. For example, due to the very high damping of the body in the Tromba Marina application in Chapter \ref{ch:tromba}, denormalised numbers appear after $\sim 10$ s of not interacting with the instrument, and the CPU usage shoots up. There are specific processor flags that can be activated to truncate denormalised numbers to 0. To retain generality (cross-platform, various processors), one could implement a simple check per buffer to see whether values are smaller than fx. $10^{-250}$ and truncate all values of that system to $0$. 
+
+\section{Optimisation strategies}
+\cite{Webb2015}
+AVX GPU etc..\cite{Bilbao2019CMJb}
 
 \section{Graphics}
 \setlstCpp
@@ -232,7 +246,6 @@ Path Simple1DWave::visualiseState (Graphics& g, double visualScaling)
     return stringPath;
 }
 \end{lstlisting}
-\pagebreak
 \begin{lstlisting}
 void Simple1DWave::excite()
 {
@@ -261,11 +274,11 @@ void Simple1DWave::excite()
 \end{lstlisting}
 
 
-\section{Matrices}
+\section{Matrices}\label{sec:realTimeMatrices}
 
 Library called \textit{Eigen} \cite{Eigen}
 
-\subsection{Matrix Inversions in Real-Time}\label{sec:RTmatrixInversion}
+\subsection{Matrix inversions in real-time}\label{sec:RTmatrixInversion}
 For small ($2\times 2$ and $3\times 3$) matrices it is doable to do the inversion `by hand'. This requires finding the \textit{determinant} of a matrix
 
 \begin{equation*}
@@ -291,3 +304,25 @@ u1 = (-w0 * a10 + w1 * a00) / det;
 The computational complexity of th inversion of an $n\times n$ matrix is (at worst) $\OO(n^3)$. For real-time applications, the size of matrices one wants to invert thus need to be kept to a minimum...
 
 The difference between inverting a $2\times 2$ matrix and a $3\times 3$ 
+
+\section{Control}
+Throughout this project, two hardware devices to expressively control the simulated instruments have been investigated. These are the Sensel Morph and the PHANTOM Omni, both of which will be briefly described here.
+
+\subsection{Sensel Morph}\label{sec:sensel}
+The \textit{Sensel Morph,} or Sensel for short, is a high-accuracy pressure sensitive touch controller (see Figure \ref{fig:sensel})
+
+The controller has been used to control the physical models in  paper
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figures/contributions/realtime/senselHands.jpg}
+    \caption{The Sensel Morph. \label{fig:sensel}}
+\end{figure}
+
+\subsection{PHANTOM Omni}\label{sec:phantomOmni}
+The PHANTOM Omni, or Omni for short, is a six-degrees-of-freedom device that provides force and vibrotactile feedback (see Figure \ref{fig:phantomOmni})
+
+\section{Discussion and Conclusion}
+No proper comparisons have been done between MATLAB and C++
+
+examples can be found in \cite{Webb2015} and \cite{Bilbao2019CMJb}

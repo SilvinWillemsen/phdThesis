@@ -1,5 +1,5 @@
 \chapter{Matrices}\label{app:matrices}
-This appendix aims to provide some fundamental knowledge on matrices and linear algebra used throughout this dissertation. 
+This appendix aims to provide some fundamental knowledge on matrices and linear algebra used throughout this thesis. 
 
 A matrix is a rectangular array with numerical elements and its dimensions are denoted using ``$row \times column$''. A $3\times 5$ matrix, for example, thus has $3$ rows and $5$ columns (see Figure \ref{fig:matrixA}). Along those lines, a \textit{row vector} is a matrix with $1$ row and more than $1$ column and a \textit{column vector} is a matrix with $1$ column and more than $1$ row.
 
@@ -20,7 +20,7 @@ Multiplying and dividing a matrix by a scalar (a single number) is valid and hap
 Notice that although a matrix can be divided by a scalar, a scalar can not necessarily be divided by a matrix. See Section \ref{sec:inverse} for more information.
 
 \subsubsection{Matrix transpose}
-A matrix or vector can be \textit{transposed}, and is indicated with the $T$ operator. Transposing a matrix $\A$ is denoted by $\A^T$. This means that the elements in the $i$\th row and the $j$\th column of the original matrix become the elements in the $j$\th row and the $i$\th column of the transposed matrix. Essentially the row and column indices of the elements inside the matrix get switched according to
+A matrix or vector can be \textit{transposed}, which is indicated by the $T$ operator. Transposing a matrix $\A$ is denoted by $\A^T$. This means that the elements in the $i$\th row and the $j$\th column of the original matrix become the elements in the $j$\th row and the $i$\th column of the transposed matrix. Essentially the row and column indices of the elements inside the matrix get switched according to
 \begin{equation}\label{eq:matrixTransposition}
     a_{ij} = a_{ji}.
 \end{equation} 
@@ -33,12 +33,12 @@ Also see Figure \ref{fig:matrixTransp}. For a row vector, the transpose operatio
     \caption{A matrix $\A$ and its transpose $\A^T$. The elements get flipped along the main diagonal of the matrix according to Eq. \eqref{eq:matrixTransposition}. \label{fig:matrixTransp}}
 \end{figure}
 
-\subsubsection{Matrix Multiplication}
+\subsubsection{Matrix multiplication}
 Matrix multiplication (this includes matrix-vector multiplication) is different from regular multiplication in that it needs to abide several extra rules. The multiplication of two matrices $\A$ and $\B$ to a resulting matrix $\C$ is defined as
 \begin{equation}\label{eq:matrixMult}
     c_{ij} = \sum_{k=1}^K a_{ik} b_{kj},
 \end{equation}
-where $K$ is both the number columns of matrix $\A$ and the number of rows in matrix $\B$. It thus follows that, order for matrix multiplication to be valid, the number of columns of the first matrix needs to be equal to the number of rows in the second matrix. The result will then be a matrix with a number of rows equal to that of the first matrix and a number of columns equal to that of the second matrix. See Figure \ref{fig:matrixVector} for reference.
+where $K$ is both the number columns of matrix $\A$ and the number of rows in matrix $\B$. It thus follows that, in order for a matrix multiplication to be valid, the number of columns of the first matrix needs to be equal to the number of rows in the second matrix. The result will then be a matrix with a number of rows equal to that of the first matrix and a number of columns equal to that of the second matrix. See Figure \ref{fig:matrixVector} for reference.
 
 As an example, consider the $L\times M$ matrix $
 \A$ and a $M\times N$ matrix $\B$ with $L\neq N$. The multiplication $\A\B$ is defined as the number of columns of matrix $\A$ ($M$) is equal to the number of rows of matrix $\B$ (also $M$). The result, $\C$, is a $L \times N$ matrix. The multiplication $\B\A$ is undefined as the number of columns of the first matrix does not match the number of rows in the second matrix. A valid multiplication of two matrices written in their dimensions is
@@ -52,7 +52,7 @@ As an example, consider the $L\times M$ matrix $
     \caption{Visualisation of valid matrix multiplications (see Eq. \eqref{eq:matrixMult}). The ``inner'' dimensions (columns of the left matrix and rows of the right) must match and result in a matrix with a size of ``outer'' dimensions (rows of the left matrix and columns of the right). \label{fig:matrixVector}}
 \end{figure}
 
-\section{Matrix Inverse}\label{sec:inverse}
+\section{Matrix inverse}\label{sec:inverse}
 If a matrix has the same number of rows as columns, it is called a \textit{square matrix}. Square matrices have special properties, one of which is that it (usually) can be \textit{inverted}. A square matrix $\A$ is invertable if there exists a matrix $\B$ such that
 \begin{equation}
     \A \B = \B \A = \I. 
@@ -76,7 +76,7 @@ The inverse of a \textit{diagonal matrix} (a matrix with non-zero elements on it
     }.
 \end{equation*}
 
-\section{Systems of Linear Equations}\label{sec:linearEquations}
+\section{Systems of linear equations}\label{sec:linearEquations}
 Matrices can be conveniently used to solve \textit{systems of linear equations}, a set of linear equations containing the same set of variables. 
 
 For example, take the system of linear equations
@@ -105,11 +105,11 @@ Here, column vector $\u$ contains the independent variables $x$, $y$, and $z$, m
         15
     }}_{\w}
 \end{equation*}
-We can then solve for $\u$ by taking the inverse of $\A$ (see Section \ref{sec:inverse}) and multiplying this onto $\w$
+This can be solved for $\u$ by taking the inverse of $\A$ (see Section \ref{sec:inverse}) and multiplying this onto $\w$
 \begin{equation}
     \u = \A^{-1}\w.
 \end{equation}
-Generally, if X unknowns are described by X equations, the unknowns can be solved for using this method.
+Generally, if X unknowns are described by X equations, the unknowns can be solved for, by using this method.
 
 Solving a system of linear equations can be implemented in \texttt{MATLAB} by using the code given in Section \ref{sec:inverse} and multiplying this onto a vector \texttt{w}
 \begin{center}
@@ -120,7 +120,7 @@ or more compactly, by using the `\texttt{\textbackslash}' operator:
     \texttt{u = A\textbackslash w;}
 \end{center}
 
-\section{Eigenvalue Problems}\label{sec:eigenValueProblems}
+\section{Eigenvalue problems}\label{sec:eigenValueProblems}
 A square matrix $\A$ is characterised by its \textit{eigenvalues} and corresponding \textit{eigenvectors}. In a FDTD context, these are usually associated with the modes of a system, where the eigenvalues relate to the modal frequencies and the eigenvectors to the modal shapes. Section \ref{sec:modalAnalysis} provides more information on this.
 
 To find these characteristic values for a $p\times p$ matrix $\A$, an equation of the following form must be solved 
@@ -131,7 +131,7 @@ This is called is an \textit{eigenvalue problem} and has $p$ solutions (correspo
 \begin{equation}
     \lambda_p = \eig_p(\A),
 \end{equation}
-where $\eig_p(\cdot)$ denotes the $p$\th eigenvalue of. Instead of delving too deep into eigenvalue problems and the process of how to solve them, an easy way to obtain the solutions using \texttt{MATLAB} is provided here:
+where $\eig_p(\cdot)$ denotes the `$p$\th eigenvalue of'. Instead of delving too deep into eigenvalue problems and the process of how to solve them, an easy way to obtain the solutions using \texttt{MATLAB} is provided here:
 
 \begin{center}
     \texttt{[phi, lambda] = eig(A, {\color[HTML]{A100F4}'vector'});}

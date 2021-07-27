@@ -3,11 +3,11 @@ This chapter provides some useful techniques to analyse FD schemes. Techniques t
 Starting off with some necessary theory on matrices in a FDTD context and other mathematical tools, this chapter continues to introduce 
 \begin{itemize}
     \item \textit{Frequency domain analysis}, which can be used to determine stability conditions of (linear and time-invariant) FD schemes,
-    \item \textit{Energy analysis}, which can both used to debug implementations of FD schemes, as well as determine stability conditions in a more general fashion, and
+    \item \textit{Energy analysis}, which can both be used to debug implementations of FD schemes, as well as determine stability conditions in a more general fashion, and
     \item \textit{Modal analysis} which can be used to determine the modal frequencies (and damping per mode) that a FD scheme exhibits.
 \end{itemize}
 
-\section{Matrices in a FDTD context}
+\section{Matrices in a FDTD context}\label{sec:matricesFDTD}
 For several purposes, such as implementation in \texttt{MATLAB} and several analysis techniques described shortly, it is useful to write a FD scheme in \textit{matrix form}.\footnote{Appendix \ref{app:matrices} provides some basic knowledge on matrices and linear algebra for those unfamiliar with this.} Matrix multiplication when working with FDTD methods usually involves multiplying a square matrix (with equal rows and columns) onto a column vector. Consider a $(N+1)\times (N+1)$ square matrix $\A$ and a $(N+1) \times 1$ column vector $\u$. Multiplying these results in a $(N+1) \times 1$ column vector $\w$:
 \begin{equation}
     \A\u = \w.
@@ -35,7 +35,7 @@ Expanding this operation results in
 \end{equation}
 where the indexing of the matrix elements starts at $0$ rather than $1$ here, as it relates better to operations used in a FDTD context.
 
-\subsubsection{Operators in Matrix Form}
+\subsection{FD operators in matrix form}
 FD operators approximating spatial derivatives and averages introduced in Section \ref{sec:FDoperators} can be written in matrix form and applied to a column vector $\u^n$ containing the state of the system at time index $n$. These matrices are square and their sizes depend on the number of grid points the system is described for and on the boundary conditions. Not assuming a specific size for now, the FD operators in \eqref{eq:discFirstSpace} can be written in matrix form according to
 % \setstackgap{L}{1.1\baselineskip}
 % \fixTABwidth{T}
@@ -104,7 +104,7 @@ FD operators approximating spatial derivatives and averages introduced in Sectio
 %     \end{bmatrix}\\
 % \end{gather*}
 %
-where the diagonal dots denote that the values on the respective diagonals continue until the top-left and bottom-right corners of the matrix.\todo{is this how you explain it?} The $\boldsymbol{0}$s indicate that the rest of the values in the matrix are zeros.
+where the diagonal dots denote that the values on the respective diagonals continue until the top-left and bottom-right corners of the matrix.\todo{is this how you explain it?} A $\boldsymbol{0}$ indicates that the rest of the values in the matrix are zeros.
 
 Averaging operators $\mxp$, $\mxm$ and $\mxd$ are defined in a similar way:
 
@@ -157,7 +157,7 @@ and has the following special property
     \I\A = \A\I = \A.
 \end{equation*}
 
-\subsubsection{Schemes and Update Equations in Matrix Form}
+\subsection{Schemes and update equations in matrix form}\label{sec:matrixForm}
 With the spatial operators in matrix form presented above, the FD scheme of the 1D wave equation in Eq. \eqref{eq:1DwaveFDS} can be written in matrix form.
 
 If the Dirichlet boundary conditions in \eqref{eq:discreteDirichlet} are used, the end points of the system do not have to be included in the calculation. The values of the grid function $\uln$ for $l\in \{1, \hdots, N-1\}$ can then be stored in a column vector according to $\u^n = [u_1^n, \hdots, u_{N-1}^n]^T$. Furthermore, $(N-1) \times (N-1)$ matrix $\Dxx$ is defined as
@@ -170,7 +170,7 @@ If the Dirichlet boundary conditions in \eqref{eq:discreteDirichlet} are used, t
         \mathbf{0}& & & 1 & -2 
     }.
 \end{equation}
-If instead, Neumann boundary conditions in Eq. \eqref{eq:discreteDirichlet} are used, the values of $\uln$ for the full range $l\in \{0, \hdots, N\}$ need be stored as $\u^n=[u_0^n, \hdots, u_N^n]^T$ and the $(N+1) \times (N+1)$ matrix $\Dxx$ will be 
+If instead, Neumann boundary conditions in Eq. \eqref{eq:discreteDirichlet} are used, the values of $\uln$ for the full range $l\in \{0, \hdots, N\}$ need to be stored as $\u^n=[u_0^n, \hdots, u_N^n]^T$ and the $(N+1) \times (N+1)$ matrix $\Dxx$ will be 
 \begin{equation}\label{eq:DxxDefNeumann}
     \Dxx = \frac{1}{h^2}
     \xbracketMatrixstack{
@@ -193,15 +193,15 @@ and rewritten to a matrix form of the update equation analogous to Eq. \eqref{eq
 \end{equation}
 The identity matrix is necessary here for correct matrix addition.
 
-\section{Mathematical Tools and Product Identities}
+\section{Mathematical tools and product identities}
 Some useful mathematical tools used for the energy analysis techniques presented in Section \ref{sec:energyAnalysis} will be shown here. The tools shown here can be applied to 1D systems. These will be extended to 2D systems in Chapter \ref{ch:2Dsyst}. Unless denoted otherwise, the notation and theory will follow \cite{theBible}.
 
 \subsection{Inner product}\label{sec:innerProduct}
-For two functions $f(x,t)$ and $g(x,t)$ defined for $x\in\D$ where $\mathcal{D} = [0,L]$, their $l_2$ inner product and $l_2$ norm are defined as
+For two functions $f = f(x,t)$ and $g = g(x,t)$ defined for $x\in\D$ where $\mathcal{D} = [0,L]$, their $l_2$ inner product and $l_2$ norm are defined as
 \begin{equation}\label{eq:contInnerProd}
     \langle f, g\rangle_\D = \int_\D fg dx \quad \text{and} \quad \lVert f \rVert_\D = \sqrt{\langle f, f \rangle_\D}.
 \end{equation}
-These functions do not have to be time-dependent (i.e., they can also simply be $f(x)$ and $g(x)$), but as all functions used in this work are in fact time-dependent, this is left for coherence. It is also important to note that these functions do not have to be `isolated' state variables per se (such as $u(x,t)$ used in the previous chapter), but could also be a state variable with a derivative applied to it (such as $\pt u(x,t)$). 
+These functions do not have to be time-dependent (i.e., they can also simply be $f(x)$ and $g(x)$), but as all functions used in this work are in fact time-dependent, this is left for coherence. It is also important to note that these functions do not have to be `isolated' state variables per se (such as $u(x,t)$ used in the previous chapter), but could also be state variables with a derivative applied to it (such as $\pt u(x,t)$). 
 
 The discrete inner product of any two (1D) functions $f_l^n$ and $g_l^n$ defined for $l \in d$, with discrete domain $d = \{0,\hdots,N\}$, is
 \begin{equation}\label{eq:discInnerProd}
@@ -216,18 +216,18 @@ and the more general weighted inner product
 \begin{equation}\label{eq:weightedInnerProd}
     \langle f_l^n, g_l^n \rangle_d^{\el, \er} = \sum_{l=1}^{N-1} h f_l^n g_l^n + \frac{\el}{2}hf_0^ng_0^n + \frac{\er}{2}hf_N^ng_N^n,
 \end{equation}
-which scale the boundary points of the regular inner product. Naturally, if $\el = \er = 1$, Eq. \eqref{eq:weightedInnerProd} reduces to Eq. \eqref{eq:primedInnerProd}, and if $\el = \er = 2$, \eqref{eq:weightedInnerProd} reduces to \eqref{eq:discInnerProd}.
+where free parameters $0 < \el, \er \leq 2$\todo{check with Stefan} scale the boundary points of the regular inner product. Naturally, if $\el = \er = 1$, Eq. \eqref{eq:weightedInnerProd} reduces to Eq. \eqref{eq:primedInnerProd}, and if $\el = \er = 2$, \eqref{eq:weightedInnerProd} reduces to \eqref{eq:discInnerProd}.
 
-\subsection{Summation by Parts}\label{sec:summationByParts}
-Extremely useful when performing energy analysis on distributed systems is \textit{summation by parts}, which is the discrete counterpart of integration by parts. Although its application will be only be apparent when actually performing an energy analysis (see fx. Sections \ref{sec:1DWaveEnergyAnalysis} and \ref{sec:energyAnalysisString}) some definitions will be presented here for future reference.
+\subsection{Summation by parts}\label{sec:summationByParts}
+Extremely useful when performing energy analysis on distributed systems is \textit{summation by parts}, which is the discrete counterpart of integration by parts. Although its application will only be apparent when actually performing an energy analysis (see fx. Sections \ref{sec:1DWaveEnergyAnalysis} and \ref{sec:energyAnalysisString}), some definitions will be presented here for future reference.
 
 Here, the same functions as in the previous section, $f(x,t)$ and $g(x,t)$ and domain $\D$, will be used. Applying a spatial derivative to $g$, and using Eq. \eqref{eq:contInnerProd}, integration by parts is defined as
 \begin{equation}\label{eq:integrationByParts}
     \langle f, \px g \rangle_\D = -\langle \px f, g\rangle_\D + fg|_0^L
 \end{equation}
-where $fg|_0^L$ describes the boundary terms that appeared in the process. One can observe that the spatial derivative switched function and is now applied to $f$ rather than $g$.
+where $fg|_0^L$ describes the boundary terms that appeared in the process. One can observe that the spatial derivative switched functions, and is now applied to $f$ rather than $g$.
 
-In discrete time, we use the same two (1D) functions as before $f_l^n$ and $g_l$ and are defined for $l\in d$ with discrete domain $d=\{0, \hdots, N\}$. Then, using the discrete inner product in Eq. \eqref{eq:discInnerProd}, two variants of summation by parts are defined as
+In discrete time, using the same two (1D) functions as before: $f_l^n$ and $g_l$ and are defined for $l\in d$ with discrete domain $d=\{0, \hdots, N\}$. Then, using the discrete inner product in Eq. \eqref{eq:discInnerProd}, two variants of summation by parts are defined as
 \begin{subequations}\label{eq:summationByParts}
     \begin{align}
         \langle f_l^n, \dxm g_l^n \rangle_d  &= -\langle \dxp f_l^n, g_l^n\rangle_d + f_{N+1}^ng_N^n - f_0^ng_{-1}^n,\label{eq:summationByPartsMinus}\\
@@ -254,21 +254,34 @@ and, using the primed inner product in Eq. \eqref{eq:primedInnerProd},
     \end{align}
 \end{subequations}
 %
-all of which will prove useful in energy analysis techniques later on. A derivation of \eqref{eq:summationByPartsMinusBar} is given below. 
+or the more general weighted inner product in Eq. \eqref{eq:weightedInnerProd}
+\begin{subequations}
+    \begin{align}
+       &\begin{aligned}
+        \langle f_l^n, \dxm g_l^n \rangle_d^{\el,\er}  = -&\langle \dxp f_l^n, g_l^n \rangle_{\underline{d}}+ f_N^ng_{N-1}^n - f_0^ng_0^n \\
+        &+ \frac{\epsilon_\text{r}}{2}f_N^n(g_N^n-g_{N-1}^n)+ \frac{\epsilon_\text{l}}{2}f_0^n(g_0^n - g_{-1}^n),
+        \end{aligned}\label{eq:weightedIdentityMinus}\\
+        &\begin{aligned}
+            \langle f_l^n, \dxp g_l^n \rangle_d^{\el,\er}  = -&\langle \dxm f_l^n, g_l^n \rangle_{\overline{d}}+ f_N^ng_N^n - f_0^ng_1^n  \\
+            &+ \frac{\epsilon_\text{r}}{2}f_N^n(g_{N+1}^n-g_N^n)+ \frac{\epsilon_\text{l}}{2}f_0^n(g_1^n - g_0^n),
+        \end{aligned}\label{eq:weightedIdentityPlus}
+    \end{align}
+\end{subequations}
+all of which will prove useful in energy analysis techniques later on.\todo{will it though?} A derivation of \eqref{eq:summationByPartsMinusBar} is given below. 
 
 Finally, recalling that $\dxx = \dxp\dxm$, one can apply summation by parts twice to get the following identities
 \begin{subequations}
     \begin{align}
         \langle f, \dxx g\rangle_d &= \langle \delta_{xx}f, g \rangle_d+f_N\delta_{x+}g_N-g_N\delta_{x+}f_N -f_0\delta_{x-}g_0+g_0\delta_{x-}f_0,\label{eq:summationsummationByPartsTwice}\\
         \langle f, \dxx g\rangle_d &= \langle \delta_{xx}f, g \rangle_{\underline{\overline{d}}}+f_N\dxp g_N-g_N\dxm f_N -f_0\dxm g_0+g_0\dxp f_0,\label{eq:summationByPartsTwiceReduced}\\
-        \langle f, \dxx g\rangle_d' &= \langle \dxx f, g\rangle_d' + f_N\dxd g_N - g_N \dxd f_N - f_0 \dxd g_0 + g_0 \dxd f_0\label{eq:summationByPartsTwicePrimed}
+        \langle f, \dxx g\rangle_d' &= \langle \dxx f, g\rangle_d' + f_N\dxd g_N - g_N \dxd f_N - f_0 \dxd g_0 + g_0 \dxd f_0.\label{eq:summationByPartsTwicePrimed}
     \end{align}
 \end{subequations}
 
 \subsubsection{Derivations}
-To see why the above identities hold true, it is useful to briefly go through a derivation. As an example, we go through Eqs. \eqref{eq:summationByPartsMinus} and \eqref{eq:summationByPartsMinusBar} as they have the same inner product as a starting point, but yield different results. In the following, $d=\{0, \hdots, N\}$ and $N = 2$ are used. 
+To see why the above identities hold true, it is useful to briefly go through a derivation. As an example, Eqs. \eqref{eq:summationByPartsMinus} and \eqref{eq:summationByPartsMinusBar} are derived as they have the same inner product as a starting point, but yield different results. In the following, $d=\{0, \hdots, N\}$ and $N = 2$ are used. 
 
-Starting with Eq. \eqref{eq:summationByPartsMinus}, suppressing the $n$ superscript for brevity, and using the definition for the discrete inner product in Eq. \eqref{eq:discInnerProd}, we get 
+Starting with Eq. \eqref{eq:summationByPartsMinus}, suppressing the $n$ superscript for brevity, and using the definition for the discrete inner product in Eq. \eqref{eq:discInnerProd}, yields
 \begin{align*}
     \langle f_l, \dxm g_l \rangle_d &= \sum_{l = 0}^2 h f_l\frac{1}{h}\left(g_l - g_{l-1}\right),\\
     &= f_0g_0 - f_0g_{-1} + f_1g_1 - f_1g_0 + f_2g_2-f_2g_1,\\
@@ -319,7 +332,8 @@ Some useful identities used in this work are
         (\dtd \uln)(\dtt \uln) &= \dtp \left(\frac{1}{2}(\dtm \uln)^2\right),\label{eq:prodIdentity1}\\
         (\dtd \uln)\uln &= \dtp \left(\frac{1}{2}\uln e_{t-}\uln\right),\label{eq:prodIdentity2}\\
         (\dtp \uln)(\mtp \uln) &= \dtp \left(\frac{1}{2}(\uln)^2\right),\label{eq:prodIdentity3}\\
-        (\dtd \uln)(\mu_{t\cdot}\uln) &= \dtd\left(\frac{1}{2} (\uln)^2\right),\label{eq:prodIdentity4}\\
+        (\dtd \uln)(\mu_{t\cdot}\uln) &= \dtp\left(\frac{1}{2} \mtm(\uln)^2\right),\label{eq:prodIdentity4}\\
+        (\dtd \uln)(\mtt \uln) &= \dtp\left(\frac{1}{8}(\uln + e_{t-}\uln)^2\right)\label{eq:prodIdentity5}\\
         \uln e_{t-}\uln &=  (\mtm \uln)^2 - \frac{k^2}{4}(\dtm \uln)^2\label{eq:prodIdentityEnergyStab}
     \end{align}
 \end{subequations}
@@ -331,25 +345,26 @@ When an operator is applied to a product of two grid functions, the discrete cou
 \end{equation}
 The same rule applies when the backward operator $\dtm(\uln\wln)$ or centred operator $\dtd(\uln\wln)$ is used. In that case, the forward operators $\dtp$ and $\mtp$ in Eq. \eqref{eq:productRule} need to be substituted for the backward or centred versions of the operators respectively. 
 
-\section{Frequency Domain Analysis}\label{sec:stabilityAnalysis}
-Frequency domain analysis, also called Fourier analysis, is a way to determine various properties of a FD scheme, including conditions for stability. The process is similar to finding stability for digital filters. In essence, a FD scheme can be seen as a complex filter of which its coefficients are defined by physical parameters. This section will explain how to obtain a frequency-domain representation of a scheme and will mainly follow \cite{theBible}, albeit in a slightly more practical manner.
+\section{Frequency domain analysis}\label{sec:stabilityAnalysis}
+Frequency domain analysis, also called Fourier analysis, is a way to determine various properties of a FD scheme, including conditions for stability. The process is similar to finding stability for digital filters. In essence, a FD scheme can be seen as a complex filter of which its coefficients are defined by physical parameters.
+This section will explain how to obtain a frequency domain representation of a scheme and will mainly follow \cite{theBible}, albeit in a slightly more practical manner.
 
-\subsubsection{Frequency-domain representation and Ansatz}
-Frequency-domain analysis of FD schemes starts by performing a \textit{z-transform} on the scheme. The z-transform converts a discrete signal into a frequency-domain representation, and is extensively used in the field of digital signal processing (DSP) to analyse the behaviour and especially stability of digital filters. To not go too much into detail here, the interested reader is referred to the very comprehensive explanation on the z-transform given in \cite[Ch. 5]{Park2010}. 
+\subsubsection{Frequency domain representation and ansatz}
+Frequency domain analysis of FD schemes starts by performing a \textit{z-transform} on the scheme. The z-transform converts a discrete signal into a frequency domain representation, and is extensively used in the field of digital signal processing (DSP) to analyse the behaviour and especially stability of digital filters. To not go too much into detail here, the interested reader is referred to the very comprehensive explanation on the z-transform given in \cite[Ch. 5]{Park2010}. 
 
-If a system is distributed in space, one can perform a spatial Fourier transform on a grid function. Frequency-domain analysis in the distributed case is called \textit{von Neumann analysis} which first appeared in \cite{vonNeumann} co-authored by John von Neumann. Later, this technique got a more general treatment in \cite{Strikwerda1989} and is heavily used in \cite{theBible}. The discrete-time z-transform and discrete spatial Fourier transform performed on a 1D grid function are defined as \cite{theBible}
+If a system is distributed in space, one can perform a spatial Fourier transform on a grid function. Frequency domain analysis in the distributed case is called \textit{von Neumann analysis} which first appeared in \cite{vonNeumann} co-authored by John von Neumann. Later, this technique got a more general treatment in \cite{Strikwerda1989} and is heavily used in \cite{theBible}. The discrete-time z-transform and discrete spatial Fourier transform performed on a 1D grid function are defined as \cite{theBible}
 \begin{equation}
     \hat u  = \sum_{n=-\infty}^\infty \uln z^{-n}\qaq \tilde u = \sum_{l=-\infty}^\infty \uln e^{-jl\beta h}
 \end{equation}
-with complex number $z = e^{sk}$, complex frequency $s=j\omega + \sigma$ (more elaborated on in \ref{sec:modalAnalysis}) and real wavenumber $\beta$. Frequency-domain analysis in 2D will be elaborated on in Section \ref{sec:analysis2D}.\todo{check if I should not refer to a subsection}
+with complex number $z = e^{sk}$, complex frequency $s=j\omega + \sigma$ (more elaborated on in \ref{sec:modalAnalysis}) and real wavenumber $\beta$. Frequency domain analysis in 2D will be elaborated on in Section \ref{sec:stability2Dwave}.
 
-A shortcut to performing a full frequency-domain analysis is to use a test solution, or \textit{ansatz}, and replace the grid functions by their transforms. The grid function for a 1D system can be replaced by an ansatz of the form (1D) \cite{Strikwerda1989}\todo{check reference}
+A shortcut to performing a full frequency domain analysis is to use a test solution, or \textit{ansatz}, and replace the grid functions by their transforms. The grid function for a 1D system can be replaced by an ansatz of the form (1D) \cite{Strikwerda1989}\todo{check reference}
 \begin{equation}\label{eq:ansatz}
     u_l^n \ansatz z^n e^{jl\beta h}
 \end{equation} 
 where ``$\overset{\mathcal{A}}{\Longrightarrow}$'' indicates to replace the grid function with the ansatz (the shortcut to taking the full z-transform and spatial Fourier transform). 
 
-Like in the DSP realm, the power of $z$ indicates a temporal shift, i.e., $z^{-1}$ is a one-sample delay. In a FDTD context, this corresponds to a time shift as seen in Section \ref{sec:FDoperators}. For spatially distributed systems, a shift in $l$ can be interpreted as a phase shift of a frequency with wavenumber $\beta$. \todo{check} See Table \ref{tab:zIdentities} for the frequency-domain representation of of grid functions with their temporal and spatial indices shifted in different ways. 
+Like in the DSP realm, the power of $z$ indicates a temporal shift, i.e., $z^{-1}$ is a one-sample delay. In a FDTD context, this corresponds to a time shift as seen in Section \ref{sec:FDoperators}. For spatially distributed systems, a shift in $l$ can be interpreted as a phase shift of a frequency with wavenumber $\beta$. \todo{check} See Table \ref{tab:zIdentities} for the frequency domain representation of grid functions with their temporal and spatial indices shifted in different ways. 
 
 
 {\renewcommand{\arraystretch}{1.2}
@@ -369,13 +384,13 @@ Like in the DSP realm, the power of $z$ indicates a temporal shift, i.e., $z^{-1
         $u_{l+1}^{n-1}$ & $z^{-1} e^{j1\beta h}$ & $z^{-1}e^{j\beta h}$\\
         $u_{l-1}^{n-1}$ & $z^{-1} e^{j(-1)\beta h}$ & $z^{-1}e^{-j\beta h}$\\\hline
     \end{tabular}
-    \caption{Frequency-domain representation of a grid function using ansatz \eqref{eq:ansatz} with frequently appearing temporal and spatial shifts.\label{tab:zIdentities}}
+    \caption{Frequency domain representation of a grid function using ansatz \eqref{eq:ansatz} with frequently appearing temporal and spatial shifts.\label{tab:zIdentities}}
     \end{center}
 \end{table}
 {\renewcommand{\arraystretch}{1}
 
 %In the same way, using ``$\overset{\mathcal{Z}}{\Longrightarrow}$'' and ``$\overset{\mathcal{F}}{\Longrightarrow}$'' to denote a discrete z-transform and Fourier transform respectively,
-Using these definitions, the effect of various operators on a grid function can be written in their frequency-domain representation. For systems distributed in space, the following trigonometric identities are extremely useful when performing the analyses \cite[p. 71]{Abramowitz1972}:
+Using these definitions, the effect of various operators on a grid function can be written in their frequency domain representation. For systems distributed in space, the following trigonometric identities are extremely useful when performing the analyses \cite[p. 71]{Abramowitz1972}:
 \begin{subequations}\label{eq:trigIdentities}
     \begin{gather}
         \sin(x) = \frac{e^{jx} - e^{-jx}}{2j}\ \ \Rightarrow \ \ \sin^2(x) %= \frac{e^{j2x} - 2e^{jx-jx}+ e^{-j2x}}{-4} 
@@ -396,7 +411,7 @@ and substituted into the above to get
 \begin{equation*}
     \dxx \uln \ansatz -\frac{4}{h^2}\sin^2(\beta h /2).
 \end{equation*}
-Examples of various temporal FD operators applied to grid functions in their frequency-domain representation are
+Examples of various temporal FD operators applied to grid functions in their frequency domain representation are
 \begin{equation}\label{eq:temporalAnsatz}
     \begin{aligned}
     \dtp \uln &\ansatz \frac{1}{k} \left(z - 1\right),& \dtm \uln &\ansatz \frac{1}{k} \left(1 - z^{-1}\right),\\
@@ -410,14 +425,13 @@ and for spatial operators identity \eqref{eq:sinIdentity} can be used to obtain
     \dxxxx \uln&\ansatz\frac{16}{h^4} \sin^4(\beta h / 2).\label{eq:dxxxxAnsatz}
 \end{align}
 \end{subequations}
-Frequency-domain analysis only works on linear and time-invariant (LTI) systems and assumes systems with infinite domains. Energy analysis allows for nonlinear \todo{FULL DOC SWEEP: nonlinear, non-linear or non linear} systems to be analysed (see Section \ref{sec:energyAnalysis}) as well as handling boundary conditions.\todo{not talking about nonlinear systems though}   
 
 \subsubsection{Proving stability}
 Similar to digital filters, the system is stable when the roots of the characteristic polynomial in $z$ are bounded by $1$ (unity)\todo{only the denominator of the transfer function}
 \begin{equation}\label{eq:boundByUnity}
     |z| \leq 1.
 \end{equation} 
-In the FDTD context, the frequency-domain representation of a FD scheme results in a \textit{characteristic equation} -- which is usually a second-order polynomial -- in $z$ and needs to satisfy condition \eqref{eq:boundByUnity} for all wave numbers $\beta$.
+In the FDTD context, the frequency domain representation of a FD scheme results in a \textit{characteristic equation} -- which is usually a second-order polynomial -- in $z$ and needs to satisfy condition \eqref{eq:boundByUnity} for all wave numbers $\beta$.
 It can be shown that for a polynomial of the form 
 \begin{equation}\label{eq:polynomialForm}
     z^2 + a^{(1)}z + a^{(2)}
@@ -432,12 +446,12 @@ If $a^{(2)} = 1$, the simpler condition
 \end{equation}
 suffices. 
 
-\subsection{Mass-Spring System}\label{sec:massSpringStability}
+\subsection{Mass-spring system}\label{sec:massSpringStability}
 Recalling the FD scheme of the mass-spring system in Eq. \eqref{eq:massSpringUpdate}
 \begin{equation*}
     M \dtt \un = -K \un
 \end{equation*} 
-a frequency-domain representation can be obtained using the ansatz in \eqref{eq:ansatz} with $l = 0$. Using Table \ref{tab:zIdentities} and Eqs. \eqref{eq:temporalAnsatz} as a reference and substituting the definitions yields
+a frequency domain representation can be obtained using the ansatz in \eqref{eq:ansatz} with $l = 0$. Using Table \ref{tab:zIdentities} and Eqs. \eqref{eq:temporalAnsatz} as a reference and substituting the definitions yields
 \begin{equation*}
     \frac{M}{k^2}\left(z -2 +z^{-1}\right) = -K.
 \end{equation*}
@@ -445,7 +459,7 @@ Gathering the terms and moving all to the left-hand side, the characteristic equ
 \begin{equation}\label{eq:massSpringCharacteristic}
     z - \left(2-\frac{Kk^2}{M} \right) + z^{-1} = 0. 
 \end{equation}
-To begin to prove stability, this equation needs to be written in the form found in \eqref{eq:polynomialForm}. Multiplying all the terms by $z$, and noticing that $a^{(2)} = 1$, we could continue with condition \eqref{eq:simplerCondition215}. However, the scheme used here is a special case where the roots of the characteristic equation can not be identical \cite{theBible}. When this happens, the output of the system will grow linearly and is called ``marginally unstable''. This means that $|a^{(1)}|\neq 1$ and the condition in \eqref{eq:simplerCondition215} becomes $|a^{(1)}|<2$. Continuing with this conditions yields
+To begin to prove stability, this equation needs to be written in the form found in \eqref{eq:polynomialForm}. Multiplying all the terms by $z$, and noticing that $a^{(2)} = 1$, one could continue with condition \eqref{eq:simplerCondition215}. However, the scheme used here is a special case where the roots of the characteristic equation can not be identical \cite{theBible}. When this happens, the output of the system will grow linearly and is called ``marginally unstable''. This means that $|a^{(1)}|\neq 1$ and the condition in \eqref{eq:simplerCondition215} becomes $|a^{(1)}|<2$. Continuing with this conditions yields
 \begin{align*}
     \left|-2+\frac{Kk^2}{M}\right| &< 2,\\
     -2 < -2+\frac{Kk^2}{M} &< 2,\\
@@ -460,14 +474,14 @@ Recalling that $\omega_0 = \sqrt{K/M}$, Eq \eqref{eq:stabilityMK} can be more co
     k <\frac{2}{\omega_0}.
 \end{equation}
 
-\subsection{1D Wave Equation}\label{sec:vonNeumann1DWave}
+\subsection{1D wave equation}\label{sec:vonNeumann1DWave}
 This section will derive the stability condition for the 1D wave equation presented in Section \ref{sec:1DWave} using von Neumann analysis.
 
 Recalling the FD scheme in \eqref{eq:1DwaveFDS}:
 \begin{equation*}
     \dtt \uln = c^2 \dxx \uln,
 \end{equation*}
-its frequency-domain representation can be obtained using the definitions in Eqs. \eqref{eq:temporalAnsatz} and \eqref{eq:dxxAnsatz}:
+its frequency domain representation can be obtained using the definitions in Eqs. \eqref{eq:temporalAnsatz} and \eqref{eq:dxxAnsatz}:
 \begin{equation}
     \frac{1}{k^2}\left(z - 2 + z^{-1}\right) = -\frac{4c^2}{h^2}\sin^2\left(\beta h / 2\right).
 \end{equation}
@@ -479,15 +493,15 @@ the characteristic equation of the 1D wave equation is
 \begin{equation}\label{eq:1dWaveCharacteristic}
     z + \left(4\lambda^2\sin^2(\beta h / 2) -2\right) + z^{-1} = 0.
 \end{equation}
-% we can now perform von Neumann analysis. Moving all terms to the left-hand side and performing a z-transform and spatial Fourier transform we get:
+% one can now perform von Neumann analysis. Moving all terms to the left-hand side and performing a z-transform and spatial Fourier transform one get:
 % \begin{equation}\label{eq:zFDS}
 %     z - 2(1-\lambda^2)1 - \lambda^2(e^{j\beta h}+e^{-j\beta h}) + z^{-1} = 0.
 % \end{equation}
-% Using the identity found in Eq. \eqref{eq:sinIdentity} with $\beta h = 2x \Rightarrow x = \beta h / 2$ we can rewrite \eqref{eq:zFDS} to:
+% Using the identity found in Eq. \eqref{eq:sinIdentity} with $\beta h = 2x \Rightarrow x = \beta h / 2$ one can rewrite \eqref{eq:zFDS} to:
 % \begin{equation}
 %      z - 2 + 2\lambda^2 +4\lambda^2(\sin^2({\beta h / 2}) - 1/2) - z^{-1} = 0,
 % \end{equation}
-% and rewriting this yields the characterstic equation shown in Eq. (6.38):
+% and rewriting this yields the characteristic equation shown in Eq. (6.38):
 % \begin{equation}\label{eq:characteristic1D}
 %      z + 2(2\lambda^2\sin^2(\beta h/2) - 1) + z^{-1} = 0.
 % \end{equation}
@@ -518,7 +532,7 @@ The scheme is then stable if the roots satisfy condition \eqref{eq:boundByUnity}
         0\leq \lambda^2\sin^2(\beta h/2) &\leq 1.
     \end{aligned}
 \end{equation}
-Observing that all terms in $\lambda^2\sin^2(\beta h/2)$ are squared, this term will always be non-negative and therefore always satisfy the first condition. Continuing with the second condition, and knowing that the $\sin^2(\beta h / 2)$-term is bounded by $1$ for all $\beta$, we arrive at the following stability condition:
+Observing that all terms in $\lambda^2\sin^2(\beta h/2)$ are squared, this term will always be non-negative and therefore always satisfy the first condition. Continuing with the second condition, and knowing that the $\sin^2(\beta h / 2)$-term is bounded by $1$ for all $\beta$, yields the following stability condition:
 \begin{equation*}
     \lambda \leq 1.
 \end{equation*}
@@ -528,10 +542,13 @@ This is the CFL condition given in Eq. \eqref{eq:CFL}. To obtain the stability c
 \end{equation}
 which is the stability condition given in Eq. \eqref{eq:1DWaveStabilityCond}.
 
-\section{Energy Analysis}\label{sec:energyAnalysis}
+\subsection{Discussion}
+Although frequency domain analysis is very useful, it can only be applied to linear and time-invariant (LTI) systems and linear and shift-invariant (LSI) systems. These, respectively, describe systems whose properties do not change over time (LTI) and space (LSI).\footnote{Acoustic tubes with a spatially-varying cross-section presented in Chapter \ref{ch:brass} are examples of non-LSI systems.} Furthermore, the analysis assumes systems with infinite domains, so boundary conditions are not included. Energy analysis techniques, on the other hand, allow these types of systems, even nonlinear systems, to be analysed, as well as being able to handle boundary conditions. This will be presented below.
+
+\section{Energy analysis}\label{sec:energyAnalysis}
 Of all analysis techniques described in this chapter, energy analysis is without a doubt the most important when working with FDTD methods. 
 First of all, from a practical point of view, it is essential for debugging implementations of FD schemes. Especially when trying to model more complex systems, programming errors are unavoidable, and energy analysis can be extremely helpful in pinpointing where the error lies. 
-Secondly, energy analysis techniques can be used to obtain stability conditions in a much more general sense than the frequency-domain analysis techniques presented in Section \ref{sec:stabilityAnalysis}. Where frequency-domain analysis is restricted to LTI systems with infinite domains (for distributed systems), energy analysis can be applied to nonlinear systems and boundary conditions \cite{theBible}. 
+Secondly, energy analysis techniques can be used to obtain stability conditions in a much more general sense than the frequency domain analysis techniques presented in Section \ref{sec:stabilityAnalysis}. Where frequency domain analysis is restricted to LTI and LSI systems with infinite domains (for distributed systems), energy analysis can be applied to nonlinear systems and include boundary conditions \cite{theBible}. 
 
 Gustafsson et al. in (the first edition of) \cite{Gustafsson2013} worked with energy to find stability conditions for FD schemes. This, they referred to as `the energy method' and it effectively circumvented the need of a frequency domain representation to find stability conditions (as presented in Section \ref{sec:stabilityAnalysis}). Later, energy, or more specifically `energy as a conserved quantity', was used to determine stability and passivity of systems. Bilbao gives an extensive overview in \cite{theBible} where this has been extensively used to show stability of the FD schemes used. 
 
@@ -539,14 +556,21 @@ One of the main goals when performing energy analysis is to find an expression f
 
 In this section, four steps are presented and can be followed to perform a full energy analysis of a FD scheme and implement it afterwards. Then, the analysis will be performed on the mass-spring system and the 1D wave equation presented in Chapter \ref{ch:FDTD}. Finally, it will be shown how to obtain stability conditions through the techniques presented in this section. 
 
-\subsection{Energy Analysis: A 4-Step Tutorial}
+\subsection{Energy analysis: A 4-step tutorial}
 
-\subsubsection{Step 1: Obtain the rate of change of the total energy $\dtp \h$.}
-The first step to energy analysis is to take the appropriate \textit{norm} of the scheme (see Eq. \eqref{eq:contInnerProd}), which yields and expression for the rate of change of the energy of the system: $\dtp\h$. Usually, this means to take the inner product of the scheme with $(\dtd \uln)$. See Section \ref{sec:innerProduct} for more details on the inner product. Note that the forward time difference $\dtp$ is used (and not the backwards or centred) because of convention and preference [Bilbao, verbally].
+%% 4 steps for copy-pasting:
+
+% \subsubsection{Step 1: Obtain $\dtp \h$}
+% \subsubsection{Step 2: Identify energy types and isolate $\dtp$}
+% \subsubsection{Step 3: Check units}
+% \subsubsection{Step 4: Implementation}
+
+\subsubsection{Step 1: Obtain the rate of change of the total energy $\dtp \h$}
+The first step to energy analysis is to take the appropriate \textit{norm} of the scheme (see Eq. \eqref{eq:contInnerProd}), which yields an expression for the rate of change of the energy of the system: $\dtp\h$. Usually, this means to take the inner product of the scheme with $(\dtd \uln)$ over a discrete domain $d$. See Section \ref{sec:innerProduct} for more details on the inner product. Note that the forward time difference $\dtp$ is used (and not the backwards or centred) because of convention and preference.\footnote{[Bilbao, verbally]}
 
 For the units of the resulting energy balance to add up (also see Step 3), it is useful to perform the analysis on a scheme with all physical parameters written out (so the discretised version of Eq. \eqref{eq:massSpringPDE} rather than Eq. \eqref{eq:massSpringCompact}).
 
-\subsubsection{Step 2: Identify different types of energy and obtain the total energy $\h$ by isolating $\dtp$.}
+\subsubsection{Step 2: Identify different types of energy and obtain the total energy $\h$ by isolating $\dtp$}
 The energy of a FD scheme can generally be divided into three different types: the total energy contained within the system, or Hamiltonian $\h$, energy losses through damping $\mathfrak{q}$ and energy input through external forces or excitations $\mathfrak{p}$. For distributed systems, an additional boundary term $\mathfrak{b}$ appears, but vanishes under `regular' (lossless and not energy-storing) boundary conditions. Nearly any energy balance is thus of the form 
 \begin{equation}\label{eq:energyForm}
     \dtp \h = \mathfrak{b}-\mathfrak{q} - \mathfrak{p}.
@@ -564,21 +588,42 @@ The Hamiltonian itself can usually be further subdivided into kinetic energy and
 \end{equation}
 As a rule of thumb, the definition for kinetic energy contains `velocity squared' (as in the classical-mechanics definition $E_\text{kin}=\tfrac{1}{2}M\dot u$) and the potential energy includes the restoring forces of the system. 
 
-\subsubsection{Step 3: Check the units in the expression for $\h$.}
-To know that the previous steps have been carried out correctly, it is good to check whether the units of the resulting expression for $\h$ is indeed in Joules, or kg $\cdot$ m$^2 \cdot $ s$^{-2}$. The other quantities such as energy losses $\mathfrak{q}$ and inputs $\mathfrak{p}$, should be in Joules per second or in SI units: kg $\cdot$ m$^2 \cdot $ s$^{-3}$. Some information about operators and grid functions and how they `add' units to the equation will be given below.
+\subsubsection{Step 3: Check the units in the expression for $\h$}
+To know that the previous steps have been carried out correctly, it is good to check whether the units of the resulting expression for $\h$ is indeed in Joules, or kg $\cdot$ m$^2 \cdot $ s$^{-2}$. The other quantities such as energy losses $\mathfrak{q}$ and inputs $\mathfrak{p}$, should be in Joules per second or in SI units: kg $\cdot$ m$^2 \cdot $ s$^{-3}$. As mentioned in Step 1, it is therefore useful to have all physical parameters written out so that the units will be correct in this step. Some information about operators and grid functions and how they `add' units are given in Table \ref{tab:units}. It is important to note that the time shift operator ($e_{t-}$) does not influence the units. Finally, the appearance of a grid function $\uln$ `adds' whatever it describes. Usually, as $\uln$ describes a displacement in m, it will `add' this to the equation. If it describes anything else, it will `add' that.
 
-An (1D) inner product (or norm) will `add' one `m' unit due to the $h$ in its definition in \eqref{eq:contInnerProd}. A first-order temporal difference operator will `add' one `s$^{-1}$'-unit (because of the $1/k$) and a first-order spatial difference operator will `add' one `m$^{-1}$'-unit ($1/h$). Along these lines, a second-order time or difference operator will `add' a `s$^{-2}$' ($1/k^2$) or `m$^{-2}$'-unit ($1/h^2$) respectively. It is important to note that the time shift operator ($e_{t-}$) does not influence the units. Finally, the appearance of a grid function $\uln$ `adds' whatever it describes. Usually, as $\uln$ describes a displacement in m, it will `add' this to the equation. If it describes anything else, it will `add' that.
+{\renewcommand{\arraystretch}{1.2}
 
-\subsubsection{Step 4: Implement the definitions for energy and debug the FD scheme.}
+\begin{table}[h]
+    \begin{center}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        Name & Operator & Unit\\ \hline
+        Inner product (1D) & $\langle \cdot, \cdot\rangle_d$ & m\\
+        Norm (1D) & $\lVert \cdot, \cdot\rVert_d^2$ & m\\
+        First order ops. in time & $\dtp, \dtm, \dtd$ & s$^{-1}$\\
+        Second order op. in time & $\dtt$ & s$^{-2}$\\
+        First order ops. in space & $\dxp, \dxm, \dxd$ & m$^{-1}$\\
+        Second order op. in space & $\dxx$ & m$^{-2}$\\
+        Shift operators & $e_{t-}, e_{x+}, \hdots$ & -\\
+        Averaging operators & $\mtp, \mtt, \mxd, \hdots$ & -\\\hline
+    \end{tabular}
+    \caption{Units of operators.\label{tab:units}}
+    \end{center}
+\end{table}
+{\renewcommand{\arraystretch}{1}
+
+% An (1D) inner product (or norm) will `add' one `m' unit due to the $h$ in its definition in \eqref{eq:contInnerProd}. A first-order temporal difference operator will `add' one `s$^{-1}$'-unit (because of the $1/k$) and a first-order spatial difference operator will `add' one `m$^{-1}$'-unit ($1/h$). Along these lines, a second-order time or difference operator will `add' a `s$^{-2}$' ($1/k^2$) or `m$^{-2}$'-unit ($1/h^2$) respectively.
+
+\subsubsection{Step 4: Implement the definitions for energy and debug the FD scheme}
 In the end, the definition for the energy can be implemented and used as a check for whether the FD scheme has been implemented correctly. Usually, the energy of the system is calculated for every iteration in the for loop and plotted after the simulation.
-For a system without losses or energy inputs, the energy should be unchanged according to Eq. \eqref{eq:unchangedEnergy} and can be plotted according
+For a system without losses or energy inputs, the energy should be unchanged according to Eq. \eqref{eq:unchangedEnergy} and can be plotted according to
 % 
 \begin{equation}\label{eq:normalisedEnergy}
     \h_{\text{e}}^n = \frac{\h^n - \h^0}{\h^0}\ ,\quad \text{if}\  \h^0\neq 0,
 \end{equation}
 % 
 where $\h^n_\text{e}$ can be seen as the normalised energy and shows the error variation. 
-Although this equation should always return $0$ (as $\h^n = \h^0$), in a finite precision simulation, ultra slight fluctuations of the energy should be visible due to rounding errors. Plotting the Hamiltonian should show fluctuations within \textit{machine precision}, which is usually in the range of $10^{-15}$. Over time, the fluctuations can add up, and possibly end up out of this range, but generally, any fluctuations less than in the $10^{-10}$ range indicate that there is no programming error. See fx. Figures \ref{fig:energyMassSpring} and \ref{fig:energy1DWave}.
+Although this equation should always return $0$ (as $\h^n = \h^0$), in a finite precision simulation, minute fluctuations of the energy should be visible due to rounding errors. Plotting the Hamiltonian should show fluctuations within \textit{machine precision}, which is usually in the range of $10^{-15}$. Over time, the fluctuations can add up, and possibly end up out of this range, but generally, any fluctuations less than in the $10^{-10}$ range indicate that there is no programming error. See fx. Figures \ref{fig:energyMassSpring} and \ref{fig:energy1DWave}.
 
 For a system with losses or energy inputs, a discrete integration, or summed form can be used (as done in fx. \cite{Harrison2018}):
 \begin{equation}\label{eq:normalisedEnergyDamping}
@@ -590,7 +635,7 @@ Recalling the FD scheme for the simple mass-spring system in Eq. \eqref{eq:massS
 \begin{equation*}
     M\dtt \un = -K\un
 \end{equation*}
-we can start to perform an energy analysis using the five steps described above. 
+an energy analysis can be performed using the four steps described above. 
 
 \subsubsection{Step 1: Obtain $\dtp \h$}
 The energy balance of the simple mass-spring system presented in Section \ref{sec:massSpringSystem} can be obtained by first taking the product of scheme \eqref{eq:massSpringFDS} with $(\dtd \un)$:
@@ -617,13 +662,13 @@ This can be rewritten in terms of the kinetic energy $\t$ and potential energy $
 \subsubsection{Step 3: Check units}
 As mentioned above, the energy $\h$ needs to be in Joules, or kg $\cdot$ m$^2 \cdot$ s$^{-2}$. Taking the terms in Eq. \eqref{eq:energyBalanceMassSpring} one-by-one and writing them in their units results in 
 \begin{align*}
-    \t = \frac{M}{2}(\dtm\un)^2 &\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad\text{kg}\cdot(\text{s}^{-1}\cdot \text{m})^{2}= \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
-    \v = \frac{K}{2}\un e_{t-}\un&\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad \text{N} \cdot \text{m}^{-1} \cdot \text{m}\cdot \text{m} = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},
+    \t = \frac{M}{2}(\dtm\un)^2 &\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad\text{kg}\cdot(\text{s}^{-1}\cdot \text{m})^{2}= \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
+    \v = \frac{K}{2}\un e_{t-}\un&\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad \text{N} \cdot \text{m}^{-1} \cdot \text{m}\cdot \text{m} = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},
 \end{align*}
 and indeed have the correct units. 
 
 \subsubsection{Step 4: Implementation}
-Equation \eqref{eq:energyBalance1DWave} can then be implemented in same for-loop recursion where the update is calculated.  
+Equation \eqref{eq:energyBalance1DWave} can then be implemented in the same for-loop recursion where the update is calculated.  
 \setlstMAT
 \begin{lstlisting}
 %% Calculate the energy using Eq. %*\eqrefMatlab[eq:energyBalanceMassSpring]*) 
@@ -657,7 +702,7 @@ Figure \ref{fig:energyMassSpring} shows the normalised energy (according to Eq. 
       \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the mass-spring system are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}). Notice that the scaling of the y-axis is $10^{-14}$ and the energy is thus within machine precision. \label{fig:energyMassSpring}}
 \end{figure}
 
-\subsection{1D Wave Equation}\label{sec:1DWaveEnergyAnalysis}
+\subsection{1D wave equation}\label{sec:1DWaveEnergyAnalysis}
 Energy analysis could be directly performed on the FD scheme in \eqref{eq:1DwaveFDS}. However, in order for the units of the scheme to add up to energy in Joules, it is useful to write out all physical parameters. Taking the definition for the wave speed for the ideal string $c = \sqrt{T/\rho A}$ and multiplying both sides of Eq. \eqref{eq:1DwaveFDS} by $\rho A$ yields
 \begin{equation}\label{eq:1DWavePhysical}
     \rho A \dtt \uln = T \dxx \uln,
@@ -674,7 +719,7 @@ Taking an inner product using Eq. \eqref{eq:1DWavePhysical} with $\left( \dtd \u
 \subsubsection{Step 2: Identify energy types and isolate $\dtp$}
 As in the case of the mass-spring system in the previous section, there are no losses or externally supplied energy present in the system, and all terms are part of the Hamiltonian $\h$.
 
-To isolate $\dtp$ in Eq. \eqref{eq:rOC1DWave}, the terms have to be rewritten in a way that fits the product identities in Section \ref{sec:prodIdentities}.
+To isolate $\dtp$ in Eq. \eqref{eq:rOC1DWave}, the terms have to be rewritten in a way that it fits the product identities in Section \ref{sec:prodIdentities}.
 Summation by parts as described in Section \ref{sec:summationByParts}  can be used. Using identity \eqref{eq:summationByPartsMinusBar}  with $f_l^n \triangleq \dtd \uln$ and $g_l^n \triangleq \dxp \uln$, the second term can be rewritten to 
 %
 \begin{equation*}
@@ -682,7 +727,7 @@ Summation by parts as described in Section \ref{sec:summationByParts}  can be us
 \end{equation*}
 where the boundary term
 \begin{equation*}
-    \mathfrak{b} = T(\dtd u_N^n)(\dxp u_N^n) - T(\dtd u_0^n) (\dxp u_{-1}^n),
+    \mathfrak{b} = T(\dtd u_N^n)(\dxp u_N^n) - T(\dtd u_0^n) \underbrace{(\dxp u_{-1}^n)}_{\dxm u_0^n},
 \end{equation*}
 and reduced domain $\underline{d} = \{0, \hdots, N-1\}$. As Dirichlet boundary conditions are used, the boundary term vanishes as 
 \begin{equation*}
@@ -708,9 +753,9 @@ and the definition for the Hamiltonian and the kinetic and potential energy can 
 \subsubsection{Step 3: Check units}
 Writing out the definitions for kinetic and potential energy in Eq. \eqref{eq:energyBalance1DWave} respectively, yields
 \begin{align*}
-    \t = \frac{\rho A}{2}\lVert\dtm \uln\rVert^2_d \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \ \text{kg}\cdot \text{m}^{-3} \cdot \text{m}^2\cdot \text{m} \cdot(\text{s}^{-1}\cdot \text{m})^{2}\\
+    \t = \frac{\rho A}{2}\lVert\dtm \uln\rVert^2_d \ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \quad \text{kg}\cdot \text{m}^{-3} \cdot \text{m}^2\cdot \text{m} \cdot(\text{s}^{-1}\cdot \text{m})^{2}\\
     & = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
-    \v = \frac{T}{2}\langle\dxp\uln, e_{t-}\dxp\uln\rangle_{\underline{d}}\overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \ \text{N} \cdot \text{m}\cdot (\text{m}^{-1}\cdot\text{m}\cdot \text{m}^{-1}\cdot\text{m}^{-1}\text{m}) \\
+    \v = \frac{T}{2}\langle\dxp\uln, e_{t-}\dxp\uln\rangle_{\underline{d}}\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}}& \quad \text{N} \cdot \text{m}\cdot (\text{m}^{-1}\cdot\text{m}\cdot \text{m}^{-1}\cdot\text{m}^{-1}\text{m}) \\
     & = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-2},
 \end{align*}
 and are indeed in Joules. Notice that an extra `m' unit appears due to the norm and inner product.
@@ -732,7 +777,7 @@ potEnergy(n) = T/(2*h) * sum(([u; 0] - [0; u]) ...
 % Total energy (Hamiltonian)
 totEnergy(n) = kinEnergy(n) + potEnergy(n);
 \end{lstlisting}
-Here, \texttt{u} is the vector $\u = [u_1^n, \hdots, u_{N-1}^n]^T$ (as Dirichlet boundary conditions are used) and need to be concatenated with $0$ in the calculation of the potential energy as the boundaries need to be included in the calculation, despite them being 0!\footnote{As can be seen from the definition of $\v$ in Eq. \eqref{eq:energyBalance1DWave}, the domain used for the inner product is $\underline{d} = \{0,\hdots, N-1\}$ and $\v$ contains a forward difference in its definition requiring $u_N^n$ as well.}
+Here, \texttt{u} is the vector $\u = [u_1^n, \hdots, u_{N-1}^n]^T$ (as Dirichlet boundary conditions are used) and need to be concatenated with $0$ in the calculation of the potential energy as the boundaries needs to be included in the calculation, despite them being 0.\footnote{As can be seen from the definition of $\v$ in Eq. \eqref{eq:energyBalance1DWave}, the domain used for the inner product is $\underline{d} = \{0,\hdots, N-1\}$ and $\v$ contains a forward difference in its definition requiring $u_N^n$ as well.}
 Figure \ref{fig:energy1DWave} shows the plot of the normalised energy according to Eq. \eqref{eq:normalisedEnergy} and shows that the deviation of $\h^n$ is within machine precision.
 \begin{figure}[h]
     \centering
@@ -795,8 +840,8 @@ totEnergy(n) = kinEnergy(n) + potEnergy(n);
 \end{lstlisting}
 
 
-\subsection{Stability Analysis using Energy Analysis Techniques}\label{sec:stabilityAnalysisEnergy}
-Section \ref{sec:stabilityAnalysis} showed how to obtain a stability condition of a FD scheme using a frequency-domain representation. Although not operating in the frequency domain, the energy analysis techniques presented here may also be used to obtain stability conditions of FD schemes. Stability analysis using the energy method might even be considered more powerful than the frequency domain approach, as it can also be used to analyse nonlinear systems!
+\subsection{Stability using energy analysis techniques}\label{sec:stabilityAnalysisEnergy}
+Section \ref{sec:stabilityAnalysis} showed how to obtain a stability condition of a FD scheme using a frequency domain representation. Although not operating in the frequency domain, the energy analysis techniques presented here may also be used to obtain stability conditions of FD schemes and might even be considered more powerful than the frequency domain approach, as it can also be used to analyse spatially varying and nonlinear systems!\todo{long sentence}
 
 To arrive at a stability condition, the energy must be \textit{non-negative} ($\h \geq 0$) or, in some cases \textit{positive definite} ($\h > 0$). Below, the mass-spring system and the 1D wave equation will be used as a test case.
 
@@ -866,43 +911,52 @@ and is non-negative for
 \end{align*}
 This is the same (CFL) condition obtained through von Neumann analysis in Section \ref{sec:vonNeumann1DWave}.
 
-\section{Modal Analysis}
+\section{Modal analysis}
 \label{sec:modalAnalysis}
-Modes are the resonant frequencies of a system. The amount of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. Modal analysis \todo{some citation here} can be used to obtain objective data on what modes a FD scheme should contain. This can then be used to determine whether this matches one's expectations or whether the output of the system matches what the analysis predicted. This section will show how to numerically obtain the modal frequencies of a FD implementation using the 1D wave equation as a test case.
+Modes are the resonant frequencies of a system. The number of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. Modal analysis \todo{some citation here} can be used to obtain objective data on what modes a FD scheme should contain. This can then be used to determine whether this matches one's expectations or whether the output of the system matches what the analysis predicted. Although this method is only fully accurate for LTI systems, it can still provide valuable information about systems with slow (sub-audio rate) parameter changes.\footnote{The modal analysis techniques presented here have indeed been used extensively in paper \citeP[G] (described in Chapter \ref{ch:dynamicGrid}), exactly for this reason.} This section will show how to numerically obtain the modal frequencies of a FD scheme using the 1D wave equation as a test case.
 
-We start by using the matrix form of the 1D wave equation from Eq. \eqref{eq:1DwaveMatrix}
+Recall the matrix form of the 1D wave equation from Eq. \eqref{eq:1DwaveMatrix}
 \begin{equation*}
     \frac{1}{k^2}\left(\u^{n+1}-2\u^n+\u^{n-1}\right) = c^2 \Dxx\u^n.
 \end{equation*}
-Following \cite{theBible} we can assume a test solution of the form $\u^n = z^n\boldPhi$ \todo{more explanation, perhaps refer to von neumann analysis in \ref{sec:stabilityAnalysis}}. Substituting this into the above equation yields the characteristic equation
+Following \cite{theBible}, a test solution of the form $\u^n = z^n\boldPhi$ can be assumed \todo{more explanation, perhaps refer to von neumann analysis in \ref{sec:stabilityAnalysis}}. Substituting this into the above equation yields the characteristic equation
 \begin{equation}
     (z - 2 + z^{-1})\boldPhi = c^2k^2\Dxx \boldPhi.
 \end{equation}
-This is an eigenvalue problem (see Section \ref{sec:eigenValueProblems}) where the $p$\th solution $\boldPhi_p$ may be interpreted as the modal shape of mode $p$. The corresponding modal frequencies are the solutions to the following equations:
+This is an eigenvalue problem (see Section \ref{sec:eigenValueProblems}) where the $p$\th solution $\boldPhi_p$ may be interpreted as the modal shape of mode $p$. The corresponding modal frequencies (or eigenfrequencies) are the solutions to the following equations:
 \begin{gather}\label{eq:1DWaveModalIntermediate}
     z_p-2+z_p^{-1} = c^2k^2\text{eig}_p(\Dxx),\nonumber\\
     z_p+\Big(-2-c^2k^2\text{eig}_p(\Dxx)\Big)+z_p^{-1}=0.
 \end{gather}
 %\SWcomment[If the CFL condition for the scheme is satisfied, the roots will lie on the unit circle.] 
-Furthermore, we can substitute a test solution $z_p = e^{s_pk}$ with complex frequency $s_p = j\omega_p + \sigma_p$ which contains the (angular) frequency $\omega_p$ and damping $\sigma_p \leq 0$ \todo{check with Stefan} of the $p$\th mode.\footnote{Notice that regardless of the possible damping coefficient per mode, the eventual amplitude of each will mostly be determined by the locations of the excitation and output as discussed in Section \ref{sec:output1DWave}.} As there is no damping present in the system, the test solution reduces to $z_p = e^{j\omega_p k}$ which can be substituted into Eq \eqref{eq:1DWaveModalIntermediate} to get
+Furthermore, one can substitute a test solution $z_p = e^{s_pk}$ with complex frequency $s_p = j\omega_p + \sigma_p$ which contains the (angular) frequency $\omega_p$ and damping $\sigma_p \leq 0$ \todo{check with Stefan} of the $p$\th mode.\footnote{Notice that regardless of the possible damping coefficient per mode, the eventual amplitude of each will mostly be determined by the locations of the excitation and output as discussed in Section \ref{sec:output1DWave}.} As there is no damping present in the system, the test solution reduces to $z_p = e^{j\omega_p k}$ which can be substituted into Eq \eqref{eq:1DWaveModalIntermediate} to get
 \begin{align*}
     e^{j\omega_pk}+e^{-j\omega_pk}-2-c^2k^2\text{eig}_p(\Dxx)&=0,\\
     \frac{e^{j\omega_pk}+e^{-j\omega_pk}}{-4}+\frac{1}{2}+\frac{c^2k^2}{4}\text{eig}_p(\Dxx)&=0.
 \end{align*}
-Finally, using the trigonometric identity in Eq. \eqref{eq:sinIdentity} we get
+Finally, using the trigonometric identity in Eq. \eqref{eq:sinIdentity} yields
 \begin{align}
     \sin^2(\omega_pk/2)&+\frac{c^2k^2}{4}\text{eig}_p(\Dxx)=0,\nonumber\\
     \sin(\omega_pk/2)&=\frac{ck}{2}\sqrt{-\text{eig}_p(\Dxx)},\nonumber\\
-    \omega_p &= \frac{2}{k}\sin^{-1}\left(\frac{ck}{2}\sqrt{-\text{eig}_p(\Dxx)}\right).\label{eq:1DWaveModesAngular}
+    \omega_p &= \frac{2}{k}\sin^{-1}\left(\frac{ck}{2}\sqrt{-\text{eig}_p(\Dxx)}\right),\label{eq:1DWaveModesAngular}
 \end{align}
 and can be rewritten to 
 \begin{equation}
     f_p = \frac{1}{\pi k}\sin^{-1}\left(\frac{ck}{2}\sqrt{-\text{eig}_p(\Dxx)}\right)\label{eq:1DWaveModes}
 \end{equation}
-to get the modal frequency of the $p$\th mode in Hz.
+to get the modal frequency of the $p$\th mode in Hz. 
 
-\subsection{One-Step Form}\label{sec:oneStepForm}
-For more complicated systems, specifically those containing damping terms, it is useful to rewrite the update in \textit{one-step form} (also referred to as a state-space representation). The damping terms cause the coefficients of $z$ and $z^{-1}$ in the characteristic equation to not be identical and the trigonometric identities in \eqref{eq:trigIdentities} can not be used directly. Although the eigenfrequency calculation needs to be done on a larger matrix, it allows for a more general and direct way to calculate the modal frequencies and damping coefficients per mode. 
+See Figure \ref{fig:modalFreqs1Dwave} for a plot of the modal frequencies of an implementation of the 1D wave equation with the parameters given in Table \ref{tab:1DWaveParams}.
+The figure shows one great advantage of performing modal analysis on a FD scheme, over only obtaining the spectrum of its output. Although the values from the analysis do correspond to the partials shown in the frequency domain output of the 1D wave equation in Figure \ref{fig:1DWaveOutput}, the latter does not show all modes present in the system. This is due to the input and output locations of the system as discussed in Section \ref{sec:output1DWave}. The modal analysis does obtain the frequency data regardless of the aforementioned input and output locations. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width = 0.6\textwidth]{figures/analysis/1dmodes.eps}
+    \caption{Modal frequencies of the 1D wave equation with the parameters given in Table \ref{tab:1DWaveParams}. \label{fig:modalFreqs1Dwave}}
+\end{figure}
+
+\subsection{One-step form}\label{sec:oneStepForm}
+For more complicated systems, specifically those containing damping terms, it is useful to rewrite the update in \textit{one-step form} (also referred to as a state-space representation). The damping terms cause the coefficients of $z$ and $z^{-1}$ in the characteristic equation to not be identical and the trigonometric identities in \eqref{eq:trigIdentities} can not be used directly. Although the eigenvalue calculation needs to be done on a larger matrix, it allows for a more general and direct way to calculate the modal frequencies and damping coefficients per mode. 
 
 If matrix $\A$ has an inverse, any scheme of the form
 \begin{equation}\label{eq:modalForm}
@@ -923,7 +977,7 @@ can be rewritten to
         \u^{n-1}
     \end{bmatrix}}_{\w^n}
 \end{equation}
-which relates the unknown state of the system to the known state through matrix $\Q$ which encompases the scheme. The sizes of the identity matrix $\I$ and zero matrix $\mathbf{0}$ are the same size as $\A, \B$ and $\C$.
+which relates the unknown state of the system to the known state through matrix $\Q$ which encompasses the scheme. The sizes of the identity matrix $\I$ and zero matrix $\mathbf{0}$ are the same size as $\A, \B$ and $\C$.
 
 Again, solutions of the form $\w^n = z^n\boldPhi$ can be assumed (where $\boldPhi$ is now less-trivially connected to the modal shapes)
 \begin{equation}
@@ -945,3 +999,8 @@ Solutions for the frequency and damping for the $p$th eigenvalue can then be obt
 where $\mathfrak{I}(\cdot)$ and $\mathfrak{R}(\cdot)$ denote the ``imaginary part of'' and ``real part of'' respectively. 
 
 As the elements of $\Q$ are real-valued, the solutions $s_p$ in Eq. \eqref{eq:sp} come in complex conjugates (pairs of numbers of which the imaginary part has an opposite sign). For analysis, only the $\mathfrak{I}(s_p)\geq 0$ should be considered as these correspond to non-negative frequencies. 
+
+\section{Conclusion}
+This chapter presented three different analysis techniques in discrete time, that are of extreme utility when working with FD schemes. Frequency domain analysis, or von Neumann analysis in the distributed case, can be used to obtain stability conditions for LTI and LSI systems. Energy analysis techniques can also be used to prove stability and passivity, but for a larger range of systems including LTI, LSI, and nonlinear systems. Furthermore, energy analysis can be used in a practical manner to debug implementations of FD schemes and ensure that no programming errors have been made. Finally, modal analysis can be used to analyse the behaviour of a scheme in terms of its modal frequencies and modal shapes. This can be used to determine whether the auditory output matches the precidictions of the analysis. Although analogous techniques in continuous time also exist, a more practical angle has been chosen for this work and only the discrete time methods have been presented. For more information about the techniques in continuous time, see \cite{theBible}.
+
+All three analysis techniques will be extensively used in the rest of this document to analyse the FD schemes used in this project.

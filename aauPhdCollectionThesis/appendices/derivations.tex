@@ -1,0 +1,143 @@
+\chapter{Derivations}\label{app:derivations}
+\def\Psilp{\Psi_{l+1}^n}
+\def\Psilm{\Psi_{l-1}^n}
+\def\Psinp{\Psi_l^{n+1}}
+\def\Psinm{\Psi_l^{n-1}}
+
+\section{Webster's update equation (Eq. \eqref{eq:webstersUpdateEq})}\label{app:webstersUpdateEq}
+This section derives the update equation for Webster's equation in Eq. \eqref{eq:webstersUpdateEq}:
+\begin{align*}
+    &\begin{aligned}
+    \frac{\Sbar}{k^2}(\Psi_l^{n+1} - 2\Psiln+\Psi_l^{n-1}) &= c^2\bigg((\dxm \Sp)(\mxm \dxp \Psiln)\\
+    & + (\mxm \Sp)(\dxm \dxp \Psiln)\bigg),\\
+    \Psinp - 2\Psiln+\Psinm &= \frac{c^2k^2}{\Sbar}\bigg(\frac{1}{h}(\Sp - \Sm)\frac{1}{2h}\overbrace{(\Psilp -\Psilm)}^{\mxp\dxm\Psiln = \delta_{x\cdot}\Psiln}\nonumber\\
+    &+\frac{1}{2}(\Sp + \Sm)\frac{1}{h^2}(\Psilp-2\Psiln+\Psilm)\bigg),
+    \end{aligned}\\[-0.5em]
+    &\begin{aligned}
+        \Psinp &= 2\Psiln -\Psinm +\overbrace{\frac{\lambda^2}{2\Sbar}}^{\lambda = \frac{ck}{h}}\Big(\Sp\Psilp - \Sp\Psilm\\
+        &\qquad\qquad - \Sm\Psilp + \Sm\Psilm+ \Sp\Psilp + \Sp\Psilm \\
+        &\qquad\qquad + \Sm\Psilp + \Sm\Psilm - 2 (\Sp + \Sm)\Psiln\Big)\nonumber,\\
+        \Psinp &= 2\Psiln-\Psinm+ \frac{\lambda^2}{2\Sbar}\Big(2\Sp\Psilp + 2\Sm\Psilm - 4\Sbar\Psiln\Big)\nonumber,\\
+        \Psinp &= 2\Psiln-\Psinm+ \frac{\lambda^2\Sp}{\Sbar}\Psilp + \frac{\lambda^2\Sm}{\Sbar}\Psilm - 2\lambda^2\Psiln\nonumber,\\
+        \Psinp &= 2(1-\lambda^2)\Psiln-\Psinm+ \frac{\lambda^2\Sp}{\Sbar}\Psilp + \frac{\lambda^2\Sm}{\Sbar}\Psilm.
+    \end{aligned}
+\end{align*}
+
+\section{Boundary terms Webster's equation (Eq. \eqref{eq:centStrictDissip})}\label{app:boundaryWebster}
+This section derives process of obtaining the values for $\el$ and $\er$ such that the boundary terms in Webster's equation are strictly dissipative. 
+
+Starting with the second term in the energy balance in Eq. \eqref{eq:powerBalanceWebster}:
+\begin{equation}
+    - c^2\langle\dtd\Psiln, \dxm\big(\Sp(\dxp\Psiln)\big)\rangle_d^{\el,\er}.
+\end{equation}
+Using identity \eqref{eq:weightedIdentityMinus}
+\begin{equation*}
+    \begin{aligned}
+    \langle f_l^n, \dxm g_l^n \rangle_d^{\el,\er}  = -&\langle \dxp f_l^n, g_l^n \rangle_{\underline{d}}+ f_N^ng_{N-1}^n - f_0^ng_0^n \\
+    &+ \frac{\epsilon_\text{r}}{2}f_N^n(g_N^n-g_{N-1}^n)+ \frac{\epsilon_\text{l}}{2}f_0^n(g_0^n - g_{-1}^n),
+    \end{aligned}
+\end{equation*}
+this can be rewritten to (with $f=\dtd\Psi$ and $g = S_{l+1/2}(\dxp\Psi)$)
+\begin{equation*}
+        -c^2\langle \dtd\Psiln,\dxm \big(\Sp(\dxp\Psiln)\big) \rangle_{d}^{\epsilon_\text{l},\epsilon_\text{r}} = c^2\langle \dtd\dxp \Psiln, \big(\Sp(\dxp\Psiln)\big)\rangle_{\underline{d}} - \b.
+\end{equation*}
+where
+\begin{equation}
+    \b = \b_\text{r} - \b_\text{l}
+\end{equation}
+with
+\begin{equation*}
+    \mathfrak{b}_\text{r} =  \begin{aligned}[t]
+        &c^2 (\dtd\Psi_N^n)\Big(S_{N-1/2}\overbrace{(\dxp\Psi_{N-1}^n)}^{(\dxm\Psi_{N}^n)}\Big)\\
+        &+ \frac{\epsilon_\text{r}}{2}(\dtd\Psi_{N}^n)\Big(S_{N+1/2}(\dxp\Psi_N^n)- S_{N-1/2}\underbrace{(\dxp \Psi_{N-1}^n)}_{(\dxm\Psi_{N}^n)}\Big)
+    \end{aligned}
+\end{equation*}
+and 
+\begin{equation*}
+    \mathfrak{b}_\text{l} = \begin{aligned}[t]
+        &c^2(\dtd\Psi_0^n)\Big(S_{1/2}(\dxp\Psi_0^n)\Big)\\
+        & -\frac{\epsilon_\text{l}}{2}(\dtd\Psi_0^n)\Big(S_{1/2}(\dxp\Psi_0^n)-S_{-1/2}\underbrace{(\dxp\Psi_{-1}^n)}_{(\dxm\Psi_0^n)}\Big)
+    \end{aligned}
+\end{equation*}
+which can be rewritten to
+\begin{align}
+    \b_\text{r} &= c^2(\dtd\Psi_N^n)\left(\frac{\epsilon_\text{r}}{2}S_{N+1/2}(\dxp \Psi_N^n) + \left(1-\frac{\epsilon_\text{r}}{2}\right)S_{N-1/2}(\dxm\Psi_N^n)\right),\\
+    \b_\text{l} &= c^2(\dtd\Psi_0^n)\left(\frac{\epsilon_\text{l}}{2}S_{-1/2}(\dxm\Psi_0^n)+\left(1-\frac{\epsilon_\text{l}}{2}\right)S_{1/2}(\dxp \Psi_0^n))\right).
+\end{align}
+% \\
+% &= \\
+% &\qquad - c^2(\dtd\Psi_0^n)\left(\frac{\epsilon_\text{l}}{2}S_{-1/2}(\dxm\Psi_0^n)+\left(1-\frac{\epsilon_\text{l}}{2}\right)S_{1/2}(\dxp \Psi_0^n))\right)
+
+Then, for the centred radiating boundary condition in Eq. \eqref{eq:centRadBound} to be strictly dissipative, i.e., $\dxd \Psiln = 0 \ \Rightarrow \ \b_\text{r} = 0$ the special choice for $\epsilon_\text{r} = S_{N-1/2} / \mu_{xx}S_N$ needs to be made:
+\begin{equation}
+    \begin{aligned}
+        \mathfrak{b}_\text{r} &= c^2 (\dtd\Psi_N^n)\!\left(\frac{S_{N-1/2}}{2\mu_{xx}S_N}S_{N+1/2}(\dxp\Psi_N^n)+\left(1\!-\!\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)\!S_{N-1/2}(\dxm\Psi_N^n)\!\right),\\
+        &= c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(\frac{S_{N+1/2}}{2\mu_{xx}S_N}(\dxp\Psi_N^n)+\left(1-\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)(\dxm\Psi_N^n)\right),\\
+        &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)\left(\frac{\frac{S_{N+1/2}(\dxp\Psi_N^n)}{2\mu_{xx}S_N}}{\left(1-\frac{S_{N-1/2}}{2\mu_{xx}S_N}\right)}+\dxm\Psi_N^n\right),\\
+        &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)\left(\frac{\frac{S_{N+1/2}(\dxp\Psi_N^n)}{2\mu_{xx}S_N}}{\left(\frac{2\mu_{xx}S_N - S_{N-1/2}}{2\mu_{xx}S_N}\right)}+\dxm\Psi_N^n\right),\\
+        &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)\left(\frac{S_{N+1/2}(\dxp\Psi_N^n)}{2\mu_{xx}S_N - S_{N-1/2}}+\dxm\Psi_N^n\right),\\
+        &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)\left(\frac{S_{N+1/2}(\dxp\Psi_N^n)}{S_{N+1/2} + S_{N-1/2} - S_{N-1/2}}+\dxm\Psi_N^n\right),\\
+        &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)\left(\dxp\Psi_N^n+\dxm\Psi_N^n\right),\\
+        &=c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)\left(\frac{1}{h}\left(\Psi_{N+1}^n - \Psi_N^n + \Psi_N^n - \Psi_{N-1}^n\right)\right),\\
+&= c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(1-\frac{\epsilon_\text{r}}{2}\right)2(\delta_{x\cdot}\Psi_N^n),\\
+&= c^2 (\dtd\Psi_N^n)S_{N-1/2}\left(2-\epsilon_\text{r}\right)(\delta_{x\cdot}\Psi_N^n).
+    \end{aligned}
+\end{equation}
+The same can be done for $\mathfrak{b}_\text{l}$ with $\epsilon_\text{l} = S_{1/2}/\mu_{xx}S_0$ to get
+\begin{equation}
+    \mathfrak{b}_\text{l} = c^2(\dtd\Psi_0^n)S_{1/2}\left(2-\epsilon_\text{l}\right)(\delta_{x\cdot}\Psi_0^n).
+\end{equation}
+
+\section{Derivatives for Newton-Raphson for the elasto-plastic friction model (Eq. \eqref{eq:NRit})}\label{app:elastoDeriv}
+Recalling the functions needed for to compute the Newton-Raphson iteration for the elasto-plastic bow model in Section \ref{sec:elastoPlastic}, being Eq. \eqref{eq:elastog1}
+\begin{equation*}
+    g_1(v^n,z^n) = \left(\frac{2}{k} + 2\sz\right)v^n + \lVert J_l(x_\Btxt^n)\rVert_d^2\frac{f(v^n,z^n)}{\rho A}+ b^n= 0,
+\end{equation*}
+and Eq. \eqref{eq:elastog2}:
+\begin{equation*}
+    g_2(v^n, z^n) = r^n - a^n = 0,
+\end{equation*}
+the derivatives needed to solve the Newton-Raphson iteration in Eq. \eqref{eq:NRit} 
+\begin{equation*}
+    \begin{bmatrix}
+        v^n\\
+        z^n
+        \end{bmatrix}_{i+1}
+        =
+        \begin{bmatrix}
+        v^n\\
+        z^n
+        \end{bmatrix}_i
+        -
+        \begin{bmatrix}
+        \frac{\partial g_1}{\partial v} & \frac{\partial g_1}{\partial z}\\
+        \frac{\partial g_2}{\partial v} & \frac{\partial g_2}{\partial z}\\
+        \end{bmatrix}^{-1}
+        \begin{bmatrix}
+        g_1\\
+        g_2
+        \end{bmatrix}\,
+        .
+\end{equation*}
+can be shown to be
+\begin{align*}
+    \frac{\partial g_1}{\partial v} &= \frac{2}{k} + 2\sigma_0 + \frac{s_1\lVert J_l(x_\Btxt^n)\rVert_d^2}{\rho A}\frac{\partial r}{\partial v}+\frac{s_2\lVert J_l(x_\Btxt^n)\rVert_d^2}{\rho A},\\
+    \frac{\partial g_1}{\partial z} &= \frac{s_0\lVert J_l(x_\Btxt^n)\rVert_d^2}{\rho A} + \frac{s_1\lVert J_l(x_\Btxt^n)\rVert_d^2}{\rho A}\frac{\partial r}{\partial z},\\
+    \frac{\partial g_2}{\partial v} &= \frac{\partial r}{\partial v}
+    \\\frac{\partial g_2}{\partial z}&= \frac{\partial r}{\partial z} -\frac{2}{k}.
+\end{align*}
+Recalling from Eq. \eqref{eq:r} that
+\begin{equation*}
+    r^n = r(v^n,z^n) = v^n\bigg[1-\alpha(v^n,z^n)\frac{z^n}{z_\text{ss}(v^n)}\bigg]
+\end{equation*}
+its derivatives can be computed as
+\begin{align*}
+    \frac{\partial r}{\partial v} &= 1-z^n\Bigg(\frac{(\alpha^n+\frac{\partial \alpha^n}{\partial v}v^n)z_\text{ss}^n - \frac{\partial z_\text{ss}^n}{\partial v}\alpha^n v^n}{(z_\text{ss}^n)^2}\Bigg),\\
+    \frac{\partial r}{\partial z} &= -\frac{v^n}{z_\text{ss}^n}\bigg(\frac{\partial \alpha^n}{\partial z}z^n + \alpha^n\bigg),
+    \end{align*}
+with
+\begin{align*}
+    \frac{\partial\alpha^n}{\partial v} &=\sgn(z_\text{ss}^n)\frac{\partial z_\text{ss}^n}{\partial v}\frac{z_\text{ba} - |z^n|}{(|z_\text{ss}^n| - z_\text{ba})^2}\frac{\pi}{2}\cos\big(\sgn(z^n)\Phi\big),\\
+    \frac{\partial\alpha^n}{\partial z}&=\frac{\sgn(z^n)\pi\cos\big(\sgn(z^n)\Phi\big)}{2(|z_\text{ss}^n|-z_\text{ba})},\\
+    \frac{\partial z_\text{ss}^n}{\partial v} &= -\frac{2|v^n|}{v_\text{S}^2 s_0}(f_\text{S}-f_\text{C})e^{-(v^n/v_\text{S})^2}.
+\end{align*}
