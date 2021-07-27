@@ -1,12 +1,12 @@
 \chapter{Trombone}\label{ch:trombone}
-This chapter provides an extended summary for the paper ``A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes'' \citeP[H]. The trombone is an extremely interesting case from a modelling perspective as the length of the acoustic tube is time-varying. 
+This chapter provides an extended summary for the paper ``A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes'' \citeP[H]. The trombone is an extremely interesting case from a simulation perspective as the length of the acoustic tube is time-varying. 
 
 The air propagation in the trombone has been modelled using a system of two first-order PDEs, presented in Section \ref{sec:firstOrderSystem}. Although Webster's equation (see Section \ref{sec:webstersEq}) could have been used, the state-of-the-art models for brass instruments using FDTD methods use first-order PDEs \cite{Bilbao2016, Harrison2018}. Some extensions, such as the state-of-the-art radiation model used in \cite{Harrison2018} and viscothermal losses in \cite{Bilbao2016}, could then easily be added, although the latter has been left for future work.  
 
 % with the idea that viscothermal losses could be added as done in \cite{Bilbao2016} where the authors also use a first-order system
 % Interesting read: https://newt.phys.unsw.edu.au/jw/brassacoustics.html
 
-The 
+After providing a short summary 
 
 \section{Summary}
 The main contribution is the inclusion of the dynamic grid, which will be summarised below. 
@@ -22,8 +22,9 @@ Most has been described in Chapter \ref{ch:brass}
 \section{Lip-reed with collision}
 \def\nph{}
 \def\nphSys{n+1/2}
-To excite the trombone, the lip reed model presented in Chapter \ref{ch:lipreed} was used, and extended using the collision method presented in Chapter \ref{ch:collisions}. This section provides details on this addition and the implementation and follows the notation of the thesis (for consistency and to prevent cluttering).
+To excite the trombone, the lip reed model presented in Chapter \ref{ch:lipreed} was used, and extended using the collision method presented in Chapter \ref{ch:collisions}. This section provides details on this addition and the implementation and follows the notation of the thesis for consistency.
 
+\subsection{Continuous time}
 In continuous time, a collision can be added to Eq. \eqref{eq:lipReedDimensional} in the same way as for the mass-barrier collision presented in Section \ref{sec:massRigidBarrier} as
 \begin{equation}\label{eq:lipWithCollisionCont}
     M\ddot y = -K y - R \dot y + S_\text{r}\Delta p + \psi g
@@ -31,9 +32,9 @@ In continuous time, a collision can be added to Eq. \eqref{eq:lipReedDimensional
 where $g = \psi'$ and $\psi$ and $\psi'$ are as defined in Eq. \eqref{eq:quadraticPotential}.\footnote{Notice that as $y$ is the displacement of the upper lip, the `barrier' modelling the lower lip is placed below, resulting in a positive collision force on $y$.} In the implementation, the frequency of the lip reed is made to be time varying and causes $K = K(t)$ to be time-dependent. Other parameters are the same as in Eq. \eqref{eq:lipReedDimensional}.
 
 \subsection{Discrete time}
-This section follows Section \ref{sec:massRigidBarrier} for the collision and Section \ref{sec:discreteLipReed} for the lip reed.
+The discretisation follows Section \ref{sec:massRigidBarrier} for the collision and Section \ref{sec:discreteLipReed} for the lip reed.
 
-As the lip reed is discretised on the interleaved (temporal) grid, the collision term needs to be as well. Dividing all terms by $M$ and using $\omega_0 = \omega_0^{n+1/2} = \sqrt{K^{n+1/2}/M}$ and $\sigma_\rtxt = R/M$ yields\footnote{The paper uses $\omega_r$ instead of $\omega_0$ and $M_r$ rather than $M$.}
+As the lip reed is discretised on the interleaved (temporal) grid, the collision term needs to be as well. Dividing all terms by $M$ and using $\omega_0 = \omega_0^{n+1/2} = \sqrt{K^{n+1/2}/M}$ and $\sigma_\rtxt = R/M$ yields\footnote{Note that the paper uses $\omega_r$ and $M_r$ instead of $\omega_0$ and $M$.}
 \begin{equation}\label{eq:preLipCollision}
     \delta_{tt}y^{\nphSys} = -\omega_0^2\mu_{t\cdot}y^{\nphSys}-\sigma_\text{r}\delta_{t\cdot}y^{\nphSys} + \frac{S_\text{r}}{M}\Delta p^{\nphSys} + \frac{\psi^{n+1/2}g^{n+1/2}}{M}.
 \end{equation}
@@ -50,9 +51,9 @@ with static equilibrium separation $H_0$. Here $-H_0$ can be interpreted as the 
 %     M\delta_{tt}y^{\nph} = -M\omega_0^2\mu_{t\cdot}y^{\nph}-M\sigma_\text{r}\delta_{t\cdot}y^{\nph} + S_\text{r}\Delta p^{\nph} + \psi^{n+1/2}(\psi^{n+1/2})', 
 % \end{equation}
 Using $\mu_{t+}\psi^n = \psi^{n+1/2}$ (which is Eq. \eqref{eq:psiHalfDef} shifted to the interleaved grid), Eq. \eqref{eq:preLipCollision} can be rewritten to
-\begin{equation}
-    \delta_{tt}y^{\nphSys} = -\omega_0^2\mu_{t\cdot}y^{\nphSys}-\sigma_\text{r}\delta_{t\cdot}y^{\nphSys} + \frac{S_\text{r}}{M}\Delta p^{\nphSys} + \frac{(\mtp\psi^n)g^{n+1/2}}{M}
-\end{equation}
+\begin{equation*}
+    \delta_{tt}y^{\nphSys} = -\omega_0^2\mu_{t\cdot}y^{\nphSys}-\sigma_\text{r}\delta_{t\cdot}y^{\nphSys} + \frac{S_\text{r}}{M}\Delta p^{\nphSys} + \frac{(\mtp\psi^n)g^{n+1/2}}{M}.
+\end{equation*}
 In the following, the superscript $n+1/2$ is suppressed for $y$, $\Delta p$, $g$ and $\eta$ for brevity. Rewriting Eq. \eqref{eq:gnph} to
 \begin{equation}\label{eq:rewrittenPsi}
     \delta_{t+}\psi^n = g\delta_{t\cdot}\eta
@@ -81,15 +82,16 @@ with
     \alpha_\text{r} = 2 + \omega_0^2 k^2 + \sigma_\text{r} k + g\gamma_\text{r}, \quad \beta_\text{r} = \sigma_\text{r}k - 2 - \omega_0^2k^2 + g\gamma_\text{r}, \nonumber \\[10pt]
     \xi_\text{r} = \frac{2S_\text{r}k^2}{M}, \quad \text{and} \quad \gamma_\text{r} = \frac{gk^2}{2M}\ .\nonumber
 \end{gather}
-To be able to calculate $y^{n+3/2}$, definitions for $g$ and $\Delta p$ need to be found. 
+To be able to calculate $y^{n+3/2}$, definitions for $g^{n+1/2}$ and $\Delta p^{n+1/2}$ need to be found. 
 
-\subsubsection{Calculating $g$}
+\subsubsection{Calculating $g^{n+1/2}$}
 Following Chapter \ref{ch:collisions}, $g$ can be calculated using
 \begin{subnumcases}{g^{n+1/2} =}
     \kappa\sqrt{\frac{K_\text{c}(\alpha_\text{c}+1)}{2}}\cdot(\eta^{n+1/2})^{\frac{\alpha_\text{c}-1}{2}},
-    & if $\eta^{n+1/2} \geq 0,$ \\
-    -2 \frac{\psi^{n}}{\eta^\star-\eta^{n-1/2}}, & if $\eta^{n+1/2} < 0\ \text{ and } \ \eta^{\star} \neq \eta^{n-1/2},$\\
-    0, & $\text{if } \eta^{n+1/2} < 0\ \text{ and } \ \eta^{\star} = \eta^{n-1/2},\qquad$
+    & if $\eta^{n+1/2} \geq 0,$ 
+    \nonumber\\
+    -2 \frac{\psi^{n}}{\eta^\star-\eta^{n-1/2}}, & if $\eta^{n+1/2} < 0\ \text{ and } \ \eta^{\star} \neq \eta^{n-1/2},$ \nonumber\\
+    0, & $\text{if } \eta^{n+1/2} < 0\ \text{ and } \ \eta^{\star} = \eta^{n-1/2},$\nonumber
 \end{subnumcases}
 where parameters are as in Eq. \eqref{eq:gDef}. Furthermore, $\eta^\star = -H_0 - y^\star$ where 
 \begin{equation}
@@ -97,12 +99,12 @@ where parameters are as in Eq. \eqref{eq:gDef}. Furthermore, $\eta^\star = -H_0 
 \end{equation}
 is the update equation of the system without the effect of the collision and 
 \begin{gather*}
-    \alpha_\text{r} = 2 + \omega_0^2 k^2 + \sigma_\text{r} k, \qaq \beta_\text{r}^\star = \sigma_\text{r}k - 2 - \omega_0^2k^2,
+    \alpha_\text{r}^\star = 2 + \omega_0^2 k^2 + \sigma_\text{r} k, \qaq \beta_\text{r}^\star = \sigma_\text{r}k - 2 - \omega_0^2k^2,
 \end{gather*}
-are the coefficients in Eq. \eqref{eq:lipUpdateWithCollision} without the collision terms (as found in Eq. \eqref{eq:lipreedUpdateTerms}). Notice that $\xi_\rtxt$ is unchanged. Finally, $\Delta p^\star$ is the pressure difference calculated using Eq. \eqref{eq:pressureDiff}, i.e., without the effect of the collision. Once $g$ is calculated, $\Delta p$ can be obtained.
+are the coefficients in Eq. \eqref{eq:lipUpdateWithCollision} without the collision terms (as found in Eq. \eqref{eq:lipreedUpdateTerms}). Notice that $\xi_\rtxt$ is unchanged. Finally, $\Delta p^\star$ is the pressure difference calculated using Eq. \eqref{eq:pressureDiff}, i.e., without the effect of the collision. Once $g^{n+1/2}$ is calculated, $\Delta p^{n+1/2}$ can be obtained.
 
-\subsubsection{Calculating $\Delta p$}
-Following Section \ref{sec:obtainingDeltaP}, to calculate $\Delta p$, one starts by rewriting the scheme in Eq. \eqref{eq:lipReedFDSCollision} to
+\subsubsection{Calculating $\Delta p^{n+1/2}$}
+Following Section \ref{sec:obtainingDeltaP}, to calculate $\Delta p^{n+1/2}$, one starts by rewriting the scheme in Eq. \eqref{eq:lipReedFDSCollision} to
 \begin{gather*}
     \frac{2}{k} (\delta_{t\cdot} - \delta_{t-})y^{\nph} = -\omega_0^2(k\delta_{t\cdot} + e_{t-})y^{\nph} - \sigma_\text{r}\delta_{t\cdot} y^{\nph} + \frac{S_\text{r}}{M}\Delta p^{\nph} + \left(-\frac{k}{2}g\delta_{t\cdot}y+\psi^n\right)\frac{g}{M},\\
     a_1^n\delta_{t\cdot}y^{\nph} - a_2\Delta p^{\nph} - a_3^n = 0,
@@ -114,24 +116,29 @@ with
      \text{and} \quad a_3^n = \left(\frac{2}{k} \delta_{t-} - \omega_0^2e_{t-}\right)y^{\nph} + \frac{g}{M}\psi^n\ .
     \end{gathered}
 \end{equation*}
-Note that $a_1^n$ is now time-dependent through $g$ and $\omega_0$ but remains non-negative. The rest of the variables and process in Section \ref{sec:obtainingDeltaP} are unchanged. Notice that the calculation for $\Delta p$ has to be performed twice: once to obtain the pressure difference without the collision effect $\Delta p^\star$ and once to obtain the final pressure difference $\Delta p$.
+Note that $a_1^n$ is now time-dependent through $g$ and $\omega_0$ but remains non-negative. The rest of the variables and process in Section \ref{sec:obtainingDeltaP} are unchanged. Notice that the calculation for $\Delta p^{n+1/2}$ has to be performed twice: once to obtain the pressure difference without the collision effect $\Delta p^\star$ and once to obtain the final pressure difference $\Delta p^{n+1/2}$.
 
 \subsubsection{Last steps}
-After $y^{n+3/2}$ is calculated using Eq. \eqref{eq:lipUpdateWithCollision} and the definitions for $g$ and $\Delta p$ found using the steps above, $\psi^{n+1}$ can be calculated by expanding Eq. \eqref{eq:rewrittenPsi} and substituting Eq. \eqref{eq:etaNegY} according to
+After the definitions for $g$ and $\Delta p$ are found using the steps above, and $y^{n+3/2}$ is calculated using Eq. \eqref{eq:lipUpdateWithCollision}, $\psi^{n+1}$ can be calculated by expanding Eq. \eqref{eq:rewrittenPsi} and substituting Eq. \eqref{eq:etaNegY} according to
 \begin{equation}\label{eq:psiUpdate}
     \psi^{n+1} = \psi^n - \frac{g}{2}\left(y^{n+3/2} - y^{n-1/2}\right).
 \end{equation}
 
 \subsection{Energy analysis}
-The added energy to the system can be calculated by multiplying the added term with $\delta_{t\cdot}y$
-\begin{align}
-    \delta_{t+}(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r}) + \q_\text{r} + \mathfrak{p}_\text{r}&-(\mu_{t+}\psi^n) \frac{\delta_{t+}\psi^n}{\delta_{t\cdot}\eta^{n+1/2}}(\delta_{t\cdot}y^{n+1/2}) = 0\nonumber\\[-5pt]
-    \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:etaNegY}}\ }\quad \hdots &+ (\mu_{t+}\psi^n) (\delta_{t+}\psi^n) = 0\nonumber\\
-    \hdots &+ \frac{1}{2k}(\psi^{n+1}+\psi^n)(\psi^{n+1} - \psi^n)=0\nonumber\\
-    \hdots  &+\frac{1}{2k}((\psi^{n+1})^2 - (\psi^n)^2)=0\nonumber\\
-    \hdots &+ \frac{1}{2}\delta_{t+}\left((\psi^n)^2\right) = 0\nonumber\\
-    \delta_{t+}(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r} + \mathfrak{h}_\text{c}) &+ \q_\text{r} + \mathfrak{p}_\text{r} = 0
-\end{align}
+The energy analysis for the lip reed shown in Section \ref{sec:energyAnalysisLipreed} can be extended to contain the collision. Equation \eqref{eq:powerBalanceLipreed} can be extended to
+\begin{equation*}
+    \delta_{t+}(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r}) = - \q_\text{r} - \mathfrak{p}_\text{r}+(\mu_{t+}\psi^n) \frac{\delta_{t+}\psi^n}{\delta_{t\cdot}\eta^{n+1/2}}(\delta_{t\cdot}y^{n+1/2})
+\end{equation*}
+which, using Eq. \eqref{eq:etaNegY} yields
+\begin{equation*}
+    \delta_{t+}(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r}) = - \q_\text{r} - \mathfrak{p}_\text{r}-(\mu_{t+}\psi^n) (\delta_{t+}\psi^n)
+\end{equation*}
+%     \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:etaNegY}}\ }\quad \hdots &+ (\mu_{t+}\psi^n) (\delta_{t+}\psi^n) = 0\nonumber\\
+%     \hdots &+ \frac{1}{2k}(\psi^{n+1}+\psi^n)(\psi^{n+1} - \psi^n)=0\nonumber\\
+%     \hdots  &+\frac{1}{2k}((\psi^{n+1})^2 - (\psi^n)^2)=0\nonumber\\
+%     \hdots &+ \frac{1}{2}\delta_{t+}\left((\psi^n)^2\right) = 0\nonumber\\
+%     \delta_{t+}(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r} + \mathfrak{h}_\text{c}) &+ \q_\text{r} + \mathfrak{p}_\text{r} = 0
+% \end{align}
 with
 \begin{equation}
     \mathfrak{h}_\text{c} = \frac{(\psi^n)^2}{2 }\nonumber
@@ -141,7 +148,7 @@ Branch check
 
 \section{Discussion}
 \SWcomment[more for your info, don't think I want to include this:]
-To combat the drift, experiments have been done involving different ways of connecting the left and right tube. One involved alternating between applying the connection to the pressures and the velocity. Here, rather than adding points to the left and right system in alternating fashion, points were added to pressures $p$ and $q$ and velocities $v$ and $w$ in an alternating fashion. Another experiment involved a ``staggered'' version of the connection where (fx.) for one system (either left or right), a virtual grid point of the velocity was created from known values according to \eqref{eq:connectionInterpol}, rather than both from pressures. This, however, showed unstable behaviour. No conclusory statements can be made about these experiments at this point. \SWcomment[$\leftarrow$ which is exactly why I don't want to include this section]
+To combat the drift, experiments have been done involving different ways of connecting the left and right tube. One involved alternating between applying the connection to the pressures and the velocity. Here, rather than adding points to the left and right system in alternating fashion, points were added to pressures $p$ and $q$ and velocities $v$ and $w$ in an alternating fashion. Another experiment involved a ``staggered'' version of the connection where (fx.) for one system (either left or right), a virtual grid point of the velocity was created from known values according to \eqref{eq:connectionInterpol}, rather than both from pressures. This, however, showed unstable behaviour. No concluding statements can be made about these experiments at this point. \SWcomment[$\leftarrow$ which is exactly why I don't want to include this section]
 
 
 

@@ -1,5 +1,5 @@
 \chapter{Physically-Inspired Excitations}\label{ch:physInspExcitations}
-This short chapter introduces several simple ways to excite the different resonators presented in Part \ref{part:resonators}. First, various ways to excite resonators using initial conditions will be given, after which examples of time-varying excitations will be given, such that the systems can also be excited later during the simulation.
+This short chapter introduces several simple ways to excite the different resonators presented in Part \ref{part:resonators}. First, various ways to excite resonators using initial conditions are provided, after which examples of time-varying excitations are given, such that the systems can also be excited later during the simulation.
 
 \section{Initial conditions}\label{sec:initConditionsPhysInsp}
 The easiest way to excite a system is to set its initial conditions to non-zero values. This has been done several times before using a raised cosine (see e.g. Section \ref{sec:output1DWave}). To give the system an initial displacement, not an initial velocity, one initialises both $u^0_l$ and $u^1_l$ with the same values. In the following, the 1D wave equation will be used as an example (Eq. \eqref{eq:1DwavePDE}):
@@ -12,7 +12,7 @@ where $u=u(x,t)$ is the state of the system defined for $t\geq 0$ and $x\in D$ w
 \end{equation}
 
 \subsection{Impulse}
-The simplest way to excite a system is to set the value of one grid point to non-zero, which is referred to as an \textit{impulse} excitation. Figure \ref{fig:impulse} shows an implementation of the 1D wave equation where $u_l^0 = u_l^1 = 1$ at $l = \floor[0.5 N]$. One can observe that the variations between two neighbouring grid points are extremely high. If the CFL condition in Eq. \eqref{eq:CFL} is satisfied with equality, the the system will exhibit frequencies around the Nyquist frequency, which is generally unwanted.
+The simplest way to excite a system is to set the value of one grid point to non-zero, which is referred to as an \textit{impulse} excitation. Figure \ref{fig:impulse} shows an implementation of the 1D wave equation where $u_l^0 = u_l^1 = 1$ at $l = \floor[0.5 N]$. One can observe that the variations between two neighbouring grid points are extremely high. If the CFL condition in Eq. \eqref{eq:CFL} is satisfied with equality, the system will exhibit frequencies around the Nyquist frequency, which is generally unwanted.
 
 \def\figWidth{0.32}
 \begin{figure}[h]
@@ -24,7 +24,7 @@ The simplest way to excite a system is to set the value of one grid point to non
 \end{figure}
 
 \subsection{Raised cosine}\label{sec:raisedCosine}
-To avoid the high-frequency behaviour caused by the impulse is to using a spatially smooth excitation. To achieve this, a \textit{raised cosine} is most often used due to this property and is extensively used throughout the literature \cite{theBible}. Initialising the displacement of a distributed system with a raised cosine can be interpreted as a pluck. A different pluck excitation is presented in Section \ref{sec:pluck}.
+To avoid the high-frequency behaviour caused by the impulse, a spatially smooth excitation must be created. The \textit{raised cosine} is most often used for this property and is extensively used throughout the literature \cite{theBible}. Initialising the displacement of a distributed system with a raised cosine can be interpreted as a pluck. A different pluck excitation is presented in Section \ref{sec:pluck}.
 
 A raised cosine is parametrised by its amplitude $e_\text{amp}$, its center location $x_0$ and its width $x_\text{w}$. Applied to a distributed 1D system defined over domain $x\in \D$, the (continuous-time) excitation function containing a raised cosine is defined as 
 \begin{equation}\label{eq:raisedCosCont}
@@ -45,7 +45,7 @@ In discrete time, the center location is defined as $l_0 = \floor[x_0 / h]$, whe
 \begin{equation}\label{eq:lsle}
     l_\text{s} = l_0 - \floor[w/2]\qaq l_\etxt = l_0 + \floor[w/2],
 \end{equation}
-with $l_\stxt, l_\etxt\in d$ and, finally, $w = \floor[x_\text{w} / h]$.\footnote{Notice that the width is given in `grid spacings' and will thus affect $w+1$ grid points. This is also why the range in \eqref{eq:raisedCosDisc} includes both end points.} Equation \eqref{eq:raisedCosCont} can then be discretised as
+with $l_\stxt, l_\etxt\in d$ and, finally, $w = \floor[x_\text{w} / h]$.\footnote{Notice that the width is given in `grid spacings' and will thus affect $w+1$ grid points. This is also why the range in Eq. \eqref{eq:raisedCosDisc} includes both end points.} Equation \eqref{eq:raisedCosCont} can then be discretised as
 \begin{equation}\label{eq:raisedCosDisc}
     E_{l, \text{rc}} =
     \begin{cases}
@@ -73,7 +73,7 @@ If one initialises the system with an initial velocity, i.e., only setting a dis
     \subfloat[$n = 1$.\label{fig:strike1}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/physInsp/strike1.eps}}\hfill
     \subfloat[$n = 6$.\label{fig:strike2}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/physInsp/strike2.eps}}\hfill
     \subfloat[$n = 11$.\label{fig:strike3}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/physInsp/strike3.eps}}
-    \caption{The 1D wave equation initialised with a strike at the center of the system. Notice the scaling of the y-axis compared to the other figures. \label{fig:strike}}
+    \caption{The 1D wave equation initialised with a strike at the center of the system. Notice the scaling of the y-axis compared to Figure \ref{fig:raisedCos}. \label{fig:strike}}
 \end{figure}
 
 \subsection{Triangular pluck}\label{sec:pluck}
@@ -94,7 +94,7 @@ In discrete time, Eq. \eqref{eq:triangleCont} becomes
         \frac{e_\text{amp}}{l_0 - N} (l - N), &\text{if } l_0 < l \leq N.
     \end{cases}
 \end{equation}
-Due to the spatial discontinuity at the corner, some high-frequency oscillations (similar to the impulse) might emerge. Figure \ref{fig:pluck} shows an implementation of the 1D wave equation initialised with a triangular pluck excitation. The sample rate is 10x the usual one to prevent these high-frequency oscillations from appearing in the plot (though they still exist to some degree). 
+Due to the spatial discontinuity at the corner, some high-frequency oscillations (similar to the impulse) might emerge. Figure \ref{fig:pluck} shows an implementation of the 1D wave equation initialised with a triangular pluck excitation. The sample rate is 441 kHz (10x the usual) to prevent these high-frequency oscillations from appearing in the plot (though they still exist to some degree). 
 
 \def\figWidth{0.32}
 \begin{figure}[h]
@@ -102,7 +102,7 @@ Due to the spatial discontinuity at the corner, some high-frequency oscillations
     \subfloat[$n = 1$.\label{fig:pluck1}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/physInsp/triangle1.eps}}\hfill
     \subfloat[$n = 101$.\label{fig:pluck2}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/physInsp/triangle2.eps}}\hfill
     \subfloat[$n = 201$.\label{fig:pluck3}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/physInsp/triangle3.eps}}
-    \caption{The 1D wave equation initialised with a triangular pluck with $l_0=\floor[0.2N]$. Note that sample rate has been set to $\fs = 441000$ Hz to show more ideal triangular motion. \label{fig:pluck}}
+    \caption{The 1D wave equation initialised with a triangular pluck with $l_0=\floor[0.2N]$. Note that sample rate has been set to $\fs = 441000$ Hz to show a more ideal triangular motion. \label{fig:pluck}}
 \end{figure}
 
 \subsection{2D raised cosine}\label{sec:2DraisedCos}
@@ -169,16 +169,16 @@ u = reshape(e, (Nx-1) * (Ny-1), 1);
 \end{lstlisting} 
 
 \section{Time-varying excitations}
-Although various types of excitation can already be modelled using the initial conditions presented in the previous section, they are temporally rigid. In other words, the time of excitation is fixed to be at the start of the simulation. In order to excite the system while the simulation is running, one can create excitations that -- on top of being spatially distributed -- have temporal profile as well.
+Although various types of excitation can already be modelled using the initial conditions presented in the previous section, they are temporally rigid. In other words, the time of excitation is fixed to be at the start of the simulation. In order to excite the system while the simulation is running, one can create excitations that -- on top of being spatially distributed -- have a temporal profile as well.
 
-For the following, consider the ideal string of length $L$ (in m), its transverse displacement described by $u = u(x,t)$ (in m). The system is defined for $t\geq 0$ and $x\in\D$ with domain $\D = [0, L]$. The PDE of the ideal string with a time varying external force $f(t)$ (in N) is defined as (Eq. \eqref{eq:1DwavePDE})
+For the following, consider the ideal string of length $L$ (in m), where its transverse displacement is described by $u = u(x,t)$ (in m). The system is defined for $t\geq 0$ and $x\in\D$ with domain $\D = [0, L]$. The PDE of the ideal string with a time varying external force $f(t)$ (in N) is defined as (Eq. \eqref{eq:1DwavePDE})
 \begin{equation}
     \rho A\ptt u = T \pxx u + e(x)f(t)
 \end{equation}
 where $e(x)$ is a spatial distribution function such as those presented in Section \ref{sec:initConditionsPhysInsp} (in m$^{-1}$).
 
 \subsection{Raised cosine}\label{sec:timeVaryingRaisedCos}
-To yield a smooth excitation over time, one can, similar to the spatially distributed raised cosine in Eq. \ref{sec:raisedCosine}, define a temporally distributed raised cosine. Using the time of excitation $t_0\geq 0$ and excitation duration $t_\text{d}>0$ (both in s) the temporal raised cosine can be used as a force function, as
+To yield a smooth excitation over time, one can, similar to the spatially distributed raised cosine in Eq. \ref{sec:raisedCosine}, define a temporally distributed raised cosine. Using the time of excitation $t_0\geq 0$ and excitation duration $t_\text{d}>0$ (both in s), the temporal raised cosine can be used as a force function, as
 \begin{equation}\label{eq:raisedCosTemp}
     f(t) = 
     \begin{cases}
@@ -186,7 +186,7 @@ To yield a smooth excitation over time, one can, similar to the spatially distri
         0, &\text{otherwise}.
     \end{cases}
 \end{equation} 
-As done in \cite{Webb2015}, $q$ that alters the excitation to be a pluck when $q=1$ and a strike when $q=2$. Finally, $f_\text{amp}$ is the maximum force (in N). 
+As done in \cite{Webb2015}, $q$ alters the excitation to be a pluck when $q=1$ and a strike when $q=2$. Finally, $f_\text{amp}$ is the maximum force (in N). 
 
 As done in papers \citeP[A] and \citeP[B], the force function can be used in conjunction with the distribution functions shown in Section \ref{sec:initConditionsPhysInsp}. When used to scale a spatially distributed raised cosine as in Eq. \eqref{eq:raisedCosCont}, one can model a pluck or a strike, by setting $q=1$ or $q=2$ respectively. These alternatives are visualised in Figure \ref{fig:timeVaryingRaisedCos}. Note, that if one would like $f_\text{amp}$ to be the maximum force, one must set $e_\text{amp} = 1$ in Eq. \eqref{eq:raisedCosCont}. 
 
@@ -212,7 +212,9 @@ where $n_\text{d} = \floor[t_\text{d}/k]$ is the duration of the excitation in s
 \subsection{Pulse train}\label{sec:pulseTrain}
 As already briefly introduced in Section \ref{sec:webstersExcitation}, one can create a pulse train to excite an acoustic tube. This is inspired by \cite{theBible} where the signal represents the opening and closing of the glottis. As the characteristics of the lip reed are similar to the vocal folds \cite{Richards2003}, the pulse train has been used as a test signal here (also see Section \ref{sec:lipreedTube}). A more complete model of the lip reed can be found in Chapter \ref{ch:lipreed}.
 
-The pulse train can be created using a clipped sinusoid which can be used as the input velocity to an acoustic tube. Algorithm \ref{alg:pulseTrain} shows an example of how to generate a pulse train. The frequency as well as the duty cycle (how much of the signal is non-zero) can be set. Figure \ref{fig:pulseTrain} shows the output of the algorithm.
+The pulse train can be created using a clipped sinusoid, which can be used as the input velocity to an acoustic tube. Algorithm \ref{alg:pulseTrain} shows an example of how to generate a pulse train. The frequency as well as the duty cycle (how much of the signal is non-zero) can be set. Figure \ref{fig:pulseTrain} shows the output of the algorithm.
+\\
+\noindent
 \begin{minipage}{\textwidth}
 \setlstMAT
 \begin{lstlisting}[caption={\texttt{MATLAB} code to generate a pulse train}, label=alg:pulseTrain]

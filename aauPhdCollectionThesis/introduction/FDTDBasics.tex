@@ -200,7 +200,7 @@ Similar operators exist for a first-order derivative in space, where the forward
     \dxd &$\!\!\!\!\triangleq \frac{1}{2h}\left(e_{x+} - e_{x-}\right),$\label{eq:centredSpaceOperator}
 \end{subnumcases}
 and when applied to $\uln$ are
-\begin{subnumcases}{\px u \approxeq\label{eq:discFirstSpace}}
+\begin{subnumcases}{\px u \approxeq\label{eq:discFirstSpaceU}}
     \dxp \uln&$\!\!\!\!= \frac{1}{h}\left(u_{l+1}^n- \uln\right),$\\
     \dxm \uln&$\!\!\!\!= \frac{1}{h}\left(\uln - u_{l-1}^n\right),$\\
     \dxd \uln&$\!\!\!\!= \frac{1}{2h}\left(u_{l+1}^n - u_{l-1}^n\right).$\label{eq:centredSpaceOperatorU}
@@ -361,7 +361,7 @@ Using dots to indicate a temporal derivative, the ODE of a simple mass-spring sy
 \begin{equation}\label{eq:massSpringPDE}
     M\ddot u = -Ku,
 \end{equation}
-where $u = u(t)$ is the distance from the equilibrium position (in m), $M>0$ is the mass of the mass (in kg) and $K\geq 0$ is the spring constant (in N/m). Equation \eqref{eq:massSpringPDE} can be written as
+where $u = u(t)$ is the distance from the equilibrium position (in m), $M>0$ is the mass of the mass (in kg) and $K\geq 0$ is the spring constant (in N/m) also referred to as the spring stiffness. Equation \eqref{eq:massSpringPDE} can be written as
 \begin{equation}\label{eq:massSpringCompact}
     \ddot u = -\omega_0^2u,
 \end{equation}

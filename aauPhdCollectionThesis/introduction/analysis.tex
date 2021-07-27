@@ -239,7 +239,7 @@ A derivation of Eq. \eqref{eq:summationByPartsMinus} is given below. As in the c
 
 One could also choose to work with reduced domains after summation by parts. Domains that have one fewer point at the boundaries are defined as $\underline{d} = \{0, \hdots, N-1\}$, 
 $\overline{d} = \{1, \hdots, N\}$ and $\underline{\overline{d}} = \{1, \hdots, N-1\}$. The following identities can be shown to hold
-\begin{subequations}\label{eq:summationByParts}
+\begin{subequations}\label{eq:summationByPartsBar}
     \begin{align}
         \langle f_l^n, \dxm g_l^n \rangle_d  &= -\langle \dxp f_l^n, g_l^n\rangle_{\underline{d}} + f_N^ng_N^n - f_0^ng_{-1}^n,\label{eq:summationByPartsMinusBar}\\
         \langle f_l^n, \dxp g_l^n \rangle_d 
@@ -762,26 +762,29 @@ and are indeed in Joules. Notice that an extra `m' unit appears due to the norm 
 
 \subsubsection{Step 4: Implementation}
 The energy balance in Eq. \eqref{eq:energyBalance1DWave} can be implemented with the following code in the for-loop recursion:
+\\
 
-\setlstMAT
-\begin{lstlisting}
-%% Calculate the energy using Eq. %*\eqrefMatlab[eq:energyBalance1DWave]*) 
-
-% Kinetic energy
-kinEnergy(n) = rho * A / 2 * h * sum((1/k * (u-uPrev)).^2);
-
-% Potential energy
-potEnergy(n) = T/(2*h) * sum(([u; 0] - [0; u]) ...
-            .* ([uPrev; 0] - [0; uPrev]));
-
-% Total energy (Hamiltonian)
-totEnergy(n) = kinEnergy(n) + potEnergy(n);
-\end{lstlisting}
+\begin{minipage}{\textwidth}
+    \setlstMAT
+    \begin{lstlisting}
+        %% Calculate the energy using Eq. %*\eqrefMatlab[eq:energyBalance1DWave]*) 
+        
+        % Kinetic energy
+        kinEnergy(n) = rho * A / 2 * h * sum((1/k * (u-uPrev)).^2);
+        
+        % Potential energy
+        potEnergy(n) = T/(2*h) * sum(([u; 0] - [0; u]) ...
+        .* ([uPrev; 0] - [0; uPrev]));
+        
+        % Total energy (Hamiltonian)
+        totEnergy(n) = kinEnergy(n) + potEnergy(n);
+    \end{lstlisting}
+\end{minipage}
 Here, \texttt{u} is the vector $\u = [u_1^n, \hdots, u_{N-1}^n]^T$ (as Dirichlet boundary conditions are used) and need to be concatenated with $0$ in the calculation of the potential energy as the boundaries needs to be included in the calculation, despite them being 0.\footnote{As can be seen from the definition of $\v$ in Eq. \eqref{eq:energyBalance1DWave}, the domain used for the inner product is $\underline{d} = \{0,\hdots, N-1\}$ and $\v$ contains a forward difference in its definition requiring $u_N^n$ as well.}
-Figure \ref{fig:energy1DWave} shows the plot of the normalised energy according to Eq. \eqref{eq:normalisedEnergy} and shows that the deviation of $\h^n$ is within machine precision.
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}[->,node distance=3cm,
+    Figure \ref{fig:energy1DWave} shows the plot of the normalised energy according to Eq. \eqref{eq:normalisedEnergy} and shows that the deviation of $\h^n$ is within machine precision.
+    \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[->,node distance=3cm,
         thick,main node/.style={circle,draw}]
     
         \node[] (image) at (0,0) {
@@ -795,7 +798,7 @@ Figure \ref{fig:energy1DWave} shows the plot of the normalised energy according 
         \node[] (t) at (-5.75, 0) {\small $\color{blue}\mathfrak{t}$};
       \end{tikzpicture}
       \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the 1D wave equation are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \label{fig:energy1DWave}}
-\end{figure}
+\end{figure}\todo{ask stefania about these figure captions being identical}
 
 \subsubsection{Neumann boundary conditions}
 If Neumann boundary conditions -- as per Eq. \eqref{eq:discreteNeumann} -- are used instead, the primed inner product in Eq. \eqref{eq:primedInnerProd} needs to be used in Step 1. Using the identity in \eqref{eq:primedIdentityMinus}, summation by parts of the second term results in
@@ -1001,6 +1004,6 @@ where $\mathfrak{I}(\cdot)$ and $\mathfrak{R}(\cdot)$ denote the ``imaginary par
 As the elements of $\Q$ are real-valued, the solutions $s_p$ in Eq. \eqref{eq:sp} come in complex conjugates (pairs of numbers of which the imaginary part has an opposite sign). For analysis, only the $\mathfrak{I}(s_p)\geq 0$ should be considered as these correspond to non-negative frequencies. 
 
 \section{Conclusion}
-This chapter presented three different analysis techniques in discrete time, that are of extreme utility when working with FD schemes. Frequency domain analysis, or von Neumann analysis in the distributed case, can be used to obtain stability conditions for LTI and LSI systems. Energy analysis techniques can also be used to prove stability and passivity, but for a larger range of systems including LTI, LSI, and nonlinear systems. Furthermore, energy analysis can be used in a practical manner to debug implementations of FD schemes and ensure that no programming errors have been made. Finally, modal analysis can be used to analyse the behaviour of a scheme in terms of its modal frequencies and modal shapes. This can be used to determine whether the auditory output matches the precidictions of the analysis. Although analogous techniques in continuous time also exist, a more practical angle has been chosen for this work and only the discrete time methods have been presented. For more information about the techniques in continuous time, see \cite{theBible}.
+This chapter presented three different analysis techniques in discrete time, that are of extreme utility when working with FD schemes. Frequency domain analysis, or von Neumann analysis in the distributed case, can be used to obtain stability conditions for LTI and LSI systems. Energy analysis techniques can also be used to prove stability and passivity, but for a larger range of systems including LTI, LSI, and nonlinear systems. Furthermore, energy analysis can be used in a practical manner to debug implementations of FD schemes and ensure that no programming errors have been made. Finally, modal analysis can be used to analyse the behaviour of a scheme in terms of its modal frequencies and modal shapes. This can be used to determine whether the auditory output matches the predictions of the analysis. Although analogous techniques in continuous time also exist, a more practical angle has been chosen for this work and only the discrete time methods have been presented. For more information about the techniques in continuous time, see \cite{theBible}.
 
 All three analysis techniques will be extensively used in the rest of this document to analyse the FD schemes used in this project.

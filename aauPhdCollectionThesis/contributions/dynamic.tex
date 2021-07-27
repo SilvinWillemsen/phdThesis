@@ -3,10 +3,10 @@
 % \textit{Often in math, you should view the definition not as a starting point, but as a target. Contrary to the structure of textbooks, mathematicians do not start by making definitions and then listing a lot of theorems, and proving them, and showing some examples. The process of discovering math typically goes the other way around. They start by chewing on specific problems, and then generalising those problems, then coming up with constructs that might be helpful in those general cases,and only then you write down a new definition (or extend an old one). - Grant Sanderson (AKA 3Blue1Brown) https://youtu.be/O85OWBJ2ayo?t=359}
 This chapter provides an extended summary to the paper ``Dynamic grids for Finite-Difference Schemes in Musical Instrument Simulations'' \citeP[G]. The paper presents a novel method to smoothly add and remove grid points from a FD scheme which allows for dynamic parameter variations without compromising stability or quality of the simulation (see Section \ref{sec:quality1DWave}). 
 
-After a brief introduction, this chapter summarises paper \citeP[G] and extends it by providing details on the implementation of the displacement correction and the modal analysis shown in the paper. Then, this chapter provides additional results of various iterations to substantiate some choices made in the paper. Finally, a list of examples is given that could be potential use cases for the method presented here. 
+After a brief introduction, this chapter summarises paper \citeP[G] and extends it by providing details on the implementation of the displacement correction and the modal analysis shown in the paper. This chapter continues by providing additional results of various iterations to substantiate some choices made in the paper. Finally, a list of examples is given that could be potential use cases for the method presented here. 
 
 \section{Background and motivation}
-Simulating musical instruments using physical modelling -- as mentioned in Chapter \ref{ch:physMod} -- allows for manipulations of the instrument that are impossible in the physical world. Examples of this are changes in material density or stiffness, cross-sectional area (1D), thickness (2D) and size of the system in general.  Using FDTD methods to discretise PDEs constrains the simulation to a grid of a finite amount of points. As explained in Section \ref{sec:quality1DWave}, the definition of this grid closely ties the parameters set by the user to the stability and quality of the simulation, making FDTD methods extremely inflexible to parameter changes. 
+Simulating musical instruments using physical modelling -- as mentioned in Chapter \ref{ch:physMod} -- allows for manipulations of the instrument that are impossible in the physical world. Examples of this are changes in material density or stiffness, cross-sectional area (strings, acoustic tubes), thickness (membranes, plate2) and size of the system in general. Using FDTD methods to discretise PDEs constrains the simulation to a grid of a finite amount of points. As explained in Section \ref{sec:quality1DWave}, the definition of this grid closely ties the parameters set by the user to the stability and quality of the simulation, making FDTD methods extremely inflexible to parameter changes. 
 
 Apart from being potentially sonically interesting, dynamic parameter changes also happen in the real world. A prime example is the trombone published in paper \citeP[H] using the method presented in paper \citeP[G]. A collection of examples for use cases of the method are listed in Section \ref{sec:examples}.
 
@@ -24,7 +24,11 @@ If one would like to dynamically vary the wave speed $c$, several issues arise. 
 \end{equation}
 shows that a change in $c$ can cause abrupt changes in $N$ due to the flooring operation. One could avoid this issue by fixing $N$ at the start of the simulation and decrease $c$, i.e., tune it away from the stability condition. The issue here, is that the simulation quality and bandwidth decreases very rapidly as explained in Section \ref{sec:quality1DWave}. 
 
-Paper \citeP[G] proposes a \textit{fractional} number of intervals $\Nfrac$, where $N = \floor[\Nfrac]$, that allows for smooth transitions between grid configurations (i.e., the number of grid points used). In other words, grid points can be added and removed from the grid without causing artefacts. Furthermore, as $N$ is fractional, this removes the flooring operation in Eq. \eqref{eq:dynamicOrderOfCalc}, and the stability condition can always be satisfied with equality. Issues regarding simulation quality and bandwidth could thus be resolved. In the following, the variables $c$, $h$, $\Nfrac$ and $N$ will receive a superscript $n$ as they are time-varying.
+Paper \citeP[G] proposes a \textit{fractional} number of intervals $\Nfrac$, where $N = \floor[\Nfrac]$, such that grid points could potentially be added and removed from the grid without causing artefacts. Furthermore, as the number of intervals is fractional, the flooring operation in Eq. \eqref{eq:dynamicOrderOfCalc} can be removed, and $h$ does not have to be recalculated. Equation \eqref{eq:dynamicOrderOfCalc} can be changed to
+\begin{equation}\label{eq:newOrderOfCalc}
+    h:= ck, \quad \Nfrac := \frac{L}{h}, \quad \lambda := \frac{ck}{h},
+\end{equation}  
+and results in that the stability condition can always be satisfied with equality. Issues regarding simulation quality and bandwidth could thus be resolved. In the following, the variables $c$, $h$, $\Nfrac$ and $N$ will receive a superscript $n$ as they are time-varying.
 
 \subsection{Splitting the scheme}
 Rather than working with the scheme in Eq. \eqref{eq:1DWaveDynamic} directly, paper \citeP[G] proposes to split it into two separate subsystems to get the following system 
@@ -38,24 +42,31 @@ where $l_u \in \{0, \hdots, M^n\}$ and $l_w \in \{0, \hdots, M_w^n\}$ and intege
 \begin{equation}
     M^n =\ceil[0.5 N^n], \qaq M_w^n =\floor[0.5 N^n],
 \end{equation}
-are the number of intervals between grid points of each respective subsystem. This yields a total of $M^n + M_w^n + 2$ grid points, which one more than the original scheme in Eq. \eqref{eq:1DWaveDynamic}. Paper \citeP[G] shows that this system can be shown to exhibit identical behaviour to the original system, using the boundary conditions described shortly.
+are the number of intervals between grid points of each respective subsystem. This yields a total of $M^n + M_w^n + 2$ grid points, which is one more than the original scheme in Eq. \eqref{eq:1DWaveDynamic}. Paper \citeP[G] shows that this system can be shown to exhibit identical behaviour to the original system, using the boundary conditions described shortly.
 
-\subsubsection{Boundary locations}
-The schemes are placed on the same domain $x$, where the left boundary of $u$ and the right boundary of $w$ -- referred to as the \textit{outer boundaries} -- are placed at the following locations:
+\subsubsection{Locations of grid points}
+The schemes in Eq. \eqref{eq:splitFDS} are placed on the same domain $x$, where the left boundary of $u$ and the right boundary of $w$ -- referred to as the \textit{outer boundaries} -- are placed at the following locations:
 \begin{equation}\label{eq:outerBoundaries}
     x_{u_0}^n = 0, \quad x_{w_{M_w^n}}^n = L.
 \end{equation}
 Here, $x_{q_l}^n$ is the location of grid point $q_l$ (in m from the left boundary) at time index $n$.
 
 The right boundary of $u$ and the left boundary of $w$ -- referred to as the \textit{inner boundaries} -- are placed at the following locations 
-\begin{equation}
+\begin{equation}\label{eq:hLocs}
     x_{u_{M^n}}^n = M^nh^n, \quad x_{w_{0}}^n = L-M_w^nh^n.
 \end{equation}
-If $\Nfrac^n$ is an integer, the inner boundaries perfectly overlap (see Figure \ref{fig:twoFreeStrings}). If this is not the case, the outer boundaries will remain at their respective locations according to Eq. \eqref{eq:outerBoundaries}, and all other grid points will move to the outer boundary of their respective system (see Figure \ref{fig:twoFreeStringsGridMove}). The distance between the inner boundaries is expressed as the fractional part of $\Nfrac^n$
+If $\Nfrac^n$ is an integer, the inner boundaries perfectly overlap (see Figure \ref{fig:twoFreeStrings}). If the wave speed $c^n$ changes, which consequently changes $h^n$ according to Eq. \eqref{eq:newOrderOfCalc}, the outer boundaries will remain at their respective locations given by Eq. \eqref{eq:outerBoundaries}, and all other grid points will move to or from the outer boundary of their respective system according to 
+\begin{equation}\label{eq:hLocs}
+    x_{u_{l_u}}^n =l_uh^n, \quad x_{w_{l_w}}^n = L-(M_w^n-l_w)h^n.
+\end{equation}
+See Figure \ref{fig:twoFreeStringsGridMove}. As an example, if $c^n$ decreases, $h^n$ decreases, causing all grid points of system $u$ to move towards the left boundary and all grid points of system $w$ to move towards the right boundary (except for grid points at the outer boundaries).
+
+The distance between the inner boundaries is expressed as the fractional part of $\Nfrac^n$
 \begin{equation}\label{eq:alphaDef}
     \alpha = \alpha^n = \Nfrac^n - N^n
 \end{equation}
-and essentially states how many times the grid spacing $h^n$ can fit between the inner boundaries, which is always less than once (see Figure \ref{fig:twoFreeStringsGridZoomed}).
+and essentially states how many times the grid spacing $h^n$ can fit between the inner boundaries, which is always less than once (see Figure \ref{fig:twoFreeStringsGridZoomed}). If the value of $N^n$ changes, a grid point will be added to or removed from the grid as will be shown in Section \ref{sec:addRemove}.
+
 \def\figwidth{0.9}
 \begin{figure}[t]
     \centering
@@ -66,15 +77,15 @@ and essentially states how many times the grid spacing $h^n$ can fit between the
     , but `$x^n$' is omitted for brevity. (a) Locations of the states of two (1D wave) systems connected at the inner boundaries ($\Nfrac^n = 30$, $x_{u_{M^n}}^n = x_{w_0}^n$). (b) When $c^n$ -- and consequently $h^n$ -- are decreased and the positions of the grid points change ($\Nfrac^n = 30.5$, $x_{u_{M^n}}^n \neq x_{w_0}^n$). (c) Figure \ref{fig:twoFreeStringsGridMove} zoomed-in around the inner boundaries. The virtual grid points $u_{M^n+1}^n$ and $w_{-1}^n$ are shown together with the distance between them expressed using $\alpha$ in Eq. \eqref{eq:alphaDef}. (Taken from paper \citeP[G].)\label{fig:twoFreeStringsFull}}
 \end{figure}
 \subsubsection{Boundary conditions}
-For the outer boundaries, Dirichlet boundary conditions are used(see Eq. \eqref{eq:discreteDirichlet}).
+For the outer boundaries, Dirichlet boundary conditions are used (see Eq. \eqref{eq:discreteDirichlet}).
 The conditions for the inner boundaries are slightly more involved, and plays a large part in the working of the method. 
 In order for the system to exhibit the same behaviour as the original system in Eq. \eqref{eq:1DWaveDynamic}, the inner boundaries must have an identical displacement if they are perfectly overlapping, i.e.,
 \begin{equation}\label{eq:rigidDynamic}
     u_{M^n}^n = w_0^n, \quad \text{if}\ \ \alpha = 0.
 \end{equation}
-and acts like a rigid connection between (see Section \ref{sec:rigidConn}). It is shown in paper \citeP[G] that in the perfectly overlapping case, if the virtual grid points $u_{M^n+1}^n$ and $w_{-1}^n$ are defined by the (centred) Neumann boundary condition (Eq. \eqref{eq:discreteNeumann}) and the rigid connection in Eq. \eqref{eq:rigidDynamic} is imposed on $u_{M^n}^n$ and $w_0^n$, identical behaviour to the original system is obtained. 
+and acts like a rigid connection between (see Section \ref{sec:rigidConn}). It is shown in paper \citeP[G] that in the perfectly overlapping case, identical behaviour to the original system can be obtained if: 1) the virtual grid points $u_{M^n+1}^n$ and $w_{-1}^n$ are defined by the (centred) Neumann boundary condition (Eq. \eqref{eq:discreteNeumann}), and 2) the rigid connection in Eq. \eqref{eq:rigidDynamic} is imposed on $u_{M^n}^n$ and $w_0^n$. 
 
-If parameters are varied, and the inner boundaries are no longer overlapping, the rigid connection will not be imposed anymore, and other definitions for the virtual grid points must be found. Quadratic Lagrange interpolation exhibits excellent behaviour when parameters are varied, and continues to satisfy the requirement in Eq. \eqref{sec:rigidConn} for perfectly overlapping boundaries (see Section \ref{sec:iterations} for experiments with other interpolators). At the inner boundaries, a definition of the virtual grid points is given as
+If parameters are varied, and the inner boundaries are no longer overlapping, the rigid connection will not be imposed anymore, and other definitions for the virtual grid points must be found. Using quadratic Lagrange interpolation to calculate the virtual grid points shows excellent behaviour when parameters are varied, and continues to satisfy the requirement in Eq. \eqref{sec:rigidConn} for perfectly overlapping boundaries (see Section \ref{sec:iterations} for experiments with other interpolators). At the inner boundaries, a definition of the virtual grid points is given as
 \begin{subequations}\label{eq:connectionInterpol}
     \begin{align}
             &u_{M^n+1}^n = \frac{\alpha - 1}{\alpha + 1}u_{M^n}^n + w_0^n - \frac{\alpha - 1}{\alpha + 1}w_1^n,
@@ -109,7 +120,7 @@ Writing out the interpolation coefficient for index $i=0$ yields
 This process can be repeated to obtain the other coefficients. To obtain the coefficients for Eq. \eqref{eq:calcWM1} one can alter the locations in \eqref{eq:quadLagrangeLocs}, or simply reverse the interpolator and apply it to the appropriate grid points. 
 
 
-\subsection{Adding and removing grid points}
+\subsection{Adding and removing grid points}\label{sec:addRemove}
 Before continuing, it is useful to write the state of the system in vectors:
 \begin{equation}
     % \begin{aligned}
@@ -274,7 +285,7 @@ vectorises the effect that $\eta^n$ in Eq. \eqref{eq:etaDispCorr} has on $\Ucal$
     \end{bmatrix}
 \end{equation*}
 which, as $\lambda = 1$ at all times, can be simplified to
-\begin{equation}\label{eq:quadMat}
+\begin{equation}
     \mathbf{B}^n = \begin{bmatrix}[ccccc|ccccc]
         & \ddots& \ddots  &\ddots & & & & \mathbf{0} & & \\
         & & 1 & 0 & 1 & & & & & \\
@@ -467,7 +478,7 @@ Finally, a quartic interpolator} can be created from Eq. \eqref{eq:lagrangeForm}
     \centering
     \subfloat[Points are added in middle.]{\label{fig:quarticModesAddInCenter}{ \includegraphics[width=0.49\textwidth]{figures/contributions/dynamicgrid/interpolation/quarticMid.eps}}}
     \hfill
-    \subfloat[Points are added at close to the boundary.]{\label{fig:cubicModesAddBoundary}{ \includegraphics[width=0.49\textwidth]{figures/contributions/dynamicgrid/interpolation/quartic1.eps}}}
+    \subfloat[Points are added at close to the boundary.]{\label{fig:quarticModesAddBoundary}{ \includegraphics[width=0.49\textwidth]{figures/contributions/dynamicgrid/interpolation/quartic1.eps}}}
     \caption{Results of modal analysis for quartic (fourth-order) interpolation.}\label{fig:quarticInterpRes}
 \end{figure}
 

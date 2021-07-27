@@ -235,7 +235,7 @@ Figure \ref{fig:lipreedTube} shows an implementation of the lip reed connected t
     \includegraphics[width=\textwidth]{figures/exciters/lipreed/lipreedImplementation.eps}
     \caption{A lip reed (shown at the left side of the plots) exciting a cylindrical acoustic tube. The y-axis refers to the displacement of the lips and the pressure in the tube $p_l^n$ is shown in red and highlighted with a dashed line (not related to the y-axis).\label{fig:lipreedTube}}
 \end{figure}
-\section{Energy analysis}
+\section{Energy analysis}\label{sec:energyAnalysisLipreed}
 This section performs an energy analysis on the lip reed system coupled to an acoustic tube using the steps described Section \ref{sec:energyAnalysis}. As all physical parameters need to be written out to obtain the correct units, Eq. \eqref{eq:lipReedDimensional} is discretised to get
 \begin{equation}\label{eq:discLipreedDimensional}
     M\delta_{tt}y^{\nphSys} = -K\mu_{t\cdot}y^{\nphSys}-R\delta_{t\cdot}y^{\nphSys} + S_\text{r}\Delta p^{\nphSys},
@@ -268,7 +268,7 @@ and substituting this (ignoring the right boundary term, i.e., $\b_\rtxt = 0$) t
 \end{align*}
 \subsubsection{Step 2: Identify energy types and isolate $\dtp$}
 Using identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity4}, the energy balance can be shown to be
-\begin{equation}
+\begin{equation}\label{eq:powerBalanceLipreed}
     \delta_{t+}\left(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r}\right) = - \q_\text{r} - \mathfrak{p}_\text{r},
 \end{equation}
 where the energy of the tube $\h_\ttxt$ is as defined in Eq. \eqref{eq:energyBalanceFirstOrder} and the energy of the mass is
@@ -318,5 +318,5 @@ Figure \ref{fig:lipReedEnergy} shows the energetic output of the lip reed exciti
         \node[] (c) at (-5.8, -0.5) {\small $\color{blue}\mathfrak{t}_\rtxt$};
 
       \end{tikzpicture}
-      \caption{The energy of the acoustic tube (green), the potential energy (red) and the kinetic energy of the lip reed (blue), and the total energy (black) of the system corresponding to Figure \ref{fig:lipreedTube}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping} starting at $n=1$) shows that the deviation of the energy is within machine precision. \label{fig:lipReedEnergy}}
+      \caption{The energy of the acoustic tube (green), the potential energy (red) and the kinetic energy of the lip reed (blue), and the total energy (black) of the system corresponding to Figure \ref{fig:lipreedTube}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping} starting at $n=1$) and shows that the deviation of the energy is within machine precision. \label{fig:lipReedEnergy}}
 \end{figure}

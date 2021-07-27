@@ -5,9 +5,7 @@ The interaction between the strings and the body can then be modelled using \tex
 Examples of connected resonators based on FDTD methods are shown in e.g. \cite{theBible} and \cite{Bilbao2009Modular}. The latter presents a modular approach to connect any number of resonators in arbitrary ways using an extremely compact matrix form of the entire system.
 % Although briefly mentioned in the previous chapter in Section \ref{sec:twoSidedCollision}
 
-The first example presented in this chapter is the case of two ideal strings, connected using a rigid and spring-like connection. Afterwards, the connection between a stiff string and a thin plate using a nonlinear spring will be presented, and has been used extensively in papers \citeP[A] and \citeP[B].
-
-Before moving on to these examples, interpolation and spreading operators in 2D will be presented.
+The first example presented in this chapter is the case of two ideal strings, connected using a rigid and spring-like connection. Afterwards, the connection between a stiff string and a thin plate using a nonlinear spring will be presented, and has been used extensively in papers \citeP[A] and \citeP[B]. Before moving on to these examples, interpolation and spreading operators in 2D will be introduced.
 
 \section{Interpolation and spreading in 2D}\label{sec:interpolationSpreading2D}
 One can extend the interpolation and spreading operators presented in Section \ref{sec:interpolationSpreading} to 2D by adding an additional argument to the operators \cite{theBible}. Using $l_\itxt = \floor[x_\itxt / h]$ and $m_\itxt = \floor[y_\itxt / h]$, a $0$\thOrder interpolation operator $I_0(x_\itxt, y_\itxt) = I_{(l, m), 0}(x_\itxt, y_\itxt)$ is defined as
@@ -49,7 +47,7 @@ as well as a linear spreading operator $J_1(x_\itxt, y_\itxt) = J_{(l,m),1}(x_\i
 \end{equation}
 Notice that the scaling is by $1/h^2$ (due to the 2D system) rather than $1/h$ in the 1D case. Some intuition on this will be given below. 
 
-As in the 1D case, the spreading operator approximates a spatial Dirac delta function which -- in 2D -- is defined as 
+As in the 1D case, the spreading operator approximates a spatial Dirac delta function, which -- in 2D -- is defined as 
 \begin{equation}\label{eq:spatialDirac2D}
     \delta(x,y)= \begin{cases}
         \infty, & x = y = 0,\\
@@ -61,7 +59,7 @@ where $\delta(x,y)$ has units of m$^{-2}$. Again, as described in Section \ref{s
 \subsection{Alternative interpretation of grid points}\label{sec:alternativeInterp}
 Section \ref{sec:gridFunctions} gives an introduction to how a continuous 1D system is subdivided into grid points in space (see Figure \ref{fig:gridExp}) through the discretisation process. An alternative way to see grid points after discretisation is shown in Figure \ref{fig:gridExp2}. Rather than grid `points' with a spacing $h$ between them, a continuous system is divided into grid `sections' of width $h$. This interpretation allows for the `weight' of a grid point to be calculated from its material properties and geometry. Notice that boundaries have a width of $h/2$ such that the total length $L = Nh$ m.
 
-As an example, the weight of one grid point (or now rather grid section) of a string can be calculated as $\rho A h$. The weight of one grid point of a 2D system can be calculated as $\rho H h^2$. As these grid points interact with each other, the forces resulting from this interaction will scaled by their respective weight per grid point as will be shown in Section \ref{sec:stringPlateConnection}.
+As an example, the weight of one grid point (or now rather grid section) of a string can be calculated as $\rho A h$. The weight of one grid point of a 2D system can be calculated as $\rho H h^2$. As these grid points interact with each other, the forces resulting from this interaction will be scaled by their respective weight per grid point as will be shown in Section \ref{sec:stringPlateConnection}.
 This interpretation hopefully provides a better intuition for the interactions between components shown in this chapter. 
 
 \begin{figure}[h]
@@ -73,9 +71,9 @@ This interpretation hopefully provides a better intuition for the interactions b
 \end{figure}
 
 \section{Connected ideal strings}\label{sec:connIdealStrings}
-One finds that when working with multiple interacting systems, notation becomes extremely important. Subscripts will be extensively used in the following extra clarity, and although this results in something of a notational jungle, it is better to be explicit and avoid confusion in the end.
+One finds that when working with multiple interacting systems, notation becomes extremely important. Subscripts will be extensively used in the following for extra clarity, and although this results in something of a notational jungle, it is better to be explicit and avoid confusion in the end.
 
-As an test case for the following sections, consider two ideal strings\footnote{Recall that the ideal string is the 1D wave equation with $c=\sqrt{T/\rho A}$.} of length $L_u$ and $L_w$ (both in m) their transverse displacement denoted as $u=u(x,t)$ and $w = w(\chi,t)$ (both in m) respectively (see Section \ref{sec:1DWave}).  The systems are defined for $x\in \D_u$ with domain $\D_u=[0,L_u]$ and $\chi \in \D_w$ with domain $\D_w=[0,L_w]$ respectively. Notice that $\chi$ is used as the spatial coordinate for $w$ to denote that the two systems use different coordinate systems. Connecting these systems at $x_\ctxt\in \D_u$ and $\chi_\ctxt\in\D_w$ yields the following system of PDEs:
+As a test case for the following sections, consider two ideal strings\footnote{Recall that the ideal string is the 1D wave equation with $c=\sqrt{T/\rho A}$.} of length $L_u$ and $L_w$ (both in m) their transverse displacement denoted as $u=u(x,t)$ and $w = w(\chi,t)$ (both in m) respectively (see Section \ref{sec:1DWave}).  The systems are defined for $x\in \D_u$ with domain $\D_u=[0,L_u]$ and $\chi \in \D_w$ with domain $\D_w=[0,L_w]$ respectively. Notice that $\chi$ is used as the spatial coordinate for $w$ to denote that the two systems use different coordinate systems. Connecting these systems at $x_\ctxt\in \D_u$ and $\chi_\ctxt\in\D_w$ yields the following system of PDEs:
 \begin{subequations}\label{eq:conn1DwavePDE}
     \begin{align}
         \rho_u A_u \ptt u &= T_u \pxx u -\delta(x-x_\ctxt)f, \label{eq:conn1DwavePDEu} \\
@@ -98,7 +96,7 @@ From the signs of the force terms in system \eqref{eq:conn1DwavePDE}, it can thu
 and will be used to for a spring connection in Section \ref{sec:springConnection}.
 
 \subsection{Discrete time}
-One can then discretise the state variables $u$ and $w$ to grid functions $\uln$ and $\wmn$ using $x = lh_u$ and $\chi = mh_w$ where $l\in \{0, \hdots, N_u\}$ and $m\in \{0, \hdots, N_w\}$.\footnote{Here, $m$ is used for the spatial index of $\wmn$ to avoid double subscripts $l_u$ and $l_w$.} Also see Section \ref{sec:gridFunctions}. Furthermore, $h_u$ and $h_w$ are the values of the grid spacing (both in m) and $N_u+1$ and $N_w+1$ are the number of grid points for $\uln$ and $\wmn$ respectively. Dividing Eqs. \eqref{eq:conn1DwavePDEu} and \eqref{eq:conn1DwavePDEw} by $\rho_u A_u$ and $\rho_w A_w$ respectively yields
+One can then discretise the state variables $u$ and $w$ to grid functions $\uln$ and $\wmn$, using $x = lh_u$ and $\chi = mh_w$, where $l\in \{0, \hdots, N_u\}$ and $m\in \{0, \hdots, N_w\}$.\footnote{Here, $m$ is used for the spatial index of $\wmn$ to avoid double subscripts $l_u$ and $l_w$.} Also see Section \ref{sec:gridFunctions}. Furthermore, $h_u$ and $h_w$ are the values of the grid spacing (both in m) and $N_u+1$ and $N_w+1$ are the number of grid points for $\uln$ and $\wmn$ respectively. Dividing Eqs. \eqref{eq:conn1DwavePDEu} and \eqref{eq:conn1DwavePDEw} by $\rho_u A_u$ and $\rho_w A_w$ respectively, yields
 \begin{subequations}\label{eq:conn1DwaveFDS}
     \begin{align}
         \dtt \uln &= c_u^2 \dxx \uln -\Ju\frac{f^n}{\rho_u A_u}, \label{eq:conn1DwaveFDSu} \\
@@ -111,7 +109,7 @@ The next step would be to solve for connection force $f^n$. First, one needs to 
 \begin{subequations}\label{eq:conn1DwaveFDSXc}
     \begin{align}
         \Iu\dtt \uln &= c_u^2 \Iu\dxx \uln -\lVert \Ju\rVert_{d_u}^2\frac{f^n}{\rho_u A_u}, \label{eq:conn1DwaveuXc} \\
-        \Iw\dtt \wmn &= c_w^2 \Iw\delta_{\chi\chi} \wmn + \lVert \Jw\rVert_{d_w}^2\frac{f^n}{\rho_w A_w},\label{eq:conn1DwavewXc}
+        \Iw\dtt \wmn &= c_w^2 \Iw\delta_{\chi\chi} \wmn + \lVert \Jw\rVert_{d_w}^2\frac{f^n}{\rho_w A_w}.\label{eq:conn1DwavewXc}
     \end{align}
 \end{subequations}
 Here, interpolation operators $\Iu = I_{l, o_u, u}(x_\ctxt)$ and $\Iw = I_{l, o_w, w}(\chi_\ctxt)$ are as defined in Section \ref{sec:interpolationSpreading}. Notice that the order of these operators need 
@@ -121,7 +119,7 @@ The definition of the force depends on the connection type. Below, two alternati
 
 \section{Rigid connection}\label{sec:rigidConn}
 The simplest connection-type is the \textit{rigid connection}. This connection type states that the displacement of two connected points should always be equal, and thus the distance between them should be 0 at all times. 
-For the rigid connection, the following is true
+For the rigid connection, the following is true:
 \begin{equation}\label{eq:contRigid}
     u(x_\ctxt, t) = w(\chi_\ctxt, t),
 \end{equation}
@@ -145,8 +143,8 @@ which can be explicitly solved for $f^n$ according to
 This value can then be used in the update equation obtained after expanding system \eqref{eq:conn1DwaveFDS} as
 \begin{subequations}
     \begin{align}
-        \!\!\!u_l^{n+1} &= \left(2-2\lambda_u^2\right) \uln  + \lambda_u^2\left(u_{l+1}^n + u_{l-1}^n\right) - u_l^{n-1} -\Ju\frac{k^2 f^n}{\rho_u A_u}\\
-        \!\!\!w_m^{n+1} &= \left(2-2\lambda_w^2\right) \wmn\! +\! \lambda_w^2\left(w_{m+1}^n\! +\! w_{m-1}^n\right) \! -\! w_m^{n-1} +\Jw\frac{k^2 f^n}{\rho_w A_w}
+        \!\!\!u_l^{n+1} &= \left(2-2\lambda_u^2\right) \uln  + \lambda_u^2\left(u_{l+1}^n + u_{l-1}^n\right) - u_l^{n-1} -\Ju\frac{k^2 f^n}{\rho_u A_u},\\
+        \!\!\!w_m^{n+1} &= \left(2-2\lambda_w^2\right) \wmn\! +\! \lambda_w^2\left(w_{m+1}^n\! +\! w_{m-1}^n\right) \! -\! w_m^{n-1} +\Jw\frac{k^2 f^n}{\rho_w A_w},
     \end{align}
 \end{subequations}
 where $\lambda_u = c_uk/h_u \leq 1$ and  $\lambda_u = c_uk/h_u \leq 1$ are the Courant numbers for each individual scheme (see Section \ref{sec:1DWave}).
@@ -155,19 +153,19 @@ Figure \ref{fig:connectedWaveEqs} shows an implementation of system \eqref{eq:co
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{figures/interactions/connectedWaveEqs.eps}
-    \caption{The wave propagation of two connected 1D wave equations with the same mass per unit length. The systems are offset for clarity, but the relative displacement at the connection location is 0. \label{fig:connectedWaveEqs}}
+    \caption{The behaviour of two connected 1D wave equations. The systems are offset for clarity, but the relative displacement at the connection location is 0. \label{fig:connectedWaveEqs}}
 \end{figure}
 
 \subsection{Notation simplification}\label{sec:notationSimplification}
-In the above equations, the orders of the spreading and interpolation operators have been left unspecified to retain generality. If one would like to connect two systems at specified grid points (so not in-between), the notation can greatly simplified.%\footnote{The same can be achieved if the orders of the interpolation and spreading operators are chosen to be 0, or if $\alpha_\itxt = 0$ for arbitrary orders.}
+In the above equations, the orders of the spreading and interpolation operators have been left unspecified to retain generality. If one would like to connect two systems at specified grid points (so not in-between), the notation can be greatly simplified.%\footnote{The same can be achieved if the orders of the interpolation and spreading operators are chosen to be 0, or if $\alpha_\itxt = 0$ for arbitrary orders.}
 
 Recalling that $\Iu = I_{l, o_u, u}(x_\ctxt)$ and $\Iw = I_{l, o_w, w}(\chi_\ctxt)$, one can set the interpolation orders to 0, i.e., $o_u = o_w = 0$, to yield the following short-hand notations
 \begin{equation}\label{eq:shorthandI}
     I_{l,0,u}(x_\text{c})\uln = \ulcn, \qaq I_{m,0,w}(\chi_\text{c})\wmn = \wmcn,
 \end{equation}
-where $l_\ctxt = \floor[x_\ctxt/h_u]$ and $m_\ctxt = \floor[\chi_\ctxt/h_w]$, and
+where $l_\ctxt = \floor[x_\ctxt/h_u]$ and $m_\ctxt = \floor[\chi_\ctxt/h_w]$,
 \begin{equation}\label{eq:shorthandJ}
-    \lVert J_{l, 0, u}(x_\text{c})\rVert_{d_u}^2 = \frac{1}{h_u}, \qaq \lVert J_{m, 0, w}(\chi_\text{c})\rVert_{d_w}^2 = \frac{1}{h_w}.
+    \lVert J_{l, 0, u}(x_\text{c})\rVert_{d_u}^2 = \frac{1}{h_u} \qaq \lVert J_{m, 0, w}(\chi_\text{c})\rVert_{d_w}^2 = \frac{1}{h_w}.
 \end{equation}
 This simplifies Eqs. \eqref{eq:conn1DwaveFDSXc} to
 \begin{subequations}\label{eq:conn1DwaveFDSXcSimple}
@@ -187,9 +185,9 @@ one can solve for $f^n$, yielding the following  simplified form of Eq. \eqref{e
 Through this simplification, one can now clearly see that the connection forces acting on each respective ideal string in Eq. \eqref{eq:conn1DwaveFDSXcSimple}, are scaled by the mass of one grid `section'  as explained in Section \ref{sec:alternativeInterp}.
 
 \subsection{Energy Analysis}\label{sec:energyAnalysis1DwaveConnRigid}
-This section follows the energy analysis techniques shown in Section \ref{sec:energyAnalysis},though not explicitly following the steps for brevity. As the analysis has previously been performed on the 1D wave equation, this part will not be detailed here. 
+This section follows the energy analysis techniques shown in Section \ref{sec:energyAnalysis}, though not explicitly following the steps for brevity. As the analysis has previously been performed on the 1D wave equation, this part will not be detailed here. 
 
-Starting with the FD scheme in Eq. \eqref{eq:conn1DwaveFDSu}, one can take an inner product of the scheme (after a multiplication with $\rho_u A_u$) with $(\dtd\uln)$ over discrete domain $d_u$ to get
+Starting with the FD scheme in Eq. \eqref{eq:conn1DwaveFDSu}, one can take an inner product of the scheme (after a multiplication with $\rho_u A_u$) with $(\dtd\uln)$ over discrete domain $d_u$, to get
 \begin{equation}\label{eq:powerBalanceConn1DwaveU}
     \dtp \h_u = \langle \dtd\uln, -\Ju f^n\rangle_{d_u},
 \end{equation}
@@ -197,7 +195,7 @@ where $\h_u$ is the total energy in system $u$ and is as defined in Eq. \eqref{e
 \begin{equation}\label{eq:powerBalanceConn1DwaveW}
     \dtp \h_w = \langle \dtd\wmn, \Jw f^n\rangle_{d_w},
 \end{equation}
-where $\h_w$ is the total energy in system $w$. As the total energy in the system is an addition of $\h_u$ and $\h_w$, and using identity \eqref{eq:identityIJ} for the the right hand sides of Eqs. \eqref{eq:powerBalanceConn1DwaveU} and \eqref{eq:powerBalanceConn1DwaveW}, one can write 
+where $\h_w$ is the total energy in system $w$. As the total energy in the system is an addition of $\h_u$ and $\h_w$, and using identity \eqref{eq:identityIJ} for the right hand sides of Eqs. \eqref{eq:powerBalanceConn1DwaveU} and \eqref{eq:powerBalanceConn1DwaveW}, one can write 
 \begin{equation}\label{eq:rOCconnSystem}
     \dtp (\h_u + \h_w) = -\Iu \dtd \uln f^n + \Iw \dtd \wmn f^n.
 \end{equation}
@@ -207,7 +205,7 @@ Finally, due to the rigid connection in Eq. \eqref{eq:discRigid}, $\Iu \dtd \uln
 \end{equation*}
 This shows that the rigid connection does not affect the total energy in the system and thus does not affect the stability of the scheme.
 
-Figure \ref{fig:energyConn1DWave} shows the energy of an implementation of the 1D wave system in \eqref{eq:conn1DwaveFDS}. The 
+Figure \ref{fig:energyConn1DWave} shows the energy of an implementation of the 1D wave system in \eqref{eq:conn1DwaveFDS} corresponding to the behaviour shown in Figure \ref{fig:connectedWaveEqs}. One can observe that energy is transferred from 
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[->,node distance=3cm,
@@ -219,11 +217,11 @@ Figure \ref{fig:energyConn1DWave} shows the energy of an implementation of the 1
     
         \node[] (he) at (0.2,0.5) {\small $\mathfrak{h}_\text{e}$};
 
-        \node[] (h) at (-5.8, 1) {\small $\mathfrak{h}$};
-        \node[] (v) at (-5.8, 0.5) {\small $\color{red}\mathfrak{h}_u$};
-        \node[] (t) at (-5.8, 0) {\small $\color{blue}\mathfrak{h}_w$};
+        \node[] (h) at (-5.9, 1) {\small $\mathfrak{h}$};
+        \node[] (v) at (-5.9, 0.5) {\small $\color{red}\mathfrak{h}_u$};
+        \node[] (t) at (-5.9, 0) {\small $\color{blue}\mathfrak{h}_w$};
       \end{tikzpicture}
-      \caption{The energy of $u$ (red), the energy of $w$ (blue), and the total (black) energy of the system of connected 1D wave equations in \eqref{eq:conn1DwaveFDS}. The energy corresponds to Figure \ref{fig:connectedWaveEqs}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy} shows that the deviation of the energy is within machine precision. \label{fig:energyConn1DWave}}
+      \caption{The energy of $u$ (red), the energy of $w$ (blue), and the total (black) energy of the system of connected 1D wave equations in \eqref{eq:conn1DwaveFDS}. The energy corresponds to Figure \ref{fig:connectedWaveEqs}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \label{fig:energyConn1DWave}}
 \end{figure}
 
 \subsection{Matrix form}\label{sec:matrixFormRigid}
@@ -244,7 +242,7 @@ To start, the definition of the force in Eq. \eqref{eq:rigidForce} must be subst
         \end{aligned}
     \end{align}
 \end{subequations}
-Using Dirichlet boundary conditions for both ideal strings, their values can be stored in the following vectors
+Using Dirichlet boundary conditions for both ideal strings, their values can be stored in the following vectors:
 \begin{equation*}
     \u^n =[u_1^n, \hdots, u_{N_u-1}^n]^T, \qaq \w^n =[w_1^n, \hdots, w_{N_u-1}^n]^T.
 \end{equation*}
@@ -259,7 +257,7 @@ These vectors can then be concatenated to one larger state vector, and after the
     \end{bmatrix} - \begin{bmatrix}
         \u^{n-1}\\
         \w^{n-1}
-    \end{bmatrix}
+    \end{bmatrix},
 \end{equation}
 % \begin{equation}
 %     \mathbf{v}^{n+1} = \B \mathbf{v}^n - \mathbf{v}^{n-1}
@@ -279,12 +277,12 @@ where
 \end{equation*}
 The matrix in the definition of $\B$ contains the operations of the 1D wave equation (also see Eq. \eqref{eq:1DwaveMatrix}),
 \begin{equation}    
-    \B_u = 2\I_{N_u-1} +c_u^2k^2 (\Dxx)_u \qaq \B_w = 2\I_{N_w-1} +c_w^2k^2 (\Dxx)_w
+    \B_u = 2\I_{N_u-1} +c_u^2k^2 (\Dxx)_u, \qaq \B_w = 2\I_{N_w-1} +c_w^2k^2 (\Dxx)_w,
 \end{equation}
 where matrices $(\Dxx)_u$ and $(\Dxx)_w$ are as defined in Eq. \eqref{eq:DxxDef} and are of the appropriate sizes. The vector multiplication in the definition of $\B$ results in a matrix, and adds the effect of the connection force to the system. Here, $\j_u$ and $\j_w$ are column vectors of size $(N_u-1)\times 1$ and $(N_w-1)\times 1$ containing the values of the spreading operators $\Ju$ and $\Jw$ respectively. Finally,
-\begin{align*}
-    \mathbf{f}_u = \frac{k^2}{\rho_uA_u} \left(\frac{c_u^2\i_u(\Dxx)_u}{\frac{\i_u \j_u}{ \rho_u A_u} + \frac{\i_w \j_w}{\rho_w A_w}}\right),& \quad \mathbf{f}_w =  \frac{k^2}{\rho_wA_w}\left(\frac{c_w^2 \i_w(\Dxx)_w}{\frac{\i_u \j_u}{ \rho_u A_u} + \frac{\i_w \j_w}{\rho_w A_w}}\right),
-\end{align*}
+\begin{equation*}
+    \mathbf{f}_u = \frac{k^2}{\rho_uA_u} \left(\frac{c_u^2\i_u(\Dxx)_u}{\frac{\i_u \j_u}{ \rho_u A_u} + \frac{\i_w \j_w}{\rho_w A_w}}\right), \qaq \mathbf{f}_w =  \frac{k^2}{\rho_wA_w}\left(\frac{c_w^2 \i_w(\Dxx)_w}{\frac{\i_u \j_u}{ \rho_u A_u} + \frac{\i_w \j_w}{\rho_w A_w}}\right),
+\end{equation*}
 %are row vectors of size $1\times (N_u-1)$ and $1\times (N_w-1)$, 
 where $\i_u$ and $\i_w$ are row vectors of size $1\times (N_u-1)$ and $1\times (N_w-1)$ containing the values of the interpolation operators $\Iu$ and $\Iw$ respectively. Here, $\i_u\j_u$ and $\i_w\j_w$ are matrix-vector forms of $\lVert \Ju\rVert_d^2$ and $\lVert \Jw\rVert_d^2$ respectively (see Eq. \eqref{eq:JnormIJ}) and reduce to a scalar. \SWcomment[check with stefan if this is a correct notation for this]
 
@@ -357,11 +355,11 @@ and
 \begin{equation*}
     w^\star = \Iw(2\wmn - w_m^{n-1}) + c_w^2k^2\Iw\dxx\wmn,
 \end{equation*}
-are the update equations of the system at their respective connection locations without the term containing the connection force (as done in Chapter \ref{ch:collisions}). Evaluating Eq. \eqref{eq:discEtaConn1Dwave} at $n+1$ yields
+are the update equations of the system at their respective connection locations, without the term containing the connection force (as done in Chapter \ref{ch:collisions}). Evaluating Eq. \eqref{eq:discEtaConn1Dwave} at $n+1$ yields
 \begin{equation*}
     \eta^{n+1} = \Iu u_l^{n+1} - \Iw w_m^{n+1},
 \end{equation*}
-into which Eqs. \eqref{eq:intermediateConn1Dwave} can be substituted
+into which Eqs. \eqref{eq:intermediateConn1Dwave} can be substituted, as
 \begin{equation}\label{eq:etaNp1Schemes}
     \eta^{n+1} = u^\star - \lVert\Ju\rVert_{d_u}^2 \frac{k^2f^n}{\rho_u A_u} - \left(w^\star + \lVert\Jw\rVert_{d_w}^2 \frac{k^2f^n}{\rho_w A_w}\right).
 \end{equation}
@@ -382,7 +380,7 @@ and solve for the force, solely based on known values of the system
     f^n = \frac{u^\star - w^\star + \eta^{n-1}}{\frac{2}{K} + \frac{\lVert\Ju\rVert_{d_u}^2k^2}{\rho_u A_u} +  \frac{\lVert\Jw\rVert_{d_w}^2k^2}{\rho_w A_w}}\ .
 \end{equation}
 
-Figure \ref{fig:connectedWaveEqsSpring} shows the behaviour of system Eq. \eqref{eq:conn1DwaveFDS} connected with a spring with spring constant $K = 5\cdot 10^4$ N/m. The same parameters, excitation and connection locations are used as for the rigid connection in Section \ref{sec:rigidConn}. Compared to the behaviour of the system with a rigid connection in Figure \ref{fig:connectedWaveEqs}, one can observe that the distance between the two connected points gets larger as the wave passes the connection point, which corresponds to the extension of the spring. 
+Figure \ref{fig:connectedWaveEqsSpring} shows the behaviour of system Eq. \eqref{eq:conn1DwaveFDS}, connected with a spring with spring constant $K = 5\cdot 10^4$ N/m. The same parameters, excitation and connection locations are used as for the rigid connection in Section \ref{sec:rigidConn}. Compared to the behaviour of the system with a rigid connection in Figure \ref{fig:connectedWaveEqs}, one can observe that the distance between the two connected points gets larger as the wave passes the connection point, which corresponds to the extension of the spring. 
 % Furthermore, the transfer of energy from $u$ to $w$ is slower than in the rigid case due to the spring extension (see \ref{sec:energy.
 
 \begin{figure}[h]
@@ -414,9 +412,9 @@ where
 \begin{equation}
     \h_\ctxt = \frac{K}{2}\left(\mtm(\eta^n)^2\right)
 \end{equation}
-is the energy stored by the connection. As this definition is non-negative it does not affect the stability of the system. The spring stiffness $K$ could potentially be infinitely large, which would effectively reduce the spring connection to a rigid connection presented in Section \ref{sec:rigidConn}.
+is the energy stored by the connection. As this definition is non-negative it does not affect the stability of the system. The spring constant $K$ could potentially be infinitely large, which would effectively reduce the spring connection to a rigid connection presented in Section \ref{sec:rigidConn}.
 
-Figure \ref{fig:energyConn1DWaveSpring} shows the energy of an implementation of system \eqref{eq:conn1DwaveFDS} connected with a spring with stiffness $K=5\cdot 10^4$ and other parameters are the same as for the rigid connection in Section \ref{sec:rigidConn}. One can observe that when compared to Figure \ref{fig:energyConn1DWave}, less energy is transferred from $u$ to $w$, and some energy is stored in the spring shown in green. 
+Figure \ref{fig:energyConn1DWaveSpring} shows the energy of an implementation of system \eqref{eq:conn1DwaveFDS} connected with a spring with spring constant $K=5\cdot 10^4$. other parameters are the same as for the rigid connection in Section \ref{sec:rigidConn}. One can observe that when compared to Figure \ref{fig:energyConn1DWave}, less energy is transferred from $u$ to $w$, and some energy is stored in the spring shown in green. 
 
 
 \begin{figure}[h]
@@ -436,7 +434,7 @@ Figure \ref{fig:energyConn1DWaveSpring} shows the energy of an implementation of
         \node[] (c) at (-5.8, -0.5) {\small $\color[HTML]{00DB00}\mathfrak{h}_\ctxt$};
 
       \end{tikzpicture}
-      \caption{The energy of $u$ (red), the energy of $w$ (blue), the energy of the spring connection (green) and the total energy (black) of the system of connected 1D wave equations in \eqref{eq:conn1DwaveFDS}. The energy corresponds to the system in Figure \ref{fig:connectedWaveEqsSpring}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) shows that the deviation of the energy is within machine precision. \label{fig:energyConn1DWaveSpring}}
+      \caption{The energy of $u$ (red), the energy of $w$ (blue), the energy of the spring connection (green) and the total energy (black) of the system of connected 1D wave equations in \eqref{eq:conn1DwaveFDS}. The energy corresponds to the system in Figure \ref{fig:connectedWaveEqsSpring}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \label{fig:energyConn1DWaveSpring}}
 \end{figure}
 
 \subsubsection{Unstable discretisation}
@@ -456,7 +454,7 @@ where
 \begin{equation*}
     \h_\ctxt = \frac{K}{2}\left(\eta^ne_{t-}\eta^n\right).
 \end{equation*}
-As this is not necessarily non-negative, the connection places a larger restriction on the stability of the system at the connection location. In other words, $\lambda \leq 1$ for the ideal strings does not ensure stability at the connection loaction. Also see \cite[pp. 190--192]{theBible}.
+As this is not necessarily non-negative, the connection places a larger restriction on the stability of the system at the connection location. In other words, $\lambda \leq 1$ for the ideal strings does not ensure stability at the connection location. Also see \cite[pp. 190--192]{theBible}.
 
 % \section{Spring-like connections}
 
@@ -511,7 +509,7 @@ The transverse displacement of a damped rectangular thin plate of side lengths $
 \end{equation}
 where parameters are as in Eq. \eqref{eq:platePDE}.
 
-One can connect the above PDEs by adding a localised connection force. After a division by $\rho_\stxt A$ and $\rho_\ptxt H$ respectively the connected string-plate system becomes
+One can connect the above PDEs, by adding a localised connection force. After a division by $\rho_\stxt A$ and $\rho_\ptxt H$ respectively the connected string-plate system becomes
 \begin{subequations}\label{eq:connStringPlatePDEs}
     \begin{align}
         \!\!\ptt u &= c^2 \partial_{\chi\chi} u - \kappa_\stxt^2 \partial_{\chi\chi\chi\chi} u - 2\szX[\stxt]\pt u + 2\soX[\stxt] \pt\partial_{\chi\chi} u - \delta(\chi-\chi_\ctxt)\frac{f}{\rho_\stxt A},\\
@@ -546,7 +544,7 @@ Using these grid functions, system \eqref{eq:connStringPlatePDEs} can then be di
 \end{align}
 where $J_q(\chi_\ctxt) = J_{q, o_\stxt} (\chi_\ctxt)$ is a 1D spreading operator of order $o_\stxt$ as defined in Section \ref{sec:interpolationSpreading} and $J_{l, m}(x_\ctxt, y_\ctxt) = J_{(l, m), o_\ptxt}(x_\ctxt, y_\ctxt)$ is a 2D spreading operator of order $o_\ptxt$ as defined in Section \ref{sec:interpolationSpreading2D}. 
 
-The definition of the force in Eq. \eqref{eq:nonlinearForce} can be discretised as\footnote{The second-order averaging operator has been chosen here to show an alternative discretisation of the linear term, could also be a centred first-order averaging operator as used in Eq. \eqref{eq:linearSpringForceDisc}.}
+The definition of the force in Eq. \eqref{eq:nonlinearForce} can be discretised as\footnote{The second-order averaging operator has been chosen here to show an alternative discretisation of the linear term, but it could be replaced by a centred first-order averaging operator as used in Eq. \eqref{eq:linearSpringForceDisc}.}
 \begin{equation}\label{eq:discForceStringPlate}
     f^n = K_1\mtt\eta^n+K_3(\eta^n)^2\mtd\eta^n+R\dtd\eta^n,
 \end{equation}
@@ -558,7 +556,7 @@ Here, $I_q(\chi_\ctxt) = I_{q, o_\stxt} (\chi_\ctxt)$ and $I_{l, m}(x_\ctxt, y_\
 
 
 \subsection{Solving for $f$}
-Following the same process as in Section \ref{sec:explicitSolutionSpringConn}, system \eqref{eq:connStringPlateFDSs} needs be isolated at the connection locations. This is done by taking an inner product of the schemes in \eqref{eq:connStringPlateFDSs} with their respective spreading operators over discrete domains $d_u = \{0, \hdots, N\}$ and $d_w = \{0, \hdots, N_x\}\times \{0, \hdots, N_y\}$ respectively. Taking these inner products, expanding the $\dtt$ and $\dtd$ operators (as these contain $u_q^{n+1}$) and solving for the states at $n+1$ yields
+Following the same process as in Section \ref{sec:explicitSolutionSpringConn}, system \eqref{eq:connStringPlateFDSs} needs to be isolated at the connection locations. This is done by taking an inner product of the schemes in \eqref{eq:connStringPlateFDSs} with their respective spreading operators over discrete domains $d_u = \{0, \hdots, N\}$ and $d_w = \{0, \hdots, N_x\}\times \{0, \hdots, N_y\}$ respectively. Taking these inner products, expanding the $\dtt$ and $\dtd$ operators (as these contain $u_q^{n+1}$) and solving for the states at $n+1$ yields
 \begin{subequations}\label{eq:connStringPlateFDSsAtConn}
     \begin{align}
         \Iq u_q^{n+1} &= u^\star- \lVert J_q(\chi_\ctxt)\rVert_{d_u}^2\frac{k^2f^n}{\rho_\stxt A(1+\szX[\stxt]k)}\ ,\\
@@ -609,18 +607,18 @@ The \texttt{MATLAB} code of the implementation can be found online \cite{stringP
 
 In the following, the $\i$ and $\j$ vectors are used as in Section \ref{sec:matrixFormRigid} and are of the appropriate sizes. The matrices for the string can be found in Eq. \eqref{eq:matrixFormStiffString} and those for the plate in Eq. \eqref{eq:matrixFormThinPlate}. When implementing connections (or any other interactions for that matter), one mostly performs the following steps in the main loop:
 \begin{enumerate}
-    \item Calculate entire scheme without force terms:\\
+    \item Calculate the entire scheme without force terms:\\
     \vspace{-0.5em}\begin{equation*}
-        \u^\star = (\B_\stxt\u^n + \C_\stxt\u^{n-1}) / A_\stxt, \qaq \w^\star = (\B_\ptxt\w^n + \C_\ptxt\w^{n-1})/A_\ptxt.
+        \u^\star = (\B_\stxt\u^n + \C_\stxt\u^{n-1}) / A_\stxt \qaq \w^\star = (\B_\ptxt\w^n + \C_\ptxt\w^{n-1})/A_\ptxt.
     \end{equation*}
     \item Obtain $u^\star$ and $w^\star$:\\
     \vspace{-1em}\begin{equation*}
-       u^\star = \i_u \u^\star, \qaq w^\star = \i_w \w^\star.
+       u^\star = \i_u \u^\star \qaq w^\star = \i_w \w^\star.
     \end{equation*}
     \item Calculate the connection force $f^n$ (Eq. \eqref{eq:stringPlateForce}).
     \item Add force terms to the schemes without connection forces:\\
     \begin{equation*}
-        \u^{n+1} = \u^{\star} - \j_u \frac{f^n k^2}{\rho_\stxt A (1+\szX[\stxt])},\qaq \w^{n+1} = \w^{\star} + \j_w \frac{f^n k^2}{\rho_\ptxt H (1+\szX[\ptxt])}.
+        \u^{n+1} = \u^{\star} - \j_u \frac{f^n k^2}{\rho_\stxt A (1+\szX[\stxt])}\qaq \w^{n+1} = \w^{\star} + \j_w \frac{f^n k^2}{\rho_\ptxt H (1+\szX[\ptxt])}.
     \end{equation*} 
 \end{enumerate}
 Calculating $\u^\star$ and $\w^\star$ beforehand reduces computations, and allows $u^\star$ and $w^\star$ to be more easily obtained. 
@@ -628,7 +626,7 @@ Calculating $\u^\star$ and $\w^\star$ beforehand reduces computations, and allow
 \subsection{Energy analysis}
 Recalling the total energy and damping terms for the string and plate in Sections \ref{sec:energyAnalysisString} and \ref{sec:energyAnalysisThinPlate} respectively, one can --  similar to Eq. \eqref{eq:rOCconnSystem} -- arrive at the following:
 \begin{equation}
-    \dtp(\h_\stxt + \h_\ptxt) + \q_\stxt + \q_\ptxt = -\Iq (\dtd \uqn)f^n +\Ilm(\dtd \wlmn)f^n
+    \dtp(\h_\stxt + \h_\ptxt) + \q_\stxt + \q_\ptxt = -\Iq (\dtd \uqn)f^n +\Ilm(\dtd \wlmn)f^n,
 \end{equation}
 which can be rewritten to
 \begin{equation*}
@@ -680,7 +678,7 @@ Figure \ref{fig:energyStringPlate} shows the energetic output of the string-plat
         \node[] (c) at (-5.8, -0.5) {\small $\color[HTML]{00DB00}\mathfrak{h}_\ctxt$};
 
       \end{tikzpicture}
-      \caption{The energy of the string (red), the plate (blue), the spring connection (green) and the total energy (black) of the connected string-plate system \eqref{eq:connStringPlateFDSs}. The energy corresponds to the system in Figure \ref{fig:stringPlate}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) shows that the deviation of the energy is within machine precision. \label{fig:energyStringPlate}}
+      \caption{The energy of the string (red), the plate (blue), the spring connection (green) and the total energy (black) of the connected string-plate system \eqref{eq:connStringPlateFDSs}. The energy corresponds to the system in Figure \ref{fig:stringPlate}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyStringPlate}}
 \end{figure}
 
 % \subsection{Non-dimensional}
