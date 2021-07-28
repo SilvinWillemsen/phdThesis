@@ -88,6 +88,75 @@ The same can be done for $\mathfrak{b}_\text{l}$ with $\epsilon_\text{l} = S_{1/
     \mathfrak{b}_\text{l} = c^2(\dtd\Psi_0^n)S_{1/2}\left(2-\epsilon_\text{l}\right)(\delta_{x\cdot}\Psi_0^n).
 \end{equation}
 
+
+\section{Levine and Schwinger radiation model update (Eq. \eqref{eq:pRadUpdate})}\label{app:levineSchwingDeriv}
+\def\r{\text{r}}
+\def\one{{(1)}}
+This section provides a derivation for the update equation in Eq. \eqref{eq:pRadUpdate}. Recalling system \eqref{eq:barVPSystem}
+\begin{subequations}\label{eq:barVPSystemApp}
+    \begin{align}
+        \bar v &= \mu_{t+}v_\one + \frac{1}{R_2}\mu_{t+}p_\one + C_\r \delta_{t+}p_\one,\label{eq:barVApp}\\
+        \bar p &= L_\r \delta_{t+}v_\one,\label{eq:barP1App}\\
+        \bar p &= \left(1+\frac{R_1}{R_2}\right)\mu_{t+}p_\one+ R_1 C_\r\delta_{t+}p_\one\label{eq:barP2App},
+    \end{align}
+\end{subequations}
+where $\bar p^{n+1/2}$ and $\bar v^{n+1/2}$ are related to the tube by (see Eq. \eqref{eq:barVars})
+\begin{align}
+    \bar p &= \mu_{t+}p^n_N,\label{eq:barVarP}\\
+    \bar S_N \bar v &= \mu_{x-}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}\right),\label{eq:barVarV}
+\end{align}
+one can start the derivation. 
+
+The radiation can be applied to the right boundary of the tube by evaluating the update equation of the pressure in Eq. \eqref{eq:pressureUpdate} at $l = N$
+\begin{equation}
+    p_N^{n+1} = p_N^n - \frac{\rho_0 c \lambda}{\bar{S}_N}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}-S_{N-1/2}v_{N-1/2}^{n+1/2}\right),
+\end{equation}
+rewriting this to 
+\begin{equation*}
+    p_N^{n+1} = p_N^n - \frac{\rho_0 c \lambda}{\bar{S}_N}\left(2\mu_{x-}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}\right)-2S_{N-1/2}v_{N-1/2}^{n+1/2}\right),
+\end{equation*}
+and substituting Eq. \eqref{eq:barVarV} to get
+\begin{equation}
+    p_N^{n+1} = p_N^n - \frac{2\rho_0 c \lambda}{\bar{S}_N}\left(\bar S_N \bar v-S_{N-1/2}v_{N-1/2}^{n+1/2}\right)\label{eq:preSolutP}.
+\end{equation}
+A definition for $\bar v$ can then be found by first expanding Eq. \eqref{eq:barVApp} to 
+\begin{equation}\label{eq:vBarExpanded}
+    \bar v = \frac{1}{2}\left(v_\one^{n+1} + v_\one^n\right) + \left(\frac{1}{2R_2} + \frac{C_\r}{k}\right) p_\one^{n+1} +\left(\frac{1}{2R_2} - \frac{C_\r}{k}\right)p_\one^n
+\end{equation}
+after which it should be made solely dependent on the known values $v_\one^n$, $p_\one^n$ and $p_N^n$ and the unknown $p_N^{n+1}$ (as this can be obtained using Eq. \eqref{eq:preSolutP}).
+
+Equation \eqref{eq:barP1App} can be expanded to 
+\begin{equation}\label{eq:voneNext}
+    v_\one^{n+1} = \frac{k}{L_\r}\bar p + v_\one^n ,
+\end{equation}
+and Eq. \eqref{eq:barP2App} to 
+\begin{align*}
+    &\bar p =\left(1+\frac{R_1}{R_2}\right)\mu_{t+}p_\one+ R_1 C_\r\delta_{t+}p_\one,\\
+    &\bar p =\frac{1}{2}\left(1+\frac{R_1}{R_2}\right)\left(p_\one^{n+1} + p_\one^n\right) + \frac{R_1C_\r}{k}\left(p_\one^{n+1} - p_\one^n\right),\\
+    \left(\frac{1}{2}+\frac{R_1}{2R_2} + \frac{R_1C_\r}{k}\right)&p_\one^{n+1} = \bar p + \left(\frac{R_1C_\r}{k} - \frac{1}{2} - \frac{R_1}{2R_2}\right)p_\one^n,
+\end{align*}
+and finally solved for $p_\one^{n+1}$ as
+\begin{equation}\label{eq:poneNext}
+    p_\one^{n+1} = \underbrace{\left(\frac{2R_2k}{2R_1R_2C_\r + k(R_1 + R_2)}\right)}_{\zeta_1}\bar p + \underbrace{\left(\frac{2R_1R_2C_\r - k(R_1 + R_2)}{2R_1R_2C_\r + k(R_1 + R_2)}\right)}_{\zeta_2} p_\one^n .
+\end{equation}
+Equations \eqref{eq:voneNext} and \eqref{eq:poneNext} can then be substituted into Eq. \eqref{eq:vBarExpanded} and, using the definition of $\bar p$ from Eq. \eqref{eq:barVarP}, yields
+\begin{align}
+    \bar v &= \frac{1}{2}\left(\frac{k}{L_\r}(\mu_{t+}p_N^n) + 2v_\one^n\right)+\left(\frac{1}{2R_2} + \frac{C_\r}{k}\right)\zeta_1\mu_{t+}p_N^n\nonumber \\
+    & \qquad\qquad\qquad\qquad+ \left(\frac{1}{2R_2} + \frac{C_\r}{k}\right)\zeta_2p_\one^n + \left(\frac{1}{2R_2} - \frac{C_\r}{k}\right)p_\one^n\nonumber,\\
+    \bar v &= \underbrace{\left(\frac{k}{2L_\r} + \frac{\zeta_1}{2R_2}+\frac{C_\r\zeta_1}{k}\right)}_{\zeta_3}\mu_{t+}p_N^n + v_\one^n + \underbrace{\left(\frac{\zeta_2+1}{2R_2} + \frac{C_\r\zeta_2 - C_\r}{k}\right)}_{\zeta_4}p_\one^n.
+\end{align}
+Finally, substituting this definition for $\bar v$ into Eq. \eqref{eq:preSolutP} yields
+\begin{align*}
+    p_N^{n+1} &= p_N^n - \frac{2\rho_0c\lambda}{\bar S_N}\left(\bar S_N
+    \left[\zeta_3\left(\frac{p_N^{n+1} + p_N^n}{2}\right) + v_\one^n + \zeta_4p_\one^n\right] - S_{N-1/2}v_{N-1/2}^{n+1/2}\right),\\
+    p_N^{n+1} &= p_N^n - \rho_0c\lambda\left(\zeta_3(p_N^{n+1} + p_N^n) + 2(v_\one^n + \zeta_4p_\one^n)-\frac{2S_{N-1/2}v_{N-1/2}^{n+1/2}}{\bar S_N}\right),
+\end{align*}
+and yields a definition for $p_N^{n+1}$ based on known values of the system
+\begin{equation}\label{eq:pradApp}
+    p_N^{n+1} = \frac{1 - \rho_0c\lambda\zeta_3}{1+\rho_0c\lambda\zeta_3}p_N^n - \frac{2\rho_0c\lambda}{1+\rho_0c\lambda\zeta_3} \left( v_\one^n+\zeta_4p_\one^n - \frac{S_{N-1/2}v_{N-1/2}^{n+1/2}}{\bar S_N}\right),
+\end{equation}
+which is Eq. \eqref{eq:pRadUpdate}. After $p_N^{n+1}$ is calculated, $v_\one^{n+1}$ and $p_\one^{n+1}$ can be updated according to Eqs. \eqref{eq:voneNext} and \eqref{eq:poneNext}, respectively.
+
 \section{Derivatives for Newton-Raphson for the elasto-plastic friction model (Eq. \eqref{eq:NRit})}\label{app:elastoDeriv}
 Recalling the functions needed for to compute the Newton-Raphson iteration for the elasto-plastic bow model in Section \ref{sec:elastoPlastic}, being Eq. \eqref{eq:elastog1}
 \begin{equation*}

@@ -430,7 +430,7 @@ For low cross-sectional variations, the modes generally follow a linear pattern.
 \section{First-order system}\label{sec:firstOrderSystem}
 Until now, only PDEs that are second-order in time have been presented, i.e., that are dependent on the acceleration of the state variable. This section presents a system of two coupled first-order PDEs which are instead dependent on the velocity. State-of-the-art research on brass instruments in the context of FDTD methods also uses this coupled system (see e.g.\cite{Bilbao2016, Harrison2018}) and has been used in this project to model the trombone in paper \citeP[H].\todo{look at wording}
 
-\subsection{Continuous time}
+\subsection{Continuous time}\label{sec:firstOrderSystemCont}
 Using the same variables as before for cross-sectional area $S=S(x)$, wave speed $c$, and air density $\rho_0$, a system of PDEs that describes air propagation in an acoustic tube can be defined as follows:
 \begin{subequations}\label{eq:firstOrderSystem}
 \begin{align}
@@ -618,9 +618,9 @@ Figure \ref{fig:energyFirstOrder} shows the energetic output of an implementatio
 \subsection{Levine and Schwinger radiation model}\label{sec:levineSchwing}
 \def\r{\text{r}}
 \def\one{{(1)}}
-Following \cite{Harrison2018}, radiation  can be added to the schemes using a circuit representation of the Levine and Schwinger radiation model (See Figure \ref{fig:circuit}). This section will provide a derivation \SWcomment[I'll actually move most of this to an appendix...]
+As done in Section \ref{sec:webstersEq}, radiation can be added to the acoustic tube. The radiation model used in this work was proposed by Levine and Schwinger in \cite{Levine1948}, its discretisation proposed by Silva et al. \cite{Silva2009}. Although other radiation models exist, state-of-the-art work by Bilbao and Harrison on brass instruments based on the first-order system in \eqref{eq:firstOrderSystem} also use this model \cite{Bilbao2013, Harrison2018}. See Figure \ref{fig:circuit} for a circuit representation of the Levine and Schwinger radiation model.\footnote{The Levine and Schwinger model has been taken from \cite{Harrison2018} `as is' and this thesis will not provide additional background on the working of the model. The interested reader is referred to \cite{Harrison2018} for more information.}
 
-\begin{figure}[h]
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.7\textwidth]{figures/resonators/brass/circuit.pdf}
     \caption{The circuit representation of the Levine and Schwinger radiation model. \label{fig:circuit}}
@@ -638,59 +638,89 @@ where $\bar p^{n+1/2}$ and $\bar v^{n+1/2}$ are placed on the interleaved tempor
 \begin{equation}\label{eq:barVars}
     \bar p = \mu_{t+}p^n_N, \quad \bar S_N \bar v = \mu_{x-}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}\right).
 \end{equation}
-This can be applied to the right boundary of the tube by evaluating Eq. \eqref{eq:pressureUpdate} at $l = N$
-\begin{equation}
-    p_N^{n+1} = p_N^n - \frac{\rho_0 c \lambda}{\bar{S}_N}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}-S_{N-1/2}v_{N-1/2}^{n+1/2}\right),
-\end{equation}
-and, rewriting this to 
-\begin{align}
-    p_N^{n+1} &= p_N^n - \frac{\rho_0 c \lambda}{\bar{S}_N}\left(2\mu_{x-}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}\right)-2S_{N-1/2}v_{N-1/2}^{n+1/2}\right)\nonumber,\\
-    p_N^{n+1} &= p_N^n - \frac{2\rho_0 c \lambda}{\bar{S}_N}\left(\bar S_N \bar v-S_{N-1/2}v_{N-1/2}^{n+1/2}\right)\label{eq:preSolutP}.
-\end{align}
-A definition for $\bar v$ can then be found by first expanding Eq. \eqref{eq:barV} to 
-\begin{equation}\label{eq:vBarExpanded}
-    \bar v = \frac{1}{2}\left(v_\one^{n+1} + v_\one^n\right) + \left(\frac{1}{2R_2} + \frac{C_\r}{k}\right) p_\one^{n+1} +\left(\frac{1}{2R_2} - \frac{C_\r}{k}\right)p_\one^n
-\end{equation}
-after which it should be made solely dependent on the known values $v_\one^n$, $p_\one^n$ and $p_N^n$ and the unknown $p_N^{n+1}$ (as this can be obtained using Eq. \eqref{eq:preSolutP}).
+Using the above, an update for $p^{n+1}_N$ based on known values of the system can be obtained (see Appendix \eqref{app:levineSchwingDeriv} for a derivation):
+% This can be applied to the right boundary of the tube by evaluating Eq. \eqref{eq:pressureUpdate} at $l = N$
+% \begin{equation}
+%     p_N^{n+1} = p_N^n - \frac{\rho_0 c \lambda}{\bar{S}_N}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}-S_{N-1/2}v_{N-1/2}^{n+1/2}\right),
+% \end{equation}
+% and, rewriting this to 
+% \begin{align}
+%     p_N^{n+1} &= p_N^n - \frac{\rho_0 c \lambda}{\bar{S}_N}\left(2\mu_{x-}\left(S_{N+1/2}v_{N+1/2}^{n+1/2}\right)-2S_{N-1/2}v_{N-1/2}^{n+1/2}\right)\nonumber,\\
+%     p_N^{n+1} &= p_N^n - \frac{2\rho_0 c \lambda}{\bar{S}_N}\left(\bar S_N \bar v-S_{N-1/2}v_{N-1/2}^{n+1/2}\right)\label{eq:preSolutP}.
+% \end{align}
+% A definition for $\bar v$ can then be found by first expanding Eq. \eqref{eq:barV} to 
+% \begin{equation}\label{eq:vBarExpanded}
+%     \bar v = \frac{1}{2}\left(v_\one^{n+1} + v_\one^n\right) + \left(\frac{1}{2R_2} + \frac{C_\r}{k}\right) p_\one^{n+1} +\left(\frac{1}{2R_2} - \frac{C_\r}{k}\right)p_\one^n
+% \end{equation}
+% after which it should be made solely dependent on the known values $v_\one^n$, $p_\one^n$ and $p_N^n$ and the unknown $p_N^{n+1}$ (as this can be obtained using Eq. \eqref{eq:preSolutP}).
 
-Equation \eqref{eq:barP1} can be expanded to 
-\begin{equation}\label{eq:voneNext}
-    v_\one^{n+1} = \frac{k}{L_\r}\bar p + v_\one^n ,
+% Equation \eqref{eq:barP1} can be expanded to 
+% \begin{equation}\label{eq:voneNext}
+%     v_\one^{n+1} = \frac{k}{L_\r}\bar p + v_\one^n ,
+% \end{equation}
+% and Eq. \eqref{eq:barP2} to 
+% \begin{align*}
+%     &\bar p =\left(1+\frac{R_1}{R_2}\right)\mu_{t+}p_\one+ R_1 C_\r\delta_{t+}p_\one,\\
+%     &\bar p =\frac{1}{2}\left(1+\frac{R_1}{R_2}\right)\left(p_\one^{n+1} + p_\one^n\right) + \frac{R_1C_\r}{k}\left(p_\one^{n+1} - p_\one^n\right),\\
+%     \left(\frac{1}{2}+\frac{R_1}{2R_2} + \frac{R_1C_\r}{k}\right)&p_\one^{n+1} = \bar p + \left(\frac{R_1C_\r}{k} - \frac{1}{2} - \frac{R_1}{2R_2}\right)p_\one^n
+% \end{align*}
+% and finally solved for $p_\one^{n+1}$ as
+% \begin{equation}\label{eq:poneNext}
+%     p_\one^{n+1} = \underbrace{\left(\frac{2R_2k}{2R_1R_2C_\r + k(R_1 + R_2)}\right)}_{\zeta_1}\bar p + \underbrace{\left(\frac{2R_1R_2C_\r - k(R_1 + R_2)}{2R_1R_2C_\r + k(R_1 + R_2)}\right)}_{\zeta_2} p_\one^n .
+% \end{equation}
+% Equations \eqref{eq:voneNext} and \eqref{eq:poneNext} can then be substituted into Eq. \eqref{eq:vBarExpanded} and, using the definition of $\bar p$ from Eq. \eqref{eq:barVars}, yields
+% \begin{align}
+%     \bar v &= \frac{1}{2}\left(\frac{k}{L_\r}(\mu_{t+}p_N^n) + 2v_\one^n\right)+\left(\frac{1}{2R_2} + \frac{C_\r}{k}\right)\zeta_1\mu_{t+}p_N^n\nonumber \\
+%     & \qquad\qquad+ \left(\frac{1}{2R_2} + \frac{C_\r}{k}\right)\zeta_2p_\one^n + \left(\frac{1}{2R_2} - \frac{C_\r}{k}\right)p_\one^n\nonumber,\\
+%     \bar v &= \underbrace{\left(\frac{k}{2L_\r} + \frac{\zeta_1}{2R_2}+\frac{C_\r\zeta_1}{k}\right)}_{\zeta_3}\mu_{t+}p_N^n + v_\one^n + \underbrace{\left(\frac{\zeta_2+1}{2R_2} + \frac{C_\r\zeta_2 - C_\r}{k}\right)}_{\zeta_4}p_\one^n.
+% \end{align}
+% Finally, substituting this definition for $\bar v$ into Eq. \eqref{eq:preSolutP} yields
+% \begin{align}
+%     p_N^{n+1} &= p_N^n - \frac{2\rho_0c\lambda}{\bar S_N}\left(\bar S_N
+%     \left[\zeta_3\left(\frac{p_N^{n+1} + p_N^n}{2}\right) + v_\one^n + \zeta_4p_\one^n\right] - S_{N-1/2}v_{N-1/2}^{n+1/2}\right)\nonumber\\
+%     p_N^{n+1} &= p_N^n - \rho_0c\lambda\left(\zeta_3(p_N^{n+1} + p_N^n) + 2(v_\one^n + \zeta_4p_\one^n)-\frac{2S_{N-1/2}v_{N-1/2}^{n+1/2}}{\bar S_N}\right)\nonumber
+% \end{align}
+% and yields a definition for $p_N^{n+1}$ based on known values of the system 
+\begin{equation}\label{eq:pRadUpdate}
+    p_N^{n+1} = \frac{1 - \rho_0c\lambda\zeta_3}{1+\rho_0c\lambda\zeta_3}p_N^n - \frac{2\rho_0c\lambda}{1+\rho_0c\lambda\zeta_3} \left( v_\one^n+\zeta_4p_\one^n - \frac{S_{N-1/2}v_{N-1/2}^{n+1/2}}{\bar S_N}\right),
 \end{equation}
-and Eq. \eqref{eq:barP2} to 
-\begin{align*}
-    &\bar p =\left(1+\frac{R_1}{R_2}\right)\mu_{t+}p_\one+ R_1 C_\r\delta_{t+}p_\one,\\
-    &\bar p =\frac{1}{2}\left(1+\frac{R_1}{R_2}\right)\left(p_\one^{n+1} + p_\one^n\right) + \frac{R_1C_\r}{k}\left(p_\one^{n+1} - p_\one^n\right),\\
-    \left(\frac{1}{2}+\frac{R_1}{2R_2} + \frac{R_1C_\r}{k}\right)&p_\one^{n+1} = \bar p + \left(\frac{R_1C_\r}{k} - \frac{1}{2} - \frac{R_1}{2R_2}\right)p_\one^n
-\end{align*}
-and finally solved for $p_\one^{n+1}$ as
-\begin{equation}\label{eq:poneNext}
-    p_\one^{n+1} = \underbrace{\left(\frac{2R_2k}{2R_1R_2C_\r + k(R_1 + R_2)}\right)}_{\zeta_1}\bar p + \underbrace{\left(\frac{2R_1R_2C_\r - k(R_1 + R_2)}{2R_1R_2C_\r + k(R_1 + R_2)}\right)}_{\zeta_2} p_\one^n .
-\end{equation}
-Equations \eqref{eq:voneNext} and \eqref{eq:poneNext} can then be substituted into Eq. \eqref{eq:vBarExpanded} and, using the definition of $\bar p$ from Eq. \eqref{eq:barVars}, yields
-\begin{align}
-    \bar v &= \frac{1}{2}\left(\frac{k}{L_\r}(\mu_{t+}p_N^n) + 2v_\one^n\right)+\left(\frac{1}{2R_2} + \frac{C_\r}{k}\right)\zeta_1\mu_{t+}p_N^n\nonumber \\
-    & \qquad\qquad+ \left(\frac{1}{2R_2} + \frac{C_\r}{k}\right)\zeta_2p_\one^n + \left(\frac{1}{2R_2} - \frac{C_\r}{k}\right)p_\one^n\nonumber,\\
-    \bar v &= \underbrace{\left(\frac{k}{2L_\r} + \frac{\zeta_1}{2R_2}+\frac{C_\r\zeta_1}{k}\right)}_{\zeta_3}\mu_{t+}p_N^n + v_\one^n + \underbrace{\left(\frac{\zeta_2+1}{2R_2} + \frac{C_\r\zeta_2 - C_\r}{k}\right)}_{\zeta_4}p_\one^n.
-\end{align}
-Finally, substituting this definition for $\bar v$ into Eq. \eqref{eq:preSolutP} yields
-\begin{align}
-    p_N^{n+1} &= p_N^n - \frac{2\rho_0c\lambda}{\bar S_N}\left(\bar S_N
-    \left[\zeta_3\left(\frac{p_N^{n+1} + p_N^n}{2}\right) + v_\one^n + \zeta_4p_\one^n\right] - S_{N-1/2}v_{N-1/2}^{n+1/2}\right)\nonumber\\
-    p_N^{n+1} &= p_N^n - \rho_0c\lambda\left(\zeta_3(p_N^{n+1} + p_N^n) + 2(v_\one^n + \zeta_4p_\one^n)-\frac{2S_{N-1/2}v_{N-1/2}^{n+1/2}}{\bar S_N}\right)\nonumber
-\end{align}
-and yields a definition for $p_N^{n+1}$ based on known values of the system 
-\begin{equation}
-    p_N^{n+1} = \frac{1 - \rho_0c\lambda\zeta_3}{1+\rho_0c\lambda\zeta_3}p_N^n - \frac{2\rho_0c\lambda}{1+\rho_0c\lambda\zeta_3} \left( v_\one^n+\zeta_4p_\one^n - \frac{S_{N-1/2}v_{N-1/2}^{n+1/2}}{\bar S_N}\right).
-\end{equation}
-\subsection{Energy}
-\SWcomment[not done yet...]
-Recalling the condition at the right boundary from \eqref{eq:firstOrderRightBoundary}
+where
+\begin{gather*}
+    \zeta_1 = \frac{2R_2k}{2R_1R_2C_\r + k(R_1 + R_2)}, \quad \zeta_2 = \frac{2R_1R_2C_\r - k(R_1 + R_2)}{2R_1R_2C_\r + k(R_1 + R_2)}\\
+    \zeta_3 = \frac{k}{2L_\r} + \frac{\zeta_1}{2R_2}+\frac{C_\r\zeta_1}{k}, \qaq \zeta_4 = \frac{\zeta_2+1}{2R_2} + \frac{C_\r\zeta_2 - C_\r}{k}.
+\end{gather*}
+Once $p_N^{n+1}$ is known, the internal states of the system can be updated as follows
+\begin{subequations}
+    \begin{align}
+        v_\one^{n+1} &= v_\one^n + \frac{k}{L_\rtxt}\mtp p_N^n,\\
+        p_\one^{n+1} &= \zeta_1\mtp p_N^n + \zeta_2 p_\one^n.
+    \end{align}
+\end{subequations}
+The various parameters are taken from \cite{Harrison2018} and can be found in Table \ref{tab:radiationParams}
+\todo{temperature dependent parameters somewhere?}
+\todo{table}
+\subsection{Energy analysis}
+This section shows the result of the energy analysis of the above radiation model. The full derivation will not be given here, but can be found in \cite{Harrison2018}. The result is included in this thesis for completeness, and such that it cam be used for implementation and debugging purposes.
+
+One can perform an energy analysis of the radiation model by recalling the condition at the right boundary from Eq. \eqref{eq:firstOrderRightBoundary}
 \begin{equation}
     \mathfrak{b}_\r = (\mu_{t+}p_N)\underbrace{\mu_{x+}(S_{N-1/2}v_{N-1/2})}_{\mu_{x-}S_{N+1/2}v_{N+1/2}},
 \end{equation}
-using Eq. \eqref{eq:barVars} one can rewrite this to
+which, using Eq. \eqref{eq:barVars}, one can rewrite this to
 \begin{equation}
     \mathfrak{b}_\r = \bar p\bar S_N\bar v.
 \end{equation}
-then we can 
+Following the derivation in \cite[Sec. 4.1.4]{Harrison2018}, this can eventually be rewritten to
+\begin{equation}
+    \dtp \h_\text{rad} + \q_\text{rad} = 0,
+\end{equation}
+where
+\begin{gather*}
+    \h_\text{rad} = \frac{\Sbar_N}{2}\left(L_\rtxt v_\one^2 + C_\rtxt p_\one^2\right),\quad \text{and}\\
+    \q_\text{rad} = \Sbar_N \left(R_1 (\mtp v_{(2)}^n)^2 + R_2 (\mtp v_{(3)})^2\right),
+\end{gather*}
+with
+\begin{equation}
+    v_{(3)}^n = \frac{p_\one^n}{R_2}, \qaq
+    \mtp v_{(2)}^n = \frac{\mtp p_N^n - \mtp p_\one^n}{R_1}.
+\end{equation}

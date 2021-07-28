@@ -1,11 +1,12 @@
 \chapter{The Trombone}\label{ch:trombone}
 This chapter provides an extended summary for the paper ``A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes'' \citeP[H]. 
 
-The trombone is an extremely interesting instrument from a simulation perspective due to the time-varying length of the acoustic tube. In FDTD-based simulations the trombone poses a challenge due to issues regarding grid points and simulation quality (as also pointed out by Harrison in \cite{Harrison2018}). As an attempt at resolving these issues has been made by the dynamic grid method presented in Chapter \ref{ch:dynamicGrid} and paper \citeP[G], the trombone makes a application for this method.
+The trombone is an extremely interesting instrument from a simulation perspective due to the time-varying length of the acoustic tube. In FDTD-based simulations the trombone poses a challenge due to issues regarding adding and removing points to the grid, or simulation quality, as also pointed out by Harrison in \cite{Harrison2018}. As the dynamic grid method presented in paper \citeP[G] (also see Chapter \ref{ch:dynamicGrid}) attempts to resolve these issues, the trombone is an excellent use case for this method to be applied to. 
 
 The air propagation in the trombone has been modelled using a system of two first-order PDEs, presented in Section \ref{sec:firstOrderSystem}. Although Webster's equation presented in Section \ref{sec:webstersEq}) could have been used, the state-of-the-art models for brass instruments using FDTD methods use first-order PDEs \cite{Bilbao2016, Harrison2018}. Some extensions, such as the Levine and Schwinger radiation model presented in \ref{sec:levineSchwing} and used in \cite{Harrison2018} and viscothermal losses in \cite{Bilbao2016}, could then easily be added, although the latter has been left for future work.
 
-After providing a short summary of paper  \citeP[H] that relates the paper to the rest of this thesis, this chapter extends the paper by providing implementation details on the lip reed and design considerations for the dynamic grid. 
+This chapter first presents a short summary of paper \citeP[H] that relates its contents to the rest of this thesis. Then, as the process of applying the dynamic grid method to the trombone is not straightforward, several considerations made during this process will be given. Finally, the collision method from Chapter \ref{ch:collisions} is applied to the lip reed presented in Chapter \ref{ch:lipreed},
+and details on the implementation will be given. 
 
 % with the idea that viscothermal losses could be added as done in \cite{Bilbao2016} where the authors also use a first-order system
 % Interesting read: https://newt.phys.unsw.edu.au/jw/brassacoustics.html
@@ -13,29 +14,31 @@ After providing a short summary of paper  \citeP[H] that relates the paper to th
 \section{Summary}
 The paper presents a real-time implementation of the trombone based on FDTD methods and using the dynamic grid method presented in Chapter \ref{ch:dynamicGrid}. The acoustic tube has been modelled using a system of first-order equations as described in Section \ref{sec:firstOrderSystem}, and the lip reed has been modelled using the 1-DoF mass spring system presented in Chapter \ref{ch:lipreed}. The lip reed has been extended using the collision method described in Chapter \ref{ch:collisions}, details of which will be given in Section \ref{sec:lipReedWithCollision}. 
 
-A real-time simulation was created and implemented in C++ using the JUCE framework (see Chapter \ref{ch:realtime}). The application and a demo can be found online.\footnote{\url{https://github.com/SilvinWillemsen/cppBrass/releases/}}\textsuperscript{,}\footnote{\url{https://youtu.be/Ht5gVNrshYo}} The total range of the tube length ($2.593$-$3.653$ m) could be traversed in $0.06$ s (corresponding to 20 samples between grid configurations), and an informal evaluation by the authors showed that no noticeable artefacts were observed. Naturally, proper listening tests need to confirm this It must be noted that to achieve this high rate of change between grid configurations, the Courant number has been set slightly lower than the stability condition ($\lambda = 0.999$). This decrease in $\lambda$ does cause a small, but negligible decrease in simulation quality and bandwidth (see Section \ref{sec:quality1DWave}). 
+An application was made implementing the trombone in real time in C++ using the JUCE framework (see Chapter \ref{ch:realtime}). The application and can be found online, as well as a demo showcasing it.\footnote{\url{https://github.com/SilvinWillemsen/cppBrass/releases/}}\textsuperscript{,}\footnote{\url{https://youtu.be/Ht5gVNrshYo}} The implementation allowed for the total range of the tube length ($2.593$-$3.653$ m) to be traversed in $0.06$ s (corresponding to 20 samples between grid configurations). An informal evaluation by the authors showed that no noticeable artefacts were observed. Naturally, proper listening tests need to confirm this. It must be noted that to ensure stability, especially at fast changes between grid configurations, the Courant number has been set slightly lower than the stability condition ($\lambda = 0.999$). This decrease in $\lambda$ does cause a small, but negligible decrease in simulation quality and bandwidth (see Section \ref{sec:quality1DWave}). 
 
-The main contribution of the paper, is the use of the dynamic grid method to implement the time-varying acoustic tube. Several design considerations made during the process will be presented below. 
+Future work includes to add viscothermal losses \cite{Bilbao2016} and nonlinear effects \cite{msallam1997physical}, as well as investigating intuitive mapping to control the simulation.
 
-\section{Design considerations}
-The main challenge in this contribution was to apply the dynamic grid method to a first-order system of PDEs. It was decided to apply the method to the pressure grid 
+% As the paper mentions, the state of the particle velocity of the right system exhibits a `drift', but does not affect the output of the system. Future work
 
-Another difference was that the length $L$ rather than the wave speed $c$ was made to be time-varying, but as paper \citeP[G]
+\section{Dynamic grid considerations}
+The main contribution of the paper is the use of the dynamic grid method to implement the time-varying acoustic tube. As paper \citeP[H] provides extensive details on the implementation of the dynamic grid method applied to the case of the trombone, these will not be given here. Instead, this section presents several considerations that needed to be taken into account in order to use the dynamic grid method in the case of the acoustic tube. 
 
-a change in length relates to a change in wavespeed according to Eq. \eqref{eq:fundamentalFreq} 
+\subsubsection{First-order system}
+The dynamic grid method presented in paper \citeP[G] uses the 1D wave equation as a test case. Although this is not used to model the trombone, the underlying behaviour is the same for a cylindrical tube. Section \ref{sec:firstOrderSystemCont} shows that the first-order system in Eq. \eqref{eq:firstOrderSystem} can be reduced to Webster's equation, which -- for a cylindrical tube -- reduces to the 1D wave equation. It was therefore concluded, that the dynamic grid method could be applied to the acoustic tube, under the condition that its cross-section does not vary at the location where the method is applied. In other words, as long as the system was split at a location of constant cross-section %grid points used in calculation of the virtual grid points at the inner boundaries in Eq. \eqref{eq:connectionInterpol} have the same value for the cross-sectional area 
+the method should continue to work. 
 
-1D wave equation (which is what the acoustic tube is eventually based on) 
+As the first-order system modelling the trombone consists of two state variables, a decision needed to be made about on what grid to apply the dynamic grid method. In other words, what state variable -- the pressure or the particle velocity -- should be used to calculate the virtual grid points at the inner boundaries. As the state of the pressure variable in Eq. \eqref{eq:contPressure} is discretised to the non-interleaved grid, it was chosen to apply the dynamic grid method to the pressure grid rather than that of the particle velocity. That said, if the constraint on the constant cross-section is kept, applying the method to the velocity grid should work just as well.
 
-As paper \citeP[H] provides extensive details on the implementation of the method in this context, here, only some design considerations\todo{regarding location of the adding and removing..} will be discussed.
+\subsubsection{Location of split}
+It was chosen to split the system in the middle of the slide crook of the trombone, i.e., at the far end of the trombone slide. First of all, it could be reasonable to assume that the air in the tube to ``go away from'' or ``go towards'' that point as the slide extends or contracts. Secondly, the cross-sectional area is constant at this location satisfies the aforementioned condition.
 
-\subsubsection{Design considerations}
-As the geometry varies it matters a lot where points are added and removed as this might influence the way that the method is implemented. The middle of the slide crook was chosen, for several reasons. First of all, it could be reasonable to assume that the air in the tube to ``go away from'' or ``go towards'' that point as the slide is extended or contracted. Secondly, the geometry is constant and because the geometry does not vary there. Experiments with adding / removing grid points where the geometry varies have been left for future work. \SWcomment[even more speculative.. $\rightarrow$] It could be argued that it makes more sense to add points at the ends of the inner slides as ``tube material'' is also added there. This would mean that the system should be split in three parts: ``inner slide", ``outer slide" and ``rest", and would complicate things even more.
+\subsubsection{Time-varying length}
+In paper \citeP[G], the time-varying parameter is the wave speed $c$, whereas the trombone has a time-varying length $L$. As stated in paper \citeP[G], $c$ and $L$ are linked by the fundamental frequency in Eq. \eqref{eq:fundamentalFreq} and a change in one yields identical behaviour as an inverse change in the other. Therefore, the method could easily be applied to a system with a time-varying length rather than a time-varying wave speed. Naturally, in an acoustic tube with a variable cross-section, a change in $c$ would definitely be different than a change in $L$, which is also why a varying wave speed was not used.
 
+% \subsubsection{Design considerations}
+% As the geometry varies it matters a lot where points are added and removed as this might influence the way that the method is implemented. 
 
-
-To combat the drift, experiments have been done involving different ways of connecting the left and right tube. One involved alternating between applying the connection to the pressures and the velocity. Here, rather than adding points to the left and right system in alternating fashion, points were added to pressures $p$ and $q$ and velocities $v$ and $w$ in an alternating fashion. Another experiment involved a ``staggered'' version of the connection where (fx.) for one system (either left or right), a virtual grid point of the velocity was created from known values according to \eqref{eq:connectionInterpol}, rather than both from pressures. This, however, showed unstable behaviour. No concluding statements can be made about these experiments at this point. \SWcomment[$\leftarrow$ which is exactly why I don't want to include this section]
-
-\subsection{Discrete}
+% To combat the drift, experiments have been done involving different ways of connecting the left and right tube. One involved alternating between applying the connection to the pressures and the velocity. Here, rather than adding points to the left and right system in alternating fashion, points were added to pressures $p$ and $q$ and velocities $v$ and $w$ in an alternating fashion. Another experiment involved a ``staggered'' version of the connection where (fx.) for one system (either left or right), a virtual grid point of the velocity was created from known values according to \eqref{eq:connectionInterpol}, rather than both from pressures. This, however, showed unstable behaviour. No concluding statements can be made about these experiments at this point. \SWcomment[$\leftarrow$ which is exactly why I don't want to include this section]
 
 \section{Lip-reed with collision}\label{sec:lipReedWithCollision}
 \def\nph{}
@@ -158,23 +161,23 @@ which, using Eq. \eqref{eq:etaNegY} yields
 %     \delta_{t+}(\mathfrak{h}_\text{t}+\mathfrak{h}_\text{r} + \mathfrak{h}_\text{c}) &+ \q_\text{r} + \mathfrak{p}_\text{r} = 0
 % \end{align}
 with
-\begin{equation}
-    \mathfrak{h}_\text{c} = \frac{(\psi^n)^2}{2 }\nonumber
-\end{equation}
-\section{Real-Time implementation}
-Branch check
+\begin{equation*}
+    \mathfrak{h}_\text{c} = \frac{(\psi^n)^2}{2}.
+\end{equation*}
+% \section{Real-Time implementation}
+% Branch check
 
-\section{Discussion}
-\SWcomment[more for your info, don't think I want to include this:]
+% \section{Discussion}
+% \SWcomment[more for your info, don't think I want to include this:]
 
-\subsection{Tube}
-Just to save the conversation with Stefan about Webster's equation:
+% \subsection{Tube}
+% Just to save the conversation with Stefan about Webster's equation:
 
-Using operators $\partial_t$ and $\partial_x$ denoting partial derivatives with respect to time $t$ and spatial coordinate $x$, respectively, a system of first-order PDEs describing the wave propagation in an acoustic tube can then be written as
-\begin{subequations}\label{eq:firstOrderSystemTrombone}
-    \begin{align}
-        \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv)\label{eq:contPressureTrombone}\\
-        \rho_0\partial_tv &= -\partial_xp\label{eq:contVelocityTrombone}
-    \end{align}
-\end{subequations}
-with acoustic pressure $p = p(x,t)$ (in N/m$^2$), particle velocity $v = v(x,t)$ (in m/s) and (circular) cross-sectional area $S(x)$ (in m$^2$). Furthermore, $\rho_0$ is the density of air (in kg/m$^3$) and $c$ is the speed of sound in air (in m/s). System \eqref{eq:firstOrderSystemTrombone} can be condensed into a second-order equation in $p$ alone, often referred to as Webster's equation \cite{Webster19}. \SWcomment[Interesting! In NSS it is the acoustic potential right? Can you go from that to a second-order PDE in $p$? There is a time-derivative hidden there somewhere right? (Just wondering :))]\SBcomment[Yes, the form in $p$ alone is the one you usually see. You get it by differentiating the first equation, giving you a $\dot{v}$ on the RHS, and then you can substitute the second equation in...I used the velocity potential one because it has direct energy balance properties. ] \SWcomment[Right. So Webster's eq. in $p$ and $\Psi$ are identical (will exhibit identical behaviour), except for the unit of the state variable..?]\SBcomment[yes that's right...using the velocity potential allows you to do all the energy analysis easily, in terms of physical impedances. But the scheme you get to in the end is the same, just one derivative down.] \SWcomment[Alright cool! Thanks for the explanation :)] For simplicity, effects of viscothermal losses have been neglected in \eqref{eq:firstOrderSystemTrombone}. For a full time domain model of such effects in an acoustic tube, see, e.g. \cite{Bilbao2016}. 
+% Using operators $\partial_t$ and $\partial_x$ denoting partial derivatives with respect to time $t$ and spatial coordinate $x$, respectively, a system of first-order PDEs describing the wave propagation in an acoustic tube can then be written as
+% \begin{subequations}\label{eq:firstOrderSystemTrombone}
+%     \begin{align}
+%         \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv)\label{eq:contPressureTrombone}\\
+%         \rho_0\partial_tv &= -\partial_xp\label{eq:contVelocityTrombone}
+%     \end{align}
+% \end{subequations}
+% with acoustic pressure $p = p(x,t)$ (in N/m$^2$), particle velocity $v = v(x,t)$ (in m/s) and (circular) cross-sectional area $S(x)$ (in m$^2$). Furthermore, $\rho_0$ is the density of air (in kg/m$^3$) and $c$ is the speed of sound in air (in m/s). System \eqref{eq:firstOrderSystemTrombone} can be condensed into a second-order equation in $p$ alone, often referred to as Webster's equation \cite{Webster19}. \SWcomment[Interesting! In NSS it is the acoustic potential right? Can you go from that to a second-order PDE in $p$? There is a time-derivative hidden there somewhere right? (Just wondering :))]\SBcomment[Yes, the form in $p$ alone is the one you usually see. You get it by differentiating the first equation, giving you a $\dot{v}$ on the RHS, and then you can substitute the second equation in...I used the velocity potential one because it has direct energy balance properties. ] \SWcomment[Right. So Webster's eq. in $p$ and $\Psi$ are identical (will exhibit identical behaviour), except for the unit of the state variable..?]\SBcomment[yes that's right...using the velocity potential allows you to do all the energy analysis easily, in terms of physical impedances. But the scheme you get to in the end is the same, just one derivative down.] \SWcomment[Alright cool! Thanks for the explanation :)] For simplicity, effects of viscothermal losses have been neglected in \eqref{eq:firstOrderSystemTrombone}. For a full time domain model of such effects in an acoustic tube, see, e.g. \cite{Bilbao2016}. 
