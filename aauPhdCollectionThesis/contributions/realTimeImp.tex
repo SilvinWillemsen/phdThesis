@@ -187,7 +187,7 @@ for (int l = 2; l < N-1; ++l) // clamped boundaries
 \subsubsection{Denormalised numbers}
 The damping present in FD schemes causes the state of the system to exponentially decay. What this means for the values of the state vectors in implementation, is that they keep getting closer to $0$ but never reach it. 
 
-After a long period of time, which depends on the damping coefficients, state values can get in the range of $\sim 10^{-307}$! Numbers in this range are referred to as \textit{denormalised numbers} and operations with these are ``extremely slow'' \cite{CPPdenormalised}.
+After a long period of time, which depends on the damping coefficients, state values can get in the range of \textApprox$10^{-307}$! Numbers in this range are referred to as \textit{denormalised numbers} and operations with these are ``extremely slow'' \cite{CPPdenormalised}.
 
 Although it rarely happens that numbers end up in this range, especially when the application is continuously interacted with, it is good to account for the possibility. For example, due to the very high damping of the body in the Tromba Marina application in Chapter \ref{ch:tromba}, denormalised numbers appear after $\sim 10$ s of not interacting with the instrument, and the CPU usage shoots up. There are specific processor flags that can be activated to truncate denormalised numbers to 0. To retain generality (cross-platform, various processors), one could implement a simple check per buffer to see whether values are smaller than fx. $10^{-250}$ and truncate all values of that system to $0$. 
 
@@ -313,6 +313,9 @@ The \textit{Sensel Morph,} or Sensel for short, is a high-accuracy pressure sens
 
 The controller has been used to control the physical models in  paper
 
+\cite{Pardue2020}
+\cite{vanWalstijn2021}
+\cite{Paisa2019}
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/contributions/realtime/senselHands.jpg}
@@ -321,6 +324,8 @@ The controller has been used to control the physical models in  paper
 
 \subsection{PHANTOM Omni}\label{sec:phantomOmni}
 The PHANTOM Omni, or Omni for short, is a six-degrees-of-freedom device that provides force and vibrotactile feedback (see Figure \ref{fig:phantomOmni})
+
+Other work using the Omni in a musical context, specifically for plucking a virtual guitar string, was done by Passalenti et al. in \cite{passalenti2019a, passalenti2019b} and Fontana et al. in \cite{Fontana2020}
 
 \section{Discussion and Conclusion}
 No proper comparisons have been done between MATLAB and C++

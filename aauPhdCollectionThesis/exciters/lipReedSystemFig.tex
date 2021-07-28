@@ -120,15 +120,15 @@
     % pressure labels
     \def\pressOffset{0.3}
     \def\backgroundOpacity{0.4}
-    \node[fill = white, fill opacity=\backgroundOpacity, text opacity = 1] at (-2, -0.6 - \pressOffset) (Pm) {$P_\text{m}$};
-    \node[fill = white, fill opacity=\backgroundOpacity, text opacity = 1] at (0.5, -0.8 - \pressOffset) (deltaP) {$\Delta p$};
+    \node[fill = white, fill opacity=\backgroundOpacity, text opacity = 1] at (-2, -0.6 - \pressOffset) (Pm) {$P_\text{m}(t)$};
+    \node[fill = white, fill opacity=\backgroundOpacity, text opacity = 1] at (0.5, -0.8 - \pressOffset) (deltaP) {$\Delta p(t)$};
     \node[fill = white, fill opacity=\backgroundOpacity, text opacity = 1] at (3.2, -0.6 - \pressOffset) (p) {$p(0,t)$};
 
     
     % y and H0
     \def\axisLineWidth{0.07};
     \draw[dashed, color = gray] (3.65, 0) -- (1.5, 0);
-    \node at (4, 1.5) {$y$};
+    \node at (4.2, 1.5) {$y(t)$};
     
     \draw[->] (3.75, -1.5) -- (3.75, 1.5);
     \node at (4, 0) {$0$};

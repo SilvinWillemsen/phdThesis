@@ -1,8 +1,8 @@
-\chapter{Tromba Marina}\label{ch:tromba}
+\chapter{The Tromba Marina}\label{ch:tromba}
 This chapter provides an extended summary for the paper ``Real-time Implementation of a Physical Model of the Tromba Marina'' \citeP[D] and the paper ``Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling'' \citeP[E]. After a general summary of these papers, the physical model will be summarised, with reference to the theory explained in the previous parts of this thesis. Finally, this chapter extends on the contents of paper \citeP[D] by providing more details on the implementation and goes through an energy analysis.
 
 \section{Summary}
-The tromba marina is a bowed monochord instrument from medieval Europe (see Figure \ref{fig:tromba}). It has a long quasi-trapezoidal body and is unique due to its oddly-shaped bridge that the string rests on. The bridge is often called a `shoe' due to its shape and is free to rattle against the body in sympathy with the movement of the vibrating string (see Figure \ref{fig:bridge}). This rattling causes a sound with brass or trumpet-like qualities, hence the name \textit{tromba} which stems from the Italian word trumpet. The rarity of the instrument as well as its interesting physics makes it an ideal case for a physical modelling implementation.
+The tromba marina is a bowed monochord instrument from medieval Europe (see Figure 1 in paper \citeP[D]). It has a long quasi-trapezoidal body and is unique due to its oddly-shaped bridge that the string rests on. The bridge is often called a `shoe' due to its shape and is free to rattle against the body in sympathy with the movement of the vibrating string (see Figure 2 in paper \citeP[D]). This rattling causes a sound with brass or trumpet-like qualities, hence the name \textit{tromba} which stems from the Italian word trumpet. The rarity of the instrument as well as its interesting physics makes it an ideal case for a physical modelling implementation.
 
 \subsubsection{Real-time implementation and control}
 Paper \citeP[D] presents a physical model of the tromba marina and its real-time implementation. The application and a video showcasing it can be found online.\footnote{\url{https://github.com/SilvinWillemsen/TrombaMarina/releases/tag/2.0}}\textsuperscript{,}\footnote{\url{https://youtu.be/x72Xh-nUoVc}} The paper uses the Sensel morph for control of the algorithm. See Section \ref{sec:sensel} for more information on this controller. To approach the interaction paradigm of the real-life instrument, a virtual reality (VR) application was made from where the algorithm could be controlled. To this end, the PHANTOM Omni haptic device was used to control the implementation and presented in paper \citeP[E]. See Section \ref{sec:phantomOmni} for more details on this device. A demo of the VR application can be found  online.\footnote{\url{https://www.youtube.com/watch?v=SlHqvaaPCyU}} The VR implementation has been evaluated and the results will be summarised below.
@@ -13,19 +13,19 @@ The data was collected using a combination of qualitative and quantitative metho
 
 The results show that the various modalities (visuals, audio and haptics) seemed to reinforce each other and that the haptic feedback provided by the PHANTOM Omni was deemed ``realistic'' and ``natural''. The overall playability of the instrument was thus concluded to be satisfactory, though improvements could be made.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\textwidth]{figures/contributions/tromba/IMG_7980.jpg}
-    \caption{The tromba marina from the Danish Music Museum in Copenhagen. (As shown in paper \citeP[D].)}
-\label{fig:tromba}
-\end{figure}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.5\textwidth]{figures/contributions/tromba/IMG_7980.jpg}
+%     \caption{The tromba marina from the Danish Music Museum in Copenhagen. (As shown in paper \citeP[D].)}
+% \label{fig:tromba}
+% \end{figure}
   
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth]{figures/contributions/tromba/IMG_7982.jpg}
-    \caption{The bridge of the tromba marina from the Danish Music Museum in Copenhagen. The right side of the bridge is pressed against the body by the string while the left side is free and can rattle against the body. (As shown in paper \citeP[D].)}
-\label{fig:bridge}
-\end{figure}
+% \begin{figure}
+%     \centering
+%     \includegraphics[width=0.8\textwidth]{figures/contributions/tromba/IMG_7982.jpg}
+%     \caption{The bridge of the tromba marina from the Danish Music Museum in Copenhagen. The right side of the bridge is pressed against the body by the string while the left side is free and can rattle against the body. (As shown in paper \citeP[D].)}
+% \label{fig:bridge}
+% \end{figure}
 
 \section{Physical model}
 This section presents the physical model of the tromba marina with reference to the theory presented in Parts \ref{part:resonators}, \ref{part:exciters} and \ref{part:interactions}.
@@ -82,7 +82,7 @@ where (see Eq. \eqref{eq:platePDE})
 with $D = E_\ptxt H^3/12(1-\nu^2)$. Again, parameters are as defined in Eq. \eqref{eq:platePDE}.
 
 \subsubsection{Interactions}
-The three components interact using the non-iterative collision methods presented in Chapter \ref{ch:collisions}. Recalling the importance of the relative location of the various objects (see Section \ref{sec:massRigidBarrier})\todo{klopt dit?}, the string is placed above the bridge, which is placed above the body. This arrangement will, in turn, determine the definitions of $\eta$ and the directions of the forces in the eventual system. In the following, subscripts `sm' and `mp' are used to denote a `string-mass' and `mass-plate' interaction respectively.
+The three components interact using the non-iterative collision methods presented in Chapter \ref{ch:collisions}. Recalling the importance of the relative location of the various objects (see Section \ref{sec:massRigidBarrier}), the string is placed above the bridge, which is placed above the body. This arrangement will, in turn, determine the definitions of $\eta$ and the directions of the forces in the eventual system. In the following, subscripts `sm' and `mp' are used to denote a `string-mass' and `mass-plate' interaction respectively.
 
 The bridge-body interaction is modelled using the collision-potential in Eq. \eqref{eq:potential}:
 \begin{equation}
@@ -111,13 +111,18 @@ Looking towards discretisation, the separate variables $g_\sm=\psi_\sm'$ and $g_
         \L_\text{p}z &= -\delta(x-x_\mp, y-y_\mp)\psi_\mp g_\mp,\\
         \dot\psi_\sm &= g_\sm \dot \eta_\sm,\label{eq:trombaPDEPsiSM}\\
         \dot\psi_\mp &= g_\mp \dot \eta_\mp,\label{eq:trombaPDEPsiMP}\\
-        \eta_\sm(t) &= w(t) - u(\chi_\sm, t),\\
+        \eta_\sm(t) &= w(t) - u(\chi_\sm, t),\label{eq:etaSMinSystem}\\
         \eta_\mp(t) &= z(x_\mp, y_\mp, t) - w(t).
     \end{align}
 \end{subequations}
-Notice that when compared to the system presented in paper \citeP[D], Eqs. \eqref{eq:trombaPDEPsiSM} and \eqref{eq:trombaPDEPsiMP} have been added for coherence with the theory presented in Chapter \ref{ch:collisions}, as well as the introduction of $g_\sm$ and $g_\mp$ already in the continuous system.
+See Figure \ref{fig:trombaSystem} for a visual overview of system \eqref{eq:trombaSystemPDE}. Notice that when compared to the system presented in paper \citeP[D], Eqs. \eqref{eq:trombaPDEPsiSM} and \eqref{eq:trombaPDEPsiMP} have been added for coherence with the theory presented in Chapter \ref{ch:collisions}, as well as the introduction of $g_\sm$ and $g_\mp$ already in the continuous system. 
 
-\SWcomment[Insert figure 4 of the SMC paper here]
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/contributions/tromba/trombaSystem.eps}
+    \caption{A visualisation of system \eqref{eq:trombaSystemPDE} with various important coordinates highlighted. The figure includes the offset and the damping finger described in paper \citeP[D]. Note that $\eta_\text{sm}$ (Eq. \eqref{eq:etaSMinSystem}) is not shown as it is close to 0 at all times. (Figure taken from \citeP[D].)}
+    \label{fig:trombaSystem}
+  \end{figure}
 
 \subsection{Discrete time}
 Using the process explained in Section \ref{sec:solvingMassBarrier} for discretising the collision terms and introducing\footnote{The definition for $\xi^n$ was wrong in paper \citeP[D], where $\psi^{n-1/2}$ was subtracted rather than added. It has been corrected here and included in Appendix \ref{app:paperErrata}.} 

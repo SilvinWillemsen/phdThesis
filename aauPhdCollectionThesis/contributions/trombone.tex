@@ -1,28 +1,46 @@
-\chapter{Trombone}\label{ch:trombone}
-This chapter provides an extended summary for the paper ``A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes'' \citeP[H]. The trombone is an extremely interesting case from a simulation perspective as the length of the acoustic tube is time-varying. 
+\chapter{The Trombone}\label{ch:trombone}
+This chapter provides an extended summary for the paper ``A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes'' \citeP[H]. 
 
-The air propagation in the trombone has been modelled using a system of two first-order PDEs, presented in Section \ref{sec:firstOrderSystem}. Although Webster's equation (see Section \ref{sec:webstersEq}) could have been used, the state-of-the-art models for brass instruments using FDTD methods use first-order PDEs \cite{Bilbao2016, Harrison2018}. Some extensions, such as the state-of-the-art radiation model used in \cite{Harrison2018} and viscothermal losses in \cite{Bilbao2016}, could then easily be added, although the latter has been left for future work.  
+The trombone is an extremely interesting instrument from a simulation perspective due to the time-varying length of the acoustic tube. In FDTD-based simulations the trombone poses a challenge due to issues regarding grid points and simulation quality (as also pointed out by Harrison in \cite{Harrison2018}). As an attempt at resolving these issues has been made by the dynamic grid method presented in Chapter \ref{ch:dynamicGrid} and paper \citeP[G], the trombone makes a application for this method.
+
+The air propagation in the trombone has been modelled using a system of two first-order PDEs, presented in Section \ref{sec:firstOrderSystem}. Although Webster's equation presented in Section \ref{sec:webstersEq}) could have been used, the state-of-the-art models for brass instruments using FDTD methods use first-order PDEs \cite{Bilbao2016, Harrison2018}. Some extensions, such as the Levine and Schwinger radiation model presented in \ref{sec:levineSchwing} and used in \cite{Harrison2018} and viscothermal losses in \cite{Bilbao2016}, could then easily be added, although the latter has been left for future work.
+
+After providing a short summary of paper  \citeP[H] that relates the paper to the rest of this thesis, this chapter extends the paper by providing implementation details on the lip reed and design considerations for the dynamic grid. 
 
 % with the idea that viscothermal losses could be added as done in \cite{Bilbao2016} where the authors also use a first-order system
 % Interesting read: https://newt.phys.unsw.edu.au/jw/brassacoustics.html
 
-After providing a short summary 
-
 \section{Summary}
-The main contribution is the inclusion of the dynamic grid, which will be summarised below. 
+The paper presents a real-time implementation of the trombone based on FDTD methods and using the dynamic grid method presented in Chapter \ref{ch:dynamicGrid}. The acoustic tube has been modelled using a system of first-order equations as described in Section \ref{sec:firstOrderSystem}, and the lip reed has been modelled using the 1-DoF mass spring system presented in Chapter \ref{ch:lipreed}. The lip reed has been extended using the collision method described in Chapter \ref{ch:collisions}, details of which will be given in Section \ref{sec:lipReedWithCollision}. 
 
-\subsection{Dynamic grid}
-The dynamic grid presented in Chapter \ref{ch:dynamicGrid} has been used to model the varying geometry of the acoustic tube. 
+A real-time simulation was created and implemented in C++ using the JUCE framework (see Chapter \ref{ch:realtime}). The application and a demo can be found online.\footnote{\url{https://github.com/SilvinWillemsen/cppBrass/releases/}}\textsuperscript{,}\footnote{\url{https://youtu.be/Ht5gVNrshYo}} The total range of the tube length ($2.593$-$3.653$ m) could be traversed in $0.06$ s (corresponding to 20 samples between grid configurations), and an informal evaluation by the authors showed that no noticeable artefacts were observed. Naturally, proper listening tests need to confirm this It must be noted that to achieve this high rate of change between grid configurations, the Courant number has been set slightly lower than the stability condition ($\lambda = 0.999$). This decrease in $\lambda$ does cause a small, but negligible decrease in simulation quality and bandwidth (see Section \ref{sec:quality1DWave}). 
 
-\section{Physical model}
-Most has been described in Chapter \ref{ch:brass}
+The main contribution of the paper, is the use of the dynamic grid method to implement the time-varying acoustic tube. Several design considerations made during the process will be presented below. 
+
+\section{Design considerations}
+The main challenge in this contribution was to apply the dynamic grid method to a first-order system of PDEs. It was decided to apply the method to the pressure grid 
+
+Another difference was that the length $L$ rather than the wave speed $c$ was made to be time-varying, but as paper \citeP[G]
+
+a change in length relates to a change in wavespeed according to Eq. \eqref{eq:fundamentalFreq} 
+
+1D wave equation (which is what the acoustic tube is eventually based on) 
+
+As paper \citeP[H] provides extensive details on the implementation of the method in this context, here, only some design considerations\todo{regarding location of the adding and removing..} will be discussed.
+
+\subsubsection{Design considerations}
+As the geometry varies it matters a lot where points are added and removed as this might influence the way that the method is implemented. The middle of the slide crook was chosen, for several reasons. First of all, it could be reasonable to assume that the air in the tube to ``go away from'' or ``go towards'' that point as the slide is extended or contracted. Secondly, the geometry is constant and because the geometry does not vary there. Experiments with adding / removing grid points where the geometry varies have been left for future work. \SWcomment[even more speculative.. $\rightarrow$] It could be argued that it makes more sense to add points at the ends of the inner slides as ``tube material'' is also added there. This would mean that the system should be split in three parts: ``inner slide", ``outer slide" and ``rest", and would complicate things even more.
+
+
+
+To combat the drift, experiments have been done involving different ways of connecting the left and right tube. One involved alternating between applying the connection to the pressures and the velocity. Here, rather than adding points to the left and right system in alternating fashion, points were added to pressures $p$ and $q$ and velocities $v$ and $w$ in an alternating fashion. Another experiment involved a ``staggered'' version of the connection where (fx.) for one system (either left or right), a virtual grid point of the velocity was created from known values according to \eqref{eq:connectionInterpol}, rather than both from pressures. This, however, showed unstable behaviour. No concluding statements can be made about these experiments at this point. \SWcomment[$\leftarrow$ which is exactly why I don't want to include this section]
 
 \subsection{Discrete}
 
-\section{Lip-reed with collision}
+\section{Lip-reed with collision}\label{sec:lipReedWithCollision}
 \def\nph{}
 \def\nphSys{n+1/2}
-To excite the trombone, the lip reed model presented in Chapter \ref{ch:lipreed} was used, and extended using the collision method presented in Chapter \ref{ch:collisions}. This section provides details on this addition and the implementation and follows the notation of the thesis for consistency.
+To excite the trombone, the lip reed model presented in Chapter \ref{ch:lipreed} was used, and extended using the collision method presented in Chapter \ref{ch:collisions}. This section provides details on this combination and the implementation and follows the notation of the thesis for consistency.
 
 \subsection{Continuous time}
 In continuous time, a collision can be added to Eq. \eqref{eq:lipReedDimensional} in the same way as for the mass-barrier collision presented in Section \ref{sec:massRigidBarrier} as
@@ -148,13 +166,6 @@ Branch check
 
 \section{Discussion}
 \SWcomment[more for your info, don't think I want to include this:]
-To combat the drift, experiments have been done involving different ways of connecting the left and right tube. One involved alternating between applying the connection to the pressures and the velocity. Here, rather than adding points to the left and right system in alternating fashion, points were added to pressures $p$ and $q$ and velocities $v$ and $w$ in an alternating fashion. Another experiment involved a ``staggered'' version of the connection where (fx.) for one system (either left or right), a virtual grid point of the velocity was created from known values according to \eqref{eq:connectionInterpol}, rather than both from pressures. This, however, showed unstable behaviour. No concluding statements can be made about these experiments at this point. \SWcomment[$\leftarrow$ which is exactly why I don't want to include this section]
-
-
-
-As the geometry varies it matters a lot where points are added and removed as this might influence the way that the method is implemented. \SWcomment[speculative section coming up] The middle of the slide crook was chosen, both because it would be reasonable for the air on the tube to ``go away from'' or ``go towards'' that point as the slide is extended or contracted, and because the geometry does not vary there. Experiments with adding / removing grid points where the geometry varies have been left for future work. \SWcomment[even more speculative.. $\rightarrow$] It could be argued that it makes more sense to add points at the ends of the inner slides as ``tube material'' is also added there. This would mean that the system should be split in three parts: ``inner slide", ``outer slide" and ``rest", and would complicate things even more.
-
-
 
 \subsection{Tube}
 Just to save the conversation with Stefan about Webster's equation:

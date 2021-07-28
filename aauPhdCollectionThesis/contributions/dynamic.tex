@@ -6,7 +6,7 @@ This chapter provides an extended summary to the paper ``Dynamic grids for Finit
 After a brief introduction, this chapter summarises paper \citeP[G] and extends it by providing details on the implementation of the displacement correction and the modal analysis shown in the paper. This chapter continues by providing additional results of various iterations to substantiate some choices made in the paper. Finally, a list of examples is given that could be potential use cases for the method presented here. 
 
 \section{Background and motivation}
-Simulating musical instruments using physical modelling -- as mentioned in Chapter \ref{ch:physMod} -- allows for manipulations of the instrument that are impossible in the physical world. Examples of this are changes in material density or stiffness, cross-sectional area (strings, acoustic tubes), thickness (membranes, plate2) and size of the system in general. Using FDTD methods to discretise PDEs constrains the simulation to a grid of a finite amount of points. As explained in Section \ref{sec:quality1DWave}, the definition of this grid closely ties the parameters set by the user to the stability and quality of the simulation, making FDTD methods extremely inflexible to parameter changes. 
+Simulating musical instruments using physical modelling -- as mentioned in Chapter \ref{ch:physMod} -- allows for manipulations of the instrument that are impossible in the physical world. Examples of this are changes in material density or stiffness, cross-sectional area (strings, acoustic tubes), thickness (membranes, plate2) and size of the system in general. Using FDTD methods to discretise PDEs, constrains the simulation to a grid of a finite amount of points. As explained in Section \ref{sec:quality1DWave}, the definition of this grid closely ties the parameters set by the user to the stability and quality of the simulation, making FDTD methods extremely inflexible to parameter changes. 
 
 Apart from being potentially sonically interesting, dynamic parameter changes also happen in the real world. A prime example is the trombone published in paper \citeP[H] using the method presented in paper \citeP[G]. A collection of examples for use cases of the method are listed in Section \ref{sec:examples}.
 
@@ -18,9 +18,9 @@ Consider the 1D wave equation  as presented in Section \ref{sec:1DWave}, describ
 \begin{equation}\label{eq:1DWaveDynamic}
     \dtt \qln = c^2\dxx \qln.
 \end{equation}
-If one would like to dynamically vary the wave speed $c$, several issues arise. Performing the usual calculations for number of intervals $N$, Courant number $\lambda\leq 1$ and grid spacing $h$ through Eq. \eqref{eq:orderOfCalc}:
+If one would like to dynamically vary the wave speed $c$, several issues arise. Performing the usual calculations for the number of intervals $N$, Courant number $\lambda\leq 1$ and grid spacing $h$ (Eq. \eqref{eq:orderOfCalc}):
 \begin{equation}\label{eq:dynamicOrderOfCalc}
-    h := ck, \quad N := \floor[\frac{L}{h}], \quad h := \frac{L}{N}, \quad \lambda := \frac{ck}{h}.
+    h := ck, \quad N := \floor[\frac{L}{h}], \quad h := \frac{L}{N}, \quad \lambda := \frac{ck}{h},
 \end{equation}
 shows that a change in $c$ can cause abrupt changes in $N$ due to the flooring operation. One could avoid this issue by fixing $N$ at the start of the simulation and decrease $c$, i.e., tune it away from the stability condition. The issue here, is that the simulation quality and bandwidth decreases very rapidly as explained in Section \ref{sec:quality1DWave}. 
 
@@ -28,7 +28,7 @@ Paper \citeP[G] proposes a \textit{fractional} number of intervals $\Nfrac$, whe
 \begin{equation}\label{eq:newOrderOfCalc}
     h:= ck, \quad \Nfrac := \frac{L}{h}, \quad \lambda := \frac{ck}{h},
 \end{equation}  
-and results in that the stability condition can always be satisfied with equality. Issues regarding simulation quality and bandwidth could thus be resolved. In the following, the variables $c$, $h$, $\Nfrac$ and $N$ will receive a superscript $n$ as they are time-varying.
+which results in the stability condition always being be satisfied with equality. Issues regarding simulation quality and bandwidth could thus be resolved. In the following, the variables $c$, $h$, $\Nfrac$ and $N$ will receive a superscript $n$ as they are time-varying.
 
 \subsection{Splitting the scheme}
 Rather than working with the scheme in Eq. \eqref{eq:1DWaveDynamic} directly, paper \citeP[G] proposes to split it into two separate subsystems to get the following system 
@@ -40,12 +40,12 @@ Rather than working with the scheme in Eq. \eqref{eq:1DWaveDynamic} directly, pa
 \end{subequations}
 where $l_u \in \{0, \hdots, M^n\}$ and $l_w \in \{0, \hdots, M_w^n\}$ and integers 
 \begin{equation}
-    M^n =\ceil[0.5 N^n], \qaq M_w^n =\floor[0.5 N^n],
+    M^n =\ceil[0.5 N^n] \qaq M_w^n =\floor[0.5 N^n]
 \end{equation}
 are the number of intervals between grid points of each respective subsystem. This yields a total of $M^n + M_w^n + 2$ grid points, which is one more than the original scheme in Eq. \eqref{eq:1DWaveDynamic}. Paper \citeP[G] shows that this system can be shown to exhibit identical behaviour to the original system, using the boundary conditions described shortly.
 
 \subsubsection{Locations of grid points}
-The schemes in Eq. \eqref{eq:splitFDS} are placed on the same domain $x$, where the left boundary of $u$ and the right boundary of $w$ -- referred to as the \textit{outer boundaries} -- are placed at the following locations:
+The schemes in Eq. \eqref{eq:splitFDS} are placed on the same domain $x$, where the left boundary of $\ulun$ and the right boundary of $\wlwn$ -- referred to as the \textit{outer boundaries} -- are placed at the following locations:
 \begin{equation}\label{eq:outerBoundaries}
     x_{u_0}^n = 0, \quad x_{w_{M_w^n}}^n = L.
 \end{equation}
@@ -55,7 +55,7 @@ The right boundary of $u$ and the left boundary of $w$ -- referred to as the \te
 \begin{equation}\label{eq:hLocs}
     x_{u_{M^n}}^n = M^nh^n, \quad x_{w_{0}}^n = L-M_w^nh^n.
 \end{equation}
-If $\Nfrac^n$ is an integer, the inner boundaries perfectly overlap (see Figure \ref{fig:twoFreeStrings}). If the wave speed $c^n$ changes, which consequently changes $h^n$ according to Eq. \eqref{eq:newOrderOfCalc}, the outer boundaries will remain at their respective locations given by Eq. \eqref{eq:outerBoundaries}, and all other grid points will move to or from the outer boundary of their respective system according to 
+If $\Nfrac^n$ is an integer, the inner boundaries perfectly overlap (see Figure \ref{fig:twoFreeStrings}). If the wave speed $c^n$ changes, which consequently changes $h^n$ according to Eq. \eqref{eq:newOrderOfCalc}, the outer boundaries will remain at their respective locations given by Eq. \eqref{eq:outerBoundaries} and all other grid points will move to or from the outer boundary of their respective system according to 
 \begin{equation}\label{eq:hLocs}
     x_{u_{l_u}}^n =l_uh^n, \quad x_{w_{l_w}}^n = L-(M_w^n-l_w)h^n.
 \end{equation}
@@ -74,18 +74,18 @@ and essentially states how many times the grid spacing $h^n$ can fit between the
     \vspace{-1em}\subfloat[]{\label{fig:twoFreeStringsGridMove}{ \includegraphics[width=\figwidth\columnwidth]{figures/contributions/dynamicgrid/twoFreeStringsGridMoveNarrow.eps}}}\\
     \vspace{-1em}\subfloat[]{\label{fig:twoFreeStringsGridZoomed}{ \includegraphics[width=\figwidth\columnwidth]{figures/contributions/dynamicgrid/twoFreeStringGridMoveZoomedNarrow.eps}}}
     \vspace{-1em}\caption{\it Illustration of the proposed method. In all figures, the x-axis shows the location of the respective grid points%(fx. $x_{u_l^n}$)
-    , but `$x^n$' is omitted for brevity. (a) Locations of the states of two (1D wave) systems connected at the inner boundaries ($\Nfrac^n = 30$, $x_{u_{M^n}}^n = x_{w_0}^n$). (b) When $c^n$ -- and consequently $h^n$ -- are decreased and the positions of the grid points change ($\Nfrac^n = 30.5$, $x_{u_{M^n}}^n \neq x_{w_0}^n$). (c) Figure \ref{fig:twoFreeStringsGridMove} zoomed-in around the inner boundaries. The virtual grid points $u_{M^n+1}^n$ and $w_{-1}^n$ are shown together with the distance between them expressed using $\alpha$ in Eq. \eqref{eq:alphaDef}. (Taken from paper \citeP[G].)\label{fig:twoFreeStringsFull}}
+    , but `$x^n$' is omitted for brevity. (a) Locations of the states of two (1D wave) systems connected at the inner boundaries ($\Nfrac^n = 30$, $x_{u_{M^n}}^n = x_{w_0}^n$). (b) When $c^n$ -- and consequently $h^n$ -- are decreased and the positions of the grid points change ($\Nfrac^n = 30.5$, $x_{u_{M^n}}^n \neq x_{w_0}^n$). (c) Figure \ref{fig:twoFreeStringsGridMove} zoomed-in around the inner boundaries. The virtual grid points $u_{M^n+1}^n$ and $w_{-1}^n$ are shown together with the distance between them, expressed using $\alpha$ in Eq. \eqref{eq:alphaDef}. (Taken from paper \citeP[G].)\label{fig:twoFreeStringsFull}}
 \end{figure}
 \subsubsection{Boundary conditions}
 For the outer boundaries, Dirichlet boundary conditions are used (see Eq. \eqref{eq:discreteDirichlet}).
-The conditions for the inner boundaries are slightly more involved, and plays a large part in the working of the method. 
+The conditions for the inner boundaries are slightly more involved, and play a large part in the working of the method. 
 In order for the system to exhibit the same behaviour as the original system in Eq. \eqref{eq:1DWaveDynamic}, the inner boundaries must have an identical displacement if they are perfectly overlapping, i.e.,
 \begin{equation}\label{eq:rigidDynamic}
-    u_{M^n}^n = w_0^n, \quad \text{if}\ \ \alpha = 0.
+    u_{M^n}^n = w_0^n, \quad \text{if}\ \ \alpha = 0,
 \end{equation}
-and acts like a rigid connection between (see Section \ref{sec:rigidConn}). It is shown in paper \citeP[G] that in the perfectly overlapping case, identical behaviour to the original system can be obtained if: 1) the virtual grid points $u_{M^n+1}^n$ and $w_{-1}^n$ are defined by the (centred) Neumann boundary condition (Eq. \eqref{eq:discreteNeumann}), and 2) the rigid connection in Eq. \eqref{eq:rigidDynamic} is imposed on $u_{M^n}^n$ and $w_0^n$. 
+and acts like a rigid connection between the inner boundaries (see Section \ref{sec:rigidConn}). It is shown in paper \citeP[G] that in the perfectly overlapping case, identical behaviour to the original system can be obtained if: 1) the virtual grid points $u_{M^n+1}^n$ and $w_{-1}^n$ are defined by the (centred) Neumann boundary condition (Eq. \eqref{eq:discreteNeumann}), and 2) the rigid connection in Eq. \eqref{eq:rigidDynamic} is imposed on $u_{M^n}^n$ and $w_0^n$. 
 
-If parameters are varied, and the inner boundaries are no longer overlapping, the rigid connection will not be imposed anymore, and other definitions for the virtual grid points must be found. Using quadratic Lagrange interpolation to calculate the virtual grid points shows excellent behaviour when parameters are varied, and continues to satisfy the requirement in Eq. \eqref{sec:rigidConn} for perfectly overlapping boundaries (see Section \ref{sec:iterations} for experiments with other interpolators). At the inner boundaries, a definition of the virtual grid points is given as
+If parameters are varied, and the inner boundaries are no longer overlapping, the rigid connection will not be imposed anymore, and other definitions for the virtual grid points must be found. Using quadratic Lagrange interpolation to calculate the virtual grid points, shows excellent behaviour when parameters are varied, and continues to satisfy the requirement in Eq. \eqref{sec:rigidConn} for perfectly overlapping boundaries (see Section \ref{sec:iterations} for experiments with other interpolators). At the inner boundaries, a definition of the virtual grid points is given as
 \begin{subequations}\label{eq:connectionInterpol}
     \begin{align}
             &u_{M^n+1}^n = \frac{\alpha - 1}{\alpha + 1}u_{M^n}^n + w_0^n - \frac{\alpha - 1}{\alpha + 1}w_1^n,
@@ -98,9 +98,9 @@ How these coefficients are obtained will be shown below.
 \subsubsection{Lagrange interpolation}
 The coefficients in Eq. \eqref{eq:connectionInterpol} were obtained using the Lagrange interpolation formula, where the coefficient at the $i$\th interpolation index is calculated as
 \begin{equation}\label{eq:lagrangeForm}
-    I_i(x) = \prod_{j = 0, j\neq i}^o \frac{x-x_j}{x_i-x_j}.
+    I_i(x) = \prod_{j = 0, j\neq i}^o \frac{x-x_j}{x_i-x_j}\ ,
 \end{equation}
-with interpolation order $o$, which, in this case is $2$. As $u_{M^n}$ is the leftmost grid point used for the interpolation, its location is set to $0$ and the values used are normalised by $h^n$ for simplicity. To calculate the coefficients in Eq. \eqref{eq:calcUMP1}, the following locations were used in Eq. \eqref{eq:lagrangeForm} (refer to Figure \ref{fig:twoFreeStringsGridZoomed})
+with interpolation order $o$, which, in this case, is $2$. As $u_{M^n}$ is the leftmost grid point used for the interpolation, its location is set to $0$ and the values used are normalised by $h^n$ for simplicity. To calculate the coefficients in Eq. \eqref{eq:calcUMP1}, the following locations were used in Eq. \eqref{eq:lagrangeForm} (refer to Figure \ref{fig:twoFreeStringsGridZoomed})
 \begin{equation}\label{eq:quadLagrangeLocs}
     \begin{aligned}
      x_0 &= x_{u_{M^n}} = 0, \\
@@ -117,7 +117,7 @@ Writing out the interpolation coefficient for index $i=0$ yields
     I_0(x)&= \left(\frac{1-\alpha}{0-\alpha}\right)\left(\frac{1-(\alpha+1)}{0-(\alpha+1)}\right), \\
     &=\frac{\alpha-1}{\alpha+1}.
 \end{align*}
-This process can be repeated to obtain the other coefficients. To obtain the coefficients for Eq. \eqref{eq:calcWM1} one can alter the locations in \eqref{eq:quadLagrangeLocs}, or simply reverse the interpolator and apply it to the appropriate grid points. 
+This process can be repeated to obtain the other coefficients. To obtain the coefficients for Eq. \eqref{eq:calcWM1}, one can alter the locations in \eqref{eq:quadLagrangeLocs}, or simply reverse the interpolator and apply it to the appropriate grid points. 
 
 
 \subsection{Adding and removing grid points}\label{sec:addRemove}
@@ -131,7 +131,7 @@ Before continuing, it is useful to write the state of the system in vectors:
 and have $M^n$ and $M_w^n$ entries respectively. Notice that $u_0^n$ and $w_{M_w^n}^n$ are not included, as Dirichlet boundary conditions are used.
 
 
-If $c^n$ and -- through Eq. \eqref{eq:dynamicOrderOfCalc} -- $h^n$ are decreased, it might happen that the inner boundaries surpass the virtual grid points and $N^n > N^{n-1}$. In this case, a grid point must be added to the system and will be done according to
+If $c^n$ and -- through Eq. \eqref{eq:dynamicOrderOfCalc} -- $h^n$ are decreased, it might happen that the inner boundaries surpass the virtual grid points and $N^n > N^{n-1}$. In this case, a grid point must be added to the system and will be done according to the following:
 \begin{equation}\label{eq:addingPoint}
     \text{if } N^n>N^{n-1}\ \begin{cases}\mathbf{u}^n = [(\mathbf{u}^n)^T, I_3\mathbf{v}^n]^T & \text{if $N^n $ is odd},\\
     \mathbf{w}^n = [I_3^\flip\mathbf{v}^n, (\mathbf{w}^n)^T]^T & \text{if $ N^n$ is even}.
@@ -139,7 +139,7 @@ If $c^n$ and -- through Eq. \eqref{eq:dynamicOrderOfCalc} -- $h^n$ are decreased
 \end{equation}
 Here, 
 \begin{align*}
-\mathbf{v}^n = [u_{M^n-1}^n, u_{M^n}^n, w_0^n, w_1^n]^T,% \quad\text{and}\\
+\mathbf{v}^n = [u_{M^n-1}^n, u_{M^n}^n, w_0^n, w_1^n]^T% \quad\text{and}\\
 %     \mathbf{v}_\star^n &= [w_1^n, w_0^n, u_M^n, u_{M-1}^n],
 \end{align*}
 and cubic Lagrangian interpolator (see Eq. \eqref{eq:lagrangeForm})
@@ -150,7 +150,7 @@ I_3 = \begin{bmatrix} -\frac{\alpha(\alpha+1)}{(\alpha+2)(\alpha+3)} &\frac{2\al
 \end{equation}
 where $I_3^\flip$ is a flipped version of \eqref{eq:customIp}.
 
-If the opposite happens: $c^n$ and $h^n$ increase, and $N^n<N^{n-1}$, a grid point can be removed from the system according to
+If the opposite happens: $c^n$ and $h^n$ increase, and $N^n<N^{n-1}$, a grid point can be removed from the system according to the following:
 \begin{equation}\label{eq:removingPoint}
 \text{if } N^n<N^{n-1}\ \begin{cases}
     \mathbf{u}^n = [u_0^n, u_1^n ..., u_{M^n-1}^n]^T & \text{if $N^n$ is even}, \\
@@ -164,7 +164,7 @@ As mentioned in \citeP[G], the inner boundaries do not have to be at the center 
 \end{equation}
 the method still works. Notice that if this definition is used, grid points will only be added and removed from $\u^n$, and Eqs. \eqref{eq:addingPoint} and \eqref{eq:removingPoint} reduce to
 \begin{equation}\label{eq:alternativeAddingPoint}
-    \mathbf{u}^n = [(\mathbf{u}^n)^T, I_3\mathbf{v}^n]^T,\quad \text{if } N^n>N^{n-1},
+    \mathbf{u}^n = [(\mathbf{u}^n)^T, I_3\mathbf{v}^n]^T,\quad \text{if } N^n>N^{n-1}
 \end{equation}
 and 
 \begin{equation}
@@ -173,9 +173,9 @@ and
 respectively.
 \subsection{Displacement correction}
 An issue that arises when increasing $c^n$, is that $u_{M^n}^n \not\approx w_0^n$ at the time of removal. As $\alpha \approx 0$ at this moment, this violates the rigid connection in Eq. \eqref{eq:rigidDynamic}.
-Paper \citeP[G] proposes to `correct' the state of the grid points at the inner boundaries and is referred to as \textit{displacement correction} and will be detailed here.\footnote{The term \textit{state correction} (as used in paper \citeP[H]) might be more appropriate here, as the state of a system described by a FD scheme might not refer to a `displacement'.} 
+Paper \citeP[G] proposes to `correct' the state of the grid points at the inner boundaries and is referred to as \textit{displacement correction}, and will be detailed here.\footnote{The term \textit{state correction} (as used in paper \citeP[H]) might be more appropriate here, as the state of a system described by a FD scheme might not refer to a `displacement'.} 
 
-Using 0\thOrder spreading interpolators  $J_{l_u}(x_{u_{M^n}}^n) = J_{l_u, 0}(x_{u_{M^n}}^n)$ and \linebreak$J_{l_w}(x_{w_0}^n) = J_{l_w,0}(x_{w_0}^n)$ as defined in Section \ref{sec:interpolationSpreading}, system \eqref{eq:splitFDS} can be extended to contain an artificial spring connection at the inner boundaries as\footnote{Paper \citeP[G] uses subscripts $u$ and $w$ rather than $l_u$ and $l_w$ for the spreading operators, but have been changed here for coherency with the rest of this thesis.}
+Using 0\thOrder spreading interpolators  $J_{l_u}(x_{u_{M^n}}^n) = J_{l_u, 0}(x_{u_{M^n}}^n)$ and \linebreak$J_{l_w}(x_{w_0}^n) = J_{l_w,0}(x_{w_0}^n)$ as defined in Section \ref{sec:interpolationSpreading}, system \eqref{eq:splitFDS} can be extended to contain an artificial spring connection at the inner boundaries as\footnote{Paper \citeP[G] uses subscripts $u$ and $w$ rather than $l_u$ and $l_w$ for the spreading operators, but this has been changed here for coherency with the rest of this thesis.}
 \begin{subequations}\label{eq:sysDispCorr}
 \begin{align}
     \delta_{tt}\ulun &= (c^n)^2\delta_{xx}\ulun+ J_{l_u}(x_{u_{M^n}}^n)%\left(2(c^n)^2\delta_{x\cdot}u_M^n + F_\text{c}^n\right)
@@ -189,13 +189,13 @@ is determined by a linear damped spring (see Chapter \ref{ch:connections})
 \begin{equation}\label{eq:dispCorrForce}
     F_\text{c}^n = \beta \left(\mu_{t\cdot}\eta^n +\sigma_0\delta_{t\cdot}\eta^n \right).
 \end{equation}
-Here, the difference between the system states at the inner boundaries is defined as
+Here, $\sigma_0$ is a damping coefficient and the difference between the system states at the inner boundaries is defined as
 \begin{equation}\label{eq:etaDispCorr}
-    \eta^n \triangleq w_0^n - u_{M^n}^n,
+    \eta^n \triangleq w_0^n - u_{M^n}^n.
 \end{equation}
-and $\sigma_0$ is a damping coefficient. Notice that, as the spreading operators are of 0\textsuperscript{th}-order, one can simplify the notation as done in Section \ref{sec:notationSimplification} and use subscripts rather than interpolation operators.
+Notice that, as the spreading operators are of 0\textsuperscript{th}-order, one can simplify the notation as done in Section \ref{sec:notationSimplification} and use subscripts rather than interpolation operators.
 
-Furthermore, $\beta = \beta^n = \beta(\alpha^n)$ scales the correction effect depending on the value of $\alpha$. The function has to be defined such that when $\alpha = 0$, $\beta\rightarrow \infty$ and the correction effect needs to act like a rigid connection. If, on the other hand $\alpha \rightarrow 1$, the correction effect should vanish according to $\beta \rightarrow 0$. The following function satisfies these conditions:
+Furthermore, $\beta = \beta^n = \beta(\alpha^n)$ scales the correction effect depending on the value of $\alpha$. The function has to be defined such that when $\alpha = 0$, $\beta\rightarrow \infty$ and the correction effect acts like a rigid connection. If, on the other hand $\alpha \rightarrow 1$, the correction effect should vanish according to $\beta \rightarrow 0$. The following function satisfies these conditions:
 \begin{equation}\label{eq:betaDef}
     \beta  = \frac{1-\alpha}{\alpha + \varepsilon}\ ,
 \end{equation}
@@ -235,9 +235,9 @@ Another definition of $\eta^{n+1}$ can be obtained by expanding Eq. \eqref{eq:di
 This definition can be substituted into Eq. \eqref{eq:etaNextDispCorr1} and solved for $F_\ctxt^n$ according to 
 \begin{align*}
     \left(\frac{2
-    (\alpha +\varepsilon)}{(1+\sigma_0/k)(1-\alpha)}\right)F_\ctxt^n - r \eta^{n-1} &= w^\star - u^\star- \frac{2k^2}{h^n}F\\
+    (\alpha +\varepsilon)}{(1+\sigma_0/k)(1-\alpha)}\right)F_\ctxt^n - r \eta^{n-1} &= w^\star - u^\star- \frac{2k^2}{h^n}F,\\
     \left(\frac{2h^n
-    (\alpha +\varepsilon) + 2k^2(1+\sigma_0/k)(1-\alpha)}{h^n(1+\sigma_0/k)(1-\alpha)}\right)F_\ctxt^n &= w^\star - u^\star+r\eta^{n-1}
+    (\alpha +\varepsilon) + 2k^2(1+\sigma_0/k)(1-\alpha)}{h^n(1+\sigma_0/k)(1-\alpha)}\right)F_\ctxt^n &= w^\star - u^\star+r\eta^{n-1},
 \end{align*}
 and finally 
 \begin{equation*}
@@ -262,16 +262,16 @@ Using $\fullMn \times \fullMn$ identity matrix $\I_\fullMn$, system \eqref{eq:sy
 \begin{equation}\label{eq:intermediateMatrixFormDynamic}
     \begin{aligned}
         \I_\fullMn\Ucal^{n+1} = &\B^n\Ucal^n - \I_\fullMn\Ucal^{n-1} \\
-        &+ (\j\boldsymbol{\eta})\frac{\beta k^2}{2}\Big((1+\sigma_0/k)\Ucal^{n+1} + (1-\sigma_0/k)\Ucal^{n-1}\Big)
+        &\quad+ (\j\boldsymbol{\eta})\frac{\beta k^2}{2}\Big((1+\sigma_0/k)\Ucal^{n+1} + (1-\sigma_0/k)\Ucal^{n-1}\Big)
     \end{aligned}
 \end{equation}
-with $\fullMn \times 1$ column vector
+where $\fullMn \times 1$ column vector
 \begin{equation*}
     \j = \j^n = [\mathbf{0}_{M^n-1}, 1/h^n, -1/h^n, \mathbf{0}_{M_w^n-1}]^T
 \end{equation*}
 contains the effect of the spreading operators with $P\times 1$ row vector $\mathbf{0}_P$. Furthermore, $1\times \fullMn$ row vector
 \begin{equation*}
-    \boldsymbol{\eta} = \boldsymbol{\eta}^n = [\mathbf{0}_{M^n-1}, -1, 1, \mathbf{0}_{M_w^n-1}].
+    \boldsymbol{\eta} = \boldsymbol{\eta}^n = [\mathbf{0}_{M^n-1}, -1, 1, \mathbf{0}_{M_w^n-1}]
 \end{equation*}
 vectorises the effect that $\eta^n$ in Eq. \eqref{eq:etaDispCorr} has on $\Ucal$. Note that as $\j$ is a column vector and $\boldsymbol{\eta}$ a row vector, the multiplication of the two yields an $\fullMn\times\fullMn$ diagonal matrix. Finally, $\B^n$ contains the usual $\Dxx$ matrices for both schemes in its top-left and bottom-right quadrants, as well as the definitions for the virtual grid points given in Eqs. \eqref{eq:connectionInterpol}:
 \begin{equation*}\label{eq:quadMat}
@@ -322,7 +322,7 @@ due to the Dirichlet boundary condition.
     \centering
     \subfloat[$\Nfrac^n= 15 \rightarrow 20$, without displacement correction.]{\label{fig:specDown}{ \includegraphics[width=0.45\textwidth]{figures/contributions/dynamicgrid/spectrogramDown.eps}}}
     \hfill
-    \subfloat[$\Nfrac^n = 20 \rightarrow 15$ with displacement correction.]{\label{fig:specUp}{ \includegraphics[width=0.45\textwidth]{figures/contributions/dynamicgrid/spectrogramUp.eps}}}
+    \subfloat[$\Nfrac^n = 20 \rightarrow 15$, with displacement correction.]{\label{fig:specUp}{ \includegraphics[width=0.45\textwidth]{figures/contributions/dynamicgrid/spectrogramUp.eps}}}
     \caption{Output spectra of an implementation of the dynamic grid.}\label{fig:specResults}
 \end{figure}
 \subsection{Modal analysis and results}\label{sec:modalAnalysisQuadDynamic}
@@ -346,7 +346,7 @@ in one-step form (see Section \ref{sec:oneStepForm}}),
 \end{equation}
 where $\mathbf{0}$ is a $\fullMn\times \fullMn$ matrix of zeros. Notice that, in the definitions for $\A^n$ and $\C^n$, $\beta$ can go to infinity, when $\alpha = \varepsilon = 0$ through Eq. \eqref{eq:betaDef}. In this case, $\varepsilon$ has to be set to a tiny non-zero value to avoid undefined results. 
 
-The modal analysis can be used to analyse the system while parameters are varied to determine whether the behaviour of the system is satisfactory. Figure \ref{fig:modalAnalysisOneStep} shows the result of a modal analysis performed on the one-step form shown in Eq. \eqref{eq:oneStepFormDynamicGrid} according to Section \ref{sec:oneStepForm}. The inner boundaries have been placed as close to the right boundary as possible, such that the number of intervals $M^n$ and $M_w^n$ are calculated using Eq. \eqref{eq:alternativeM}. The wave speed is varied linearly between $c^0 = 2940$, corresponding to $\Nfrac^0 = 15$, and $c^{n_\text{end}} = 2205$ corresponding to $\Nfrac^{n_\text{end}} = 20$. 
+The modal analysis can be used to analyse the system while parameters are varied, to determine whether the behaviour of the system is satisfactory. Figure \ref{fig:modalAnalysisOneStep} shows the result of a modal analysis performed on the one-step form shown in Eq. \eqref{eq:oneStepFormDynamicGrid} according to Section \ref{sec:oneStepForm}. The inner boundaries have been placed as close to the right boundary as possible, such that the number of intervals $M^n$ and $M_w^n$ are calculated using Eq. \eqref{eq:alternativeM}. The wave speed is varied linearly between $c^0 = 2940$, corresponding to $\Nfrac^0 = 15$, and $c^{n_\text{end}} = 2205$, corresponding to $\Nfrac^{n_\text{end}} = 20$. 
 
 Figure \ref{fig:specResults} shows the output spectra of an implementation of the dynamic grid with the same parameter variation as used for the modal analysis. Figure \ref{fig:specDown} presents the spectral output of an implementation where $\Nfrac = 20 \rightarrow 15$ without displacement correction, and shows that the modes follow the pattern predicted by the analysis. Figure \ref{fig:specUp} presents the spectral output where $\Nfrac = 15 \rightarrow 20$ with displacement correction activated. Although high-frequency modes get damped by the displacement correction, no artefacts are visible when changing grid configurations. Furthermore, the modes follow the pattern predicted by the modal analysis in reverse (as expected).
 
@@ -356,27 +356,29 @@ More results can be found in paper \citeP[G].
 
 
 \subsection{Discussion and conclusion}\label{sec:conclusion}
-This section provides a brief summary of the results shown in paper \citeP[G]. 
+% This section provides a brief summary of the results shown in paper \citeP[G]. 
 
-In general, the method satisfies the requirements detailed in the paper. The fundamental frequency of the system follows Eq. \eqref{eq:fundamentalFreq} with only very small deviations, as desired. Although larger deviations occur for higher frequency modes, these are not substantial. Looking at Figure \ref{fig:specUp}, the displacement correction seems to successfully prevent artefacts, but proper listening tests will need to be carried out to confirm this.
+Overall, the method satisfies the requirements detailed in the paper. The fundamental frequency of the system follows Eq. \eqref{eq:fundamentalFreq} with only very small deviations, as desired. Although larger deviations occur for higher frequency modes, these are not substantial. Looking at Figure \ref{fig:specUp}, the displacement correction seems to successfully prevent artefacts, but proper listening tests will need to be carried out to confirm this.
 
 The results show that drawbacks of the method, such as frequency deviations and damping due to the displacement correction, mainly happen in higher frequency regions. As these are less relevant than lower frequencies due to the reasons presented in \citeP[G], the method can be concluded to work satisfactory. 
 
-Future work includes extending the method to other systems, such as stiff strings (Chapter \ref{ch:stiffString}) or even 2D systems (Chapter \ref{ch:2Dsyst}). An interesting use case for this method is that of nonlinear systems, such as the Kirchhoff-Carrier string model \cite{Carrier1945} where parameters are varied based on the state of the system. 
+One important aspect that is still missing from the presented method, is under what conditions it is stable. As stated in \cite{theBible}, stability for time-varying schemes are difficult to show using the current energy analysis framework (presented in Section \ref{sec:energyAnalysis}). The first step would be to perform a \textit{frozen coefficient analysis} \cite{Strikwerda1989}. In the case of this method, this means to fix $c^n$ at different values and prove stability in those cases. Finding these conditions has been left for future work, but would be a logical next step in the development of the dynamic grid method.
+
+Other future work includes, extending the method to other systems, such as stiff strings (Chapter \ref{ch:stiffString}) or even 2D systems (Chapter \ref{ch:2Dsyst}). An interesting use case for this method is that of nonlinear systems, such as the Kirchhoff-Carrier string model \cite{Carrier1945} where parameters are varied based on the state of the system. 
 
 \section{Interpolation experiments}\label{sec:iterations}
 This section presents the results of experiments using different orders of interpolation to calculate the virtual grid points at the inner boundaries of the system, and aims to provide insight as to why quadratic interpolation has been chosen in the end. 
 
-Four different Lagrangian interpolators are presented ranging from linear to quartic (fourth order) and are made using the Lagrange interpolation formula in Eq. \eqref{eq:lagrangeForm}. Different orders of interpolation are included in the method by changing the definitions of the virtual grid points given in Eq. \eqref{eq:connectionInterpol}, and thereby the definition of the $\B^n$ matrix in Eq. \eqref{eq:quadMat}. As the effect of the displacement correction on the modal frequencies is negligible, this is excluded for clarity. Equation \eqref{eq:dynamicMatrixForm} can then be rewritten to 
+Four different Lagrangian interpolators are presented, ranging from linear to quartic (fourth order), and are made using the Lagrange interpolation formula in Eq. \eqref{eq:lagrangeForm}. Different orders of interpolation are included in the method by changing the definitions of the virtual grid points given in Eq. \eqref{eq:connectionInterpol}, and thereby the definition of the $\B^n$ matrix in Eq. \eqref{eq:quadMat}. As the effect of the displacement correction on the modal frequencies is negligible, this is excluded for clarity. Equation \eqref{eq:dynamicMatrixForm} can then be rewritten to 
 \begin{equation}
     \Ucal^{n+1} = \B^n \Ucal^n- \Ucal^{n-1}
 \end{equation}
-and using a test solution $\Ucal^n = z^n\boldPhi$, the eigenfrequencies can be calculated according to (using trigonometric identity \eqref{eq:cosIdentity})
+and, using a test solution $\Ucal^n = z^n\boldPhi$ (follwing Section \ref{sec:modalAnalysis}), the eigenfrequencies can be calculated according to (using trigonometric identity \eqref{eq:cosIdentity})
 \begin{equation}\label{eq:noDampModalAnalysis}
     f_p^n = \frac{1}{2 \pi k}\cos^{-1}\left(\frac{1}{2}\text{eig}_p(\B^n)\right).
 \end{equation}
 
-In the following, results will be shown for a varying wave speed corresponding $\Nfrac^n = 15 \rightarrow 20$, as was done in Section \ref{sec:modalAnalysisQuadDynamic}, but using Eq. \eqref{eq:noDampModalAnalysis}. For each interpolator, the case where grid points are added in the middle using Eq. \eqref{eq:addingPoint}, and where these are added at the right boundary using Eq. \eqref{eq:alternativeAddingPoint} are considered. The black and red colours used in the figures do not carry extra meaning and is only used for clarity of the plots. The results will be discussed at the end of this section. 
+In the following, results will be shown for a varying wave speed corresponding $\Nfrac^n = 15 \rightarrow 20$, as was done in Section \ref{sec:modalAnalysisQuadDynamic}, but using Eq. \eqref{eq:noDampModalAnalysis}. For each interpolator, the case where grid points are added in the middle using Eq. \eqref{eq:addingPoint}, and where these are added at the right boundary using Eq. \eqref{eq:alternativeAddingPoint}, are considered. The black and red colours used in the figures do not carry extra meaning and is only used for clarity of the plots. The results will be discussed at the end of this section. 
  
 \subsubsection{Linear interpolation}
 One can implement linear interpolation by changing the definitions in Eq. \eqref{eq:connectionInterpol} to
@@ -435,12 +437,12 @@ Results of the modal analysis using Eq. \eqref{eq:noDampModalAnalysis} are shown
 \end{figure}
 
 \subsubsection{Cubic interpolation}
-A cubic interpolator using two points at either side of the virtual grid point can be created using the Lagrangian interpolation formula in Eq. \eqref{eq:lagrangeForm}. The locations to calculate $u_{M^n+1}$ will be set to
+A cubic interpolator, using two points at either side of the virtual grid point, can be created using the Lagrangian interpolation formula in Eq. \eqref{eq:lagrangeForm}. The locations to calculate $u_{M^n+1}$ will be set to
 \begin{equation}
     \begin{aligned}
-     x_0 &= x_{u_{M^n}} = 0 \\
-     x_1 &= x_{w_0} = \alpha \\
-     x_2& = x_{w_1} = \alpha + 1 \\
+     x_0 &= x_{u_{M^n}} = 0, \\
+     x_1 &= x_{w_0} = \alpha, \\
+     x_2& = x_{w_1} = \alpha + 1, \\
      x_3 &= x_{w_2} = \alpha + 2,
     \end{aligned}
 \end{equation}
@@ -457,7 +459,7 @@ The definitions for the virtual grid points can then be shown to be
 \end{subequations}
 and the $\B^n$ matrix can be set accordingly. 
 
-If Eq. \eqref{eq:alternativeM} is used, and grid points are added close to the right boundary, the Dirichlet boundary condition at this boundary needs to be extended to be simply supported such that $w_2^n = -w_0^n$. As the value at the boundary remains $0$, i.e., $w_1 = 0$, this alters Eqs. \eqref{eq:cubicVirtualGridpoints} to be
+If Eq. \eqref{eq:alternativeM} is used, and grid points are added close to the right boundary, the Dirichlet condition at this boundary needs to be extended to be simply supported, such that $w_2^n = -w_0^n$. As the value at the boundary remains $0$, i.e., $w_1 = 0$, this alters Eqs. \eqref{eq:cubicVirtualGridpoints} to be
 \begin{align*}
     &u_{M^n+1}^n = \frac{\alpha - 1}{\alpha + 2}u_{M^n}^n + \left(\frac{\alpha + 1}{2}-\frac{\alpha (\alpha - 1)}{2(\alpha+2)}\right)w_0^n\\
     &w_{-1}^n = \frac{\alpha (\alpha - 1)}{2(\alpha+2)}u_{M^n-2}^n + (1-\alpha) u_{M^n-1}^n + \frac{\alpha+1}{2} u_{M^n}^n.
@@ -487,24 +489,24 @@ The results show a large behavioural difference between odd-ordered (linear, cub
 
 Figure \ref{fig:linInterpRes} shows that for linear interpolation, modes with frequencies below $\fs/4$ Hz (1/2 the Nyquist frequency) move downwards as $\Nfrac^n$ increases, as expected, but modes above this frequency generally move upwards. If grid points are added in the middle, `modal crossings' appear for even values of $\floor[\Nfrac^n]$, but do not occur when points are added close to the boundary. Similar behaviour occurs for cubic interpolation in Figure \ref{fig:cubicInterpRes}, but the split happens around $3\fs/8$ Hz (3/4 the Nyquist frequency). Again, adding points close to the boundary resolves the modal crossings. 
 
-The modal patterns created by even-ordered interpolators exhibit behaviour closer to what is desired (see Figures \ref{fig:quadInterpRes} and \ref{fig:quarticInterpRes}). All modal frequencies move down and no modal crossings occur. Interestingly, the even-ordered interpolators show no differences between in their modal behaviour when grid points are added in the middle of the system versus close to the boundary (the differences are within machine precision).
+The modal patterns created by even-ordered interpolators exhibit behaviour closer to what is desired (see Figures \ref{fig:quadInterpRes} and \ref{fig:quarticInterpRes}). All modal frequencies move down and no modal crossings occur. Interestingly, the even-ordered interpolators show no differences in their modal behaviour when grid points are added in the middle of the system versus close to the boundary (the differences are within machine precision).
 
-Frequency deviations happen to a lesser degree for the quartic interpolator than for the quadratic interpolator and continue to decrease for higher-ordered (even) interpolators. The differences have been found negligible, and as flexibility of the method decreases as the interpolation order increases (as more grid points are required), the quadratic interpolator has been chosen in the eventual method. 
+Frequency deviations happen to a lesser degree for the quartic interpolator than for the quadratic interpolator and continue to decrease for higher-ordered (even) interpolators. The differences have been found negligible and as flexibility of the method decreases as the interpolation order increases (as more grid points are required), the quadratic interpolator has been chosen in the eventual method. 
 
 % The exact reasons for the results discussed in this section are yet to be discovered, although is safe to say that the differences between odd and even-ordered interpolators are related to differences in the matrix structure.\footnote{For example, matrices for even-ordered interpolators have ones along the diagonals next to the main diagonal for any value of $\alpha$.}
 
 \section{Examples of use cases}\label{sec:examples}
-This section provides several examples of instruments using dynamic parameter variations and can be used as inspiration for future work. As metioned in paper \citeP[G] mentions, the interest lies in dynamic changes in the defining parameters of the resonator, so not a pitch change using a fretting finger for example. 
+This section provides several examples of instruments using dynamic parameter variations and can be used as inspiration for future work. As mentioned in paper \citeP[G], the interest lies in dynamic changes in the defining parameters of the resonator, as opposed to a pitch change using a fretting finger, for example. 
 % Paper \citeP[H] presents the trombone (also see Chapter \ref{ch:trombone}) which is very interesting to model due to its time-varying geometry.
 
 % The following cases of instruments using dynamic parameter variation and can be used as inspiration for future work. 
 
 \subsubsection{1D systems}
-A defining property that can physically be changed in strings is the tension. Usually, pitch changes in guitar strings happen by pressing the string against the the fretboard. There are various ways to smoothly change the pitch by changing the tension in the string. A straightforward way to do this would be to move the fretting finger perpendicular to the string while pressing down to create a pitch bend. Other, less common ways are to modulate the tension by pressing down on the small length of string between the tuning peg and the nut\footnote{John Mayer - Gravity (Live in L.A.): \url{https://youtu.be/dBFW8OvciIU?t=284}}, or even turn the tuning pegs directly while playing.\footnote{Jon Gomm - Passionflower: \url{https://youtu.be/nY7GnAq6Znw?t=49}}\textsuperscript{,}\footnote{gr4yhound - servo bender: \url{https://youtu.be/fSQ9Dg65EFo}}
+A defining property that can physically be changed in strings is the tension. Usually, pitch changes in guitar strings happen by pressing the string against the fretboard. There are various ways to smoothly change the pitch by changing the tension in the string. A straightforward way to do this would be to move the fretting finger perpendicular to the string while pressing down to create a pitch bend. Other, less common ways are to modulate the tension by pressing down on the small length of string between the tuning peg and the nut\footnote{John Mayer - Gravity (Live in L.A.): \url{https://youtu.be/dBFW8OvciIU?t=284}}, or even turn the tuning pegs directly while playing.\footnote{Jon Gomm - Passionflower: \url{https://youtu.be/nY7GnAq6Znw?t=49}}\textsuperscript{,}\footnote{gr4yhound - servo bender: \url{https://youtu.be/fSQ9Dg65EFo}}
 
-The hammered dulcimer is another example where the strings are tensioned over a bridge where one can play the string at one side of the bridge, while pushing down on the same string on the other side.\footnote{Amazing Hammered Dulcimer Musician - Joshua Messick: \url{https://youtu.be/veuGTnzgNRU?t=215}}
+The hammered dulcimer is another example where the strings are placed over a bridge, where one can play the string at one side of the bridge, while pushing down on the same string on the other side.\footnote{Amazing Hammered Dulcimer Musician - Joshua Messick: \url{https://youtu.be/veuGTnzgNRU?t=215}}
 
-Apart from strings, acoustic tubes also lend themselves to applications of the dynamic grid. The main example is the trombone as published in \citeP[H] and uses the method presented in this chapter. The slide whistle falls in the same category. 
+Apart from strings, acoustic tubes also lend themselves to applications of the dynamic grid. The main example is the trombone as published in \citeP[H], which uses the method presented in this chapter. The slide whistle falls in the same category. 
 
 \subsubsection{2D systems}
 One could potentially extend the dynamic grid method presented here to 2D and model physical tension changes in membranes. The membrane tension in timpani, for example, can be changed using a footpedal. The Bodhr\'an is a membranophone where the player hits the membrane on one side and can change the pitch by pressing on the other side.\footnote{John Joe Kelly Bodhran Solo - Christ church Dublin 2012: \url{https://youtu.be/b9HyB5yNS1A?t=146}} The pitch of a talking drum (hourglass drum) can be changed be squeezing the laces attached to the membrane using the arm \footnote{Ayan Bisi Adeleke - Master talking drummer - drum talks: \url{https://youtu.be/B4oQJZ2TEVI?t=9}}. An example of a pitch-modulated thin plate is the musical saw, where the curvature of the saw is changed to create different pitches.\footnote{Musical Saw performance by Sakita Hajime: \url{https://youtu.be/-6nv0iDrAis}}

@@ -263,11 +263,11 @@ or the more general weighted inner product in Eq. \eqref{eq:weightedInnerProd}
         \end{aligned}\label{eq:weightedIdentityMinus}\\
         &\begin{aligned}
             \langle f_l^n, \dxp g_l^n \rangle_d^{\el,\er}  = -&\langle \dxm f_l^n, g_l^n \rangle_{\overline{d}}+ f_N^ng_N^n - f_0^ng_1^n  \\
-            &+ \frac{\epsilon_\text{r}}{2}f_N^n(g_{N+1}^n-g_N^n)+ \frac{\epsilon_\text{l}}{2}f_0^n(g_1^n - g_0^n),
+            &+ \frac{\epsilon_\text{r}}{2}f_N^n(g_{N+1}^n-g_N^n)+ \frac{\epsilon_\text{l}}{2}f_0^n(g_1^n - g_0^n).
         \end{aligned}\label{eq:weightedIdentityPlus}
     \end{align}
 \end{subequations}
-all of which will prove useful in energy analysis techniques later on.\todo{will it though?} A derivation of \eqref{eq:summationByPartsMinusBar} is given below. 
+The above identities will prove useful in energy analysis techniques later on. A derivation of \eqref{eq:summationByPartsMinusBar} is given below. 
 
 Finally, recalling that $\dxx = \dxp\dxm$, one can apply summation by parts twice to get the following identities
 \begin{subequations}
@@ -358,7 +358,7 @@ If a system is distributed in space, one can perform a spatial Fourier transform
 \end{equation}
 with complex number $z = e^{sk}$, complex frequency $s=j\omega + \sigma$ (more elaborated on in \ref{sec:modalAnalysis}) and real wavenumber $\beta$. Frequency domain analysis in 2D will be elaborated on in Section \ref{sec:stability2Dwave}.
 
-A shortcut to performing a full frequency domain analysis is to use a test solution, or \textit{ansatz}, and replace the grid functions by their transforms. The grid function for a 1D system can be replaced by an ansatz of the form (1D) \cite{Strikwerda1989}\todo{check reference}
+A shortcut to performing a full frequency domain analysis is to use a test solution, or \textit{ansatz}, and replace the grid functions by their transforms. The grid function for a 1D system can be replaced by an ansatz of the form (1D) \cite{theBible}
 \begin{equation}\label{eq:ansatz}
     u_l^n \ansatz z^n e^{jl\beta h}
 \end{equation} 
@@ -427,7 +427,7 @@ and for spatial operators identity \eqref{eq:sinIdentity} can be used to obtain
 \end{subequations}
 
 \subsubsection{Proving stability}
-Similar to digital filters, the system is stable when the roots of the characteristic polynomial in $z$ are bounded by $1$ (unity)\todo{only the denominator of the transfer function}
+Similar to digital filters, the system is stable when the roots of the characteristic polynomial in $z$ (for the feedback components) are bounded by $1$ (unity)
 \begin{equation}\label{eq:boundByUnity}
     |z| \leq 1.
 \end{equation} 
@@ -543,7 +543,7 @@ This is the CFL condition given in Eq. \eqref{eq:CFL}. To obtain the stability c
 which is the stability condition given in Eq. \eqref{eq:1DWaveStabilityCond}.
 
 \subsection{Discussion}
-Although frequency domain analysis is very useful, it can only be applied to linear and time-invariant (LTI) systems and linear and shift-invariant (LSI) systems. These, respectively, describe systems whose properties do not change over time (LTI) and space (LSI).\footnote{Acoustic tubes with a spatially-varying cross-section presented in Chapter \ref{ch:brass} are examples of non-LSI systems.} Furthermore, the analysis assumes systems with infinite domains, so boundary conditions are not included. Energy analysis techniques, on the other hand, allow these types of systems, even nonlinear systems, to be analysed, as well as being able to handle boundary conditions. This will be presented below.
+Although frequency domain analysis is very useful, it can only be applied to linear and time-invariant (LTI) systems and linear and shift-invariant (LSI) systems. These, respectively, describe systems whose properties do not change over time (LTI) and in space (LSI).\footnote{Acoustic tubes with a spatially-varying cross-section presented in Chapter \ref{ch:brass} are examples of non-LSI systems.} Furthermore, the analysis assumes systems with infinite domains, so boundary conditions are not included. Energy analysis techniques, on the other hand, allow these types of systems, even nonlinear systems, to be analysed, as well as being able to handle boundary conditions. This will be presented below.
 
 \section{Energy analysis}\label{sec:energyAnalysis}
 Of all analysis techniques described in this chapter, energy analysis is without a doubt the most important when working with FDTD methods. 
@@ -844,7 +844,7 @@ totEnergy(n) = kinEnergy(n) + potEnergy(n);
 
 
 \subsection{Stability using energy analysis techniques}\label{sec:stabilityAnalysisEnergy}
-Section \ref{sec:stabilityAnalysis} showed how to obtain a stability condition of a FD scheme using a frequency domain representation. Although not operating in the frequency domain, the energy analysis techniques presented here may also be used to obtain stability conditions of FD schemes and might even be considered more powerful than the frequency domain approach, as it can also be used to analyse spatially varying and nonlinear systems!\todo{long sentence}
+Section \ref{sec:stabilityAnalysis} showed how to obtain a stability condition of a FD scheme using a frequency domain representation. Although not operating in the frequency domain, the energy analysis techniques presented here may also be used to obtain stability conditions of FD schemes. These techniques might even be considered more powerful than the frequency domain approach, as it can also be used to analyse spatially varying and nonlinear systems.
 
 To arrive at a stability condition, the energy must be \textit{non-negative} ($\h \geq 0$) or, in some cases \textit{positive definite} ($\h > 0$). Below, the mass-spring system and the 1D wave equation will be used as a test case.
 
@@ -916,13 +916,13 @@ This is the same (CFL) condition obtained through von Neumann analysis in Sectio
 
 \section{Modal analysis}
 \label{sec:modalAnalysis}
-Modes are the resonant frequencies of a system. The number of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. Modal analysis \todo{some citation here} can be used to obtain objective data on what modes a FD scheme should contain. This can then be used to determine whether this matches one's expectations or whether the output of the system matches what the analysis predicted. Although this method is only fully accurate for LTI systems, it can still provide valuable information about systems with slow (sub-audio rate) parameter changes.\footnote{The modal analysis techniques presented here have indeed been used extensively in paper \citeP[G] (described in Chapter \ref{ch:dynamicGrid}), exactly for this reason.} This section will show how to numerically obtain the modal frequencies of a FD scheme using the 1D wave equation as a test case.
+Modes are the resonant frequencies of a system. The number of modes that a discrete system contains depends on the number of moving points. A mass-spring system thus has one resonating mode, but -- as briefly touched upon in Section \ref{sec:output1DWave} -- a FD scheme of the 1D wave equation with $N = 30$ and Dirichlet boundary conditions will have $29$ modes. Modal analysis \todo{some citation here} can be used to obtain objective data on what modes a FD scheme should contain. This can then be used to determine whether this matches one's expectations or whether the output of the system matches what the analysis predicted. Although this method is only fully accurate for LTI systems, it can still provide valuable information about systems with slow (sub-audio rate) parameter changes.\footnote{The modal analysis techniques presented here have indeed been used extensively in Chapter \ref{ch:dynamicGrid}, precisely for this reason.} This section will show how to numerically obtain the modal frequencies of a FD scheme using the 1D wave equation as a test case.
 
 Recall the matrix form of the 1D wave equation from Eq. \eqref{eq:1DwaveMatrix}
 \begin{equation*}
     \frac{1}{k^2}\left(\u^{n+1}-2\u^n+\u^{n-1}\right) = c^2 \Dxx\u^n.
 \end{equation*}
-Following \cite{theBible}, a test solution of the form $\u^n = z^n\boldPhi$ can be assumed \todo{more explanation, perhaps refer to von neumann analysis in \ref{sec:stabilityAnalysis}}. Substituting this into the above equation yields the characteristic equation
+Following \cite{theBible}, one can insert a test solution of the form $\u^n = z^n\boldPhi$ into the above equation, which yields the following characteristic equation:
 \begin{equation}
     (z - 2 + z^{-1})\boldPhi = c^2k^2\Dxx \boldPhi.
 \end{equation}

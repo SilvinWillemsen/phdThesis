@@ -57,7 +57,7 @@ As in the 1D case, the spreading operator approximates a spatial Dirac delta fun
 where $\delta(x,y)$ has units of m$^{-2}$. Again, as described in Section \ref{sec:interpolationSpreading}, this definition will be approximated by spreading operators, rather than be used directly. 
 
 \subsection{Alternative interpretation of grid points}\label{sec:alternativeInterp}
-Section \ref{sec:gridFunctions} gives an introduction to how a continuous 1D system is subdivided into grid points in space (see Figure \ref{fig:gridExp}) through the discretisation process. An alternative way to see grid points after discretisation is shown in Figure \ref{fig:gridExp2}. Rather than grid `points' with a spacing $h$ between them, a continuous system is divided into grid `sections' of width $h$. This interpretation allows for the `weight' of a grid point to be calculated from its material properties and geometry. Notice that boundaries have a width of $h/2$ such that the total length $L = Nh$ m.
+Section \ref{sec:gridFunctions} gives an introduction to how a continuous 1D system is subdivided into grid points in space (see Figure \ref{fig:gridExp}) through the discretisation process. An alternative way to see grid points after discretisation is shown in Figure \ref{fig:gridExp2}. Rather than grid `points' with a spacing $h$ between them, a continuous system is divided into grid `sections' of length $h$. This interpretation allows for the `weight' of a grid point to be calculated from its material properties and geometry. Notice that boundaries have a length of $h/2$ such that the total length $L = Nh$ m.
 
 As an example, the weight of one grid point (or now rather grid section) of a string can be calculated as $\rho A h$. The weight of one grid point of a 2D system can be calculated as $\rho H h^2$. As these grid points interact with each other, the forces resulting from this interaction will be scaled by their respective weight per grid point as will be shown in Section \ref{sec:stringPlateConnection}.
 This interpretation hopefully provides a better intuition for the interactions between components shown in this chapter. 
@@ -67,11 +67,11 @@ This interpretation hopefully provides a better intuition for the interactions b
     % \subfloat[If $N=5$ there are 5 sections of length $h$ and 6 grid points describing the state of the system ($l=\{0, \hdots, 5\}$).\label{fig:gridExp1}]{\includegraphics[width=0.45\textwidth]{figures/fdtd/gridExplanation.pdf}}\hspace{0.06\textwidth}
     % \subfloat[If $N$ is large (as is usually the case), The 1D system is divided into $N$ sections of length $h$ and $l=\{0, \hdots, N\}$.\label{fig:gridExp2}]{\includegraphics[width=0.45\textwidth]{figures/fdtd/gridExplanation2.pdf}}
     \includegraphics[width=0.75\textwidth]{figures/fdtd/gridFigure2.pdf}
-    \caption{Alternative interpretation of the discretisation of $u(x,t)$ to a grid function $\uln$. The continuous system is divided into $N-1$ sections of width $h$ plus $2$ sections of width $h/2$ at the boundaries. Through this interpretation, the `weight' of a grid point can be calculated from its physical parameters. \label{fig:gridExp2}}
+    \caption{Alternative interpretation of the discretisation of $u(x,t)$ to a grid function $\uln$. The continuous system is divided into $N-1$ sections of length $h$ plus $2$ sections of length $h/2$ at the boundaries. Through this interpretation, the `weight' of a grid point can be calculated from its physical parameters. \label{fig:gridExp2}}
 \end{figure}
 
 \section{Connected ideal strings}\label{sec:connIdealStrings}
-One finds that when working with multiple interacting systems, notation becomes extremely important. Subscripts will be extensively used in the following for extra clarity, and although this results in something of a notational jungle, it is better to be explicit and avoid confusion in the end.
+When working with multiple interacting systems, one finds that notation becomes extremely important. Subscripts will be extensively used in the following for extra clarity, and although this results in something of a notational jungle, it is better to be explicit and avoid confusion in the end.
 
 As a test case for the following sections, consider two ideal strings\footnote{Recall that the ideal string is the 1D wave equation with $c=\sqrt{T/\rho A}$.} of length $L_u$ and $L_w$ (both in m) their transverse displacement denoted as $u=u(x,t)$ and $w = w(\chi,t)$ (both in m) respectively (see Section \ref{sec:1DWave}).  The systems are defined for $x\in \D_u$ with domain $\D_u=[0,L_u]$ and $\chi \in \D_w$ with domain $\D_w=[0,L_w]$ respectively. Notice that $\chi$ is used as the spatial coordinate for $w$ to denote that the two systems use different coordinate systems. Connecting these systems at $x_\ctxt\in \D_u$ and $\chi_\ctxt\in\D_w$ yields the following system of PDEs:
 \begin{subequations}\label{eq:conn1DwavePDE}
@@ -93,7 +93,7 @@ From the signs of the force terms in system \eqref{eq:conn1DwavePDE}, it can thu
 \begin{equation}
     \eta(t) = u(x_\text{c}, t) - w(\chi_\text{c}, t),
 \end{equation}
-and will be used to for a spring connection in Section \ref{sec:springConnection}.
+and will be used for a spring connection in Section \ref{sec:springConnection}.
 
 \subsection{Discrete time}
 One can then discretise the state variables $u$ and $w$ to grid functions $\uln$ and $\wmn$, using $x = lh_u$ and $\chi = mh_w$, where $l\in \{0, \hdots, N_u\}$ and $m\in \{0, \hdots, N_w\}$.\footnote{Here, $m$ is used for the spatial index of $\wmn$ to avoid double subscripts $l_u$ and $l_w$.} Also see Section \ref{sec:gridFunctions}. Furthermore, $h_u$ and $h_w$ are the values of the grid spacing (both in m) and $N_u+1$ and $N_w+1$ are the number of grid points for $\uln$ and $\wmn$ respectively. Dividing Eqs. \eqref{eq:conn1DwavePDEu} and \eqref{eq:conn1DwavePDEw} by $\rho_u A_u$ and $\rho_w A_w$ respectively, yields
@@ -385,7 +385,7 @@ Figure \ref{fig:connectedWaveEqsSpring} shows the behaviour of system Eq. \eqref
 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{figures/interactions/connectedWaveEqsSpring.eps}
-    \caption{The wave propagation of two ideal strings with the same mass per unit length connected using a spring with $K = 5 \cdot 10^4$ N/m. \label{fig:connectedWaveEqsSpring}}
+    \caption{The behaviour of two ideal strings connected using a spring. The systems are offset for clarity, but the relative displacement at the connection location at the start of the simulation is 0. \label{fig:connectedWaveEqsSpring}}
 \end{figure}
 
 \subsection{Energy analysis}\label{sec:conn1DwaveEnergySpring}
@@ -599,10 +599,10 @@ This section shows an example of an implementation of the string-plate system. T
 \begin{equation*}
     K_1 = 10^4\ \,\text{N/m}, \quad K_3 = 10^7\ \,\text{N/m}^3, \qaq R = 10\ \,\text{kg/s}.
 \end{equation*}
-The \texttt{MATLAB} code of the implementation can be found online \cite{stringPlateGist}.\footnote{Note that in the online code, $L$, $L_x$ and $L_y$ have been halved to reduce computations and avoid crashes on some machines.}  Figure \ref{fig:stringPlate} shows an visualisation of the string plate system excited with a raised cosine. 
+The \texttt{MATLAB} code of the implementation can be found online \cite{stringPlateGist}.\footnote{Note that in the online code, $L$, $L_x$ and $L_y$ have been halved to reduce computations and avoid crashes on some machines.}  Figure \ref{fig:stringPlate} shows a visualisation of the string plate system excited with a raised cosine. 
 \begin{figure}[h]
     \includegraphics[width=\textwidth]{figures/interactions/stringPlate.eps}
-    \caption{A visualisation of string-plate system. The string is shown in red, the plate in gray and the connection in green. \label{fig:stringPlate}}
+    \caption{The behaviour of the string-plate system connected with a nonlinear damped spring. The string is shown in red, the plate in gray and the connection in green. \label{fig:stringPlate}}
 \end{figure}
 
 In the following, the $\i$ and $\j$ vectors are used as in Section \ref{sec:matrixFormRigid} and are of the appropriate sizes. The matrices for the string can be found in Eq. \eqref{eq:matrixFormStiffString} and those for the plate in Eq. \eqref{eq:matrixFormThinPlate}. When implementing connections (or any other interactions for that matter), one mostly performs the following steps in the main loop:
@@ -638,10 +638,10 @@ Substituting the definitions for $f^n$ and $\eta^n$ from Eqs. \eqref{eq:discForc
 \end{equation*}
 Due to the nonlinear dependency on $\eta^n$ one must isolate $\dtp$ from the cubic term manually, according to
 \begin{align*}
-    &\ \ K_3(\eta^n)^2(\dtd \eta^n)(\mtd \eta^n),\\
-    = &\ \ \frac{K_3(\eta^2)}{2k}(\eta^{n+1} - \eta^{n-1})\frac{1}{2}(\eta^{n+1} + \eta^{n-1}),\\
-    = &\ \ \frac{K_3(\eta^n)^2}{4k}\left((\eta^{n+1})^2 - (\eta^{n-1})^2\right),\\
-    = &\ \ \frac{K_3}{4k}\left((\eta^{n+1}\eta^n)^2 - (\eta^n\eta^{n-1})^2\right),\\
+    &\ \ K_3(\eta^n)^2(\dtd \eta^n)(\mtd \eta^n)\\
+    = &\ \ \frac{K_3(\eta^2)}{2k}(\eta^{n+1} - \eta^{n-1})\frac{1}{2}(\eta^{n+1} + \eta^{n-1})\\
+    = &\ \ \frac{K_3(\eta^n)^2}{4k}\left((\eta^{n+1})^2 - (\eta^{n-1})^2\right)\\
+    = &\ \ \frac{K_3}{4k}\left((\eta^{n+1}\eta^n)^2 - (\eta^n\eta^{n-1})^2\right)\\
     = &\ \ \dtp\left(\frac{K_3}{4}(\eta^n\eta^{n-1})^2\right).
 \end{align*}
 % \begin{equation*}

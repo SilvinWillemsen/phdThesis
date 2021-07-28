@@ -78,7 +78,7 @@ Generally, the spatial distribution of an object can be simplified if one (or mo
 The translational DoF, on the other hand, describe now many ``coordinates'' a state variable includes. 
 In much of the literature on FDTD methods in the field of musical acoustics, the state variable only has one coordinate. In most string models, for example, only the transverse displacement in one polarisation is considered (see Chapter \ref{ch:stiffString}) and the other polarisation as well as the longitudinal motion of the string (motion along the string length) are ignored. In other words, every point along the string can only move up and down, not side-to-side and not forward and back. Although this greatly simplifies the system at hand and reduces computational complexity, this is not what happens in reality. Nonlinear effects such as pitch glides due to tension modulation caused by high-amplitude string vibration are not present in the simplified model and have not been included in this project.\todo{think about references to this project/work in this chapter that should only be focused on background} 
 
-Work has been done on strings with dual (transverse) polarisation by Desvages \cite{Desvages2018} and Desvages and Bilbao \cite{Desvages2016} using FDTD methods. Models including longitudinal string vibration, where the longitudinal and transversal displacements are couples can be found in \cite{theBible,Bilbao2009spring}.
+Work has been done on strings with dual (transverse) polarisation by Desvages \cite{Desvages2018} and Desvages and Bilbao \cite{Desvages2016} using FDTD methods. Models including longitudinal string vibration, where the longitudinal and transversal displacements are coupled, can be found in \cite{theBible,Bilbao2009spring}.
 In \cite{Villeneuve2019}, Villeneuve and Leonard present a mass-spring network where the state of every individual mass has three translational DoF. Due to these additional DoF, these networks do capture the aforementioned effects, but greatly increase the computational complexity of the models.
 
 Although the dimensionality reduction ignores some of the physical processes, surprisingly realistic sounding models can be made despite these simplifications. Due to computational considerations, all models used in this work thus only have 1 translational DoF.
@@ -164,7 +164,7 @@ To summarise, for a 1D system
 
 
 \subsection{Finite-difference operators}\label{sec:FDoperators}
-Now that the state variable has a discrete counterpart, this leaves the derivatives to be discretised, or approximated. We start by introducing \textit{shift operators} that can be applied to a grid function and `shift' its indexing, either temporally or spatially. These are denoted by $e_s$, where subscript $s$ denotes the type and direction of the shift. Forward and backward shifts in time, together with the identity operation are
+Now that the state variable has a discrete counterpart, it leaves the derivatives to be discretised, or approximated. We start by introducing \textit{shift operators} that can be applied to a grid function and `shift' its indexing, either temporally or spatially. These are denoted by $e_s$, where subscript $s$ denotes the type and direction of the shift. Forward and backward shifts in time, together with the identity operation are
 % 
 \begin{equation}\label{eq:temporalShifts}
     e_{t+}\uln = u_l^{n+1},\quad e_{t-}\uln = u_l^{n-1}, \quad \text{and} \quad 1\uln = \uln.
@@ -178,7 +178,6 @@ Similarly, forward and backward shifts in space are
 %
 \todo{many figures for shift and FD operators}These shift operators are rarely used in isolation, though they do appear in energy analysis techniques detailed in Section \ref{sec:energyAnalysis}. The operators do, however, form the basis of commonly used \textit{finite-difference (FD) operators}. The first-order derivative in time can be discretised in three different ways. The forward, backward and centred \todo{FULL DOC SWEEP: check centred instead of centered} difference operators are
 %
-\todo{these spacings are different in overleaf...}
 \begin{subnumcases}{\pt \approxeq\label{eq:discFirstTime}}
         \dtp &$\!\!\!\!\triangleq \frac{1}{k}\left(e_{t+} - 1\right),$\label{eq:forwardTimeOperator}\\
         \dtm &$\!\!\!\!\triangleq \frac{1}{k}\left(1 - e_{t-}\right),$\label{eq:backwardTimeOperator}\\
@@ -214,7 +213,7 @@ where ``$2$'' is the identity operator applied twice. This can be done similarly
     \pxx \approxeq \dxp\dxm = \dxx \triangleq \frac{1}{h^2}\left(e_{x+}-2+e_{x-}\right),
 \end{equation}
 both of which can be applied to a grid function $\uln$ in a similar fashion. Figure \ref{fig:operators} shows the \textit{stencils} of the operators introduced above. A stencil shows the grid points needed to perform the operation of a FD operator.  
-\begin{figure}[h]
+\begin{figure}[t]
     \centering
     \subfloat[Temporal operators.\label{fig:temporalOperators}]{\includegraphics[width=0.45\textwidth]{figures/fdtd/operatorsT.pdf}}\hspace{0.06\textwidth}
     \subfloat[Spatial operators.\label{fig:spatialOperators}]{\includegraphics[width=0.45\textwidth]{figures/fdtd/operatorsX.pdf}}
@@ -257,6 +256,7 @@ and
 \begin{equation}
     1 \approxeq \mxx = \mxp\mxm \triangleq \frac{1}{4}\left(e_{x+}+2+e_{x-}\right).
 \end{equation}
+The stencils of the averaging operators follow the same pattern as the difference operators. 
 
 Operators and derivatives in 2D will be discussed in Chapter \ref{ch:2Dsyst}.
 
@@ -315,7 +315,7 @@ and shows that the centred difference operator is second-order accurate.
 
 As a first-order derivative indicates the \textit{slope} of a function, the differences in accuracy between the above operators can be visualised as in Figure \ref{fig:taylor}. It can be observed that the derivative approximation -- the slope -- of the centred operator matches much more closely the true derivative of $u$ at $t$.
 
-\begin{figure}[h]
+\begin{figure}[t]
     \includegraphics[width=\textwidth]{figures/fdtd/taylor.eps}
     \caption{\label{fig:taylor} The accuracy of the forward, backward and centred difference operators in \eqref{eq:discFirstTime} visualised. The centred difference operator much more closely approximates the derivative, or the slope, of $u$ at $t$ when compared to the forward and backward difference operators.}
 \end{figure}
@@ -395,7 +395,7 @@ That the frequency of the system is also dependent on the mass $M$ can be explai
 
 %From the definition of $\omega_0$ in Eq. \eqref{eq:omega0MassSpring} one can observe that a smaller $M$ will cause a higher frequency explained by the fact that a smaller mass is more easily moved. Similarly, a higher spring constant $K$ will cause a higher frequency, as the force caused by Hooke's law ``pulls'' the mass back to the equilibrium to a higher degree.
 
-Finally, if $u = 0$ there is no spring force present and the acceleration remains unchanged. This is exactly what Newton's first law states: if the net force acting on an object is zero, its velocity will be constant. If the mass is not in motion, this means that it remains stationary. If it is, at the exact moment that $u=0$, the velocity is unchanged.
+Finally, if $u = 0$ there is no spring force present and the acceleration remains unchanged. This is exactly what Newton's first law states: if the net force acting on an object is zero, its velocity will be constant. If the mass is not in motion, this means that it remains stationary. If it is, the velocity is unchanged at the exact moment that $u=0$.
 
 \subsection{Discrete time}
 Following the discretisation process introduced in Section \ref{sec:discUsingFDTD}, one can approximate the PDE in Eq. \eqref{eq:massSpringPDE}. The displacement of the mass is approximated using 
@@ -476,7 +476,7 @@ The 1D wave equation is a PDE that describes the motion of a system distributed 
 \begin{equation}\label{eq:1DwavePDE}
     \ptt u = c^2 \pxx u,
 \end{equation}
-where $c$ is the wave speed of the system (in m/s). If the PDE is used to model an ideal string, the wave speed can be defined as $c = \sqrt{T / \rho A}$, with tension $T$ (in N), material density $\rho$ (in kg/m$^3$) and cross-sectional area $A$. If instead, it is used to model pressure in an acoustic tube $c$ is the speed of sound in air. Figure \ref{fig:1DWavePropagation} shows the wave propagation of the 1D wave equation excited using a raised cosine. 
+where $c$ is the wave speed of the system (in m/s). If the PDE is used to model an ideal string, the wave speed can be defined as $c = \sqrt{T / \rho A}$, with tension $T$ (in N), material density $\rho$ (in kg/m$^3$) and cross-sectional area $A$ (in m$^2$). If instead, it is used to model pressure in an acoustic tube $c$ is the speed of sound in air. Figure \ref{fig:1DWavePropagation} shows the wave propagation of the 1D wave equation excited using a raised cosine. 
 
 \def\figWidth{0.32}
 \begin{figure}[h]
@@ -516,7 +516,7 @@ where $\rho A dx$ is the mass of a (tiny) portion of the string of length $dx$ (
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/fdtd/curvature.eps}
-    \caption{\label{fig:curvature} The forces acting on the 1D wave equation described by $u(x,t)$ due to curvature. The arrows indicate the direction and magnitude of the force, and simultaneously the acceleration as these are connected through Eq. \eqref{eq:1DwavePDE}.}
+    \caption{\label{fig:curvature} The forces acting on the 1D wave equation described by $u(x,t)$ due to curvature. The arrows indicate the direction and magnitude of the force along the system, and consequently the acceleration through Eq. \eqref{eq:1DwavePDE}.}
 \end{figure}\todo{different wording in caption}
 
 \subsubsection{Boundary conditions}
@@ -703,10 +703,10 @@ Figure \ref{fig:1DWaveOutput}, for example, seemingly shows that the system only
 To understand how and/or why this happens, one can refer to Figure \ref{fig:modes} and see that every $5$\th modal shape has a node at $1/5$\th of its length. If the system is excited exactly there, this modal shape will not obtain any energy and will thus not resonate. Similarly, if the system is excited exactly in the middle, every 2\textsuperscript{nd} modal frequency will be attenuated as there is a node present in the corresponding modal shape. The output would then only contain odd-numbered modes. 
 
 \subsection{Stability and simulation quality}\label{sec:quality1DWave}
-As shown in Eq. \eqref{eq:CFL}, the Courant number needs to abide the CFL condition in order for the scheme to be stable. A system is regarded \textit{unstable} if it exhibits (exponential) unbounded growth. If Neumann boundary conditions (free) are used, it is possible that the system drifts off over time. This does not mean that the system is unstable, it is actually entirely physically possible!\footnote{Imagine a `free' guitar string where the ends are not connected to the nut and bridge of a guitar. The string can be taken far away from the guitar without it breaking or exploding.}
+As shown in Eq. \eqref{eq:CFL}, the Courant number needs to abide the CFL condition in order for the scheme to be stable. A system is regarded \textit{unstable} if it exhibits (exponential) unbounded growth. If Neumann boundary conditions (free) are used, it is possible that the system drifts off over time. This does not mean that the system is unstable, it is actually entirely physically possible.\footnote{Imagine a `free' guitar string where the ends are not connected to the nut and bridge of a guitar. The string can be taken far away from the guitar without it breaking or exploding.}
 
 Besides stability, the value of $\lambda$ is closely related to the quality of the simulation. 
-If $\lambda = 1$, Eq. \eqref{eq:1DwaveFDS} is actually an exact solution to Eq. \eqref{eq:1DwavePDE}, which is quite uncommon in the realm of differential equations! See Figure \ref{fig:1DWaveDisp1}. Identically, if Eq. \eqref{eq:1DWaveStabilityCond} is satisfied with equality, the FD scheme is an exact solution to the PDE, and if $h$ deviates from this condition, the quality of the simulation decreases. 
+If $\lambda = 1$, Eq. \eqref{eq:1DwaveFDS} is actually an exact solution to Eq. \eqref{eq:1DwavePDE}, which is quite uncommon in the realm of differential equations. See Figure \ref{fig:1DWaveDisp1}. Identically, if Eq. \eqref{eq:1DWaveStabilityCond} is satisfied with equality, the FD scheme is an exact solution to the PDE, and if $h$ deviates from this condition, the quality of the simulation decreases. 
 
 If $\lambda < 1$, the quality of the simulation decreases in an effect called \textit{numerical dispersion}. Dispersion is a phenomenon where some frequencies travel faster through a medium than others, which is desired in some models (see fx. Chapter \ref{ch:stiffString}). Numerical dispersion, however, which is due to numerical inaccuracy, never is! Figure \ref{fig:1DWaveDisp09} shows an example when $\lambda = 0.9$, and one can observe that the wave propagation does not match the ideal case as Figure \ref{fig:1DWaveDisp1} shows. Moreover, bandlimiting effects occur, meaning that the highest frequency that the system can generate decreases. See Figure \ref{fig:1DWaveBandwidth}. Higher modes get `squished' together and are not exact multiples of the fundamental anymore. Section \ref{sec:modalAnalysis} elaborates on how to calculate the exact modal frequencies of a FD implementation of the 1D wave equation.
 
@@ -732,7 +732,7 @@ Finally, if $\lambda > 1$ the system becomes unstable. An example is shown in Fi
     \lambda$ the bandwidth of the output decreases drastically. \label{fig:1DWaveBandwidth}}
 \end{figure}
 
-In what situation would the stability condition then not be satisfied with equality? As mentioned in Section \ref{sec:gridFunctions}, a continuous domain $\D = [0,L]$ for a system of length $L$ needs to be divided into $N$ equal sections of length $h$ in the discretisation process. A logical step to calculate $N$ would be to divide $L$ by $h$ calculated using Eq. \eqref{eq:1DWaveStabilityCond} satisfied with equality to get the highest possible simulation quality. However, this calculation might not result in an integer value, which $N$ should be! To stay as close to the stability condition as possible, the following calculations are performed in order:
+In what situation would the stability condition then not be satisfied with equality? As mentioned in Section \ref{sec:gridFunctions}, a continuous domain $\D = [0,L]$ for a system of length $L$ needs to be divided into $N$ equal sections of length $h$ in the discretisation process. A logical step to calculate $N$ would be to divide $L$ by $h$ calculated using Eq. \eqref{eq:1DWaveStabilityCond} satisfied with equality to get the highest possible simulation quality. However, this calculation might not result in an integer value, which $N$ should be. To stay as close to the stability condition as possible, the following calculations are performed in order:
 \begin{equation}\label{eq:orderOfCalc}
     h := ck, \quad N := \floor[\frac{L}{h}], \quad h := \frac{L}{N}, \quad \lambda := \frac{ck}{h}.
 \end{equation}
@@ -753,7 +753,7 @@ In a FD implementation of the 1D wave equation, grid points can only affect thei
 
 If $h$ were to be chosen to be twice as big so that there are only half as many intervals between the grid points as per Eq. \eqref{eq:orderOfCalc} ($N=15$), the grid points could be set to `affect' their neighbours to a lesser degree. This way, the wave still takes the same amount of time to travel between the boundaries and the fundamental frequency stays approximately the same. This is essentially what happens when $\lambda < 1$ (in this case $\lambda = 0.5$) and can be observed from the update equation in Eq. \eqref{eq:1DwaveUpdate}; the effect that the neighbouring grid points have on each other will indeed be less. The output of the system will have approximately the same fundamental frequency as if $\lambda = 1$, but its partials will be detuned due to numerical dispersion as explained in this section.
 
-If, on the other hand, $h$ were to be chosen to be twice as small so that there are twice as many intervals between grid points ($N = 60$), it is impossible for the waves to travel from one boundary to the other in $30$ samples. If they could interact with their second neighbour, this would be possible, but the FD scheme in \eqref{eq:1DwaveFDS} does not allow for this. Indeed, as $\lambda = 2$ in this case, the effect that the grid points have on each other will be disproportionate. In a way, grid points have too much energy that they can not lose to their neighbours, because their effect should have reached their second neighbour over the course of one sample. The way to solve this would be to halve the time step $k$ (or double the sample rate $\fs$), which would allow grid points to interact with their second neighbours over the course of once the old time step (as this is now divided into two time steps). This also shows in the fact that $\lambda = 1$ again (as halving $k$ cancels out halving $h$) and grid points transfer their energy to their neighbours proportionately again.\todo{figure?}
+If, on the other hand, $h$ were to be chosen to be twice as small so that there are twice as many intervals between grid points ($N = 60$), it is impossible for the waves to travel from one boundary to the other in $30$ samples. If they could interact with their second neighbour, this would be possible, but the FD scheme in \eqref{eq:1DwaveFDS} does not allow for this. Indeed, as $\lambda = 2$ in this case, the effect that the grid points have on each other will be disproportionate. In a way, grid points have too much energy which they can not lose to their neighbours, because their effect should have reached their second neighbour over the course of one sample. The way to solve this would be to halve the time step $k$ (or double the sample rate $\fs$), which would allow grid points to interact with their second neighbours over the course of once the old time step (as this is now divided into two time steps). This also shows in the fact that $\lambda = 1$ again (as halving $k$ cancels out halving $h$) and grid points transfer their energy to their neighbours proportionately again.\todo{figure?}
 
 \subsubsection{Possible solution}
 One of the main contributions of the PhD project is published in paper \citeP[G] and summarised in Chapter \ref{ch:dynamicGrid}, where a `fractional' number of intervals is introduced. This removes the necessity of the flooring operation in Eq. \eqref{eq:orderOfCalc} and circumvents the recalculation of $h$ to always satisfy the stability condition with equality while retaining the correct fundamental frequency.

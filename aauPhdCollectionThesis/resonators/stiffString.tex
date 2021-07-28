@@ -45,7 +45,7 @@ Before moving on to the discretisation of the PDE in Eq. \eqref{eq:stiffStringPD
 \end{equation}
 where the non-negative loss coefficients $\sz$ (in s$^{-1}$) and $\so$ (in m$^2$/s) determine the frequency-independent and frequency-dependent losses respectively. Appendix \ref{app:intuitionSigma1} attempts to provide some intuition on workings of these damping terms.
 
-A more compact way to write Eq. \eqref{eq:stiffStringPDE}, and is also found often in the literature \cite{theBible}\todo{etc.}, is to divide all terms by $\rho A$ to get
+A more compact way to write Eq. \eqref{eq:stiffStringPDE}, and is also found often in the literature (see e.g. \cite{theBible,Webb2015, Bilbao2019}), is to divide all terms by $\rho A$ to get
 \begin{equation}\label{eq:stiffStringPDECompact}
     \ptt u = c^2 \pxx u - \kappa^2 \pxxxx u - 2 \sz \pt u + 2 \so \pt \pxx u,
 \end{equation}
@@ -391,7 +391,7 @@ As $16\mu^2\S^2+4\lambda^2\S$ is non-negative, the first condition is always sat
     16\mu^2\S^2+\left(4\lambda^2+ \frac{16\so k}{h^2}\right)\S &\leq 4,\\
     4\mu^2\S^2+\left(\lambda^2+ \frac{4\so k}{h^2}\right)\S&\leq 1.
 \end{align*}
-As $\S$ is bounded by $1$ for all values of $\beta$, one can set $\S = 1$ \SWcomment[check with Stefan]. Continuing with the substituted definitions for $\lambda$ and $\mu$ from Eq. \eqref{eq:stiffStringCourant} yields
+As $\S$ is bounded by $1$ for all values of $\beta$, one can set $\S = 1$, and continuing with the substituted definitions for $\lambda$ and $\mu$ from Eq. \eqref{eq:stiffStringCourant} yields
 \begin{align*}
     \frac{4\kappa^2k^2}{h^4}+\frac{c^2k^2 + 4\so k}{h^2}&\leq 1, \\
     4\kappa^2k^2+(c^2k^2+ 4\so k)h^2&\leq h^4,\\
@@ -425,11 +425,11 @@ As there is damping present in the system, and the system is distributed, the en
 \begin{equation}
     \dtp \h = \mathfrak{b}-\mathfrak{q}.
 \end{equation}
-with boundary term $\b$ and damping term $\q$. The latter is defined as \todo{virtual grid points needed for freq-dep damping term..}
+with boundary term $\b$ and damping term $\q$. The latter is defined as
 \begin{equation}\label{eq:dampingTermStiffString}
     \mathfrak{q} = 2\sz \rho A \lVert\dtd\uln\rVert_d^2 - 2 \so \rho A \langle \dtd \uln, \dtm \dxx \uln \rangle_d,
 \end{equation}
-and $\mathfrak{b}$ appears after rewriting Eq. \eqref{eq:rOCStiffString} using summation by parts (see Section \ref{sec:summationByParts}). Specifically, using Eq. \eqref{eq:summationByPartsMinusBar} for the second term and Eq. \eqref{eq:summationByPartsTwiceReduced} for the third, yields
+where the virtual grid points needed to calculate the second term are defined by the boundary conditions given in Eq. \eqref{eq:stiffStringBoundCondsDisc}. Furthermore, $\mathfrak{b}$ appears after rewriting Eq. \eqref{eq:rOCStiffString} using summation by parts (see Section \ref{sec:summationByParts}), specifically, using Eq. \eqref{eq:summationByPartsMinusBar} for the second term and Eq. \eqref{eq:summationByPartsTwiceReduced} for the third, yields
 \begin{align*}
     \dtp \h &= \rho A \langle \dtd \uln, \dtt \uln \rangle_d + T \langle \dtd \dxp \uln, \dxp \uln\rangle_{\underline{d}} + EI \langle \dtd \dxx \uln, \dxx \uln \rangle_{\overline{\underline{d}}} \\
     &= \mathfrak{b} - \mathfrak{q}
@@ -476,7 +476,7 @@ As described in Section \ref{sec:energyAnalysis}, the damping terms in $\mathfra
 \end{align*}
 and also have the correct units.
 \subsubsection{Step 4: Implementation}
-An implementation of the energy calculation for the simply supported boundary condition is given in Algorithm \ref{alg:stiffStringEnergy}. The damping is ignored but can be found in Appendix \ref{app:stiffstring}. \todo{Add to appendix or refer to a gist} Figure \ref{fig:energyStiffString} shows that the damping present in the system causes $\h$ to decrease in the left panel. The right panel shows that the deviation of the total energy calculated using Eq. \eqref{eq:normalisedEnergyDamping} is within machine precision.
+An implementation of the energy calculation for the simply supported boundary condition is given in Algorithm \ref{alg:stiffStringEnergy}. The calculation of the damping is ommitted, but the full algorithm can be found online \cite{stringGist}. Figure \ref{fig:energyStiffString} shows that the damping present in the system causes $\h$ to decrease in the left panel. The right panel shows that the deviation of the total energy calculated using Eq. \eqref{eq:normalisedEnergyDamping} is within machine precision.
 
 \setlstMAT
 \begin{lstlisting}[caption=Calculating $\h$ for the simply supported boundary condition., label=alg:stiffStringEnergy]
@@ -546,7 +546,7 @@ which can be solved for the $p$\th complex modal frequency
 \end{equation}
 The (angular) frequency of the $p$\th mode can then be obtained using $\mathfrak{I}(s_p)$ and the damping per mode as $\mathfrak{R}(s_p)$. Only selecting the non-negative frequencies obtained from $\mathfrak{I}(s_p)$, these can be plotted and are shown in Figure \ref{fig:modesStiffString}. The parameters used are the ones found in Table \ref{tab:stiffStringParams} with $T = 1885$ N, and $E = 2\cdot 10^{14}$ Pa to highlight inharmonic behaviour. The left panel shows that the system is indeed inharmonic, i.e., modal frequencies increase more as the modal number increases. The right panel shows that higher modes exhibit a higher amount of damping. This is due to the frequency-dependent damping term. If $\sigma_1 = 0$ in \eqref{eq:stiffStringFDS}, it can be shown that $\sigma_p = \sigma_0$ for every mode $p$ (in this case $\sigma_0 = -1$).
 
-\begin{figure}[h]
+\begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/modesStiffString.eps}
     \caption{The modal frequencies and damping per mode for the stiff string using the values in Table \ref{tab:stiffStringParams} and $T = 1885$ N and $E = 2\cdot 10^{14}$ Pa to highlight effects of stiffness. % Notice form the left panel that the frequency increases exponentially with the mode number. The right panel shows that higher modes exhibit a greater amount of damping due to the frequency-dependent damping term.

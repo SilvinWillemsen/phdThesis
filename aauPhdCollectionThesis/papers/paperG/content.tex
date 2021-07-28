@@ -830,8 +830,8 @@ A MATLAB implementation of the proposed method and audio examples can be found o
 % respectively. Here, $\mathfrak{I}(\cdot)$ and $\mathfrak{R}(\cdot)$ denote the `imaginary' and `real part of'. These definitions still hold for slow variations of $c$. 
 Writing system \eqref{eq:sysDispCorr} in matrix form, one can perform a modal analysis while changing $c^n$ to obtain the frequencies and damping coefficients for each mode over time. As a test case, the wave speed of a system running at $f_\text{s} = 44100$ Hz is linearly varied from $c^0 = 2940$ ($\Nfrac^0 = 15$) to $c^{n_\text{end}} = 2205$ ($\Nfrac^{n_\text{end}} = 20$) where $n_\text{end} = t_\text{dur} f_\text{s}$ is the simulation length in samples and $t_\text{dur} = 10$ s. Grid points are added and removed as close to the right boundary as possible, i.e., $M^n = N^n-1$ and $M_w^n = 1$ (similar behaviour can be observed if $M^n = 1$ and $M_w^n = N^n-1$).  %, changing $\mathbf{Q}$ and thus the modal frequencies over time. %The displacement correction presented in Section. \ref{sec:dispCorr} is not included in this analysis ($\varepsilon \gg 1$), but will be elaborated on in Section \ref{sec:dispCorrRes}. 
 The result of the analysis is shown in Figure \ref{fig:modalAnalysis} where higher damping (induced by the displacement correction) is indicated using thinner and bluer lines. Figure \ref{fig:spectrogram} shows the resulting spectrogram, with the displacement correction deactivated, of the system excited with $u_1^0 = 1$ and the output retrieved at $u_1^n$, and Figure \ref{fig:spectrogramDamp} shows a system with the same excitation but the change in $c^n$ inverted ($\Nfrac^n=20\rightarrow 15$) and displacement correction activated.
-
-\begin{figure}[t!]
+\def\figwidth{0.8}
+\begin{figure}[h!]
     \centering
     \subfloat[]{\label{fig:modalAnalysis}{ \includegraphics[width=\figwidth\textwidth]{figures/modalAnalysisDampingNarrow2.eps}}}\\
     \vspace{-1em}\subfloat[]{\label{fig:spectrogram}{ \includegraphics[width=\figwidth\textwidth]{figures/specQuadratic2NarrowNoScale.eps}}}\\

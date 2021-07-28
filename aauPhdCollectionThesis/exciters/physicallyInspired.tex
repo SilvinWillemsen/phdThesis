@@ -6,13 +6,13 @@ The easiest way to excite a system is to set its initial conditions to non-zero 
 \begin{equation}
     \ptt u = c^2 \pxx u
 \end{equation}
-where $u=u(x,t)$ is the state of the system defined for $t\geq 0$ and $x\in D$ with domain $\D = [0, L]$ and length $L$ (in m). Furthermore, $c = 735$ m/s. Following \ref{sec:gridFunctions}, the state variable can be discretised to $\uln$ where $n\in \mathbb{N}^0$ and $l\in d$ with discrete domain $d = \{0, \hdots, N\}$ and number of grid points $N+1$. The FD scheme is (Eq. \eqref{eq:1DwaveFDS}
+where $u=u(x,t)$ is the state of the system defined for $t\geq 0$ and $x\in D$ with domain $\D = [0, L]$ and length $L$ (in m). Furthermore, $c = 735$ m/s. Following \ref{sec:gridFunctions}, the state variable can be discretised to $\uln$ where $n\in \mathbb{N}^0$ and $l\in d$ with discrete domain $d = \{0, \hdots, N\}$ and number of grid points $N+1$. The FD scheme is (Eq. \eqref{eq:1DwaveFDS})
 \begin{equation}
     \dtt \uln = c^2 \dxx \uln.
 \end{equation}
 
 \subsection{Impulse}
-The simplest way to excite a system is to set the value of one grid point to non-zero, which is referred to as an \textit{impulse} excitation. Figure \ref{fig:impulse} shows an implementation of the 1D wave equation where $u_l^0 = u_l^1 = 1$ at $l = \floor[0.5 N]$. One can observe that the variations between two neighbouring grid points are extremely high. If the CFL condition in Eq. \eqref{eq:CFL} is satisfied with equality, the system will exhibit frequencies around the Nyquist frequency, which is generally unwanted.
+The simplest way to excite a system is to set the value of one grid point to non-zero, which is referred to as an \textit{impulse} excitation. Figure \ref{fig:impulse} shows an implementation of the 1D wave equation where $u_l^0 = u_l^1 = 1$ at $l = \floor[0.5 N]$. One can observe that the variations between two neighbouring grid points are extremely high. If the CFL condition in Eq. \eqref{eq:CFL} is satisfied with equality, the system will exhibit high amounts of energy around the Nyquist frequency, which is generally unwanted.
 
 \def\figWidth{0.32}
 \begin{figure}[h]
@@ -127,7 +127,7 @@ where $r_\text{w}$ is the excitation radius. Similar to Eq. \eqref{eq:xsxe}, the
 where $(x_0, y_0)$ is the center coordinate and $x_\stxt, x_\etxt, y_\stxt,  y_\text{e}\in \D$ for a 2D domain $\D$.
 
 In discrete time, Eq. \eqref{eq:raisedCosCont2D} becomes
-\begin{equation}
+\begin{equation}\label{eq:2DdiscRaisedCos}
     E_{(l,m), \text{rc}} = 
     \begin{cases}
         \!\frac{e_\text{amp}}{2}\left(1 - \cos\left(\frac{2\pi (l \!-\! l_\stxt)}{r}\right)\right)\!\left(1\! -\! \cos\left(\frac{2\pi (m - m_\stxt)}{r}\right)\right)\!, & \!\!\!\!
@@ -143,10 +143,17 @@ where $r = \floor[r_\text{w} / h]$ is the discrete excitation radius (in `grid s
     l_\text{s} = l_0 - \floor[r/2],\ l_\etxt = l_0 + \floor[r/2],\ m_\text{s} = m_0 - \floor[r/2], \ \text{and} \ m_\etxt = m_0 + \floor[r/2]
 \end{equation}
 for discrete center coordinate $(l_0, m_0)$ and $l_\stxt, l_\etxt, m_\stxt,  m_\text{e}\in d$ for a discrete 2D domain $d$. 
-As in the 1D case, this excitation can be used to model a simple `pluck' and strike for a 2D system. 
+As in the 1D case, this excitation can be used to model a simple `pluck' and strike for a 2D system. See Figure \ref{fig:2DHann} for a visualisation of a 2D raised cosine. A simple way to implement the 2D raised cosine in \texttt{MATLAB} using the \texttt{hann} function is shown in Algorithm \ref{alg:2DraisedCos}.
+\def\figWidth{0.8}
+\begin{figure}[b]
+    \centering
+    \includegraphics[width=\figWidth\textwidth]{figures/exciters/physInsp/2dHann.eps}
+    \caption{A 2D raised cosine created using \ref{eq:2DdiscRaisedCos}.\label{fig:2DHann}}
+\end{figure}
 
-A simple way to implement the 2D raised cosine in \texttt{MATLAB} using the \texttt{hann} function is shown in Algorithm \ref{alg:2DraisedCos}.
-\\
+\noindent
+\begin{minipage}{\textwidth}
+\setlstMAT
 \begin{lstlisting}[caption={A \texttt{MATLAB} implementation of a 2D raised cosine.}, label=alg:2DraisedCos]
 % Assuming Dirichlet boundary conditions and having initialised the following
 % - center locations for the x and y-directions: l0 and m0
@@ -167,15 +174,22 @@ e(ms:me, ls:le) = hann(r+1) * hann(r+1)';
 % Applying excitation to stacked matrix form as in Section %*\refMatlab[sec:2DwaveImplementation]*)
 u = reshape(e, (Nx-1) * (Ny-1), 1);
 \end{lstlisting} 
-
+\end{minipage}
+    
 \section{Time-varying excitations}
 Although various types of excitation can already be modelled using the initial conditions presented in the previous section, they are temporally rigid. In other words, the time of excitation is fixed to be at the start of the simulation. In order to excite the system while the simulation is running, one can create excitations that -- on top of being spatially distributed -- have a temporal profile as well.
 
 For the following, consider the ideal string of length $L$ (in m), where its transverse displacement is described by $u = u(x,t)$ (in m). The system is defined for $t\geq 0$ and $x\in\D$ with domain $\D = [0, L]$. The PDE of the ideal string with a time varying external force $f(t)$ (in N) is defined as (Eq. \eqref{eq:1DwavePDE})
-\begin{equation}
+\begin{equation}\label{eq:timeVaryingExcitation1DWave}
     \rho A\ptt u = T \pxx u + e(x)f(t)
 \end{equation}
 where $e(x)$ is a spatial distribution function such as those presented in Section \ref{sec:initConditionsPhysInsp} (in m$^{-1}$).
+
+In discrete time, Eq. \eqref{eq:timeVaryingExcitation1DWave} becomes
+\begin{equation}
+    \rho A \dtt \uln = T \dxx \uln + E_lf^n
+\end{equation}
+with discrete spatial distribution $E_l$ and discrete time-varying external force $f^n$.
 
 \subsection{Raised cosine}\label{sec:timeVaryingRaisedCos}
 To yield a smooth excitation over time, one can, similar to the spatially distributed raised cosine in Eq. \ref{sec:raisedCosine}, define a temporally distributed raised cosine. Using the time of excitation $t_0\geq 0$ and excitation duration $t_\text{d}>0$ (both in s), the temporal raised cosine can be used as a force function, as
@@ -186,7 +200,14 @@ To yield a smooth excitation over time, one can, similar to the spatially distri
         0, &\text{otherwise}.
     \end{cases}
 \end{equation} 
-As done in \cite{Webb2015}, $q$ alters the excitation to be a pluck when $q=1$ and a strike when $q=2$. Finally, $f_\text{amp}$ is the maximum force (in N). 
+As done in \cite{Webb2015, Bilbao2019}, $q$ alters the excitation to be a pluck when $q=1$ and a strike when $q=2$. Finally, $f_\text{amp}$ is the maximum force (in N). 
+\def\figWidth{0.8}
+\begin{figure}[t]
+    \centering
+    \subfloat[Pluck ($q=1$).\label{fig:timeVaryingRaisedCosPluck}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/physInsp/timeVaryingRaisedCos.eps}}\\
+    \subfloat[Strike ($q=2$).\label{fig:timeVaryingRaisedCosStrike}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/physInsp/timeVaryingRaisedCosHammer.eps}}\hfill
+    \caption{The time-varying raised cosine showing a (a) pluck and a (b) strike. The location of excitation $x_0$ is shown in green, the width $x_\text{w}$ in red and the excitation start $t_0$ and duration $t_\text{d}$ in blue.\label{fig:timeVaryingRaisedCos}}
+\end{figure}
 
 As done in papers \citeP[A] and \citeP[B], the force function can be used in conjunction with the distribution functions shown in Section \ref{sec:initConditionsPhysInsp}. When used to scale a spatially distributed raised cosine as in Eq. \eqref{eq:raisedCosCont}, one can model a pluck or a strike, by setting $q=1$ or $q=2$ respectively. These alternatives are visualised in Figure \ref{fig:timeVaryingRaisedCos}. Note, that if one would like $f_\text{amp}$ to be the maximum force, one must set $e_\text{amp} = 1$ in Eq. \eqref{eq:raisedCosCont}. 
 
@@ -200,24 +221,16 @@ In discrete time, the force function in Eq. \eqref{eq:raisedCosTemp} becomes
 \end{equation}
 where $n_\text{d} = \floor[t_\text{d}/k]$ is the duration of the excitation in samples.
 
-
-\def\figWidth{0.8}
-\begin{figure}[h]
-    \centering
-    \subfloat[Pluck ($q=1$).\label{fig:timeVaryingRaisedCosPluck}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/physInsp/timeVaryingRaisedCos.eps}}\\
-    \subfloat[Strike ($q=2$).\label{fig:timeVaryingRaisedCosStrike}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/physInsp/timeVaryingRaisedCosHammer.eps}}\hfill
-    \caption{The time-varying raised cosine showing a (a) pluck and a (b) strike. The location of excitation $x_0$ is shown in green, the width $x_\text{w}$ in red and the excitation start $t_0$ and duration $t_\text{d}$ in blue.\label{fig:timeVaryingRaisedCos}}
-\end{figure}
-
 \subsection{Pulse train}\label{sec:pulseTrain}
 As already briefly introduced in Section \ref{sec:webstersExcitation}, one can create a pulse train to excite an acoustic tube. This is inspired by \cite{theBible} where the signal represents the opening and closing of the glottis. As the characteristics of the lip reed are similar to the vocal folds \cite{Richards2003}, the pulse train has been used as a test signal here (also see Section \ref{sec:lipreedTube}). A more complete model of the lip reed can be found in Chapter \ref{ch:lipreed}.
 
 The pulse train can be created using a clipped sinusoid, which can be used as the input velocity to an acoustic tube. Algorithm \ref{alg:pulseTrain} shows an example of how to generate a pulse train. The frequency as well as the duty cycle (how much of the signal is non-zero) can be set. Figure \ref{fig:pulseTrain} shows the output of the algorithm.
 \\
+\\
 \noindent
 \begin{minipage}{\textwidth}
 \setlstMAT
-\begin{lstlisting}[caption={\texttt{MATLAB} code to generate a pulse train}, label=alg:pulseTrain]
+\begin{lstlisting}[caption={\texttt{MATLAB} code to generate a pulse train.}, label=alg:pulseTrain]
 %% Pulse train generator
 
 fs = 44100;             % Sample rate [Hz]
@@ -243,9 +256,9 @@ end
 %     v_\text{in} = \left[\frac{\sin(2\pi f t) - (1-2\depth)}{2\depth}\right]_+,
 % \end{equation}
 % where $0< \depth \leq 0.5$ is the clipping depth, and determines the duty cycle, i.e. the distance between the pulses. Finally, the $[\cdot]_+$ operator specifies `the positive part of' and is used for clipping (see Chapter \ref{ch:collisions}). 
-\begin{figure}[h]
+\begin{figure}[t]
     \centering
     \includegraphics[width=\textwidth]{figures/exciters/physInsp/pulseTrain.eps}
     \caption{The pulse train generated using Algorithm \ref{alg:pulseTrain} ($f = 440$ Hz, duty cycle $ = 75\%$).
     \label{fig:pulseTrain}}
-\end{figure}
+\end{figure}\todo{pulse train figure placement}

@@ -32,6 +32,10 @@ S.~Bilbao, \emph{Numerical Sound Synthesis: Finite Difference Schemes and
   Simulation in Musical Acoustics}.\hskip 1em plus 0.5em minus 0.4em\relax John
   Wiley \& Sons, 2009.
 
+\bibitem{Fletcher1998}
+N.~H. Fletcher and T.~D. Rossing, \emph{The Physics of Musical
+  Instruments}.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 1998.
+
 \bibitem{Puckette2002}
 M.~Puckette, ``Max at seventeen,'' \emph{Computer Music Journal}, vol.~26, pp.
   31--43, 2002.
@@ -52,20 +56,6 @@ M.~L. Lavengood, ``What makes it sound ’80s?: The yamaha {DX7} electric piano
 \bibitem{Smith2010a}
 J.~O. Smith, ``Virtual acoustic musical instruments: Review and update,''
   \emph{Center for computer research in music and acoustics (CCRMA)}, 2010.
-
-\bibitem{nytimes}
-\BIBentryALTinterwordspacing
-M.~Paradiso, ``To save the sound of a stradivarius, a whole city must keep
-  quiet,'' 2019. [Online]. Available:
-  \url{https://www.nytimes.com/2019/01/17/arts/music/stradivarius-sound-bank-recording-cremona.html}
-\BIBentrySTDinterwordspacing
-
-\bibitem{npr}
-\BIBentryALTinterwordspacing
-C.~Livesay, ``An italian town fell silent so the sounds of a stradivarius could
-  be preserved,'' 2019. [Online]. Available:
-  \url{https://www.npr.org/2019/02/17/694056444/an-italian-town-fell-silent-so-the-sounds-of-a-stradivarius-could-be-preserved}
-\BIBentrySTDinterwordspacing
 
 \bibitem{Kelly1962}
 J.~Kelly and C.~Lochbaum., ``Speech synthesis,'' in \emph{Proceedings of the
@@ -125,10 +115,6 @@ G.~Borin, G.~De~Poli, and A.~Sarti, ``A modular approach to excitator-resonator
 G.~{De Poli} and D.~Rocchesso, ``Physically based sound modelling,''
   \emph{Organised Sound}, vol.~3, no.~1, pp. 61--76, 1998.
 
-\bibitem{Fletcher1998}
-N.~H. Fletcher and T.~D. Rossing, \emph{The Physics of Musical
-  Instruments}.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 1998.
-
 \bibitem{Valimaki2006}
 V.~V\"{a}lim\"{a}ki, J.~Pakarinen, C.~Erkut, and M.~Karjalainen,
   ``Discrete-time modelling of musical instruments,'' \emph{Institute of
@@ -155,6 +141,10 @@ A.~Chaigne and A.~Askenfelt, ``Numerical simulations of struck strings. {I}.
   {A} physical model for a struck string using finite difference methods,''
   \emph{Journal of Acoustical Society of America}, vol.~95, no.~2, pp.
   1112--1118, 1994.
+
+\bibitem{Duyne1993}
+S.~A. van Duyne and J.~O. Smith, ``Physical modeling with the {2-D} digital
+  waveguide mesh,'' in \emph{ICMC Proceedings}, 1993.
 
 \bibitem{Erkut2002}
 C.~Erkut and M.~Karjalainen, ``Finite difference method vs. digital waveguide
@@ -185,9 +175,29 @@ J.~Leonard and J.~Villeneuve, ``{MI-GEN\textApprox}: An efficient and
   accessible mass interaction sound synthesis toolbox,'' \emph{{Proceedings of
   the 16th Sound and Music Computing Conference (SMC)}}, 2019.
 
+\bibitem{Bilbao2019CMJa}
+S.~Bilbao, C.~Desvages, M.~Ducceschi, B.~Hamilton, R.~Harrison-Harsley,
+  A.~Torin, and C.~Webb, ``Physical modeling, algorithms, and sound synthesis:
+  The {NESS} project,'' \emph{Computer Music Journal}, vol.~43, no. 2-3, pp.
+  15--30, 2019.
+
 \bibitem{Moore1965}
 G.~E. Moore, ``Cramming more components onto integrated circuits,''
   \emph{Electronics}, vol.~38, no.~8, pp. 114--–117, 1965.
+
+\bibitem{nytimes}
+\BIBentryALTinterwordspacing
+M.~Paradiso, ``To save the sound of a stradivarius, a whole city must keep
+  quiet,'' 2019. [Online]. Available:
+  \url{https://www.nytimes.com/2019/01/17/arts/music/stradivarius-sound-bank-recording-cremona.html}
+\BIBentrySTDinterwordspacing
+
+\bibitem{npr}
+\BIBentryALTinterwordspacing
+C.~Livesay, ``An italian town fell silent so the sounds of a stradivarius could
+  be preserved,'' 2019. [Online]. Available:
+  \url{https://www.npr.org/2019/02/17/694056444/}
+\BIBentrySTDinterwordspacing
 
 \bibitem{Mehes2016}
 S.~Mehes, M.~van Walstijn, and P.~Stapleton, ``Towards a virtual-acoustic
@@ -216,18 +226,12 @@ J.~Bybee, ``{COSM REVISITED},'' Accessed June 28, 2021. [Online]. Available:
   \url{https://www.boss.info/us/community/boss_users_group/1319/}
 \BIBentrySTDinterwordspacing
 
-\bibitem{Bilbao2019CMJa}
-S.~Bilbao, C.~Desvages, M.~Ducceschi, B.~Hamilton, R.~Harrison-Harsley,
-  A.~Torin, and C.~Webb, ``Physical modeling, algorithms, and sound synthesis:
-  The ness project,'' \emph{Computer Music Journal}, vol.~43, no. 2-3, pp.
-  15--30, 2019.
-
 \bibitem{Bilbao2019CMJb}
 S.~Bilbao, J.~Perry, P.~Graham, A.~Gray, K.~Kavoussanakis, G.~Delap, T.~Mudd,
   G.~Sassoon, T.~Wishart, and S.~Young, ``Large-scale physical modeling
-  synthesis, parallel computing, and musical experimentation: The ness project
-  in practice,'' \emph{Computer Music Journal}, vol.~43, no. 2-3, pp. 31--47,
-  2019.
+  synthesis, parallel computing, and musical experimentation: The {NESS}
+  project in practice,'' \emph{Computer Music Journal}, vol.~43, no. 2-3, pp.
+  31--47, 2019.
 
 \bibitem{Nyquist}
 C.~E. Shannon, ``Communication in the presence of noise,'' \emph{Proceedings of
@@ -236,6 +240,11 @@ C.~E. Shannon, ``Communication in the presence of noise,'' \emph{Proceedings of
 \bibitem{Yantis2016}
 S.~Yantis and R.~A. Abrams, \emph{Sensation and Perception}, 2nd~ed.\hskip 1em
   plus 0.5em minus 0.4em\relax Worth Publishers, 2016.
+
+\bibitem{Willemsen2017}
+S.~Willemsen, S.~Serafin, and J.~R. Jensen, ``Virtual analog simulation and
+  extensions of plate reverberation,'' in \emph{Proc. of the 14th Sound and
+  Music Computing Conference}, 2017, pp. 314--319.
 
 \bibitem{sensel}
 \BIBentryALTinterwordspacing
@@ -320,6 +329,22 @@ J.~Bensa, S.~Bilbao, R.~Kronland-Martinet, and J.~O. Smith, ``The simulation of
   digital waveguides,'' \emph{Journal of the Acoustical Society of America
   (JASA)}, vol. 114, no.~2, pp. 1095--1107, 2003.
 
+\bibitem{Webb2015}
+C.~Webb and S.~Bilbao, ``On the limits of real-time physical modelling
+  synthesis with a modular environment,'' in \emph{Proceedings of the 18th
+  International Conference on Digital Audio Effects (DAFx)}, 2015.
+
+\bibitem{Bilbao2019}
+S.~Bilbao, M.~Ducceschi, and C.~Webb, ``Large-scale real-time modular physical
+  modeling sound synthesis,'' in \emph{Proceedings of the 22th International
+  Conference on Digital Audio Effects (DAFx-19)}, 2019.
+
+\bibitem{stringGist}
+\BIBentryALTinterwordspacing
+S.~Willemsen, ``{stiffString.m},'' 2021. [Online]. Available:
+  \url{https://gist.github.com/SilvinWillemsen/58f7353103ab6930da6139ed08f68c8f}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Kemp2002}
 J.~A. Kemp, ``Theoretical and experimental study of wave propagation in brass
   musical instruments,'' Ph.D. dissertation, The University of Edinburgh, 2002.
@@ -344,10 +369,6 @@ S.~Bilbao and R.~Harrison, ``Passive time-domain numerical models of
   viscothermal wave propagation in acoustic tubes of variable cross section,''
   \emph{J. Acoust. Soc. Am.}, vol. 140, pp. 728--740, 2016.
 
-\bibitem{Duyne1993}
-S.~A. van Duyne and J.~O. Smith, ``Physical modeling with the {2-D} digital
-  waveguide mesh,'' in \emph{ICMC Proceedings}, 1993.
-
 \bibitem{Horn1991}
 R.~A. Horn and C.~R. Johnson, \emph{Topics in Matrix Analysis}.\hskip 1em plus
   0.5em minus 0.4em\relax Cambridge University Press, 1991.
@@ -361,11 +382,6 @@ V.~V{\"a}lim{\"a}ki, S.~Bilbao, J.~O. Smith, J.~S. Abel, J.~Pakarinen, and
   D.~Berners, ``Virtual analog effects,'' in \emph{DAFX: Digital Audio
   Effects}, 2nd~ed., U.~Z{\"o}lzer, Ed.\hskip 1em plus 0.5em minus 0.4em\relax
   John Wiley \& Sons Ltd., 2011, pp. 473--522.
-
-\bibitem{Webb2015}
-C.~Webb and S.~Bilbao, ``On the limits of real-time physical modelling
-  synthesis with a modular environment,'' in \emph{Proceedings of the 18th
-  International Conference on Digital Audio Effects (DAFx)}, 2015.
 
 \bibitem{Richards2003}
 O.~Richards, ``Investigation of the lip reed using computational modelling and
@@ -505,11 +521,6 @@ M.~Ducceschi and S.~Bilbao, ``Non-iterative solvers for nonlinear problems: The
   case of collisions,'' \emph{Proceedings of the 22th International Conference
   on Digital Audio Effects (DAFx-19)}, 2019.
 
-\bibitem{Bilbao2019}
-S.~Bilbao, M.~Ducceschi, and C.~Webb, ``Large-scale real-time modular physical
-  modeling sound synthesis,'' in \emph{Proceedings of the 22th International
-  Conference on Digital Audio Effects (DAFx-19)}, 2019.
-
 \bibitem{stringPlateGist}
 \BIBentryALTinterwordspacing
 S.~Willemsen, ``{connectedStringPlate.m},'' 2021. [Online]. Available:
@@ -535,5 +546,38 @@ exception, ``double - and how to use it,'' 2008. [Online]. Available:
 G.~Guennebaud, B.~Jacob \emph{et~al.}, ``Eigen,'' 2021. [Online]. Available:
   \url{http://eigen.tuxfamily.org}
 \BIBentrySTDinterwordspacing
+
+\bibitem{Pardue2020}
+L.~Pardue, M.~Ortiz, M.~van Walstijn, P.~Stapleton, and M.~Rodger,
+  ``Vodhr{\'a}n: collaborative design for evolving a physical model and
+  interface into a proto-instrument,'' in \emph{New Interfaces for Musical
+  Expression}, 2020.
+
+\bibitem{vanWalstijn2021}
+M.~van Walstijn, A.~Bhanuprakash, and P.~Stapleton, ``Finite-difference
+  simulation of linear plate vibration with dynamic distributed contact,'' in
+  \emph{Proceedings of the 18th Sound and Music Computing (SMC) Conference},
+  2021.
+
+\bibitem{Paisa2019}
+R.~Paisa and D.~Overholt, ``Enhancing the expressivity of the sensel morph via
+  audio-rate sensing,'' in \emph{Proceedings of the New Interfaces for Musical
+  Expression conference}, 2019.
+
+\bibitem{passalenti2019a}
+A.~Passalenti, R.~Paisa, N.~Nilsson, N.~Andersson, F.~Fontana, R.~Nordahl, and
+  S.~Serafin, ``No strings attached: Force and vibrotactile feedback in a
+  virtual guitar simulation,'' \emph{{IEEE} Conference on Virtual Reality and
+  3D User Interfaces ({VR})}, pp. 1116--1117, 2019.
+
+\bibitem{passalenti2019b}
+------, ``No strings attached: Force and vibrotactile feedback in a guitar
+  simulation,'' \emph{Proceedings of the 16th Sound and Music Computing (SMC)
+  Conference}, 2019.
+
+\bibitem{Fontana2020}
+F.~Fontana, R.~Paisa, R.~Ranon, and S.~Serafin, ``Multisensory plucked
+  instrument modeling in {Unity3D}: From keytar to accurate string
+  prototyping,'' \emph{Applied Sciences}, vol.~10, 2020.
 
 \end{thebibliography}

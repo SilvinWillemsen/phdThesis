@@ -25,7 +25,7 @@ The interesting thing about the presence of a variable cross-section, is that it
     \subfloat[$t = 1$ ms.\label{fig:websterPropagation1}]{\includegraphics[width=\figWidth\textwidth]{figures/resonators/brass/websterPropagation1.eps}}\hfill
     \subfloat[$t = 5$ ms.\label{fig:websterPropagation2}]{\includegraphics[width=\figWidth\textwidth]{figures/resonators/brass/websterPropagation2.eps}}\hfill
     \subfloat[$t = 8$ ms.\label{fig:websterPropagation3}]{\includegraphics[width=\figWidth\textwidth]{figures/resonators/brass/websterPropagation3.eps}}
-    \caption{Wave propagation and dispersion in an acoustic tube of varying cross-section (shown in grey) modelled by Webster's equation in Eq. \eqref{eq:webstersPDE}. Positive acoustic potential $\Psi$ is shown in red and negative in blue, which is also plotted for clarity. \label{fig:websterPropagation}}
+    \caption{Wave propagation and dispersion in an acoustic tube of varying cross-section (shown in grey) modelled by Webster's equation in Eq. \eqref{eq:webstersPDE}. Positive acoustic potential $\Psi$ is shown in red and negative in blue, highlighted by a black line for clarity. \label{fig:websterPropagation}}
 \end{figure}
 %test for git
 
@@ -148,7 +148,7 @@ where
 One can observe that $S_{N+1/2}$ is needed which is outside the defined domain. As mentioned before, setting $\Sbar_N = S(L)$, one can calculate $S_{N+1/2}$ using Eq. \eqref{eq:Snph} to solve the issue. 
 
 \subsection{Excitation}\label{sec:webstersExcitation}
-Although excitations will be discussed more in-depth in Part \ref{part:exciters}\todo{maybe refer to chapter/section instead}, a simple way to excite Webster's equation will be presented here.
+Although excitations will be discussed more in-depth in Chapter \ref{ch:physInspExcitations}, a simple way to excite Webster's equation will be presented here.
 
 Following \cite{Bilbao2018}, one can create an input signal $v_\text{in} = v_\text{in}(t)$ that interacts with the particle velocity of the tube. As this relates to the acoustic potential as in Eq. \eqref{eq:pressureVelocityWebster}, one can change the boundary condition of the left boundary to
 \begin{equation}
@@ -163,7 +163,7 @@ and can be substituted into the update equation in Eq. \eqref{eq:webstersUpdateE
     \Psi_0^{n+1} &= 2(1-\lambda^2)\Psi_0^n-\Psi_0^{n-1} \frac{\lambda^2S_{1/2}}{\Sbar_0}\Psi_1^n + \frac{\lambda^2S_{-1/2}}{\Sbar_0}\left(2h v_\text{in}^n + \Psi_1^n\right),\nonumber\\
     \Psi_0^{n+1} &= 2(1-\lambda^2)\Psi_0^n-\Psi_0^{n-1} +2\lambda^2\Psi_1^n + \frac{2h\lambda^2S_{-1/2}}{\Sbar_0} v_\text{in}^n.
 \end{align}
-The input signal is arbitrary, but looking towards lip excitation, and following \cite{theBible}, one can set the input to a pulse train as shown in Figure \ref{fig:inputWebster}. More details can be found in Chapter \ref{ch:physInspExcitations}.
+The input signal is arbitrary, but looking towards lip excitation, and following \cite{theBible}, one can set the input to a pulse train as shown in Figure \ref{fig:inputWebster}. More details can be found in Section \ref{sec:pulseTrain}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/brass/inputWebster.eps}
@@ -419,7 +419,7 @@ also given in \eqref{eq:CFLwebster}. This choice of $[S]_l$ is equal to $\Sbar_l
 
 \subsection{Modal analysis}
 Following Section \ref{sec:oneStepForm}one can perform a modal analysis of the system by writing Eq. \eqref{eq:matrixFormWebsters} in one-step  form (ignoring the input vector). The variable cross-section causes the modes of the system to vary in interesting ways. If the tube is perfectly cylindrical and $S(x)$ is thus constant, Webster's equation reduces to the 1D wave equation and the modal frequencies are integer multiples of the fundamental frequency. 
-For low cross-sectional variations, the modes generally follow a linear pattern. See Figure \ref{fig:webstersModes}. The damping per mode, however, follows a different pattern, where higher damping occurs around $\fs/4$, and is due to the comb-filtering effect that the radiation has on the system. \SWcomment[is this true?]
+For low cross-sectional variations, the modes generally follow a linear pattern. See Figure \ref{fig:webstersModes}. The damping per mode, however, follows a different pattern, where higher damping occurs around $\fs/4$.
 
 \begin{figure}[h]
     \centering
@@ -615,7 +615,7 @@ Figure \ref{fig:energyFirstOrder} shows the energetic output of an implementatio
       \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the first-order system in Eq. \eqref{eq:firstOrderFDS} are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \label{fig:energyFirstOrder}}
 \end{figure}
 
-\subsection{Adding radiation}
+\subsection{Levine and Schwinger radiation model}\label{sec:levineSchwing}
 \def\r{\text{r}}
 \def\one{{(1)}}
 Following \cite{Harrison2018}, radiation  can be added to the schemes using a circuit representation of the Levine and Schwinger radiation model (See Figure \ref{fig:circuit}). This section will provide a derivation \SWcomment[I'll actually move most of this to an appendix...]

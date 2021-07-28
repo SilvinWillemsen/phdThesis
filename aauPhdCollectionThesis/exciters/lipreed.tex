@@ -1,10 +1,10 @@
-\chapter{Lip Reed}\label{ch:lipreed}
+\chapter{The Lip Reed}\label{ch:lipreed}
 The dynamics of wind instruments can be modelled by acoustic tubes as presented in Chapter 5. Excitation of these instruments happens either by blowing a jet of air across an opening, such as in a flute, or by the buzzing of a \textit{reed}. In \cite{Fletcher1998}, the authors state that all wind-instrument reeds fall into one of three categories: the single reed, (clarinet, saxophone), the double reed (oboe, bassoon) and the lip reed (trumpet, trombone). The latter will be the focus of this chapter.
 
 % Brass instruments are excited by the lips of the player. The opening and closing of the lips causes a vibration
-Sections \ref{sec:webstersExcitation} and \ref{sec:pulseTrain} presented a physically inspired pulse train that attempts to model the opening and closing of the lips using a clipped sinusoidal signal. A more physical approach, which is bidirectional, is to model the lips as a mass-spring-damper system that interacts with the left boundary of the tube. The literature describes lip reed models with varying degrees of freedom (DoF) (see \cite{Fletcher1998,Harrison2018} for an overview). Recent work includes vortex-induced vibration into the lip reed model that allows for the buzzing of the lips without the need of an acoustic tube [\hyperref[ch:listOfPublications]{S1}]. 
+Sections \ref{sec:webstersExcitation} and \ref{sec:pulseTrain} presented a physically inspired pulse train that attempts to model the opening and closing of the lips, using a clipped sinusoidal signal. A more physical approach, which is bidirectional, is to model the lips as a mass-spring-damper system that interacts with the left boundary of the tube. The literature describes lip reed models with varying degrees of freedom (DoF) (see \cite{Fletcher1998,Harrison2018} for an overview). Recent work includes vortex-induced vibration into the lip reed model, that allows for the buzzing of the lips without the need of an acoustic tube [\hyperref[ch:listOfPublications]{S1}]. 
 
-As the contribution of this project to a brass instrument model was mainly focused on the resonator, the simple `outward striking door model' was chosen, which is a simple single one-DoF mass-spring-damper system. The model is as presented in \cite{Bilbao2009Reed} excluding the collision. An alternative collision model was added in paper \citeP[H] and will be elaborated on in Chapter \ref{ch:trombone}.\todo{check}
+As the contribution of this project to a brass instrument model was mainly focused on the resonator, the simple `outward striking door model' was chosen, which is a simple single one-DoF mass-spring-damper system. The model is as presented in \cite{Bilbao2009Reed} excluding the collision. An alternative collision model was added in paper \citeP[H] and will be elaborated on in Chapter \ref{ch:trombone}.
 
 This chapter starts by introducing the mass-spring-damper system, after which the lip reed model will be given in continuous and discrete time. The lip reed will be coupled to the first-order system of equations presented in \ref{sec:firstOrderSystem}. Unless denoted otherwise, this chapter follows \cite{Harrison2018}. 
 
@@ -15,25 +15,25 @@ Recall the mass spring system presented in Eq. \eqref{eq:massSpringPDE}, where $
 \begin{equation}\label{eq:massSpringDampingPDE}
     M\ddot u = -Ku - R\dot u,
 \end{equation}
-with mass $M$ (in kg), spring constant $K$ (N/m) and damping coefficient $R$ (in kg/s). Figure \ref{fig:massSpringDamper} shows the behaviour of the system for different values of $R$. 
+with mass $M$ (in kg), spring constant $K$ (in N/m) and damping coefficient $R$ (in kg/s). Figure \ref{fig:massSpringDamper} shows the behaviour of the system for different values of $R$. 
+
+Equation \eqref{eq:massSpringDampingPDE} can then be discretised to the following FD scheme:
+\begin{equation}\label{eq:massSpringDampingFDS}
+    M\dtt \un = -K\un - R\dtd \un.
+\end{equation}
+Expanding and solving for $u^{n+1}$ yields the following update equation:
+\begin{equation}\label{eq:massSpringDampingUpdate}
+    \left(1+\frac{Rk}{2M}\right)u^{n+1} = 2 \un - u^{n-1} - \frac{Kk^2}{M}\un + \frac{Rk}{2M}u^{n-1}.
+\end{equation}
 
 \def\figWidth{0.32}
-\begin{figure}[b]
+\begin{figure}[h]
     \centering
     \subfloat[$R=0$.\label{fig:massSpringDamper1}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/lipreed/massSpringDamper1.eps}}\hfill
     \subfloat[$R=50$.\label{fig:massSpringDamper2}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/lipreed/massSpringDamper2.eps}}\hfill
     \subfloat[$R=200$.\label{fig:massSpringDamper3}]{\includegraphics[width=\figWidth\textwidth]{figures/exciters/lipreed/massSpringDamper3.eps}}
     \caption{The mass-spring-damper system in Eq. \eqref{eq:massSpringDampingPDE} with $f_0=440$ Hz for different values of $R$. \label{fig:massSpringDamper}}
 \end{figure}
-
-Equation \eqref{eq:massSpringDampingPDE} can then be discretised to the following FD scheme:
-\begin{equation}\label{eq:massSpringDampingFDS}
-    M\dtt \un = -K\un - R\dtd \un.
-\end{equation}
-Expanding and solving for $u^{n+1}$ yields the following update equation (before division with the term multiplied onto $u^{n+1}$):
-\begin{equation}\label{eq:massSpringDampingUpdate}
-    \left(1+\frac{Rk}{2M}\right)u^{n+1} = 2 \un - u^{n-1} - \frac{Kk^2}{M}\un + \frac{Rk}{2M}u^{n-1}.
-\end{equation}
 
 \subsection{Energy analysis}
 Following Section \ref{sec:energyAnalysis} (without explicitly following the steps for brevity), one can obtain the energy of Eq. \eqref{eq:massSpringDampingFDS} through a multiplication of the scheme by $(\dtd \un)$ to get
@@ -47,7 +47,7 @@ As there is damping present in the system, the energy balance will be of the for
 Using identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2}, $\h$ and $\q$ can be obtained from Eq. \eqref{eq:massSpringDampingPreEnergyBalance} 
 \begin{equation}\label{eq:energyBalanceMassSpringDamper}
     \h = \t + \v, \qwiq
-    \t = \frac{M}{2}(\dtm\un)^2, \qaq \v = \frac{K}{2}\un e_{t-}\un.
+    \t = \frac{M}{2}(\dtm\un)^2, \qaq \v = \frac{K}{2}\un e_{t-}\un,
 \end{equation} 
 and
 \begin{equation}\label{eq:massDampingEnergy}
@@ -85,7 +85,7 @@ As mentioned at the beginning of this chapter, the lip reed will be modelled as 
 
 Using dots to denote derivatives with respect to time $t$, the PDE of the lip reed connected to an acoustic tube is defined as
 \begin{equation}\label{eq:lipReedDimensional}
-    M\ddot y = -K y - R \dot y + S_\text{r}\Delta p.
+    M\ddot y = -K y - R \dot y + S_\text{r}\Delta p,
 \end{equation}
 with displacement of the lip reed from equilibrium $y = y(t)$ (in m), mass of the lip reed $M > 0$ (in kg), lip stiffness $K\geq 0$ (in N/m), damping coefficient $R\geq 0$ (in kg/s), and effective surface area of the lip $S_\text{r}\geq 0$ (in m$^2$). Furthermore,  
 \begin{equation}\label{eq:deltaP}
@@ -112,7 +112,7 @@ To reduce the number of variables in later derivations in this chapter, one can 
 \begin{equation}
     \ddot y = -\omega_0^2 y - \sigma_\text{r} \dot y + \frac{S_\text{r}}{M}\Delta p,
 \end{equation}
-with angular frequency of the lip reed $\omega_0 = \sqrt{K/M}$ (rad/s) and loss parameter $\sigma_\text{r} = R / M$ (s$^{-1}$). 
+with angular frequency of the lip reed $\omega_0 = \sqrt{K/M}$ (in rad/s) and loss parameter $\sigma_\text{r} = R / M$ (in s$^{-1}$). 
 
 \section{Discrete time}\label{sec:discreteLipReed}
 \def\nph{}
@@ -128,21 +128,21 @@ Following \cite{Harrison2018}, $y$, $\Delta p$, and thereby $U_\text{B}$ and $U_
         \mu_{x-}(S_{1/2}v_{1/2}^{\nphSys}) &= U_\text{B}^{\nphSys} + U_\text{r}^{\nphSys}.\label{eq:UbUr}
     \end{align}
 \end{subequations}
-Here, $p_0^n$ and $S_{1/2}v_{1/2}^{\nphSys}$ are discrete values at the left boundary of an acoustic tube described by system \eqref{eq:firstOrderFDS}. Expanding the operators in Eq. \eqref{eq:discReed} and solving for $y^{n+3/2}$ yields
+Here, $p_0^n$ and $S_{1/2}v_{1/2}^{\nphSys}$ are discrete values at the left boundary of an acoustic tube described by system \eqref{eq:firstOrderFDS}. Expanding the operators in Eq. \eqref{eq:discReed} and solving for $y^{n+3/2}$, yields
 \begin{equation}\label{eq:updateEqLipreed}
     % \left(1 + \frac{\omega_0^2 k^2}{2} + \frac{\sigma_\text{r} k}{2}\right)y^{n+3/2} &= 2 y^{n+1/2} - \left(1 + \frac{\omega_0^2 k^2}{2} - \frac{\sigma_\text{r} k}{2}\right) y^{n-1/2} + \frac{S_\text{r} k^2}{M} \Delta p^{n+1/2}\nonumber\\
-    \alpha_\text{r}y^{n+3/2} = 4y^{n+1/2} + \beta_\text{r}y^{n-1/2} + \xi_\text{r}\Delta p^{n+1/2}
+    \alpha_\text{r}y^{n+3/2} = 4y^{n+1/2} + \beta_\text{r}y^{n-1/2} + \xi_\text{r}\Delta p^{n+1/2},
 \end{equation}
-where (after a multiplication by 2 to reduce fractions)
+where\footnote{Notice that all terms are multiplied by 2 to reduce fractions.}
 \begin{equation}\label{eq:lipreedUpdateTerms}
     \alpha_\text{r} = 2 + \omega_0^2k^2 + \sigma_\text{r} k\ , \quad \beta_\text{r} =  \sigma_\text{r} k - 2 - \omega_0^2 k^2\ , \quad \text{and} \quad \xi_\text{r} = \frac{2 S_\text{r}k^2}{M}.
 \end{equation}
-Although Eq. \eqref{eq:updateEqLipreed} seems to be implicitly dependent to the pressure difference $\Delta p^{n+1/2}$ it is possible to explicitly solve it. A derivation is shown below.
+Although Eq. \eqref{eq:updateEqLipreed} seems to be implicitly dependent on the pressure difference $\Delta p^{n+1/2}$, it is possible to explicitly solve it. A derivation is shown below.
 
 \subsection{Obtaining $\Delta p$}\label{sec:obtainingDeltaP}
 In the following, the superscript $n+1/2$ will be suppressed for $y$, $\Delta p$, $U_\text{B}$, $U_\text{r}$, $S_{1/2}$ and $v_{1/2}$ for brevity. 
 
-\subsubsection{Rewrite Eq. \eqref{eq:discReed}}
+\subsubsection{Rewriting Eq. \eqref{eq:discReed}}
 Using identities \eqref{eq:identity1} and \eqref{eq:identity4}, Eq. \eqref{eq:discReed} can be rewritten to
 \begin{equation*}
     \frac{2}{k} (\delta_{t\cdot} - \delta_{t-})y^{\nph} = -\omega_0^2(k\delta_{t\cdot} + e_{t-})y^{\nph} - \sigma_\text{r}\delta_{t\cdot} y^{\nph} + \frac{S_\text{r}}{M}\Delta p^{\nph},
@@ -155,18 +155,18 @@ where
 \begin{equation}\label{eq:aCoeffs}
     a_1 = \frac{2}{k} + \omega_0^2k + \sigma_\text{r} \geq 0, \quad a_2 = \frac{S_\text{r}}{M} \geq 0\ , \quad \text{and} \quad a_3^n = \left(\frac{2}{k} \delta_{t-} - \omega_0^2e_{t-}\right)y^{\nph}\ .
 \end{equation}
-Note that non-negativity property can be applied to $a_1$ and $a_2$ as these are calculated solely from non-negative parameters. %The same will be done for other coefficients below.
+Note that the non-negative property can be applied to $a_1$ and $a_2$ as these are calculated solely from non-negative parameters. %The same will be done for other coefficients below.
 Equation \eqref{eq:Ur} can then be substituted into Eq. \eqref{eq:preAEquation}
 \begin{equation*}
     \frac{a_1}{S_\text{r}}U_\text{r}^{\nph} - a_2 \Delta p^{\nph} - a_3^n = 0,
 \end{equation*}
-and consequently Eq. \eqref{eq:UbUr} to get
+and consequently Eq. \eqref{eq:UbUr}, to get
 \begin{equation}\label{eq:aEquation}
     \frac{a_1}{S_\text{r}}\left(\mu_{x-}(S_{1/2}v_{1/2}^{\nph}) - U_\text{B}^{\nph}\right) - a_2 \Delta p^{\nph} - a_3^n = 0.
 \end{equation}
 %
 \subsubsection{Obtaining $\mu_{x-}(S_{1/2}v_{1/2}^{\nph})$}
-To obtain a definition for $\mu_{x-}(S_{1/2}v_{1/2}^{\nph})$, one can use the FD scheme for the pressure of the first-order system in \eqref{eq:discPressure} and evaluate this at $l = 0$
+To obtain a definition for $\mu_{x-}(S_{1/2}v_{1/2}^{\nph})$, one can use the FD scheme for the pressure of the first-order system in \eqref{eq:discPressure} and evaluate this at $l = 0$ to get
 \begin{equation}
     \frac{\bar S_0}{\rho_0 c^2}\delta_{t+}p_0^n = -\delta_{x-}(S_{1/2}v_{1/2}^{\nph}).
 \end{equation}
@@ -192,27 +192,27 @@ Equations \eqref{eq:bEquation} and \eqref{eq:bernoulli} can be substituted into 
 \begin{gather}
     \frac{a_1}{S_\text{r}}\left(b_1^n - b_2\Delta p^{\nph} - w[y^{\nph}+H_0]_+\text{sgn}(\Delta p^{\nph})\sqrt{\frac{2|\Delta p^{\nph}|}{\rho_0}}\right) - a_2 \Delta p^{\nph} - a_3^n = 0,\nonumber\\
     - w[y^{\nph}+H_0]_+\text{sgn}(\Delta p^{\nph})\sqrt{\frac{2|\Delta p^{\nph}|}{\rho_0}} - b_2\Delta p^{\nph} - \frac{a_2S_\text{r}}{a_1} \Delta p^{\nph} + b_1^n - \frac{a_3^nS_\text{r}}{a_1} = 0,\nonumber\\
-    -c_1^n\text{sgn}(\Delta p^{\nph})\sqrt{|\Delta p^{\nph}|} - c_2\Delta p^{\nph} + c_3^n = 0\label{eq:cEquation}
+    -c_1^n\text{sgn}(\Delta p^{\nph})\sqrt{|\Delta p^{\nph}|} - c_2\Delta p^{\nph} + c_3^n = 0,\label{eq:cEquation}
 \end{gather}
 where
 \begin{equation}\label{eq:cCoeffs}
     c_1^n = w[y^{\nph} + H_0]_+\sqrt{\frac{2}{\rho_0}} \geq 0, \quad c_2 = b_2 + \frac{a_2S_\text{r}}{a_1} \geq 0, \quad \text{and}\quad c_3^n = b_1^n - \frac{a_3^nS_\text{r}}{a_1}\ .
 \end{equation}
-Equation \eqref{eq:cEquation} can be divided by $-\text{sgn}(\Delta p^{\nph})$ to get a quadratic equation in $\sqrt{|\Delta p^{\nph}|}$
+Equation \eqref{eq:cEquation} can be divided by $-\text{sgn}(\Delta p^{\nph})$ to get a quadratic equation in $\sqrt{|\Delta p^{\nph}|}$:
 \begin{equation}
     c_2|\Delta p^{\nph}| + c_1^n\sqrt{|\Delta p^{\nph}|} - \frac{c_3^n}{\text{sgn}(\Delta p^{\nph})} = 0.
 \end{equation}
 As $c_1^n, c_2 \geq 0$, the following must be true for any real solutions to exist
 \begin{equation}\label{eq:sgnEquality}
-    \text{sgn}(c_3^n) = \text{sgn}(\Delta p^{\nph}) \quad \Longrightarrow \quad \frac{c_3^n}{\text{sgn}(\Delta p^{\nph})} = |c_3^n|.
+    \text{sgn}(c_3^n) = \text{sgn}(\Delta p^{\nph}) \quad \Longrightarrow \quad \frac{c_3^n}{\text{sgn}(\Delta p^{\nph})} = |c_3^n|,
 \end{equation}
 and one can solve for $\sqrt{|\Delta p^{\nph}|}$:
 \begin{equation}
     \sqrt{|\Delta p^{\nph}|} = \frac{-c_1^n \pm \sqrt{(c^n_1)^2+4c_2|c_3^n|}}{2c_2}\ .
 \end{equation}
-Finally, because $\sqrt{(c_1^n)^2 + 4c_2|c_3^n|} \geq c_1^n$, one can only guarantee a positive solution if square root term is added. Using Eq. \eqref{eq:sgnEquality}, the definition for the pressure difference can be found:
+Finally, because $\sqrt{(c_1^n)^2 + 4c_2|c_3^n|} \geq c_1^n$, one can only guarantee a positive solution if the square root term is added. Using Eq. \eqref{eq:sgnEquality}, the definition for the pressure difference can be found:
 \begin{equation}\label{eq:pressureDiff}
-    \Delta p^{\nph} = \text{sgn}(c_3^n)\left(\frac{-c_1^n + \sqrt{(c^n_1)^2+4c_2|c_3^n|}}{2c_2}\right)^2.
+    \Delta p^{\nph} = \text{sgn}(c_3^n)\left(\frac{-c_1^n + \sqrt{(c^n_1)^2+4c_2|c_3^n|}}{2c_2}\right)^2,
 \end{equation}
 which can be used in the update of the lip reed in Eq. \eqref{eq:discReed}. 
 
@@ -225,7 +225,7 @@ Equation \eqref{eq:UbUr} can then be substituted to get
 \begin{equation}\label{eq:pressureCoupled}
     p^{n+1}_0 = p_0^n - \frac{\rho_0c\lambda}{\bar S_0}\left(-2(U_\text{B}^{\nph} + U_\text{r}^{\nph}) + 2 S_{1/2}v_{1/2}^{\nph}\right).
 \end{equation}
-Figure \ref{fig:lipreedTube} shows an implementation of the lip reed connected to an acoustic tube. The lip reed is shown on the left and the left boundary of the tube is on the right side of the lip reed. The frequency of the lips is set to $f_0 = 600$ Hz ($\omega_0 = 1200\pi$ rad/s), the input pressure $P_\mtxt = 2000$ Pa and the other parameters are as listed in paper \citeP[H]. The initial conditions of the lip have been set to $y^{1/2} = y^{3/2} = -H_0$ such that the lips are closed at the start of the simulation and the tube is cylindrical with a circular cross-section of $S(x) = 5\cdot 10^{-5}$. The figure shows that the lips oscillate, and that when the lips are closed, i.e. when $y \leq H_0$, no energy enters the acoustic tube.\footnote{This is similar behaviour to what the pulse train in Section \ref{sec:pulseTrain} attempts to model.}
+Figure \ref{fig:lipreedTube} shows an implementation of the lip reed connected to an acoustic tube. The lip reed is shown on the left and the left boundary of the tube is on the right side of the lip reed. The frequency of the lips is set to $f_0 = 600$ Hz ($\omega_0 = 1200\pi$ rad/s), the input pressure $P_\mtxt = 2000$ Pa and the other parameters are as listed in paper \citeP[H]. The lip is initialised using $y^{1/2} = y^{3/2} = -H_0$ such that the lips are closed at the start of the simulation. Furthermore, the tube is set to be cylindrical with a circular cross-section of $S(x) = 5\cdot 10^{-5}$ m$^2$. The figure shows that the lips oscillate, and that when the lips are closed, i.e. when $y \leq H_0$, no energy enters the acoustic tube.\footnote{This is similar behaviour to what the pulse train in Section \ref{sec:pulseTrain} attempts to model.}
 
 % \subsubsection{Discussion}
 % The oscillation shown in Figure \ref{fig:lipreedTube} is similar to the pulse train shown in Section \ref{eq:pulseTrain}, and shows that this type of excitation signal is sufficient as a test case for a lip reed excitation. 
@@ -236,14 +236,14 @@ Figure \ref{fig:lipreedTube} shows an implementation of the lip reed connected t
     \caption{A lip reed (shown at the left side of the plots) exciting a cylindrical acoustic tube. The y-axis refers to the displacement of the lips and the pressure in the tube $p_l^n$ is shown in red and highlighted with a dashed line (not related to the y-axis).\label{fig:lipreedTube}}
 \end{figure}
 \section{Energy analysis}\label{sec:energyAnalysisLipreed}
-This section performs an energy analysis on the lip reed system coupled to an acoustic tube using the steps described Section \ref{sec:energyAnalysis}. As all physical parameters need to be written out to obtain the correct units, Eq. \eqref{eq:lipReedDimensional} is discretised to get
+This section performs an energy analysis on the lip reed system, coupled to an acoustic tube using the steps described Section \ref{sec:energyAnalysis}. As all physical parameters need to be written out to obtain the correct units, Eq. \eqref{eq:lipReedDimensional} is discretised to get
 \begin{equation}\label{eq:discLipreedDimensional}
     M\delta_{tt}y^{\nphSys} = -K\mu_{t\cdot}y^{\nphSys}-R\delta_{t\cdot}y^{\nphSys} + S_\text{r}\Delta p^{\nphSys},
 \end{equation} 
 and will be used in this analysis. Again, the superscript $n+1/2$ will be suppressed for $y$, $\Delta p$, $U_\text{B}$, $U_\text{r}$, $S_{1/2}$ and $v_{1/2}$ for brevity.
 
 \subsubsection{Step 1: Obtain $\dtp \h$} 
-Multiplying Eq. \eqref{eq:discLipreedDimensional} by $(\delta_{t\cdot}y)$, and moving all terms to the left-hand side, yields the rate of change of the energy in the lip reed $\h_\rtxt$
+Multiplying Eq. \eqref{eq:discLipreedDimensional} by $(\delta_{t\cdot}y)$, and moving all terms to the left-hand side, yields the rate of change of the energy in the lip reed $\h_\rtxt$:
 \begin{equation*}
     \dtp \h_\rtxt = M(\delta_{t\cdot}y^{\nph})(\delta_{tt}y^{\nph}) + K(\delta_{t\cdot}y^{\nph})(\mu_{t\cdot}y^{\nph}) + R(\delta_{t\cdot}y^{\nph})^2 - S_\text{r}(\delta_{t\cdot}y^{\nph})\Delta p^{\nph} = 0.
 \end{equation*}
@@ -291,7 +291,7 @@ The kinetic and potential energy of the lip reed can be written in their units a
     \t_\rtxt = \frac{M}{2}(\delta_{t-}y)^2 &\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad\text{kg}\cdot(\text{s}^{-1}\cdot \text{m})^{2}= \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},\\
     \v_\rtxt = \frac{K}{2}\mu_{t-}(y^2)&\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad \text{N} \cdot \text{m}^{-1} \cdot \text{m}^2 = \text{kg}\cdot\text{m}^2\cdot\text{s}^{-2},
 \end{align*}
-and have the correct units. Recalling that the damping and input power terms need to have units of kg$\cdot$ m$^2 \cdot $s$^{-3}$, writing the individual components of these terms in their respective units yields
+and have the correct units. Recalling that the damping and input power terms need to have units of kg$\cdot$ m$^2 \cdot $s$^{-3}$, writing the individual components of these terms in their respective units, yields
 \begin{align*}
     R(\dtd y)^2 &\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad\text{kg}\cdot\text{s}^{-1}\cdot(\text{s}^{-1}\cdot \text{m})^{2} = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-3} ,\\
     U_\text{B}\Delta p^{\nph}&\ \overset{\text{in units}}{\xrightarrow{\hspace*{1cm}}} \quad \text{m}^3 \cdot \text{s}^{-1}\cdot \text{kg}\cdot \text{m}^{-1}\cdot \text{s}^{-2}= \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-3},\\
@@ -299,7 +299,7 @@ and have the correct units. Recalling that the damping and input power terms nee
 \end{align*}
 and shows that the units are indeed correct.
 \subsubsection{Step 4: Implementation}
-Figure \ref{fig:lipReedEnergy} shows the energetic output of the lip reed exciting coupled to an acoustic tube corresponding to the behaviour shown in Figure \ref{fig:lipreedTube}. The total energy of the system increases due to the input pressure and is mainly transferred to the tube. The oscillations of the lip reed can be observed from the oscillations in its kinetic and potential energy. The normalised energy (using Eq. \eqref{eq:normalisedEnergyDamping}) does not include the first time index as one full iteration of the coupling is necessary to yield a correct energy calculation. Instead, one starts at $n=1$ and uses $\h^1$ instead of $\h_0$ in Eq. \eqref{eq:normalisedEnergyDamping}. \SWcomment[Check with stefan]
+Figure \ref{fig:lipReedEnergy} shows the energetic output of the lip reed coupled to an acoustic tube, corresponding to the behaviour shown in Figure \ref{fig:lipreedTube}. The total energy of the system increases due to the input pressure and is mainly transferred to the tube. That the lip reed is oscillating can be observed from the oscillations in its kinetic and potential energy. The normalised energy (using Eq. \eqref{eq:normalisedEnergyDamping}) does not include the first time index, as one full iteration of the coupling is necessary to yield a correct energy calculation. Instead, one starts at $n=1$ and uses $\h^1$ instead of $\h^0$ in Eq. \eqref{eq:normalisedEnergyDamping}. \SWcomment[Check with stefan]
 
 \begin{figure}[h]
     \centering
@@ -318,5 +318,7 @@ Figure \ref{fig:lipReedEnergy} shows the energetic output of the lip reed exciti
         \node[] (c) at (-5.8, -0.5) {\small $\color{blue}\mathfrak{t}_\rtxt$};
 
       \end{tikzpicture}
-      \caption{The energy of the acoustic tube (green), the potential energy (red) and the kinetic energy of the lip reed (blue), and the total energy (black) of the system corresponding to Figure \ref{fig:lipreedTube}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping} starting at $n=1$) and shows that the deviation of the energy is within machine precision. \label{fig:lipReedEnergy}}
+      \caption{The energy of the acoustic tube (green), the potential energy (red) the kinetic energy of the lip reed (blue), and the total energy (black) of the system corresponding to Figure \ref{fig:lipreedTube}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}, starting at $n=1$) and shows that the deviation of the energy is within machine precision. \label{fig:lipReedEnergy}}
 \end{figure}
+
+\todo{figure layout}

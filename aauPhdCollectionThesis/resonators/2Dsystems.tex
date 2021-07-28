@@ -71,7 +71,7 @@ See Figure \ref{fig:biharmonic} for the stencil of the discrete biharmonic opera
 \section{The 2D wave equation}\label{sec:2Dwave}
 The 2D wave equation is the simplest 2D model in the context of musical acoustics and using the operators presented above it is a fairly straightforward extension to the 1D wave equation. Similar to how the 1D wave equation is used to model an ideal string, the 2D wave equation can be used to model an ideal membrane. 
 
-The first appearance of an implementation of the 2D wave equation in a musical context was due to van Duyne and Smith who used digital waveguides, or more specifically a waveguide mesh, to discretise it \cite{Duyne1993}. The implementation is identical to the FD scheme that will be presented here.\SWcomment[though it is more general here due to $\lambda^2$ instead of hard-coded $0.5$]
+The first appearance of an implementation of the 2D wave equation in a musical context was proposed by van Duyne and Smith who used digital waveguides, or more specifically a waveguide mesh, to discretise it \cite{Duyne1993}. The implementation is identical to the FD scheme that will be presented here (if the stability condition of the latter is satisfied with equality).
 
 This section will present the 2D wave equation in continuous time and its discretisation afterwards. The resulting FD scheme is then used as a test-case to extend the various analysis techniques presented in Chapter \ref{ch:analysis} to 2D.
 
@@ -242,7 +242,7 @@ If one would like to visualise the system state as a 2D grid, one can revert the
 \begin{center}
     \texttt{uMatrix = reshape(u, Ny-1, Nx-1);}
 \end{center}
-A 2D raised-cosine excitation can be implemented in the same way by reshaping an excitation matrix to a vector (see Section \ref{sec:2DraisedCos})\todo{check if this is still true}.
+A 2D raised-cosine excitation can be implemented in the same way by reshaping an excitation matrix to a vector (see Section \ref{sec:2DraisedCos}).
 
 \subsubsection{Output}
 Figure \ref{fig:2Dpropagation} shows the wave propagation of an implementation of the 2D wave equation with Dirichlet boundary conditions. Parameter values are $L_x = 1.5$ m, $L_y = 1$ m and $c= 360$ m/s. Waves reflect at the boundaries at an increasing rate. This is also shown in Figure \ref{fig:output2DWave}, where the output -- taken at $(x,y) = (0.15, 0.85)$ -- in time domain shows an increase in oscillations over time, due to these reflections. The right panel shows that the output contains many partials that are close together, i.e., the output is highly inharmonic. As opposed to the output of the 1D wave equation shown in Figure \ref{fig:1DWaveOutput}, where the partials are integer multiples of the fundamental frequency, the 2D wave equation exhibits aperiodic behaviour due to the aforementioned reflections, causing this inharmonicity.
@@ -459,7 +459,7 @@ Adding losses to Eq. \eqref{eq:platePDENoLosses} yields
 \begin{equation}\label{eq:platePDE}
     \rho H \ptt u = -D\Delta\Delta u - 2\sz \rho H \pt u + 2 \so\rho H  \pt \Delta u
 \end{equation}
-where, as in the case of the stiff string in Eq. \eqref{eq:stiffStringPDE}, $\sz$ and $\so$ are the frequency independent (in s$^{-1}$) and frequency dependent damping coefficient (in m$^2$/s) respectively.\todo{check hyphens after `frequency'}
+where, as in the case of the stiff string in Eq. \eqref{eq:stiffStringPDE}, $\sz$ and $\so$ are the frequency-independent (in s$^{-1}$) and frequency-dependent damping coefficient (in m$^2$/s) respectively.\todo{check hyphens after `frequency'}
 
 \subsubsection{Boundary conditions}
 Similar to the stiff string, clamped and simply supported boundary conditions can be defined as
@@ -703,7 +703,7 @@ Figure \ref{fig:energyThinPlate} shows the energetic output of an implementation
 \subsection{Modal analysis}
 Using the matrix form in Eq. \eqref{eq:matrixFormThinPlate}, a modal analysis of the system can be performed using a one-step form described in Section \ref{sec:oneStepForm}.
 
-Figure \ref{fig:thinPlateModes} shows the results of the analysis with parameter values as listed in Table \ref{tab:thinPlateParams}. Although the modal frequencies follow a similar pattern to those of the 2D wave equation in Figure \ref{fig:modalShapes2D}, the pattern is slightly more exponential like the stiff string in Figure \ref{fig:modesStiffString}.\SWcomment[not really sure what to say here honestly] 
+Figure \ref{fig:thinPlateModes} shows the results of the analysis with parameter values as listed in Table \ref{tab:thinPlateParams}. Although the modal frequencies follow a similar pattern to those of the 2D wave equation in Figure \ref{fig:modalShapes2D}, the pattern is slightly more exponential like the stiff string in Figure \ref{fig:modesStiffString}.
 
 \begin{figure}[h]
     \centering
@@ -712,7 +712,7 @@ Figure \ref{fig:thinPlateModes} shows the results of the analysis with parameter
 \end{figure}
 
 \section{The stiff membrane}
-The term \textit{stiff membrane} first appeared in \cite{Fletcher1998}\todo{true?} and is essentially a 2D version of the stiff string. It can be used to model membranes with dispersive effects or provide tension control for thin plates. In this work, the stiff membrane has only been used in paper \citeP[F] to model a drum membrane. 
+The term \textit{stiff membrane}, as defined in \cite{Fletcher1998}, is essentially a 2D version of the stiff string. It can be used to model membranes with dispersive effects or provide tension control for thin plates. In this work, the stiff membrane has only been used in paper \citeP[F] to model a drum membrane. 
 
 Similar to previous sections, this section will provide the continuous-time and discrete-time equations of the model. Only a frequency domain analysis will be given, as energy and modal analyses are too similar to those previously presented.
 

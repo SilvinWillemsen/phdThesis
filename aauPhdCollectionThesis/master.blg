@@ -7,6 +7,7 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated field_info (elt_size=4) to 10198 items from 5000.
 Database file #1: bib/mybib.bib
 Warning--I didn't find a database entry for "Webster19"
 -- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
@@ -14,45 +15,45 @@ Warning--I didn't find a database entry for "Webster19"
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 104 entries,
+You've used 112 entries,
             4087 wiz_defined-function locations,
-            1454 strings with 24156 characters,
-and the built_in function-call counts, 66431 in all, are:
-= -- 5562
-> -- 1330
-< -- 530
-+ -- 727
-- -- 217
-* -- 2976
-:= -- 10485
-add.period$ -- 210
-call.type$ -- 104
-change.case$ -- 105
-chr.to.int$ -- 1218
-cite$ -- 104
-duplicate$ -- 4865
-empty$ -- 5448
-format.name$ -- 274
-if$ -- 15411
+            1492 strings with 25733 characters,
+and the built_in function-call counts, 71328 in all, are:
+= -- 5915
+> -- 1482
+< -- 550
++ -- 805
+- -- 249
+* -- 3199
+:= -- 11215
+add.period$ -- 226
+call.type$ -- 112
+change.case$ -- 113
+chr.to.int$ -- 1269
+cite$ -- 112
+duplicate$ -- 5243
+empty$ -- 5904
+format.name$ -- 313
+if$ -- 16559
 int.to.chr$ -- 0
-int.to.str$ -- 104
-missing$ -- 821
-newline$ -- 353
-num.names$ -- 108
-pop$ -- 1886
+int.to.str$ -- 112
+missing$ -- 898
+newline$ -- 379
+num.names$ -- 116
+pop$ -- 2101
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 5274
+skip$ -- 5653
 stack$ -- 0
-substring$ -- 2902
-swap$ -- 3768
-text.length$ -- 124
+substring$ -- 3029
+swap$ -- 4022
+text.length$ -- 127
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 104
+type$ -- 112
 warning$ -- 0
-while$ -- 308
-width$ -- 107
-write$ -- 998
+while$ -- 323
+width$ -- 115
+write$ -- 1067
 (There was 1 warning)
