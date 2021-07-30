@@ -21,17 +21,6 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-\bibitem{Smith2010b}
-\BIBentryALTinterwordspacing
-J.~O. Smith, ``Physical audio signal processing (online book),'' 2010.
-  [Online]. Available: \url{http://ccrma.stanford.edu/~jos/pasp/}
-\BIBentrySTDinterwordspacing
-
-\bibitem{theBible}
-S.~Bilbao, \emph{Numerical Sound Synthesis: Finite Difference Schemes and
-  Simulation in Musical Acoustics}.\hskip 1em plus 0.5em minus 0.4em\relax John
-  Wiley \& Sons, 2009.
-
 \bibitem{Fletcher1998}
 N.~H. Fletcher and T.~D. Rossing, \emph{The Physics of Musical
   Instruments}.\hskip 1em plus 0.5em minus 0.4em\relax Springer, 1998.
@@ -97,6 +86,12 @@ J.~O. Smith, ``Music applications of digital waveguides,'' Technical Report,
 ------, ``Physical modeling using digital waveguides,'' \emph{Computer Music
   Journal}, vol.~16, no.~4, pp. 74--91, 1992.
 
+\bibitem{Smith2010b}
+\BIBentryALTinterwordspacing
+------, ``Physical audio signal processing (online book),'' 2010. [Online].
+  Available: \url{http://ccrma.stanford.edu/~jos/pasp/}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Adrien1991}
 J.-M. Adrien, ``The missing link: Modal synthesis,'' in \emph{Representations
   of Musical Signals}, G.~{De Poli}, A.~Picalli, and C.~Roads, Eds.\hskip 1em
@@ -114,6 +109,11 @@ G.~Borin, G.~De~Poli, and A.~Sarti, ``A modular approach to excitator-resonator
 \bibitem{Poli1998}
 G.~{De Poli} and D.~Rocchesso, ``Physically based sound modelling,''
   \emph{Organised Sound}, vol.~3, no.~1, pp. 61--76, 1998.
+
+\bibitem{theBible}
+S.~Bilbao, \emph{Numerical Sound Synthesis: Finite Difference Schemes and
+  Simulation in Musical Acoustics}.\hskip 1em plus 0.5em minus 0.4em\relax John
+  Wiley \& Sons, 2009.
 
 \bibitem{Valimaki2006}
 V.~V\"{a}lim\"{a}ki, J.~Pakarinen, C.~Erkut, and M.~Karjalainen,
@@ -339,11 +339,19 @@ S.~Bilbao, M.~Ducceschi, and C.~Webb, ``Large-scale real-time modular physical
   modeling sound synthesis,'' in \emph{Proceedings of the 22th International
   Conference on Digital Audio Effects (DAFx-19)}, 2019.
 
+\bibitem{Fletcher1964}
+H.~Fletcher, ``Normal vibration frequencies of a stiff string,'' \emph{Journal
+  of the Acoustical Society of America}, vol.~36, no.~1, pp. 203--209, 1964.
+
 \bibitem{stringGist}
 \BIBentryALTinterwordspacing
 S.~Willemsen, ``{stiffString.m},'' 2021. [Online]. Available:
   \url{https://gist.github.com/SilvinWillemsen/58f7353103ab6930da6139ed08f68c8f}
 \BIBentrySTDinterwordspacing
+
+\bibitem{Saad2003}
+Y.~Saad, \emph{Iterative methods for sparse linear systems}.\hskip 1em plus
+  0.5em minus 0.4em\relax Philadelphia: SIAM, 2003.
 
 \bibitem{Kemp2002}
 J.~A. Kemp, ``Theoretical and experimental study of wave propagation in brass
@@ -551,17 +559,16 @@ G.~F. Carrier, ``On the non-linear vibration problem of the elastic string,''
 D.~Wessel and M.~Wright, ``Problems and prospects for intimate musical control
   of computers,'' \emph{Computer Music Journal}, vol.~26, no.~3, 2002.
 
-\bibitem{CPPdenormalised}
-\BIBentryALTinterwordspacing
-exception, ``double - and how to use it,'' 2008. [Online]. Available:
-  \url{http://www.cplusplus.com/articles/Nb07M4Gy/}
-\BIBentrySTDinterwordspacing
-
 \bibitem{Eigen}
 \BIBentryALTinterwordspacing
 G.~Guennebaud, B.~Jacob \emph{et~al.}, ``Eigen,'' 2021. [Online]. Available:
   \url{http://eigen.tuxfamily.org}
 \BIBentrySTDinterwordspacing
+
+\bibitem{Paisa2019}
+R.~Paisa and D.~Overholt, ``Enhancing the expressivity of the sensel morph via
+  audio-rate sensing,'' in \emph{Proceedings of the New Interfaces for Musical
+  Expression conference}, 2019.
 
 \bibitem{Pardue2020}
 L.~Pardue, M.~Ortiz, M.~van Walstijn, P.~Stapleton, and M.~Rodger,
@@ -574,11 +581,6 @@ M.~van Walstijn, A.~Bhanuprakash, and P.~Stapleton, ``Finite-difference
   simulation of linear plate vibration with dynamic distributed contact,'' in
   \emph{Proceedings of the 18th Sound and Music Computing (SMC) Conference},
   2021.
-
-\bibitem{Paisa2019}
-R.~Paisa and D.~Overholt, ``Enhancing the expressivity of the sensel morph via
-  audio-rate sensing,'' in \emph{Proceedings of the New Interfaces for Musical
-  Expression conference}, 2019.
 
 \bibitem{passalenti2019a}
 A.~Passalenti, R.~Paisa, N.~Nilsson, N.~Andersson, F.~Fontana, R.~Nordahl, and
@@ -595,6 +597,12 @@ A.~Passalenti, R.~Paisa, N.~Nilsson, N.~Andersson, F.~Fontana, R.~Nordahl, and
 F.~Fontana, R.~Paisa, R.~Ranon, and S.~Serafin, ``Multisensory plucked
   instrument modeling in {Unity3D}: From keytar to accurate string
   prototyping,'' \emph{Applied Sciences}, vol.~10, 2020.
+
+\bibitem{CPPdenormalised}
+\BIBentryALTinterwordspacing
+exception, ``double - and how to use it,'' 2008. [Online]. Available:
+  \url{http://www.cplusplus.com/articles/Nb07M4Gy/}
+\BIBentrySTDinterwordspacing
 
 \bibitem{msallam1997physical}
 R.~Msallam, S.~Dequidt, S.~Tassart, and R.~Causse, ``Physical model of the

@@ -19,7 +19,7 @@ In other words, the second derivative of the function $f(x)=x^2$ around $x=0$ is
 
 As the term does not only include a second-order spatial derivative but also a first-order time derivative, this is referred to as a a positive or negative \textit{rate of change} of the curvature, i.e., when $\partial_t\partial_x^2u>0$ or $\partial_t\partial_x^2u<0$. A positive rate of change of curvature means that the string either has a positive curvature and is getting more positive, i.e., the string gets more curved over time, or that the string has a negative curvature and is getting less negative, i.e., the string gets less curved or 'loosens up' over time.  In the same way, a negative rate of change of curvature means that the string either has a negative curvature and is getting more negative, or that the string has a positive curvature and is getting less positive. 
 
-Let's see some examples. Take the same function described before, but now $f$ changes over time, fx. $f(x, t)=tx^2$. When $t$ increases over time, the curvature gets bigger. Repeating the above with $x=0$ and grid spacing $h = 1$, but now with $t=2$ and step size $k=1$, but now with a backwards time derivative yields:
+Let's see some examples. Take the same function described before, but now $f$ changes over time, e.g. $f(x, t)=tx^2$. When $t$ increases over time, the curvature gets bigger. Repeating the above with $x=0$ and grid spacing $h = 1$, but now with $t=2$ and step size $k=1$, but now with a backwards time derivative yields:
   \begin{alignat*}{3}
     \delta_{t-}\delta_{xx}f(x,t) &= \frac{1}{kh^2}\bigg(&&f(-1, 2) - 2f(0, 2) + f(1, 2) \\
     & &&- \Big(f(-1, 1) - 2f(0, 1) + f(1, 1)\Big)\bigg),\\

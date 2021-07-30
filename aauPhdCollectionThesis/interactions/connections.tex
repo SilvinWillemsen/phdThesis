@@ -8,7 +8,9 @@ Examples of connected resonators based on FDTD methods are shown in e.g. \cite{t
 The first example presented in this chapter is the case of two ideal strings, connected using a rigid and spring-like connection. Afterwards, the connection between a stiff string and a thin plate using a nonlinear spring will be presented, and has been used extensively in papers \citeP[A] and \citeP[B]. Before moving on to these examples, interpolation and spreading operators in 2D will be introduced.
 
 \section{Interpolation and spreading in 2D}\label{sec:interpolationSpreading2D}
-One can extend the interpolation and spreading operators presented in Section \ref{sec:interpolationSpreading} to 2D by adding an additional argument to the operators \cite{theBible}. Using $l_\itxt = \floor[x_\itxt / h]$ and $m_\itxt = \floor[y_\itxt / h]$, a $0$\thOrder interpolation operator $I_0(x_\itxt, y_\itxt) = I_{(l, m), 0}(x_\itxt, y_\itxt)$ is defined as
+This section summarises and extends \cite[Sec. 10.2.1, pp. 293--294]{theBible}.
+
+One can extend the interpolation and spreading operators presented in Section \ref{sec:interpolationSpreading} to 2D by adding an additional argument to the operators. Using $l_\itxt = \floor[x_\itxt / h]$ and $m_\itxt = \floor[y_\itxt / h]$, a $0$\thOrder interpolation operator $I_0(x_\itxt, y_\itxt) = I_{(l, m), 0}(x_\itxt, y_\itxt)$ is defined as
 \begin{equation}
     I_0(x_\itxt, y_\itxt) = \begin{cases}
         1, & \text{if } l = l_\itxt \text{ and } m = m_\itxt,\\
@@ -564,14 +566,18 @@ Following the same process as in Section \ref{sec:explicitSolutionSpringConn}, s
     \end{align}
 \end{subequations}
 where
-\begin{align*}
-    u^{\star} =&\ \Big(\Iq (2\uqn - u_q^{n-1}) + c^2k^2 \Iq\dcc \uqn - \kappa_\stxt^2k^2 \Iq\dcccc \uqn\\
-    &+ \szX[\stxt]k\Iq u_q^{n-1} + 2\soX[\stxt]k^2 \Iq\dtm\dcc \uqn\Big) / (1+\szX[\stxt]k)
-\end{align*}
-and
-\begin{align*}
-    w^\star =\frac{-\kappa_\ptxt^2\Ilm\dDelta\dDelta \wlmn + \szX[\ptxt]k\Ilm w_{l,m}^{n-1} + 2\soX[\ptxt] \Ilm\dtm\dxx \wlmn}{1+\szX[\ptxt]k},
-\end{align*}
+\begin{subequations}
+\begin{align}
+    &\begin{aligned}
+        u^{\star} =&\ \Big(\Iq (2\uqn - u_q^{n-1}) + c^2k^2 \Iq\dcc \uqn - \kappa_\stxt^2k^2 \Iq\dcccc \uqn\\
+        &\quad+ \szX[\stxt]k\Iq u_q^{n-1} + 2\soX[\stxt]k^2 \Iq\dtm\dcc \uqn\Big) / (1+\szX[\stxt]k),
+    \end{aligned}\label{eq:stringPlateUStar}\\
+    &\begin{aligned}
+        w^\star =&\ \Big(-\kappa_\ptxt^2\Ilm\dDelta\dDelta \wlmn + \szX[\ptxt]k\Ilm w_{l,m}^{n-1} \\
+        &\qquad\qquad+ 2\soX[\ptxt] \Ilm\dtm\dxx \wlmn\Big)/(1+\szX[\ptxt]k),
+    \end{aligned}\label{eq:stringPlateWStar}
+\end{align}
+\end{subequations}
 are the update equations of the schemes at their respective connection locations without the force term. 
 
 Evaluating Eq. \eqref{eq:discEtaStringPlate} at $n+1$ and substituting Eqs. \eqref{eq:connStringPlateFDSsAtConn} yields

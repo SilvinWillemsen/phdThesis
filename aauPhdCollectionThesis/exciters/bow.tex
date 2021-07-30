@@ -32,9 +32,11 @@ The first nonlinear systems in the context of musical instrument simulations, in
 The first appearance of FDTD methods in bowed string simulations was in a publication by Pitteroff and Woodhouse in \cite{Pitteroff1998}. Later, Maestre et al. in \cite{Maestre2014} used FDTD methods to implement a thermal friction model proposed by Woodhouse in \cite{Woodhouse2003}. In both cases, the string was implemented using digital waveguides. Desvages implemented a bowed string model using a static friction model and a two-polarisation FDTD model for the string in \cite{Desvages2016, Desvages2018}, but did not implement this in real-time. The first real-time implementation of a bowed stiff string fully modelled using FDTD methods was presented in paper \citeP[A]. Finally, paper \citeP[C] presented the first (real-time) implementation of the elasto-plastic friction model applied to a FD scheme in a musical context.
 
 \section{Interpolation and spreading operators}\label{sec:interpolationSpreading}
+This section summarises and extends \cite[Sec. 5.2.4 pp. 101--104]{theBible}.
+
 To listen to, or interact with a FD scheme between grid points, it is necessary to use some form of interpolation. 
 % As should be clear by now, FD schemes are an approximation to continuous space (and time) using a finite number of points. Working with the system between grid points is not impossible, but requires an extra step. If one would like to listen to a location between specified grid points, one can use interpolation. 
-To this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can be applied to a grid function \cite{theBible}. This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. In this section, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$. The theory presented in this section will be extended to 2D in Section \ref{sec:interpolationSpreading2D}.
+To this end, an \textit{interpolation operator} $I(x_\itxt)$ can be introduced and can applied to a grid function \cite{theBible}. This operator is a function of $x_\itxt$, the (continuous) location of interest and can be defined in various levels of accuracy. In this section, a 1D system $u(x,t)$ is assumed where $x\in \D$ for spatial domain $\D$. The theory presented in this section will be extended to 2D in Section \ref{sec:interpolationSpreading2D}.
 
 An interpolation operator can be applied to a grid function $\uln$, which performs the following operation:
 \begin{equation}

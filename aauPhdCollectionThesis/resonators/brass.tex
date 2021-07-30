@@ -1,8 +1,8 @@
 \chapter{Acoustic Tubes}\label{ch:brass}
 
-The dynamics of woodwind and brass instruments is based on wave propagation in acoustic tubes. Although the physical processes that generate the sound are fundamentally different from those in strings, the underlying models have many similarities. The main difference between acoustic tubes and the (ideal) strings, is that tubes have a varying cross-sectional area, causing wave dispersion and greatly influencing the modal frequencies and modal shapes present in the system.
+The dynamics of woodwind and brass instruments is based on wave propagation in acoustic tubes. Although the physical processes that generate the sound are fundamentally different from those in strings, the underlying models have many similarities. The main difference between acoustic tubes and (ideal) strings, is that tubes have a varying cross-sectional area, causing wave dispersion and greatly influencing behaviour of the system.
 
-In this work, planar wave propagation is assumed (rather than spherical), such that the behaviour of the systems can be approximated using 1D systems. Although higher-dimensional models might better capture some physical effects (see e.g. \cite{Kemp2002}), 1D systems already show good agreement between model and measurement \cite{Eveno2012}. Moreover, looking towards real-time implementation of these models, the choice to simplify to 1D has been made due to the low relative computational cost. 
+In this work, the behaviour of acoustic tubes is approximated using 1D systems. Although higher-dimensional models might better capture some physical effects (see e.g. \cite{Kemp2002}), 1D systems already show good agreement between model and measurement \cite{Eveno2012}. Moreover, looking towards real-time implementation of these models, the choice to simplify to 1D has been made due to the low relative computational cost. 
 
 This chapter first presents Webster's equation, which extends the 1D wave equation presented in Section \ref{sec:1DWave} by introducing a spatially varying cross-section. Although not used for the contributions in Part \ref{part:contributions}, Webster's equation forms a good basis for the second part of this chapter, which decomposes Webster's equation into a system of two coupled first-order PDEs. This has been used to model the trombone in paper \citeP[H].
 
@@ -11,13 +11,15 @@ For an (axially symmetric) acoustic tube of length $L$ (in m), where the wavelen
 \begin{equation}\label{eq:webstersPDE}
     S\partial_t^2\Psi = c^2\partial_x(S\partial_x\Psi),
 \end{equation}
-with \textit{acoustic potential} $\Psi = \Psi(x,t)$ (in m$^2$/s), the cross-sectional area along the tube, or bore profile $S = S(x)$ (in m$^2$) and the speed of sound in air $c$ (in m/s). The state variable $\Psi$ is defined for $t\geq 0$ and $x \in \D$ where domain $\D = [0, L]$. If $S(x)$ is constant, Eq. \eqref{eq:webstersPDE} reduces to the 1D wave equation in Eq. \eqref{eq:1DwavePDE}. This shows that for a cylindrical acoustic tube, the fundamental frequency is not affected by the cross-sectional area, but solely relies on length $L$ and wave speed $c$ according to Eq. \eqref{eq:fundamentalFreq}. The acoustic potential can be related to pressure $p = p(x,t)$ (in Pa) and particle velocity $v = v(x,t)$ (in m/s) according to \cite{Bilbao2018}
+with \textit{acoustic potential} $\Psi = \Psi(x,t)$ (in m$^2$/s), the cross-sectional area along the tube, or bore profile $S = S(x)$ (in m$^2$) and the speed of sound in air $c$ (in m/s). The state variable $\Psi$ is defined for $t\geq 0$ and $x \in \D$ where domain $\D = [0, L]$. If $S(x)$ is constant, Eq. \eqref{eq:webstersPDE} reduces to the 1D wave equation in Eq. \eqref{eq:1DwavePDE}. This shows that for a cylindrical acoustic tube, the fundamental frequency is not affected by the cross-sectional area, but solely relies on length $L$ and wave speed $c$ according to Eq. \eqref{eq:fundamentalFreq}.\footnote{Equation \eqref{eq:webstersPDE} also reduces to the 1D wave equation if the acoustic tube is conical, i.e., if $\px S(x)$ is constant.} 
+
+The acoustic potential can be related to pressure $p = p(x,t)$ (in Pa) and particle velocity $v = v(x,t)$ (in m/s) according to \cite{Bilbao2018}
 \begin{equation}\label{eq:pressureVelocityWebster}
     p = \rho_0 \pt \Psi, \qaq v = -\px \Psi,
 \end{equation}
 with air density $\rho_0$ (in kg/m$^3$).
 
-The interesting thing about the presence of a variable cross-section, is that it causes dispersive or scattering behaviour, especially at locations of high (spatial) variation of $S$. See Figure \ref{fig:websterPropagation}. Contrary to frequency dispersion as happens in a stiff string (see Chapter \ref{ch:stiffString}), all frequencies travel at the same speed, but some components of the wave get reflected due to the geometry of the tube.
+The interesting thing about the presence of a variable cross-section, is that it causes dispersive or scattering behaviour, especially at locations of high (spatial) variation of $S$. See Figure \ref{fig:websterPropagation}.%Contrary to frequency dispersion as happens in a stiff string (see Chapter \ref{ch:stiffString}), all frequencies travel at the same speed, but some components of the wave get reflected due to the geometry of the tube.
 
 \def\figWidth{0.32}
 \begin{figure}[h]
@@ -37,8 +39,8 @@ The choices for boundary conditions in an acoustic tube are open and closed, def
         \partial_x\Psi(0, t) &= 0, & \partial_x\Psi(L, t) &= 0, & &\text{(Neumann, closed)}\label{eq:contNeumannBrass}.
     \end{align}
 \end{subequations}
-This might be slightly counter-intuitive when compared to the 1D wave equation, as ``closed" might imply the ``fixed" or Dirichlet boundary condition. The opposite can be intuitively shown by imagining a wave front with a positive acoustic potential (and thus positive pressure according to Eq. \eqref{eq:pressureVelocityWebster}) moving through a tube and hitting a closed end. What reflects is also a wave front with a positive acoustic potential, i.e., the sign of the potential does not flip. This also happens using the free or Neumann condition for the 1D wave equation (see Figure \ref{fig:boundaryCondsCont}).
-Here, the following boundaries are chosen
+This might be slightly counter-intuitive when compared to the 1D wave equation, as ``closed" might imply the ``fixed" or Dirichlet boundary condition. The opposite can be intuitively shown by imagining a wave front with a positive acoustic potential moving through a tube and hitting a closed end. What reflects is also a wave front with a positive acoustic potential, i.e., the sign of the potential does not flip. This also happens using the free or Neumann condition for the 1D wave equation (see Figure \ref{fig:boundaryCondsCont}).
+Here, the following conditions are chosen
 \begin{equation}\label{eq:openClosed}
     \partial_x\Psi(0, t) = 0, \quad \text{and} \quad \partial_t\Psi(L, t) = 0,
 \end{equation}
@@ -75,7 +77,7 @@ with
 \begin{equation}
     \lambda = \frac{ck}{h},
 \end{equation}
-and similar to the 1D wave equation in Section \ref{sec:1DWaveDisc} needs to abide
+and, similar to the 1D wave equation in Section \ref{sec:1DWaveDisc}, needs to abide
 \begin{equation}\label{eq:CFLwebster}
     \lambda \leq 1,
 \end{equation}
@@ -98,14 +100,14 @@ Although these values will not be needed when discretising the boundary conditio
 
 
 \subsubsection{Boundary conditions}
-One can discretise the continuous boundary conditions in Eq. \eqref{eq:openClosed} (closed at $x=0$, open at $x=L$) using centred difference operators for higher accuracy
+One can discretise the continuous boundary conditions in Eq. \eqref{eq:openClosed} (closed at $x=0$, open at $x=L$) using centred difference operators for higher accuracy according to
 \begin{subequations}\label{eq:discBoundariesBrass}
     \begin{align}
         \dxd\Psi_0^n &= 0 \quad \Rightarrow \quad\Psi_{-1}^n = \Psi_1^n ,\quad \!\!\!\!\!\!&&\text{(Neumann, closed)}, \label{eq:closedLeftBrass}\\
         \dtd\Psi_N^n &= 0\quad\Rightarrow \quad \Psi_N^n = 0, \quad \!\!\!\!\!\!&&\text{(Dirichlet, open)}\label{eq:openRightBrass}.
     \end{align}
 \end{subequations} 
-At the left boundary, Eq. \eqref{eq:webstersUpdateEq} can be expanded to:
+At the left boundary, Eq. \eqref{eq:webstersUpdateEq} can be expanded to
 \begin{equation*}
     \begin{aligned}
         \Psi_0^{n+1} &= 2(1-\lambda^2)\Psi_0^n-\Psi_0^{n-1}+ \frac{\lambda^2S_{1/2}}{\bar S_0}\Psi_1^n + \frac{\lambda^2S_{-1/2}}{\bar S_0}\Psi_{-1}^n,\\[-0.5em]
@@ -137,7 +139,7 @@ which can be expanded and solved for $\Psi_{N+1}^n$ according to
 \begin{equation}
     \Psi_{N+1}^n = h\left(-\frac{a_1}{k}(\Psi_N^{n+1} - \Psi_N^{n-1}) - a_2(\Psi_N^{n+1} + \Psi_N^{n-1})\right) + \Psi_{N-1}^n.
 \end{equation}
-Substitution into Eq. \eqref{eq:webstersUpdateEq} at the $l=N$ yields the following update equation
+Substitution into Eq. \eqref{eq:webstersUpdateEq} at $l=N$ yields the following update equation:
 \begin{equation}
     \Psi_N^{n+1} = \frac{2(1-\lambda^2)\Psi_N^n-\Psi_N^{n-1}+\alpha_-\Psi_N^{n-1} + 2\lambda^2\Psi_{N-1}^n}{\left(1+\alpha_+\right)},
 \end{equation}
@@ -145,7 +147,7 @@ where
 \begin{equation}
     \alpha_\pm = h\left(\frac{a_1}{k}\pm a_2\right)\frac{\lambda^2S_{N+1/2}}{\bar S_N}.
 \end{equation}
-One can observe that $S_{N+1/2}$ is needed which is outside the defined domain. As mentioned before, setting $\Sbar_N = S(L)$, one can calculate $S_{N+1/2}$ using Eq. \eqref{eq:Snph} to solve the issue. 
+One can observe that $S_{N+1/2}$ is needed, which is outside the defined domain. As mentioned before, setting $\Sbar_N = S(L)$, one can calculate $S_{N+1/2}$ using Eq. \eqref{eq:Snph} to solve the issue. 
 
 \subsection{Excitation}\label{sec:webstersExcitation}
 Although excitations will be discussed more in-depth in Chapter \ref{ch:physInspExcitations}, a simple way to excite Webster's equation will be presented here.
@@ -163,11 +165,11 @@ and can be substituted into the update equation in Eq. \eqref{eq:webstersUpdateE
     \Psi_0^{n+1} &= 2(1-\lambda^2)\Psi_0^n-\Psi_0^{n-1} \frac{\lambda^2S_{1/2}}{\Sbar_0}\Psi_1^n + \frac{\lambda^2S_{-1/2}}{\Sbar_0}\left(2h v_\text{in}^n + \Psi_1^n\right),\nonumber\\
     \Psi_0^{n+1} &= 2(1-\lambda^2)\Psi_0^n-\Psi_0^{n-1} +2\lambda^2\Psi_1^n + \frac{2h\lambda^2S_{-1/2}}{\Sbar_0} v_\text{in}^n.
 \end{align}
-The input signal is arbitrary, but looking towards lip excitation, and following \cite{theBible}, one can set the input to a pulse train as shown in Figure \ref{fig:inputWebster}. More details can be found in Section \ref{sec:pulseTrain}.
+The input signal is arbitrary, but looking towards lip excitation, and following \cite{theBible}, one can set the input to a pulse train as shown in Figure \ref{fig:inputWebster}. More details on the pulse train can be found in Section \ref{sec:pulseTrain}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/brass/inputWebster.eps}
-    \caption{A pulse train with a frequency of $213$ Hz a duty cycle of 50\% and an attack of $22$ ms, used to generate the output in Figure \ref{fig:outputWebster}. \label{fig:inputWebster}}
+    \caption{A pulse train with a frequency of $213$ Hz a duty cycle of 25\% and an attack of $22$ ms, used to generate the output in Figure \ref{fig:outputWebster}. \label{fig:inputWebster}}
 \end{figure}
 
 % At the left boundary, one can sed $\bar S_N = S_N$ from which $S_{N+1/2}$ can be calculated:
@@ -231,7 +233,7 @@ and the $(N+1)\times 1$ input vector $\mathbf{v}^n$ consists of zeros except for
 \end{equation}
 %
 Notice how the radiation is included by changing the last entry of matrices $\A$ and $\C$.
-The output of an implementation of Webster's equation is shown in Figure \ref{fig:outputWebster}. The parameters used for the scheme, the input signal and the geometry used to obtain the output can be found in Table \ref{tab:websterParams}, Figure \ref{fig:inputWebster}, and Figure \ref{fig:geometryWebster} respectively.
+The output of an implementation of Webster's equation is shown in Figure \ref{fig:outputWebster}. The parameters used for the scheme, the input signal and the geometry used to obtain the output can be found in Table \ref{tab:websterParams}, Figure \ref{fig:inputWebster}, and Figure \ref{fig:geometryWebster} respectively. Notice that the frequencies of the partials are not integer multiples of the fundamental (as for the 1D wave equation in Figure \ref{fig:1DWaveOutput}) due to the varying geometry of the acoustic tube and the radiating boundary.  
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/brass/outputWebster.eps}
@@ -338,13 +340,10 @@ Using identity \eqref{eq:prodIdentity4} yields the definitions for $\h_\text{b}$
 Finally, $\b = \b_\text{l}$ and can be shown to vanish for both Dirichlet and (centred) Neumann conditions.
 
 \subsubsection{Step 3: Check units}
-\SWcomment[It seems like in order for the units to make sense, one must write Eq. \eqref{eq:webstersPDE} as
-\begin{equation}
-    \frac{S\rho}{c^2} \ptt\Psi = \frac{B}{c^2}\px(S(\px\Psi)),
-\end{equation}
-where $B$ is the bulk modulus of air (in N/m$^2$)]
+To obtain the correct units, the quantities for pressure and particle velocity in Eq. \eqref{eq:pressureVelocityWebster} need to be substituted into the scheme. As this substitution will be made in Section \ref{sec:firstOrderSystem}, the unit check will be omitted here. 
+
 \subsubsection{Step 4: Implementation}
-Figure \ref{fig:energyWebsters} shows the energetic output of Webster's equation with a radiating boundary at $x=L$. To highlight the effect of the radiation, the parameters are set to $L = 1$ and $S(x) = 0.01$ for all $x\in \D$.  The system is excited with a raised cosine close to the left boundary, and when the excitation reaches the radiating boundary, the total energy in the system decreases due to the losses. The energy stored by the boundary $\h_\text{b}$ is also shown and indeed increases when the wave reaches the boundary.
+Figure \ref{fig:energyWebsters} shows the energetic output of Webster's equation with a radiating boundary at $x=L$. To highlight the effect of the radiation, the parameters are set to $L = 1$ m and $S(x) = 0.01$ m $^2$ for all $x\in \D$.  The system is excited with a raised cosine close to the left boundary, and when the excitation reaches the radiating boundary, the total energy in the system decreases due to the losses. The energy stored by the boundary $\h_\text{b}$ is also shown and indeed increases when the wave reaches the boundary.
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[->,node distance=3cm,
@@ -365,7 +364,7 @@ Figure \ref{fig:energyWebsters} shows the energetic output of Webster's equation
 \end{figure}
 
 \subsection{Stability through energy analysis}\label{sec:stabilityEnergyWebster}
-Frequency domain analysis as presented in Section \ref{sec:stabilityAnalysis}, or more specifically, von Neumann analysis, can not be performed on Webster's equation due to the varying cross-section of the system \cite{theBible}. Instead, stability conditions can be obtained through energy analysis explained in Section \ref{sec:stabilityAnalysisEnergy}.
+Frequency domain analysis as presented in Section \ref{sec:stabilityAnalysis}, or more specifically, von Neumann analysis, can not be performed on Webster's equation due to the varying cross-section of the system \cite{theBible}. Instead, stability conditions can be obtained through energy analysis explained in Section \ref{sec:stabilityAnalysisEnergy}. This section follows the process presented in \cite[Sec. 9.1.5, pp. 255--256]{theBible}.
 
 Consider the following scheme
 \begin{equation}
@@ -417,18 +416,18 @@ For the special choice of $[S]_l = \mxx S_l$, this condition reduces to
 \end{equation}
 also given in \eqref{eq:CFLwebster}. This choice of $[S]_l$ is equal to $\Sbar_l$ through Eq. \eqref{eq:Sbar}, hence its choice in Eq. \eqref{eq:discWebster}.
 
-\subsection{Modal analysis}
-Following Section \ref{sec:oneStepForm}one can perform a modal analysis of the system by writing Eq. \eqref{eq:matrixFormWebsters} in one-step  form (ignoring the input vector). The variable cross-section causes the modes of the system to vary in interesting ways. If the tube is perfectly cylindrical and $S(x)$ is thus constant, Webster's equation reduces to the 1D wave equation and the modal frequencies are integer multiples of the fundamental frequency. 
-For low cross-sectional variations, the modes generally follow a linear pattern. See Figure \ref{fig:webstersModes}. The damping per mode, however, follows a different pattern, where higher damping occurs around $\fs/4$.
+% \subsection{Modal analysis}
+% Following Section \ref{sec:oneStepForm}one can perform a modal analysis of the system by writing Eq. \eqref{eq:matrixFormWebsters} in one-step  form (ignoring the input vector). The variable cross-section causes the modes of the system to vary in interesting ways. If the tube is perfectly cylindrical and $S(x)$ is thus constant, Webster's equation reduces to the 1D wave equation and the modal frequencies are integer multiples of the fundamental frequency. 
+% For low cross-sectional variations, the modes generally follow a linear pattern. See Figure \ref{fig:webstersModes}. The damping per mode, however, follows a different pattern, where higher damping occurs around $\fs/4$.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth]{figures/resonators/brass/webstersModes.eps}
-    \caption{The result of a modal analysis of Webster's equation with parameters and geometry given in \ref{sec:outputWebster}. Notice the higher damping for modes around $\fs/4$. \label{fig:webstersModes}}
-\end{figure}
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=\textwidth]{figures/resonators/brass/webstersModes.eps}
+%     \caption{The result of a modal analysis of Webster's equation with parameters and geometry given in \ref{sec:outputWebster}. Notice the higher damping for modes around $\fs/4$. \label{fig:webstersModes}}
+% \end{figure}
 
 \section{First-order system}\label{sec:firstOrderSystem}
-Until now, only PDEs that are second-order in time have been presented, i.e., that are dependent on the acceleration of the state variable. This section presents a system of two coupled first-order PDEs which are instead dependent on the velocity. State-of-the-art research on brass instruments in the context of FDTD methods also uses this coupled system (see e.g.\cite{Bilbao2016, Harrison2018}) and has been used in this project to model the trombone in paper \citeP[H].\todo{look at wording}
+Until now, only PDEs that are second-order in time have been presented, i.e., that are dependent on the acceleration of the state variable. This section presents a system of two coupled first-order PDEs which are instead dependent on the velocity. State-of-the-art research on brass instruments in the context of FDTD methods also uses this coupled system (see e.g. \cite{Bilbao2016, Harrison2018}) and has been used in this project to model the trombone in paper \citeP[H].\todo{look at wording}
 
 \subsection{Continuous time}\label{sec:firstOrderSystemCont}
 Using the same variables as before for cross-sectional area $S=S(x)$, wave speed $c$, and air density $\rho_0$, a system of PDEs that describes air propagation in an acoustic tube can be defined as follows:
@@ -554,8 +553,8 @@ Finally the concatenated vector is defined as,
 \end{equation}
 and will be of size $(2N + 1) \times 1$. 
 
-\subsection{Energy analysis}
-This section presents an energy analysis of the first-order system presented above using the techniques presented in Section \ref{sec:energyAnalysis}. For the bulk of the analysis, \cite{Harrison2018} is followed. 
+\subsection{Energy analysis}\label{eq:energyAnalysisFirstOrder}
+This section presents an energy analysis of the first-order system presented above using the techniques presented in Section \ref{sec:energyAnalysis}. The bulk of the analysis follows \cite[Sec. 3.4.1, pp. 80--81]{Harrison2018}. 
 
 \subsubsection{Step 1: Obtain $\dtp \h$}
 To obtain the correct energy balance, an inner product of Eq. \eqref{eq:discPressure} with $\mu_{t+}p_l^n$ needs to be taken over discrete domain $d = \{0, \hdots, N\}$. Using the primed inner product in Eq. \eqref{eq:primedInnerProd} and, after taking all terms to the left-hand side, yields\footnote{The primed rather than the weighted inner product can be used here as the eventual boundary terms can be shown to vanish when using the boundary conditions in Eq. \eqref{eq:firstOrderBoundaryConditions}.}
@@ -618,7 +617,7 @@ Figure \ref{fig:energyFirstOrder} shows the energetic output of an implementatio
 \subsection{Levine and Schwinger radiation model}\label{sec:levineSchwing}
 \def\r{\text{r}}
 \def\one{{(1)}}
-As done in Section \ref{sec:webstersEq}, radiation can be added to the acoustic tube. The radiation model used in this work was proposed by Levine and Schwinger in \cite{Levine1948}, its discretisation proposed by Silva et al. \cite{Silva2009}. Although other radiation models exist, state-of-the-art work by Bilbao and Harrison on brass instruments based on the first-order system in \eqref{eq:firstOrderSystem} also use this model \cite{Bilbao2013, Harrison2018}. See Figure \ref{fig:circuit} for a circuit representation of the Levine and Schwinger radiation model.\footnote{The Levine and Schwinger model has been taken from \cite{Harrison2018} `as is' and this thesis will not provide additional background on the working of the model. The interested reader is referred to \cite{Harrison2018} for more information.}
+As done in Section \ref{sec:webstersEq}, radiation can be added to the right boundary acoustic tube. The radiation model used in this work was proposed by Levine and Schwinger in \cite{Levine1948}, discretised by Silva et al. \cite{Silva2009}. Although other radiation models exist, state-of-the-art work by Bilbao and Harrison on brass instruments based on the first-order system in \eqref{eq:firstOrderSystem} also use this model \cite{Bilbao2013, Harrison2018}. See Figure \ref{fig:circuit} for a circuit representation of the Levine and Schwinger radiation model. This section will only go into practical details necessary for implementation of the algorithm. Further background is provided in \cite{Harrison2018}.
 
 \begin{figure}[t]
     \centering
@@ -696,21 +695,26 @@ Once $p_N^{n+1}$ is known, the internal states of the system can be updated as f
         p_\one^{n+1} &= \zeta_1\mtp p_N^n + \zeta_2 p_\one^n.
     \end{align}
 \end{subequations}
-The various parameters are taken from \cite{Harrison2018} and can be found in Table \ref{tab:radiationParams}
+The various parameters are taken from \cite{Harrison2018} and are
+\begin{gather*}
+    R_1 = \rho_0c,\quad R_2 = 0.505\rho_0c, \\
+    \quad L_\rtxt = 0.613\rho_0\sqrt{\Sbar_N/\pi}, \qaq C_\rtxt = 1.111\frac{\sqrt{\Sbar_N}}{\rho_0 c^2\sqrt{\pi}}\ .
+\end{gather*}
+
 \todo{temperature dependent parameters somewhere?}
 \todo{table}
 \subsection{Energy analysis}
-This section shows the result of the energy analysis of the above radiation model. The full derivation will not be given here, but can be found in \cite{Harrison2018}. The result is included in this thesis for completeness, and such that it cam be used for implementation and debugging purposes.
+This section shows the result of the energy analysis of the above radiation model. The full derivation will not be given here, but can be found in \cite{Harrison2018}. The result is included in this thesis for completeness, and such that it can be used for implementation and debugging purposes.
 
 One can perform an energy analysis of the radiation model by recalling the condition at the right boundary from Eq. \eqref{eq:firstOrderRightBoundary}
 \begin{equation}
     \mathfrak{b}_\r = (\mu_{t+}p_N)\underbrace{\mu_{x+}(S_{N-1/2}v_{N-1/2})}_{\mu_{x-}S_{N+1/2}v_{N+1/2}},
 \end{equation}
-which, using Eq. \eqref{eq:barVars}, one can rewrite this to
+which, using Eq. \eqref{eq:barVars}, can be rewritten to
 \begin{equation}
     \mathfrak{b}_\r = \bar p\bar S_N\bar v.
 \end{equation}
-Following the derivation in \cite[Sec. 4.1.4]{Harrison2018}, this can eventually be rewritten to
+Following the derivation in \cite[Sec. 4.1.4, pp. 111--112]{Harrison2018}, this can eventually be rewritten to
 \begin{equation}
     \dtp \h_\text{rad} + \q_\text{rad} = 0,
 \end{equation}
@@ -724,3 +728,4 @@ with
     v_{(3)}^n = \frac{p_\one^n}{R_2}, \qaq
     \mtp v_{(2)}^n = \frac{\mtp p_N^n - \mtp p_\one^n}{R_1}.
 \end{equation}
+Notice that $\h_\text{rad}$ and $\q_\text{rad}$ are non-negative and thus do not affect the stability of the system.

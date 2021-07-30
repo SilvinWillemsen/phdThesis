@@ -3,74 +3,70 @@
 \pagestyle{fancy}
 \addcontentsline{toc}{chapter}{Preface}
 
-Finding creative solutions to complex problems.
+% Physical modelling of musical instruments is an interesting topic, as many people can relate to music or instruments in some way, and thus have an immediate opinion about it. Over the past few years I often got asked questions like ``I'm a musician. Will I be replaced if you continue your work?'', or ``Why simulate an instrument if you can learn to play it yourself?'' Usually, I respond that instrument simulations are not made to replace the original, but can be used as tool to understand the physics of existing instruments and possibly go beyond. Simulated instruments are not restricted by physics anymore and could provide new ways of expression for the musician.
 
-With future reference for myself
+% For as long as I can remember, music has been a big part of my life. I grew up surrounded by many different musical instruments and played the piano from a young age. Throughout my education, I discovered my interests in mathematics, physics and computer-science, but did not pursue these until during my bachelor's degree. During my MSc. in Sound and Music Computing, I could combine these interests with my life-long passion for music. 
 
-Starting this PhD project, I did not have a background in mathematics, physics or computer science, which were three equally crucial components in creating the result of this project. After the initial steep learning curve of notation and terminology, I was surprised to find that the methods used for physical modelling are actually quite straightforward! 
+This PhD thesis is the product of a 3-year long endeavour on physical modelling musical instruments using finite-difference time-domain (FDTD) methods. The main contributions include several real-time implementations of traditional musical instruments ranging from string instruments to brass instruments. Furthermore, a novel method has been created to change the material properties of the simulations in real time, which allows for physically impossible manipulations of the instrument. This thesis is structured as a collection of papers preceded by an introduction describing the methods on which the publications are based in extended detail. A comprehensive overview of the structure of this thesis appears at the end of Chapter \ref{ch:physMod}.
 
-Of course it should take a bit of time to learn these things, but 
+\subsubsection{A personal note}
+The field of physical modelling for sound synthesis is cross-disciplinary and combines mathematics, physics and computer science. As my background did not include any of these disciplines, the terminology and notation used by the literature were slightly overwhelming at the start of this project. After overcoming the initial steep learning curve, I was surprised to find that FDTD methods are actually relatively straightforward, and are less complex than the literature makes them out to be. 
 
-Partly to present the research done over the last 3 years and partly pedagogical
+Throughout this project, I discovered that existing work lacks a lot of intuition needed for readers without a background in any of these disciplines. Rather, much of the literature assumes that the reader has a degree in at least one of the aforementioned topics. In his seminal work \textit{Numerical Sound Synthesis}, which is the most complete work to date on physically modelling musical instruments using FDTD methods, Stefan Bilbao says that, in order to read his book, \textit{"a strong background in digital signal processing, physics, and computer programming is essential."} This inspired me to use this opportunity to write a large part as an aid for beginners in the field, while simultaneously relating it to the contributions made during the PhD project. Additionally, I hope that this enhanced level of detail supports the reproducibility of my contributions without overshadowing them.
 
+% I believe that anyone with some basic skills in mathematics and programming is able to create a physical simulation based on physics within a short amount of time, given the right tools, which I hope that this dissertation could be.  
 
-Many concepts that seemed impossible at the beginning 
-
-I feel that the literature lacks a lot of the intuition needed for readers without a background in any of these topics. Rather, much of the literature I came across assumes that the reader has a degree in at least one of the aforementioned topics. Stefan Bilbao's seminal work \textit{Numerical Sound Synthesis}, which is the most complete work to date describing how to physically model musical instruments using finite-difference time-domain methods says that "A strong background in digital signal processing, physics, and computer programming is essential."
-Even though some basic calculus knowledge is assumed to understand the concepts used in this work, a degree in any of the aforementioned topics is (hopefully) unnecessary. \SWcomment[Furthermore, some experience with MATLAB and C++ is assumed for the code examples]
-
-Some working titles: \textit{Physical Modelling for Dummies} \textit{Physical Modelling for the faint-hearted}
-
-Also, I came across a lot of ``it can be shown that's without derivations. This is why I decided to write this work a bit more pedagogical, and perhaps more elaborate than what could be expected. 
-
-I believe that anyone with some basic skills in mathematics and programming is able to create a simulation based on physics within a short amount of time, given the right tools, which I hope that this dissertation could be.  
-
-The knowledge dissemination of this dissertation is thus not only limited to the research done and publications made over the course of the project, but also its pedagogical nature hopefully allowing future (or past) students to benefit from.
-
-As with a musical instrument itself, a low entry level, a gentle learning curve along with a high virtuosity level is desired. Take a piano, for instance. Most will be able to learn a simple melody — such as “Fr\`ere Jacques” — in minutes, but to become virtuous requires years of practice.
-
-This is the way I wanted to write this dissertation: easy to understand the basic concepts, but many different aspects touched upon to allow for virtuosity. Hopefully by the end, the reader will at least grasp some highly complex concepts in the fields of mathematics, physics and computer science (which will hopefully take less time than it takes to become virtuous at playing the piano). 
-
-As Smith states in his work \textit{Physical Audio Signal Processing} \cite{Smith2010b} ``All we need is Newton'', and indeed, all Newton's laws of motion will make their appearance in this document.
+% I wanted to show insight my learning process and (hopefully) explain topics such as \textit{Energy Analysis}, \textit{Stability Analysis}, etc. in a way that others lacking the same knowledge %(/ with the same background) 
+% will be able to understand.
 
 
-I wanted to show my learning process and (hopefully) explain topics such as \textit{Energy Analysis}, \textit{Stability Analysis}, etc. in a way that others lacking the same knowledge %(/ with the same background) 
-will be able to understand.
 
-Make physical modelling more accessible to the non-physicist. Also supports reproducibility of science and lowers the entry level   
+% The knowledge dissemination of this dissertation is thus not only limited to the research done and publications made over the course of the project, but also its pedagogical nature hopefully allowing future (or past) students to benefit from.
 
 
-\textit{Interested in physically impossible manipulations of now-virtual instruments.}
+% I did not want this thesis to merely be a document that my work during this PhD project could be assessed by. Instead, it should be a contribution on its own: to put physical modelling into reach of beginners in the field.
+
+% Some working titles: \textit{Physical Modelling for Dummies} \textit{Physical Modelling for the faint-hearted}
+
+% Also, I came across a lot of ``it can be shown that's without derivations. This is why I decided to write this work a bit more pedagogical, and perhaps more elaborate than what could be expected. 
 
 
-\SWcomment[Could be fun to include this :) :] ``I'm a musician. Will I be out of a job if you keep making physical models?'' Physical modelling is not here to replace the original instruments and the musicians playing them. Instead, it can be used as a tool to understand the physics of existing instruments and possibly go beyond. Simulated instruments are not restricted by physics anymore and could provide new ways of expression for the musician.
 
-\subsubsection{Acknowledgements}
+% As with a musical instrument itself, a low entry level, a gentle learning curve along with a high virtuosity level is desired. Take a piano, for instance. Most will be able to learn a simple melody — such as “Fr\`ere Jacques” — in minutes, but to become virtuous requires years of practice.
 
-I would like to thank my mom..
+% This is the way I wanted to write this dissertation: easy to understand the basic concepts, but many different aspects touched upon to allow for virtuosity. Hopefully by the end, the reader will at least grasp some highly complex concepts in the fields of mathematics, physics and computer science (which will hopefully take less time than it takes to become virtuous at playing the piano). 
 
-First and foremost, I want to wholeheartedly like to thank my supervisor and friend Stefania Serafin, without whom none of this would have been possible. After she approached me 
+% As Smith states in his work \textit{Physical Audio Signal Processing} \cite{Smith2010b} ``All we need is Newton'', and indeed, all Newton's laws of motion will make their appearance in this document.
 
-I quickly found out that this project was a ``golden ticket'' to go in whichever direction I wanted to as long as it is publishable. She provided this opportunity and let me be free in my decisions throughout my project and I am extremely grateful for that.
+% \textit{Interested in physically impossible manipulations of now-virtual instruments.}
+\pagebreak
+\section*{Acknowledgements}
+First and foremost, I want to wholeheartedly like to thank my supervisor and friend Stefania Serafin, without whom none of this would have been possible. I quickly found out that this PhD project was a ``golden ticket'' to go in whichever direction I found interesting as long as it was scientifically relevant. She provided me with this opportunity and allowed me to be free in my decisions throughout my project, and I can't thank her enough for that. Also, I would like to thank her for the laughs, drinks, nerdy jokes, and overall good times at the Multisensory Experience (ME) Lab. Working at AAU with Stefania and the entire ME-Lab team has truly been a `dream job', for which I am extremely grateful. 
 
-Next, I would like to thank Stefan Bilbao for his invaluable help throughout this PhD project. He has been an incredible mentor and the results of this project would not have been possible without him.  been an incredible help
+% Of course, Finally, during protecting me from distractions 
+% laughs and nerdy jokes
+
+% \todo{Check if stefan is actually co-supervising}Next, I would like to thank Stefan Bilbao for his invaluable help throughout this PhD project. He ended up unofficially co-supervising the project, and has been an incredible mentor throughout the process and a great personal inspiration to me. His critical look raised this thesis and several publications to a higher level. Needless to say, the results of this project would not have been possible without him. 
+
+Next, I would like to thank Stefan Bilbao for his invaluable supervision throughout this PhD project. He has been an incredible mentor throughout the process and a great personal inspiration to me. His critical look raised this thesis and several publications to a higher level. Needless to say, the results of this project would not have been possible without him. 
 
 
-and his seminal work \textit{Numerical Sound Systhesis} have been invaluable to the result of this project...
-Michele Ducceschi
+% This includes including his seminal work \textit{Numerical Sound Synthesis})
+Furthermore, I would like to thank Michele Ducceschi for our collaborations on several papers. His patience and willingness to help have been exceptional, and I hope that our collaboration continues in the future.
 
-% Other guys at Edinburgh: Brian, Charlotte, Craig
+In January 2019, I visited the University of Edinburgh and want to thank -- in addition to Stefan and Michele -- Craig Webb, Brian Hamilton, Charlotte Desvages and Giulia Fratoni for welcoming me into their research group for an amazing two weeks. 
 
-I would like to thank Madeleine Koudstaal, Marius Onofrei, Razvan Paisa, Nikolaj Andersson, Pelle Juul Christensen
+Writing this thesis, I received an incredible amount of help from my mother Madeleine Koudstaal, who tirelessly went through every single line of this document taking out nearly invisible punctuation and spelling errors. Others who helped in this regard are Marius Onofrei, Razvan Paisa, Niels Willemsen, Nikolaj Andersson and Pelle Juul Christensen, and I can not thank them enough for their help in polishing this work.
 
-Colleagues and friends from the Multisensory Experience Lab
-, Pelle Juul Christensen, Nikolaj Andersson, Razvan Paisa, Ali Adjorlu, Lars Andersen, Nicklas Andersen, Karolina Prawda, Nathalie, Anca-Simona Horvath, Mauro Nascimben, Rares Stefan Alecu, Titas Lasickas, Vesa V{\"a}lim{\"a}ki
+Next, I would like to thank my colleagues, visitors and friends from the ME-Lab not mentioned before: Ali Adjorlu, Lars Andersen, Nicklas Andersen, Lui Thomsen, Jonas Wang, Simone Spagnol, Emil H{\o}eg, Cumhur Erkut, Sofia Dahl, Dan Overholt, Niels Nilsson, Jon Bruun-Pedersen, Sebastian Boring, Elisha Anne Teo, Rolf Nordahl, James Leonard, J{\'e}r{\^o}me Villeneuve, Federico Fontana, Romain Michon, Nolan Lem and Nathaly Betancourt. Thanks for the drinks, interesting discussions and overall amazing times at the Lab and AAU.
 
-% James, Jerome, Federico Fontana, Romain, 
+Furthermore, I would like to thank the co-authors of the publications made over the course of this project: Karolina Prawda, Vesa V{\"a}lim{\"a}ki, Anca-Simona Horvath, Mauro Nascimben, Titas Lasickas, Rares Stefan Alecu, Emanuele Parravicini, Stefano Lucato, Jacob M{\o}ller Hjerrild and Mads Græsbøll Christensen, and I look forward to future collaborations. 
 
-Finally, I would like to thank my family for having always supported the decisions I made and providing the freedom I needed to pursue my dreams. Specifically, I would like to thank Anna
+I would also like to take this opportunity to thank my PhD committee: Olga Timcenko, Julius O. Smith and Augusto Sarti for their time and effort in assessing my PhD project.
 
-% Anna, who has always been willing to sit through my try-out lectures and conference presentations and  headaches from unfinished (and finished) implementations. 
+This project was financially supported by NordForsk's Nordic University Hub Nordic Sound and Music Computing Network NordicSMC under project number 86892.
+
+Finally, I would like to thank my family for having always supported the decisions I made and providing the freedom I needed to pursue my dreams. Specifically, I would like to thank Anna Katarina Weber, for her unconditional support over the last few years, including sitting through my try-out lectures and conference presentations and enduring headaches from my unfinished (and finished) implementations.
 
 \vfill
 \hfill Silvin Willemsen

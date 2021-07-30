@@ -3,12 +3,11 @@ The previous chapters considered systems distributed over one spatial dimension.
 
 Apart from being slightly more complex than 1D models, the main issue with 2D systems is that their implementations are orders of magnitude heavier to compute than 1D schemes. This chapter will therefore also provide details on how to best implement these schemes in \texttt{MATLAB}. Implementation in C++ will be detailed in Chapter \ref{ch:realtime}.
 
-This chapter starts by providing some additional information about 2D grid functions and operators. Then, the 2D wave equation is presented, which is used to extend the analysis techniques presented in Chapter \ref{ch:analysis} to 2D.\footnote{The abbreviation 2D will also be used for `two dimensions'.} Afterwards, two 2D models used in this work: the thin plate and the stiff membrane, will be described in a similar fashion.
-The systems modelled in this work are simplified to be rectangular and are defined on a Cartesian coordinate system. Section \ref{sec:radialCoordinates} briefly elaborates on radial coordinate systems and their shortcomings. 
+This chapter starts by providing some additional information about 2D grid functions and operators. Then, the 2D wave equation is presented, which is used to extend the analysis techniques presented in Chapter \ref{ch:analysis} to 2D.\footnote{The abbreviation 2D will also be used for `two dimensions'.} Afterwards, two 2D models that are used in this work, the thin plate and the stiff membrane, will be described in a similar fashion. %Section \ref{sec:radialCoordinates} briefly elaborates on radial coordinate systems and their shortcomings. 
 Unless denoted otherwise, the theory in this chapter follows \cite{theBible}.
 
 \section{PDEs and FD schemes in 2D}\label{sec:2Dintro}
-Consider a rectangular 2D system with side lengths $L_x$ and $L_y$ (both in m) and its state described by $u = u(x,y,t)$. The system is defined for $t\geq 0$ and $(x,y) \in \D$ where domain $\D \in [0, L_x]\times [0, L_y]$ is two-dimensional. 
+The systems modelled in this work are simplified to be rectangular and are defined on a Cartesian coordinate system. Consider a rectangular 2D system with side lengths $L_x$ and $L_y$ (both in m) and its state described by $u = u(x,y,t)$. The system is defined for $t\geq 0$ and $(x,y) \in \D$ where domain $\D \in [0, L_x]\times [0, L_y]$ is two-dimensional. 
 
 Similar to the 1D case explained in Section \ref{sec:gridFunctions}, the state variable can be discretised to a 2D grid function according to $u(x, y, t) \approxeq \ulmn$ with space $x = lh$ and $y = mh$ and time $t = nk$ with $k=1/\fs$. The temporal index $n\in\mathbb{N}^0$  and the spatial indices $l\in \{0, \hdots, N_x\}$ and $m\in \{0, \hdots, N_y\}$ index the grid function in space in the $x$ and $y$ directions respectively. Here, $N_x$ is the number of intervals between grid points in the $x$ direction and $N_y$ in the $y$ direction. For simplicity, the grid spacing $h$ is set to be the same in both the $x$ and $y$ directions in this work.
 
@@ -28,13 +27,9 @@ In discrete time, the same temporal and spatial shift operators as defined in Se
 \end{equation}
 Using these shift operators, a discrete approximation of the Laplacian in Eq. \eqref{eq:laplacian} can be made\footnote{Notice that the $\dDelta$ operator is identical to $\delta_{\Delta \boxplus}$ in \cite{theBible}, but will not be used here as Eq. \eqref{eq:discreteLaplacian} is the only discretisation to the $\Delta$ operator used in this work.} 
 \begin{equation}\label{eq:discreteLaplacian}
-    \Delta \approxeq \dDelta \triangleq \frac{1}{h^2}\left(e_{x+} + e_{x-} + e_{y+} + e_{y-} - 4\right),
+    \Delta \approxeq \dDelta \triangleq \frac{1}{h^2}\left(e_{x+} + e_{x-} + e_{y+} + e_{y-} - 4\right).
 \end{equation}
-and, when applied to a grid function, yields
-\begin{equation}\label{eq:laplacianExpansion}
-    \Delta u \approxeq \dDelta \ulmn = \frac{1}{h^2}\left(u_{l+1, m}^n + u_{l-1, m}^n+u_{l, m+1}^n+u_{l, m-1}^n - 4 \ulmn\right). 
-\end{equation}
-See Figure \ref{fig:laplacian} for the stencil of the discrete Laplacian. Similarly, an approximation of the biharmonic operator in Eq. \eqref{eq:biharmonic} can be made as
+Also see Figure \ref{fig:laplacian}. Similarly, an approximation of the biharmonic operator in Eq. \eqref{eq:biharmonic} can be made as
 \begin{equation}\label{eq:discreteBiharmonic}
 % \begin{align}
         \Delta\Delta \approxeq \dDelta\dDelta 
@@ -48,19 +43,19 @@ See Figure \ref{fig:laplacian} for the stencil of the discrete Laplacian. Simila
         \triangleq \begin{aligned}[t]
         &\frac{1}{h^4}\bigg[\left(e_{x+}^2 + e_{x-}^2 + e_{y+}^2 + e_{y-}^2\right) \\
         &\ \ \ + 2 \left(e_{x+}e_{y+} + e_{x+}e_{y-} + e_{x-}e_{y+} + e_{x-}e_{y-}\right) \\
-        &\ \ \ -8 \left(e_{x+} + e_{x-} + e_{y+} + e_{y-}\right) + 20\bigg],
+        &\ \ \ -8 \left(e_{x+} + e_{x-} + e_{y+} + e_{y-}\right) + 20\bigg].
     \end{aligned}
 % \end{align}
 \end{equation}
-and, when applied to a grid function, yields
-\begin{equation}\nonumber
-    \begin{aligned}
-    \Delta\Delta u\approxeq\dDelta\dDelta \ulmn =&\frac{1}{h^4}\Big[(u_{l+2, m}^n + u_{l-2, m}^n+u_{l, m+2}^n+u_{l, m-2}^n)\\
-    &\ \ \ +2(u_{l+1, m+1}^n + u_{l-1, m+1}^n+u_{l+1, m-1}^n+u_{l-1, m-1}^n)\\
-    &\ \ \ -8(u_{l+1, m}^n + u_{l-1, m}^n+u_{l, m+1}^n+u_{l, m-1}^n) + 20u_{l,m}^n\Big].
-    \end{aligned}
-\end{equation}
-See Figure \ref{fig:biharmonic} for the stencil of the discrete biharmonic operator.
+% and, when applied to a grid function, yields
+% \begin{equation}\nonumber
+%     \begin{aligned}
+%     \Delta\Delta u\approxeq\dDelta\dDelta \ulmn =&\frac{1}{h^4}\Big[(u_{l+2, m}^n + u_{l-2, m}^n+u_{l, m+2}^n+u_{l, m-2}^n)\\
+%     &\ \ \ +2(u_{l+1, m+1}^n + u_{l-1, m+1}^n+u_{l+1, m-1}^n+u_{l-1, m-1}^n)\\
+%     &\ \ \ -8(u_{l+1, m}^n + u_{l-1, m}^n+u_{l, m+1}^n+u_{l, m-1}^n) + 20u_{l,m}^n\Big].
+%     \end{aligned}
+% \end{equation}
+Also see Figure \ref{fig:biharmonic}.
 \begin{figure}[h]
     \centering
     \subfloat[The $\dDelta$ operator in Eq. \eqref{eq:discreteLaplacian}.\label{fig:laplacian}]{\includegraphics[width=0.45\textwidth]{figures/resonators/2d/laplacian.pdf}}\hspace{0.06\textwidth}
@@ -102,7 +97,7 @@ Using the definition for the approximation of the Laplacian in Eq. \eqref{eq:dis
 \begin{equation}\label{eq:2DwaveFDS}
     \dtt \ulmn = c^2 \dDelta \ulmn,
 \end{equation}
-with $l\in\{0, \hdots, N_x\}$ and $m\in \{0, \hdots, N_y\}$ where $N_x$ and $N_y$ are the number of intervals between grid points in the $x$ and $y$ direction respectively. The operators can then be expanded (see Eq. \eqref{eq:laplacianExpansion}) and solving for $\ulm^n$ yields the following update equation 
+with $l\in\{0, \hdots, N_x\}$ and $m\in \{0, \hdots, N_y\}$ where $N_x$ and $N_y$ are the number of intervals between grid points in the $x$ and $y$ direction respectively. The operators can then be expanded (see Eq. \eqref{eq:discreteLaplacian}) and solving for $\ulm^n$ yields the following update equation 
 \begin{equation}\label{eq:update2Dwave}
     \ulm^{n+1} = 2\ulmn - \ulm^{n-1} + \lambda^2 \left(u_{l+1, m}^n + u_{l-1, m}^n+u_{l, m+1}^n+u_{l, m-1}^n - 4 \ulmn\right),
 \end{equation}
@@ -158,7 +153,7 @@ To implement the update equation in Eq. \eqref{eq:update2Dwave}, one could save 
         u^n_{N_y-1, 1} & \hdots & u^n_{N_y-1, N_x-1}
     \end{bmatrix},
 \end{equation}
-and could be used to make a `for-loop implementation' of the update equation. This would indeed be the strategy if one would implement the scheme in e.g. C++ (see Chapter \ref{ch:realtime}). For a more compact and faster implementation in \texttt{MATLAB}, however, one could `stack' or `flatten' the state matrices to vectors and update the scheme using matrix-vector multiplication (as done for the stiff string in Section \ref{sec:implementationStiffString} for example). Again using Dirichlet boundary conditions, the stacked state vector will be structured as
+and could be used to make a `for-loop implementation' of the update equation. This would indeed be the strategy if one would implement the scheme in e.g. C++ (see Chapter \ref{ch:realtime}). For a more compact implementation in \texttt{MATLAB}, however, one could `stack' or `flatten' the state matrices to vectors and update the scheme using matrix-vector multiplication (as done for the stiff string in Section \ref{sec:implementationStiffString} for example). Again using Dirichlet boundary conditions, the stacked state vector will be structured as
 \begin{equation}\label{eq:stackedState}
     \uStack^n = [(\u_{1}^n)^T, \hdots, (\u_{N_x-1}^n)^T]^T, \qwiq \u^n_l = [u^n_{l, 1}, \hdots, u^n_{l, N_y-1}]^T,
 \end{equation}
@@ -179,7 +174,7 @@ To obtain a matrix form of the $\dDelta$ operator that can be applied to this st
 \end{equation}
 % In essence, the Kronecker product copies a matrix $\B$ according to a matrix $\A$. gets arranged according to a 
 % The matrix operators then use the Kronecker
-The Kronecker sum between two square matrices is 
+The Kronecker sum between two square matrices is \cite{Hamilton2016}
 \begin{equation}
     \A_{M \times M} \oplus \B_{N \times N} = \I_N\otimes \A + \B \otimes\I_M,
 \end{equation}
@@ -426,11 +421,11 @@ which, using test solution $z_p = e^{j\omega_p k}$ for (angular) frequency $\ome
 \end{equation}
 Notice the similarity to the equation for the modal frequencies of the 1D wave equation in Eq. \eqref{eq:1DWaveModes}. Again, the number of modes is equal to the number of moving grid points in the system. 
 
-See Figure \ref{fig:modalFreqs2Dwave} for the result of a modal analysis of the 2D wave equation. One can observe that the modes do not follow a linear pattern as opposed to those of the 1D wave equation shown in Figure \ref{fig:modalFreqs1Dwave}. This confirms the inharmonic behaviour of the 2D wave equation discussed \ref{sec:2DwaveImplementation}. 
+See Figure \ref{fig:modalFreqs2Dwave} for the result of a modal analysis of the 2D wave equation. One can observe that the modes do not follow a linear pattern as opposed to those of the 1D wave equation shown in Figure \ref{fig:modalFreqs1Dwave}. This confirms the inharmonic behaviour of the 2D wave equation discussed \ref{sec:2DwaveImplementation}. Notice that the modal density is higher around $\fs/4$ and that the modal pattern is symmetric around this frequency. This was also observed by van Duyne and Smith in the case of the waveguide mesh \cite{Duyne1993}.
 \begin{figure}[h]
     \centering
     \includegraphics[width = 0.6\textwidth]{figures/resonators/2d/modes2Dwave.eps}
-    \caption{Modal frequencies of the 2D wave equation with $L_x = 1.5$ m, $L_y = 1$ m and $c\approx 3118$ m/s, such that $\lambda = 1/\sqrt{2}$ according to Eq. \eqref{eq:CFL2D}. \label{fig:modalFreqs2Dwave}}
+    \caption{Modal frequencies of the FD scheme implementing the 2D wave equation in Eq. \eqref{eq:2DwaveFDS} with $L_x = 1.5$ m, $L_y = 1$ m and $c\approx 3118$ m/s, such that $\lambda = 1/\sqrt{2}$ according to Eq. \eqref{eq:CFL2D}. \label{fig:modalFreqs2Dwave}}
 \end{figure}
 \subsubsection{Modal shapes}
 Using the line of code in Appendix \ref{sec:eigenValueProblems} and the \texttt{reshape} function, the modal shapes of the system can also be obtained. Figure \ref{fig:modalShapes2D} shows the six lowest-frequency modes of the 2D wave equation with $L_x = 1.5$ m and $L_y = 1$ m. The mode number $(x,y)$ corresponds to the modal number in the $x$ and $y$ direction.
@@ -658,7 +653,7 @@ one can perform summation by parts twice, using Eq. \eqref{eq:summationByPartsTw
 \begin{equation*}
     D\left(\langle \dtd \dxx\ulmn, \dDelta \ulmn \rangle_{\domXredBoth} + \langle \dtd\dyy \ulmn, \dDelta \ulmn \rangle_{\domYredBoth}\right) + \b.
 \end{equation*}
-The definitions for the reduced domains can be found in Eqs. \eqref{eq:reduced2Ddoms}. Finally, as the boundaries are always $0$ due to the boundary conditions in Eq. \eqref{eq:boundaryCondThinPlateDisc}, $\domXredBoth$ and $\domYredBoth$ can be further reduced to $\domRedBoth$ and the terms can be combined as \SWcomment[check with stefan]\todo{FULL DOC SWEEP: check for SWcomments}
+The definitions for the reduced domains can be found in Eqs. \eqref{eq:reduced2Ddoms}. Finally, as the boundaries are always $0$ due to the boundary conditions in Eq. \eqref{eq:boundaryCondThinPlateDisc}, $\domXredBoth$ and $\domYredBoth$ can be further reduced to $\domRedBoth$ and the terms can be combined as \todo{FULL DOC SWEEP: check for SWcomments}
 \begin{equation*}
     D\langle \dtd\dDelta\ulmn, \dDelta \ulmn \rangle_{\domRedBoth} + \b ,
 \end{equation*}
@@ -790,5 +785,5 @@ Recalling the definitions for $\lambda$ and $\mu$ from \eqref{eq:lambdaMuStiffMe
     h\geq \sqrt{c^2k^2 + 4\sigma_1k+\sqrt{(c^2k^2 + 4\sigma_1k)^2 + 16\kappa^2k^2}},
 \end{gather}
 and can be used as the stability condition for the stiff membrane.\footnote{This stability condition was wrong in paper \citeP[F]. It has been corrected here and included in Appendix \ref{app:paperErrata}.} 
-\section{Radial coordinates}\label{sec:radialCoordinates}
-This chapter presented various models using a Cartesian coordinate system. Circular or elliptical systems, such as membranes or gongs, could be modelled using a radial coordinate system \cite[Ch. 10]{theBible}. However, using explicit schemes causes these systems to exhibit high amounts of numerical dispersion and reduction of bandwidth \cite[Ch. 11]{theBible}. For better behaviour, one could resort to an implicit scheme, but this comes with the drawbacks mentioned in Section \ref{sec:implicitStiffString}. A better alternative is to retain the cartesian coordinate system and set quasi-circular boundary conditions according to a staircase approximation as done in [\hyperref[ch:listOfPublications]{S4}] (see fx. \cite{Hamilton2016, Harrison2018}).
+% \section{Radial coordinates}\label{sec:radialCoordinates}
+% This chapter presented various models using a Cartesian coordinate system. Circular or elliptical systems, such as membranes or gongs, could be modelled using a radial coordinate system \cite[Ch. 10]{theBible}. However, using explicit schemes causes these systems to exhibit high amounts of numerical dispersion and reduction of bandwidth \cite[Ch. 11]{theBible}. For better behaviour, one could resort to an implicit scheme, but this comes with the drawbacks mentioned in Section \ref{sec:implicitStiffString}. A better alternative is to retain the cartesian coordinate system and set quasi-circular boundary conditions according to a staircase approximation as done in [\hyperref[ch:listOfPublications]{S4}] (see e.g. \cite{Hamilton2016, Harrison2018}).
