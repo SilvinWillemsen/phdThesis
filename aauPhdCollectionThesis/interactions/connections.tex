@@ -286,7 +286,7 @@ where matrices $(\Dxx)_u$ and $(\Dxx)_w$ are as defined in Eq. \eqref{eq:DxxDef}
     \mathbf{f}_u = \frac{k^2}{\rho_uA_u} \left(\frac{c_u^2\i_u(\Dxx)_u}{\frac{\i_u \j_u}{ \rho_u A_u} + \frac{\i_w \j_w}{\rho_w A_w}}\right), \qaq \mathbf{f}_w =  \frac{k^2}{\rho_wA_w}\left(\frac{c_w^2 \i_w(\Dxx)_w}{\frac{\i_u \j_u}{ \rho_u A_u} + \frac{\i_w \j_w}{\rho_w A_w}}\right),
 \end{equation*}
 %are row vectors of size $1\times (N_u-1)$ and $1\times (N_w-1)$, 
-where $\i_u$ and $\i_w$ are row vectors of size $1\times (N_u-1)$ and $1\times (N_w-1)$ containing the values of the interpolation operators $\Iu$ and $\Iw$ respectively. Here, $\i_u\j_u$ and $\i_w\j_w$ are matrix-vector forms of $\lVert \Ju\rVert_d^2$ and $\lVert \Jw\rVert_d^2$ respectively (see Eq. \eqref{eq:JnormIJ}) and reduce to a scalar. \SWcomment[check with stefan if this is a correct notation for this]
+where $\i_u$ and $\i_w$ are row vectors of size $1\times (N_u-1)$ and $1\times (N_w-1)$ containing the values of the interpolation operators $\Iu$ and $\Iw$ respectively. Here, $\i_u\j_u$ and $\i_w\j_w$ are matrix-vector forms of $\lVert \Ju\rVert_d^2$ and $\lVert \Jw\rVert_d^2$ respectively (see Eq. \eqref{eq:JnormIJ}) and reduce to a scalar. \todo{check with stefan if this is a correct notation for this}
 
 Equation \eqref{eq:conn1DwaveMatrix} can then easily be rewritten in one-step form as described in Section \ref{sec:oneStepForm} and used for modal analysis.\footnote{As the system does not exhibit damping, it could be analysed directly, not using a one-step form.}
 % Following Section \ref{sec:oneStepForm}, one can rewrite Eq. \eqref{eq:conn1DwaveMatrix} to

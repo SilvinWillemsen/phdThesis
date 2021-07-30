@@ -639,7 +639,7 @@ at the left and right boundary respectively.
 This section provides information on the excitation and output of the system. See Appendix \ref{app:1DWave} for a \texttt{MATLAB} implementation of the 1D wave equation.
 
 \subsubsection{Excitation}
-A simple way to excite the system is to initialise the state using a raised cosine, or Hann window. More information on excitations will be given in Part \ref{part:exciters}, but for completeness, the formula for a discrete raised cosine will be given here. 
+A simple way to excite the system is to initialise the state using a raised cosine, or Hann window. More information on this will be given in Chapter \ref{ch:physInspExcitations}, but for completeness, the formula for a discrete raised cosine will be given here. \todo{$w$ does not have to be floored}
 
 The discrete raised cosine can be parametrised by its center location $l_0$ and width $w$ (in` grid spacings') \todo{look at this} from which the start index $l_\text{s}$ and end index $l_\text{e}$ can be calculated, according to 
 \begin{equation}

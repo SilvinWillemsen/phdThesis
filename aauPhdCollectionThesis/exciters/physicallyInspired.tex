@@ -45,7 +45,7 @@ In discrete time, the center location is defined as $l_0 = \floor[x_0 / h]$, whe
 \begin{equation}\label{eq:lsle}
     l_\text{s} = l_0 - \floor[w/2]\qaq l_\etxt = l_0 + \floor[w/2],
 \end{equation}
-with $l_\stxt, l_\etxt\in d$ and, finally, $w = \floor[x_\text{w} / h]$.\footnote{Notice that the width is given in `grid spacings' and will thus affect $w+1$ grid points. This is also why the range in Eq. \eqref{eq:raisedCosDisc} includes both end points.} Equation \eqref{eq:raisedCosCont} can then be discretised as
+with $l_\stxt, l_\etxt\in d$ and, finally, $w = \floor[x_\text{w} / h]$.\footnote{Notice that the width is given in `grid spacings' and will thus affect $w+1$ grid points. This is also why the range in Eq. \eqref{eq:raisedCosDisc} includes both end points.}\todo{$w$ does not have to be floored...} Equation \eqref{eq:raisedCosCont} can then be discretised as
 \begin{equation}\label{eq:raisedCosDisc}
     E_{l, \text{rc}} =
     \begin{cases}

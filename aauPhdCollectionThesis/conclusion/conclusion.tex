@@ -1,13 +1,9 @@
 \chapter{Conclusions and Perspectives}\label{ch:conclusion}
 This chapter concludes this thesis by providing a summary of the presented work. Finally, some perspectives and possible continuations of this project will be given.
 
-\SWcomment[should I refer back to the research questions somewhere in this chapter? They do get answered in Section \ref{sec:objectivesContributions} already...]
-
-\SWcomment[Also, should explicitly put this work into perspective of the other literature? and if so, how? :)]
-
 \section{Summary}
 This thesis presents the result of a PhD project on physical modelling of musical instruments using FDTD methods.
-Part \ref{part:introduction} provided an introduction to the field of physical modelling, after which the basics of FDTD methods and analysis techniques were described in a tutorial-like fashion. Parts \ref{part:resonators}, \ref{part:exciters} and \ref{part:interactions} provided detailed information about the physical models used for the contributions of this PhD project. Finally, part \ref{part:contributions} summarised most papers included in Part \ref{part:papers} and related the contributions to the theory presented in the parts before. Part \ref{part:contributions} is summarised below.
+Part \ref{part:introduction} provided an introduction to the field of physical modelling, after which the basics of FDTD methods and analysis techniques were described in a tutorial-like fashion. Parts \ref{part:resonators}, \ref{part:exciters} and \ref{part:interactions} provided detailed information about the physical models used for the contributions of this PhD project.\todo{shortly describe} Finally, part \ref{part:contributions} summarised most papers included in Part \ref{part:papers} and related the contributions to the theory presented in the parts before. Part \ref{part:contributions} is summarised below.
 % Furthermore, Part \ref{part:contributions} extended on the publications by providing additional information on implementation and design considerations. 
 \subsubsection{Contributions}
 Chapter \ref{ch:dynamicGrid} summarised paper \citeP[G], which presents a novel method to dynamically vary grid configurations in FDTD-based musical instrument simulations. The chapter extended the paper by providing information on experiments done, which substantiate choices made in the paper. 
@@ -20,7 +16,7 @@ Chapter \ref{ch:tromba} summarised papers \citeP[D] and \citeP[E], which present
 % Section \ref{sec:objectivesContributions} poses various research questions and project objectives 
 
 \section{Perspectives and future work}
-Both an advantage and a disadvantage of the field of physical modelling musical instruments, is that one is never done. There are always more instruments to model or models to improve. This section possibilities for continuations of this work and some perspectives on how to move forward.
+Both an advantage and a disadvantage of the field of physical modelling musical instruments, is that one is never done. There are always more instruments to model or models to improve. This section contains several possibilities for continuations of this work and some perspectives on how to move forward.
 
 \subsection{Parameter design}\label{sec:parameterDesign}
 One could argue that the sound produced by musical instrument simulations depends in equal parts on the model describing the system and the parameters used. Parameter design and tuning is therefore an extremely important aspect in creating physical models that sound good. 
@@ -57,22 +53,22 @@ These could either inspired by their real-life counterpart, similar to what a di
 
 \subsection{Evaluation}
 Throughout the PhD project, the main evaluations were technical and revolved around the analysis techniques presented in Chapter \ref{ch:analysis} and the computational speed of the real-time implementations.
-Although user-evaluation of the real-time instrument simulations was not a large part of this project, it is an important aspect in all of the aforementioned future work. Evaluations can for example be used as a part of an iterative design process, and aimed at parameter tuning (either for realism or not) or intuitive instrument control.
+Although user-evaluation of the real-time instrument simulations was not a large part of this project, it is an important aspect in all of the aforementioned future work. Evaluations can, for example, be used as a part of an iterative design process, and aimed at parameter tuning (either for realism or not) or intuitive instrument control.
 
-The most elaborate user evaluation performed is presented in paper \citeP[E] and tested the playability of the tromba marina using the PHANTOM Omni device. As this instrument was also controlled by the Sensel Morph in paper \citeP[D], an evaluation that compares the two controllers could be made in the future. Apart from evaluating the differences in natural or intuitive control, one could investigate cross-modal effects between control (haptics) and audio, where one could investigate whether the way that the simulation is controlled has an influence on sound perception.
+The most elaborate user evaluation performed is presented in paper \citeP[E] and tested the playability of the tromba marina using the PHANTOM Omni device. As this instrument was also controlled by the Sensel Morph in paper \citeP[D], an evaluation that compares the two controllers could be made in the future. Apart from evaluating the differences in natural or intuitive control, one could investigate cross-modal effects between control (haptics) and audio, where one could investigate whether the way that the simulation is controlled has an influence on sound perception.\todo{Include Stefanias comment on success criteria}
 
 One interesting observation, shown in paper \citeP[E], was that players found the virtual tromba marina hard to play. This could indeed be expected, as no participant ever played the instrument before, neither the virtual one, nor the physical one. For other unknown instruments, including completely novel ones, this shows that their evaluation is challenging. Like a real instrument, it might take months, or even years of practice to produce well-sounding auditory results, or to determine whether the chosen mapping is satisfactory.
 
-\SWcomment[Should I mention paper F somewhere in this section? something like:]
-A study is presented in paper \citeP[F] where a cross-modal evaluation is performed investigating the perception of stiffness in a haptically-enhanced drum membrane.
-\SWcomment[It is the only time I include it so maybe not..]
+% \SWcomment[Should I mention paper F somewhere in this section? something like:]
+% A study is presented in paper \citeP[F] where a cross-modal evaluation is performed investigating the perception of stiffness in a haptically-enhanced drum membrane.
+% \SWcomment[It is the only time I include it so maybe not..]
 
 % Although results showed that the sound and control of the instrument was natural, it definitely helped that it was not an instrument that participants knew about. 
 
 % For the (informal) evaluation of the instruments presented in papers \citeP[A] and \citeP[B], the applications were said to be inspired by physical instruments but have to be considered a `different' instrument. This could decouple expectations
 
 \subsection{Dynamic grid}
-Finally, where the PhD student personally sees most potential for continuations of this work, is the further development of the dynamic grid method presented in paper \citeP[G]. During this project, only the cases of the 1D wave equation and the acoustic tube have been explored. Section \ref{sec:examples} provides many real-world examples that the method could be applied to. These consist 1D systems, such as stiff strings, but also 2D systems, such as the musical saw and the talking drum. Furthermore, finding conditions under which the method is stable will allow the method to be safely integrated into other applications.
+Finally, where the author personally sees most potential for continuations of this work, is the further development of the dynamic grid method presented in paper \citeP[G]. During this project, only the cases of the 1D wave equation and the acoustic tube have been explored. Section \ref{sec:examples} provides many real-world examples that the method could be applied to. These consist 1D systems, such as stiff strings, but also 2D systems, such as the musical saw and the talking drum. Furthermore, finding conditions under which the method is stable will allow the method to be safely integrated into other applications.
 
 % \subsection{Final words}
 % \SWcomment[do not want to include:]
