@@ -176,7 +176,7 @@ u = reshape(e, (Nx-1) * (Ny-1), 1);
 \end{lstlisting} 
 \end{minipage}
     
-\section{Time-varying excitations}
+\section{Time-varying excitations}\label{sec:timeVaryingExcitations}
 Although various types of excitation can already be modelled using the initial conditions presented in the previous section, they are temporally rigid. In other words, the time of excitation is fixed to be at the start of the simulation. In order to excite the system while the simulation is running, one can create excitations that -- on top of being spatially distributed -- have a temporal profile as well.
 
 For the following, consider the ideal string of length $L$ (in m), where its transverse displacement is described by $u = u(x,t)$ (in m). The system is defined for $t\geq 0$ and $x\in\D$ with domain $\D = [0, L]$. The PDE of the ideal string with a time varying external force $f(t)$ (in N) is defined as (Eq. \eqref{eq:1DwavePDE})

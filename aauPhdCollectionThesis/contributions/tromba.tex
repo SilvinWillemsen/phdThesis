@@ -160,7 +160,7 @@ There are a few components presented in paper \citeP[D] that the system does not
 This section extends paper \citeP[D] by providing more details on the solution of the string-bridge-body interaction.
 
 Following Section \ref{sec:massString} one could expand Eqs. \eqref{eq:trombaSystemFDSString}, \eqref{eq:trombaSystemFDSMass} and \eqref{eq:trombaSystemFDSPlate} and treat these as a system of linear equations (see Section \ref{sec:linearEquations}). This would require an inversion of a $3\times 3$ matrix each iteration.
-To simplify things slightly, and looking towards real-time implementation, one could instead solve for $\delta_{t\cdot}\eta_\sm^n$ and $\delta_{t\cdot}\eta_\mp^n$ directly, which would require a $2\times 2$ matrix inversion each iteration and requires much fewer operations (see Section \ref{sec:realTimeMatrices}).
+To simplify things slightly, and looking towards real-time implementation, one could instead solve for $\delta_{t\cdot}\eta_\sm^n$ and $\delta_{t\cdot}\eta_\mp^n$ directly, which would require a $2\times 2$ matrix inversion each iteration and requires much fewer operations (at best, less than half).
 
 % In the following, a short-hand notation is used for the grid points along the string and the plate that the bridge interacts with. These are . \todo{shorthand of shorthand?} Furthermore, a
 As it is assumed that one will not bow the bridge, i.e. $\chi_\text{B} \neq \chi_\sm$, the bowing term will be disregarded when calculating the interaction between the components. 

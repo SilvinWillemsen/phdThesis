@@ -614,18 +614,18 @@ The \texttt{MATLAB} code of the implementation can be found online \cite{stringP
 In the following, the $\i$ and $\j$ vectors are used as in Section \ref{sec:matrixFormRigid} and are of the appropriate sizes. The matrices for the string can be found in Eq. \eqref{eq:matrixFormStiffString} and those for the plate in Eq. \eqref{eq:matrixFormThinPlate}. When implementing connections (or any other interactions for that matter), one mostly performs the following steps in the main loop:
 \begin{enumerate}
     \item Calculate the entire scheme without force terms:\\
-    \vspace{-0.5em}\begin{equation*}
-        \u^\star = (\B_\stxt\u^n + \C_\stxt\u^{n-1}) / A_\stxt \qaq \w^\star = (\B_\ptxt\w^n + \C_\ptxt\w^{n-1})/A_\ptxt.
-    \end{equation*}
+    \vspace{-0.5em}\begin{equation}\label{eq:stringPlateImp1}
+        \u^\star = \frac{\B_\stxt\u^n + \C_\stxt\u^{n-1}}{A_\stxt}, \qaq \w^\star = \frac{\B_\ptxt\w^n + \C_\ptxt\w^{n-1}}{A_\ptxt}\ .
+    \end{equation}
     \item Obtain $u^\star$ and $w^\star$:\\
-    \vspace{-1em}\begin{equation*}
+    \vspace{-1em}\begin{equation}\label{eq:stringPlateImp2}
        u^\star = \i_u \u^\star \qaq w^\star = \i_w \w^\star.
-    \end{equation*}
+    \end{equation}
     \item Calculate the connection force $f^n$ (Eq. \eqref{eq:stringPlateForce}).
-    \item Add force terms to the schemes without connection forces:\\
-    \begin{equation*}
-        \u^{n+1} = \u^{\star} - \j_u \frac{f^n k^2}{\rho_\stxt A (1+\szX[\stxt])}\qaq \w^{n+1} = \w^{\star} + \j_w \frac{f^n k^2}{\rho_\ptxt H (1+\szX[\ptxt])}.
-    \end{equation*} 
+    \item Add force terms to the schemes in Eq. \eqref{eq:stringPlateImp1}:\\
+    \begin{equation}\label{eq:stringPlateImp4}
+        \u^{n+1} = \u^{\star} - \j_u \frac{f^n k^2}{\rho_\stxt A (1+\szX[\stxt])},\qaq \w^{n+1} = \w^{\star} + \j_w \frac{f^n k^2}{\rho_\ptxt H (1+\szX[\ptxt])}.
+    \end{equation} 
 \end{enumerate}
 Calculating $\u^\star$ and $\w^\star$ beforehand reduces computations, and allows $u^\star$ and $w^\star$ to be more easily obtained. 
 
