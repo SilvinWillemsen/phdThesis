@@ -1,53 +1,104 @@
 \chapter{Conclusions and Perspectives}\label{ch:conclusion}
-This chapter concludes the thesis and provides 
+This chapter concludes this thesis by providing a summary of the presented work. Afterwards, some perspectives and possible continuations of this project will be given.
 
-
+% places this work into the context of the literature.
+\SWcomment[should I refer back to the research questions somewhere in this chapter? They do get answered in Section \ref{sec:objectivesContributions} already...]
 
 \section{Summary}
-This thesis presents the result of a 
+This thesis presents the result of a PhD project on physical modelling of musical instruments using FDTD methods.
+Part \ref{part:introduction} provided an introduction to the field of physical modelling, after which the basics of FDTD methods and analysis techniques were described in a tutorial-like fashion. Parts \ref{part:resonators}, \ref{part:exciters} and \ref{part:interactions} provided detailed information about the physical models used for the contributions of this PhD project. Finally, part \ref{part:contributions} summarised most papers included in Part \ref{part:papers} and related the contributions to the theory presented in the parts before. Part \ref{part:contributions}: Contributions, will be summarised below.
+% Furthermore, Part \ref{part:contributions} extended on the publications by providing additional information on implementation and design considerations. 
+\subsubsection{Contributions}
+Chapter \ref{ch:dynamicGrid} summarised paper \citeP[G] that presents a novel method to dynamically vary grid configurations in FDTD-based musical instrument simulations. The chapter extended the paper by providing information on experiments done which substantiate choices made in the paper. 
+Chapter \ref{ch:realtime} presented considerations on the real-time implementation of FD schemes as well as their control. 
+Chapter \ref{ch:largeScale} summarised papers \citeP[A] and \citeP[B], which present the real-time implementation and control of a large-scale modular environment using the esraj, the hammered dulcimer and the hurdy gurdy as instrument test-cases. 
+Chapter \ref{ch:tromba} summarised papers \citeP[D] and \citeP[E], which present the real-time implementation of the tromba marina controlled using the Sensel Morph and the PHANTOM Omni respectively. The chapter extended on the papers by providing more details on the implementation. Finally, Chapter \ref{ch:trombone} summarised paper \citeP[H], which presents a real-time implementation of the trombone using the dynamic grid method and provided additional design considerations and implementation details.
 
-After an extensive summary, partly aimed for beginners in the field, the contributions 
-
-A novel method was devised to change
-
-
-Unconventional thesis structure
 \section{Research Questions}
 
+Section \ref{sec:objectivesContributions} poses various research questions and project objectives 
 
-Important to have real-time implementation for judging the sound quality. Several times, a model did not sound good due to the use of static parameters, but a real-time implementation was 
 
-Also exploration of the control parameters (bow velocity, force, etc) is much easier in a real-time application than changing it at the start of a simulation... blablab
+
 
 \subsection{Applications}
-The implementations presented in this work, as well as real-time physical models of musical instruments in general, have several applications in the real world. First of all, the implementations can be used as audio plug-ins that music producers could use if they do not have
 
-
-The now-digital musical instrument 
-
-What a keyboard is to a piano, many other controllers inspired by their real-life counterpart could be made to trigger physical models of their respective instrument.
 
 
 \section{Perspectives and future work}
-Both the good and bad thing about physical modelling musical instruments is that one is never done. 
+Both the good and bad thing about physical modelling musical instruments is that one is never done. There are always more instruments to model or models to improve. 
 
-There is always more work to be done
+This section presents some main reoccurring topics stated as future work.
 
 \SWcomment[Put this work into perspective of the literature (higher level)]
-\subsection{Realism}
-We are not there yet.. 
 
-Physical modelling is not here to replace the original instruments and the musicians playing them. Instead, it can be used as a tool to understand the physics of existing instruments and possibly go beyond. Simulated instruments are not restricted by physics anymore and could provide new ways of expression for the musician. 
+\subsection{Parameter design}\label{sec:parameterDesign}
+One could argue that the sound produced by musical instrument simulations depends in equal parts on the model describing the system and the parameters used. Parameter design and tuning is therefore an extremely important aspect in creating physical models that sound pleasant. 
 
-\subsubsection{Parameter design}
-Many parameters that can always be improved
+Some models might contain many parameters that are non-linearly interconnected -- such as the elasto-plastic friction model presented in paper \citeP[C] -- causing the tuning of the parameters to become extremely time-consuming. A possible solution for this, could be to tune the parameters based on a recording of the physical system one tries to model. 
+One could automate this process using machine learning methods and a `gray-box' approach where the model is known, but the parameters are fitted to the input. This was done for virtual analog models in e.g. \cite{Eichas2017, Parker2019}. 
 
-Possible perspectives could be machine learning based on audio files (literature...)
+For parameters controlling the exciter, such as force, velocity, and position of the bow, a real-time implementation can be extremely helpful to judge the sound qualities of the simulation. Several times during this project, the simulation did not sound good due to the use of static control parameters in \texttt{MATLAB}. The real-time implementation showed, that varying the parameters using human control, sounded much better and more natural. Parameters of the resonator could also be exposed and tuned in real-time, but cause stability concerns in FDTD-based instrument simulations (see e.g. Chapter \ref{ch:dynamicGrid}).\footnote{One could always set the states of the system to 0 while parameters are changed and re-initialise the system. Alternatively, one can use the dynamic grid method from Chapter \ref{ch:dynamicGrid}.}
 
-\subsubsection{Evaluation}
-Evaluations appeared in \citeP[E] and \citeP[F] although the latter was to evaluate stiffness perception, not realism. 
+\subsection{Realism}\label{sec:realism}
+The focus of this project was to create real-time simulations of musical instruments. Although a natural or realistic sound was of course desired, this was not the main focus, and more work could be done in the future to achieve this.
+
+If the goal is to create an extremely realistic instrument simulation, one would have to delve deeper into parameter design (see Section \ref{sec:parameterDesign}) and use more accurate and complex models. It is safe to say, that at this point in time, fully and accurately simulating the physics of a musical instrument in 3D, including nonlinear effects, is not something that personal computers will be able to do any time soon. 
+
+That said, the simulations able to run in real time using simplified models (such as those presented in this work) can already sound quite realistic. This could potentially make the use complex models unnecessary, at least from a perceptual point of view. Furthermore, various components, such as the instrument body or the room it is played in, might be included as an impulse response, either obtained from a recording or generated using a highly-accurate offline model. Comparisons with real instruments or perceptual evaluations could verify the realism of the instrument.
+
+It must be said that the goal of musical instrument simulations does not have to be realistic-sounding implementations. Another angle, rather than trying to recreate traditional musical instruments, is to make completely new instruments. The method presented in paper \citeP[G] could even allow for physically impossible instruments, where realism is the opposite of what one aims for.
+
+\subsection{Control}
+This PhD project explored two ways of controlling the musical instrument simulations. 
+
+Firstly, the Sensel Morph (see Section \ref{sec:sensel}) was used for bowing, striking and plucking strings. Even though, bowing strings using this controller does not resemble the act of bowing a string in the physical world, the interaction could be deemed intuitive, as shown in paper \citeP[A].
+
+Secondly, the PHANTOM Omni (see Section \ref{sec:phantomOmni}) was used to control the bow in a way that more closely resembled physical bowing. The evaluation in paper \citeP[E] shows that the interaction with the instrument, especially the haptic feedback, was ``realistic'' and ``natural''. Other aspects of the instrument, such as pitch control were less natural as one did not physically interact with a string. 
 
 
+An evaluation that compares the two applications could be made, where one could investigate whether the way that the simulation is controlled has an influence on the perception of the audio. 
+
+The same argument applies here, if one does not expect the control to be like the original, it can be treated as a new instrument.
+
+
+
+Future work includes to explore other controllers or build new ones. What a digital keyboard is to a piano, many other controllers inspired by their real-life counterpart could be made to trigger physical models of their respective instrument.
+
+
+Hardware that allows for natural control controlling a physical model that can go beyond the original instrument. 
+
+One is not restricted to the shapes of the original instruments and could potentially control physically inspired instruments 
+
+The implementations presented in this work, as well as real-time physical models of musical instruments in general, could be implemented in a context with more natural control. 
+
+\subsection{Evaluation}
+Although the evaluation of the real-time instrument simulations was not a large part of this project, it is an important aspect in all of the above future work. Evaluations can be used in an iterative design process for parameter tuning to obtain more realistic or interesting sounds (depending on the goal), and for control of the instrument.
+
+Parameter tuning, the realism of the implementation and the control 
+
+An attempt was made to create an accurate model of the tromba marina, including natural control. This appeared in \citeP[E] 
+
+As stated in Section \ref{sec:realism}
+
+Although results showed that the sound and control of the instrument was natural, it definitely helped that it was not an instrument that participants knew about. 
+
+For the (informal) evaluation of the instruments presented in papers \citeP[A] and \citeP[B], the applications were said to be inspired by physical instruments but have to be considered a `different' instrument. This could decouple expectations
+
+One interesting observation was, that players found the instrument hard to play. This could indeed be expected from any musical instrument that one never played before. This fact might make it hard to evaluate a musical instrument simulation, as -- like a real instrument -- it might take months, or even years of practice to produce nice sounding results, or to determine whether the mapping is satisfactory.
+
+It was therefore decided to 
+
+
+and \citeP[F] although the latter was to evaluate stiffness perception, not realism. 
+
+
+
+Also exploration of the control parameters (bow velocity, force, etc) is much easier in a real-time application than changing it at the start of a simulation... blablab
 
 \subsection{Dynamic grid}
-In this work, the dynamic grid in Chapter \ref{ch:dynamicGrid} the test case of the 1D wave equation has been explored. 
+Finally, where I personally see most potential for continuations of this work, is the further development of the dynamic grid method presented in paper \citeP[G]. During this project, only the cases of the 1D wave equation and the first-order system used to model an acoustic tube been explored. Section \ref{sec:examples} provides many real-world examples that the method could be applied to.
+
+\subsection{Final Words}
+\SWcomment[do not want to include:]
+Physical modelling is not here to replace the original instruments and the musicians playing them. Instead, it can be used as a tool to understand the physics of existing instruments and possibly go beyond. Simulated instruments are not restricted by physics anymore and could provide new ways of expression for the musician. 

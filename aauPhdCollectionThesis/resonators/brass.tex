@@ -11,7 +11,7 @@ For an (axially symmetric) acoustic tube of length $L$ (in m), where the wavelen
 \begin{equation}\label{eq:webstersPDE}
     S\partial_t^2\Psi = c^2\partial_x(S\partial_x\Psi),
 \end{equation}
-with \textit{acoustic potential} $\Psi = \Psi(x,t)$ (in m$^2$/s), the cross-sectional area along the tube, or bore profile $S = S(x)$ (in m$^2$) and the speed of sound in air $c$ (in m/s). The state variable $\Psi$ is defined for $t\geq 0$ and $x \in \D$ where domain $\D = [0, L]$. If $S(x)$ is constant, Eq. \eqref{eq:webstersPDE} reduces to the 1D wave equation in Eq. \eqref{eq:1DwavePDE}. This shows that for a cylindrical acoustic tube, the fundamental frequency is not affected by the cross-sectional area, but solely relies on length $L$ and wave speed $c$ according to Eq. \eqref{eq:fundamentalFreq}.\footnote{Equation \eqref{eq:webstersPDE} also reduces to the 1D wave equation if the acoustic tube is conical, i.e., if $\px S(x)$ is constant.} 
+with \textit{acoustic potential} $\Psi = \Psi(x,t)$ (in m$^2$/s), the cross-sectional area along the tube (or bore profile) $S = S(x)$ (in m$^2$) and the speed of sound in air $c$ (in m/s). The state variable $\Psi$ is defined for $t\geq 0$ and $x \in \D$ where domain $\D = [0, L]$. If $S(x)$ is constant, Eq. \eqref{eq:webstersPDE} reduces to the 1D wave equation in Eq. \eqref{eq:1DwavePDE}. This shows that for a cylindrical acoustic tube, the fundamental frequency is not affected by the cross-sectional area, but solely relies on length $L$ and wave speed $c$ according to Eq. \eqref{eq:fundamentalFreq}.\footnote{Equation \eqref{eq:webstersPDE} also reduces to the 1D wave equation if the acoustic tube is conical, i.e., if $\px S(x)$ is constant.} 
 
 The acoustic potential can be related to pressure $p = p(x,t)$ (in Pa) and particle velocity $v = v(x,t)$ (in m/s) according to \cite{Bilbao2018}
 \begin{equation}\label{eq:pressureVelocityWebster}
@@ -40,9 +40,9 @@ The choices for boundary conditions in an acoustic tube are open and closed, def
     \end{align}
 \end{subequations}
 This might be slightly counter-intuitive when compared to the 1D wave equation, as ``closed" might imply the ``fixed" or Dirichlet boundary condition. The opposite can be intuitively shown by imagining a wave front with a positive acoustic potential moving through a tube and hitting a closed end. What reflects is also a wave front with a positive acoustic potential, i.e., the sign of the potential does not flip. This also happens using the free or Neumann condition for the 1D wave equation (see Figure \ref{fig:boundaryCondsCont}).
-Here, the following conditions are chosen
+Here, the following conditions are chosen:
 \begin{equation}\label{eq:openClosed}
-    \partial_x\Psi(0, t) = 0, \quad \text{and} \quad \partial_t\Psi(L, t) = 0,
+    \partial_x\Psi(0, t) = 0 \quad \text{and} \quad \partial_t\Psi(L, t) = 0,
 \end{equation}
 i.e. closed at the left end and open at the right end.
 
@@ -50,9 +50,9 @@ i.e. closed at the left end and open at the right end.
 The state variable is discretised to the grid function $\Psi_l^n$ and is defined for $n\in \mathbb{N}^0$ and $l = \{0, \hdots, N\}$, where $N$ is the number of intervals between the grid points.
 As the cross-section is distributed in space, $S(x)$ needs to be discretised to a grid function as well, albeit only in space (as it is not time-varying). Following \cite{Bilbao2018}, it is useful to introduce \textit{interleaved grid points} at $l-1/2$ and $l+1/2$ for $S$ and are defined as 
 \begin{equation}\label{eq:sHalf}
-    \Sm = \mxm S(x=lh), \qaq \Sp = \mxp S(x=lh),
+    \Sm = \mxm S(x=lh) \qaq \Sp = \mxp S(x=lh).
 \end{equation}
-and approximate a `true' (possibly measured) bore profile $S(x)$ sampled at $x=lh$ with grid spacing $h$ (see Figure \ref{fig:variableCrossSection}). Using these definitions, one can discretise Eq. \eqref{eq:webstersPDE} to the following FD scheme \cite{theBible}\footnote{Notice that in \cite{theBible}, Webster's equation is $\Sbar_l \delta_{tt}\Psi^n_l = c^2\dxp(\Sm(\dxm\Psiln))$ but is identical to Eq. \eqref{eq:discWebster}. This discretisation has been chosen for a more straightforward energy analysis in Section \ref{sec:energyAnalysisWebster}.}
+These approximate a `true' (possibly measured) bore profile $S(x)$ sampled at $x=lh$ with grid spacing $h$ (see Figure \ref{fig:variableCrossSection}). Using these definitions, one can discretise Eq. \eqref{eq:webstersPDE} to the following FD scheme \cite{theBible}:\footnote{Notice that in \cite{theBible}, Webster's equation is $\Sbar_l \delta_{tt}\Psi^n_l = c^2\dxp(\Sm(\dxm\Psiln))$ but is identical to Eq. \eqref{eq:discWebster}. This discretisation has been chosen for a more straightforward energy analysis in Section \ref{sec:energyAnalysisWebster}.}
 \begin{equation}\label{eq:discWebster}
     \Sbar_l \delta_{tt}\Psi^n_l = c^2\dxm\left(\Sp(\dxp\Psiln)\right),
 \end{equation}
@@ -73,13 +73,13 @@ and solving for $\Psinp$ yields the following update equation (see Appendix \ref
 \begin{equation}
     \Psinp = 2(1-\lambda^2)\Psiln-\Psinm+ \frac{\lambda^2\Sp}{\Sbar_l}\Psilp + \frac{\lambda^2\Sm}{\Sbar_l}\Psilm,\label{eq:webstersUpdateEq}
 \end{equation}
-with 
+where 
 \begin{equation}
     \lambda = \frac{ck}{h},
 \end{equation}
 and, similar to the 1D wave equation in Section \ref{sec:1DWaveDisc}, needs to abide
 \begin{equation}\label{eq:CFLwebster}
-    \lambda \leq 1,
+    \lambda \leq 1
 \end{equation}
 in order for the scheme to be stable. See Section \ref{sec:stabilityEnergyWebster} for a derivation. The number of grid points $N$ can then be calculated in the same way as for the 1D wave equation in Eq. \eqref{eq:orderOfCalc}, and the stencil is similar to Figure \ref{fig:stencil1DWave}.
 
@@ -209,7 +209,7 @@ One can write scheme \eqref{eq:discWebster} in matrix form by saving the state i
 Notice that there are no appearances of $S$ at the boundaries as these vanish due to the boundary conditions as in Eq. \eqref{eq:leftBoundaryWebster}.
 Using $\I_N$ as the $N\times N$ identity matrix, one can write scheme \eqref{eq:discWebster} in matrix form as
 \begin{equation}\label{eq:matrixFormWebsters}
-    \A\boldPsi^{n+1} = \B\boldPsi^n + \C \boldPsi^{n-1} + \mathbf{v}^n
+    \A\boldPsi^{n+1} = \B\boldPsi^n + \C \boldPsi^{n-1} + \mathbf{v}^n,
 \end{equation}
 where 
 \begin{equation*}
@@ -299,7 +299,7 @@ are the right and left boundary term respectively (notice that $\b_\text{l}$ is 
     
 Then, using identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2} yields 
 \begin{equation*}
-    \dtp \h = \b_\text{r} - \b_\text{l}
+    \dtp \h = \b_\text{r} - \b_\text{l},
 \end{equation*}
 where
 \begin{equation}\label{eq:energyBalanceWebster}
@@ -316,7 +316,7 @@ The next step is to find definitions for $\el$ and $\er$ such that the boundary 
     \dxd \Psi_0^n &= 0\  \Rightarrow\ \b_\text{l} = 0 \\
     \dxd \Psi_N^n &= 0\  \Rightarrow\ \b_\text{r} = 0
 \end{align*} 
-for the left and right boundary respectively. It can be shown that, for the special cases of $\epsilon_\text{r} = S_{N-1/2}/\mu_{xx}S_N$ and $\epsilon_\text{l} = S_{1/2}/\mu_{xx}S_0$, the boundary terms vanish in this case
+for the left and right boundary respectively. It can be shown that, for the special cases of $\epsilon_\text{r} = S_{N-1/2}/\mu_{xx}S_N$ and $\epsilon_\text{l} = S_{1/2}/\mu_{xx}S_0$, the boundary terms vanish:
 \begin{subequations}\label{eq:centStrictDissip}
 \begin{align}
     \mathfrak{b}_\text{r} &= c^2 (\dtd\Psi_N^n)S_{N-1/2}(2-\epsilon_\text{r})(\delta_{x\cdot}\Psi_N^n)\label{eq:centStrictDissipRight},\\
@@ -397,13 +397,13 @@ Substituting this into the energy balance in Eq. \eqref{eq:energyBalanceWebster}
     \h = \t + \v \geq &\  \frac{1}{2} \left(\lVert\sqrt{[S]_l} \dtm \Psiln \rVert_d^{\el, \er}\right)^2 \\
     &+ \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\left(\lVert\sqrt{\mxx S_l}\dtm\Psiln\rVert_{d}^{\el,\er}\right)^2\right),
 \end{align*}
-and as $\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2$ is non-negative, the following is also true
+and as $\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2$ is non-negative, the following is also true:
 \begin{equation*}
     \h = \t + \v \geq \frac{1}{2} \left(\lVert\sqrt{[S]_l} \dtm \Psiln \rVert_d^{\el, \er}\right)^2- \frac{\lambda^2}{2}\left(\lVert\sqrt{\mxx S_l}\dtm\Psiln\rVert_{d}^{\el,\er}\right)^2.
 \end{equation*}
 This can be written as
 \begin{equation}
-    \h \geq \frac{1}{2} \sum_d \left(\sqrt{[S]_l} - \lambda^2\sqrt{\mxx S_l}\right)(\dtm \Psiln)^2 
+    \h \geq \frac{1}{2} \sum_d \left(\sqrt{[S]_l} - \lambda^2\sqrt{\mxx S_l}\right)(\dtm \Psiln)^2,
 \end{equation}
 which is non-negative if
 \begin{align*}
@@ -414,7 +414,7 @@ For the special choice of $[S]_l = \mxx S_l$, this condition reduces to
 \begin{equation}
     \lambda \leq 1,
 \end{equation}
-also given in \eqref{eq:CFLwebster}. This choice of $[S]_l$ is equal to $\Sbar_l$ through Eq. \eqref{eq:Sbar}, hence its choice in Eq. \eqref{eq:discWebster}.
+also given in \eqref{eq:CFLwebster}. This choice of $[S]_l$ is equal to $\Sbar_l$ through Eq. \eqref{eq:Sbar}, hence, its choice in Eq. \eqref{eq:discWebster}.
 
 % \subsection{Modal analysis}
 % Following Section \ref{sec:oneStepForm}one can perform a modal analysis of the system by writing Eq. \eqref{eq:matrixFormWebsters} in one-step  form (ignoring the input vector). The variable cross-section causes the modes of the system to vary in interesting ways. If the tube is perfectly cylindrical and $S(x)$ is thus constant, Webster's equation reduces to the 1D wave equation and the modal frequencies are integer multiples of the fundamental frequency. 
@@ -434,10 +434,10 @@ Using the same variables as before for cross-sectional area $S=S(x)$, wave speed
 \begin{subequations}\label{eq:firstOrderSystem}
 \begin{align}
     \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv),\label{eq:contPressure}\\
-    \rho_0\partial_tv &= -\partial_xp\label{eq:contVelocity},
+    \rho_0\partial_tv &= -\partial_xp\label{eq:contVelocity}.
 \end{align}
 \end{subequations}
-where pressure $p = p(x,t)$ (Pa) and particle velocity $v = v(x,t)$ (m/s) are defined for $x\in \D$ with domain $\D = [0, L]$ and tube length $L$ (in m). These state variables are related to the acoustic potential $\Psi$ as shown in Eq. \eqref{eq:pressureVelocityWebster} as
+Here, the pressure $p = p(x,t)$ (Pa) and particle velocity $v = v(x,t)$ (m/s) are defined for $x\in \D$ with domain $\D = [0, L]$ and tube length $L$ (in m). These state variables are related to the acoustic potential $\Psi$, as shown in Eq. \eqref{eq:pressureVelocityWebster}, as
 \begin{equation}\label{eq:pressureVelocityFirstOrder}
     p = \rho_0\partial_t \Psi, \quad v = -\partial_x\Psi.
 \end{equation}  
@@ -496,7 +496,7 @@ The boundary conditions in Eq. \eqref{eq:firstOrderBoundaryConditionsCont} can b
 \subsection{Matrix form}
 System \eqref{eq:firstOrderFDS} can be written in matrix form, by saving the states of $p_l^n$ and $v_{l+1/2}^{n+1}$ in vectors as 
 \begin{equation}
-    \mathbf{p}^n = [p_0^n, \hdots, p_N^n]^T, \qaq \mathbf{v}^{n+1/2} = [v_{1/2}^{n+1/2}, \hdots, v_{N-1/2}^{n+1/2}]^T
+    \mathbf{p}^n = [p_0^n, \hdots, p_N^n]^T, \qaq \mathbf{v}^{n+1/2} = [v_{1/2}^{n+1/2}, \hdots, v_{N-1/2}^{n+1/2}]^T,
 \end{equation}
 which are of sizes $(N+1)\times 1$ and $N\times 1$ respectively. One may then write the scheme in matrix form as  
 \begin{subequations}
@@ -513,10 +513,9 @@ where
         & \ddots & \ddots & \\
         & & \frac{S_{N-3/2}}{\Sbar_{N-1}} & -\frac{S_{N-1/2}}{\Sbar_{N-1}} \\
         \mathbf{0} & & & \frac{2 S_{N-1/2}}{\Sbar_N} \\
-    \end{bmatrix}.
+    \end{bmatrix}
 \end{equation}
-is of size $(N+1) \times N$.
-
+is of size $(N+1) \times N$, and
 \begin{equation}
     \B_p = \frac{\lambda}{\rho c}\begin{bmatrix}
         1& -1& & & \mathbf{0} &\\
@@ -524,7 +523,7 @@ is of size $(N+1) \times N$.
        & & \ddots & \ddots & &\\
          & & & 1& -1& \\
         & \mathbf{0} & & & 1& -1 \\
-    \end{bmatrix}.
+    \end{bmatrix}
 \end{equation}
 is of size $N \times (N+1)$.
 
@@ -536,18 +535,18 @@ Alternatively, one can write the scheme in one-step form by concatenating the st
     \end{bmatrix}}_{\u^{n+1}} = \B\underbrace{\begin{bmatrix}
         \mathbf{p}^{n}\\
         \mathbf{v}^{n-1/2}
-    \end{bmatrix}}_{\u^{n}} 
+    \end{bmatrix}}_{\u^{n}}, 
 \end{equation}
 where
 \begin{equation}
     \B = \begin{bmatrix}
         \I_{N+1}+\B_v\B_p & \B_v  \\
         \B_p & \I_{N}
-    \end{bmatrix},
+    \end{bmatrix}
 \end{equation}
-is of size $(2N + 1) \times (2N + 1)$ and may be directly used as matrix $\Q$ for the modal analysis using a one-step form described in Section \ref{sec:oneStepForm}.
+is of size $(2N + 1) \times (2N + 1)$, and may be directly used as matrix $\Q$ for the modal analysis using a one-step form described in Section \ref{sec:oneStepForm}.
 
-Finally the concatenated vector is defined as,
+Finally, the concatenated vector is defined as
 \begin{equation}
     \u^n = [p_0^n, \hdots, p_N^n, v_{1/2}^{n-1/2}, \hdots, v_{N-1/2}^{n-1/2}]^T
 \end{equation}
@@ -563,9 +562,10 @@ To obtain the correct energy balance, an inner product of Eq. \eqref{eq:discPres
 \end{equation}
 
 \subsubsection{Step 2: Identify energy types and isolate $\dtp$}
-For the rest of the analysis, the following superscripts and subscripts will be assumed unless denoted otherwise: $n$ and $l$ for $p$, $l$ for $\bar S$, $l+1/2$ for $S$ and $l+1/2$ and $n+1/2$ for $v$. After performing summation by parts of the last term using identity \eqref{eq:primedIdentityMinus}, Eq. \eqref{eq:firstOrderPrimed} becomes
+For the rest of the analysis, the following superscripts and subscripts will be assumed unless denoted otherwise: $n$ and $l$ for $p$, $l$ for $\bar S$, $l+1/2$ for $S$, and $l+1/2$ and $n+1/2$ for $v$. After performing summation by parts of the last term using identity \eqref{eq:primedIdentityMinus}, Eq. \eqref{eq:firstOrderPrimed} becomes
 \begin{equation}\label{eq:discEnergyFirstOrder}
-    \delta_{t+}\mathfrak{h} = \frac{1}{\rho_0 c^2}\langle \mu_{t+}p, \bar S \delta_{t+}p \rangle_{d}' -\langle \mu_{t+}\dxp p, Sv\rangle_{\underline{d}} = -\mathfrak{b} \quad \end{equation}
+    \delta_{t+}\mathfrak{h} = \frac{1}{\rho_0 c^2}\langle \mu_{t+}p, \bar S \delta_{t+}p \rangle_{d}' -\langle \mu_{t+}\dxp p, Sv\rangle_{\underline{d}} = -\mathfrak{b},
+\end{equation}
 where the boundary term is
 \begin{align}
     \mathfrak{b} &= \mathfrak{b}_\text{r} - \mathfrak{b}_\text{l}, \quad \text{with} \nonumber\\
@@ -580,7 +580,7 @@ and can be shown to vanish under the boundary conditions shown in Eq. \eqref{eq:
 Finally, one can use identities \eqref{eq:prodIdentity3} and \eqref{eq:prodIdentity2} for the first and second term respectively to get
 \begin{equation}\label{eq:energyBalanceFirstOrder}
     \begin{gathered}
-        \mathfrak{h} = \mathfrak{t} + \mathfrak{v}\quad \text{where}\\
+        \mathfrak{h} = \mathfrak{t} + \mathfrak{v},\quad \text{where}\\
        \mathfrak{t} = \frac{\rho_0}{2}\langle Sv, e_{t-}v\rangle_{\underline{d}}\quad \text{and} \quad \mathfrak{v} = \frac{1}{2\rho_0 c^2}\left(\lVert\sqrt{\bar S }p\rVert'_d\right)^2.
     \end{gathered}
 \end{equation}
@@ -686,7 +686,7 @@ Using the above, an update for $p^{n+1}_N$ based on known values of the system c
 where
 \begin{gather*}
     \zeta_1 = \frac{2R_2k}{2R_1R_2C_\r + k(R_1 + R_2)}, \quad \zeta_2 = \frac{2R_1R_2C_\r - k(R_1 + R_2)}{2R_1R_2C_\r + k(R_1 + R_2)}\\
-    \zeta_3 = \frac{k}{2L_\r} + \frac{\zeta_1}{2R_2}+\frac{C_\r\zeta_1}{k}, \qaq \zeta_4 = \frac{\zeta_2+1}{2R_2} + \frac{C_\r\zeta_2 - C_\r}{k}.
+    \zeta_3 = \frac{k}{2L_\r} + \frac{\zeta_1}{2R_2}+\frac{C_\r\zeta_1}{k} \qaq \zeta_4 = \frac{\zeta_2+1}{2R_2} + \frac{C_\r\zeta_2 - C_\r}{k}.
 \end{gather*}
 Once $p_N^{n+1}$ is known, the internal states of the system can be updated as follows
 \begin{subequations}

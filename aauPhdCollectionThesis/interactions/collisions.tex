@@ -6,12 +6,12 @@ This work uses collision models that rely on penalising methods. The colliding o
 The discretisations proposed in \cite{Chatziioannou2013, Bilbao2014} rely on implicit nonlinear schemes which require an iterative method, such as the Newton-Raphson method presented in Section \ref{sec:newtonRaphson}, to obtain their solution. 
 The exact number of iterations required per time step, especially in interactive applications, is usually unknown. This could be detrimental to real-time applications, as the number of iterations, and consequently the extra number of computations, could be very large in a particular situation. Furthermore, and perhaps more importantly, existence and uniqueness of the solution might not be available. 
 
-In \cite{Ducceschi2021} (co-authored by the PhD student [\hyperref[ch:listOfPublications]{O3}]), Ducceschi et al. propose a method based on quadratisation of the collision potential energy, that circumvents the need of an iterative method to solve nonlinear collisions. Energy quadratisation for explicit schemes first appeared in the context of Port-Hamiltonian systems and was proposed by Lopes et al. in \cite{Lopes2015}. The introduction of an additional state variable, which is what Ducceschi's work is based on, was introduced in \cite{Yang2017, Jiang2019}. Papers \citeP[D] and \citeP[E] follow an earlier iteration of the non-iterative collision algorithm from \cite{Ducceschi2019, Bilbao2019} which exhibited spurious oscillations that Ducceschi et al. resolve in \cite{Ducceschi2021}. Paper \citeP[H] uses the corrected collision model for the collision between the lips exciting the trombone. The corrected model will be used in this work and presented in this chapter. 
+In \cite{Ducceschi2021} (co-authored by the PhD student [\hyperref[ch:listOfPublications]{O3}]), Ducceschi et al. propose a method based on quadratisation of the collision potential energy, that circumvents the need of an iterative method to solve nonlinear collisions. Energy quadratisation for explicit schemes first appeared in the context of Port-Hamiltonian systems and was proposed by Lopes et al. and Falaize et al. in \cite{Lopes2015, Falaize2016}. The introduction of an additional state variable, which is what Ducceschi's work is based on, was introduced in \cite{Yang2017, Jiang2019}. Papers \citeP[D] and \citeP[E] follow an earlier iteration of the non-iterative collision algorithm from \cite{Ducceschi2019, Bilbao2019} which exhibited spurious oscillations that Ducceschi et al. resolve in \cite{Ducceschi2021}. Paper \citeP[H] uses the corrected collision model for the collision between the lips exciting the trombone. The corrected model will be used in this work and presented in this chapter. 
 
 This chapter first provides a definition for the collision potential as well as its quadratisation, used as the basis for the explicit method. Then, the method will be applied to a simple mass-barrier collision and finally, to a mass-spring -- string collision which can be used to model a finger-fretted string.
 
 \subsubsection{Collision potential}
-Collisions can be modelled using a nonlinear \textit{collision potential}, which can be defined as
+Collisions can be modelled using a nonlinear \textit{collision potential}, which can be defined as \cite{Hertz1881}
 \begin{equation}\label{eq:potential}
     \phi(\eta) = \frac{K_\ctxt}{\alpha_\ctxt+1}[\eta]_+^{\alpha_\ctxt+1},
 \end{equation}
@@ -36,7 +36,7 @@ and can then be used in the PDE at hand.
 The issue with this form of the collision potential, is that an iterative method, such as Newton-Raphson presented in Section \ref{sec:newtonRaphson}, needs to be used in order to solve the system \cite{Ducceschi2021}.
 
 \subsubsection{Quadratic form}
-In \cite{Ducceschi2021}, the authors propose to rewrite the potential in Eq. \eqref{eq:derivPotential} in a quadratic form. Using the chain rule and  $\psi = \psi(\eta)$, Eq. \eqref{eq:derivPotential} can be rewritten as
+Based on earlier work by Lopez and Falaize et al. \cite{Lopes2015, Falaize2016}, the authors propose in \cite{Ducceschi2021} to rewrite the potential in Eq. \eqref{eq:derivPotential} in a quadratic form. Using the chain rule and  $\psi = \psi(\eta)$, Eq. \eqref{eq:derivPotential} can be rewritten as
 \begin{equation}\label{eq:quadraticPotential}
     \phi'(\eta) = \psi\psi' \quad \text{where} \quad \psi = \sqrt{2\phi} \quad \text{and} \quad \psi' = \frac{\dot{\psi}}{\dot{\eta}}\ ,
 \end{equation}
@@ -114,12 +114,12 @@ Recalling \eqref{eq:derivPotential} and \eqref{eq:potential}, this can convenien
 \begin{equation}\label{eq:gn}
     g^n = \frac{K_\ctxt[\eta^n]_+^{\alpha_\ctxt}}{\sqrt{\frac{2K_\ctxt}{\alpha_\ctxt+1}[\eta^n]_+^{\alpha_\ctxt+1}}}=K_\ctxt\sqrt{\frac{\alpha_\ctxt+1}{2K_\ctxt}}[\eta^n]_+^{\alpha_\ctxt}[\eta^n]_+^{\frac{-(\alpha_\ctxt+1)}{2}}=\sqrt{\frac{K_\ctxt(\alpha_\ctxt+1)}{2}}[\eta^n]_+^{\frac{\alpha_\ctxt-1}{2}}\,.
 \end{equation}
-For implementation purposes, one can expand the $[\cdot]_+$ operator as the following (equivalent) condition:
-\begin{subnumcases}{ \label{eq:gDefOld} g^n =}
-    \sqrt{\frac{K_\text{c}(\alpha_\text{c}+1)}{2}}\cdot(\eta^n)^{\frac{\alpha_\text{c}-1}{2}},
-    & if $\eta^n \geq 0$ \label{eq:collCorr1Old}\\
-    0, & $\text{if } \eta^n < 0$\label{eq:collCorr2Old}
-\end{subnumcases}
+% For implementation purposes, one can expand the $[\cdot]_+$ operator as the following (equivalent) condition:
+% \begin{subnumcases}{ \label{eq:gDefOld} g^n =}
+%     \sqrt{\frac{K_\text{c}(\alpha_\text{c}+1)}{2}}\cdot(\eta^n)^{\frac{\alpha_\text{c}-1}{2}},
+%     & if $\eta^n \geq 0$ \label{eq:collCorr1Old}\\
+%     0, & $\text{if } \eta^n < 0$\label{eq:collCorr2Old}
+% \end{subnumcases}
 This implementation is the one presented in \cite{Ducceschi2019}, but exhibited spurious oscillations and `sticking' behaviour. This is due to the possibility of negative forces for positive penetrations due to the discontinuity in the definition for $g^n$ at $\eta^n = 0$.
 
 In \cite{Ducceschi2021}, the definition for $g^n$ in \eqref{eq:gDefOld} is extended, starting out by using an implicit equation for $g^n$ by directly discretising Eq. \eqref{eq:approxPsi}
@@ -407,7 +407,7 @@ Figure \ref{fig:massStringCollisionEnergy} shows the energy of the mass-spring c
 % As an alternative to the method connections shown in Chapter \ref{ch:connections} showed ways to connect various resonators using techniques presented in \cite{theBible}. An alternative method to establish these connections can be devised using the methods presented in this chapter.
 % 
 
-Using the methods presented in this chapter, one could devise a two-sided collision and alter the collision potential in Eq. \eqref{eq:potential} to \cite{Bilbao2019}
+Using the methods presented in this chapter, one could devise a two-sided collision and alter the collision potential in Eq. \eqref{eq:potential} to \cite{Bilbao2019}\footnote{The equation proposed in \cite{Bilbao2019} contains a `dead zone' that has been set to 0 here.}
 \begin{equation}\label{eq:twoSidedPotential}
     \phi(\eta) = \frac{K}{\alpha_\ctxt+1}|\eta|^{\alpha_\ctxt+1},
 \end{equation}

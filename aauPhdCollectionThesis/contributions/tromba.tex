@@ -1,5 +1,5 @@
 \chapter{The Tromba Marina}\label{ch:tromba}
-This chapter provides an extended summary for the paper ``Real-time Implementation of a Physical Model of the Tromba Marina'' \citeP[D] and the paper ``Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling'' \citeP[E]. After a general summary of these papers, the physical model will be summarised, with reference to the theory explained in the previous parts of this thesis. Finally, this chapter extends on the contents of paper \citeP[D] by providing more details on the implementation and goes through an energy analysis.
+This chapter provides an extended summary for the paper ``Real-time Implementation of a Physical Model of the Tromba Marina'' \citeP[D] and the paper ``Resurrecting the Tromba Marina: A Bowed Virtual Reality Instrument using Haptic Feedback and Accurate Physical Modelling'' \citeP[E]. After a general summary of these papers, the physical model will be summarised, with reference to the theory explained in the previous parts of this thesis. Finally, this chapter extends the contents of paper \citeP[D] by providing more details on the implementation and goes through an energy analysis.
 
 \section{Summary}
 The tromba marina is a bowed monochord instrument from medieval Europe (see Figure 1 in paper \citeP[D]). It has a long quasi-trapezoidal body and is unique due to its oddly-shaped bridge that the string rests on. The bridge is often called a `shoe' due to its shape and is free to rattle against the body in sympathy with the movement of the vibrating string (see Figure 2 in paper \citeP[D]). This rattling causes a sound with brass or trumpet-like qualities, hence the name \textit{tromba} which stems from the Italian word trumpet. The rarity of the instrument as well as its interesting physics makes it an ideal case for a physical modelling implementation.
@@ -11,7 +11,7 @@ Paper \citeP[D] presents a physical model of the tromba marina and its real-time
 The VR implementation of the tromba marina was evaluated on 14 participants. The goals of the evaluation was to determine the general experience of bowing in a VR environment, and to evaluate the playability of a VR monochord instrument.
 The data was collected using a combination of qualitative and quantitative methods as detailed in paper \citeP[E]. The questions asked in the quantitative part of the evaluation were divided into haptics, visuals, audio, and overall experience of the application.
 
-The results show that the various modalities (visuals, audio and haptics) seemed to reinforce each other and that the haptic feedback provided by the PHANTOM Omni was deemed ``realistic'' and ``natural''. The overall playability of the instrument was thus concluded to be satisfactory, though improvements could be made.
+The results show that the various modalities (visuals, audio and haptics) seemed to reinforce each other and that the haptic feedback provided by the PHANTOM Omni was deemed ``realistic'' and ``natural''. Many considered the instrument ``hard to play'', but this is what could be expected when one starts. The overall playability of the instrument was thus concluded to be satisfactory, though improvements could be made.
 
 % \begin{figure}
 %     \centering
@@ -157,7 +157,7 @@ As $0$\thOrder spreading operators are used for the collision terms in the strin
 There are a few components presented in paper \citeP[D] that the system does not include here. These are the offset $w_\text{off}$ between the mass and the plate as well as the damping finger that interacts with the string to play different pitches. As the focus of this chapter is on the process of solving the system at the bridge for which these two components are not important, these will be ignored to avoid additional complexity. Further details on these components are provided in the paper.
 
 \section{Implementation details}
-This section extends on paper \citeP[D] by providing more details on the solution of the string-bridge-body interaction.
+This section extends paper \citeP[D] by providing more details on the solution of the string-bridge-body interaction.
 
 Following Section \ref{sec:massString} one could expand Eqs. \eqref{eq:trombaSystemFDSString}, \eqref{eq:trombaSystemFDSMass} and \eqref{eq:trombaSystemFDSPlate} and treat these as a system of linear equations (see Section \ref{sec:linearEquations}). This would require an inversion of a $3\times 3$ matrix each iteration.
 To simplify things slightly, and looking towards real-time implementation, one could instead solve for $\delta_{t\cdot}\eta_\sm^n$ and $\delta_{t\cdot}\eta_\mp^n$ directly, which would require a $2\times 2$ matrix inversion each iteration and requires much fewer operations (see Section \ref{sec:realTimeMatrices}).

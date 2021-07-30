@@ -291,7 +291,7 @@ where spatial Dirac delta function $\delta(x-x_\Btxt)$ (in m$^{-1}$) (see Sectio
 
 \subsubsection{Intuition}
 From Eq. \eqref{eq:bowedStiffStringPDE} it can be seen that the bow force gets scaled by the friction model $\Phi(\vrel)$ shown in Figure \ref{fig:frictionCharacteristic}. 
-The figure shows that if $\vrel$ is too large (either positively or negatively), the bow term in \eqref{eq:bowedStiffStringPDE} becomes $0$. If, on the other hand, $\vrel$ is closer to $0$, the bow will have an effect on the string. This can be interpreted in terms of static and dynamic friction\footnote{`Static' and `dynamic' friction are unrelated to `static' and `dynamic' friction models.}. A stationary object requires more force to be moved than a moving object, i.e., the static friction coefficient is always higher than the dynamic friction coefficient. This is essentially what the friction model tries to simulate.
+The figure shows that if $\vrel$ is too large (either positively or negatively), the bow term in \eqref{eq:bowedStiffStringPDE} becomes $0$. If, on the other hand, $\vrel$ is closer to $0$, the bow will have an effect on the string. This can be interpreted in terms of static and dynamic friction\footnote{The terms `static' and `dynamic' used in this sentence, do not relate to a `static' or `dynamic' friction model. Rather it refers to the friction for an object at rest (static), versus that of an object in motion (dynamic).}. A stationary object requires more force to be moved than a moving object, i.e., the static friction coefficient is always higher than the dynamic friction coefficient. This is essentially what the friction model tries to simulate.
 
 It might seem counter-intuitive that the bow term is subtracted from the scheme. This is due to the definition of the relative velocity in Eq. \eqref{eq:vrel}. For a negative bow velocity $v_\Btxt$, $\vrel$ becomes positive. As $\sgn\left(\Phi(\vrel)\right) = \sgn(\vrel)$ through Eq. \eqref{eq:staticFriction} and $f_\Btxt\geq 0$, the term $\delta(x-x_\Btxt)f_\Btxt\Phi(\vrel)$ will be positive for a positive $\vrel$. As a negative $v_\Btxt$ needs to have a downwards, or negative, effect on the string, the sign of the bow term also needs to be negative to achieve this.  
 
@@ -321,7 +321,7 @@ One can rewrite Eq. \eqref{eq:vrelDisc} to
 \begin{equation}\label{eq:vrelRewritten}
    I_l(x_\Btxt^n)\dtd \uln =  \vrel^n + v_\Btxt^n,
 \end{equation}
-and using identity \eqref{eq:identity1}, Eq. \eqref{eq:bowLocFDS} can be rewritten and assigned to a function $g(\vrel^n)$ according to 
+and using identity \eqref{eq:identity1}, Eq. \eqref{eq:bowLocFDS} can be rewritten and assigned to a function $g(\vrel^n)$ according to \todo{check time varying $x_\Btxt^n$}
 \begin{equation}\label{eq:staticFrictionNRfunc}
     g(\vrel^n) = \left(\frac{2}{k} + 2\sz\right)\vrel^n + \lVert J_l(x_\Btxt^n)\rVert^2_d F_\Btxt^n\Phi(\vrel^n) + b^n = 0,
 \end{equation}
@@ -356,8 +356,10 @@ and
 \subsection{Implementation and output}\label{sec:staticImplementation}
 To implement the bowed stiff string, one must perform the Newton-Raphson iteration every sample. For the implementation shown in this section, the threshold in Eq. \eqref{eq:NRthreshold} has been set to $\epsilon = 10^{-7}$ and the maximum number of iterations to $100$. In the following, the parameters used for the string are listed in Table \ref{tab:stiffStringParams} with $T = 1000$ N and those for the bow are
 \begin{equation*}
-    x_\Btxt = \floor[0.125/h],\quad f_\Btxt = 1\ \text{N},\quad v_\Btxt = 0.2\  \text{m/s},\qaq a = 100.
+    x_\Btxt^n = 1/8,\quad f_\Btxt^n = 1\ \text{N},\quad v_\Btxt^n = 0.2\  \text{m/s},\qaq a = 100.
 \end{equation*}
+Furthermore, $0$\thOrder interpolation and spreading operator are used.
+
 Figure \ref{fig:staticBowImplementation} shows the behaviour of a bowed stiff string at the beginning of the simulation and shows the characteristic stick-slip behaviour. Figure \ref{fig:helmholtzState} shows the state of the same simulation 3 seconds later. One can observe the Helmholtz corner move in an anti-clockwise direction as presented in Figure \ref{fig:helmholtz}. Finally, the time domain output of the string at the bowing location shown in Figure \ref{fig:helmholtzImplementation} generally follows the Helmholtz motion shown in Figure \ref{fig:helmholtzTimedomain}. 
 
 \begin{figure}[h]
@@ -412,11 +414,15 @@ Figure \ref{fig:energyStaticBow} shows the energy of the bowed stiff string corr
       \end{tikzpicture}
       \caption{The kinetic (blue), potential (red), and total (black) energy of the bowed stiff string. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyStaticBow}}
 \end{figure}
+\todo{look at implementation}
 
 \section{Dynamic friction models}
 As opposed to static friction models, dynamic friction models relate the relative velocity to the friction force using a differential equation. Dynamic friction models exhibit a phenomenon called \textit{hysteresis}, which is the dependence of a system on its history. This hysteresis loop is in the force versus velocity plane and has been confirmed by measurements using a bowing machine in \cite{Woodhouse2003}.
 
 The first dynamic friction model was proposed by Dahl \cite{Dahl1968} and captured hysteresis effects. The Stribeck effect (mentioned in Section \ref{sec:staticFricMod}) was, however, not taken into account. The LuGre model (named after the collaboration between Lund and Grenoble) was then proposed by Canudas de Wit et al. in \cite{Canudas1993, Canudas1995} and extended the Dahl model by taking the Stribeck effect into account. The model assumes a large ensemble of bristles between the two sliding surfaces, each of which contributes a tiny amount to the total friction force. The drawback of this model is that it exhibits drift for extremely small external forces. In \cite{Dupont2002}, Dupont et al. extended the LuGre model by allowing for a purely elastic regime that solves the drift issue. This model is referred to as the \textit{elasto-plastic} friction model and is used in this project.
+
+The first appearance of a contribution in this thesis is the elasto-plastic friction model applied to a stiff string implemented using FDTD methods. This has been presented in paper \citeP[C] and will be summarised in this section. Furthermore, this section extends the paper by providing a stability analysis using the techniques presented in Section \ref{sec:stabilityAnalysisEnergy}.
+
 
 \subsection{The elasto-plastic friction model}\label{sec:elastoPlastic}
 In a musical context, the elasto-plastic friction has been investigated in-depth by Serafin et al. in \cite{Serafin2003, Serafin2004, Avanzini2005}. Like the LuGre model, the elasto-plastic friction model assumes that the friction between the bow and the string is caused by a large quantity of bristles, all contributing a fraction of the total amount of friction. See Figure \ref{fig:elastoPlastic}.
@@ -490,8 +496,6 @@ with interpolation operator $I_l(x_\Btxt^n) = I_{l,o}(x_\Btxt^n)$ (of unspecifie
 is the discrete counterpart of Eq. \eqref{eq:zdot}. The discrete adhesion map is identical to the continuous definition given in Eqs. \eqref{eq:adhesionMap} and \eqref{eq:alphaM}, but with superscripts $n$ added for appearances of $v$ and $z$.
 
 \subsection{Applied to a FDTD stiff string}
-The first appearance of a contribution in this thesis is the elasto-plastic friction model applied to a stiff string implemented using FDTD methods. This has been presented in paper \citeP[C] and will be summarised in this section. \todo{state the stability stuff here?}
-
 In the same way as done with the static friction model in Section \ref{sec:staticFricMod}, one can add the friction force to the stiff string PDE in Eq. \eqref{eq:stiffStringPDE} and discretise the system as follows:
 %
 \begin{equation}\label{eq:elastoStiffStringFDS}
@@ -649,24 +653,10 @@ which is not necessarily non-negative. In \cite{Olsson1996}, Olsson performs the
 \begin{equation}
     \mathfrak{H}_\text{brist} = \frac{s_0}{2} z^2,
 \end{equation}
-which is clearly non-negative. See Notes below for a discussion. \todo{Don't forget!}
-
-% A condition can, however, be retrieved from the damping term and is similar to the condition presented by Olsson in continuous time. The damping term is defined as
-
-\subsubsection{\SWcomment[NOTES FOR STEFAN]}
-As far as I see, to find a stability condition for the model, there are two options:
-\begin{enumerate}
-    \item The $s_0z$ term should be discretised using the centred averaging operator, such that the system is inherently stable.
-    \begin{equation}
-        s_0 (\mtd z^n)(\dtd z^n)\quad \overset{\text{Eq. \eqref{eq:prodIdentity4}}}{\Longrightarrow} \quad \frac{s_0}{2}\mtm(z^n)^2
-    \end{equation}
-    This introduces the issue of needing to deal with $z^{n+1}$ issue in the multivariate NR solve.. 
-    \item If the bristles had some sort of mass, one could create a stability condition such as done for the mass-spring system in Section \ref{sec:stabilityAnalysisEnergy}. This requires a change the model.
-    \item Or do you see something I don't...?
-\end{enumerate}
+which is clearly non-negative. Further work needs to be done to prove stability for the discretisation of the elasto-plastic friction model in Eq. \eqref{eq:discForceFunction}.\footnote{This could possibly include a different discretisation of $s_0 z$ in Eq. \eqref{eq:elastoPlasticForce} or adding a mass to the bristles.}
 
 \section{Discussion and conclusion}
-This chapter presented the bow as a mechanism to excite stiff strings. Two friction models have been presented: a static friction model where the friction force is only a function of the relative velocity between the string and the bow, and a dynamic elasto-plastic friction model, which relates this relative velocity to the friction force using a differential equation. The latter has been presented in paper \citeP[C] where it was first applied to stiff strings based on FDTD methods. 
+This chapter presented the bow as a mechanism to excite stiff strings. Two friction models have been presented: a static friction model where the friction force is only a function of the relative velocity between the string and the bow, and a dynamic elasto-plastic friction model, which relates this relative velocity to the friction force using a differential equation. The latter has been presented in paper \citeP[C] where it was first applied to stiff strings based on FDTD methods. Stability analysis for the elasto-plastic friction model is ongoing,  although a stability condition for parameters of the model has been presented.
 
 Although a successful implementation of the elasto-plastic friction model has been made, it has not been used in the project beyond paper \citeP[C]. It was found that small changes in parameters, both control and model parameters, already yield large behavioural changes. An attempt was made at using the elasto-plastic friction model with a fully modelled instrument (the tromba marina presented in papers \citeP[D] and \citeP[E]), but this did not yield the desired results, and the predictable static friction model was chosen instead. Future work includes tuning the many parameters that the elasto-plastic model relies on and apply an adjusted version to fully modelled instruments.
 

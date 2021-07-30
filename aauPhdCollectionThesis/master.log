@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.20)  30 JUL 2021 11:50
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.7.20)  30 JUL 2021 18:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1258,7 +1258,12 @@ LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
 
  [23] [24
 
-] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.tdo [25])
+] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.tdo [25]
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 7.0pt on input line 41.
+LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
+(Font)              scaled to size 5.0pt on input line 41.
+)
 \tf@tdo=\write13
 \openout13 = `master.tdo'.
 
@@ -1274,8 +1279,6 @@ LaTeX Font Info:    Font shape `T1/zpltlf/b/n' will be
 ] [2] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/introduction.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/introduction/physMod.tex
 Chapter 1.
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 3.
-LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 7.0pt on input line 3.
 
 LaTeX Warning: Marginpar on page 3 moved.
 
@@ -1341,10 +1344,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Chapter 2.
 [15
 
-]
-LaTeX Font Info:    Font shape `T1/zpltlf/m/n' will be
-(Font)              scaled to size 5.0pt on input line 28.
- [16pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.1}) has been already used, duplicate ignored
+] [16pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   
 l.75 
@@ -1358,7 +1358,7 @@ Package epstopdf Info: Source file: <figures/fdtd/discretisation.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/discretisation-eps-converted-to.pdf figures/fdtd/discretisation.eps>
 (epstopdf)             \includegraphics on input line 111.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/discretisation-eps-converted-to.pdf, id=1264, 1003.75pt x 301.125pt>
+<figures/fdtd/discretisation-eps-converted-to.pdf, id=1263, 1003.75pt x 301.125pt>
 File: figures/fdtd/discretisation-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/discretisation-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/discretisation-eps-converted-to.pdf  used on input line 111.
@@ -1371,18 +1371,18 @@ Overfull \hbox (8.336pt too wide) in paragraph at lines 130--131
  []
 
 [19 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/discretisation-eps-converted-to.pdf>]
-<figures/fdtd/gridFigure3.pdf, id=1284, 1455.4375pt x 652.4375pt>
+<figures/fdtd/gridFigure3.pdf, id=1283, 1455.4375pt x 652.4375pt>
 File: figures/fdtd/gridFigure3.pdf Graphic file (type pdf)
 <use figures/fdtd/gridFigure3.pdf>
 Package pdftex.def Info: figures/fdtd/gridFigure3.pdf  used on input line 161.
 (pdftex.def)             Requested size: 341.43307pt x 153.05403pt.
  [20 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/fdtd/gridFigure3.pdf>] [21]
-<figures/fdtd/operatorsT.pdf, id=1565, 186.6975pt x 175.61609pt>
+<figures/fdtd/operatorsT.pdf, id=1564, 186.6975pt x 175.61609pt>
 File: figures/fdtd/operatorsT.pdf Graphic file (type pdf)
 <use figures/fdtd/operatorsT.pdf>
 Package pdftex.def Info: figures/fdtd/operatorsT.pdf  used on input line 218.
 (pdftex.def)             Requested size: 153.64383pt x 144.53134pt.
-<figures/fdtd/operatorsX.pdf, id=1566, 182.6022pt x 175.61609pt>
+<figures/fdtd/operatorsX.pdf, id=1565, 182.6022pt x 175.61609pt>
 File: figures/fdtd/operatorsX.pdf Graphic file (type pdf)
 <use figures/fdtd/operatorsX.pdf>
 Package pdftex.def Info: figures/fdtd/operatorsX.pdf  used on input line 219.
@@ -1397,7 +1397,7 @@ Package epstopdf Info: Source file: <figures/fdtd/taylor.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/taylor-eps-converted-to.pdf figures/fdtd/taylor.eps>
 (epstopdf)             \includegraphics on input line 319.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/taylor-eps-converted-to.pdf, id=1640, 1004.75375pt x 314.17375pt>
+<figures/fdtd/taylor-eps-converted-to.pdf, id=1639, 1004.75375pt x 314.17375pt>
 File: figures/fdtd/taylor-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/taylor-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/taylor-eps-converted-to.pdf  used on input line 319.
@@ -1545,7 +1545,7 @@ Package epstopdf Info: Source file: <figures/fdtd/massSpringOutput.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/massSpringOutput-eps-converted-to.pdf figures/fdtd/massSpringOutput.eps>
 (epstopdf)             \includegraphics on input line 439.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/massSpringOutput-eps-converted-to.pdf, id=1706, 830.10126pt x 220.825pt>
+<figures/fdtd/massSpringOutput-eps-converted-to.pdf, id=1705, 830.10126pt x 220.825pt>
 File: figures/fdtd/massSpringOutput-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/massSpringOutput-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/massSpringOutput-eps-converted-to.pdf  used on input line 439.
@@ -1560,7 +1560,7 @@ Package epstopdf Info: Source file: <figures/fdtd/1DWaveProp1.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/1DWaveProp1-eps-converted-to.pdf figures/fdtd/1DWaveProp1.eps>
 (epstopdf)             \includegraphics on input line 484.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/1DWaveProp1-eps-converted-to.pdf, id=1723, 358.33875pt x 222.8325pt>
+<figures/fdtd/1DWaveProp1-eps-converted-to.pdf, id=1722, 358.33875pt x 222.8325pt>
 File: figures/fdtd/1DWaveProp1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/1DWaveProp1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/1DWaveProp1-eps-converted-to.pdf  used on input line 484.
@@ -1574,7 +1574,7 @@ Package epstopdf Info: Source file: <figures/fdtd/1DWaveProp2.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/1DWaveProp2-eps-converted-to.pdf figures/fdtd/1DWaveProp2.eps>
 (epstopdf)             \includegraphics on input line 485.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/1DWaveProp2-eps-converted-to.pdf, id=1724, 358.33875pt x 222.8325pt>
+<figures/fdtd/1DWaveProp2-eps-converted-to.pdf, id=1723, 358.33875pt x 222.8325pt>
 File: figures/fdtd/1DWaveProp2-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/1DWaveProp2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/1DWaveProp2-eps-converted-to.pdf  used on input line 485.
@@ -1588,7 +1588,7 @@ Package epstopdf Info: Source file: <figures/fdtd/1DWaveProp3.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/1DWaveProp3-eps-converted-to.pdf figures/fdtd/1DWaveProp3.eps>
 (epstopdf)             \includegraphics on input line 486.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/1DWaveProp3-eps-converted-to.pdf, id=1725, 358.33875pt x 222.8325pt>
+<figures/fdtd/1DWaveProp3-eps-converted-to.pdf, id=1724, 358.33875pt x 222.8325pt>
 File: figures/fdtd/1DWaveProp3-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/1DWaveProp3-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/1DWaveProp3-eps-converted-to.pdf  used on input line 486.
@@ -1607,7 +1607,7 @@ Package epstopdf Info: Source file: <figures/fdtd/curvature.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/curvature-eps-converted-to.pdf figures/fdtd/curvature.eps>
 (epstopdf)             \includegraphics on input line 518.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/curvature-eps-converted-to.pdf, id=1743, 602.25pt x 200.75pt>
+<figures/fdtd/curvature-eps-converted-to.pdf, id=1742, 602.25pt x 200.75pt>
 File: figures/fdtd/curvature-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/curvature-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/curvature-eps-converted-to.pdf  used on input line 518.
@@ -1626,7 +1626,7 @@ Package epstopdf Info: Source file: <figures/fdtd/dirichletCont.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/dirichletCont-eps-converted-to.pdf figures/fdtd/dirichletCont.eps>
 (epstopdf)             \includegraphics on input line 541.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/dirichletCont-eps-converted-to.pdf, id=1763, 602.25pt x 354.32375pt>
+<figures/fdtd/dirichletCont-eps-converted-to.pdf, id=1762, 602.25pt x 354.32375pt>
 File: figures/fdtd/dirichletCont-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/dirichletCont-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/dirichletCont-eps-converted-to.pdf  used on input line 541.
@@ -1640,7 +1640,7 @@ Package epstopdf Info: Source file: <figures/fdtd/neumannCont.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/neumannCont-eps-converted-to.pdf figures/fdtd/neumannCont.eps>
 (epstopdf)             \includegraphics on input line 542.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/neumannCont-eps-converted-to.pdf, id=1766, 602.25pt x 354.32375pt>
+<figures/fdtd/neumannCont-eps-converted-to.pdf, id=1765, 602.25pt x 354.32375pt>
 File: figures/fdtd/neumannCont-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/neumannCont-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/neumannCont-eps-converted-to.pdf  used on input line 542.
@@ -1655,7 +1655,7 @@ Package epstopdf Info: Source file: <figures/fdtd/1DWaveStencil.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/1DWaveStencil-eps-converted-to.pdf figures/fdtd/1DWaveStencil.eps>
 (epstopdf)             \includegraphics on input line 593.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/1DWaveStencil-eps-converted-to.pdf, id=1820, 602.25pt x 401.5pt>
+<figures/fdtd/1DWaveStencil-eps-converted-to.pdf, id=1819, 602.25pt x 401.5pt>
 File: figures/fdtd/1DWaveStencil-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/1DWaveStencil-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/1DWaveStencil-eps-converted-to.pdf  used on input line 593.
@@ -1684,7 +1684,7 @@ Package epstopdf Info: Source file: <figures/fdtd/oneDWaveOutput.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/oneDWaveOutput-eps-converted-to.pdf figures/fdtd/oneDWaveOutput.eps>
 (epstopdf)             \includegraphics on input line 690.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/oneDWaveOutput-eps-converted-to.pdf, id=1872, 830.10126pt x 220.825pt>
+<figures/fdtd/oneDWaveOutput-eps-converted-to.pdf, id=1871, 830.10126pt x 220.825pt>
 File: figures/fdtd/oneDWaveOutput-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/oneDWaveOutput-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/oneDWaveOutput-eps-converted-to.pdf  used on input line 690.
@@ -1702,7 +1702,7 @@ Package epstopdf Info: Source file: <figures/fdtd/modes.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/modes-eps-converted-to.pdf figures/fdtd/modes.eps>
 (epstopdf)             \includegraphics on input line 695.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/modes-eps-converted-to.pdf, id=1875, 859.21pt x 257.96375pt>
+<figures/fdtd/modes-eps-converted-to.pdf, id=1874, 859.21pt x 257.96375pt>
 File: figures/fdtd/modes-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/modes-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/modes-eps-converted-to.pdf  used on input line 695.
@@ -1720,7 +1720,7 @@ Package epstopdf Info: Source file: <figures/fdtd/ulnLambda1.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/ulnLambda1-eps-converted-to.pdf figures/fdtd/ulnLambda1.eps>
 (epstopdf)             \includegraphics on input line 720.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/ulnLambda1-eps-converted-to.pdf, id=1909, 401.5pt x 301.125pt>
+<figures/fdtd/ulnLambda1-eps-converted-to.pdf, id=1908, 401.5pt x 301.125pt>
 File: figures/fdtd/ulnLambda1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/ulnLambda1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/ulnLambda1-eps-converted-to.pdf  used on input line 720.
@@ -1734,7 +1734,7 @@ Package epstopdf Info: Source file: <figures/fdtd/ulnLambda09.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/ulnLambda09-eps-converted-to.pdf figures/fdtd/ulnLambda09.eps>
 (epstopdf)             \includegraphics on input line 721.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/ulnLambda09-eps-converted-to.pdf, id=1910, 401.5pt x 301.125pt>
+<figures/fdtd/ulnLambda09-eps-converted-to.pdf, id=1909, 401.5pt x 301.125pt>
 File: figures/fdtd/ulnLambda09-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/ulnLambda09-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/ulnLambda09-eps-converted-to.pdf  used on input line 721.
@@ -1748,7 +1748,7 @@ Package epstopdf Info: Source file: <figures/fdtd/ulnLambda1001.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/ulnLambda1001-eps-converted-to.pdf figures/fdtd/ulnLambda1001.eps>
 (epstopdf)             \includegraphics on input line 722.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/ulnLambda1001-eps-converted-to.pdf, id=1911, 401.5pt x 301.125pt>
+<figures/fdtd/ulnLambda1001-eps-converted-to.pdf, id=1910, 401.5pt x 301.125pt>
 File: figures/fdtd/ulnLambda1001-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/ulnLambda1001-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/ulnLambda1001-eps-converted-to.pdf  used on input line 722.
@@ -1762,7 +1762,7 @@ Package epstopdf Info: Source file: <figures/fdtd/bandwidthLambda1.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/bandwidthLambda1-eps-converted-to.pdf figures/fdtd/bandwidthLambda1.eps>
 (epstopdf)             \includegraphics on input line 728.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/bandwidthLambda1-eps-converted-to.pdf, id=1914, 401.5pt x 301.125pt>
+<figures/fdtd/bandwidthLambda1-eps-converted-to.pdf, id=1913, 401.5pt x 301.125pt>
 File: figures/fdtd/bandwidthLambda1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/bandwidthLambda1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/bandwidthLambda1-eps-converted-to.pdf  used on input line 728.
@@ -1776,7 +1776,7 @@ Package epstopdf Info: Source file: <figures/fdtd/bandwidthLambda09.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/bandwidthLambda09-eps-converted-to.pdf figures/fdtd/bandwidthLambda09.eps>
 (epstopdf)             \includegraphics on input line 729.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/bandwidthLambda09-eps-converted-to.pdf, id=1915, 401.5pt x 301.125pt>
+<figures/fdtd/bandwidthLambda09-eps-converted-to.pdf, id=1914, 401.5pt x 301.125pt>
 File: figures/fdtd/bandwidthLambda09-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/bandwidthLambda09-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/bandwidthLambda09-eps-converted-to.pdf  used on input line 729.
@@ -1790,7 +1790,7 @@ Package epstopdf Info: Source file: <figures/fdtd/bandwidthLambda05.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/fdtd/bandwidthLambda05-eps-converted-to.pdf figures/fdtd/bandwidthLambda05.eps>
 (epstopdf)             \includegraphics on input line 730.
 Package epstopdf Info: Output file is already uptodate.
-<figures/fdtd/bandwidthLambda05-eps-converted-to.pdf, id=1916, 401.5pt x 301.125pt>
+<figures/fdtd/bandwidthLambda05-eps-converted-to.pdf, id=1915, 401.5pt x 301.125pt>
 File: figures/fdtd/bandwidthLambda05-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/fdtd/bandwidthLambda05-eps-converted-to.pdf>
 Package pdftex.def Info: figures/fdtd/bandwidthLambda05-eps-converted-to.pdf  used on input line 730.
@@ -1819,7 +1819,7 @@ Package epstopdf Info: Source file: <figures/analysis/massSpringEnergy2.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/analysis/massSpringEnergy2-eps-converted-to.pdf figures/analysis/massSpringEnergy2.eps>
 (epstopdf)             \includegraphics on input line 689.
 Package epstopdf Info: Output file is already uptodate.
-<figures/analysis/massSpringEnergy2-eps-converted-to.pdf, id=2274, 830.10126pt x 220.825pt>
+<figures/analysis/massSpringEnergy2-eps-converted-to.pdf, id=2273, 830.10126pt x 220.825pt>
 File: figures/analysis/massSpringEnergy2-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/analysis/massSpringEnergy2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/analysis/massSpringEnergy2-eps-converted-to.pdf  used on input line 689.
@@ -1846,7 +1846,7 @@ Package epstopdf Info: Source file: <figures/analysis/1dWaveEnergy.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/analysis/1dWaveEnergy-eps-converted-to.pdf figures/analysis/1dWaveEnergy.eps>
 (epstopdf)             \includegraphics on input line 787.
 Package epstopdf Info: Output file is already uptodate.
-<figures/analysis/1dWaveEnergy-eps-converted-to.pdf, id=2327, 830.10126pt x 220.825pt>
+<figures/analysis/1dWaveEnergy-eps-converted-to.pdf, id=2326, 830.10126pt x 220.825pt>
 File: figures/analysis/1dWaveEnergy-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/analysis/1dWaveEnergy-eps-converted-to.pdf>
 Package pdftex.def Info: figures/analysis/1dWaveEnergy-eps-converted-to.pdf  used on input line 787.
@@ -1871,7 +1871,7 @@ Package epstopdf Info: Source file: <figures/analysis/1dmodes.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/analysis/1dmodes-eps-converted-to.pdf figures/analysis/1dmodes.eps>
 (epstopdf)             \includegraphics on input line 953.
 Package epstopdf Info: Output file is already uptodate.
-<figures/analysis/1dmodes-eps-converted-to.pdf, id=2451, 436.63126pt x 220.825pt>
+<figures/analysis/1dmodes-eps-converted-to.pdf, id=2450, 436.63126pt x 220.825pt>
 File: figures/analysis/1dmodes-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/analysis/1dmodes-eps-converted-to.pdf>
 Package pdftex.def Info: figures/analysis/1dmodes-eps-converted-to.pdf  used on input line 953.
@@ -1898,7 +1898,7 @@ Package epstopdf Info: Source file: <figures/resonators/dispersion1.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/dispersion1-eps-converted-to.pdf figures/resonators/dispersion1.eps>
 (epstopdf)             \includegraphics on input line 24.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/dispersion1-eps-converted-to.pdf, id=2529, 358.33875pt x 222.8325pt>
+<figures/resonators/dispersion1-eps-converted-to.pdf, id=2528, 358.33875pt x 222.8325pt>
 File: figures/resonators/dispersion1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/dispersion1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/dispersion1-eps-converted-to.pdf  used on input line 24.
@@ -1912,7 +1912,7 @@ Package epstopdf Info: Source file: <figures/resonators/dispersion2.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/dispersion2-eps-converted-to.pdf figures/resonators/dispersion2.eps>
 (epstopdf)             \includegraphics on input line 25.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/dispersion2-eps-converted-to.pdf, id=2530, 358.33875pt x 222.8325pt>
+<figures/resonators/dispersion2-eps-converted-to.pdf, id=2529, 358.33875pt x 222.8325pt>
 File: figures/resonators/dispersion2-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/dispersion2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/dispersion2-eps-converted-to.pdf  used on input line 25.
@@ -1926,7 +1926,7 @@ Package epstopdf Info: Source file: <figures/resonators/dispersion3.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/dispersion3-eps-converted-to.pdf figures/resonators/dispersion3.eps>
 (epstopdf)             \includegraphics on input line 26.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/dispersion3-eps-converted-to.pdf, id=2531, 358.33875pt x 222.8325pt>
+<figures/resonators/dispersion3-eps-converted-to.pdf, id=2530, 358.33875pt x 222.8325pt>
 File: figures/resonators/dispersion3-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/dispersion3-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/dispersion3-eps-converted-to.pdf  used on input line 26.
@@ -1941,7 +1941,7 @@ Package epstopdf Info: Source file: <figures/resonators/clamped.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/clamped-eps-converted-to.pdf figures/resonators/clamped.eps>
 (epstopdf)             \includegraphics on input line 72.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/clamped-eps-converted-to.pdf, id=2566, 306.14375pt x 194.7275pt>
+<figures/resonators/clamped-eps-converted-to.pdf, id=2565, 306.14375pt x 194.7275pt>
 File: figures/resonators/clamped-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/clamped-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/clamped-eps-converted-to.pdf  used on input line 72.
@@ -1955,7 +1955,7 @@ Package epstopdf Info: Source file: <figures/resonators/simplySupported.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/simplySupported-eps-converted-to.pdf figures/resonators/simplySupported.eps>
 (epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/simplySupported-eps-converted-to.pdf, id=2567, 306.14375pt x 194.7275pt>
+<figures/resonators/simplySupported-eps-converted-to.pdf, id=2566, 306.14375pt x 194.7275pt>
 File: figures/resonators/simplySupported-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/simplySupported-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/simplySupported-eps-converted-to.pdf  used on input line 73.
@@ -1969,7 +1969,7 @@ Package epstopdf Info: Source file: <figures/resonators/free.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/free-eps-converted-to.pdf figures/resonators/free.eps>
 (epstopdf)             \includegraphics on input line 74.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/free-eps-converted-to.pdf, id=2568, 306.14375pt x 194.7275pt>
+<figures/resonators/free-eps-converted-to.pdf, id=2567, 306.14375pt x 194.7275pt>
 File: figures/resonators/free-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/free-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/free-eps-converted-to.pdf  used on input line 74.
@@ -1984,7 +1984,7 @@ Package epstopdf Info: Source file: <figures/resonators/stencilDampedStiffString
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/stencilDampedStiffString-eps-converted-to.pdf figures/resonators/stencilDampedStiffString.eps>
 (epstopdf)             \includegraphics on input line 168.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/stencilDampedStiffString-eps-converted-to.pdf, id=2640, 602.25pt x 401.5pt>
+<figures/resonators/stencilDampedStiffString-eps-converted-to.pdf, id=2639, 602.25pt x 401.5pt>
 File: figures/resonators/stencilDampedStiffString-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/stencilDampedStiffString-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/stencilDampedStiffString-eps-converted-to.pdf  used on input line 168.
@@ -2004,7 +2004,7 @@ Package epstopdf Info: Source file: <figures/resonators/outputFFT.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/outputFFT-eps-converted-to.pdf figures/resonators/outputFFT.eps>
 (epstopdf)             \includegraphics on input line 353.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/outputFFT-eps-converted-to.pdf, id=2711, 830.10126pt x 220.825pt>
+<figures/resonators/outputFFT-eps-converted-to.pdf, id=2710, 830.10126pt x 220.825pt>
 File: figures/resonators/outputFFT-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/outputFFT-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/outputFFT-eps-converted-to.pdf  used on input line 353.
@@ -2036,7 +2036,7 @@ Package epstopdf Info: Source file: <figures/resonators/stiffStringEnergy.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/stiffStringEnergy-eps-converted-to.pdf figures/resonators/stiffStringEnergy.eps>
 (epstopdf)             \includegraphics on input line 507.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/stiffStringEnergy-eps-converted-to.pdf, id=2777, 830.10126pt x 220.825pt>
+<figures/resonators/stiffStringEnergy-eps-converted-to.pdf, id=2776, 830.10126pt x 220.825pt>
 File: figures/resonators/stiffStringEnergy-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/stiffStringEnergy-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/stiffStringEnergy-eps-converted-to.pdf  used on input line 507.
@@ -2056,7 +2056,7 @@ Package epstopdf Info: Source file: <figures/resonators/modesStiffString.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/modesStiffString-eps-converted-to.pdf figures/resonators/modesStiffString.eps>
 (epstopdf)             \includegraphics on input line 555.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/modesStiffString-eps-converted-to.pdf, id=2818, 830.10126pt x 220.825pt>
+<figures/resonators/modesStiffString-eps-converted-to.pdf, id=2817, 830.10126pt x 220.825pt>
 File: figures/resonators/modesStiffString-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/modesStiffString-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/modesStiffString-eps-converted-to.pdf  used on input line 555.
@@ -2075,7 +2075,7 @@ Package epstopdf Info: Source file: <figures/resonators/stencilImplicitStiffStri
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf figures/resonators/stencilImplicitStiffString.eps>
 (epstopdf)             \includegraphics on input line 587.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf, id=2847, 602.25pt x 401.5pt>
+<figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf, id=2846, 602.25pt x 401.5pt>
 File: figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/stencilImplicitStiffString-eps-converted-to.pdf  used on input line 587.
@@ -2093,7 +2093,7 @@ Package epstopdf Info: Source file: <figures/resonators/implicitModes.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/implicitModes-eps-converted-to.pdf figures/resonators/implicitModes.eps>
 (epstopdf)             \includegraphics on input line 644.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/implicitModes-eps-converted-to.pdf, id=2890, 830.10126pt x 220.825pt>
+<figures/resonators/implicitModes-eps-converted-to.pdf, id=2889, 830.10126pt x 220.825pt>
 File: figures/resonators/implicitModes-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/implicitModes-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/implicitModes-eps-converted-to.pdf  used on input line 644.
@@ -2112,7 +2112,7 @@ Package epstopdf Info: Source file: <figures/resonators/brass/websterPropagation
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/brass/websterPropagation1-eps-converted-to.pdf figures/resonators/brass/websterPropagation1.eps>
 (epstopdf)             \includegraphics on input line 27.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/brass/websterPropagation1-eps-converted-to.pdf, id=2933, 368.37625pt x 240.9pt>
+<figures/resonators/brass/websterPropagation1-eps-converted-to.pdf, id=2932, 368.37625pt x 240.9pt>
 File: figures/resonators/brass/websterPropagation1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/brass/websterPropagation1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/brass/websterPropagation1-eps-converted-to.pdf  used on input line 27.
@@ -2126,7 +2126,7 @@ Package epstopdf Info: Source file: <figures/resonators/brass/websterPropagation
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/brass/websterPropagation2-eps-converted-to.pdf figures/resonators/brass/websterPropagation2.eps>
 (epstopdf)             \includegraphics on input line 28.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/brass/websterPropagation2-eps-converted-to.pdf, id=2934, 368.37625pt x 240.9pt>
+<figures/resonators/brass/websterPropagation2-eps-converted-to.pdf, id=2933, 368.37625pt x 240.9pt>
 File: figures/resonators/brass/websterPropagation2-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/brass/websterPropagation2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/brass/websterPropagation2-eps-converted-to.pdf  used on input line 28.
@@ -2140,7 +2140,7 @@ Package epstopdf Info: Source file: <figures/resonators/brass/websterPropagation
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/brass/websterPropagation3-eps-converted-to.pdf figures/resonators/brass/websterPropagation3.eps>
 (epstopdf)             \includegraphics on input line 29.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/brass/websterPropagation3-eps-converted-to.pdf, id=2935, 368.37625pt x 240.9pt>
+<figures/resonators/brass/websterPropagation3-eps-converted-to.pdf, id=2934, 368.37625pt x 240.9pt>
 File: figures/resonators/brass/websterPropagation3-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/brass/websterPropagation3-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/brass/websterPropagation3-eps-converted-to.pdf  used on input line 29.
@@ -2155,7 +2155,7 @@ Package epstopdf Info: Source file: <figures/resonators/brass/variableCrossSecti
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/brass/variableCrossSection-eps-converted-to.pdf figures/resonators/brass/variableCrossSection.eps>
 (epstopdf)             \includegraphics on input line 97.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/brass/variableCrossSection-eps-converted-to.pdf, id=2996, 697.60625pt x 224.84pt>
+<figures/resonators/brass/variableCrossSection-eps-converted-to.pdf, id=2995, 697.60625pt x 224.84pt>
 File: figures/resonators/brass/variableCrossSection-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/brass/variableCrossSection-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/brass/variableCrossSection-eps-converted-to.pdf  used on input line 97.
@@ -2170,7 +2170,7 @@ Package epstopdf Info: Source file: <figures/resonators/brass/inputWebster.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/brass/inputWebster-eps-converted-to.pdf figures/resonators/brass/inputWebster.eps>
 (epstopdf)             \includegraphics on input line 171.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/brass/inputWebster-eps-converted-to.pdf, id=3057, 788.9475pt x 220.825pt>
+<figures/resonators/brass/inputWebster-eps-converted-to.pdf, id=3056, 788.9475pt x 220.825pt>
 File: figures/resonators/brass/inputWebster-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/brass/inputWebster-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/brass/inputWebster-eps-converted-to.pdf  used on input line 171.
@@ -2189,7 +2189,7 @@ Package epstopdf Info: Source file: <figures/resonators/brass/outputWebster.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/brass/outputWebster-eps-converted-to.pdf figures/resonators/brass/outputWebster.eps>
 (epstopdf)             \includegraphics on input line 239.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/brass/outputWebster-eps-converted-to.pdf, id=3081, 830.10126pt x 220.825pt>
+<figures/resonators/brass/outputWebster-eps-converted-to.pdf, id=3080, 830.10126pt x 220.825pt>
 File: figures/resonators/brass/outputWebster-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/brass/outputWebster-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/brass/outputWebster-eps-converted-to.pdf  used on input line 239.
@@ -2204,7 +2204,7 @@ Package epstopdf Info: Source file: <figures/resonators/brass/geometryWebster.ep
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/brass/geometryWebster-eps-converted-to.pdf figures/resonators/brass/geometryWebster.eps>
 (epstopdf)             \includegraphics on input line 260.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/brass/geometryWebster-eps-converted-to.pdf, id=3102, 423.5825pt x 220.825pt>
+<figures/resonators/brass/geometryWebster-eps-converted-to.pdf, id=3101, 423.5825pt x 220.825pt>
 File: figures/resonators/brass/geometryWebster-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/brass/geometryWebster-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/brass/geometryWebster-eps-converted-to.pdf  used on input line 260.
@@ -2219,7 +2219,7 @@ Package epstopdf Info: Source file: <figures/resonators/brass/energyWebster2.eps
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/brass/energyWebster2-eps-converted-to.pdf figures/resonators/brass/energyWebster2.eps>
 (epstopdf)             \includegraphics on input line 353.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/brass/energyWebster2-eps-converted-to.pdf, id=3145, 830.10126pt x 220.825pt>
+<figures/resonators/brass/energyWebster2-eps-converted-to.pdf, id=3144, 830.10126pt x 220.825pt>
 File: figures/resonators/brass/energyWebster2-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/brass/energyWebster2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/brass/energyWebster2-eps-converted-to.pdf  used on input line 353.
@@ -2234,7 +2234,7 @@ Overfull \hbox (6.66595pt too wide) in paragraph at lines 362--363
                                                   
 l.465     \begin{align}
                        ]
-<figures/resonators/brass/interleavedGridFigure.pdf, id=3215, 732.7375pt x 511.9125pt>
+<figures/resonators/brass/interleavedGridFigure.pdf, id=3214, 732.7375pt x 511.9125pt>
 File: figures/resonators/brass/interleavedGridFigure.pdf Graphic file (type pdf)
 <use figures/resonators/brass/interleavedGridFigure.pdf>
 Package pdftex.def Info: figures/resonators/brass/interleavedGridFigure.pdf  used on input line 483.
@@ -2249,7 +2249,7 @@ Package epstopdf Info: Source file: <figures/resonators/brass/energyFirstOrder.e
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/brass/energyFirstOrder-eps-converted-to.pdf figures/resonators/brass/energyFirstOrder.eps>
 (epstopdf)             \includegraphics on input line 605.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/brass/energyFirstOrder-eps-converted-to.pdf, id=3341, 830.10126pt x 220.825pt>
+<figures/resonators/brass/energyFirstOrder-eps-converted-to.pdf, id=3340, 830.10126pt x 220.825pt>
 File: figures/resonators/brass/energyFirstOrder-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/brass/energyFirstOrder-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/brass/energyFirstOrder-eps-converted-to.pdf  used on input line 605.
@@ -2263,7 +2263,7 @@ Overfull \hbox (6.66595pt too wide) in paragraph at lines 613--614
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [113]
-<figures/resonators/brass/circuit.pdf, id=3370, 413.62529pt x 166.7028pt>
+<figures/resonators/brass/circuit.pdf, id=3369, 413.62529pt x 166.7028pt>
 File: figures/resonators/brass/circuit.pdf Graphic file (type pdf)
 <use figures/resonators/brass/circuit.pdf>
 Package pdftex.def Info: figures/resonators/brass/circuit.pdf  used on input line 624.
@@ -2277,12 +2277,12 @@ Chapter 6.
 [117
 
 ]
-<figures/resonators/2d/laplacian.pdf, id=3434, 237.7683pt x 204.765pt>
+<figures/resonators/2d/laplacian.pdf, id=3433, 237.7683pt x 204.765pt>
 File: figures/resonators/2d/laplacian.pdf Graphic file (type pdf)
 <use figures/resonators/2d/laplacian.pdf>
 Package pdftex.def Info: figures/resonators/2d/laplacian.pdf  used on input line 61.
 (pdftex.def)             Requested size: 153.64383pt x 132.31766pt.
-<figures/resonators/2d/biharmonic.pdf, id=3437, 237.7683pt x 204.765pt>
+<figures/resonators/2d/biharmonic.pdf, id=3436, 237.7683pt x 204.765pt>
 File: figures/resonators/2d/biharmonic.pdf Graphic file (type pdf)
 <use figures/resonators/2d/biharmonic.pdf>
 Package pdftex.def Info: figures/resonators/2d/biharmonic.pdf  used on input line 62.
@@ -2301,13 +2301,13 @@ Package epstopdf Info: Source file: <figures/resonators/2d/stencil2Dwave.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/stencil2Dwave-eps-converted-to.pdf figures/resonators/2d/stencil2Dwave.eps>
 (epstopdf)             \includegraphics on input line 138.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/stencil2Dwave-eps-converted-to.pdf, id=3509, 571.13374pt x 506.89375pt>
+<figures/resonators/2d/stencil2Dwave-eps-converted-to.pdf, id=3508, 571.13374pt x 506.89375pt>
 File: figures/resonators/2d/stencil2Dwave-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/stencil2Dwave-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/stencil2Dwave-eps-converted-to.pdf  used on input line 138.
 (pdftex.def)             Requested size: 239.0021pt x 212.12047pt.
  [121 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/resonators/2d/stencil2Dwave-eps-converted-to.pdf>]
-<figures/resonators/2d/stackingMatrix.pdf, id=3530, 594.30032pt x 319.1925pt>
+<figures/resonators/2d/stackingMatrix.pdf, id=3529, 594.30032pt x 319.1925pt>
 File: figures/resonators/2d/stackingMatrix.pdf Graphic file (type pdf)
 <use figures/resonators/2d/stackingMatrix.pdf>
 Package pdftex.def Info: figures/resonators/2d/stackingMatrix.pdf  used on input line 163.
@@ -2322,7 +2322,7 @@ Package epstopdf Info: Source file: <figures/resonators/2d/twoDPropagation.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/twoDPropagation-eps-converted-to.pdf figures/resonators/2d/twoDPropagation.eps>
 (epstopdf)             \includegraphics on input line 247.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/twoDPropagation-eps-converted-to.pdf, id=3563, 818.05624pt x 192.72pt>
+<figures/resonators/2d/twoDPropagation-eps-converted-to.pdf, id=3562, 818.05624pt x 192.72pt>
 File: figures/resonators/2d/twoDPropagation-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/twoDPropagation-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/twoDPropagation-eps-converted-to.pdf  used on input line 247.
@@ -2336,7 +2336,7 @@ Package epstopdf Info: Source file: <figures/resonators/2d/output2Dwave.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/output2Dwave-eps-converted-to.pdf figures/resonators/2d/output2Dwave.eps>
 (epstopdf)             \includegraphics on input line 253.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/output2Dwave-eps-converted-to.pdf, id=3564, 830.10126pt x 220.825pt>
+<figures/resonators/2d/output2Dwave-eps-converted-to.pdf, id=3563, 830.10126pt x 220.825pt>
 File: figures/resonators/2d/output2Dwave-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/output2Dwave-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/output2Dwave-eps-converted-to.pdf  used on input line 253.
@@ -2355,7 +2355,7 @@ Package epstopdf Info: Source file: <figures/resonators/2d/energy2DWave.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/energy2DWave-eps-converted-to.pdf figures/resonators/2d/energy2DWave.eps>
 (epstopdf)             \includegraphics on input line 395.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/energy2DWave-eps-converted-to.pdf, id=3638, 830.10126pt x 220.825pt>
+<figures/resonators/2d/energy2DWave-eps-converted-to.pdf, id=3637, 830.10126pt x 220.825pt>
 File: figures/resonators/2d/energy2DWave-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/energy2DWave-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/energy2DWave-eps-converted-to.pdf  used on input line 395.
@@ -2378,7 +2378,7 @@ Package epstopdf Info: Source file: <figures/resonators/2d/modes2Dwave.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/modes2Dwave-eps-converted-to.pdf figures/resonators/2d/modes2Dwave.eps>
 (epstopdf)             \includegraphics on input line 427.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/modes2Dwave-eps-converted-to.pdf, id=3658, 436.63126pt x 220.825pt>
+<figures/resonators/2d/modes2Dwave-eps-converted-to.pdf, id=3657, 436.63126pt x 220.825pt>
 File: figures/resonators/2d/modes2Dwave-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/modes2Dwave-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/modes2Dwave-eps-converted-to.pdf  used on input line 427.
@@ -2396,7 +2396,7 @@ Package epstopdf Info: Source file: <figures/resonators/2d/modalShapes.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/modalShapes-eps-converted-to.pdf figures/resonators/2d/modalShapes.eps>
 (epstopdf)             \includegraphics on input line 435.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/modalShapes-eps-converted-to.pdf, id=3665, 855.195pt x 435.6275pt>
+<figures/resonators/2d/modalShapes-eps-converted-to.pdf, id=3664, 855.195pt x 435.6275pt>
 File: figures/resonators/2d/modalShapes-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/modalShapes-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/modalShapes-eps-converted-to.pdf  used on input line 435.
@@ -2419,7 +2419,7 @@ Package epstopdf Info: Source file: <figures/resonators/2d/fullPlate.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/fullPlate-eps-converted-to.pdf figures/resonators/2d/fullPlate.eps>
 (epstopdf)             \includegraphics on input line 509.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/fullPlate-eps-converted-to.pdf, id=3732, 571.13374pt x 506.89375pt>
+<figures/resonators/2d/fullPlate-eps-converted-to.pdf, id=3731, 571.13374pt x 506.89375pt>
 File: figures/resonators/2d/fullPlate-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/fullPlate-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/fullPlate-eps-converted-to.pdf  used on input line 509.
@@ -2433,7 +2433,7 @@ Package epstopdf Info: Source file: <figures/resonators/2d/curPlateStencil.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/curPlateStencil-eps-converted-to.pdf figures/resonators/2d/curPlateStencil.eps>
 (epstopdf)             \includegraphics on input line 510.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/curPlateStencil-eps-converted-to.pdf, id=3733, 571.13374pt x 506.89375pt>
+<figures/resonators/2d/curPlateStencil-eps-converted-to.pdf, id=3732, 571.13374pt x 506.89375pt>
 File: figures/resonators/2d/curPlateStencil-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/curPlateStencil-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/curPlateStencil-eps-converted-to.pdf  used on input line 510.
@@ -2447,7 +2447,7 @@ Package epstopdf Info: Source file: <figures/resonators/2d/prevPlateStencil.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/prevPlateStencil-eps-converted-to.pdf figures/resonators/2d/prevPlateStencil.eps>
 (epstopdf)             \includegraphics on input line 511.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/prevPlateStencil-eps-converted-to.pdf, id=3734, 571.13374pt x 506.89375pt>
+<figures/resonators/2d/prevPlateStencil-eps-converted-to.pdf, id=3733, 571.13374pt x 506.89375pt>
 File: figures/resonators/2d/prevPlateStencil-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/prevPlateStencil-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/prevPlateStencil-eps-converted-to.pdf  used on input line 511.
@@ -2465,7 +2465,7 @@ Package epstopdf Info: Source file: <figures/resonators/2d/thinPlatePropagation.
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/thinPlatePropagation-eps-converted-to.pdf figures/resonators/2d/thinPlatePropagation.eps>
 (epstopdf)             \includegraphics on input line 587.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/thinPlatePropagation-eps-converted-to.pdf, id=3779, 818.05624pt x 192.72pt>
+<figures/resonators/2d/thinPlatePropagation-eps-converted-to.pdf, id=3778, 818.05624pt x 192.72pt>
 File: figures/resonators/2d/thinPlatePropagation-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/thinPlatePropagation-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/thinPlatePropagation-eps-converted-to.pdf  used on input line 587.
@@ -2482,7 +2482,7 @@ Package epstopdf Info: Source file: <figures/resonators/2d/outputThinPlate.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/outputThinPlate-eps-converted-to.pdf figures/resonators/2d/outputThinPlate.eps>
 (epstopdf)             \includegraphics on input line 593.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/outputThinPlate-eps-converted-to.pdf, id=3782, 830.10126pt x 220.825pt>
+<figures/resonators/2d/outputThinPlate-eps-converted-to.pdf, id=3781, 830.10126pt x 220.825pt>
 File: figures/resonators/2d/outputThinPlate-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/outputThinPlate-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/outputThinPlate-eps-converted-to.pdf  used on input line 593.
@@ -2500,7 +2500,7 @@ Package epstopdf Info: Source file: <figures/resonators/2d/energyThinPlate.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/energyThinPlate-eps-converted-to.pdf figures/resonators/2d/energyThinPlate.eps>
 (epstopdf)             \includegraphics on input line 686.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/energyThinPlate-eps-converted-to.pdf, id=3846, 830.10126pt x 220.825pt>
+<figures/resonators/2d/energyThinPlate-eps-converted-to.pdf, id=3845, 830.10126pt x 220.825pt>
 File: figures/resonators/2d/energyThinPlate-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/energyThinPlate-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/energyThinPlate-eps-converted-to.pdf  used on input line 686.
@@ -2519,7 +2519,7 @@ Package epstopdf Info: Source file: <figures/resonators/2d/thinPlateModes.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/resonators/2d/thinPlateModes-eps-converted-to.pdf figures/resonators/2d/thinPlateModes.eps>
 (epstopdf)             \includegraphics on input line 705.
 Package epstopdf Info: Output file is already uptodate.
-<figures/resonators/2d/thinPlateModes-eps-converted-to.pdf, id=3855, 837.1275pt x 212.795pt>
+<figures/resonators/2d/thinPlateModes-eps-converted-to.pdf, id=3854, 837.1275pt x 212.795pt>
 File: figures/resonators/2d/thinPlateModes-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/resonators/2d/thinPlateModes-eps-converted-to.pdf>
 Package pdftex.def Info: figures/resonators/2d/thinPlateModes-eps-converted-to.pdf  used on input line 705.
@@ -2545,7 +2545,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/impulse1.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/impulse1-eps-converted-to.pdf figures/exciters/physInsp/impulse1.eps>
 (epstopdf)             \includegraphics on input line 20.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/impulse1-eps-converted-to.pdf, id=3969, 358.33875pt x 222.8325pt>
+<figures/exciters/physInsp/impulse1-eps-converted-to.pdf, id=3968, 358.33875pt x 222.8325pt>
 File: figures/exciters/physInsp/impulse1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/impulse1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/impulse1-eps-converted-to.pdf  used on input line 20.
@@ -2559,7 +2559,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/impulse2.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/impulse2-eps-converted-to.pdf figures/exciters/physInsp/impulse2.eps>
 (epstopdf)             \includegraphics on input line 21.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/impulse2-eps-converted-to.pdf, id=3970, 358.33875pt x 222.8325pt>
+<figures/exciters/physInsp/impulse2-eps-converted-to.pdf, id=3969, 358.33875pt x 222.8325pt>
 File: figures/exciters/physInsp/impulse2-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/impulse2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/impulse2-eps-converted-to.pdf  used on input line 21.
@@ -2573,7 +2573,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/impulse3.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/impulse3-eps-converted-to.pdf figures/exciters/physInsp/impulse3.eps>
 (epstopdf)             \includegraphics on input line 22.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/impulse3-eps-converted-to.pdf, id=3971, 358.33875pt x 222.8325pt>
+<figures/exciters/physInsp/impulse3-eps-converted-to.pdf, id=3970, 358.33875pt x 222.8325pt>
 File: figures/exciters/physInsp/impulse3-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/impulse3-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/impulse3-eps-converted-to.pdf  used on input line 22.
@@ -2588,7 +2588,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/raisedCos1.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/raisedCos1-eps-converted-to.pdf figures/exciters/physInsp/raisedCos1.eps>
 (epstopdf)             \includegraphics on input line 61.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/raisedCos1-eps-converted-to.pdf, id=3994, 358.33875pt x 222.8325pt>
+<figures/exciters/physInsp/raisedCos1-eps-converted-to.pdf, id=3993, 358.33875pt x 222.8325pt>
 File: figures/exciters/physInsp/raisedCos1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/raisedCos1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/raisedCos1-eps-converted-to.pdf  used on input line 61.
@@ -2602,7 +2602,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/raisedCos2.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/raisedCos2-eps-converted-to.pdf figures/exciters/physInsp/raisedCos2.eps>
 (epstopdf)             \includegraphics on input line 62.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/raisedCos2-eps-converted-to.pdf, id=3995, 358.33875pt x 222.8325pt>
+<figures/exciters/physInsp/raisedCos2-eps-converted-to.pdf, id=3994, 358.33875pt x 222.8325pt>
 File: figures/exciters/physInsp/raisedCos2-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/raisedCos2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/raisedCos2-eps-converted-to.pdf  used on input line 62.
@@ -2616,7 +2616,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/raisedCos3.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/raisedCos3-eps-converted-to.pdf figures/exciters/physInsp/raisedCos3.eps>
 (epstopdf)             \includegraphics on input line 63.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/raisedCos3-eps-converted-to.pdf, id=3996, 358.33875pt x 222.8325pt>
+<figures/exciters/physInsp/raisedCos3-eps-converted-to.pdf, id=3995, 358.33875pt x 222.8325pt>
 File: figures/exciters/physInsp/raisedCos3-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/raisedCos3-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/raisedCos3-eps-converted-to.pdf  used on input line 63.
@@ -2630,7 +2630,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/strike1.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/strike1-eps-converted-to.pdf figures/exciters/physInsp/strike1.eps>
 (epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/strike1-eps-converted-to.pdf, id=3999, 358.33875pt x 222.8325pt>
+<figures/exciters/physInsp/strike1-eps-converted-to.pdf, id=3998, 358.33875pt x 222.8325pt>
 File: figures/exciters/physInsp/strike1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/strike1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/strike1-eps-converted-to.pdf  used on input line 73.
@@ -2644,7 +2644,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/strike2.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/strike2-eps-converted-to.pdf figures/exciters/physInsp/strike2.eps>
 (epstopdf)             \includegraphics on input line 74.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/strike2-eps-converted-to.pdf, id=4000, 358.33875pt x 222.8325pt>
+<figures/exciters/physInsp/strike2-eps-converted-to.pdf, id=3999, 358.33875pt x 222.8325pt>
 File: figures/exciters/physInsp/strike2-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/strike2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/strike2-eps-converted-to.pdf  used on input line 74.
@@ -2658,7 +2658,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/strike3.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/strike3-eps-converted-to.pdf figures/exciters/physInsp/strike3.eps>
 (epstopdf)             \includegraphics on input line 75.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/strike3-eps-converted-to.pdf, id=4001, 358.33875pt x 222.8325pt>
+<figures/exciters/physInsp/strike3-eps-converted-to.pdf, id=4000, 358.33875pt x 222.8325pt>
 File: figures/exciters/physInsp/strike3-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/strike3-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/strike3-eps-converted-to.pdf  used on input line 75.
@@ -2673,7 +2673,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/triangle1.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/triangle1-eps-converted-to.pdf figures/exciters/physInsp/triangle1.eps>
 (epstopdf)             \includegraphics on input line 102.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/triangle1-eps-converted-to.pdf, id=4030, 358.33875pt x 222.8325pt>
+<figures/exciters/physInsp/triangle1-eps-converted-to.pdf, id=4029, 358.33875pt x 222.8325pt>
 File: figures/exciters/physInsp/triangle1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/triangle1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/triangle1-eps-converted-to.pdf  used on input line 102.
@@ -2687,7 +2687,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/triangle2.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/triangle2-eps-converted-to.pdf figures/exciters/physInsp/triangle2.eps>
 (epstopdf)             \includegraphics on input line 103.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/triangle2-eps-converted-to.pdf, id=4031, 358.33875pt x 222.8325pt>
+<figures/exciters/physInsp/triangle2-eps-converted-to.pdf, id=4030, 358.33875pt x 222.8325pt>
 File: figures/exciters/physInsp/triangle2-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/triangle2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/triangle2-eps-converted-to.pdf  used on input line 103.
@@ -2701,7 +2701,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/triangle3.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/triangle3-eps-converted-to.pdf figures/exciters/physInsp/triangle3.eps>
 (epstopdf)             \includegraphics on input line 104.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/triangle3-eps-converted-to.pdf, id=4032, 358.33875pt x 222.8325pt>
+<figures/exciters/physInsp/triangle3-eps-converted-to.pdf, id=4031, 358.33875pt x 222.8325pt>
 File: figures/exciters/physInsp/triangle3-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/triangle3-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/triangle3-eps-converted-to.pdf  used on input line 104.
@@ -2716,7 +2716,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/2dHann.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/2dHann-eps-converted-to.pdf figures/exciters/physInsp/2dHann.eps>
 (epstopdf)             \includegraphics on input line 150.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/2dHann-eps-converted-to.pdf, id=4053, 580.1675pt x 253.94875pt>
+<figures/exciters/physInsp/2dHann-eps-converted-to.pdf, id=4052, 580.1675pt x 253.94875pt>
 File: figures/exciters/physInsp/2dHann-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/2dHann-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/2dHann-eps-converted-to.pdf  used on input line 150.
@@ -2731,7 +2731,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/timeVaryingRaised
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/timeVaryingRaisedCos-eps-converted-to.pdf figures/exciters/physInsp/timeVaryingRaisedCos.eps>
 (epstopdf)             \includegraphics on input line 207.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/timeVaryingRaisedCos-eps-converted-to.pdf, id=4101, 756.8275pt x 301.125pt>
+<figures/exciters/physInsp/timeVaryingRaisedCos-eps-converted-to.pdf, id=4100, 756.8275pt x 301.125pt>
 File: figures/exciters/physInsp/timeVaryingRaisedCos-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/timeVaryingRaisedCos-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/timeVaryingRaisedCos-eps-converted-to.pdf  used on input line 207.
@@ -2745,7 +2745,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/timeVaryingRaised
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/timeVaryingRaisedCosHammer-eps-converted-to.pdf figures/exciters/physInsp/timeVaryingRaisedCosHammer.eps>
 (epstopdf)             \includegraphics on input line 208.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/timeVaryingRaisedCosHammer-eps-converted-to.pdf, id=4102, 756.8275pt x 301.125pt>
+<figures/exciters/physInsp/timeVaryingRaisedCosHammer-eps-converted-to.pdf, id=4101, 756.8275pt x 301.125pt>
 File: figures/exciters/physInsp/timeVaryingRaisedCosHammer-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/timeVaryingRaisedCosHammer-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/timeVaryingRaisedCosHammer-eps-converted-to.pdf  used on input line 208.
@@ -2764,7 +2764,7 @@ Package epstopdf Info: Source file: <figures/exciters/physInsp/pulseTrain.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/physInsp/pulseTrain-eps-converted-to.pdf figures/exciters/physInsp/pulseTrain.eps>
 (epstopdf)             \includegraphics on input line 261.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/physInsp/pulseTrain-eps-converted-to.pdf, id=4127, 788.9475pt x 220.825pt>
+<figures/exciters/physInsp/pulseTrain-eps-converted-to.pdf, id=4126, 788.9475pt x 220.825pt>
 File: figures/exciters/physInsp/pulseTrain-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/physInsp/pulseTrain-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/physInsp/pulseTrain-eps-converted-to.pdf  used on input line 261.
@@ -2782,7 +2782,7 @@ Package epstopdf Info: Source file: <figures/exciters/helmholtz.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/helmholtz-eps-converted-to.pdf figures/exciters/helmholtz.eps>
 (epstopdf)             \includegraphics on input line 11.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/helmholtz-eps-converted-to.pdf, id=4170, 562.1pt x 284.06125pt>
+<figures/exciters/helmholtz-eps-converted-to.pdf, id=4169, 562.1pt x 284.06125pt>
 File: figures/exciters/helmholtz-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/helmholtz-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/helmholtz-eps-converted-to.pdf  used on input line 11.
@@ -2796,23 +2796,23 @@ Package epstopdf Info: Source file: <figures/exciters/helmholtzTimedomain.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/helmholtzTimedomain-eps-converted-to.pdf figures/exciters/helmholtzTimedomain.eps>
 (epstopdf)             \includegraphics on input line 23.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/helmholtzTimedomain-eps-converted-to.pdf, id=4172, 733.74126pt x 236.885pt>
+<figures/exciters/helmholtzTimedomain-eps-converted-to.pdf, id=4171, 733.74126pt x 236.885pt>
 File: figures/exciters/helmholtzTimedomain-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/helmholtzTimedomain-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/helmholtzTimedomain-eps-converted-to.pdf  used on input line 23.
 (pdftex.def)             Requested size: 341.43307pt x 110.2299pt.
 [157 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/helmholtz-eps-converted-to.pdf>] [158 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/helmholtzTimedomain-eps-converted-to.pdf>] [159]
-<figures/exciters/noInterpol2.pdf, id=4230, 752.8125pt x 301.125pt>
+<figures/exciters/noInterpol2.pdf, id=4229, 752.8125pt x 301.125pt>
 File: figures/exciters/noInterpol2.pdf Graphic file (type pdf)
 <use figures/exciters/noInterpol2.pdf>
 Package pdftex.def Info: figures/exciters/noInterpol2.pdf  used on input line 100.
 (pdftex.def)             Requested size: 109.26108pt x 43.70105pt.
-<figures/exciters/linearInterpol2.pdf, id=4231, 752.8125pt x 301.125pt>
+<figures/exciters/linearInterpol2.pdf, id=4230, 752.8125pt x 301.125pt>
 File: figures/exciters/linearInterpol2.pdf Graphic file (type pdf)
 <use figures/exciters/linearInterpol2.pdf>
 Package pdftex.def Info: figures/exciters/linearInterpol2.pdf  used on input line 101.
 (pdftex.def)             Requested size: 109.26108pt x 43.70105pt.
-<figures/exciters/cubicInterpol2.pdf, id=4232, 752.8125pt x 301.125pt>
+<figures/exciters/cubicInterpol2.pdf, id=4231, 752.8125pt x 301.125pt>
 File: figures/exciters/cubicInterpol2.pdf Graphic file (type pdf)
 <use figures/exciters/cubicInterpol2.pdf>
 Package pdftex.def Info: figures/exciters/cubicInterpol2.pdf  used on input line 102.
@@ -2827,7 +2827,7 @@ Package epstopdf Info: Source file: <figures/exciters/NR1.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/NR1-eps-converted-to.pdf figures/exciters/NR1.eps>
 (epstopdf)             \includegraphics on input line 215.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/NR1-eps-converted-to.pdf, id=4482, 296.10625pt x 349.305pt>
+<figures/exciters/NR1-eps-converted-to.pdf, id=4481, 296.10625pt x 349.305pt>
 File: figures/exciters/NR1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/NR1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/NR1-eps-converted-to.pdf  used on input line 215.
@@ -2841,7 +2841,7 @@ Package epstopdf Info: Source file: <figures/exciters/NR2.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/NR2-eps-converted-to.pdf figures/exciters/NR2.eps>
 (epstopdf)             \includegraphics on input line 216.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/NR2-eps-converted-to.pdf, id=4483, 296.10625pt x 349.305pt>
+<figures/exciters/NR2-eps-converted-to.pdf, id=4482, 296.10625pt x 349.305pt>
 File: figures/exciters/NR2-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/NR2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/NR2-eps-converted-to.pdf  used on input line 216.
@@ -2855,7 +2855,7 @@ Package epstopdf Info: Source file: <figures/exciters/NR3.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/NR3-eps-converted-to.pdf figures/exciters/NR3.eps>
 (epstopdf)             \includegraphics on input line 217.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/NR3-eps-converted-to.pdf, id=4484, 296.10625pt x 349.305pt>
+<figures/exciters/NR3-eps-converted-to.pdf, id=4483, 296.10625pt x 349.305pt>
 File: figures/exciters/NR3-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/NR3-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/NR3-eps-converted-to.pdf  used on input line 217.
@@ -2870,7 +2870,7 @@ Package epstopdf Info: Source file: <figures/exciters/frictionCharacteristic.eps
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/frictionCharacteristic-eps-converted-to.pdf figures/exciters/frictionCharacteristic.eps>
 (epstopdf)             \includegraphics on input line 272.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/frictionCharacteristic-eps-converted-to.pdf, id=4565, 562.1pt x 235.88126pt>
+<figures/exciters/frictionCharacteristic-eps-converted-to.pdf, id=4564, 562.1pt x 235.88126pt>
 File: figures/exciters/frictionCharacteristic-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/frictionCharacteristic-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/frictionCharacteristic-eps-converted-to.pdf  used on input line 272.
@@ -2883,12 +2883,12 @@ Package epstopdf Info: Source file: <figures/exciters/bowImplementation.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 64459 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/bowImplementation-eps-converted-to.pdf figures/exciters/bowImplementation.eps>
-(epstopdf)             \includegraphics on input line 365.
+(epstopdf)             \includegraphics on input line 367.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/bowImplementation-eps-converted-to.pdf, id=4638, 855.195pt x 362.35374pt>
+<figures/exciters/bowImplementation-eps-converted-to.pdf, id=4637, 855.195pt x 362.35374pt>
 File: figures/exciters/bowImplementation-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/bowImplementation-eps-converted-to.pdf>
-Package pdftex.def Info: figures/exciters/bowImplementation-eps-converted-to.pdf  used on input line 365.
+Package pdftex.def Info: figures/exciters/bowImplementation-eps-converted-to.pdf  used on input line 367.
 (pdftex.def)             Requested size: 341.43307pt x 144.668pt.
 Package epstopdf Info: Source file: <figures/exciters/helmholtzState.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
@@ -2897,12 +2897,12 @@ Package epstopdf Info: Source file: <figures/exciters/helmholtzState.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 89122 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/helmholtzState-eps-converted-to.pdf figures/exciters/helmholtzState.eps>
-(epstopdf)             \includegraphics on input line 370.
+(epstopdf)             \includegraphics on input line 372.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/helmholtzState-eps-converted-to.pdf, id=4639, 855.195pt x 362.35374pt>
+<figures/exciters/helmholtzState-eps-converted-to.pdf, id=4638, 855.195pt x 362.35374pt>
 File: figures/exciters/helmholtzState-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/helmholtzState-eps-converted-to.pdf>
-Package pdftex.def Info: figures/exciters/helmholtzState-eps-converted-to.pdf  used on input line 370.
+Package pdftex.def Info: figures/exciters/helmholtzState-eps-converted-to.pdf  used on input line 372.
 (pdftex.def)             Requested size: 341.43307pt x 144.668pt.
 
 
@@ -2915,17 +2915,17 @@ Package epstopdf Info: Source file: <figures/exciters/helmholtzImplementation.ep
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 40259 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/helmholtzImplementation-eps-converted-to.pdf figures/exciters/helmholtzImplementation.eps>
-(epstopdf)             \includegraphics on input line 375.
+(epstopdf)             \includegraphics on input line 377.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/helmholtzImplementation-eps-converted-to.pdf, id=4642, 788.9475pt x 249.93375pt>
+<figures/exciters/helmholtzImplementation-eps-converted-to.pdf, id=4641, 788.9475pt x 249.93375pt>
 File: figures/exciters/helmholtzImplementation-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/helmholtzImplementation-eps-converted-to.pdf>
-Package pdftex.def Info: figures/exciters/helmholtzImplementation-eps-converted-to.pdf  used on input line 375.
+Package pdftex.def Info: figures/exciters/helmholtzImplementation-eps-converted-to.pdf  used on input line 377.
 (pdftex.def)             Requested size: 341.43307pt x 108.1635pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[168 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/bowImplementation-eps-converted-to.pdf>]
+[168 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/bowImplementation-eps-converted-to.pdf>] [169 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/helmholtzState-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/helmholtzImplementation-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/exciters/energyBow.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 49071 bytes
@@ -2933,22 +2933,19 @@ Package epstopdf Info: Source file: <figures/exciters/energyBow.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 32819 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/energyBow-eps-converted-to.pdf figures/exciters/energyBow.eps>
-(epstopdf)             \includegraphics on input line 404.
+(epstopdf)             \includegraphics on input line 406.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/energyBow-eps-converted-to.pdf, id=4693, 830.10126pt x 220.825pt>
+<figures/exciters/energyBow-eps-converted-to.pdf, id=4699, 830.10126pt x 220.825pt>
 File: figures/exciters/energyBow-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/energyBow-eps-converted-to.pdf>
-Package pdftex.def Info: figures/exciters/energyBow-eps-converted-to.pdf  used on input line 404.
+Package pdftex.def Info: figures/exciters/energyBow-eps-converted-to.pdf  used on input line 406.
 (pdftex.def)             Requested size: 341.43307pt x 90.8286pt.
 
-Overfull \hbox (6.66595pt too wide) in paragraph at lines 412--413
+Overfull \hbox (6.66595pt too wide) in paragraph at lines 414--415
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[169 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/helmholtzState-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/helmholtzImplementation-eps-converted-to.pdf>] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/elastoPlasticFig.tex
+[170 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/energyBow-eps-converted-to.pdf>] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/elastoPlasticFig.tex
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -3496,11 +3493,11 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 )
-Overfull \hbox (1.79597pt too wide) in paragraph at lines 426--427
+Overfull \hbox (1.79597pt too wide) in paragraph at lines 432--433
 []\T1/zpltlf/m/n/10 Unless de-noted oth-er-wise, this sec-tion fol-lows the orig-i-nal model by Dupont
  []
 
-[170 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/energyBow-eps-converted-to.pdf>] [171]
+[171]
 Package epstopdf Info: Source file: <figures/exciters/steadyState.eps>
 (epstopdf)                    date: 2021-07-06 18:22:08
 (epstopdf)                    size: 41420 bytes
@@ -3508,13 +3505,14 @@ Package epstopdf Info: Source file: <figures/exciters/steadyState.eps>
 (epstopdf)                    date: 2021-07-06 18:22:08
 (epstopdf)                    size: 13762 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/steadyState-eps-converted-to.pdf figures/exciters/steadyState.eps>
-(epstopdf)             \includegraphics on input line 446.
+(epstopdf)             \includegraphics on input line 452.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/steadyState-eps-converted-to.pdf, id=4740, 583.17876pt x 229.85875pt>
+<figures/exciters/steadyState-eps-converted-to.pdf, id=4739, 583.17876pt x 229.85875pt>
 File: figures/exciters/steadyState-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/steadyState-eps-converted-to.pdf>
-Package pdftex.def Info: figures/exciters/steadyState-eps-converted-to.pdf  used on input line 446.
+Package pdftex.def Info: figures/exciters/steadyState-eps-converted-to.pdf  used on input line 452.
 (pdftex.def)             Requested size: 273.14749pt x 107.66183pt.
+ [172 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/steadyState-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/exciters/drawAlpha3.eps>
 (epstopdf)                    date: 2021-07-06 18:22:08
 (epstopdf)                    size: 131359 bytes
@@ -3522,14 +3520,14 @@ Package epstopdf Info: Source file: <figures/exciters/drawAlpha3.eps>
 (epstopdf)                    date: 2021-07-06 18:22:08
 (epstopdf)                    size: 45624 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/drawAlpha3-eps-converted-to.pdf figures/exciters/drawAlpha3.eps>
-(epstopdf)             \includegraphics on input line 473.
+(epstopdf)             \includegraphics on input line 479.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/drawAlpha3-eps-converted-to.pdf, id=4744, 602.25pt x 301.125pt>
+<figures/exciters/drawAlpha3-eps-converted-to.pdf, id=4757, 602.25pt x 301.125pt>
 File: figures/exciters/drawAlpha3-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/drawAlpha3-eps-converted-to.pdf>
-Package pdftex.def Info: figures/exciters/drawAlpha3-eps-converted-to.pdf  used on input line 473.
+Package pdftex.def Info: figures/exciters/drawAlpha3-eps-converted-to.pdf  used on input line 479.
 (pdftex.def)             Requested size: 273.14749pt x 136.58017pt.
- [172 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/steadyState-eps-converted-to.pdf>] [173 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/drawAlpha3-eps-converted-to.pdf>] [174]
+ [173 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/drawAlpha3-eps-converted-to.pdf>] [174]
 Package epstopdf Info: Source file: <figures/exciters/hysteresis.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 104783 bytes
@@ -3537,21 +3535,21 @@ Package epstopdf Info: Source file: <figures/exciters/hysteresis.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 95274 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/hysteresis-eps-converted-to.pdf figures/exciters/hysteresis.eps>
-(epstopdf)             \includegraphics on input line 557.
+(epstopdf)             \includegraphics on input line 561.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/hysteresis-eps-converted-to.pdf, id=4810, 803.0pt x 351.3125pt>
+<figures/exciters/hysteresis-eps-converted-to.pdf, id=4809, 803.0pt x 351.3125pt>
 File: figures/exciters/hysteresis-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/hysteresis-eps-converted-to.pdf>
-Package pdftex.def Info: figures/exciters/hysteresis-eps-converted-to.pdf  used on input line 557.
+Package pdftex.def Info: figures/exciters/hysteresis-eps-converted-to.pdf  used on input line 561.
 (pdftex.def)             Requested size: 341.43307pt x 149.37819pt.
-LaTeX Font Info:    Trying to load font information for T1+qhv on input line 570.
+LaTeX Font Info:    Trying to load font information for T1+qhv on input line 574.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/tex-gyre/t1qhv.fd
 File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 )
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 9.40002pt on input line 570.
+(Font)              scaled to size 9.40002pt on input line 574.
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 8.46002pt on input line 570.
+(Font)              scaled to size 8.46002pt on input line 574.
 Package epstopdf Info: Source file: <figures/exciters/elastoplasticWaveForm.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 70000 bytes
@@ -3559,12 +3557,12 @@ Package epstopdf Info: Source file: <figures/exciters/elastoplasticWaveForm.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 39838 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/elastoplasticWaveForm-eps-converted-to.pdf figures/exciters/elastoplasticWaveForm.eps>
-(epstopdf)             \includegraphics on input line 582.
+(epstopdf)             \includegraphics on input line 586.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/elastoplasticWaveForm-eps-converted-to.pdf, id=4813, 788.9475pt x 249.93375pt>
+<figures/exciters/elastoplasticWaveForm-eps-converted-to.pdf, id=4812, 788.9475pt x 249.93375pt>
 File: figures/exciters/elastoplasticWaveForm-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/elastoplasticWaveForm-eps-converted-to.pdf>
-Package pdftex.def Info: figures/exciters/elastoplasticWaveForm-eps-converted-to.pdf  used on input line 582.
+Package pdftex.def Info: figures/exciters/elastoplasticWaveForm-eps-converted-to.pdf  used on input line 586.
 (pdftex.def)             Requested size: 341.43307pt x 108.1635pt.
  [175 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/hysteresis-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/exciters/elastoplasticWaveForm-eps-converted-to.pdf>] [176] [177]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/exciters/lipreed.tex [178]
 Chapter 9.
@@ -3580,7 +3578,7 @@ Package epstopdf Info: Source file: <figures/exciters/lipreed/massSpringDamper1.
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/lipreed/massSpringDamper1-eps-converted-to.pdf figures/exciters/lipreed/massSpringDamper1.eps>
 (epstopdf)             \includegraphics on input line 32.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/lipreed/massSpringDamper1-eps-converted-to.pdf, id=4902, 358.33875pt x 222.8325pt>
+<figures/exciters/lipreed/massSpringDamper1-eps-converted-to.pdf, id=4896, 358.33875pt x 222.8325pt>
 File: figures/exciters/lipreed/massSpringDamper1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/lipreed/massSpringDamper1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/lipreed/massSpringDamper1-eps-converted-to.pdf  used on input line 32.
@@ -3594,7 +3592,7 @@ Package epstopdf Info: Source file: <figures/exciters/lipreed/massSpringDamper2.
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/lipreed/massSpringDamper2-eps-converted-to.pdf figures/exciters/lipreed/massSpringDamper2.eps>
 (epstopdf)             \includegraphics on input line 33.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/lipreed/massSpringDamper2-eps-converted-to.pdf, id=4903, 358.33875pt x 222.8325pt>
+<figures/exciters/lipreed/massSpringDamper2-eps-converted-to.pdf, id=4897, 358.33875pt x 222.8325pt>
 File: figures/exciters/lipreed/massSpringDamper2-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/lipreed/massSpringDamper2-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/lipreed/massSpringDamper2-eps-converted-to.pdf  used on input line 33.
@@ -3608,7 +3606,7 @@ Package epstopdf Info: Source file: <figures/exciters/lipreed/massSpringDamper3.
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/lipreed/massSpringDamper3-eps-converted-to.pdf figures/exciters/lipreed/massSpringDamper3.eps>
 (epstopdf)             \includegraphics on input line 34.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/lipreed/massSpringDamper3-eps-converted-to.pdf, id=4904, 358.33875pt x 222.8325pt>
+<figures/exciters/lipreed/massSpringDamper3-eps-converted-to.pdf, id=4898, 358.33875pt x 222.8325pt>
 File: figures/exciters/lipreed/massSpringDamper3-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/lipreed/massSpringDamper3-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/lipreed/massSpringDamper3-eps-converted-to.pdf  used on input line 34.
@@ -3623,7 +3621,7 @@ Package epstopdf Info: Source file: <figures/exciters/lipreed/massSpringDamperEn
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/lipreed/massSpringDamperEnergy-eps-converted-to.pdf figures/exciters/lipreed/massSpringDamperEnergy.eps>
 (epstopdf)             \includegraphics on input line 64.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/lipreed/massSpringDamperEnergy-eps-converted-to.pdf, id=4929, 830.10126pt x 220.825pt>
+<figures/exciters/lipreed/massSpringDamperEnergy-eps-converted-to.pdf, id=4923, 830.10126pt x 220.825pt>
 File: figures/exciters/lipreed/massSpringDamperEnergy-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/lipreed/massSpringDamperEnergy-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/lipreed/massSpringDamperEnergy-eps-converted-to.pdf  used on input line 64.
@@ -3669,7 +3667,7 @@ Package epstopdf Info: Source file: <figures/exciters/lipreed/lipreedImplementat
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/lipreed/lipreedImplementation-eps-converted-to.pdf figures/exciters/lipreed/lipreedImplementation.eps>
 (epstopdf)             \includegraphics on input line 236.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/lipreed/lipreedImplementation-eps-converted-to.pdf, id=5035, 1051.93pt x 391.4625pt>
+<figures/exciters/lipreed/lipreedImplementation-eps-converted-to.pdf, id=5029, 1051.93pt x 391.4625pt>
 File: figures/exciters/lipreed/lipreedImplementation-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/lipreed/lipreedImplementation-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/lipreed/lipreedImplementation-eps-converted-to.pdf  used on input line 236.
@@ -3684,7 +3682,7 @@ Package epstopdf Info: Source file: <figures/exciters/lipreed/lipreedEnergy.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/exciters/lipreed/lipreedEnergy-eps-converted-to.pdf figures/exciters/lipreed/lipreedEnergy.eps>
 (epstopdf)             \includegraphics on input line 313.
 Package epstopdf Info: Output file is already uptodate.
-<figures/exciters/lipreed/lipreedEnergy-eps-converted-to.pdf, id=5074, 830.10126pt x 220.825pt>
+<figures/exciters/lipreed/lipreedEnergy-eps-converted-to.pdf, id=5068, 830.10126pt x 220.825pt>
 File: figures/exciters/lipreed/lipreedEnergy-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/exciters/lipreed/lipreedEnergy-eps-converted-to.pdf>
 Package pdftex.def Info: figures/exciters/lipreed/lipreedEnergy-eps-converted-to.pdf  used on input line 313.
@@ -3710,11 +3708,17 @@ Overfull \hbox (0.61609pt too wide) in paragraph at lines 6--8
 []\T1/zpltlf/m/n/10 The dis-creti-sa-tions pro-posed in [[], []] rely on im-plicit non-lin-ear schemes
  []
 
-[195] [196] [197] [198] [199] [200pdfTeX warning (ext4): destination with the same identifier (name{equation.10.1.17}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.179 \end{equation}
-                    ]
+[195] [196] [197] [198]
+
+LaTeX Warning: Reference `eq:gDefOld' on page 199 undefined on input line 125.
+
+
+LaTeX Warning: Reference `eq:gDefOld' on page 199 undefined on input line 137.
+
+
+LaTeX Warning: Reference `eq:gDefOld' on page 199 undefined on input line 147.
+
+[199]
 Package epstopdf Info: Source file: <figures/interactions/massBarrierLow.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 28977 bytes
@@ -3724,7 +3728,7 @@ Package epstopdf Info: Source file: <figures/interactions/massBarrierLow.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/massBarrierLow-eps-converted-to.pdf figures/interactions/massBarrierLow.eps>
 (epstopdf)             \includegraphics on input line 187.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/massBarrierLow-eps-converted-to.pdf, id=5273, 333.245pt x 186.6975pt>
+<figures/interactions/massBarrierLow-eps-converted-to.pdf, id=5258, 333.245pt x 186.6975pt>
 File: figures/interactions/massBarrierLow-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/massBarrierLow-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/massBarrierLow-eps-converted-to.pdf  used on input line 187.
@@ -3738,12 +3742,20 @@ Package epstopdf Info: Source file: <figures/interactions/massBarrierHigh.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/massBarrierHigh-eps-converted-to.pdf figures/interactions/massBarrierHigh.eps>
 (epstopdf)             \includegraphics on input line 188.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/massBarrierHigh-eps-converted-to.pdf, id=5274, 333.245pt x 186.6975pt>
+<figures/interactions/massBarrierHigh-eps-converted-to.pdf, id=5259, 333.245pt x 186.6975pt>
 File: figures/interactions/massBarrierHigh-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/massBarrierHigh-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/massBarrierHigh-eps-converted-to.pdf  used on input line 188.
 (pdftex.def)             Requested size: 167.30408pt x 93.7331pt.
- [201 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/interactions/massBarrierLow-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/interactions/massBarrierHigh-eps-converted-to.pdf>]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[200pdfTeX warning (ext4): destination with the same identifier (name{equation.10.1.16}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  
+l.193 \subsection{Energy analysis}
+                                  \label{sec:energyAnalysisMassBarrier}] [201 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/interactions/massBarrierLow-eps-converted-to.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/interactions/massBarrierHigh-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/interactions/massBarrierEnergy.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 48958 bytes
@@ -3753,7 +3765,7 @@ Package epstopdf Info: Source file: <figures/interactions/massBarrierEnergy.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/massBarrierEnergy-eps-converted-to.pdf figures/interactions/massBarrierEnergy.eps>
 (epstopdf)             \includegraphics on input line 227.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/massBarrierEnergy-eps-converted-to.pdf, id=5317, 830.10126pt x 220.825pt>
+<figures/interactions/massBarrierEnergy-eps-converted-to.pdf, id=5314, 830.10126pt x 220.825pt>
 File: figures/interactions/massBarrierEnergy-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/massBarrierEnergy-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/massBarrierEnergy-eps-converted-to.pdf  used on input line 227.
@@ -3763,7 +3775,7 @@ Overfull \hbox (6.66595pt too wide) in paragraph at lines 236--237
  [][] 
  []
 
-[202 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/interactions/massBarrierEnergy-eps-converted-to.pdf>] [203] [204]
+[202 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/interactions/massBarrierEnergy-eps-converted-to.pdf>] [203]
 Package epstopdf Info: Source file: <figures/interactions/stringMassCollision.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 51177 bytes
@@ -3773,16 +3785,32 @@ Package epstopdf Info: Source file: <figures/interactions/stringMassCollision.ep
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/stringMassCollision-eps-converted-to.pdf figures/interactions/stringMassCollision.eps>
 (epstopdf)             \includegraphics on input line 338.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/stringMassCollision-eps-converted-to.pdf, id=5378, 830.10126pt x 220.825pt>
+<figures/interactions/stringMassCollision-eps-converted-to.pdf, id=5367, 830.10126pt x 220.825pt>
 File: figures/interactions/stringMassCollision-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/stringMassCollision-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/stringMassCollision-eps-converted-to.pdf  used on input line 338.
 (pdftex.def)             Requested size: 341.43307pt x 90.8286pt.
- [205pdfTeX warning (ext4): destination with the same identifier (name{equation.10.2.32}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  
-l.355 \end{equation*}
-                      </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/interactions/stringMassCollision-eps-converted-to.pdf>] [206]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[204]pdfTeX warning (ext4): destination with the same identifier (name{equation.10.2.31}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.346 \begin{equation}
+                      \label{eq:rOCEnergyString}pdfTeX warning (ext4): destination with the same identifier (name{equation.10.2.31}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.346 \begin{equation}
+                      \label{eq:rOCEnergyString}pdfTeX warning (ext4): destination with the same identifier (name{equation.10.2.31}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.346 \begin{equation}
+                      \label{eq:rOCEnergyString}pdfTeX warning (ext4): destination with the same identifier (name{equation.10.2.31}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.346 \begin{equation}
+                      \label{eq:rOCEnergyString} [205 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/interactions/stringMassCollision-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/interactions/stringMassCollisionEnergy.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 52894 bytes
@@ -3792,7 +3820,7 @@ Package epstopdf Info: Source file: <figures/interactions/stringMassCollisionEne
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/stringMassCollisionEnergy-eps-converted-to.pdf figures/interactions/stringMassCollisionEnergy.eps>
 (epstopdf)             \includegraphics on input line 392.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/stringMassCollisionEnergy-eps-converted-to.pdf, id=5410, 830.10126pt x 220.825pt>
+<figures/interactions/stringMassCollisionEnergy-eps-converted-to.pdf, id=5399, 830.10126pt x 220.825pt>
 File: figures/interactions/stringMassCollisionEnergy-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/stringMassCollisionEnergy-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/stringMassCollisionEnergy-eps-converted-to.pdf  used on input line 392.
@@ -3802,12 +3830,12 @@ Overfull \hbox (6.66595pt too wide) in paragraph at lines 402--403
  [][] 
  []
 
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/connections.tex [207 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/interactions/stringMassCollisionEnergy-eps-converted-to.pdf>] [208
+[206 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/interactions/stringMassCollisionEnergy-eps-converted-to.pdf>]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/interactions/connections.tex [207] [208
 
 ]
 Chapter 11.
 [209] [210]
-<figures/fdtd/gridFigure2.pdf, id=5465, 1304.875pt x 250.9375pt>
+<figures/fdtd/gridFigure2.pdf, id=5463, 1304.875pt x 250.9375pt>
 File: figures/fdtd/gridFigure2.pdf Graphic file (type pdf)
 <use figures/fdtd/gridFigure2.pdf>
 Package pdftex.def Info: figures/fdtd/gridFigure2.pdf  used on input line 71.
@@ -3822,7 +3850,7 @@ Package epstopdf Info: Source file: <figures/interactions/connectedWaveEqs.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/connectedWaveEqs-eps-converted-to.pdf figures/interactions/connectedWaveEqs.eps>
 (epstopdf)             \includegraphics on input line 157.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/connectedWaveEqs-eps-converted-to.pdf, id=5577, 823.075pt x 345.29pt>
+<figures/interactions/connectedWaveEqs-eps-converted-to.pdf, id=5575, 823.075pt x 345.29pt>
 File: figures/interactions/connectedWaveEqs-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/connectedWaveEqs-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/connectedWaveEqs-eps-converted-to.pdf  used on input line 157.
@@ -3837,7 +3865,7 @@ Package epstopdf Info: Source file: <figures/interactions/connected1DEnergy.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/connected1DEnergy-eps-converted-to.pdf figures/interactions/connected1DEnergy.eps>
 (epstopdf)             \includegraphics on input line 217.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/connected1DEnergy-eps-converted-to.pdf, id=5620, 830.10126pt x 220.825pt>
+<figures/interactions/connected1DEnergy-eps-converted-to.pdf, id=5618, 830.10126pt x 220.825pt>
 File: figures/interactions/connected1DEnergy-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/connected1DEnergy-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/connected1DEnergy-eps-converted-to.pdf  used on input line 217.
@@ -3857,7 +3885,7 @@ Package epstopdf Info: Source file: <figures/interactions/connectedWaveEqsSpring
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/connectedWaveEqsSpring-eps-converted-to.pdf figures/interactions/connectedWaveEqsSpring.eps>
 (epstopdf)             \includegraphics on input line 389.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/connectedWaveEqsSpring-eps-converted-to.pdf, id=5697, 823.075pt x 345.29pt>
+<figures/interactions/connectedWaveEqsSpring-eps-converted-to.pdf, id=5695, 823.075pt x 345.29pt>
 File: figures/interactions/connectedWaveEqsSpring-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/connectedWaveEqsSpring-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/connectedWaveEqsSpring-eps-converted-to.pdf  used on input line 389.
@@ -3872,7 +3900,7 @@ Package epstopdf Info: Source file: <figures/interactions/connected1DEnergySprin
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/connected1DEnergySpring-eps-converted-to.pdf figures/interactions/connected1DEnergySpring.eps>
 (epstopdf)             \includegraphics on input line 428.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/connected1DEnergySpring-eps-converted-to.pdf, id=5718, 830.10126pt x 220.825pt>
+<figures/interactions/connected1DEnergySpring-eps-converted-to.pdf, id=5716, 830.10126pt x 220.825pt>
 File: figures/interactions/connected1DEnergySpring-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/connected1DEnergySpring-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/connected1DEnergySpring-eps-converted-to.pdf  used on input line 428.
@@ -3892,7 +3920,7 @@ Package epstopdf Info: Source file: <figures/interactions/stringPlate.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/stringPlate-eps-converted-to.pdf figures/interactions/stringPlate.eps>
 (epstopdf)             \includegraphics on input line 610.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/stringPlate-eps-converted-to.pdf, id=5804, 823.075pt x 345.29pt>
+<figures/interactions/stringPlate-eps-converted-to.pdf, id=5802, 823.075pt x 345.29pt>
 File: figures/interactions/stringPlate-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/stringPlate-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/stringPlate-eps-converted-to.pdf  used on input line 610.
@@ -3916,7 +3944,7 @@ Package epstopdf Info: Source file: <figures/interactions/stringPlateEnergy.eps>
 (epstopdf)             Command: <repstopdf --outfile=figures/interactions/stringPlateEnergy-eps-converted-to.pdf figures/interactions/stringPlateEnergy.eps>
 (epstopdf)             \includegraphics on input line 676.
 Package epstopdf Info: Output file is already uptodate.
-<figures/interactions/stringPlateEnergy-eps-converted-to.pdf, id=5842, 830.10126pt x 220.825pt>
+<figures/interactions/stringPlateEnergy-eps-converted-to.pdf, id=5840, 830.10126pt x 220.825pt>
 File: figures/interactions/stringPlateEnergy-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/interactions/stringPlateEnergy-eps-converted-to.pdf>
 Package pdftex.def Info: figures/interactions/stringPlateEnergy-eps-converted-to.pdf  used on input line 676.
@@ -3944,7 +3972,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/twoFreeSt
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/twoFreeStringsNarrow-eps-converted-to.pdf figures/contributions/dynamicgrid/twoFreeStringsNarrow.eps>
 (epstopdf)             \includegraphics on input line 73.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/twoFreeStringsNarrow-eps-converted-to.pdf, id=5946, 501.875pt x 130.4875pt>
+<figures/contributions/dynamicgrid/twoFreeStringsNarrow-eps-converted-to.pdf, id=5944, 501.875pt x 130.4875pt>
 File: figures/contributions/dynamicgrid/twoFreeStringsNarrow-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/twoFreeStringsNarrow-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/twoFreeStringsNarrow-eps-converted-to.pdf  used on input line 73.
@@ -3958,7 +3986,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/twoFreeSt
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/twoFreeStringsGridMoveNarrow-eps-converted-to.pdf figures/contributions/dynamicgrid/twoFreeStringsGridMoveNarrow.eps>
 (epstopdf)             \includegraphics on input line 74.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/twoFreeStringsGridMoveNarrow-eps-converted-to.pdf, id=5947, 501.875pt x 130.4875pt>
+<figures/contributions/dynamicgrid/twoFreeStringsGridMoveNarrow-eps-converted-to.pdf, id=5945, 501.875pt x 130.4875pt>
 File: figures/contributions/dynamicgrid/twoFreeStringsGridMoveNarrow-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/twoFreeStringsGridMoveNarrow-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/twoFreeStringsGridMoveNarrow-eps-converted-to.pdf  used on input line 74.
@@ -3972,7 +4000,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/twoFreeSt
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/twoFreeStringGridMoveZoomedNarrow-eps-converted-to.pdf figures/contributions/dynamicgrid/twoFreeStringGridMoveZoomedNarrow.eps>
 (epstopdf)             \includegraphics on input line 75.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/twoFreeStringGridMoveZoomedNarrow-eps-converted-to.pdf, id=5948, 501.875pt x 130.4875pt>
+<figures/contributions/dynamicgrid/twoFreeStringGridMoveZoomedNarrow-eps-converted-to.pdf, id=5946, 501.875pt x 130.4875pt>
 File: figures/contributions/dynamicgrid/twoFreeStringGridMoveZoomedNarrow-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/twoFreeStringGridMoveZoomedNarrow-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/twoFreeStringGridMoveZoomedNarrow-eps-converted-to.pdf  used on input line 75.
@@ -3987,7 +4015,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/modalAnal
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/modalAnalysisOneStep-eps-converted-to.pdf figures/contributions/dynamicgrid/modalAnalysisOneStep.eps>
 (epstopdf)             \includegraphics on input line 318.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/modalAnalysisOneStep-eps-converted-to.pdf, id=6095, 600.2425pt x 385.44pt>
+<figures/contributions/dynamicgrid/modalAnalysisOneStep-eps-converted-to.pdf, id=6093, 600.2425pt x 385.44pt>
 File: figures/contributions/dynamicgrid/modalAnalysisOneStep-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/modalAnalysisOneStep-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/modalAnalysisOneStep-eps-converted-to.pdf  used on input line 318.
@@ -4001,7 +4029,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/spectrogr
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/spectrogramDown-eps-converted-to.pdf figures/contributions/dynamicgrid/spectrogramDown.eps>
 (epstopdf)             \includegraphics on input line 323.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/spectrogramDown-eps-converted-to.pdf, id=6098, 517.935pt x 386.44376pt>
+<figures/contributions/dynamicgrid/spectrogramDown-eps-converted-to.pdf, id=6096, 517.935pt x 386.44376pt>
 File: figures/contributions/dynamicgrid/spectrogramDown-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/spectrogramDown-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/spectrogramDown-eps-converted-to.pdf  used on input line 323.
@@ -4015,7 +4043,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/spectrogr
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/spectrogramUp-eps-converted-to.pdf figures/contributions/dynamicgrid/spectrogramUp.eps>
 (epstopdf)             \includegraphics on input line 325.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/spectrogramUp-eps-converted-to.pdf, id=6099, 517.935pt x 386.44376pt>
+<figures/contributions/dynamicgrid/spectrogramUp-eps-converted-to.pdf, id=6097, 517.935pt x 386.44376pt>
 File: figures/contributions/dynamicgrid/spectrogramUp-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/spectrogramUp-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/spectrogramUp-eps-converted-to.pdf  used on input line 325.
@@ -4034,7 +4062,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/interpola
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/interpolation/linearMid-eps-converted-to.pdf figures/contributions/dynamicgrid/interpolation/linearMid.eps>
 (epstopdf)             \includegraphics on input line 414.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/interpolation/linearMid-eps-converted-to.pdf, id=6173, 494.84875pt x 373.395pt>
+<figures/contributions/dynamicgrid/interpolation/linearMid-eps-converted-to.pdf, id=6171, 494.84875pt x 373.395pt>
 File: figures/contributions/dynamicgrid/interpolation/linearMid-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/interpolation/linearMid-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/interpolation/linearMid-eps-converted-to.pdf  used on input line 414.
@@ -4048,7 +4076,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/interpola
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/interpolation/linear1-eps-converted-to.pdf figures/contributions/dynamicgrid/interpolation/linear1.eps>
 (epstopdf)             \includegraphics on input line 416.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/interpolation/linear1-eps-converted-to.pdf, id=6174, 494.84875pt x 373.395pt>
+<figures/contributions/dynamicgrid/interpolation/linear1-eps-converted-to.pdf, id=6172, 494.84875pt x 373.395pt>
 File: figures/contributions/dynamicgrid/interpolation/linear1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/interpolation/linear1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/interpolation/linear1-eps-converted-to.pdf  used on input line 416.
@@ -4066,7 +4094,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/interpola
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/interpolation/quadMid-eps-converted-to.pdf figures/contributions/dynamicgrid/interpolation/quadMid.eps>
 (epstopdf)             \includegraphics on input line 433.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/interpolation/quadMid-eps-converted-to.pdf, id=6179, 494.84875pt x 373.395pt>
+<figures/contributions/dynamicgrid/interpolation/quadMid-eps-converted-to.pdf, id=6177, 494.84875pt x 373.395pt>
 File: figures/contributions/dynamicgrid/interpolation/quadMid-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/interpolation/quadMid-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/interpolation/quadMid-eps-converted-to.pdf  used on input line 433.
@@ -4080,7 +4108,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/interpola
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/interpolation/quad1-eps-converted-to.pdf figures/contributions/dynamicgrid/interpolation/quad1.eps>
 (epstopdf)             \includegraphics on input line 435.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/interpolation/quad1-eps-converted-to.pdf, id=6180, 494.84875pt x 373.395pt>
+<figures/contributions/dynamicgrid/interpolation/quad1-eps-converted-to.pdf, id=6178, 494.84875pt x 373.395pt>
 File: figures/contributions/dynamicgrid/interpolation/quad1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/interpolation/quad1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/interpolation/quad1-eps-converted-to.pdf  used on input line 435.
@@ -4098,7 +4126,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/interpola
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/interpolation/cubicMid-eps-converted-to.pdf figures/contributions/dynamicgrid/interpolation/cubicMid.eps>
 (epstopdf)             \includegraphics on input line 470.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/interpolation/cubicMid-eps-converted-to.pdf, id=6213, 494.84875pt x 373.395pt>
+<figures/contributions/dynamicgrid/interpolation/cubicMid-eps-converted-to.pdf, id=6211, 494.84875pt x 373.395pt>
 File: figures/contributions/dynamicgrid/interpolation/cubicMid-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/interpolation/cubicMid-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/interpolation/cubicMid-eps-converted-to.pdf  used on input line 470.
@@ -4112,7 +4140,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/interpola
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/interpolation/cubic1-eps-converted-to.pdf figures/contributions/dynamicgrid/interpolation/cubic1.eps>
 (epstopdf)             \includegraphics on input line 472.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/interpolation/cubic1-eps-converted-to.pdf, id=6214, 494.84875pt x 373.395pt>
+<figures/contributions/dynamicgrid/interpolation/cubic1-eps-converted-to.pdf, id=6212, 494.84875pt x 373.395pt>
 File: figures/contributions/dynamicgrid/interpolation/cubic1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/interpolation/cubic1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/interpolation/cubic1-eps-converted-to.pdf  used on input line 472.
@@ -4126,7 +4154,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/interpola
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/interpolation/quarticMid-eps-converted-to.pdf figures/contributions/dynamicgrid/interpolation/quarticMid.eps>
 (epstopdf)             \includegraphics on input line 481.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/interpolation/quarticMid-eps-converted-to.pdf, id=6217, 494.84875pt x 373.395pt>
+<figures/contributions/dynamicgrid/interpolation/quarticMid-eps-converted-to.pdf, id=6215, 494.84875pt x 373.395pt>
 File: figures/contributions/dynamicgrid/interpolation/quarticMid-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/interpolation/quarticMid-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/interpolation/quarticMid-eps-converted-to.pdf  used on input line 481.
@@ -4140,7 +4168,7 @@ Package epstopdf Info: Source file: <figures/contributions/dynamicgrid/interpola
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/dynamicgrid/interpolation/quartic1-eps-converted-to.pdf figures/contributions/dynamicgrid/interpolation/quartic1.eps>
 (epstopdf)             \includegraphics on input line 483.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/dynamicgrid/interpolation/quartic1-eps-converted-to.pdf, id=6218, 494.84875pt x 373.395pt>
+<figures/contributions/dynamicgrid/interpolation/quartic1-eps-converted-to.pdf, id=6216, 494.84875pt x 373.395pt>
 File: figures/contributions/dynamicgrid/interpolation/quartic1-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/dynamicgrid/interpolation/quartic1-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/dynamicgrid/interpolation/quartic1-eps-converted-to.pdf  used on input line 483.
@@ -4175,18 +4203,18 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 ) [255]
-<figures/realtime/vectorCopy.pdf, id=6342, 459.63718pt x 211.7511pt>
+<figures/realtime/vectorCopy.pdf, id=6340, 459.63718pt x 211.7511pt>
 File: figures/realtime/vectorCopy.pdf Graphic file (type pdf)
 <use figures/realtime/vectorCopy.pdf>
 Package pdftex.def Info: figures/realtime/vectorCopy.pdf  used on input line 112.
 (pdftex.def)             Requested size: 273.14749pt x 125.83675pt.
-<figures/realtime/pointerSwitch.pdf, id=6343, 472.64577pt x 225.7233pt>
+<figures/realtime/pointerSwitch.pdf, id=6341, 472.64577pt x 225.7233pt>
 File: figures/realtime/pointerSwitch.pdf Graphic file (type pdf)
 <use figures/realtime/pointerSwitch.pdf>
 Package pdftex.def Info: figures/realtime/pointerSwitch.pdf  used on input line 113.
 (pdftex.def)             Requested size: 273.14749pt x 130.45117pt.
  [256 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/realtime/vectorCopy.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/realtime/pointerSwitch.pdf>] [257]
-<figures/realtime/flowchart.pdf, id=6415, 325.215pt x 336.29637pt>
+<figures/realtime/flowchart.pdf, id=6413, 325.215pt x 336.29637pt>
 File: figures/realtime/flowchart.pdf Graphic file (type pdf)
 <use figures/realtime/flowchart.pdf>
 Package pdftex.def Info: figures/realtime/flowchart.pdf  used on input line 203.
@@ -4211,13 +4239,13 @@ Overfull \hbox (16.55943pt too wide) detected at line 294
 Package textcomp Info: Symbol \texttildelow not provided by
 (textcomp)             font family zpltlf in TS1 encoding.
 (textcomp)             Default family used instead on input line 339.
-<figures/contributions/realtime/senselHands.jpg, id=6530, 2360.82pt x 1405.25pt>
+<figures/contributions/realtime/senselHands.jpg, id=6528, 2360.82pt x 1405.25pt>
 File: figures/contributions/realtime/senselHands.jpg Graphic file (type jpg)
 <use figures/contributions/realtime/senselHands.jpg>
 Package pdftex.def Info: figures/contributions/realtime/senselHands.jpg  used on input line 349.
 (pdftex.def)             Requested size: 273.14749pt x 162.57597pt.
  [263 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/contributions/realtime/senselHands.jpg>]
-<figures/contributions/realtime/omniSchematic.png, id=6545, 749.80125pt x 491.8375pt>
+<figures/contributions/realtime/omniSchematic.png, id=6543, 749.80125pt x 491.8375pt>
 File: figures/contributions/realtime/omniSchematic.png Graphic file (type png)
 <use figures/contributions/realtime/omniSchematic.png>
 Package pdftex.def Info: figures/contributions/realtime/omniSchematic.png  used on input line 365.
@@ -4252,7 +4280,7 @@ Package epstopdf Info: Source file: <figures/contributions/tromba/trombaSystem.e
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/tromba/trombaSystem-eps-converted-to.pdf figures/contributions/tromba/trombaSystem.eps>
 (epstopdf)             \includegraphics on input line 122.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/tromba/trombaSystem-eps-converted-to.pdf, id=6748, 602.25pt x 301.125pt>
+<figures/contributions/tromba/trombaSystem-eps-converted-to.pdf, id=6746, 602.25pt x 301.125pt>
 File: figures/contributions/tromba/trombaSystem-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/tromba/trombaSystem-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/tromba/trombaSystem-eps-converted-to.pdf  used on input line 122.
@@ -4261,7 +4289,11 @@ Package pdftex.def Info: figures/contributions/tromba/trombaSystem-eps-converted
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[275] [276 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/contributions/tromba/trombaSystem-eps-converted-to.pdf>] [277] [278]
+[275]
+
+LaTeX Warning: Reference `eq:gDefOld' on page 276 undefined on input line 153.
+
+[276 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/contributions/tromba/trombaSystem-eps-converted-to.pdf>] [277] [278]
 Package epstopdf Info: Source file: <figures/contributions/tromba/trombaExcite.eps>
 (epstopdf)                    date: 2021-07-27 17:06:38
 (epstopdf)                    size: 56916 bytes
@@ -4271,7 +4303,7 @@ Package epstopdf Info: Source file: <figures/contributions/tromba/trombaExcite.e
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/tromba/trombaExcite-eps-converted-to.pdf figures/contributions/tromba/trombaExcite.eps>
 (epstopdf)             \includegraphics on input line 233.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/tromba/trombaExcite-eps-converted-to.pdf, id=6851, 830.10126pt x 220.825pt>
+<figures/contributions/tromba/trombaExcite-eps-converted-to.pdf, id=6848, 830.10126pt x 220.825pt>
 File: figures/contributions/tromba/trombaExcite-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/tromba/trombaExcite-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/tromba/trombaExcite-eps-converted-to.pdf  used on input line 233.
@@ -4302,7 +4334,7 @@ Package epstopdf Info: Source file: <figures/contributions/tromba/trombaEnergy.e
 (epstopdf)             Command: <repstopdf --outfile=figures/contributions/tromba/trombaEnergy-eps-converted-to.pdf figures/contributions/tromba/trombaEnergy.eps>
 (epstopdf)             \includegraphics on input line 293.
 Package epstopdf Info: Output file is already uptodate.
-<figures/contributions/tromba/trombaEnergy-eps-converted-to.pdf, id=6873, 830.10126pt x 220.825pt>
+<figures/contributions/tromba/trombaEnergy-eps-converted-to.pdf, id=6870, 830.10126pt x 220.825pt>
 File: figures/contributions/tromba/trombaEnergy-eps-converted-to.pdf Graphic file (type pdf)
 <use figures/contributions/tromba/trombaEnergy-eps-converted-to.pdf>
 Package pdftex.def Info: figures/contributions/tromba/trombaEnergy-eps-converted-to.pdf  used on input line 293.
@@ -4327,92 +4359,92 @@ Overfull \hbox (20.90593pt too wide) detected at line 117
 Chapter 17.
 [289
 
-]) [290]
+] [290] [291] [292]) [293]
 
-LaTeX Warning: Marginpar on page 291 moved.
+LaTeX Warning: Marginpar on page 294 moved.
 
-(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.bbl [291] [292
+(/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.bbl [294] [295
 
-] [293] [294]
+] [296]
 Package textcomp Info: Symbol \texttildelow not provided by
 (textcomp)             font family zpltlf in TS1 encoding.
 (textcomp)             Default family used instead on input line 174.
- [295] [296] [297] [298] [299] [300]
-Underfull \hbox (badness 1436) in paragraph at lines 550--553
+ [297] [298] [299] [300] [301] [302]
+Underfull \hbox (badness 1436) in paragraph at lines 560--563
 []\T1/zpltlf/m/n/10 S. Willem-sen, ``con-nect-ed-String-Plate.m,'' 2021. [On-
  []
 
 
-Underfull \hbox (badness 1028) in paragraph at lines 550--553
+Underfull \hbox (badness 1028) in paragraph at lines 560--563
 \T1/zpltlf/m/n/10 line]. Avail-able: [][]$https : / / gist . github . com / SilvinWillemsen /
  []
 
-[301]) [302] [303
+[303]) [304] [305
 
-] [304] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/papers.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/frontPage.tex
+] [306] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/papers.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperA/frontPage.tex
 Paper A.
 LaTeX Font Info:    Font shape `T1/zpltlf/m/it' will be
 (Font)              scaled to size 7.0pt on input line 10.
 LaTeX Font Info:    Font shape `TS1/zpltlf/m/it' will be
 (Font)              scaled to size 7.0pt on input line 10.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperB/frontpage.tex [305
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperB/frontpage.tex [307
 
-] [306
+] [308
 
 ]
 Paper B.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperC/frontPage.tex [307] [308
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperC/frontPage.tex [309] [310
 
 ]
 Paper C.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperD/frontPage.tex [309] [310
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperD/frontPage.tex [311] [312
 
 ]
 Paper D.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperE/frontPage.tex [311] [312
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperE/frontPage.tex [313] [314
 
 ]
 Paper E.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperF/frontPage.tex [313] [314
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperF/frontPage.tex [315] [316
 
 ]
 Paper F.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperG/frontPage.tex [315] [316
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperG/frontPage.tex [317] [318
 
 ]
 Paper G.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperH/frontPage.tex [317] [318
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/papers/paperH/frontPage.tex [319] [320
 
 ]
 Paper H.
-)) [319] [320
+)) [321] [322
 
-] [321] [322] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/appendices.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/paperErrata.tex
+] [323] [324] (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/appendices.tex (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/paperErrata.tex
 Appendix A.
-) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/matrices.tex [323
+) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/matrices.tex [325
 
-] [324
+] [326
 
 ]
 Appendix B.
-[325]
-<figures/analysis/matrixA1.pdf, id=7200, 175.61609pt x 91.3011pt>
+[327]
+<figures/analysis/matrixA1.pdf, id=7248, 175.61609pt x 91.3011pt>
 File: figures/analysis/matrixA1.pdf Graphic file (type pdf)
 <use figures/analysis/matrixA1.pdf>
 Package pdftex.def Info: figures/analysis/matrixA1.pdf  used on input line 31.
 (pdftex.def)             Requested size: 153.64383pt x 79.8799pt.
-<figures/analysis/matrixAT1.pdf, id=7201, 175.61609pt x 111.29579pt>
+<figures/analysis/matrixAT1.pdf, id=7249, 175.61609pt x 111.29579pt>
 File: figures/analysis/matrixAT1.pdf Graphic file (type pdf)
 <use figures/analysis/matrixAT1.pdf>
 Package pdftex.def Info: figures/analysis/matrixAT1.pdf  used on input line 32.
 (pdftex.def)             Requested size: 153.64383pt x 97.37337pt.
- [326 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixA1.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixAT1.pdf>]
-<figures/analysis/matrixVector.pdf, id=7224, 780.99776pt x 349.305pt>
+ [328 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixA1.pdf> </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixAT1.pdf>]
+<figures/analysis/matrixVector.pdf, id=7272, 780.99776pt x 349.305pt>
 File: figures/analysis/matrixVector.pdf Graphic file (type pdf)
 <use figures/analysis/matrixVector.pdf>
 Package pdftex.def Info: figures/analysis/matrixVector.pdf  used on input line 51.
 (pdftex.def)             Requested size: 341.43307pt x 152.70862pt.
- [327 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixVector.pdf>] [328]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/codeSnippets.tex [329] [330
+ [329 </Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/figures/analysis/matrixVector.pdf>] [330]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/codeSnippets.tex [331] [332
 
 ]
 Appendix C.
@@ -4424,11 +4456,11 @@ l.4 ...ystem (Section \ref{sec:massSpringSystem})}
 <to be read again> 
                    \relax 
 l.39 ... wave equation (Section \ref{sec:1DWave})}
-                                                   [331] [332]pdfTeX warning (ext4): destination with the same identifier (name{section.c.C}) has been already used, duplicate ignored
+                                                   [333] [334]pdfTeX warning (ext4): destination with the same identifier (name{section.c.C}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.109 ...wave equation (Section \ref{sec:2Dwave})}
-                                                   [333]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/intuitionSigma.tex [334]
+                                                   [335]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/intuitionSigma.tex [336]
 Appendix D.
 pdfTeX warning (ext4): destination with the same identifier (name{equation.c..1}) has been already used, duplicate ignored
 <to be read again> 
@@ -4446,129 +4478,126 @@ l.3 \begin{equation}
 <to be read again> 
                    \relax 
 l.3 \begin{equation}
-                     [335
+                     [337
 
-]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/derivations.tex [336]
+]) (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/appendices/derivations.tex [338]
 Appendix E.
 pdfTeX warning (ext4): destination with the same identifier (name{section.c.A}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.7 ...equation (Eq. \eqref{eq:webstersUpdateEq})}
+l.8 ...equation (Eq. \eqref{eq:webstersUpdateEq})}
                                                   \label{app:webstersUpdateEq}
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 7.
+(hyperref)                removing `\hbox' on input line 8.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 7.
+(hyperref)                removing `\mathsurround' on input line 8.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 7.
+(hyperref)                removing `\z@' on input line 8.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\unskip' on input line 7.
+(hyperref)                removing `\unskip' on input line 8.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@italiccorr' on input line 7.
+(hyperref)                removing `\@@italiccorr' on input line 8.
 
 pdfTeX warning (ext4): destination with the same identifier (name{section.c.B}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.26 ...quation (Eq. \eqref{eq:centStrictDissip})}
-                                                  \label{app:boundaryWebster}
+l.27 ...quation (Eq. \eqref{eq:centStrictDissip})}
+                                                  \label{app:boundaryWebster} [339
+
+]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 26.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 26.
+(hyperref)                removing `\hbox' on input line 27.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 26.
+(hyperref)                removing `\mathsurround' on input line 27.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\unskip' on input line 26.
+(hyperref)                removing `\z@' on input line 27.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@italiccorr' on input line 26.
+(hyperref)                removing `\unskip' on input line 27.
 
-[337
 
-]pdfTeX warning (ext4): destination with the same identifier (name{equation.c.B.4}) has been already used, duplicate ignored
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@@italiccorr' on input line 27.
+
+pdfTeX warning (ext4): destination with the same identifier (name{equation.c.B.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.66 \end{align}
-                 [338]pdfTeX warning (ext4): destination with the same identifier (name{section.c.C}) has been already used, duplicate ignored
+l.67 \end{align}
+                 [340]pdfTeX warning (ext4): destination with the same identifier (name{section.c.C}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.92 ... model update (Eq. \eqref{eq:pRadUpdate})}
+l.93 ... model update (Eq. \eqref{eq:pRadUpdate})}
                                                   \label{app:levineSchwingDe...
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 92.
+(hyperref)                removing `\hbox' on input line 93.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 92.
+(hyperref)                removing `\mathsurround' on input line 93.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 92.
+(hyperref)                removing `\z@' on input line 93.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\unskip' on input line 92.
+(hyperref)                removing `\unskip' on input line 93.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@italiccorr' on input line 92.
+(hyperref)                removing `\@@italiccorr' on input line 93.
 
-
-LaTeX Warning: Citation `.' on page 339 undefined on input line 95.
-
-[339] [340]
-Overfull \hbox (4.08113pt too wide) detected at line 153
+[341] [342]
+Overfull \hbox (4.08113pt too wide) detected at line 154
 []
  []
 
 pdfTeX warning (ext4): destination with the same identifier (name{section.c.D}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.160 ...tic friction model (Eq. \eqref{eq:NRit})}
+l.161 ...tic friction model (Eq. \eqref{eq:NRit})}
                                                   \label{app:elastoDeriv}
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hbox' on input line 160.
+(hyperref)                removing `\hbox' on input line 161.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\mathsurround' on input line 160.
+(hyperref)                removing `\mathsurround' on input line 161.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\z@' on input line 160.
+(hyperref)                removing `\z@' on input line 161.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\unskip' on input line 160.
+(hyperref)                removing `\unskip' on input line 161.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\@@italiccorr' on input line 160.
+(hyperref)                removing `\@@italiccorr' on input line 161.
 
-[341] [342])) [343]
+[343] [344]))
 \tf@thm=\write14
 \openout14 = `master.thm'.
 
- [344] 
+ [345] 
 AED: lastpage setting LastPage
 (/Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.aux)
 
@@ -4578,7 +4607,7 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `master.out' has not changed.
-(rerunfilecheck)             Checksum: AE52EF0AE7F972BECCE8E45627F4EBF8;26806.
+(rerunfilecheck)             Checksum: 8D7B4055C5E2ADBC060A08EBA7B0187A;26806.
  )
 (\end occurred inside a group at level 5)
 
@@ -4590,12 +4619,18 @@ Package rerunfilecheck Info: File `master.out' has not changed.
 ### bottom level 
 Here is how much of TeX's memory you used:
  53468 strings out of 478994
- 1188342 string characters out of 5858184
- 2195934 words of memory out of 5000000
- 67378 multiletter control sequences out of 15000+600000
+ 1188269 string characters out of 5858184
+ 2192000 words of memory out of 5000000
+ 67375 multiletter control sequences out of 15000+600000
  493030 words of font info for 119 fonts, out of 8000000 for 9000
  1146 hyphenation exceptions out of 8191
- 92i,23n,120p,1752b,3566s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 92i,23n,120p,1752b,3586s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.78} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.77} has been referenced but does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.76} has been referenced but does not exist, replaced by a fixed one
+
 pdfTeX warning (dest): name{Hfootnote.75} has been referenced but does not exist, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.74} has been referenced but does not exist, replaced by a fixed one
@@ -4747,10 +4782,10 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist,
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/newpx/npxsups_t1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmbsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/newpx/npxsups-Regular.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/newpx/zplb.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/newpx/zplr.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/newpx/zplri.pfb>
-Output written on /Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.pdf (370 pages, 8819143 bytes).
+Output written on /Users/SilvinW/repositories/phdThesis/aauPhdCollectionThesis/master.pdf (371 pages, 8828595 bytes).
 PDF statistics:
- 8164 PDF objects out of 8907 (max. 8388607)
- 7171 compressed objects within 72 object streams
- 2313 named destinations out of 2487 (max. 500000)
+ 8210 PDF objects out of 8907 (max. 8388607)
+ 7218 compressed objects within 73 object streams
+ 2316 named destinations out of 2487 (max. 500000)
  1881 words of extra memory for PDF output out of 10000 (max. 10000000)
 
