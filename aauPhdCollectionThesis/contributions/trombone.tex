@@ -22,7 +22,7 @@ Future work includes to add viscothermal losses \cite{Bilbao2016} and nonlinear 
 
 % As the paper mentions, the state of the particle velocity of the right system exhibits a `drift', but does not affect the output of the system. Future work
 
-\section{Dynamic grid considerations}\todo{Remove? If so, also remove from the intro of this chapter}
+\section{Dynamic grid considerations}
 The main contribution of the paper is the use of the dynamic grid method to implement the time-varying acoustic tube. As paper \citeP[H] provides extensive details on the implementation of the dynamic grid method applied to the case of the trombone, these will not be given here. Instead, this section presents several considerations that needed to be taken into account in order to use the dynamic grid method in the case of the acoustic tube. 
 
 \subsubsection{First-order system}
@@ -32,10 +32,11 @@ The dynamic grid method presented in paper \citeP[G] uses the 1D wave equation a
 As the state of the pressure variable in Eq. \eqref{eq:contPressure} is discretised to the non-interleaved grid, it was chosen to apply the dynamic grid method to the pressure grid, rather than that of the particle velocity. That said, if the aforementioned constraint regarding a constant cross-section is kept, applying the method to the velocity grid should work just as well.
 
 \subsubsection{Location of split}
-It was chosen to split the system in the middle of the slide crook of the trombone, i.e., at the far end of the trombone slide. First of all, it could be reasonable to assume that the air in the tube would ``go away from'' or ``go towards'' that point, while the slide extends or contracts. Secondly, the cross-sectional area is constant at this location, and satisfies the aforementioned condition.
+It was chosen to split the system in the middle of the slide crook of the trombone, i.e., at the far end of the trombone slide. First of all, it could be reasonable to assume that the air in the tube would ``go away from'' or ``go towards'' that point, while the slide extends or contracts. Secondly, the cross-sectional area is constant at this location, and satisfies the aforementioned condition. 
 
 \subsubsection{Time-varying length}
-In paper \citeP[G], the time-varying parameter is the wave speed $c$, whereas the trombone has a time-varying length $L$. As stated in paper \citeP[G], $c$ and $L$ are linked by the fundamental frequency in Eq. \eqref{eq:fundamentalFreq} and a change in one yields identical behaviour as an inverse change in the other. Therefore, the method could easily be applied to a system with a time-varying length rather than a time-varying wave speed. Naturally, in an acoustic tube with a variable cross-section, a change in $c$ would definitely yield a different behaviour than a change in $L$, which is also why a varying wave speed was not used. 
+In paper \citeP[G], the time-varying parameter is the wave speed $c$, whereas the trombone has a time-varying length $L$. As stated in paper \citeP[G], $c$ and $L$ are linked by the fundamental frequency in Eq. \eqref{eq:fundamentalFreq} and a change in one yields identical behaviour as an inverse change in the other. The length could thus be made time-varying in a straightforward manner, and the resulting equations could consequently be applied to the acoustic tube. 
+% Naturally, in an acoustic tube with a variable cross-section, a change in $c$ would definitely yield a different behaviour than a change in $L$, which is also why a varying wave speed was not used. 
 
 % \subsubsection{Design considerations}
 % As the geometry varies it matters a lot where points are added and removed as this might influence the way that the method is implemented. 

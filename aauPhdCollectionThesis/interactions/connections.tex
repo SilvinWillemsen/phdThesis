@@ -154,6 +154,7 @@ where $\lambda_u = c_uk/h_u \leq 1$ and  $\lambda_u = c_uk/h_u \leq 1$ are the C
 Figure \ref{fig:connectedWaveEqs} shows an implementation of system \eqref{eq:conn1DwaveFDS} with $x_\ctxt = 0.25$ m and $\chi_\ctxt = 0.75$ m. The ideal strings have the same mass per unit length, i.e., $\rho_uA_u = \rho_wA_w$, and the same length $L_u=L_w = 1$ m, but operate at different wave speeds $c_u=300$ m/s and $c_w=400$ m/s. The offset between the systems is made for clarity, and the locations connected by the grey line should have the same displacement as posed by the rigid connection. 
 
 \begin{figure}[h]
+    \centering
     \includegraphics[width=\textwidth]{figures/interactions/connectedWaveEqs.eps}
     \caption{The behaviour of two connected 1D wave equations. The systems are offset for clarity, but the relative displacement at the connection location is 0. \label{fig:connectedWaveEqs}}
 \end{figure}
@@ -286,7 +287,7 @@ where matrices $(\Dxx)_u$ and $(\Dxx)_w$ are as defined in Eq. \eqref{eq:DxxDef}
     \mathbf{f}_u = \frac{k^2}{\rho_uA_u} \left(\frac{c_u^2\i_u(\Dxx)_u}{\frac{\i_u \j_u}{ \rho_u A_u} + \frac{\i_w \j_w}{\rho_w A_w}}\right), \qaq \mathbf{f}_w =  \frac{k^2}{\rho_wA_w}\left(\frac{c_w^2 \i_w(\Dxx)_w}{\frac{\i_u \j_u}{ \rho_u A_u} + \frac{\i_w \j_w}{\rho_w A_w}}\right),
 \end{equation*}
 %are row vectors of size $1\times (N_u-1)$ and $1\times (N_w-1)$, 
-where $\i_u$ and $\i_w$ are row vectors of size $1\times (N_u-1)$ and $1\times (N_w-1)$ containing the values of the interpolation operators $\Iu$ and $\Iw$ respectively. Here, $\i_u\j_u$ and $\i_w\j_w$ are matrix-vector forms of $\lVert \Ju\rVert_d^2$ and $\lVert \Jw\rVert_d^2$ respectively (see Eq. \eqref{eq:JnormIJ}) and reduce to a scalar. \todo{check with stefan if this is a correct notation for this}
+where $\i_u$ and $\i_w$ are row vectors of size $1\times (N_u-1)$ and $1\times (N_w-1)$ containing the values of the interpolation operators $\Iu$ and $\Iw$ respectively. Here, $\i_u\j_u$ and $\i_w\j_w$ are matrix-vector forms of $\lVert \Ju\rVert_d^2$ and $\lVert \Jw\rVert_d^2$ respectively (see Eq. \eqref{eq:JnormIJ}) and reduce to a scalar.
 
 Equation \eqref{eq:conn1DwaveMatrix} can then easily be rewritten in one-step form as described in Section \ref{sec:oneStepForm} and used for modal analysis.\footnote{As the system does not exhibit damping, it could be analysed directly, not using a one-step form.}
 % Following Section \ref{sec:oneStepForm}, one can rewrite Eq. \eqref{eq:conn1DwaveMatrix} to
@@ -386,6 +387,7 @@ Figure \ref{fig:connectedWaveEqsSpring} shows the behaviour of system Eq. \eqref
 % Furthermore, the transfer of energy from $u$ to $w$ is slower than in the rigid case due to the spring extension (see \ref{sec:energy.
 
 \begin{figure}[h]
+    \centering
     \includegraphics[width=\textwidth]{figures/interactions/connectedWaveEqsSpring.eps}
     \caption{The behaviour of two ideal strings connected using a spring. The systems are offset for clarity, but the relative displacement at the connection location at the start of the simulation is 0. \label{fig:connectedWaveEqsSpring}}
 \end{figure}
@@ -607,6 +609,7 @@ This section shows an example of an implementation of the string-plate system. T
 \end{equation*}
 The \texttt{MATLAB} code of the implementation can be found online \cite{stringPlateGist}.\footnote{Note that in the online code, $L$, $L_x$ and $L_y$ have been halved to reduce computations and avoid crashes on some machines.}  Figure \ref{fig:stringPlate} shows a visualisation of the string plate system excited with a raised cosine. 
 \begin{figure}[h]
+    \centering
     \includegraphics[width=\textwidth]{figures/interactions/stringPlate.eps}
     \caption{The behaviour of the string-plate system connected with a nonlinear damped spring. The string is shown in red, the plate in gray and the connection in green. \label{fig:stringPlate}}
 \end{figure}

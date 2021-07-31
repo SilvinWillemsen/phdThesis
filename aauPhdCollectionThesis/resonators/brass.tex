@@ -2,7 +2,7 @@
 
 The dynamics of woodwind and brass instruments is based on wave propagation in acoustic tubes. Although the physical processes that generate the sound are fundamentally different from those in strings, the underlying models have many similarities. The main difference between acoustic tubes and (ideal) strings, is that tubes have a varying cross-sectional area, causing wave dispersion and greatly influencing behaviour of the system.
 
-In this work, the behaviour of acoustic tubes is approximated using 1D systems. Although higher-dimensional models might better capture some physical effects (see e.g. \cite{Kemp2002}), 1D systems already show good agreement between model and measurement \cite{Eveno2012}. Moreover, looking towards real-time implementation of these models, the choice to simplify to 1D has been made due to the low relative computational cost. 
+In this project, the behaviour of acoustic tubes is approximated using 1D systems. Although higher-dimensional models might better capture some physical effects (see e.g. \cite{Kemp2002}), 1D systems already show good agreement between model and measurement \cite{Eveno2012}. Moreover, looking towards real-time implementation of these models, the choice to simplify to 1D has been made due to the low relative computational cost. 
 
 This chapter first presents Webster's equation, which extends the 1D wave equation presented in Section \ref{sec:1DWave} by introducing a spatially varying cross-section. Although not used for the contributions in Part \ref{part:contributions}, Webster's equation forms a good basis for the second part of this chapter, which decomposes Webster's equation into a system of two coupled first-order PDEs. This has been used to model the trombone in paper \citeP[H].
 
@@ -427,7 +427,7 @@ also given in \eqref{eq:CFLwebster}. This choice of $[S]_l$ is equal to $\Sbar_l
 % \end{figure}
 
 \section{First-order system}\label{sec:firstOrderSystem}
-Until now, only PDEs that are second-order in time have been presented, i.e., that are dependent on the acceleration of the state variable. This section presents a system of two coupled first-order PDEs which are instead dependent on the velocity. State-of-the-art research on brass instruments in the context of FDTD methods also uses this coupled system (see e.g. \cite{Bilbao2016, Harrison2018}) and has been used in this project to model the trombone in paper \citeP[H].\todo{look at wording}
+Until now, only PDEs that are second-order in time have been presented, i.e., that are dependent on the acceleration of the state variable. This section presents a system of two coupled first-order PDEs which are instead dependent on the velocity. State-of-the-art research on brass instruments in the context of FDTD methods also uses this coupled system (see e.g. \cite{Bilbao2016, Harrison2018}), and has been used in this project to model the trombone in paper \citeP[H].
 
 \subsection{Continuous time}\label{sec:firstOrderSystemCont}
 Using the same variables as before for cross-sectional area $S=S(x)$, wave speed $c$, and air density $\rho_0$, a system of PDEs that describes air propagation in an acoustic tube can be defined as follows:
@@ -492,7 +492,7 @@ The boundary conditions in Eq. \eqref{eq:firstOrderBoundaryConditionsCont} can b
         \mu_{x-}(S_{1/2}v_{1/2}^n) &= 0, & \mu_{x+}(S_{N-1/2}v_{N-1/2}^n) &= 0, & &\text{(Neumann, closed)}.
     \end{align}
 \end{subequations}
-\todo{stencil?}
+
 \subsection{Matrix form}
 System \eqref{eq:firstOrderFDS} can be written in matrix form, by saving the states of $p_l^n$ and $v_{l+1/2}^{n+1}$ in vectors as 
 \begin{equation}
@@ -617,7 +617,7 @@ Figure \ref{fig:energyFirstOrder} shows the energetic output of an implementatio
 \subsection{Levine and Schwinger radiation model}\label{sec:levineSchwing}
 \def\r{\text{r}}
 \def\one{{(1)}}
-As done in Section \ref{sec:webstersEq}, radiation can be added to the right boundary acoustic tube. The radiation model used in this work was proposed by Levine and Schwinger in \cite{Levine1948}, discretised by Silva et al. \cite{Silva2009}. Although other radiation models exist, state-of-the-art work by Bilbao and Harrison on brass instruments based on the first-order system in \eqref{eq:firstOrderSystem} also use this model \cite{Bilbao2013, Harrison2018}. See Figure \ref{fig:circuit} for a circuit representation of the Levine and Schwinger radiation model. This section will only go into practical details necessary for implementation of the algorithm. Further background is provided in \cite{Harrison2018}.
+As done in Section \ref{sec:webstersEq}, radiation can be added to the right boundary acoustic tube. The radiation model used in this project was proposed by Levine and Schwinger in \cite{Levine1948}, discretised by Silva et al. \cite{Silva2009}. Although other radiation models exist, state-of-the-art work by Bilbao and Harrison on brass instruments based on the first-order system in \eqref{eq:firstOrderSystem} also use this model \cite{Bilbao2013, Harrison2018}. See Figure \ref{fig:circuit} for a circuit representation of the Levine and Schwinger radiation model. This section will only go into practical details necessary for implementation of the algorithm. Further background is provided in \cite{Harrison2018}.
 
 \begin{figure}[t]
     \centering
@@ -701,8 +701,6 @@ The various parameters are taken from \cite{Harrison2018} and are
     \quad L_\rtxt = 0.613\rho_0\sqrt{\Sbar_N/\pi}, \qaq C_\rtxt = 1.111\frac{\sqrt{\Sbar_N}}{\rho_0 c^2\sqrt{\pi}}\ .
 \end{gather*}
 
-\todo{temperature dependent parameters somewhere?}
-\todo{table}
 \subsection{Energy analysis}
 This section shows the result of the energy analysis of the above radiation model. The full derivation will not be given here, but can be found in \cite{Harrison2018}. The result is included in this thesis for completeness, and such that it can be used for implementation and debugging purposes.
 

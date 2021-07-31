@@ -5,6 +5,32 @@
 \def\Psinm{\Psi_l^{n-1}}
 This appendix contains derivations of several equations used in this thesis. 
 
+\section{Summation by parts}\label{app:summationByParts}
+To see why some of the summation by parts identities in Section \ref{sec:summationByParts} hold true, it is useful to briefly go through a derivation. As an example, Eqs. \eqref{eq:summationByPartsMinus} and \eqref{eq:summationByPartsMinusBar} are derived as they have the same inner product as a starting point, but yield different results. In the following, $d=\{0, \hdots, N\}$ and $N = 2$ are used. 
+
+Starting with Eq. \eqref{eq:summationByPartsMinus}, suppressing the $n$ superscript for brevity, and using the definition for the discrete inner product in Eq. \eqref{eq:discInnerProd}, yields
+\begin{align*}
+    \langle f_l, \dxm g_l \rangle_d &= \sum_{l = 0}^2 h f_l\frac{1}{h}\left(g_l - g_{l-1}\right),\\
+    &= f_0g_0 - f_0g_{-1} + f_1g_1 - f_1g_0 + f_2g_2-f_2g_1,\\
+    &= g_0(f_0-f_1) - f_0g_{-1} + g_1(f_1-f_2) + g_2(f_2-f_3) + f_3g_2,\\
+    &= -g_0(f_1-f_0)- g_1(f_2-f_1) - g_2(f_3-f_2) + f_3g_2 - f_0g_{-1},\\
+    &= -\sum_{l=0}^2 h g_l\frac{1}{h}\left(f_{l+1} - f_l\right) + f_3g_2 - f_0g_{-1},\\
+    &= -\langle \dxp f_l, g_l\rangle_d + f_3g_2 - f_0g_{-1}.
+\end{align*}
+As $N=2$, the result is identical to Eq. \eqref{eq:summationByPartsMinus}. 
+
+Similarly, identity \eqref{eq:summationByPartsMinusBar} can be proven to hold:
+\begin{align*}
+    \langle f_l, \dxm g_l \rangle_d &= \sum_{l = 0}^2 h f_l\frac{1}{h}\left(g_l - g_{l-1}\right),\\
+    &= f_0g_0 - f_0g_{-1} + f_1g_1 - f_1g_0 + f_2g_2-f_2g_1,\\
+    &= -f_0g_{-1} + g_0(f_0-f_1) + g_1(f_1-f_2) + f_2g_2,\\
+    &= - g_0(f_1 - f_0) - g_1(f_2-f_1) + f_2g_2 - f_0g_{-1},\\
+    &=\sum_{l=0}^1hg_l\frac{1}{h}(f_{l+1}-f_l) + f_2g_2 - f_0g_{-1},\\
+    &= -\langle \dxp f_l, g_l\rangle_{\underline{d}} + f_2g_2 - f_0g_{-1},
+\end{align*}
+where the resulting inner product has a reduced domain of $\underline{d} = \{0, \hdots, N-1\}$.
+Similar processes can be used to prove the other identities presented in Section \ref{sec:summationByParts}.
+
 \section{von Neumann analysis damped stiff string}\label{app:vonNeumannString}
 This section performs the von Neumann analysis presented in Section \ref{sec:stiffStringStability} in greater detail and derives the stability condition for the damped stiff string.
 
@@ -170,7 +196,7 @@ The same can be done for $\mathfrak{b}_\text{l}$ with $\epsilon_\text{l} = S_{1/
 \end{equation}
 
 
-\section{Levine and Schwinger radiation model update}\label{app:levineSchwingDeriv}
+\section{Levine and Schwinger radiation model update equation}\label{app:levineSchwingDeriv}
 \def\r{\text{r}}
 \def\one{{(1)}}
 This section provides a derivation for the update equation in Eq. \eqref{eq:pRadUpdate} and follows \cite[Sec. 4.1.3, pp. 109--111]{Harrison2018}. Recalling system \eqref{eq:barVPSystem}
@@ -241,7 +267,7 @@ which is Eq. \eqref{eq:pRadUpdate}. After $p_N^{n+1}$ is calculated, $v_\one^{n+
 \section{Derivatives for Newton-Raphson for the elasto-plastic friction model}\label{app:elastoDeriv}
 This section provides the derivatives for the Newton-Raphson iteration for the elasto-plastic friction model in Eq. \eqref{eq:NRit}.
 
-Recalling the functions needed to compute the Newton-Raphson iteration for the elasto-plastic bow model in Section \ref{sec:elastoPlastic}, being Eq. \eqref{eq:elastog1}
+Recalling the functions needed to compute the Newton-Raphson iteration for the elasto-plastic bow model in Section \ref{sec:elastoPlastic}, being Eq. \eqref{eq:elastog1}:
 \begin{equation*}
     g_1(v^n,z^n) = \left(\frac{2}{k} + 2\sz\right)v^n + \lVert J_l(x_\Btxt^n)\rVert_d^2\frac{f(v^n,z^n)}{\rho A}+ b^n= 0,
 \end{equation*}

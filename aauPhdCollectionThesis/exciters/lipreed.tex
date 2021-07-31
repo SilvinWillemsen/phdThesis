@@ -229,7 +229,7 @@ Equation \eqref{eq:UbUr} can then be substituted to get
 Figure \ref{fig:lipreedTube} shows an implementation of the lip reed connected to an acoustic tube. The lip reed is shown on the left and the left boundary of the tube is on the right side of the lip reed. The frequency of the lips is set to $f_0 = 600$ Hz ($\omega_0 = 1200\pi$ rad/s), the input pressure $P_\mtxt = 2000$ Pa and the other parameters are as listed in paper \citeP[H]. The lip is initialised using $y^{1/2} = y^{3/2} = -H_0$ such that the lips are closed at the start of the simulation. Furthermore, the tube is set to be cylindrical with a circular cross-section of $S(x) = 5\cdot 10^{-5}$ m$^2$. The figure shows that the lips oscillate, and that when the lips are closed, i.e. when $y \leq H_0$, no energy enters the acoustic tube.\footnote{This is similar behaviour to what the pulse train in Section \ref{sec:pulseTrain} attempts to model.}
 
 % \subsubsection{Discussion}
-% The oscillation shown in Figure \ref{fig:lipreedTube} is similar to the pulse train shown in Section \ref{eq:pulseTrain}, and shows that this type of excitation signal is sufficient as a test case for a lip reed excitation. 
+% The oscillation shown in Figure \ref{fig:lipreedTube} is similar to the pulse train shown in Section \ref{sec:pulseTrain}, and shows that this type of excitation signal is sufficient as a test case for a lip reed excitation. 
 
 \begin{figure}[h]
     \centering
@@ -323,5 +323,3 @@ Figure \ref{fig:lipReedEnergy} shows the energetic output of the lip reed couple
       \end{tikzpicture}
       \caption{The energy of the acoustic tube (green), the potential energy (red) the kinetic energy of the lip reed (blue), and the total energy (black) of the system corresponding to Figure \ref{fig:lipreedTube}. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}, starting at $n=1$) and shows that the deviation of the energy is within machine precision. \label{fig:lipReedEnergy}}
 \end{figure}
-
-\todo{figure layout}

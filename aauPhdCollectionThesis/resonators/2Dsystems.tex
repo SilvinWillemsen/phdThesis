@@ -3,7 +3,7 @@ The previous chapters considered systems distributed over one spatial dimension.
 
 Apart from being slightly more complex than 1D models, the main issue with 2D systems is that their implementations are orders of magnitude heavier to compute than 1D schemes. This chapter will therefore also provide details on how to best implement these schemes in \texttt{MATLAB}. Implementation in C++ will be detailed in Chapter \ref{ch:realtime}.
 
-This chapter starts by providing some additional information about 2D grid functions and operators. Then, the 2D wave equation is presented, which is used to extend the analysis techniques presented in Chapter \ref{ch:analysis} to 2D.\footnote{The abbreviation 2D will also be used for `two dimensions'.} Afterwards, two 2D models that are used in this work, the thin plate and the stiff membrane, will be described in a similar fashion. %Section \ref{sec:radialCoordinates} briefly elaborates on radial coordinate systems and their shortcomings. 
+This chapter starts by providing some additional information about 2D grid functions and operators. Then, the 2D wave equation is presented, which is used to extend the analysis techniques presented in Chapter \ref{ch:analysis} to 2D.\footnote{The abbreviation 2D will also be used for `two dimensions'.} Afterwards, two 2D models that have been used in this project, the thin plate and the stiff membrane, will be described in a similar fashion. %Section \ref{sec:radialCoordinates} briefly elaborates on radial coordinate systems and their shortcomings. 
 Unless denoted otherwise, the theory in this chapter follows \cite{theBible}.
 
 \section{PDEs and FD schemes in 2D}\label{sec:2Dintro}
@@ -347,7 +347,7 @@ Using the definition of wave speed for the ideal membrane, i.e., $c = \sqrt{T/ \
 which can be rewritten to
 \begin{equation*}
     \dtp \h= \rho H\langle \dtd \ulmn , \dtt \ulmn\rangle_d - T \left(\langle \dtd\ulmn, \dxx \ulmn\rangle_d + \langle \dtd\ulmn, \dyy \ulmn\rangle_d \right) = 0.
-\end{equation*}\todo{FULL DOC SWEEP: check what equations have numbers when performing energy analysis (and stability for that matter)}
+\end{equation*}
 
 \subsubsection{Step 2: Identify energy types and isolate $\dtp$}
 Summation by parts as described in Section \ref{sec:summationByParts} can also be applied to $\dyy$ and the following energy balance follows 
@@ -404,7 +404,7 @@ Figure \ref{fig:energy2Dwave} shows the energetic output of an implementation of
       \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the 2D wave equation are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergy}) and shows that the deviation of the energy is within machine precision. \label{fig:energy2Dwave}}
 \end{figure}
 
-\subsection{Modal analysis in 2D}
+\subsection{Modal analysis in 2D}\label{sec:2DmodalAnalysis}
 Given that the state vector is stacked as described in Section \ref{sec:2DwaveImplementation} and the update equation is written in matrix form as in Eq. \eqref{eq:matrixUpdate2Dwave}, performing a modal analysis on a 2D system does not differ from a 1D system and follows the same process presented in Section \ref{sec:modalAnalysis}.
 
 Inserting a test solution of $\uStack^n = z^n\boldPhi$ into the matrix form of the 2D wave equation in Eq. \eqref{eq:matrixUpdate2Dwave} yields the following characteristic equation
@@ -454,7 +454,7 @@ Adding losses to Eq. \eqref{eq:platePDENoLosses} yields
 \begin{equation}\label{eq:platePDE}
     \rho H \ptt u = -D\Delta\Delta u - 2\sz \rho H \pt u + 2 \so\rho H  \pt \Delta u
 \end{equation}
-where, as in the case of the stiff string in Eq. \eqref{eq:stiffStringPDE}, $\sz$ and $\so$ are the frequency-independent (in s$^{-1}$) and frequency-dependent damping coefficient (in m$^2$/s) respectively.\todo{check hyphens after `frequency'}
+where, as in the case of the stiff string in Eq. \eqref{eq:stiffStringPDE}, $\sz$ and $\so$ are the frequency-independent (in s$^{-1}$) and frequency-dependent damping coefficient (in m$^2$/s) respectively.
 
 \subsubsection{Boundary conditions}
 Similar to the stiff string, clamped and simply supported boundary conditions can be defined as
@@ -582,6 +582,10 @@ As a starting point for implementation, possible parameters are given in Table \
 
 Figure \ref{fig:outputThinPlate} shows the time domain and frequency domain output of the thin plate at $(x,y) = (0.15L_x, 0.85 L_y)$.
 Compared to the output of the 2D wave equation in Figure \ref{fig:output2DWave}, there are several interesting differences. The amplitude is much lower, waves are closer together and the first wave arrives much earlier, all due to dispersive effects.
+
+\subsubsection{Modal analysis}
+Although the results will not be given here, a modal analysis can be performed on the thin plate by using the matrix form in Eq. \eqref{eq:matrixFormThinPlate}, and writing this in a one-step form described in Section \ref{sec:oneStepForm}.
+
 \begin{figure}[h]
     \centering
     \includegraphics[width = \textwidth]{figures/resonators/2d/thinPlatePropagation.eps}
@@ -592,7 +596,7 @@ Compared to the output of the 2D wave equation in Figure \ref{fig:output2DWave},
     \centering
     \includegraphics[width=\textwidth]{figures/resonators/2d/outputThinPlate.eps}
     \caption{The output of the thin plate at $(x,y) = (0.15, 0.85)$ corresponding to Figure \ref{fig:thinPlatePropagation}. \label{fig:outputThinPlate}}
-\end{figure}\todo{FULL DOC SWEEP: check figure alignment}
+\end{figure}
 
 \subsection{Frequency domain analysis}\label{sec:stabilityThinPlate}
 This section follows the process presented in Section \ref{sec:stabilityAnalysis} with the extensions to 2D shown in \ref{sec:stability2Dwave}.
@@ -609,19 +613,21 @@ This can, similar to the damped stiff string in Section \ref{sec:stiffStringStab
 \begin{equation*}
     4\mu^2(p_x+p_y)^2 + \frac{4\sigma_1k}{h^2}(p_x+p_y) \leq 1.
 \end{equation*}
-Recalling the definitions $p_x$ and $p_y$ in Eq. \eqref{eq:pxpy}, and given the fact that these are bounded by 1, the following can be written
-\begin{gather*}
-    4\mu^2(1+1)^2 + \frac{4\sigma_1k}{h^2}(1+1) \leq 1\\
-    16\mu^2 + \frac{8\sigma_1k}{h^2} \leq 1.
-\end{gather*}
-Finally, recalling the definition for $\kappa$ in Eq. \eqref{eq:kappaDef} solving for $h$ yields
-\begin{align}
-    &1 \geq \frac{16\kappa^2k^2}{h^4} + \frac{8\sigma_1k}{h^2}\nonumber,\\
-    &h^4 - 8\sigma_1kh^2 - 16\kappa^2k^2 \geq 0\nonumber,\\
-    &h \geq \sqrt{\frac{8\sigma_1k +\sqrt{(8\sigma_1k)^2 + 64\kappa^2k^2}}{2}}\nonumber,\\
-    &h\geq \sqrt{\frac{8\sigma_1k+8\sqrt{\sigma_1^2k^2+\kappa^2k^2}}{2}}\nonumber,\\
-    &h \geq 2\sqrt{k\left(\sigma_1 + \sqrt{\sigma_1^2 + \kappa^2}\right)},
-\end{align}
+Recalling the definitions $p_x$ and $p_y$ in Eq. \eqref{eq:pxpy}, and given the fact that these are bounded by 1, the following can be written:
+\begin{equation*}
+    4\mu^2(1+1)^2 + \frac{4\sigma_1k}{h^2}(1+1) \leq 1
+    % \\
+    % 16\mu^2 + \frac{8\sigma_1k}{h^2} \leq 1.
+\end{equation*}
+and solved for $h$:
+% Finally, recalling the definition for $\kappa$ in Eq. \eqref{eq:kappaDef} solving for $h$ yields
+\begin{equation}
+    % &1 \geq \frac{16\kappa^2k^2}{h^4} + \frac{8\sigma_1k}{h^2}\nonumber,\\
+    % &h^4 - 8\sigma_1kh^2 - 16\kappa^2k^2 \geq 0\nonumber,\\
+    % &h \geq \sqrt{\frac{8\sigma_1k +\sqrt{(8\sigma_1k)^2 + 64\kappa^2k^2}}{2}}\nonumber,\\
+    % &h\geq \sqrt{\frac{8\sigma_1k+8\sqrt{\sigma_1^2k^2+\kappa^2k^2}}{2}}\nonumber,\\
+    h \geq 2\sqrt{k\left(\sigma_1 + \sqrt{\sigma_1^2 + \kappa^2}\right)},
+\end{equation}
 which is the stability condition given in Eq. \eqref{eq:stabilityPlate}.
 
 \subsection{Energy analysis}\label{sec:energyAnalysisThinPlate}
@@ -653,7 +659,7 @@ one can perform summation by parts twice, using Eq. \eqref{eq:summationByPartsTw
 \begin{equation*}
     D\left(\langle \dtd \dxx\ulmn, \dDelta \ulmn \rangle_{\domXredBoth} + \langle \dtd\dyy \ulmn, \dDelta \ulmn \rangle_{\domYredBoth}\right) + \b.
 \end{equation*}
-The definitions for the reduced domains can be found in Eqs. \eqref{eq:reduced2Ddoms}. Finally, as the boundaries are always $0$ due to the boundary conditions in Eq. \eqref{eq:boundaryCondThinPlateDisc}, $\domXredBoth$ and $\domYredBoth$ can be further reduced to $\domRedBoth$ and the terms can be combined as \todo{FULL DOC SWEEP: check for SWcomments}
+The definitions for the reduced domains can be found in Eqs. \eqref{eq:reduced2Ddoms}. Finally, as the boundaries are always $0$ due to the boundary conditions in Eq. \eqref{eq:boundaryCondThinPlateDisc}, $\domXredBoth$ and $\domYredBoth$ can be further reduced to $\domRedBoth$ and the terms can be combined as
 \begin{equation*}
     D\langle \dtd\dDelta\ulmn, \dDelta \ulmn \rangle_{\domRedBoth} + \b ,
 \end{equation*}
@@ -695,16 +701,16 @@ Figure \ref{fig:energyThinPlate} shows the energetic output of an implementation
       \caption{The kinetic (blue), potential (red), and total (black) energy of an implementation of the thin plate are plotted in the left panel. Notice that the damping present in the system causes $\h$ to decrease. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyThinPlate}}
 \end{figure}
 
-\subsection{Modal analysis}
-Using the matrix form in Eq. \eqref{eq:matrixFormThinPlate}, a modal analysis of the system can be performed using a one-step form described in Section \ref{sec:oneStepForm}.
+% \subsection{Modal analysis}
+% Using the matrix form in Eq. \eqref{eq:matrixFormThinPlate}, a modal analysis of the system can be performed using a one-step form described in Section \ref{sec:oneStepForm}.
 
-Figure \ref{fig:thinPlateModes} shows the results of the analysis with parameter values as listed in Table \ref{tab:thinPlateParams}. Although the modal frequencies follow a similar pattern to those of the 2D wave equation in Figure \ref{fig:modalShapes2D}, the pattern is slightly more exponential like the stiff string in Figure \ref{fig:modesStiffString}.\todo{look at this}
+% Figure \ref{fig:thinPlateModes} shows the results of the analysis with parameter values as listed in Table \ref{tab:thinPlateParams}. Although the modal frequencies follow a similar pattern to those of the 2D wave equation in Figure \ref{fig:modalShapes2D}, the pattern is slightly more exponential like the stiff string in Figure \ref{fig:modesStiffString}. As in the case of the stiff string, the damping
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=\textwidth]{figures/resonators/2d/thinPlateModes.eps}
-    \caption{The result of a modal analysis of the thin plate using the parameters in Table \ref{tab:thinPlateParams}. Notice that the damping is plotted against modal frequency rather than mode number. \label{fig:thinPlateModes}}
-\end{figure}
+% \begin{figure}[h]
+%     \centering
+%     \includegraphics[width=\textwidth]{figures/resonators/2d/thinPlateModes.eps}
+%     \caption{The result of a modal analysis of the thin plate using the parameters in Table \ref{tab:thinPlateParams}. Notice that the damping is plotted against modal frequency rather than mode number. \label{fig:thinPlateModes}}
+% \end{figure}
 
 \section{The stiff membrane}
 The term \textit{stiff membrane}, as defined in \cite{Fletcher1998}, is essentially a 2D version of the stiff string. It can be used to model membranes with dispersive effects or provide tension control for thin plates. In this work, the stiff membrane has only been used in paper \citeP[F] to model a drum membrane. 

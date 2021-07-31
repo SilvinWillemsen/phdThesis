@@ -41,11 +41,11 @@ where
 \end{equation}
 are the start and end locations of the excitation. Furthermore, $x_\stxt, x_\etxt \in \D$, which puts a constraint on the width and location of the excitation. 
 
-In discrete time, the center location is defined as $l_0 = \floor[x_0 / h]$, where $\floor[\cdot]$ denotes the flooring operation, $h$ is the grid spacing. The discrete start and end locations of the raised cosine are
+In discrete time\footnote{One could sample the continuous function in Eq. \eqref{eq:raisedCosCont} at locations $x=lh$. In this chapter, looking towards straightforward implementation, a more practical approach has been chosen, and discrete definitions are given separately.}, the center location is defined as $l_0 = \floor[x_0 / h]$, where $\floor[\cdot]$ denotes the flooring operation, $h$ is the grid spacing. The discrete start and end locations of the raised cosine are
 \begin{equation}\label{eq:lsle}
     l_\text{s} = l_0 - \floor[w/2]\qaq l_\etxt = l_0 + \floor[w/2],
 \end{equation}
-with $l_\stxt, l_\etxt\in d$ and, finally, $w = \floor[x_\text{w} / h]$.\footnote{Notice that the width is given in `grid spacings' and will thus affect $w+1$ grid points. This is also why the range in Eq. \eqref{eq:raisedCosDisc} includes both end points.}\todo{$w$ does not have to be floored...} Equation \eqref{eq:raisedCosCont} can then be discretised as
+with $l_\stxt, l_\etxt\in d$ and, finally, $w = \floor[x_\text{w} / h]$.\footnote{Notice that the width is given in `number of grid spacings' and will thus affect $w+1$ grid points. This is also why the range in Eq. \eqref{eq:raisedCosDisc} includes both end points.} Equation \eqref{eq:raisedCosCont} can then be discretised as
 \begin{equation}\label{eq:raisedCosDisc}
     E_{l, \text{rc}} =
     \begin{cases}
@@ -138,17 +138,17 @@ In discrete time, Eq. \eqref{eq:raisedCosCont2D} becomes
         \!0, &\!\!\!\! \text{otherwise},
     \end{cases}
 \end{equation}
-where $r = \floor[r_\text{w} / h]$ is the discrete excitation radius (in `grid spacings')\todo{look at this}. Furthermore, similar to Eq. \eqref{eq:lsle},
+where $r = \floor[r_\text{w} / h]$ is the discrete excitation radius (in `number of grid spacings'). Furthermore, similar to Eq. \eqref{eq:lsle},
 \begin{equation}
     l_\text{s} = l_0 - \floor[r/2],\ l_\etxt = l_0 + \floor[r/2],\ m_\text{s} = m_0 - \floor[r/2], \ \text{and} \ m_\etxt = m_0 + \floor[r/2]
 \end{equation}
 for discrete center coordinate $(l_0, m_0)$ and $l_\stxt, l_\etxt, m_\stxt,  m_\text{e}\in d$ for a discrete 2D domain $d$. 
 As in the 1D case, this excitation can be used to model a simple `pluck' and strike for a 2D system. See Figure \ref{fig:2DHann} for a visualisation of a 2D raised cosine. A simple way to implement the 2D raised cosine in \texttt{MATLAB} using the \texttt{hann} function is shown in Algorithm \ref{alg:2DraisedCos}.
 \def\figWidth{0.8}
-\begin{figure}[b]
+\begin{figure}[h]
     \centering
     \includegraphics[width=\figWidth\textwidth]{figures/exciters/physInsp/2dHann.eps}
-    \caption{A 2D raised cosine created using \ref{eq:2DdiscRaisedCos}.\label{fig:2DHann}}
+    \caption{A 2D raised cosine created using Eq. \eqref{eq:2DdiscRaisedCos}.\label{fig:2DHann}}
 \end{figure}
 
 \noindent
@@ -261,4 +261,4 @@ end
     \includegraphics[width=\textwidth]{figures/exciters/physInsp/pulseTrain.eps}
     \caption{The pulse train generated using Algorithm \ref{alg:pulseTrain} ($f = 440$ Hz, duty cycle $ = 75\%$).
     \label{fig:pulseTrain}}
-\end{figure}\todo{pulse train figure placement}
+\end{figure}

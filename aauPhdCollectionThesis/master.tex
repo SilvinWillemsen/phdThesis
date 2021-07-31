@@ -200,7 +200,7 @@
 % \listoffigures
 % \listoftables 
 
-\listoftodos
+% \listoftodos
 \cleardoublepage
 
 \def\makeAlph[#1]{\symbol{\numexpr96+#1}}
@@ -236,7 +236,6 @@
 \pagebreak
 
 % \nocite{*} %only if you want all references in there
-\todo{check whether all references are used}
 \makeatletter
 \renewenvironment{thebibliography}[1]
      {\chapter*{\bibname}%
@@ -260,7 +259,7 @@
 \makeatother
 
 {\bibliographystyle{IEEEtran}\bibliography{bib/mybib}}
-\addcontentsline{toc}{chapter}{References}\todo{check whether to sort references or not}
+\addcontentsline{toc}{chapter}{References}
 
 
 %backmatter
@@ -268,7 +267,7 @@
 \apptrue % uncomment to include appendices
 
 \newif\ifpapers
-% \paperstrue % uncomment to include papers
+\paperstrue % uncomment to include papers
 
 \ifapp
   \renewcommand\thesection{\thechapter.\arabic{section}}

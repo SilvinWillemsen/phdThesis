@@ -22,7 +22,7 @@ As all connections in the implementation are between an individual string and th
 \end{equation}
 where 2D spatial Dirac delta function $\delta(x_s - x_{s,\ctxt}, y_s - y_{s,\ctxt})$ (in m$^{-2}$) localises the connection force of between the plate and string $s$ to coordinate $(x_s, y_s)$ on the plate. Other parameters are as defined in Eq. \eqref{eq:platePDE}. 
 
-Finally, the connection force between the plate and string $s$ is defined as a nonlinear damped spring (see Eq. \ref{eq:nonlinearForce})
+Finally, the connection force between the plate and string $s$ is defined as a nonlinear damped spring (see Eq. \eqref{eq:nonlinearForce})
 \begin{equation}
     f_s = K_1\eta_s + K_3\eta_s^3 + R \dot \eta_s,
 \end{equation}
@@ -53,8 +53,8 @@ In total, 20 strings were implemented, all connected to a thin plate: 2 strings 
 \subsubsection{Hammered dulcimer}
 The hammered dulcimer, or santur, can be seen as an `open piano' where the player hammers several strings at once. In the implementation, 20 pairs of strings are implemented, and one in each pair is connected to the plate. This causes a slight detuning between the strings, resulting in a characteristic `chorus' effect exhibited by the instrument. To excite the strings, the time-varying strike presented in Section \ref{sec:timeVaryingRaisedCos} is used.
 
-\subsection{Hurdy gurdy}
-The hurdy gurdy is a bowed string instrument, that also uses sympathetic strings. Rather than a bow, the instrument uses a rosined wheel attached to a crank that bows the strings as it is turned. As for the esraj, the static friction model presented in Section \ref{eq:staticFriction} was used to implement the wheel. 
+\subsubsection{Hurdy gurdy}
+The hurdy gurdy is a bowed string instrument, that also uses sympathetic strings. Rather than a bow, the instrument uses a rosined wheel attached to a crank that bows the strings as it is turned. As for the esraj, the static friction model presented in Section \ref{sec:staticFricMod} was used to implement the wheel. 
 
 The instrument simulation consists of 5 bowed strings and 13 sympathetic strings, all connected to a plate. 
 

@@ -1,7 +1,7 @@
 \chapter{The Bow}\label{ch:bow}
 The bow is an extremely interesting excitation mechanism from a simulation perspective.
 A bow excites a string with a force due to friction, which introduces a nonlinear element into the system.
-The string `sticks' to the bow and `slips' again when the restoring force of the string is too great and overcomes the friction force. This `stick-slip' behaviour, first coined by Bowden and Leben in 1939 \cite{Bowden1939} causes the string to move in a characteristic triangular motion where the corner of the triangle moves back and forth along the string (see Figure \ref{fig:helmholtz}). Herman Helmholtz was the first to discover this behaviour in the 19\th century, which later got named \textit{Helmholtz motion} in his honour \cite{Helmholtz1860}.\footnote{Also see \url{https://www.youtube.com/watch?v=6JeyiM0YNo4}}
+The string `sticks' to the bow and `slips' again when the restoring force of the string is too great and consequently overcomes the friction force. This `stick-slip' behaviour, first coined by Bowden and Leben in 1939 \cite{Bowden1939} causes the string to move in a characteristic triangular motion where the corner of the triangle moves back and forth along the string (see Figure \ref{fig:helmholtz}). Herman Helmholtz was the first to discover this behaviour in the 19\th century, which later got named \textit{Helmholtz motion} in his honour \cite{Helmholtz1860}.\footnote{Also see \url{https://www.youtube.com/watch?v=6JeyiM0YNo4}}
 
 \begin{figure}[h]
     \centering
@@ -59,7 +59,7 @@ where the grid location of interest is defined as $l_\itxt = \floor[x_\itxt / h]
 %
 % \input{exciters/interpolation.tex}
 %
-A slightly more accurate way to perform 0\thOrder interpolation is to round $x_\itxt/h$ to the nearest neighbour, rather than using the flooring operation. 
+A slightly more accurate way to perform 0\thOrder interpolation is to round $x_\itxt/h$ to the nearest integer, rather than to use the flooring operation. 
 
 First-order or linear interpolation uses the fractional part of the flooring operation as well, according to $\alpha_\itxt = x_\itxt / h - l_\itxt$ and is defined as
 \begin{equation}\label{eq:firstOrderI}
@@ -90,7 +90,7 @@ See Figure \ref{fig:cubicInterpol}.
 % \begin{equation*}
 %     u(0.25, t)\approxeq I_{l,3}(0.25)\uln = -0.0547u_0^n + 0.8203u_1^n + 0.2734u_2^n -0.0391 u_3^n.
 % \end{equation*}
-Notice that the sum of all values of $I_{l, o}(x_\itxt)$, regardless of the order or the value of $\alpha_\itxt$, add up to $1$.
+Notice that the sum of all values of $I_{l, o}(x_\itxt)$ add up to $1$, regardless of the order of the interpolator or the value of $\alpha_\itxt$.
 
 
 One could potentially create higher-order interpolation operators, but as one is restricted to a finite domain, the flexibility of the implementation reduces. Notice that if $\alpha_\itxt = 0$, the higher-order interpolators reduce to the $0$\thOrder interpolator in Eq. \eqref{eq:zerothOrderI}.
@@ -117,7 +117,7 @@ a linear spreading operator
     J_{l,1}(x_\itxt) = \frac{1}{h}\begin{cases}
         (1-\alpha_\itxt), & \text{if}\ l = l_\itxt,\\
         \alpha_\itxt , & \text{if}\ l = l_\itxt + 1,\\
-        0 & \text{otherwise,}
+        0, & \text{otherwise,}
     \end{cases}
 \end{equation}
 and a Lagrange cubic spreading operator
@@ -130,7 +130,7 @@ and a Lagrange cubic spreading operator
         0, & \text{otherwise.}
     \end{cases}
 \end{equation}
-Notice the scaling by $1/h$ which will be more elaborated on in Chapter \ref{ch:connections}. As is the case with the interpolation operators, higher-order spreading operators reduce to Eq. \eqref{eq:zerothOrderJ} if $\alpha_\itxt = 0$.
+Notice that the spreading operator uses a scaling by $1/h$. An intuition this will be given in Chapter \ref{ch:connections}. As is the case for interpolation operators, higher-order spreading operators reduce to Eq. \eqref{eq:zerothOrderJ} if $\alpha_\itxt = 0$.
 
 Spreading operators approximate the spatial Dirac delta function $\delta(x-x_\itxt)$ (in m$^{-1}$), which is a test function defined as
 \begin{equation}\label{eq:spatialDirac}
@@ -139,7 +139,7 @@ Spreading operators approximate the spatial Dirac delta function $\delta(x-x_\it
         0, & \text{otherwise},
     \end{cases} \qaq \int_{-\infty}^{\infty} \delta(x)dx = 1,
 \end{equation}
-used in continuous time to locate an external force to a location $x_\itxt$ along a system distributed over space $x$. Note that the definition in \eqref{eq:spatialDirac} will not be used directly. Instead, it can be approximated using the spreading operators presented in this section. 
+used in continuous time to locate an external force to a location $x_\itxt$ along a system distributed over space $x$. Note that the definition in \eqref{eq:spatialDirac} will not be used directly. Instead, it can be approximated using the spreading operators presented in this section.
 
 \subsubsection{Identities}
 The following identity is extremely useful when solving systems including interpolation and spreading operators of the same order $o$ for any (grid) function $f$ and discrete domain $d$:
@@ -271,7 +271,7 @@ as it is continuous and differentiable, but still approximating discontinuous bo
     \centering
     \includegraphics[width=0.8\textwidth]{figures/exciters/frictionCharacteristic.eps}
     \caption{The friction model in Eq. \eqref{eq:staticFriction} with $a = 100$. \label{fig:frictionCharacteristic}}
-\end{figure}\todo{FULL DOC SWEEP: check figure centering}
+\end{figure}
 \subsection{The bowed stiff string}\label{sec:bowedStiffStringStatic}
 Consider a stiff string, its transverse displacement described by $u(x,t)$ defined for $x\in \D$ (see Chapter \ref{ch:stiffString}). The relative velocity between the string at bow position $x_\Btxt = x_\Btxt(t) \in \D$ and the bow can then be described as
 \begin{equation}\label{eq:vrel}
@@ -321,7 +321,7 @@ One can rewrite Eq. \eqref{eq:vrelDisc} to
 \begin{equation}\label{eq:vrelRewritten}
    I_l(x_\Btxt^n)\dtd \uln =  \vrel^n + v_\Btxt^n,
 \end{equation}
-and using identity \eqref{eq:identity1}, Eq. \eqref{eq:bowLocFDS} can be rewritten and assigned to a function $g(\vrel^n)$ according to \todo{check time varying $x_\Btxt^n$}
+and using identity \eqref{eq:identity1}, Eq. \eqref{eq:bowLocFDS} can be rewritten and assigned to a function $g(\vrel^n)$ according to
 \begin{equation}\label{eq:staticFrictionNRfunc}
     g(\vrel^n) = \left(\frac{2}{k} + 2\sz\right)\vrel^n + \lVert J_l(x_\Btxt^n)\rVert^2_d F_\Btxt^n\Phi(\vrel^n) + b^n = 0,
 \end{equation}
@@ -414,12 +414,11 @@ Figure \ref{fig:energyStaticBow} shows the energy of the bowed stiff string corr
       \end{tikzpicture}
       \caption{The kinetic (blue), potential (red), and total (black) energy of the bowed stiff string. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyStaticBow}}
 \end{figure}
-\todo{look at implementation}
 
 \section{Dynamic friction models}
 As opposed to static friction models, dynamic friction models relate the relative velocity to the friction force using a differential equation. Dynamic friction models exhibit a phenomenon called \textit{hysteresis}, which is the dependence of a system on its history. This hysteresis loop is in the force versus velocity plane and has been confirmed by measurements using a bowing machine in \cite{Woodhouse2003}.
 
-The first dynamic friction model was proposed by Dahl \cite{Dahl1968} and captured hysteresis effects. The Stribeck effect (mentioned in Section \ref{sec:staticFricMod}) was, however, not taken into account. The LuGre model (named after the collaboration between Lund and Grenoble) was then proposed by Canudas de Wit et al. in \cite{Canudas1993, Canudas1995} and extended the Dahl model by taking the Stribeck effect into account. The model assumes a large ensemble of bristles between the two sliding surfaces, each of which contributes a tiny amount to the total friction force. The drawback of this model is that it exhibits drift for extremely small external forces. In \cite{Dupont2002}, Dupont et al. extended the LuGre model by allowing for a purely elastic regime that solves the drift issue. This model is referred to as the \textit{elasto-plastic} friction model and is used in this project.
+The first dynamic friction model was proposed by Dahl \cite{Dahl1968} and captured hysteresis effects. The Stribeck effect (mentioned in Section \ref{sec:staticFricMod}) was, however, not taken into account. The LuGre model (named after the collaboration between Lund and Grenoble) was then proposed by Canudas de Wit et al. in \cite{Canudas1993, Canudas1995}, and extended the Dahl model by taking the Stribeck effect into account. The model assumes a large ensemble of bristles between the two sliding surfaces, each of which contributes a tiny amount to the total friction force. The drawback of this model is that it exhibits drift for extremely small external forces. In \cite{Dupont2002}, Dupont et al. extended the LuGre model by allowing for a purely elastic regime that solves the drift issue. This model is referred to as the \textit{elasto-plastic} friction model and is used in this project.
 
 The first appearance of a contribution in this thesis is the elasto-plastic friction model applied to a stiff string implemented using FDTD methods. This has been presented in paper \citeP[C] and will be summarised in this section. Furthermore, this section extends the paper by providing a stability analysis using the techniques presented in Section \ref{sec:stabilityAnalysisEnergy}.
 
@@ -433,7 +432,7 @@ Unless denoted otherwise, this section follows the original model by Dupont et a
 \begin{equation}\label{eq:elastoPlasticForce}
     f(v, z) = s_0z + s_1\dot z + s_2v + s_3w,
 \end{equation}
-with bristle stiffness $s_0 \geq 0$ (in N/m), bristle damping $s_1 \geq 0$ (in kg/s), viscous friction $s_2 \geq 0$ (in kg/s) and, as presented in \cite{Serafin2004}, a dimensionless noise coefficient $s_3$ multiplied onto a pseudorandom function $w = w(t)$ (in N) generating values between $-1$ and $1$. Moreover, for a string defined over domain $\D$, the relative velocity between the string at bowing location $x_\Btxt = x_\Btxt(t) \in \D$ and the bow is (similar to Eq. \eqref{eq:vrel})
+with bristle stiffness $s_0 \geq 0$ (in N/m), bristle damping $s_1 \geq 0$ (in kg/s), viscous friction $s_2 \geq 0$ (in kg/s) and, as presented in \cite{Serafin2004}, a dimensionless noise coefficient $s_3$ multiplied onto a pseudorandom function $w = w(t)$ (in N) generating values between $-1$ and $1$. Moreover, for a string defined over domain $\D$, the relative velocity between the string at bowing location $x_\Btxt = x_\Btxt(t) \in \D$ and the bow is defined as (similar to Eq. \eqref{eq:vrel})
 \begin{equation}\label{eq:vrelElasto}
     v = \pt u(x_\Btxt,t) - v_\Btxt,
 \end{equation}
@@ -445,7 +444,7 @@ Here, $z_\text{ss}$ is the steady-state function
 \begin{equation}\label{eq:zss}
     z_\text{ss}(v) = \frac{\sgn(v)}{s_0}\left[f_\text{C}+(f_\text{S}-f_\text{C})e^{-(v/v_\text{S})^2}\right],
 \end{equation}
-where the $v_\text{S}$ is the Stribeck velocity (in m/s). Furthermore, using the normal force $f_\text{N} = f_\text{N}(t)$ (in N), the Coulomb force and stiction force can be calculated according to $f_\text{C} = f_\text{N}\mu_\text{C}$ and $f_\text{S} = f_\text{N}\mu_\text{S}$ respectively (both in N). In these definitions $\mu_\text{C}$ and $\mu_\text{S}$ are the dimensionless dynamic and static friction coefficients respectively. A plot of the steady state function can be found in Figure \ref{fig:zss}.
+where the $v_\text{S}$ is the Stribeck velocity (in m/s). Furthermore, using the normal force $f_\text{N} = f_\text{N}(t)$ (in N), the Coulomb force and stiction force can be calculated according to $f_\text{C} = f_\text{N}\mu_\text{C}$ and $f_\text{S} = f_\text{N}\mu_\text{S}$ respectively (both in N). In these definitions, $\mu_\text{C}$ and $\mu_\text{S}$ are the dimensionless dynamic and static friction coefficients respectively. A plot of the steady state function can be found in Figure \ref{fig:zss}.
 
 \begin{figure}[ht]
     \centering
@@ -511,7 +510,7 @@ where
     b^n =&-\frac{2}{k}I_l(x_\text{B}^n)\delta_{t-}u_l^n - c^2 I_l(x_\text{B}^n)\delta_{xx} u_l^n +\kappa^2I_l(x_\text{B}^n)\delta_{xxxx} u_l^n\\
     &+\left(\frac{2}{k}+ 2\sigma_0\right)v_\text{B}^n-2\sigma_1I_l(x_\text{B}^n)\delta_{t-}\delta_{xx}u_l^n.
 \end{align*}
-As $g_1$ contains two unknown variables $v^n$ and $z^n$ that need to be solved for, the multivariate Newton-Raphson method presented in \ref{sec:multivariateNR} must be performed. To be able to do this, an extra function must be included. 
+As $g_1$ contains two unknown variables $v^n$ and $z^n$ that need to be solved for, the multivariate Newton-Raphson method presented in \ref{sec:multivariateNR} must be performed. To be able to do this, an extra function, which is dependent on $v^n$ and $z^n$, must be included. 
 
 As $r$ describes $\dot z$ in Eq. \eqref{eq:zdot}, one can take another approach to approximate $\dot z$ using the trapezoid rule \cite{theBible}
 \begin{equation}
@@ -549,9 +548,9 @@ The derivatives in the Jacobian matrix are given in Appendix \ref{app:elastoDeri
 In the following, the same parameters as presented for the static friction model in Section \ref{sec:staticImplementation} have been used for the string and the bow (where $f_N = f_\Btxt$).
 Additional parameters used for the elasto-plastic friction model are given in paper \citeP[C].
 
-Figure \ref{fig:hysteresis} shows that the implementation of the elasto-plastic friction model exhibits a hysteresis loop in the force versus velocity plane as desired from a dynamic friction model. The values around $v=0$ are due to sticking behaviour and the loop on the left is due to slipping behaviour.
+Figure \ref{fig:hysteresis} shows that the implementation of the elasto-plastic friction model exhibits a hysteresis loop in the force versus velocity plane, as desired from a dynamic friction model. The values around $v=0$ are due to sticking behaviour and the loop on the left is due to slipping behaviour.
 Figure \ref{fig:elastoWaveform} shows the output of the implementation and follows the characteristic Helmholtz motion shown in Figure 
-\ref{fig:helmholtzTimedomain}. When compared to the output of the static friction model in Figure \ref{fig:helmholtzImplementation}, the output of the elasto-plastic implementation seems to be more `smooth' overall, which could be explained by the elasticity of the bristles. 
+\ref{fig:helmholtzTimedomain}. When compared to the output of the static friction model in Figure \ref{fig:helmholtzImplementation}, the output of the elasto-plastic implementation seems to be more `smooth' overall, which could be explained by the inclusion of the bristles and their elasticity. 
 
 \begin{figure}[ht]
     \centering
@@ -643,7 +642,7 @@ one can show that, as all coefficients are non-negative and $\sgn(v) = \sgn(z_\t
 \begin{equation}
     s_1 \leq \frac{4s_0z_\text{ss}(v)}{v}\ .
 \end{equation}
-This means that as long as one knows the limit of the velocity of the system, the coefficient $s_1$ can be set accordingly.
+This is the same condition as Olsson presents for the LuGre model \cite{Olsson1996}, and means that as long as one knows the limit of the velocity of the system, the coefficient $s_1$ can be set accordingly.
 
 Using identity \eqref{eq:prodIdentity2}, the energy stored in the bristles can be shown to be
 \begin{equation}
@@ -656,9 +655,9 @@ which is not necessarily non-negative. In \cite{Olsson1996}, Olsson performs the
 which is clearly non-negative. Further work needs to be done to prove stability for the discretisation of the elasto-plastic friction model in Eq. \eqref{eq:discForceFunction}.\footnote{This could possibly include a different discretisation of $s_0 z$ in Eq. \eqref{eq:elastoPlasticForce} or adding a mass to the bristles.}
 
 \section{Discussion and conclusion}
-This chapter presented the bow as a mechanism to excite stiff strings. Two friction models have been presented: a static friction model where the friction force is only a function of the relative velocity between the string and the bow, and a dynamic elasto-plastic friction model, which relates this relative velocity to the friction force using a differential equation. The latter has been presented in paper \citeP[C] where it was first applied to stiff strings based on FDTD methods. Stability analysis for the elasto-plastic friction model is ongoing,  although a stability condition for parameters of the model has been presented.
+This chapter presented the bow as a mechanism to excite stiff strings. Two friction models have been presented: a static friction model where the friction force is only a function of the relative velocity between the string and the bow, and a dynamic elasto-plastic friction model, which relates this relative velocity to the friction force using a differential equation. The latter has been presented in paper \citeP[C] where it was first applied to stiff strings based on FDTD methods. Stability analysis for the elasto-plastic friction model is ongoing, although a stability condition for parameters of the model has been presented.
 
-Although a successful implementation of the elasto-plastic friction model has been made, it has not been used in the project beyond paper \citeP[C]. It was found that small changes in parameters, both control and model parameters, already yield large behavioural changes. An attempt was made at using the elasto-plastic friction model with a fully modelled instrument (the tromba marina presented in papers \citeP[D] and \citeP[E]), but this did not yield the desired results, and the predictable static friction model was chosen instead. Future work includes tuning the many parameters that the elasto-plastic model relies on and apply an adjusted version to fully modelled instruments.
+Although a successful implementation of the elasto-plastic friction model has been made, it has not been used in the project beyond paper \citeP[C]. It was found that small changes in parameters, both control and model parameters, already yield large behavioural changes. An attempt was made at using the elasto-plastic friction model with a fully modelled instrument (the tromba marina presented in papers \citeP[D] and \citeP[E]), but this did not yield the desired results, and the predictable static friction model was chosen instead. Future work includes tuning the many parameters that the elasto-plastic model relies on, and to apply this to fully modelled instruments.
 
 An in-depth comparison between the static and the elasto-plastic friction model in terms of perceptual differences, is also left for future work. A preliminary comparison has been carried out by Onofrei in \cite{Onofrei2021}, where the author noted that \textit{"the
 elasto-plastic model seems to behave more smoothly"} than the static friction model. This is also what is observed when comparing the output of the friction models in Figures \ref{fig:helmholtzImplementation} and \ref{fig:elastoWaveform}. As said, these observations are preliminary, and further work needs to be done to compare the various friction models.
