@@ -503,7 +503,7 @@ As an example of a more complicated connected system used in papers \citeP[A] an
 \subsection{Continuous time}
 Consider a damped stiff string of length $L$ (in m), its transverse displacement described by $u = u(\chi,t)$ (in m) defined for $t\geq 0$ and $\chi \in \D_\stxt$ where domain $\D_\stxt = [0, L]$. Its PDE is described by
 \begin{equation}
-    \rho_\stxt A\ptt u = T \partial_{\chi\chi} u - E_\stxt I \partial_{\chi\chi\chi\chi} u - 2\szX[\stxt]\rho_\stxt A\pt u + 2\soX[\stxt]\rho_\stxt A\pt\partial_{\chi\chi} u,
+    \rho_\stxt A\ptt u = T \partial_{\chi}^2 u - E_\stxt I \partial_{\chi}^4 u - 2\szX[\stxt]\rho_\stxt A\pt u + 2\soX[\stxt]\rho_\stxt A\pt\partial_{\chi}^2 u,
 \end{equation}
 where parameters are as in Eq. \eqref{eq:stiffStringPDE}.
 
@@ -516,8 +516,8 @@ where parameters are as in Eq. \eqref{eq:platePDE}.
 One can connect the above PDEs, by adding a localised connection force. After a division by $\rho_\stxt A$ and $\rho_\ptxt H$ respectively the connected string-plate system becomes
 \begin{subequations}\label{eq:connStringPlatePDEs}
     \begin{align}
-        \!\!\ptt u &= c^2 \partial_{\chi\chi} u - \kappa_\stxt^2 \partial_{\chi\chi\chi\chi} u - 2\szX[\stxt]\pt u + 2\soX[\stxt] \pt\partial_{\chi\chi} u - \delta(\chi-\chi_\ctxt)\frac{f}{\rho_\stxt A},\\
-    \!\!\ptt w &= -\kappa_\ptxt^2\Delta\Delta w - 2\szX[\ptxt]\pt w + 2\soX[\ptxt] \pt\pxx w + \delta(x-x_\ctxt, y-y_\ctxt)\frac{f}{ \rho_\ptxt H},
+        \ptt u &= c^2 \partial_{\chi}^2 u - \kappa_\stxt^2 \partial_{\chi}^4 u - 2\szX[\stxt]\pt u + 2\soX[\stxt] \pt\partial_{\chi}^2 u - \delta(\chi-\chi_\ctxt)\frac{f}{\rho_\stxt A},\\
+    \ptt w &= -\kappa_\ptxt^2\Delta\Delta w - 2\szX[\ptxt]\pt w + 2\soX[\ptxt] \pt\pxx w + \delta(x-x_\ctxt, y-y_\ctxt)\frac{f}{ \rho_\ptxt H},
     \end{align}
 \end{subequations}
 where $\delta(\chi-\chi_\ctxt)$ (in m$^{-1}$) and $\delta(x-x_\ctxt, y-y_\ctxt)$ (in m$^{-2}$) are the 1D and 2D spatial Dirac delta functions defined in Eqs. \eqref{eq:spatialDirac} and \eqref{eq:spatialDirac2D} respectively and locate the connection force at $\chi_\ctxt \in \D_s$ (in m) along the string and $(x_\ctxt,y_\ctxt)\in \D_p$ (in $(\text{m}, \text{m})$) on the plate.

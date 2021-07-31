@@ -1,5 +1,5 @@
 \chapter{Analysis Techniques}\label{ch:analysis}
-This chapter provides some useful techniques to analyse FD schemes. Techniques to analyse PDEs also exist, but the focus here is of a practical nature and will especially revolve around the discrete schemes. This chapter can be seen as a `tutorial' on how to use these techniques. 
+This chapter provides some useful techniques to analyse FD schemes. Techniques to analyse PDEs also exist, but this work is more practically oriented, and will focus on the discrete schemes. This chapter can be seen as a `tutorial' on how to use these techniques. 
 Starting off with some necessary theory on matrices in a FDTD context and other mathematical tools, this chapter continues to introduce 
 \begin{itemize}
     \item \textit{Frequency domain analysis}, which can be used to determine stability conditions of (linear and time-invariant) FD schemes,
@@ -389,10 +389,10 @@ Examples of various temporal FD operators applied to grid functions in their fre
 \begin{equation}\label{eq:temporalAnsatz}
     \begin{aligned}
     \dtp \uln &\ansatz \frac{1}{k} \left(z - 1\right),& \dtm \uln &\ansatz \frac{1}{k} \left(1 - z^{-1}\right),\\
-    \dtd \uln&\ansatz \dfrac{1}{2k} \left(z - z^{-1}\right), &\quad \dtt \uln&\ansatz\frac{1}{k^2} \left(z - 2 + z^{-1}\right)
+    \dtd \uln&\ansatz \dfrac{1}{2k} \left(z - z^{-1}\right), &\quad \dtt \uln&\ansatz\frac{1}{k^2} \left(z - 2 + z^{-1}\right),
     \end{aligned}
 \end{equation}
-and for spatial operators identity \eqref{eq:sinIdentity} can be used to obtain
+and for spatial operators, identity \eqref{eq:sinIdentity} can be used to obtain
 \begin{subequations}
 \begin{align}
     \dxx\uln&\ansatz -\frac{4}{h^2} \sin^2(\beta h / 2), \quad \label{eq:dxxAnsatz}\\
@@ -405,7 +405,7 @@ Similar to digital filters, the system is stable when the roots of the character
 \begin{equation}\label{eq:boundByUnity}
     |z| \leq 1.
 \end{equation} 
-In the FDTD context, the frequency domain representation of a FD scheme results in a \textit{characteristic equation} -- which is usually a second-order polynomial -- in $z$ and needs to satisfy condition \eqref{eq:boundByUnity} for all wave numbers $\beta$.
+In a FDTD context, the frequency domain representation of a FD scheme results in a \textit{characteristic equation} -- which is usually a second-order polynomial -- in $z$ and needs to satisfy condition \eqref{eq:boundByUnity} for all wave numbers $\beta$.
 It can be shown that for a polynomial of the form 
 \begin{equation}\label{eq:polynomialForm}
     z^2 + a^{(1)}z + a^{(2)}
@@ -425,7 +425,7 @@ Recalling the FD scheme of the mass-spring system in Eq. \eqref{eq:massSpringUpd
 \begin{equation*}
     M \dtt \un = -K \un,
 \end{equation*} 
-a frequency domain representation can be obtained using the ansatz in \eqref{eq:ansatz} with $l = 0$. Using Table \ref{tab:zIdentities} and Eqs. \eqref{eq:temporalAnsatz} as a reference and substituting the definitions yields
+a frequency domain representation can be obtained using the ansatz in Eq. \eqref{eq:ansatz} with $l = 0$. Using Table \ref{tab:zIdentities} and Eqs. \eqref{eq:temporalAnsatz} as a reference and substituting the definitions yields
 \begin{equation*}
     \frac{M}{k^2}\left(z -2 +z^{-1}\right) = -K.
 \end{equation*}
@@ -491,8 +491,8 @@ Also recalling that $\lambda = ck/h$ (see Eq. \eqref{eq:courantNumber}), the cha
 % \begin{equation}
 %     z_\pm = 1-2\lambda^2\sin^2(\beta h/2) \pm \sqrt{(1 - 2\lambda^2\sin^2(\beta h/2))^2 - 1}.
 % \end{equation}
-The scheme is then stable if the roots satisfy condition \eqref{eq:boundByUnity}. As the characteristic equation is of the form in \eqref{eq:polynomialForm} (after multiplication with $z$) with $a^{(2)} = 1$, stability is shown by abiding condition 
-\eqref{eq:simplerCondition215} for all $\beta$ and when applied to the characteristic equation \eqref{eq:1dWaveCharacteristic}, it can be seen that
+The scheme is then stable if the roots satisfy condition \eqref{eq:boundByUnity}. As the characteristic equation is of the form in Eq. \eqref{eq:polynomialForm} (after multiplication with $z$) with $a^{(2)} = 1$, stability is shown by abiding condition 
+\eqref{eq:simplerCondition215} for all $\beta$. When applied to the characteristic equation \eqref{eq:1dWaveCharacteristic}, it can be seen that
 \begin{equation}\nonumber
     \begin{aligned}
         |4\lambda^2\sin^2(\beta h/2) - 2| &\leq 2,\\
@@ -502,7 +502,7 @@ The scheme is then stable if the roots satisfy condition \eqref{eq:boundByUnity}
         0\leq \lambda^2\sin^2(\beta h/2) &\leq 1.
     \end{aligned}
 \end{equation}
-Observing that all terms in $\lambda^2\sin^2(\beta h/2)$ are squared, this term will always be non-negative and therefore always satisfy the first condition. Continuing with the second condition, and knowing that the $\sin^2(\beta h / 2)$-term is bounded by $1$ for all $\beta$, yields the following stability condition:
+Observing that all terms in $\lambda^2\sin^2(\beta h/2)$ are squared, this term will always be non-negative and will therefore always satisfy the first condition. Continuing with the second condition, and knowing that the $\sin^2(\beta h / 2)$-term is bounded by $1$ for all $\beta$, yields the following stability condition:
 \begin{equation*}
     \lambda \leq 1.
 \end{equation*}
@@ -516,13 +516,13 @@ which is the stability condition given in Eq. \eqref{eq:1DWaveStabilityCond}.
 Although frequency domain analysis is very useful, it can only be applied to linear and time-invariant (LTI) systems and linear and shift-invariant (LSI) systems. These, respectively, describe systems whose properties do not change over time (LTI) and in space (LSI).\footnote{Acoustic tubes with a spatially-varying cross-section presented in Chapter \ref{ch:brass} are examples of non-LSI systems.} Furthermore, the analysis assumes systems with infinite domains, so boundary conditions are not included. Energy analysis techniques, on the other hand, allow these types of systems, even nonlinear systems, to be analysed. Moreover, these techniques can work with finite domains, such that boundary conditions can be handled as well. Energy analysis techniques will be presented below.
 
 \section{Energy analysis}\label{sec:energyAnalysis}
-Of all analysis techniques described in this chapter, energy analysis is without a doubt the most important when working with FDTD methods. 
-First of all, from a practical point of view, it is essential for debugging implementations of FD schemes. Especially when trying to model more complex systems, programming errors are unavoidable, and energy analysis can be extremely helpful in pinpointing where the error lies. 
+Of all analysis techniques described in this chapter, energy analysis is, without a doubt, the most important when working with FD schemes. 
+First of all, from a practical point of view, it is essential for debugging implementations of FD schemes. Especially when trying to model more complex systems, programming errors are unavoidable, and energy analysis can be extremely helpful in locating the errors. 
 Secondly, energy analysis techniques can be used to obtain stability conditions in a much more general sense than the frequency domain analysis techniques presented in Section \ref{sec:stabilityAnalysis}. Where frequency domain analysis is restricted to LTI and LSI systems with infinite domains (for distributed systems), energy analysis can be applied to nonlinear systems and include boundary conditions \cite{theBible}. 
 
-Gustafsson et al. in (the first edition of) \cite{Gustafsson2013} worked with energy to find stability conditions for FD schemes. The authors referred to this as `the energy method' and it effectively circumvented the need of a frequency domain representation to find stability conditions (as presented in Section \ref{sec:stabilityAnalysis}). Later, energy, or more specifically `energy as a conserved quantity', was used to determine stability and passivity of systems. Bilbao gives an extensive overview in \cite{theBible} where this has been extensively used to show stability of the FD schemes used. 
+Gustafsson et al. in (the first edition of) \cite{Gustafsson2013} worked with energy to find stability conditions for FD schemes. The authors referred to this as `the energy method' and it effectively circumvented the need of a frequency domain representation to find stability conditions (as presented in Section \ref{sec:stabilityAnalysis}). Later, energy, or more specifically `energy as a conserved quantity', was used to determine stability and passivity of systems. Bilbao gives an elaborate overview in \cite{theBible} where this has been extensively used to show stability of many FD schemes. 
 
-One of the main goals when performing energy analysis is to find an expression for the total energy present in the system. This is referred to as the \textit{Hamiltonian} and denoted by $\mathfrak{H}$ in continuous time and $\h$ in discrete time. In this work, the focus of the energy analysis will be practically oriented and only the discrete time case will be considered. %Although it is useful to perform the analysis in continuous time to have some sort of
+One of the main goals when performing energy analysis, is to find an expression for the total energy present in the system. This is referred to as the \textit{Hamiltonian} and denoted by $\mathfrak{H}$ in continuous time and $\h$ in discrete time. In this work, the focus of the energy analysis will be practically oriented and only the discrete time case will be considered. %Although it is useful to perform the analysis in continuous time to have some sort of
 
 In this section, four steps are presented and can be followed to perform a full energy analysis of a FD scheme and implement it afterwards. Then, the analysis will be performed on the mass-spring system and the 1D wave equation presented in Chapter \ref{ch:FDTD}. Finally, it will be shown how to obtain stability conditions through the techniques presented in this section. 
 
@@ -538,7 +538,7 @@ In this section, four steps are presented and can be followed to perform a full 
 \subsubsection{Step 1: Obtain the rate of change of the total energy $\dtp \h$}
 The first step to energy analysis is to take the appropriate \textit{norm} of the scheme (see Eq. \eqref{eq:contInnerProd}), which yields an expression for the rate of change of the energy of the system: $\dtp\h$. Usually, this means to take the inner product of the scheme with $(\dtd \uln)$ over a discrete domain $d$. See Section \ref{sec:innerProduct} for more details on the inner product. Note that the forward time difference $\dtp$ is used (and not the backwards or centred) because of convention and preference.\footnote{[Bilbao, verbally]}
 
-For the units of the resulting energy balance to add up (also see Step 3), it is useful to perform the analysis on a scheme with all physical parameters written out (so the discretised version of Eq. \eqref{eq:massSpringPDE} rather than Eq. \eqref{eq:massSpringCompact}).
+For the units of the resulting energy balance to add up (also see Step 3), it is useful to perform the analysis on a scheme with all physical parameters written out.\footnote{So using the discretised version of e.g. Eq. \eqref{eq:massSpringPDE} rather than Eq. \eqref{eq:massSpringCompact}.}
 
 \subsubsection{Step 2: Identify different types of energy and obtain the total energy $\h$ by isolating $\dtp$}
 The energy of a FD scheme can generally be divided into three different types: the total energy contained within the system, or Hamiltonian $\h$, energy losses through damping $\mathfrak{q}$ and energy input through external forces or excitations $\mathfrak{p}$. For distributed systems, an additional boundary term $\mathfrak{b}$ appears, but vanishes under `regular' (lossless and not energy-storing) boundary conditions. Nearly any energy balance is thus of the form 
@@ -550,7 +550,7 @@ This equation essentially says that the total energy present in the system chang
     \dtp \h = 0 \quad \Longrightarrow \quad \h^n = \h^0.
 \end{equation}
 
-As the eventual interest lies in the total energy of the system $\h$ and not its rate of change, $\dtp$ must be isolated in the definition of $\dtp \h$. In this step, the identities in Section \ref{sec:prodIdentities} will come in handy, as well as summation by parts described in Section \ref{sec:summationByParts} for distributed systems.
+As the eventual interest lies in the total energy of the system $\h$ and not its rate of change, $\dtp$ must be isolated in the definition of $\dtp \h$. In this step, the identities in Section \ref{sec:prodIdentities} are extremely useful, as well as summation by parts described in Section \ref{sec:summationByParts} for distributed systems.
  
 The Hamiltonian itself can usually be further subdivided into kinetic energy and potential energy, denoted by the symbols $\t$ and $\v$ respectively:
 \begin{equation}
@@ -559,7 +559,7 @@ The Hamiltonian itself can usually be further subdivided into kinetic energy and
 As a rule of thumb, the definition for kinetic energy contains `velocity squared' (as in the classical-mechanics definition $E_\text{kin}=\tfrac{1}{2}M\dot u$) and the potential energy includes the restoring forces of the system. 
 
 \subsubsection{Step 3: Check the units in the expression for $\h$}
-To know that the previous steps have been carried out correctly, it is good to check whether the units of the resulting expression for $\h$ is indeed in Joules, or kg $\cdot$ m$^2 \cdot $ s$^{-2}$. The other quantities such as energy losses $\mathfrak{q}$ and inputs $\mathfrak{p}$, should be in Joules per second or in SI units: kg $\cdot$ m$^2 \cdot $ s$^{-3}$. As mentioned in Step 1, it is therefore useful to have all physical parameters written out so that the units will be correct in this step. Some information about operators and grid functions and how they `add' units are given in Table \ref{tab:units}. It is important to note that the time shift operator ($e_{t-}$) does not influence the units. Finally, the appearance of a grid function $\uln$ `adds' whatever it describes. Usually, as $\uln$ describes a displacement in m, it will `add' this to the equation. If it describes anything else, it will `add' that.
+To know that the previous steps have been carried out correctly, it is good to check whether the units of the resulting expression for $\h$ is indeed in Joules, or kg $\cdot$ m$^2 \cdot $ s$^{-2}$. The other quantities such as energy losses $\mathfrak{q}$ and inputs $\mathfrak{p}$, should be in Joules per second or in SI units: kg $\cdot$ m$^2 \cdot $ s$^{-3}$. As mentioned in Step 1, it is therefore useful to have all physical parameters written out so that the units will be correct in this step. Some information about operators and grid functions and how they `add' units are given in Table \ref{tab:units}. Finally, the appearance of a grid function $\uln$ `adds' the unit of whatever it describes. For example, if $\uln$ describes a displacement in m, it will `add' a unit of m to the equation.
 
 {\renewcommand{\arraystretch}{1.2}
 
@@ -733,22 +733,22 @@ and are indeed in Joules. Notice that an extra `m' unit appears due to the norm 
 \subsubsection{Step 4: Implementation}
 The energy balance in Eq. \eqref{eq:energyBalance1DWave} can be implemented with the following code in the for-loop recursion:
 \\
-
+\noindent
 \begin{minipage}{\textwidth}
-    \setlstMAT
-    \begin{lstlisting}
-        %% Calculate the energy using Eq. %*\eqrefMatlab[eq:energyBalance1DWave]*) 
-        
-        % Kinetic energy
-        kinEnergy(n) = rho * A / 2 * h * sum((1/k * (u-uPrev)).^2);
-        
-        % Potential energy
-        potEnergy(n) = T/(2*h) * sum(([u; 0] - [0; u]) ...
-        .* ([uPrev; 0] - [0; uPrev]));
-        
-        % Total energy (Hamiltonian)
-        totEnergy(n) = kinEnergy(n) + potEnergy(n);
-    \end{lstlisting}
+\setlstMAT
+\begin{lstlisting}
+%% Calculate the energy using Eq. %*\eqrefMatlab[eq:energyBalance1DWave]*) 
+
+% Kinetic energy
+kinEnergy(n) = rho * A / 2 * h * sum((1/k * (u-uPrev)).^2);
+
+% Potential energy
+potEnergy(n) = T/(2*h) * sum(([u; 0] - [0; u]) ...
+.* ([uPrev; 0] - [0; uPrev]));
+
+% Total energy (Hamiltonian)
+totEnergy(n) = kinEnergy(n) + potEnergy(n);
+\end{lstlisting}
 \end{minipage}
 Here, \texttt{u} is the vector $\u = [u_1^n, \hdots, u_{N-1}^n]^T$ (as Dirichlet boundary conditions are used) and need to be concatenated with $0$ in the calculation of the potential energy as the boundaries needs to be included in the calculation, despite them being 0.\footnote{As can be seen from the definition of $\v$ in Eq. \eqref{eq:energyBalance1DWave}, the domain used for the inner product is $\underline{d} = \{0,\hdots, N-1\}$ and $\v$ contains a forward difference in its definition requiring $u_N^n$ as well.}
     Figure \ref{fig:energy1DWave} shows the plot of the normalised energy according to Eq. \eqref{eq:normalisedEnergy} and shows that the deviation of $\h^n$ is within machine precision.

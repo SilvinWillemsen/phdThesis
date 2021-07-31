@@ -7,7 +7,7 @@ consider first the frequency-independent damping term $-2\sz\pt u$. The more pos
 
 As for the frequency-dependent damping term, apart from the obvious $\sigma_1$, the effect of the term increases with an increase of $\partial_t\partial_x^2u$, which literally describes the `rate of change of the curvature' of the string.
 
-Let's first talk about positive and negative curvature, i.e., when $\partial_x^2u > 0$ or $\partial_x^2u < 0$. Counterintuitively, in the positive case, the curve points downwards. Think about the function $f(x) = x^2$. It has a positive curvature (at any point), but has a minimum. This can be proven by taking $x=0$ and setting grid spacing $h=1$.
+First, consider the meaning behind positive and negative curvature, i.e., when $\partial_x^2u > 0$ or $\partial_x^2u < 0$. Counter-intuitively, in the positive case, the curve points downwards. Think about the function $f(x) = x^2$. It has a positive curvature (at any point), but has a minimum. This can be proven by taking $x=0$ and setting grid spacing $h=1$.
 \begin{equation}
   \begin{aligned}
   \delta_{xx}f(x) &= \frac{1}{h^2} \left(f(-1)-2f(0)+f(1)\right), \\
@@ -31,6 +31,6 @@ So the rate of change of the curvature is positive, i.e., the already positively
 
 If the curvature around a point along a string gets more positive (or less negative) over time, the force applied to that point will be positive, effectively `trying' to reduce the curvature. Vice versa, if the curvature around a point along a string gets more negative (or less positive) over time, the force applied will be negative, again `trying' to reduce the curvature. 
 
-From an auditory point of view, higher curvature generally means higher frequency. As the frequency-dependent damping term reduces the curvature along the string, it effectively damps higher frequencies.
+From an auditory point of view, a higher curvature  in space (generally) corresponds to a higher frequency in time. As the frequency-dependent damping term aims to reduces the curvature along the string, it effectively damps higher frequencies.
  
 % The fact the frequency-dependent term to be added rather than subtracted, is caused by the fact that a location along the string with a positive curvature implies that its neighbouring locations have relatively more positive displacement than itself. This translated to the force/effect this term has on the scheme means...

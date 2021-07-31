@@ -4,7 +4,7 @@ The dynamics of wind instruments can be modelled by acoustic tubes as presented 
 % Brass instruments are excited by the lips of the player. The opening and closing of the lips causes a vibration
 Sections \ref{sec:webstersExcitation} and \ref{sec:pulseTrain} presented a physically inspired pulse train that attempts to model the opening and closing of the lips, using a clipped sinusoidal signal. A more physical approach, which is bidirectional, is to model the lips as a mass-spring-damper system that interacts with the left boundary of the tube. The literature describes lip reed models with varying degrees of freedom (DoF) (see \cite{Fletcher1998,Harrison2018} for an overview). Recent work includes vortex-induced vibration into the lip reed model, that allows for the buzzing of the lips without the need of an acoustic tube [\hyperref[ch:listOfPublications]{S1}]. 
 
-As the contribution of this project to a brass instrument model was mainly focused on the resonator, the simple `outward striking door model' was chosen, which is a simple single one-DoF mass-spring-damper system. The model is as presented in \cite{Bilbao2009Reed} excluding the collision. An alternative collision model was added in paper \citeP[H] and will be elaborated on in Chapter \ref{ch:trombone}.
+As the contribution of this project to a brass instrument model was mainly focused on the resonator, the simple `outward striking door model' was chosen, which is a simple single one-DoF mass-spring-damper system. The model is as presented in \cite{Bilbao2009Reed}, but excluding the collision. An alternative collision model was added in paper \citeP[H] and will be elaborated on in Chapter \ref{ch:trombone}.
 
 This chapter starts by introducing the mass-spring-damper system, after which the lip reed model will be given in continuous and discrete time. The lip reed will be coupled to the first-order system of equations presented in \ref{sec:firstOrderSystem}. Unless denoted otherwise, this chapter follows \cite{Harrison2018}. 
 
@@ -153,10 +153,10 @@ and, after grouping the terms,
     a_1\delta_{t\cdot}y^{\nph} - a_2\Delta p^{\nph} - a_3^n = 0,\label{eq:preAEquation}
 \end{equation}
 where
-\begin{equation}\label{eq:aCoeffs}
+\begin{equation*}
     a_1 = \frac{2}{k} + \omega_0^2k + \sigma_\text{r} \geq 0, \quad a_2 = \frac{S_\text{r}}{M} \geq 0\ , \quad \text{and} \quad a_3^n = \left(\frac{2}{k} \delta_{t-} - \omega_0^2e_{t-}\right)y^{\nph}\ .
-\end{equation}
-Note that the non-negative property can be applied to $a_1$ and $a_2$ as these are calculated solely from non-negative parameters. %The same will be done for other coefficients below.
+\end{equation*}
+Note that the non-negativity property can be applied to $a_1$ and $a_2$ as these are calculated solely from non-negative parameters. %The same will be done for other coefficients below.
 Equation \eqref{eq:Ur} can then be substituted into Eq. \eqref{eq:preAEquation}
 \begin{equation*}
     \frac{a_1}{S_\text{r}}U_\text{r}^{\nph} - a_2 \Delta p^{\nph} - a_3^n = 0,

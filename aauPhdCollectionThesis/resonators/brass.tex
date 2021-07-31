@@ -32,7 +32,7 @@ The interesting thing about the presence of a variable cross-section, is that it
 %test for git
 
 \subsubsection{Boundary conditions}
-The choices for boundary conditions in an acoustic tube are open and closed, defined as \cite{Bilbao2018}\footnote{The Dirichlet condition is identical to the one shown in Eq. \eqref{eq:contDirichlet}, but is derived from $p(0, t) = p(L, t) = 0$ and the time-derivative has thus been kept here.}
+The choices for boundary conditions in an acoustic tube are open and closed, defined as \cite{Bilbao2018}\footnote{The Dirichlet condition is identical to the one shown in Eq. \eqref{eq:contDirichlet}, but is derived from a boundary condition for the pressure $p(0, t) = p(L, t) = 0$. The time-derivative has thus been kept here.}
 \begin{subequations}\label{eq:contBoundariesBrass}
     \begin{align}
         \partial_t\Psi(0, t) &= 0, & \partial_t\Psi(L, t) &= 0, & &\text{(Dirichlet, open)},\label{eq:contDirichletBrass}\\
@@ -343,7 +343,7 @@ Finally, $\b = \b_\text{l}$ and can be shown to vanish for both Dirichlet and (c
 To obtain the correct units, the quantities for pressure and particle velocity in Eq. \eqref{eq:pressureVelocityWebster} need to be substituted into the scheme. As this substitution will be made in Section \ref{sec:firstOrderSystem}, the unit check will be omitted here. 
 
 \subsubsection{Step 4: Implementation}
-Figure \ref{fig:energyWebsters} shows the energetic output of Webster's equation with a radiating boundary at $x=L$. To highlight the effect of the radiation, the parameters are set to $L = 1$ m and $S(x) = 0.01$ m $^2$ for all $x\in \D$.  The system is excited with a raised cosine close to the left boundary, and when the excitation reaches the radiating boundary, the total energy in the system decreases due to the losses. The energy stored by the boundary $\h_\text{b}$ is also shown and indeed increases when the wave reaches the boundary.
+Figure \ref{fig:energyWebsters} shows the energetic output of Webster's equation with a radiating boundary at $x=L$. To highlight the effect of the radiation, the parameters are set to $L = 1$ m and $S(x) = 0.01$ m$^2$ for all $x\in \D$. The system is excited with a raised cosine close to the left boundary, and when the excitation reaches the radiating boundary, the total energy in the system decreases due to the losses. The energy stored by the boundary $\h_\text{b}$ is also shown and indeed increases when the wave reaches the boundary.
 \begin{figure}[h]
     \centering
     \begin{tikzpicture}[->,node distance=3cm,
@@ -360,7 +360,7 @@ Figure \ref{fig:energyWebsters} shows the energetic output of Webster's equation
         \node[] (t) at (-5.75, 0) {\small $\color{blue}\mathfrak{t}$};
         \node[] (hb) at (-5.75, -0.5) {\small $\color[HTML]{00DB00}\mathfrak{h}_\text{b}$};      
     \end{tikzpicture}
-      \caption{The kinetic (blue), potential (red), and total (black) energy as well as the energy stored by the radiation condition (green) of an implementation of Webster's equation are plotted in the left panel. Notice that the energy decreases between $n=60$ and $n=70$ as the excitation reached the boundary where damping is included. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyWebsters}}
+      \caption{The kinetic (blue), potential (red), and total (black) energy as well as the energy stored by the radiation condition (green) of an implementation of Webster's equation are plotted in the left panel. The right panel shows the normalised energy (according to Eq. \eqref{eq:normalisedEnergyDamping}) and shows that the deviation of the energy is within machine precision. \label{fig:energyWebsters}}
 \end{figure}
 
 \subsection{Stability through energy analysis}\label{sec:stabilityEnergyWebster}
@@ -370,7 +370,7 @@ Consider the following scheme
 \begin{equation}
     [S]_l \delta_{tt}\Psi^n_l = c^2\dxm(\Sp(\delta_{x+}\Psiln)),
 \end{equation}
-where $[S]_l$ is a still undetermined second-order approximation to the true geometry of the acoustic tube and will be shown to be $\Sbar_l$ below. As done for the 1D wave equation in Section \ref{sec:stabilityAnalysisEnergy}, the potential energy $\v$ in Eq. \eqref{eq:energyBalanceWebster} can be rewritten using identity \eqref{eq:prodIdentityEnergyStab} as
+where $[S]_l$ is a yet undetermined second-order approximation to the true geometry of the acoustic tube and will be shown to be $\Sbar_l$ below. As done for the 1D wave equation in Section \ref{sec:stabilityAnalysisEnergy}, the potential energy $\v$ in Eq. \eqref{eq:energyBalanceWebster} can be rewritten using identity \eqref{eq:prodIdentityEnergyStab} as
 \begin{equation*}
     \v = \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2-\frac{k^2}{4}\lVert\sqrt{S_{l+1/2}}\dtm\dxp \Psiln\rVert_{\underline{d}}^2\right).
 \end{equation*}
@@ -381,7 +381,7 @@ For spatially varying systems, one can use the following extension of the bound 
 where spatially varying function $\phi_l > 0$ is defined over the same domain as $u$. The following condition can then be put on $\v$
 \begin{align*}
     \v &\geq \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2 - \frac{k^2}{4}\left(\frac{2}{h}\lVert\sqrt{\mxm \Sp}\dtm\Psiln\rVert_{d}\right)^2\right),\\
-    &\geq \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\lVert\sqrt{\mxx S_l}\dtm\Psiln\rVert_{d}^2\right)\\
+    \v &\geq \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\lVert\sqrt{\mxx S_l}\dtm\Psiln\rVert_{d}^2\right)\\
     & \geq \frac{c^2}{2}\left(\lVert\sqrt{S_{l+1/2}}\mtm\dxp\Psiln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\left(\lVert\sqrt{\mxx S_l}\dtm\Psiln\rVert_{d}^{\el,\er}\right)^2\right),
 \end{align*}
 where the last step is possible because $0 < \el, \er \leq 2$.
@@ -430,7 +430,7 @@ also given in \eqref{eq:CFLwebster}. This choice of $[S]_l$ is equal to $\Sbar_l
 Until now, only PDEs that are second-order in time have been presented, i.e., that are dependent on the acceleration of the state variable. This section presents a system of two coupled first-order PDEs which are instead dependent on the velocity. State-of-the-art research on brass instruments in the context of FDTD methods also uses this coupled system (see e.g. \cite{Bilbao2016, Harrison2018}), and has been used in this project to model the trombone in paper \citeP[H].
 
 \subsection{Continuous time}\label{sec:firstOrderSystemCont}
-Using the same variables as before for cross-sectional area $S=S(x)$, wave speed $c$, and air density $\rho_0$, a system of PDEs that describes air propagation in an acoustic tube can be defined as follows:
+Using the same variables as before for cross-sectional area $S=S(x)$, wave speed $c$, and air density $\rho_0$, a system of coupled PDEs that describes air propagation in an acoustic tube can be defined as follows:
 \begin{subequations}\label{eq:firstOrderSystem}
 \begin{align}
     \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv),\label{eq:contPressure}\\
@@ -474,7 +474,7 @@ after which the update equations become
         v_{l+1/2}^{n+1/2} &= v_{l+1/2}^{n-1/2}-\frac{\lambda}{\rho_0 c}(p_{l+1}^n - p_l^n),\label{eq:velocityUpdate}
     \end{align}
 \end{subequations}
-where (again) $\lambda = ck/h \leq 1$ for stability. The pressure is defined for $l=\{0, \hdots, N\}$ and the velocity for $l=\{0, \hdots, N-1\}$ where $N$ is the number of intervals between the grid points on the pressure grid. Notice that the range of calculation for the particle velocity is one fewer grid point than that of the pressure.
+where (again) $\lambda = ck/h \leq 1$ for stability. The pressure is defined for $l=\{0, \hdots, N\}$ and the velocity for $l=\{0, \hdots, N-1\}$ where $N$ is the number of intervals between the grid points on the pressure grid. Notice that the range of calculation for the particle velocity one index smaller than that of the pressure.
 
 An advantage of using an interleaved grid like this, is that the forward and backward FD operators are second-order accurate, and can be shown through a Taylor series expansion as done in \ref{sec:FDoperators} (also see \cite{Harrison2018}).
 
@@ -529,13 +529,13 @@ is of size $N \times (N+1)$.
 
 Alternatively, one can write the scheme in one-step form by concatenating the states of the pressure and particle velocity into one vector. The matrix form will then be 
 \begin{equation}
-    \underbrace{\begin{bmatrix}
+    \begin{bmatrix}
         \mathbf{p}^{n+1}\\
         \mathbf{v}^{n+1/2}
-    \end{bmatrix}}_{\u^{n+1}} = \B\underbrace{\begin{bmatrix}
+    \end{bmatrix} = \B\begin{bmatrix}
         \mathbf{p}^{n}\\
         \mathbf{v}^{n-1/2}
-    \end{bmatrix}}_{\u^{n}}, 
+    \end{bmatrix}, 
 \end{equation}
 where
 \begin{equation}
@@ -546,11 +546,11 @@ where
 \end{equation}
 is of size $(2N + 1) \times (2N + 1)$, and may be directly used as matrix $\Q$ for the modal analysis using a one-step form described in Section \ref{sec:oneStepForm}.
 
-Finally, the concatenated vector is defined as
-\begin{equation}
-    \u^n = [p_0^n, \hdots, p_N^n, v_{1/2}^{n-1/2}, \hdots, v_{N-1/2}^{n-1/2}]^T
-\end{equation}
-and will be of size $(2N + 1) \times 1$. 
+% Finally, the concatenated vector is defined as
+% \begin{equation}
+%     \u^n = [p_0^n, \hdots, p_N^n, v_{1/2}^{n-1/2}, \hdots, v_{N-1/2}^{n-1/2}]^T
+% \end{equation}
+% and will be of size $(2N + 1) \times 1$. 
 
 \subsection{Energy analysis}\label{eq:energyAnalysisFirstOrder}
 This section presents an energy analysis of the first-order system presented above using the techniques presented in Section \ref{sec:energyAnalysis}. The bulk of the analysis follows \cite[Sec. 3.4.1, pp. 80--81]{Harrison2018}. 
@@ -702,7 +702,7 @@ The various parameters are taken from \cite{Harrison2018} and are
 \end{gather*}
 
 \subsection{Energy analysis}
-This section shows the result of the energy analysis of the above radiation model. The full derivation will not be given here, but can be found in \cite{Harrison2018}. The result is included in this thesis for completeness, and such that it can be used for implementation and debugging purposes.
+This section shows the result of the energy analysis of the above radiation model. The full derivation will not be given here, but can be found in \cite{Harrison2018}. The result is included in this thesis for completeness.
 
 One can perform an energy analysis of the radiation model by recalling the condition at the right boundary from Eq. \eqref{eq:firstOrderRightBoundary}
 \begin{equation}

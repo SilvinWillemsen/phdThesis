@@ -9,15 +9,15 @@ are always expressed in the language of differential equations.''\\
 %
 \vspace{2em}
 This chapter introduces some important concepts needed to understand finite-difference time-domain (FDTD) methods. These techniques are what the implementation of the physical models presented later on in this document are based on. 
-By means of a simple mass-spring system and the 1D wave equation, the notation and terminology used throughout this document will be explained. Furthermore, some code examples using the \texttt{MATLAB} programming language will be used \cite{MATLAB:R2020b_u5}.
+By means of a simple mass-spring system and the 1D wave equation, the notation and terminology used throughout this document will be explained. Furthermore, some code examples using the \texttt{MATLAB} programming language \cite{MATLAB:R2020b_u5} will be used.
 Unless denoted otherwise, the theory presented in this chapter and the notation have been taken from \cite{theBible}. %Before diving into the mathematics, let us go over some useful terminology.
 
 \section{Differential equations}\label{sec:differentialEquations}
-Differential equations are used to describe the motion of dynamic systems, including vibrations in musical instruments. In this work, these equations are used to describe, among others, the movement of a string, an instrument body and the air pressure in an acoustic tube.
+Differential equations can be used to describe the motion of dynamic systems, including vibrations in musical instruments. In this work, these equations are used to describe, among others, the movement of a string, an instrument body and the air pressure in an acoustic tube.
 
 A characteristic feature of these equations is that, rather than an absolute value or \textit{state} of a system, such as displacement from the equilibrium of a string, or the pressure in a tube, the time derivative of its state -- its velocity -- or the second time derivative -- its acceleration -- is described. From this, the absolute state of the system can then be computed.
 %
-This state is usually described by the variable $u$ which is always a function of time, i.e., $u=u(t)$. If the system is distributed in space, $u$ also becomes a function of space, i.e., $u = u(x,t)$, or with two spatial dimensions, $u = u(x,y,t)$, etc. Though this work only describes systems of up to two spatial dimensions, one can easily extend to three dimensions \cite{Hamilton2016} and potentially higher-dimensional systems% \cite{Bustamante2017}\todo{maybe not such a relevant reference..}
+This state is usually described by the variable $u$ which is always a function of time, i.e., $u=u(t)$. If the system is distributed in space, $u$ also becomes a function of space, i.e., $u = u(x,t)$, or with two spatial dimensions, $u = u(x,y,t)$, etc. Though this work only describes systems of up to two spatial dimensions, one can easily extend to three dimensions (see e.g. \cite{Hamilton2016}) and potentially higher-dimensional systems% \cite{Bustamante2017}\todo{maybe not such a relevant reference..}
 . See Section \ref{sec:dimensions} for more information on dimensions.
 % one could potentially extend to systems of infinite spatial dimensions evolving over time!
 
@@ -76,10 +76,10 @@ To reduce the complexity of the models describing physical systems as well as co
 Generally, the spatial distribution of an object can be simplified if one (or more) of the dimensions are small, relative to the wavelengths of interest. A guitar string, for instance, has much greater length than its width or depth and can therefore be reduced to a one-dimensional (1D) system. If a 3D description were to be kept, the relative displacement between two locations on one cross-section along the length of the string would be taken into account. One could imagine that this displacement will always be orders of magnitude smaller than the relative displacement of two points along the string length and is thus negligible. Similarly, the thickness of a drum membrane is much smaller than its length and width and can therefore be simplified to a two-dimensional (2D) system.\footnote{In this work, `1D' and `2D' will also be used to abbreviate `one dimension' and `two dimensions'.}  
 
 The translational DoF, on the other hand, describe now many ``coordinates'' a state variable includes. 
-In much of the literature on FDTD methods in the field of musical acoustics, the state variable only has one coordinate. In most string models, for example, only the transverse displacement in one polarisation is considered (see Chapter \ref{ch:stiffString}) and the other polarisation as well as the longitudinal motion of the string (motion along the string length) are ignored. In other words, every point along the string can only move up and down, not side-to-side and not forward and back. Although this greatly simplifies the system at hand and reduces computational complexity, this is not what happens in reality. Nonlinear effects such as pitch glides due to tension modulation caused by high-amplitude string vibration are not present in the simplified model and have not been included in this project.
+In much of the literature on FDTD methods in the field of musical acoustics, the state variable only has one coordinate. In most string models, for example, only the transverse displacement in one polarisation is considered (see Chapter \ref{ch:stiffString}) and the other polarisation as well as the longitudinal motion of the string (motion along the string length) are ignored. In other words, every point along the string can only move up and down, not side-to-side and not forward and back. Although this greatly simplifies the system at hand and reduces computational complexity, this is not what happens in reality. Nonlinear effects such as pitch glides, due to tension modulation caused by high-amplitude string vibration, are not present in the simplified model and have not been included in this project.
 
 Work has been done on strings with dual (transverse) polarisation by Desvages \cite{Desvages2018} and Desvages and Bilbao \cite{Desvages2016} using FDTD methods. Models including longitudinal string vibration, where the longitudinal and transversal displacements are coupled, can be found in \cite{theBible,Bilbao2009spring}.
-In \cite{Villeneuve2019}, Villeneuve and Leonard present a mass-spring network where the state of every individual mass has three translational DoF. Due to these additional DoF, these networks do capture the aforementioned effects, but greatly increase the computational complexity of the models.
+In \cite{Villeneuve2019}, Villeneuve and Leonard present a mass-spring network where the state of every individual mass has 3 translational DoF. Due to these additional DoF, these networks do capture the aforementioned effects, but greatly increase the computational complexity of the models.
 
 Although the dimensionality reduction ignores some of the physical processes, surprisingly realistic sounding models can be made despite these simplifications. Due to computational considerations, all models used in this work thus only have 1 translational DoF.
 
@@ -91,12 +91,12 @@ The translational DoF, on the other hand, determines the number of coordinates t
 % What this means for the notation introduced in the previous section is  the number of arguments for the state variable. As all systems (in this context) have one temporal dimension, the state of a 1D system -- such as a string -- is described using $u(x,t)$, a 2D system -- such as a membrane -- is described using $u(x,y,t)$, and the state of a simple zero-dimensional (0D) mass-spring system as $u(t)$.
 
 \subsection{Ranges of definition and domains}\label{sec:domains}
-When modelling physical systems, one needs to provide a \textit{range of definition} over which they are defined. For a 1D system $u = u(x,t)$, ranges of definition must be given for $x$ and $t$. Usually, the temporal range $t\geq 0$, meaning that the system is defined for non-negative time. 
+When modelling physical systems, one needs to provide a \textit{range of definition} over which they are defined. For a 1D system $u = u(x,t)$, ranges of definition must be given for $x$ and $t$. Usually, the temporal range is defined for $t\geq 0$, meaning that the system is defined for non-negative time. This will be the case for all systems presented in this work. 
 
 In space, the range of definition is usually referred to as a (spatial) \textit{domain}, denoted by the symbol $\D$. Using the example above, $x$ may be defined over $\D$, which is written as $x\in \D$. For analysis purposes, infinite domains ($\D = \mathbb{R} = (-\infty, \infty)$) or semi-infinite domains ($\D = \mathbb{R}^+ = [0, \infty)$) may be used, but for implementation purposes, a finite domain needs to be established. For higher dimensional systems, one needs to define higher dimensional domains. A 2D system $u=u(x,y,t)$, for simplicity assumed to be rectangular, may be defined over `horizontal domain' $\D_x$ and `vertical domain' $\D_y$, which are both 1D domains. The system is then defined for $(x,y)\in \D$ where $\D = \D_x\times \D_y$. 
 
 \section{Discretisation using FDTD methods}\label{sec:discUsingFDTD}
-Differential equations are powerful tools to describe the motion of physical systems. Despite this, only few of these have a closed-form, or analytical, solution. More complex systems require methods that do not perfectly solve, but rather \textit{approximate} the solutions to these equations. FDTD methods are the most straightforward approach to numerically approximate differential equations. These methods are considered to be among the most general and flexible techniques in terms of the systems they can model, and frankly, relatively simple to understand once some familiarity with them is obtained. The main concern with these methods is the numerical stability of the eventual approximation. Conditions for stability can be mathematically derived and will be introduced in Section \ref{sec:stabilityAnalysis}.
+Differential equations are powerful tools to describe the motion of physical systems. Despite this, only few of these have a closed-form, or analytical, solution. More complex systems require methods that do not perfectly solve, but rather \textit{approximate} the solutions to these equations. FDTD methods are the most straightforward approach to numerically approximate differential equations. These methods are considered to be among the most general and flexible techniques in terms of the systems they can model, and relatively simple to understand once some familiarity with them is obtained. The main concern with these methods is the numerical stability of the eventual approximation. Conditions for stability can be mathematically derived and will be introduced in Chapter \ref{ch:analysis}.
 
 % \SWcomment[It is important to note that a discrete FD scheme is an \textit{approximation} to a continuous PDE, not a sampled version of it. This means that the resulting schemes are rarely an exact solution to the original continuous equation.]
 
@@ -132,7 +132,7 @@ FDTD methods essentially subdivide a continuous differential equation into discr
 \end{figure}
 
 \subsection{Grid functions} \label{sec:gridFunctions}
-The first step to approximate continuous PDEs, is to define a discrete \textit{grid} over time and space. See Figure \ref{fig:gridExp}. A system described by state $u = u(x,t)$ defined over time $t$ and one spatial dimension $x$, can be discretised to a \textit{grid function} $u_l^n$. Here, integers $l$ and $n$ describe the spatial and temporal indices respectively, and arise from the discretisation of the continuous variables $x$ and $t$, according to $x=lh$ and $t=nk$. The spatial step $h$, also called the \textit{grid spacing} describes the distance (in m) between two neighbouring \textit{grid points}, and is closely related to the stability of the FD scheme. The temporal step $k$, or \textit{time step}, is the time (in s) between two consecutive temporal indices and can be calculated $k=1/\fs$ for a sample rate $\fs$ (in Hz). In many audio applications $\fs = 44100$ Hz, which is the sample rate that will be used in this work (unless denoted otherwise).
+The first step to approximate continuous PDEs, is to define a discrete \textit{grid} over time and space. See Figure \ref{fig:gridExp}. A system described by a state variable $u = u(x,t)$ defined over time $t$ and one spatial dimension $x$, can be discretised to a \textit{grid function} $u_l^n$. Here, integers $l$ and $n$ describe the spatial and temporal indices respectively, and arise from the discretisation of the continuous variables $x$ and $t$, according to $x=lh$ and $t=nk$. The spatial step $h$, or \textit{grid spacing}, describes the distance (in m) between two neighbouring \textit{grid points}, and is closely related to the stability of the FD scheme. The temporal step $k$, or \textit{time step}, is the time (in s) between two consecutive temporal indices and can be calculated $k=1/\fs$ for a sample rate $\fs$ (in Hz). In many audio applications $\fs = 44100$ Hz, which is the sample rate that will be used in this work (unless denoted otherwise).
 
 % \subsubsection{Discrete Domains}
 As mentioned in Section \ref{sec:domains}, a 1D system needs to be defined over a temporal range of definition and one spatial domain.
@@ -146,15 +146,15 @@ The spatial domain $\D$ can be subdivided into $N$ equal sections, or intervals,
 
 %Consider a (continuous-time) system, $u = u(x,t)$ defined over time $t\geq 0$ and space $x\in \D$ with domain $\D = [0, L]$. Time can be subdivided in 
 
-To summarise, for a 1D system
+To summarise, for a 1D system:
 \begin{equation*}
-    u(x,t) \approxeq u_l^n \quad \text{with} \quad x=lh \quad \text{and} \quad t = nk,
+    u(x,t) \approxeq u_l^n, \quad \text{with} \quad x=lh \quad \text{and} \quad t = nk,
 \end{equation*}
 \begin{equation*}
     l\in\{0, \hdots, N\}\qaq n \in \mathbb{N}^0.
 \end{equation*}
 
-\begin{figure}[h]
+\begin{figure}[t]
     \centering
     % \subfloat[If $N=5$ there are 5 sections of length $h$ and 6 grid points describing the state of the system ($l=\{0, \hdots, 5\}$).\label{fig:gridExp1}]{\includegraphics[width=0.45\textwidth]{figures/fdtd/gridExplanation.pdf}}\hspace{0.06\textwidth}
     % \subfloat[If $N$ is large (as is usually the case), The 1D system is divided into $N$ sections of length $h$ and $l=\{0, \hdots, N\}$.\label{fig:gridExp2}]{\includegraphics[width=0.45\textwidth]{figures/fdtd/gridExplanation2.pdf}}
@@ -164,7 +164,7 @@ To summarise, for a 1D system
 
 
 \subsection{Finite-difference operators}\label{sec:FDoperators}
-Now that the state variable has a discrete counterpart, it leaves the derivatives to be discretised, or approximated. We start by introducing \textit{shift operators} that can be applied to a grid function and `shift' its indexing, either temporally or spatially. These are denoted by $e_s$, where subscript $s$ denotes the type and direction of the shift. Forward and backward shifts in time, together with the identity operation are
+Now that the state variable has a discrete counterpart, it leaves the derivatives to be discretised, or approximated. First, \textit{shift operators} are introduced, which can be applied to a grid function and `shift' its indexing, either temporally or spatially. These are denoted by $e_s$, where subscript $s$ denotes the type and direction of the shift. Forward and backward shifts in time, together with the identity operation are
 % 
 \begin{equation}\label{eq:temporalShifts}
     e_{t+}\uln = u_l^{n+1},\quad e_{t-}\uln = u_l^{n-1}, \quad \text{and} \quad 1\uln = \uln.
@@ -183,7 +183,7 @@ These shift operators are rarely used in isolation, though they do appear in ene
         \dtm &$\!\!\!\!\triangleq \frac{1}{k}\left(1 - e_{t-}\right),$\label{eq:backwardTimeOperator}\\
         \dtd &$\!\!\!\!\triangleq \frac{1}{2k}\left(e_{t+} - e_{t-}\right),$\label{eq:centredTimeOperator}
 \end{subnumcases}
-where ``$\triangleq$'' means ``equal to by definition''. These operators can then be applied to grid function $\uln$ to get
+where ``$\triangleq$'' means ``equal to by definition''. These operators can then be applied to grid function $\uln$, and \textit{expanded}, to get
 \begin{subnumcases}{\pt u \approxeq\label{eq:discFirstTimeU}}
     \dtp \uln &$\!\!\!\! = \frac{1}{k}\left(u_l^{n+1} - \uln\right),$\label{eq:forwardTimeOperatorU}\\
     \dtm \uln &$\!\!\!\! = \frac{1}{k}\left(\uln - u_l^{n-1}\right),$\label{eq:backwardTimeOperatorU}\\
@@ -228,8 +228,8 @@ Also useful are averaging operators, all of which approximate the identity opera
     \mtm & $\!\!\!\!\triangleq \frac{1}{2}\left(1 + e_{t-}\right),$\label{eq:backwardAvgTime}\\
     \mtd & $\!\!\!\!\triangleq \frac{1}{2}\left(e_{t+} + e_{t-}\right).$\label{eq:centredAvgTime}
 \end{subnumcases}
-Notice how these definitions are different than the difference operators in \eqref{eq:discFirstTime}: the terms in the parentheses are added rather than subtracted, and rather than a division by the time step $k$ there is a division by $2$. Finally, the centred averaging operator does not have an extra division by $2$ as in \eqref{eq:centredTimeOperator}.
-Applied to $\uln$, Eqs. \eqref{eq:averagingTime} become
+Notice how these definitions are different than the difference operators in Eq. \eqref{eq:discFirstTime}: the terms in the parentheses are added rather than subtracted, and rather than a division by the time step $k$ there is a division by $2$. Also notice that the centred averaging operator does not have an extra division by $2$ as in Eq. \eqref{eq:centredTimeOperator}.
+Applied to $\uln$, the definitions in Eq. \eqref{eq:averagingTime} become
 \begin{subnumcases}{\uln \approxeq \label{eq:averagingTimeU}}
     \mtp \uln & $\!\!\!\!= \frac{1}{2}\left(u_l^{n+1}+ \uln\right),$\label{eq:forwardAvggTimeU}\\
     \mtm \uln & $\!\!\!\!= \frac{1}{2}\left(\uln + u_l^{n-1}\right),$\label{eq:backwardAvggTimeU}\\
@@ -354,14 +354,14 @@ That these equalities hold, can easily be proven by expanding the operators defi
 
 \section{%Intro to ODEs: 
 The mass-spring system}\label{sec:massSpringSystem}
-Though a complete physical modelling field on their own (see Chapter \ref{ch:physMod}), mass-spring systems are also sound-generating systems and lend themselves well to illustrating and explaining FDTD methods in practice. Starting with the continuous-time ODE, the current section follows the discretisation process to a FD scheme using the operators described in Section \ref{sec:FDoperators}. Finally, the scheme is rewritten to an update equation that can be implemented and the output of the system is shown. 
+Though a complete physical modelling field on their own (see Chapter \ref{ch:physMod}), mass-spring systems are also sound-generating systems and lend themselves well to illustrating and explaining FDTD methods in practice. Starting with the continuous-time ODE, the current section follows the discretisation process to a FD scheme using the operators described in Section \ref{sec:FDoperators}. Finally, the scheme is rewritten to an update equation that can be implemented, and the output of the system is shown. 
 
 \subsection{Continuous time}\label{sec:massSpringCont}
 Using dots to indicate a temporal derivative, the ODE of a simple mass-spring system is defined as
 \begin{equation}\label{eq:massSpringPDE}
     M\ddot u = -Ku,
 \end{equation}
-where $u = u(t)$ is the distance from the equilibrium position (in m), $M>0$ is the mass of the mass (in kg) and $K\geq 0$ is the spring constant (in N/m) also referred to as the spring stiffness. Equation \eqref{eq:massSpringPDE} can be written as
+where $u = u(t)$ is the distance from the equilibrium position (in m), $M>0$ is the mass of the mass (in kg) and $K\geq 0$ is the spring constant (in N/m) also referred to as the spring stiffness. An alternative way to write Eq. \eqref{eq:massSpringPDE} is
 \begin{equation}\label{eq:massSpringCompact}
     \ddot u = -\omega_0^2u,
 \end{equation}
@@ -422,7 +422,7 @@ which can be implemented in a programming language such as \texttt{MATLAB}.
 \subsection{Implementation and output}\label{sec:massSpringImplementation}
 A simple \texttt{MATLAB} script implementing the mass-spring system described in this section is shown in Appendix \ref{app:massSpringCode}. The most important part of the algorithm happens in a for-loop recursion, where update equation \eqref{eq:massSpringUpdate} is implemented. At the end of each loop, the system states are updated and prepared for the next iteration. %See Algorithm \ref{alg:massSpringLoop}
 
-To be able to start the simulation of the scheme, the initial conditions given in Section \ref{sec:massSpringCont} must be discretised at $n=0$. As $n$ is only defined for values greater than zero, the forward difference operator is used. A simple way to obtain a sinusoidal motion with an amplitude of $1$, is to set the initial conditions as follows: 
+To be able to start the simulation of the scheme, the initial conditions given in Section \ref{sec:massSpringCont} must be discretised at $n=0$. As $n$ is only defined for values greater than zero, the forward difference operator is used for the discrete initial velocity. A simple way to obtain a sinusoidal motion with an amplitude of $1$, is to set the initial conditions as follows: 
 %
 \begin{equation}
     u^0 = 1 \quad \text{and} \quad \dtp u^0 = 0.
@@ -433,9 +433,9 @@ The latter equality can be expanded and solved for $u^1$ to obtain its definitio
     \xLeftrightarrow{\mystrut\ u^0 = 1\ }\quad &u^1 - 1 = 0,\\[0.1em]
  &u^1 = 1.
 \end{align*}
-In short, setting $u^0 = u^1 \neq 0$ yields an oscillatory behaviour with an amplitude of $1$. Note that any other non-zero initial condition will also yield oscillatory behaviour, but likely with a different amplitude.
+In short, setting $u^0 = u^1 = 1$ yields an oscillatory behaviour with an amplitude of $1$. Note that any other non-zero initial condition will also yield oscillatory behaviour, but likely with a different amplitude.
 
-\begin{figure}[b]
+\begin{figure}[t]
     \includegraphics[width=\textwidth]{figures/fdtd/massSpringOutput.eps}
     \caption{The time domain and frequency domain output of a mass-spring system with $f_0 = 440$ Hz. \label{fig:massSpringOutput}}
 \end{figure}
@@ -469,7 +469,7 @@ The output of the system can be obtained by `recording' the displacement of the 
 
 \section{%Intro to PDEs: 
 The 1D wave equation}\label{sec:1DWave}
-Arguably the most important PDE in the field of physical modelling for sound synthesis is the 1D wave equation. It can be used to describe transverse vibration in an ideal string, longitudinal vibration in an ideal bar or the pressure in an acoustic tube (see Chapter \ref{ch:brass}). Although the behaviour of this equation alone does not appear in the real world as such -- as no physical system is ideal -- it is extremely useful as a test case and a basis for more complicated models. %Here, it will be used to introduce various concepts and analysis techniques in the field of FDTD methods.
+Arguably the most important PDE in the field of physical modelling for sound synthesis is the 1D wave equation. It can be used to describe transverse vibration in an ideal string, longitudinal vibration in an ideal bar or the pressure in an acoustic tube (see Chapter \ref{ch:brass}) \cite{theBible}. Although the behaviour of this equation alone does not appear in the real world as such -- as no physical system is ideal -- it is extremely useful as a test case and a basis for more complicated models. %Here, it will be used to introduce various concepts and analysis techniques in the field of FDTD methods.
 
 \subsection{Continuous time}\label{sec:1DwaveContTime}
 The 1D wave equation is a PDE that describes the motion of a system distributed in one dimension of space. Consider the state of a 1D system $u=u(x,t)$ of length $L$ (in m) defined for time $t\geq 0$ and $x\in \D$ with $\D = [0, L]$. The PDE describing its motion is
@@ -499,7 +499,7 @@ As with the mass-spring system in Section \ref{sec:massSpringSystem} the working
 
 The 1D wave equation in \eqref{eq:1DwavePDE} states that the acceleration of $u(x,t)$ at location $x$ is determined by the second-order spatial derivative of $u$ at that same location (scaled by a constant $c^2$). In the case that $u$ describes the transverse displacement of an ideal string, this second-order derivative denotes the \textit{curvature} of this string. As $c^2$ is always positive, the sign (or direction) of the acceleration is fully determined by the sign of the curvature. In other words, a `positive' curvature at location $x$ along the ideal string yields a `positive' or upwards acceleration at that same location. 
 
-What a `positive' or `negative' curvature implies is more easily seen when we take a simple function describing a parabola, $y(x) = x^2$, and take its second derivative to get $y''(x) = 2$. The answer is a positive number which means that $y$ has a positive curvature. 
+What a `positive' or `negative' curvature implies is more easily seen when a simple function describing a parabola is taken, e.g. $y(x) = x^2$, and consequently taking its second derivative to get $y''(x) = 2$. The answer is a positive number which means that $y$ has a positive curvature. 
 
 So, what does this mean for the 1D wave equation? As a positive curvature implies a positive or upwards acceleration as per Eq. \eqref{eq:1DwavePDE}, $u$ with a positive curvature at a location $x$ will start to move upwards and vice versa. Of course, the state of a physical system such as $u$ will rarely have a perfect parabolic shape, but the argument still applies. See Figure \ref{fig:curvature} for a visualisation of the forces acting on $u$ due to curvature.
 
@@ -529,11 +529,11 @@ When a system is distributed in space, \textit{boundary conditions} must be dete
     \end{align}
 \end{subequations}
 %
-The Dirichlet boundary condition says that at the end points of the system, the state is 0 at all times. The Neumann condition on the other hand, says that rather the slope of these points needs to be 0, but that the end points are free to move transversely. In the former case, incoming waves invert after reaching the boundary whereas in the latter incoming waves are reflected un-inverted. See Figure \ref{fig:boundaryCondsCont}
+The Dirichlet boundary condition says that at the end points of the system, the state is 0 at all times. The Neumann condition on the other hand, says that rather the slope of these points needs to be 0, but that the end points are free to move transversely. In the former case, incoming waves invert after reaching the boundary whereas in the latter incoming waves are reflected un-inverted. See Figure \ref{fig:boundaryCondsCont}.
 
 If both boundaries of the 1D wave equation share the same condition, the fundamental frequency of the simulation can be calculated using 
 \begin{equation}\label{eq:fundamentalFreq}
-    f_0 = \frac{c}{2L}\ .
+    f_0 = \frac{c}{2L}\,.
 \end{equation}
 
 \begin{figure}[t]
@@ -544,18 +544,18 @@ If both boundaries of the 1D wave equation share the same condition, the fundame
 \end{figure}
 
 \subsubsection{Scaling}
-As this thesis follows much of Bilbao's \textit{Numerical Sound Synthesis} \cite{theBible}, it might be good to talk about a major discrepancy between the PDEs and FD schemes that appear there and those used here. Non-dimensionalisation, or \textit{scaling}, is extensively used in \cite{theBible} and much of the literature published around that time (e.g. \cite{Bilbao2009Modular,Bilbao2009spring}) and can be useful to reduce the number of parameters used to describe a system.
+As much of this thesis follows Bilbao's \textit{Numerical Sound Synthesis} \cite{theBible}, it might be good to talk about a major discrepancy between the PDEs and FD schemes that appear there and those used here. Non-dimensionalisation, or \textit{scaling}, is extensively used in \cite{theBible} and much of the literature published around that time (e.g. \cite{Bilbao2009Modular,Bilbao2009spring}) and can be useful to reduce the number of parameters used to describe a system.
 
 Scaling techniques normalise the domain $x\in[0, L]$ to $x' \in [0, 1]$ with $x' = x/L$ . The 1D wave equation in \eqref{eq:1DwavePDE} can then be rewritten to
 \begin{equation}\label{eq:scaled1Dwave}
-    \ptt u = \gamma^2\partial_{x'x'}u,
+    \ptt u = \gamma^2\partial_{x'}^2u,
 \end{equation}
 where scaled wave speed $\gamma = c/L$ has units of frequency. The scaling has removed the necessity for both $c$ and $L$ and simply specifying the scaled wave speed $\gamma$ is enough to parametrise the behaviour of the system. The parameter reduction gets more apparent for more complex systems and could greatly simplify the models used, at least in notation and parameter control. 
 
 Although this parameter reduction might be useful for resonators in isolation, when multiple resonators interact with each other (see Part \ref{part:interactions}), it is better to keep the systems dimensional. As a big part of this work includes interaction between multiple resonators, only dimensional systems will appear in this thesis.
 
 \subsection{Discrete time}\label{sec:1DWaveDisc}
-Coming back to the PDE presented in Eq. \eqref{eq:1DwavePDE}, we continue by finding a discrete-time approximation for it. As explained in Section \ref{sec:gridFunctions}, a continuous state variable $u = u(x,t)$ can be discretised using $x=lh$ with grid spacing $h$ (in m) and $t=nk$ with time step $k$ (in s). The grid function $\uln$ approximating $u$ can then be indexed by spatial index $l \in \{0, \hdots, N\}$ with number of intervals between the grid points $N$ and temporal index $n\in \mathbb{N}^0$. Continuing with the approximations of the derivatives in the 1D wave equation, the most straightforward discretisation of Eq. \eqref{eq:1DwavePDE} is the following FD scheme
+Coming back to the PDE presented in Eq. \eqref{eq:1DwavePDE}, one continues by finding a discrete-time approximation for it. As explained in Section \ref{sec:gridFunctions}, a continuous state variable $u = u(x,t)$ can be discretised using $x=lh$ with grid spacing $h$ (in m) and $t=nk$ with time step $k$ (in s). The grid function $\uln$ approximating $u$ can then be indexed by spatial index $l \in \{0, \hdots, N\}$ with number of intervals between the grid points $N$ and temporal index $n\in \mathbb{N}^0$. Continuing with the approximations of the derivatives in the 1D wave equation, the most straightforward discretisation of Eq. \eqref{eq:1DwavePDE} is the following FD scheme
 \begin{equation}\label{eq:1DwaveFDS}
     \dtt \uln = c^2 \dxx \uln.
 \end{equation}
@@ -740,22 +740,21 @@ In what situation would the stability condition then not be satisfied with equal
 \end{equation}
 In other words, Eq. \eqref{eq:1DWaveStabilityCond} is satisfied with equality and used to calculate integer $N$. After this, $h$ is recalculated based on $N$ and used to calculate the Courant number using Eq. \eqref{eq:courantNumber}. This process assures that $N$ is an integer and that the CFL condition is satisfied, though not necessarily with equality.
 
-To understand why $h$ needs to be recalculated, consider the following example. Consider the 1D wave equation defined over domain $\D = [0, L]$ where $L = 1$. Furthermore, we say that the system should produce a fundamental frequency of $f_0 = 750$ Hz which requires a wave speed of $c = 1500$ m/s according to Eq. \eqref{eq:fundamentalFreq}. If we use the commonly-used sample rate of $\fs = 44100$ Hz, and recalling that $k = 1/\fs$, these values can be filled into \eqref{eq:1DWaveStabilityCond} satisfied with equality and yields $h \approx 0.034$. If we divide the length by the grid spacing, we get $L / h = 29.4$, meaning that exactly $29.4$ intervals of size $h$ fit in the domain $\D$. However, the number of intervals needs to be an integer and -- using Eq. \eqref{eq:orderOfCalc} -- we get $N = 29$. If $h$ is not recalculated according to \eqref{eq:orderOfCalc}, the total length will be $29$ times the grid spacing $h$. This results in $L \approx 0.986$ and is slightly less than the original length of $1$. Although the CFL condition will be satisfied with equality, the fundamental frequency will be slightly higher than desired: $f_0 \approx 760.34$ Hz. If $h$ is recalculated based on $N$, then $L$ and $f_0$ will be unchanged, and the system will have the correct fundamental frequency. The Courant number $\lambda \approx 0.986$ is still very close to satisfying the condition in Eq. \eqref{eq:CFL}, and the decrease in quality will be perceptually irrelevant -- or at the very least, less perceptually relevant than the change in $f_0$ if $h$ is not recalculated.
+To understand why $h$ needs to be recalculated, consider the following example. Consider the 1D wave equation defined over domain $\D = [0, L]$ where $L = 1$. Furthermore, the system should produce a fundamental frequency of $f_0 = 750$ Hz which requires a wave speed of $c = 1500$ m/s according to Eq. \eqref{eq:fundamentalFreq}. If a sample rate of $\fs = 44100$ Hz is used, and recalling that $k = 1/\fs$, these values can be filled into Eq. \eqref{eq:1DWaveStabilityCond} satisfied with equality, and yields $h \approx 0.034$. Dividing the length by the grid spacing, yields $L / h = 29.4$, meaning that exactly $29.4$ intervals of size $h$ fit in the domain $\D$. However, the number of intervals needs to be an integer and, using Eq. \eqref{eq:orderOfCalc}, yields $N = 29$. If $h$ is not recalculated according to Eq. \eqref{eq:orderOfCalc}, the total length will be $29$ times the grid spacing $h$. This results in $L \approx 0.986$ and is slightly less than the original length of $1$. Although the CFL condition will be satisfied with equality, the fundamental frequency will be slightly higher than desired: $f_0 \approx 760.34$ Hz. If $h$ is recalculated based on $N$, then $L$ and $f_0$ will be unchanged, and the system will have the correct fundamental frequency. The Courant number $\lambda \approx 0.986$ is still very close to satisfying the condition in Eq. \eqref{eq:CFL}, and the decrease in bandwidth and quality will be perceptually irrelevant -- or at the very least, less perceptually relevant than the change in $f_0$ if $h$ is not recalculated.
 
 % Together with the total length of the domain $L$, $h$ can be used to determine into how many intervals $N$ the continuous domain can be subdivided in . As this number is an integer,  This number of intervals $N$ and through that the Courant number $\lambda$ can be calculated using the following operations
 % \begin{equation}
 %     h := ck, \quad N := \floor[\frac{L}{h}], \quad h := \frac{L}{N} \quad \lambda := \frac{ck}{h}.
 % \end{equation}
 % where $\floor[\cdot]$ denotes the flooring operation and is necessary as $N$ is an integer. The CFL condition in Eq. \eqref{eq:CFL} thus places a limit on the grid spacing $h$ and with that the number of grid points allowed by the simulation.
+\subsubsection{Possible solution}
+One of the main contributions of the PhD project is published in paper \citeP[G] and summarised in Chapter \ref{ch:dynamicGrid}, where a `fractional' number of intervals is introduced. This removes the necessity of the flooring operation in Eq. \eqref{eq:orderOfCalc} and circumvents the recalculation of $h$ to always satisfy the stability condition with equality while retaining the correct fundamental frequency.
 
 \subsubsection{Intuition}
-It might not be immediately clear why a too low value for $h$ might cause instability. Some intuition is provided in \cite[Fig. 6.9]{theBible}, but here I would like to provide an alternative, hopefully more tangible way to see this. 
+It might not be immediately clear why a too low value for $h$ might cause instability. Some intuition is provided in \cite[Fig. 6.9]{theBible}, but here, an alternative way to see this is given.
 
 In a FD implementation of the 1D wave equation, grid points can only affect their neighbours as seen in update equation \eqref{eq:1DwaveUpdate}. Using the values in Table \ref{tab:1DWaveParams} as an example, $N=30$ and if $\lambda = 1$, it takes exactly $30$ samples, or iterations of Eq. \eqref{eq:1DwaveUpdate}, for a wave to travel from one boundary to the other. 
 
 If $h$ were to be chosen to be twice as big so that there are only half as many intervals between the grid points as per Eq. \eqref{eq:orderOfCalc} ($N=15$), the grid points could be set to `affect' their neighbours to a lesser degree. This way, the wave still takes the same amount of time to travel between the boundaries and the fundamental frequency stays approximately the same. This is essentially what happens when $\lambda < 1$ (in this case $\lambda = 0.5$) and can be observed from the update equation in Eq. \eqref{eq:1DwaveUpdate}; the effect that the neighbouring grid points have on each other will indeed be less. The output of the system will have approximately the same fundamental frequency as if $\lambda = 1$, but its partials will be detuned due to numerical dispersion as explained in this section.
 
-If, on the other hand, $h$ were to be chosen to be twice as small so that there are twice as many intervals between grid points ($N = 60$), it is impossible for the waves to travel from one boundary to the other in $30$ samples. If they could interact with their second neighbour, this would be possible, but the FD scheme in \eqref{eq:1DwaveFDS} does not allow for this. Indeed, as $\lambda = 2$ in this case, the effect that the grid points have on each other will be disproportionate. In a way, grid points have too much energy which they can not lose to their neighbours, because their effect should have reached their second neighbour over the course of one sample. The way to solve this would be to halve the time step $k$ (or double the sample rate $\fs$), which would allow grid points to interact with their second neighbours over the course of once the old time step (as this is now divided into two time steps). This also shows in the fact that $\lambda = 1$ again (as halving $k$ cancels out halving $h$) and grid points transfer their energy to their neighbours proportionately again.
-
-\subsubsection{Possible solution}
-One of the main contributions of the PhD project is published in paper \citeP[G] and summarised in Chapter \ref{ch:dynamicGrid}, where a `fractional' number of intervals is introduced. This removes the necessity of the flooring operation in Eq. \eqref{eq:orderOfCalc} and circumvents the recalculation of $h$ to always satisfy the stability condition with equality while retaining the correct fundamental frequency.
+If, on the other hand, $h$ were to be chosen to be twice as small so that there are twice as many intervals between grid points ($N = 60$), it is impossible for the waves to travel from one boundary to the other in $30$ samples. If they could interact with their second neighbour, this would be possible, but the FD scheme in Eq. \eqref{eq:1DwaveFDS} does not allow for this. Indeed, as $\lambda = 2$ in this case, the effect that the grid points have on each other will be disproportionate. In a way, grid points have too much energy which they can not lose to their neighbours, because their effect should have reached their second neighbour over the course of one sample. The way to solve this would be to halve the time step $k$ (or double the sample rate $\fs$), which would allow grid points to interact with their second neighbours over the course of once the old time step (as this is now divided into two time steps). This also shows in the fact that $\lambda = 1$ again (as halving $k$ cancels out halving $h$) and grid points transfer their energy to their neighbours proportionately again.
