@@ -122,7 +122,7 @@ Recalling \eqref{eq:derivPotential} and \eqref{eq:potential}, this can convenien
 % \end{subnumcases}
 This implementation is the one presented in \cite{Ducceschi2019}, but exhibited spurious oscillations and `sticking' behaviour. This is due to the possibility of negative forces for positive penetrations due to the discontinuity in the definition for $g^n$ at $\eta^n = 0$.
 
-In \cite{Ducceschi2021}, the definition for $g^n$ in \eqref{eq:gDefOld} is extended, starting out by using an implicit equation for $g^n$ by directly discretising Eq. \eqref{eq:approxPsi}
+In \cite{Ducceschi2021}, the definition for $g^n$ is extended, starting out by using an implicit equation for $g^n$ by directly discretising Eq. \eqref{eq:approxPsi}
 \begin{equation}\label{eq:gImp}
     g_\text{imp}^n = 2\frac{\psi^{n+1/2} - \psi^{n-1/2}}{\eta^{n+1} - \eta^{n-1}}\ .
 \end{equation}
@@ -134,7 +134,7 @@ Furthermore, due to the fact that there is no collision, $\eta^{n+1}$ can be cal
 \begin{equation*}
     \frac{M}{k^2}\left(u^\star - 2\un + u^{n-1}\right) = 0 \quad \Longrightarrow \quad u^\star = 2u^n - u^{n-1}.
 \end{equation*}
-Thus, if there is no collision, $g^n_\text{imp}$ can now be explicitly calculated from known values and be used in the definition for $g^n$ in Eq. \eqref{eq:gDefOld} according to \cite{Ducceschi2021}
+Thus, if there is no collision, $g^n_\text{imp}$ can now be explicitly calculated from known values and be used in the definition for $g^n$ according to \cite{Ducceschi2021}
 \begin{subnumcases}{ \label{eq:gDef} g^n =}
     \kappa\sqrt{\frac{K_\text{c}(\alpha_\text{c}+1)}{2}}\cdot(\eta^n)^{\frac{\alpha_\text{c}-1}{2}},
     & if $\eta^n \geq 0,$ \label{eq:collCorr1}\\
@@ -144,7 +144,7 @@ Thus, if there is no collision, $g^n_\text{imp}$ can now be explicitly calculate
 %
 Here, $\kappa = 1$ if $\psi^{n-1/2} \geq 0$, otherwise $\kappa = -1$ and aims to resolve the `sticking' behaviour by forcing an outwardly-directed force at all times. As was done in paper \citeP[H], condition \eqref{eq:collCorr3} has been added to the definition of $g^n$ from \cite{Ducceschi2021} to prevent a division by 0 in Eq. \eqref{eq:collCorr2}. 
 
-This definition for $g^n$ does not exhibit the spurious oscillations that the old definition in Eq. \eqref{eq:gDefOld} did, and can still be explicitly calculated from known values of the system. 
+This definition for $g^n$ does not exhibit the spurious oscillations that the old definition did, and can still be explicitly calculated from known values of the system. 
 
 \subsection{Solving the system}\label{sec:solvingMassBarrier}
 To implement the system in Eq. \eqref{eq:massBarrierSystem}, its definitions need to be slightly rewritten. Using identity \eqref{eq:identity3}, $\mtp \psi^{n-1/2}$ can be rewritten to

@@ -3,8 +3,88 @@
 \def\Psilm{\Psi_{l-1}^n}
 \def\Psinp{\Psi_l^{n+1}}
 \def\Psinm{\Psi_l^{n-1}}
-This appendix contains derivations several equations used in this thesis. 
+This appendix contains derivations of several equations used in this thesis. 
 
+\section{von Neumann analysis damped stiff string (Section \ref{sec:stiffStringStability})}\label{app:vonNeumannString}
+This section performs the von Neumann analysis presented in Section \ref{sec:stiffStringStability} in greater detail and derives the stability condition for the damped stiff string.
+
+Starting with the characteristic equation in Eq. \eqref{eq:charDampedString}:
+\begin{gather*}
+    (1+\sz k)z + \left(16\mu^2\sin^4(\beta h/2)+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\sin^2(\beta h/2) - 2\right)\nonumber\\
+    +\left(1-\sz k-\frac{8\so k}{h^2}\sin^2(\beta h/2)\right)z^{-1}=0,
+\end{gather*}
+one can rewrite this to the form in Eq. \eqref{eq:polynomialForm}, and using $\S = \sin^2(\beta h /2)$ for brevity, yields
+\begin{equation*}
+    z^2 + \left(\frac{16\mu^2\S^2+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\S - 2}{1 + \sz k}\right)z+\frac{1-\sz k-\frac{8\so k}{h^2}\S}{1 + \sz k}=0.
+\end{equation*}
+Stability of the system can then be proven using condition \eqref{eq:condition214}, and substituting the coefficients into this condition yields
+\begin{equation}\nonumber
+    \begin{aligned}
+        \left|\frac{16\mu^2\S^2+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\S - 2}{1+\sz k}\right|-1 &\leq \frac{1-\sz k-\frac{8\so k}{h^2}\S}{1+\sz k}\leq 1,\\
+        \left|16\mu^2\S^2+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\S - 2\right|-(1+\sz k) &\leq 1-\sz k-\frac{8\so k}{h^2}\S\leq 1+\sz k,\\
+        \left|16\mu^2\S^2+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\S - 2\right|&\leq2-\frac{8\so k}{h^2}\S\leq2+2\sz k.
+    \end{aligned}
+\end{equation}
+The second condition is always true due to the fact that $\sigma_0,\sigma_1 \geq 0$. Continuing with the first condition: 
+\begin{align*}
+    -2+\frac{8\so k}{h^2}\S&\leq 16\mu^2\S^2+\left(4\lambda^2+\frac{8\so k}{h^2}\right)\S - 2\leq 2-\frac{8\so k}{h^2}\S,\\
+    0&\leq 16\mu^2\S^2+4\lambda^2\S\leq 4-\frac{16\so k}{h^2}\S.
+\end{align*}
+As $16\mu^2\S^2+4\lambda^2\S$ is non-negative, the first condition is always satisfied. Continuing with the second condition:
+\begin{align*}
+    16\mu^2\S^2+\left(4\lambda^2+ \frac{16\so k}{h^2}\right)\S &\leq 4,\\
+    4\mu^2\S^2+\left(\lambda^2+ \frac{4\so k}{h^2}\right)\S&\leq 1.
+\end{align*}
+As the left-hand side takes its maximum value for $\S= 1$, one can substitute this and continue with the substituted definitions for $\lambda$ and $\mu$ from Eq. \eqref{eq:stiffStringCourant} to yield
+\begin{align*}
+    \frac{4\kappa^2k^2}{h^4}+\frac{c^2k^2 + 4\so k}{h^2}&\leq 1, \\
+    4\kappa^2k^2+(c^2k^2+ 4\so k)h^2&\leq h^4,\\
+    h^4- (c^2k^2+ 4\so k)h^2 - 4\kappa^2k^2 &\geq 0 ,
+\end{align*}
+which is a quadratic equation in $h^2$. Using the quadratic formula, the grid spacing $h$ can then be shown to be bounded by
+\begin{equation}
+    h \geq \sqrt{\frac{c^2k^2+4\so k + \sqrt{(c^2k^2 + 4\so k)^2+16\kappa^2k^2}}{2}},
+\end{equation}
+which is the stability condition for the damped stiff string also shown in Eq. \eqref{eq:stiffStringStability}.
+
+\section{von Neumann analysis implicit damped stiff string (Section \ref{sec:stiffStringStabilityImplicit})}\label{app:vonNeumannStringImplicit}
+This section performs the von Neumann analysis presented in Section \ref{sec:stiffStringStabilityImplicit} in greater detail and derives the stability condition for the damped stiff string, using a centred difference operator for the frequency-dependent damping term.
+
+Recalling the characteristic equation in Eq. \eqref{eq:charDampedImplicitStiffString}:
+\begin{gather*}
+    \left(1+\sz k + \frac{4\so k}{h^2}\sin^2(\beta h/2)\right)z + \left(16\mu^2\sin^4(\beta h/2)+4\lambda^2\sin^2(\beta h/2) - 2\right)\nonumber\\
+    + \left(1-\sz k - \frac{4\so k}{h^2}\sin^2(\beta h/2)\right)z^{-1} = 0.
+\end{gather*}
+one can rewrite this to the form in in Eq. \eqref{eq:polynomialForm} and, using $\S = \sin^2(\beta h / 2)$ for brevity, yields:
+\begin{equation*}
+z^2 + \frac{16\mu^2\S^2+4\lambda^2\S - 2}{1+\sz k + \frac{4\so k}{h^2}\S}z+\frac{1-\sz k - \frac{4\so k}{h^2}\S}{1+\sz k + \frac{4\so k}{h^2}\S} = 0.
+\end{equation*}
+Stability of the system can then be proven using condition \eqref{eq:condition214}, and after substitution of the coefficients yields
+\begin{align*}
+\left|\frac{16\mu^2\S^2+4\lambda^2\S - 2}{1+\sz k + \frac{4\so k}{h^2}\S} \right|-1 &\leq \frac{1-\sz k - \frac{4\so k}{h^2}\S}{1+\sz k + \frac{4\so k}{h^2}\S}\leq 1,\\[1em]
+\left|16\mu^2\S^2+4\lambda^2\S - 2 \right| - \left(1+\sz k + \frac{4\so k}{h^2}\S\right) &\leq 1-\sz k - \frac{4\so k}{h^2}\S\\
+&\qquad\leq 1+\sz k + \frac{4\so k}{h^2}\S,\\[1em]
+\left|16\mu^2\S^2+4\lambda^2\S - 2 \right|&\leq 2 \leq 2+2\sz k + \frac{8\so k}{h^2}\S.
+\end{align*} 
+Because $\sz, \so, k, \S$ and $h$ are all non-negative, the last condition is always satisfied. Continuing with the first condition:
+\begin{align*}
+    -2\leq 16\mu^2\S^2+4\lambda^2\S - 2 &\leq 2,\\
+    0\leq 16\mu^2\S^2+4\lambda^2\S &\leq 4.
+\end{align*}
+Again, the first condition is always satisfied due to the non-negativity of all coefficients. Continuing with the second condition yields
+\begin{equation*}
+    4\mu^2\S^2+\lambda^2\S \leq 1,
+\end{equation*} 
+and knowing that $\S$ is bounded by $1$ for all $\beta$, the process can be finalised:
+\begin{align*}
+    4\mu^2+\lambda^2 &\leq 1,\\
+    \frac{4\kappa^2k^2}{h^4}+\frac{c^2k^2}{h^2} &\leq 1,\\
+    h^4 - c^2k^2h^2 - 4\kappa^2k^2 &\geq 0,
+\end{align*}
+and yields the following stability condition:
+\begin{equation*}
+    h \geq \sqrt{\frac{c^2k^2 + \sqrt{c^4k^4 + 16\kappa^2k^2}}{2}}.
+\end{equation*}
 \section{Webster's update equation (Eq. \eqref{eq:webstersUpdateEq})}\label{app:webstersUpdateEq}
 This section derives the update equation for Webster's equation in Eq. \eqref{eq:webstersUpdateEq}:
 \begin{align*}

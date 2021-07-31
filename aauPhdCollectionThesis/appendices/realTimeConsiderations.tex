@@ -1,0 +1,58 @@
+\chapter{Considerations in real-time FD schemes}\label{app:realTimeConsiderations}
+As an addition to what has been presented in Chapter \ref{ch:realtime}, this appendix provides some considerations when working with FD schemes in real-time applications. Consider this some `\textit{tips and tricks}'. 
+
+\subsubsection{Prototyping in MATLAB}
+Before creating any real-time FD scheme, it is usually a good idea to prototype a physical modelling application in \texttt{MATLAB}. Various reasons include, but are not limited to:
+\begin{enumerate}
+    \item The code is easier to write and debug.
+    \item Data is more easily visualised, allowing for better insight to, e.g., the state of your system (one could use \texttt{drawnow} for real-time plotting).
+    \item There is no need for memory handling.
+    \item Programming errors causing unstable schemes do not happen in real time.
+\end{enumerate}
+
+\subsubsection{Creating a limiter}
+Stability issues in FD schemes have been mentioned several times in this work. To protect speakers, headphones, or -- most importantly -- ears, it is thus important to implement a limiter as one of the first things in any real-time application. Below is an example of a limiter that limits an input value between -1 and 1.
+\\
+\noindent
+\begin{minipage}{\textwidth}
+\setlstCpp
+\begin{lstlisting}[belowskip=-0.5\baselineskip]
+double limit (double val)
+{
+    if (val < -1)
+    {
+        val = -1;
+        return val;
+    }
+    else if (val > 1)
+    {
+        val = 1;
+        return val;
+    }
+    return val;
+}
+\end{lstlisting}
+\end{minipage}  
+\subsubsection{Vector indexing}
+One of the most common sources of error when translating \texttt{MATLAB} code to C++ (apart from the differences in syntax), is the fact that \texttt{MATLAB} is 1-based, and C++ is 0-based, which refers to the indexing of a vector. If \texttt{u} is a vector with 10 elements, the first element is retrieved as \texttt{u(1)} and the last as \texttt{u(10)}. In C++, on the other hand, retrieving the first and last element of a size-10 vector happens through \texttt{u[0]} and \texttt{u[9]} respectively. 
+
+\subsubsection{Real-time control}
+For the real-time control of any application using FD schemes, whether it uses the mouse or an external controller, the important thing is to not affect the scheme while it is performing the update equation. If the system is excited while the scheme is calculated, this might cause instability, or at the very least, unpredictable behaviour. The best thing to do is to work with flags that get triggered by outside control and get checked once per sample (or even only once per buffer), before the calculation of the scheme.
+
+\subsubsection{Premature optimisation}
+As Donald E. Knuth states  ``premature optimization is the root of all evil [...] in programming'' \cite{Knuth1974} (see full quote at the start of Chapter \ref{ch:realtime}). Often during this project, much time was spent trying to find a variable mistake or a sign error that could have easily been prevented if the code was not prematurely optimised. 
+
+Most often it will take less time to write the code in a non-optimised, but understandable way, followed by several iterations of optimisation. One might even find that the difference in speed is extremely small and might not even need the optimisation at all.
+
+% \subsubsection{2D systems}
+% As done for the matrix-vector forms used for 2D systems in Chapter \ref{ch:2Dsyst}, one could\todo{check if I want to include. If not, remove references from Chapter 6}
+
+\subsubsection{Debug and Release modes}
+This might seem trivial for C++ developers, but whether one builds the application in `Debug' or `Release' matters a lot for the eventual speed of the algorithm. Depending on the mode, the compiler uses different optimisation flags and could increase the speed of the application tremendously. The Debug mode is still useful, as -- apart from being able to debug the code -- building the application takes (much) less time, depending on the size of the application.
+
+\subsubsection{Denormalised numbers}
+The damping present in FD schemes causes the state of the system to exponentially decay. What this means for the values of the state vectors in implementation, is that they keep getting closer to $0$ but never reach it. 
+After a long period of time, which depends on the value of the damping coefficients, state values can get in the range of \textApprox$10^{-307}$! Numbers in this range are referred to as \textit{denormalised numbers} and operations performed with these are ``extremely slow'' \cite{CPPdenormalised}.
+
+Although it rarely happens that numbers end up in this range, especially when the application is continuously interacted with, it is good to account for the possibility. For example, due to the strong damping in the body in the tromba marina presented in Chapter \ref{ch:tromba}, denormalised numbers appear after only \textApprox 10 s of not interacting with the instrument, and the CPU usage increases considerably. There are specific processor flags that can be activated to truncate denormalised numbers to 0. To retain generality (cross-platform, various processors), one could implement a simple check per buffer to see whether values are closer to zero than e.g. $10^{-250}$, and truncate all values of that system to $0$, as was done in paper \citeP[D]. 
+
