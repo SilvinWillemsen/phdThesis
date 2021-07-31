@@ -151,7 +151,7 @@ void SimpleString::calculateScheme()
 \end{lstlisting}
 This function and the pointer switch in Section \ref{sec:pointerSwitch} (in that order) will then have to be called once per sample.
 
-\subsection{Acceleration strategies strategies}
+\subsection{Acceleration strategies}
 Apart from implementing the physical models in C++ rather than \texttt{MATLAB}, additional acceleration strategies can be used for even faster algorithms. FD schemes, especially explicit schemes, are highly parallelisable, i.e., many of the operations done are identical and can run simultaneously. A great overview is given in \cite{Bilbao2019CMJb} and provides advantages and disadvantages of using the GPU, multicore processing and vector instructions (SIMD, AVX). An in-depth evaluation of FD schemes (both 1D and 2D), implemented using multicore processing and AVX instructions, has been carried out in \cite{Webb2015}.
 
 For this project, none of these acceleration strategies have been used, but could be investigated in the future. Occasionally, the quality of 2D systems has been lowered to allow for a real-time implementation (see papers \citeP[A] and \citeP[D]). However, as strings were used as the main resonators of many of the implementations, these decreases in quality were deemed unimportant for the eventual output sound of the simulation.

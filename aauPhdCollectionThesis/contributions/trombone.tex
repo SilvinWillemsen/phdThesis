@@ -1,9 +1,9 @@
 \chapter{The Trombone}\label{ch:trombone}
 This chapter provides an extended summary for the paper ``A Physical Model of the Trombone using Dynamic Grids for Finite-Difference Schemes'' \citeP[H]. 
 
-The trombone is an extremely interesting instrument from a simulation perspective due to the time-varying length of the acoustic tube. In FDTD-based simulations the trombone poses a challenge due to issues regarding adding and removing points to the grid, or simulation quality, as also pointed out by Harrison in \cite{Harrison2018}. As the dynamic grid method presented in paper \citeP[G] (also see Chapter \ref{ch:dynamicGrid}) attempts to resolve these issues, the trombone is an excellent use case for this method to be applied to. 
+The trombone is an extremely interesting instrument from a simulation perspective, due to the time-varying length of the acoustic tube. In FDTD-based simulations, the trombone poses a challenge due to issues regarding adding and removing points to the grid, or simulation quality, as also pointed out by Harrison in \cite{Harrison2018}. As the dynamic grid method presented in paper \citeP[G] (also see Chapter \ref{ch:dynamicGrid}) attempts to resolve these issues, the trombone is an excellent use case for this method to be applied to. 
 
-The air propagation in the trombone has been modelled using a system of two first-order PDEs, presented in Section \ref{sec:firstOrderSystem}. Although Webster's equation presented in Section \ref{sec:webstersEq}) could have been used, the state-of-the-art models for brass instruments using FDTD methods use first-order PDEs \cite{Bilbao2016, Harrison2018}. Some extensions, such as the Levine and Schwinger radiation model presented in \ref{sec:levineSchwing} and used in \cite{Harrison2018} and viscothermal losses in \cite{Bilbao2016}, could then easily be added, although the latter has been left for future work.
+The air propagation in the trombone has been modelled using a coupled system of two first-order PDEs, presented in Section \ref{sec:firstOrderSystem}. Although Webster's equation presented in Section \ref{sec:webstersEq}) could have been used, the state-of-the-art models for brass instruments using FDTD methods use first-order PDEs \cite{Bilbao2016, Harrison2018}. Some extensions, such as the Levine and Schwinger radiation model presented in \ref{sec:levineSchwing} and used in \cite{Harrison2018} and viscothermal losses in \cite{Bilbao2016}, could then easily be added, although the latter has been left for future work.
 
 This chapter first presents a short summary of paper \citeP[H] that relates its contents to the rest of this thesis. Then, as the process of applying the dynamic grid method to the trombone is not straightforward, several considerations made during this process will be given. Finally, the collision method from Chapter \ref{ch:collisions} is applied to the lip reed presented in Chapter \ref{ch:lipreed},
 and details on the implementation will be given. 
@@ -12,29 +12,30 @@ and details on the implementation will be given.
 % Interesting read: https://newt.phys.unsw.edu.au/jw/brassacoustics.html
 
 \section{Summary}
-The paper presents a real-time implementation of the trombone based on FDTD methods and using the dynamic grid method presented in Chapter \ref{ch:dynamicGrid}. The acoustic tube has been modelled using a system of first-order equations as described in Section \ref{sec:firstOrderSystem}, and the lip reed has been modelled using the 1-DoF mass spring system presented in Chapter \ref{ch:lipreed}. The lip reed has been extended using the collision method described in Chapter \ref{ch:collisions}, details of which will be given in Section \ref{sec:lipReedWithCollision}. 
+The paper presents a real-time implementation of the trombone based on FDTD methods, and using the dynamic grid method presented in Chapter \ref{ch:dynamicGrid}. The acoustic tube has been modelled using a system of coupled first-order equations as described in Section \ref{sec:firstOrderSystem}. The lip reed has been modelled using the 1-DoF mass spring system presented in Chapter \ref{ch:lipreed}, and has been extended using the collision method described in Chapter \ref{ch:collisions}, details of which will be given in Section \ref{sec:lipReedWithCollision}. 
 
-An application was made implementing the trombone in real time in C++ using the JUCE framework (see Chapter \ref{ch:realtime}). The application and can be found online, as well as a demo showcasing it.\footnote{\url{https://github.com/SilvinWillemsen/cppBrass/releases/}}\textsuperscript{,}\footnote{\url{https://youtu.be/Ht5gVNrshYo}} The implementation allowed for the total range of the tube length ($2.593$-$3.653$ m) to be traversed in $0.06$ s (corresponding to 20 samples between grid configurations). An informal evaluation by the authors showed that no noticeable artefacts were observed. Naturally, proper listening tests need to confirm this. It must be noted that to ensure stability, especially at fast changes between grid configurations, the Courant number has been set slightly lower than the stability condition ($\lambda = 0.999$). This decrease in $\lambda$ does cause a small, but negligible decrease in simulation quality and bandwidth (see Section \ref{sec:quality1DWave}). 
+The physical model of the trombone was implemented in real time in C++ using the JUCE framework (see Chapter \ref{ch:realtime}). The application can be found online, as well as a demo showcasing it.\footnote{\url{https://github.com/SilvinWillemsen/cppBrass/releases/}}\textsuperscript{,}\footnote{\url{https://youtu.be/Ht5gVNrshYo}} 
+
+The implementation allowed for the total range of the tube length ($2.593$-$3.653$ m) to be traversed in $0.06$ s (corresponding to 20 samples between grid configurations). An informal evaluation by the authors showed that no noticeable artefacts were observed, but naturally, proper listening tests need to confirm this. It must be noted that to ensure stability, especially at fast changes between grid configurations, the Courant number has been set slightly lower than the stability condition ($\lambda = 0.999$). This decrease in $\lambda$ does cause a small, but negligible decrease in simulation quality and bandwidth (see Section \ref{sec:quality1DWave}). 
 
 Future work includes to add viscothermal losses \cite{Bilbao2016} and nonlinear effects \cite{msallam1997physical}, as well as investigating intuitive mapping to control the simulation.
 
 % As the paper mentions, the state of the particle velocity of the right system exhibits a `drift', but does not affect the output of the system. Future work
 
-\section{Dynamic grid considerations}
+\section{Dynamic grid considerations}\todo{Remove? If so, also remove from the intro of this chapter}
 The main contribution of the paper is the use of the dynamic grid method to implement the time-varying acoustic tube. As paper \citeP[H] provides extensive details on the implementation of the dynamic grid method applied to the case of the trombone, these will not be given here. Instead, this section presents several considerations that needed to be taken into account in order to use the dynamic grid method in the case of the acoustic tube. 
 
 \subsubsection{First-order system}
-The dynamic grid method presented in paper \citeP[G] uses the 1D wave equation as a test case. Although this is not used to model the trombone, the underlying behaviour is the same for a cylindrical tube. Section \ref{sec:firstOrderSystemCont} shows that the first-order system in Eq. \eqref{eq:firstOrderSystem} can be reduced to Webster's equation, which -- for a cylindrical tube -- reduces to the 1D wave equation. It was therefore concluded, that the dynamic grid method could be applied to the acoustic tube, under the condition that its cross-section does not vary at the location where the method is applied. In other words, as long as the system was split at a location of constant cross-section, %grid points used in calculation of the virtual grid points at the inner boundaries in Eq. \eqref{eq:connectionInterpol} have the same value for the cross-sectional area 
-the method should continue to work. 
+The dynamic grid method presented in paper \citeP[G] uses the 1D wave equation as a test case. Although this is not used to model the trombone, the underlying behaviour is the same for a cylindrical tube. Section \ref{sec:firstOrderSystemCont} shows that the first-order system in Eq. \eqref{eq:firstOrderSystem} can be reduced to Webster's equation, which -- for a cylindrical tube -- reduces to the 1D wave equation. It was therefore concluded, that the dynamic grid method could be applied to the acoustic tube, under the condition that its cross-section does not vary at the location where the method is applied. In other words, as long as the system locally reduces to the 1D wave equation (at the location of the split) the method can be applied in a similar fashion. 
 
 % Due to the use of the coupled first-order system, a decision needed to be made about which of the two grids (pressure or particle velocity) the dynamic grid method should be applied to. In other words, a choice needed to be made on what state variable -- the pressure or the particle velocity -- should be used to calculate the virtual grid points at the inner boundaries.
- As the state of the pressure variable in Eq. \eqref{eq:contPressure} is discretised to the non-interleaved grid, it was chosen to apply the dynamic grid method to the pressure grid, rather than that of the particle velocity. That said, if the constraint on the constant cross-section is kept, applying the method to the velocity grid should work just as well.
+As the state of the pressure variable in Eq. \eqref{eq:contPressure} is discretised to the non-interleaved grid, it was chosen to apply the dynamic grid method to the pressure grid, rather than that of the particle velocity. That said, if the aforementioned constraint regarding a constant cross-section is kept, applying the method to the velocity grid should work just as well.
 
 \subsubsection{Location of split}
 It was chosen to split the system in the middle of the slide crook of the trombone, i.e., at the far end of the trombone slide. First of all, it could be reasonable to assume that the air in the tube would ``go away from'' or ``go towards'' that point, while the slide extends or contracts. Secondly, the cross-sectional area is constant at this location, and satisfies the aforementioned condition.
 
 \subsubsection{Time-varying length}
-In paper \citeP[G], the time-varying parameter is the wave speed $c$, whereas the trombone has a time-varying length $L$. As stated in paper \citeP[G], $c$ and $L$ are linked by the fundamental frequency in Eq. \eqref{eq:fundamentalFreq} and a change in one yields identical behaviour as an inverse change in the other. Therefore, the method could easily be applied to a system with a time-varying length rather than a time-varying wave speed. Naturally, in an acoustic tube with a variable cross-section, a change in $c$ would definitely be different than a change in $L$, which is also why a varying wave speed was not used.
+In paper \citeP[G], the time-varying parameter is the wave speed $c$, whereas the trombone has a time-varying length $L$. As stated in paper \citeP[G], $c$ and $L$ are linked by the fundamental frequency in Eq. \eqref{eq:fundamentalFreq} and a change in one yields identical behaviour as an inverse change in the other. Therefore, the method could easily be applied to a system with a time-varying length rather than a time-varying wave speed. Naturally, in an acoustic tube with a variable cross-section, a change in $c$ would definitely yield a different behaviour than a change in $L$, which is also why a varying wave speed was not used. 
 
 % \subsubsection{Design considerations}
 % As the geometry varies it matters a lot where points are added and removed as this might influence the way that the method is implemented. 
@@ -51,12 +52,12 @@ In continuous time, a collision can be added to Eq. \eqref{eq:lipReedDimensional
 \begin{equation}\label{eq:lipWithCollisionCont}
     M\ddot y = -K y - R \dot y + S_\text{r}\Delta p + \psi g
 \end{equation}
-where $g = \psi'$ and $\psi$ and $\psi'$ are as defined in Eq. \eqref{eq:quadraticPotential}.\footnote{Notice that as $y$ is the displacement of the upper lip, the `barrier' modelling the lower lip is placed below, resulting in a positive collision force on $y$.} In the implementation, the frequency of the lip reed is made to be time varying and causes $K = K(t)$ to be time-dependent. Other parameters are the same as in Eq. \eqref{eq:lipReedDimensional}.
+where $g = \psi'$ and $\psi$ and $\psi'$ are as defined in Eq. \eqref{eq:quadraticPotential}.\footnote{Notice that, as $y$ is the displacement of the upper lip, the `barrier' modelling the lower lip is placed below, resulting in a positive collision force on $y$.} In the implementation, the frequency of the lip reed is made to be time varying and causes $K = K(t)$ to be time-dependent. Other parameters are the same as in Eq. \eqref{eq:lipReedDimensional}.
 
 \subsection{Discrete time}
 The discretisation follows Section \ref{sec:massRigidBarrier} for the collision and Section \ref{sec:discreteLipReed} for the lip reed.
 
-As the lip reed is discretised on the interleaved (temporal) grid, the collision term needs to be as well. Dividing all terms by $M$ and using $\omega_0 = \omega_0^{n+1/2} = \sqrt{K^{n+1/2}/M}$ and $\sigma_\rtxt = R/M$, yields\footnote{Note that the paper uses $\omega_r$ and $M_r$ instead of $\omega_0$ and $M$.}
+As the lip reed is discretised on the interleaved (temporal) grid, the collision term needs to be as well. Dividing all terms by $M$, and using $\omega_0 = \omega_0^{n+1/2} = \sqrt{K^{n+1/2}/M}$ and $\sigma_\rtxt = R/M$, yields\footnote{Note that the paper uses $\omega_r$ and $M_r$ instead of $\omega_0$ and $M$.}
 \begin{equation}\label{eq:preLipCollision}
     \delta_{tt}y^{\nphSys} = -\omega_0^2\mu_{t\cdot}y^{\nphSys}-\sigma_\text{r}\delta_{t\cdot}y^{\nphSys} + \frac{S_\text{r}}{M}\Delta p^{\nphSys} + \frac{\psi^{n+1/2}g^{n+1/2}}{M}.
 \end{equation}
@@ -107,7 +108,7 @@ with
 To be able to calculate $y^{n+3/2}$, definitions for $g^{n+1/2}$ and $\Delta p^{n+1/2}$ need to be found. 
 
 \subsubsection{Calculating $g^{n+1/2}$}
-Following Chapter \ref{ch:collisions}, $g$ can be calculated using
+Following Chapter \ref{ch:collisions}, $g$ can be calculated using (Eq. \eqref{eq:gDef} shifted to the interleaved grid)
 \begin{subnumcases}{g^{n+1/2} =}
     \kappa\sqrt{\frac{K_\text{c}(\alpha_\text{c}+1)}{2}}\cdot(\eta^{n+1/2})^{\frac{\alpha_\text{c}-1}{2}},
     & if $\eta^{n+1/2} \geq 0,$ 
@@ -123,22 +124,22 @@ is the update equation of the system without the effect of the collision and
 \begin{gather*}
     \alpha_\text{r}^\star = 2 + \omega_0^2 k^2 + \sigma_\text{r} k, \qaq \beta_\text{r}^\star = \sigma_\text{r}k - 2 - \omega_0^2k^2,
 \end{gather*}
-are the coefficients in Eq. \eqref{eq:lipUpdateWithCollision} without the collision terms (as found in Eq. \eqref{eq:lipreedUpdateTerms}). Notice that $\xi_\rtxt$ is unchanged. Finally, $\Delta p^\star$ is the pressure difference calculated using Eq. \eqref{eq:pressureDiff}, i.e., without the effect of the collision. Once $g^{n+1/2}$ is calculated, $\Delta p^{n+1/2}$ can be obtained.
+are the coefficients in Eq. \eqref{eq:lipUpdateWithCollision} without the collision terms (as found in Eq. \eqref{eq:lipreedUpdateTerms}).\footnote{Notice that $\xi_\rtxt$ is unchanged.} Finally, $\Delta p^\star$ is the pressure difference calculated using Eq. \eqref{eq:pressureDiff}, i.e., without the effect of the collision. Once $g^{n+1/2}$ is calculated, $\Delta p^{n+1/2}$ can be obtained.
 
 \subsubsection{Calculating $\Delta p^{n+1/2}$}
 Following Section \ref{sec:obtainingDeltaP}, to calculate $\Delta p^{n+1/2}$, one starts by rewriting the scheme in Eq. \eqref{eq:lipReedFDSCollision} to
 \begin{gather*}
     \frac{2}{k} (\delta_{t\cdot} - \delta_{t-})y^{\nph} = -\omega_0^2(k\delta_{t\cdot} + e_{t-})y^{\nph} - \sigma_\text{r}\delta_{t\cdot} y^{\nph} + \frac{S_\text{r}}{M}\Delta p^{\nph} + \left(-\frac{k}{2}g\delta_{t\cdot}y+\psi^n\right)\frac{g}{M},\\
-    a_1^n\delta_{t\cdot}y^{\nph} - a_2\Delta p^{\nph} - a_3^n = 0,
+    a_1^{n+1/2}\delta_{t\cdot}y^{\nph} - a_2\Delta p^{\nph} - a_3^{n+1/2} = 0,
 \end{gather*}
 with 
 \begin{equation*}
     \begin{gathered}
-    a_1^n = \frac{2}{k} + \omega_0^2k + \sigma_\text{r} + \frac{g^2k}{2M} \geq 0, \quad a_2 = \frac{S_\text{r}}{M} \geq 0\ , \\
-     \text{and} \quad a_3^n = \left(\frac{2}{k} \delta_{t-} - \omega_0^2e_{t-}\right)y^{\nph} + \frac{g}{M}\psi^n\ .
+    a_1^{n+1/2} = \frac{2}{k} + \omega_0^2k + \sigma_\text{r} + \frac{g^2k}{2M} \geq 0, \quad a_2 = \frac{S_\text{r}}{M} \geq 0\ , \\
+     \text{and} \quad a_3^{n+1/2} = \left(\frac{2}{k} \delta_{t-} - \omega_0^2e_{t-}\right)y^{\nph} + \frac{g}{M}\psi^n\ .
     \end{gathered}
 \end{equation*}
-Note that $a_1^n$ is now time-dependent through $g$ and $\omega_0$ but remains non-negative. The rest of the variables and process in Section \ref{sec:obtainingDeltaP} are unchanged. Notice that the calculation for $\Delta p^{n+1/2}$ has to be performed twice: once to obtain the pressure difference without the collision effect $\Delta p^\star$, and once to obtain the final pressure difference $\Delta p^{n+1/2}$.
+Note that $a_1^{n+1/2}$ is now time-dependent through $g$ and $\omega_0$ but remains non-negative. The rest of the variables and process in Section \ref{sec:obtainingDeltaP} are unchanged. Notice that the calculation for $\Delta p^{n+1/2}$ has to be performed twice: once to obtain the pressure difference without the collision effect $\Delta p^\star$, and once to obtain the final pressure difference $\Delta p^{n+1/2}$.
 
 \subsubsection{Last steps}
 After the definitions for $g$ and $\Delta p$ are found using the steps above, and $y^{n+3/2}$ is calculated using Eq. \eqref{eq:lipUpdateWithCollision}, $\psi^{n+1}$ can be calculated by expanding Eq. \eqref{eq:rewrittenPsi} and substituting Eq. \eqref{eq:etaNegY} according to

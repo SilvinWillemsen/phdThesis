@@ -157,7 +157,7 @@ If the opposite happens: $c^n$ and $h^n$ increase, and $N^n<N^{n-1}$, a grid poi
     \end{cases}
 \end{equation}
 
-As mentioned in \citeP[G], the split of the original system  does not have to be be at the center (as presented here), but can be anywhere along the system, the limit being one point from the boundary. Thus, if $M^n$ and $M_w^n$ are calculated using 
+As mentioned in \citeP[G], the split of the original system  does not have to be at the center (as presented here), but can be anywhere along the system, the limit being one point from the boundary. Thus, if $M^n$ and $M_w^n$ are calculated using 
 \begin{equation} \label{eq:alternativeM}
     M^n = N^n - 1,\qaq  M_w^n= 1,
 \end{equation}
@@ -242,7 +242,7 @@ and finally
 \begin{equation*}
     F_\ctxt^n = \left(w^\star - u^\star+r\eta^{n-1}\right)\left(\frac{h^n(1+\sigma_0/k)(1-\alpha)}{2h^n (\alpha +\varepsilon) + 2k^2(1+\sigma_0/k)(1-\alpha)}\right).
 \end{equation*}
-It is clear now that no matter the value of $\alpha$, no division by 0 will occur, proving that $\varepsilon = 0$ in Eq. \eqref{eq:betaDef} will still yield a defined solution. The final equation for $F_\ctxt^n$ can thus be written as
+It is clear now that, even if $\varepsilon = 0$, no division by 0 will occur no matter the value of $\alpha$. In other words, if $\alpha = \varepsilon = 0$ in Eq. \eqref{eq:betaDef}, this will still yield a defined solution. The final equation for $F_\ctxt^n$ can thus be written as
 \begin{equation}\label{eq:finalForce}
     F_\ctxt^n = \left(w^\star - u^\star+r\eta^{n-1}\right)\left(\frac{h^n(1+\sigma_0/k)(1-\alpha)}{2h^n\alpha + 2k^2(1+\sigma_0/k)(1-\alpha)}\right).
 \end{equation}
@@ -273,16 +273,17 @@ contains the effect of the spreading operators with $P\times 1$ row vector $\mat
     \boldsymbol{\eta} = \boldsymbol{\eta}^n = [\mathbf{0}_{M^n-1}, -1, 1, \mathbf{0}_{M_w^n-1}]
 \end{equation*}
 vectorises the effect that $\eta^n$ in Eq. \eqref{eq:etaDispCorr} has on $\Ucal$. Note that as $\j$ is a column vector and $\boldsymbol{\eta}$ a row vector, the multiplication of the two yields an $\fullMn\times\fullMn$ diagonal matrix. Finally, $\B^n$ contains the usual $\Dxx$ matrices for both schemes in its top-left and bottom-right quadrants, as well as the definitions for the virtual grid points given in Eqs. \eqref{eq:connectionInterpol}:
-\begin{equation*}
-    \mathbf{B}^n = 2\I_\fullMn + \lambda^2\begin{bmatrix}[ccccc|ccccc]
+\begin{align*}
+    \mathbf{B}^n= &\ 2\I_\fullMn \\
+    &+ \lambda^2\begin{bmatrix}[ccccc|ccccc]
      & \ddots& \ddots  &\ddots & & & & \mathbf{0} & & \\
       & & 1 & -2 & 1 & & & & & \\
-     & & & 1 & \frac{\alpha - 1}{\alpha + 1} -2& 1 & -\frac{\alpha - 1}{\alpha + 1} & & \\ \cline{2-9}
-     & & & -\frac{\alpha - 1}{\alpha + 1} & 1 & \frac{\alpha - 1}{\alpha + 1} -2 & 1 & & & \\
+     & & & 1 & \!\!\!\!\left(\frac{\alpha - 1}{\alpha + 1} -2\right)& 1 & -\frac{\alpha - 1}{\alpha + 1} & & \\ \cline{2-9}
+     & & & -\frac{\alpha - 1}{\alpha + 1} & 1 & \left(\frac{\alpha - 1}{\alpha + 1} -2\right)\!\!\!\! & 1 & & & \\
         & & & & &1 & -2 & 1 & & \\
        & & \mathbf{0} & & &  &\ddots & \ddots &\ddots &
     \end{bmatrix}
-\end{equation*}
+\end{align*}
 which, as the method allows $\lambda = 1$ at all times, can be simplified to
 \begin{equation}\label{eq:quadMat}
     \mathbf{B}^n = \begin{bmatrix}[ccccc|ccccc]
