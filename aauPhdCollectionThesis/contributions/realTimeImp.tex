@@ -161,7 +161,7 @@ This section presents the general code structure used for the real-time applicat
 
 The structure of the code is visualised in Figure \ref{fig:codeStructure}. The white boxes denote various classes or components of the application, which will be described in detail shortly. The black arrows indicate instructions, and hollow arrows indicate data flows. All arrows are accompanied by a box denoting the type of instruction / dataflow and the colour of the box denotes at what rate this happens.
 
-\begin{figure}[h]
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/realtime/flowchart.pdf}
     \caption{The structure of a real-time implementation of a physical model. Boxes with `u \& o' refer to `update and output' and `Inter.' is short for `Interaction'. A detailed description of the figure is given in Section \ref{sec:codeStructure}.\label{fig:codeStructure}}
@@ -188,7 +188,7 @@ The Instrument class contains instances of the individual String and Plate reson
 \end{enumerate}
 
 \subsubsection{Main Application and Control}
-The Main Application (also called MainComponent in JUCE), is the top-level class of the application that handles control input and audio and graphics output.\footnote{This section assumes that the JUCE Audio Application template has been chosen -- not the Audio Plug-in template.} The Main Application contains an instance of the Instrument class and instructs it to calculate the schemes and their interactions once per sample. Furthermore, it retrieves the output from the Instrument and sends this to the audio device at the same rate.
+The Main Application (also called \texttt{MainComponent} in JUCE), is the top-level class of the application that handles control input and audio and graphics output.\footnote{This section assumes that the JUCE Audio Application template has been chosen -- not the Audio Plug-in template.} The Main Application contains an instance of the Instrument class and instructs it to calculate the schemes and their interactions once per sample. Furthermore, it retrieves the output from the Instrument and sends this to the audio device at the same rate.
 
 Finally, the application is controlled by the Sensel Morph. The Main Application checks the state of the Sensel at a rate of 150 Hz and maps this to control parameters used by the scheme.
 

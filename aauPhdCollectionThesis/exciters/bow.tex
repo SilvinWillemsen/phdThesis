@@ -130,7 +130,7 @@ and a Lagrange cubic spreading operator
         0, & \text{otherwise.}
     \end{cases}
 \end{equation}
-Notice that the spreading operator uses a scaling by $1/h$. An intuition this will be given in Chapter \ref{ch:connections}. As is the case for interpolation operators, higher-order spreading operators reduce to Eq. \eqref{eq:zerothOrderJ} if $\alpha_\itxt = 0$.
+Notice that the spreading operator uses a scaling by $1/h$. An intuition this will be given in Section \ref{sec:alternativeInterp}. As is the case for interpolation operators, higher-order spreading operators reduce to Eq. \eqref{eq:zerothOrderJ} if $\alpha_\itxt = 0$.
 
 Spreading operators approximate the spatial Dirac delta function $\delta(x-x_\itxt)$ (in m$^{-1}$), which is a test function defined as
 \begin{equation}\label{eq:spatialDirac}
@@ -382,7 +382,7 @@ Following the energy analysis of the stiff string presented in Section \ref{sec:
 \begin{align*}
     \dtp \h + \q &=  - \langle (\dtd \uln), J_l(x_\Btxt^n)f_\Btxt^n\Phi(\vrel^n) \rangle_d\\[-5pt]
     \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:identityIJ}}\ }\qquad &= -I_l(x_\Btxt^n)(\dtd \uln) f_\Btxt^n \Phi(\vrel^n) \\[-5pt]
-    \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:vrelRewritten}}\ } \qquad &= \underbrace{-f_\Btxt^n \Phi(\vrel^n) \vrel^n}_{\text{loss}} - \underbrace{f_\Btxt^n \Phi(\vrel^n)v_\Btxt^n}_{\text{power}},
+    \xLeftrightarrow{\mystrut\ \text{Eq. \eqref{eq:vrelRewritten}}\ } \qquad &= \underbrace{-f_\Btxt^n \Phi(\vrel^n) \vrel^n}_{\text{loss}}  \underbrace{-f_\Btxt^n \Phi(\vrel^n)v_\Btxt^n}_{\text{power}},
 \end{align*}
 where $\h$ and $\q$ are as defined in Eqs. \eqref{eq:energyBalanceStiffString} and \eqref{eq:dampingTermStiffString} respectively. As $\sgn\left(\Phi(\vrel^n)\right) = \sgn\left(\vrel^n\right)$ through Eq. \eqref{eq:staticFriction}, one can observe that the first term on the right-hand side always has a negative effect on the rate of change of the total energy. This term can therefore be interpreted as the loss of power through the bow (as indicated). The last term is of indeterminate sign and can thus be interpreted as the power supplied by the bow. 
 
@@ -428,7 +428,7 @@ In a musical context, the elasto-plastic friction has been investigated in-depth
 
 \input{exciters/elastoPlasticFig.tex}
 
-Unless denoted otherwise, this section follows the original model by Dupont et al. in \cite{Dupont2002}, but with the appropriate corrections added as presented in paper \citeP[C]. As opposed to the static friction model described in the previous section, the friction force $f$ (in N) is now dependent on the average bristle displacement $z = z(t)$ (in m) as well as the relative velocity $v = v(t)$ (in m/s). The friction force is defined as
+Unless denoted otherwise, this section follows the original model in \cite{Dupont2002}, but with the appropriate corrections added as presented in paper \citeP[C]. As opposed to the static friction model described in the previous section, the friction force $f$ (in N) is now dependent on the average bristle displacement $z = z(t)$ (in m) as well as the relative velocity $v = v(t)$ (in m/s). The friction force is defined as
 \begin{equation}\label{eq:elastoPlasticForce}
     f(v, z) = s_0z + s_1\dot z + s_2v + s_3w,
 \end{equation}
@@ -590,13 +590,13 @@ Figure \ref{fig:elastoWaveform} shows the output of the implementation and follo
 As the elasto-plastic bow model is a differential equation in itself, its approximation will need to abide a stability condition as well.
 As the system at hand is nonlinear, frequency domain analysis as described in Section \ref{sec:stabilityAnalysis} can not be performed. Energy analysis, on the other hand, can be used here to determine the necessary stability condition for this model. This section follows the concepts introduced in Section \ref{sec:stabilityAnalysisEnergy} to obtain a stability condition for the elasto-plastic friction model. A similar process for finding stability for the LuGre model has been done by Olsson in continuous time \cite[p. 55]{Olsson1996}. The derivation below is inspired by his. 
 
-First, all terms of Eq. \eqref{eq:elastoStiffStringFDS} are multiplied by $\rho A$ to get the appropriate units for the analysis. Then, the inner product with $\dtd \uln$ over the string domain $\D$ is taken to get
+First, all terms of Eq. \eqref{eq:elastoStiffStringFDS} are multiplied by $\rho A$ to get the appropriate units for the analysis. Then, the inner product with $(\dtd \uln)$ over the discrete string domain $d$ is taken to get
 \begin{equation}
     \dtp \h_\text{s} + \q_\text{s} = -\p_\Btxt
 \end{equation}
 where the definitions for the discrete Hamiltonian $\h_\text{s}$ and the damping term $\q_\text{s}$ for the string can be found in Section \ref{sec:energyAnalysisString}. The input power introduced by the bow is defined as (writing $f(v^n,z^n) = f^n$)
 \begin{equation*}
-    \p_\Btxt = \langle (\dtd \uln), J(x_\Btxt^n)f^n\rangle_\D
+    \p_\Btxt = \langle (\dtd \uln), J(x_\Btxt^n)f^n\rangle_d
 \end{equation*}
 which, using identity \eqref{eq:identityIJ}, can be written as 
 \begin{equation*}

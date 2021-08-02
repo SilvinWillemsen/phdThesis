@@ -2,7 +2,7 @@
 This chapter provides some useful techniques to analyse FD schemes. Techniques to analyse PDEs also exist, but this work is more practically oriented, and will focus on the discrete schemes. This chapter can be seen as a `tutorial' on how to use these techniques. 
 Starting off with some necessary theory on matrices in a FDTD context and other mathematical tools, this chapter continues to introduce 
 \begin{itemize}
-    \item \textit{Frequency domain analysis}, which can be used to determine stability conditions of (linear and time-invariant) FD schemes,
+    \item \textit{Frequency domain analysis}, which can be used to determine stability conditions of (linear and time/shift-invariant) FD schemes,
     \item \textit{Energy analysis}, which can both be used to debug implementations of FD schemes, as well as determine stability conditions in a more general fashion, and
     \item \textit{Modal analysis} which can be used to determine the modal frequencies (and damping per mode) that a FD scheme exhibits.
 \end{itemize}
@@ -585,7 +585,7 @@ To know that the previous steps have been carried out correctly, it is good to c
 % An (1D) inner product (or norm) will `add' one `m' unit due to the $h$ in its definition in \eqref{eq:contInnerProd}. A first-order temporal difference operator will `add' one `s$^{-1}$'-unit (because of the $1/k$) and a first-order spatial difference operator will `add' one `m$^{-1}$'-unit ($1/h$). Along these lines, a second-order time or difference operator will `add' a `s$^{-2}$' ($1/k^2$) or `m$^{-2}$'-unit ($1/h^2$) respectively.
 
 \subsubsection{Step 4: Implement the definitions for energy and debug the FD scheme}
-In the end, the definition for the energy can be implemented and used as a check for whether the FD scheme has been implemented correctly. Usually, the energy of the system is calculated for every iteration in the for loop and plotted after the simulation.
+In the end, the definition for the energy can be implemented and used as a check for whether the FD scheme has been implemented correctly. Usually, the energy of the system is calculated for every iteration in the main loop and plotted after the simulation.
 For a system without losses or energy inputs, the energy should be unchanged according to Eq. \eqref{eq:unchangedEnergy} and can be plotted according to
 % 
 \begin{equation}\label{eq:normalisedEnergy}
@@ -612,10 +612,10 @@ The energy balance of the simple mass-spring system presented in Section \ref{se
 \begin{equation}\label{eq:rOCmassSpring}
     \dtp \h = M(\dtd\un)(\dtt \un) + K(\dtd\un)(\un) = 0.
 \end{equation}
-Note that the inner product is not necessary as the system is not distributed.
+Note that an inner product is not necessary here, as the system is not distributed.
 
 \subsubsection{Step 2: Identify energy types and isolate $\dtp$}
-As there are no losses or externally supplied energy present in the system, all terms are part of the Hamiltonian $\h$. To isolate $\dtp$ from \eqref{eq:rOCmassSpring}, one can use identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2} to get the following:
+As there are no losses or externally supplied energy present in the system, all terms are part of the Hamiltonian $\h$. To isolate $\dtp$ from Eq. \eqref{eq:rOCmassSpring}, one can use identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2} to get the following:
 \begin{equation}
     \dtp \h = \dtp\left(\frac{M}{2}(\dtm\un)^2 + \frac{K}{2}\un e_{t-}\un\right) = 0,
 \end{equation}
@@ -623,7 +623,7 @@ and the following definition for $\h$ can be obtained
 \begin{equation}
     \h = \frac{M}{2}(\dtm\un)^2 + \frac{K}{2}\un e_{t-}\un = 0.
 \end{equation}
-This can be rewritten in terms of the kinetic energy $\t$ and potential energy $\v$ according to
+This can be rewritten in terms of the kinetic energy $\t$, and potential energy $\v$, according to
 \begin{equation}\label{eq:energyBalanceMassSpring}
     \h = \t + \v, \qwiq
     \t = \frac{M}{2}(\dtm\un)^2, \qaq \v = \frac{K}{2}\un e_{t-}\un.
@@ -673,7 +673,7 @@ Figure \ref{fig:energyMassSpring} shows the normalised energy (according to Eq. 
 \end{figure}
 
 \subsection{1D wave equation}\label{sec:1DWaveEnergyAnalysis}
-Energy analysis could be directly performed on the FD scheme in \eqref{eq:1DwaveFDS}. However, in order for the units of the scheme to add up to energy in Joules, it is useful to write out all physical parameters. Taking the definition for the wave speed for the ideal string $c = \sqrt{T/\rho A}$ and multiplying both sides of Eq. \eqref{eq:1DwaveFDS} by $\rho A$ yields
+Energy analysis could be directly performed on the FD scheme in Eq. \eqref{eq:1DwaveFDS}. However, as mentioned above, it is useful to write out all physical parameters such that the units of the scheme add up to energy in Joules. Taking the definition for the wave speed for the ideal string $c = \sqrt{T/\rho A}$ and multiplying both sides of Eq. \eqref{eq:1DwaveFDS} by $\rho A$ yields
 \begin{equation}\label{eq:1DWavePhysical}
     \rho A \dtt \uln = T \dxx \uln,
 \end{equation}
@@ -706,7 +706,7 @@ and reduced domain $\underline{d} = \{0, \hdots, N-1\}$. As Dirichlet boundary c
 In other words, if the states of the system at the boundaries are zero, their velocity will also be zero. 
 Then, using the discrete inner product in Eq. \eqref{eq:discInnerProd}, Eq. \eqref{eq:rOC1DWave} can be expanded to
 \begin{equation}
-    \dtp \h = \rho A \sum_{l = 0}^N h(\dtd \uln)(\dtt \uln) + T \sum_{l = 0}^N h(\dtd \dxp \uln)(\dxp \uln)
+    \dtp \h = \rho A \sum_{l = 0}^N h(\dtd \uln)(\dtt \uln) + T \sum_{l = 0}^{N-1} h(\dtd \dxp \uln)(\dxp \uln)
 \end{equation}
 Then, using identities \eqref{eq:prodIdentity1} and \eqref{eq:prodIdentity2}, $\dtp$ can be isolated 
 \begin{equation}
@@ -744,7 +744,7 @@ kinEnergy(n) = rho * A / 2 * h * sum((1/k * (u-uPrev)).^2);
 
 % Potential energy
 potEnergy(n) = T/(2*h) * sum(([u; 0] - [0; u]) ...
-.* ([uPrev; 0] - [0; uPrev]));
+    .* ([uPrev; 0] - [0; uPrev]));
 
 % Total energy (Hamiltonian)
 totEnergy(n) = kinEnergy(n) + potEnergy(n);
@@ -782,7 +782,7 @@ where the boundary term
 \end{align*}
 As the Neumann boundary condition states that
 \begin{equation*}
-    \dxd u_0^n = \dxd u_N^n = 0
+    \dxd u_0^n = \dxd u_N^n = 0,
 \end{equation*}
 the boundary term vanishes and the energy balance results in
 %
@@ -864,12 +864,12 @@ One can then use the following bound for spatial differences \cite{theBible}
 to put a condition on $\v$
 \begin{align*}
     \v &\geq \frac{T}{2}\left(\lVert\mtm\dxp\uln\rVert_{\underline{d}}^2 - \frac{k^2}{4}\left(\frac{2}{h}\lVert\dtm\uln\rVert_{d}\right)^2\right),\\
-    &\geq \frac{T}{2}\left(\lVert\mtm\dxp\uln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\lVert\dtm\uln\rVert_{d}^2\right),
+    \v&\geq \frac{T}{2}\left(\lVert\mtm\dxp\uln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\lVert\dtm\uln\rVert_{d}^2\right),
 \end{align*}
 Substituting this condition into the energy balance in Eq. \eqref{eq:energyBalance1DWave} yields
 \begin{align*}
     \h = \t + \v &\geq \frac{\rho A}{2}\lVert\dtm \uln\rVert^2_d + \frac{T}{2}\left(\lVert\mtm\dxp\uln\rVert_{\underline{d}}^2 - \frac{k^2}{h^2}\lVert\dtm\uln\rVert_{d}^2\right),\\
-    &\geq \left(\frac{\rho A}{2} - \frac{Tk^2}{2h^2}\right)\lVert \dtm \uln\rVert_d^2 + \frac{T}{2}
+    \h = \t + \v&\geq \left(\frac{\rho A}{2} - \frac{Tk^2}{2h^2}\right)\lVert \dtm \uln\rVert_d^2 + \frac{T}{2}
     \lVert\mtm\dxp \uln\rVert_{\underline{d}}^2.
 \end{align*}
 Recalling that $c = \sqrt{T /\rho A}$ and $\lambda = ck/h$ (see Section \ref{sec:1DWave}), all terms can be divided by $\rho A$ which yields
@@ -929,7 +929,7 @@ The figure shows one great advantage of performing modal analysis on a FD scheme
 \end{figure}
 
 \subsection{One-step form}\label{sec:oneStepForm}
-For more complicated systems, specifically those containing damping terms, it is useful to rewrite the update in \textit{one-step form} (also referred to as a state-space representation). The damping terms cause the coefficients of $z$ and $z^{-1}$ in the characteristic equation to not be identical and the trigonometric identities in \eqref{eq:trigIdentities} can not be used directly. Although the eigenvalue calculation needs to be done on a larger matrix, it allows for a more general and direct way to calculate the modal frequencies and damping coefficients per mode. 
+For more complicated systems, specifically those containing damping terms, it is useful to rewrite the update in a \textit{one-step form} (also referred to as a state-space representation). The damping terms cause the coefficients of $z$ and $z^{-1}$ in the characteristic equation to not be identical and the trigonometric identities in \eqref{eq:trigIdentities} can not be used directly. Although the eigenvalue calculation needs to be done on a larger matrix, it allows for a more general and direct way to calculate the modal frequencies and damping coefficients per mode. 
 
 If matrix $\A$ has an inverse, any scheme of the form
 \begin{equation}\label{eq:modalForm}
@@ -950,7 +950,7 @@ can be rewritten to
         \u^{n-1}
     \end{bmatrix}}_{\w^n}
 \end{equation}
-which relates the unknown state of the system to the known state through matrix $\Q$ which encompasses the scheme. The sizes of the identity matrix $\I$ and zero matrix $\mathbf{0}$ are the same size as $\A, \B$ and $\C$.
+which relates the unknown state of the system to the known state through matrix $\Q$. The sizes of the identity matrix $\I$ and zero matrix $\mathbf{0}$ are the same size as $\A, \B$ and $\C$.
 
 Again, solutions of the form $\w^n = z^n\boldPhi$ can be assumed (where $\boldPhi$ is now less-trivially connected to the modal shapes)
 \begin{equation}
